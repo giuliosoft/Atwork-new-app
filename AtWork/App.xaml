@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        mc:Ignorable="d" x:Class="AtWork.App"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Application resource dictionary -->
+            <!--Safe Area Style-->
+            <OnPlatform x:Key="SafeAreaPadding" x:TypeArguments="Thickness" Android="0" iOS="0" />
+            <!--Safe Area End-->
+
+            <!-- Colors -->
+            <!-- Light Gray -->
+            <Color x:Key="HeaderBackgroundColor">#101112</Color>
+            <!-- Red -->
+            <Color x:Key="RedColor">#ff151f</Color>
+            <!-- Black -->
+            <Color x:Key="BlackColor">#000000</Color>
+            <!-- White -->
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <!-- Colors End -->
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>
