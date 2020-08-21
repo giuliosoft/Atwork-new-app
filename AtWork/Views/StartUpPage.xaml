@@ -18,7 +18,7 @@
                         <FormattedString>
                             <Span Text="Welcome to " TextColor="White" FontAttributes="None" FontSize="20" />
                             <Span Text="atwork, " TextColor="White" FontAttributes="Italic" FontSize="20"/>
-                            <Span Text="your hub to stay update in company news. participate in activitys and connect with your team" FontSize="20" TextColor="White" FontAttributes="None" />
+                            <Span Text="your hub to stay updated in company news, participate in activitiss and connect with your team" FontSize="20" TextColor="White" FontAttributes="None" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

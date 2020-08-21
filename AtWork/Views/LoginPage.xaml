@@ -6,5 +6,8 @@
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
+        <StackLayout VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,100,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+            <Image x:Name="logoImage" Source="logo" WidthRequest="200" HorizontalOptions="Center"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
