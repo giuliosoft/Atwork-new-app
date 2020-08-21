@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.SubViews.NewsDetailHeaderView">
+    <ContentView.Content>
+        <StackLayout Padding="0,0,0,5" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource HeaderBackgroundColor}">
+            <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <ContentView x:Name="HeaderBack" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="EndAndExpand">
+                    <Image Source="backarrow" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
+                    </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView x:Name="HeaderTitle" Grid.Column="1" Margin="0,0,0,5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <Label Text="Post" Style="{StaticResource HeaderViewHeaderLabelStyle}"/>
+                </ContentView>
+                <ContentView x:Name="HeaderNewsOption" Grid.Column="2" Margin="0,0,0,8" HorizontalOptions="Fill" VerticalOptions="EndAndExpand">
+                    <Image Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                </ContentView>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

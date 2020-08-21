@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.AddNewsPostPage"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
+             ControlTemplate="{StaticResource AppNewsPostHeader_Template}">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Padding="0" >
+                <Customcontrol:CustomEntry ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PostTitle}"  Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                <StackLayout Margin="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ScrollView>
+                        <Customcontrol:CustomEditor ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.StartWritingYourPost}" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>
+                    </ScrollView>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
