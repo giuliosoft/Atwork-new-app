@@ -53,6 +53,7 @@ namespace AtWork.ViewModels
         public DelegateCommand ClosePopupCommand { get { return new DelegateCommand(async () => await ClosePopup(true)); } }
         public DelegateCommand LeftCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
+        public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
 
         #endregion
 

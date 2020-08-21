@@ -34,6 +34,7 @@
     <Folder Include="Multilingual\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Fonts\" />
+    <Folder Include="SubViews\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Multilingual\AppResources.resx">

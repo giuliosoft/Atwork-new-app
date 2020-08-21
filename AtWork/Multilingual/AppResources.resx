@@ -42,4 +42,7 @@
     <data name="NoInternetMsg" xml:space="preserve">
         <value>Could not connect to internet. Please check your internet connection.</value>
     </data>
+     <data name="ForgotPasswordText" xml:space="preserve">
+        <value>I forgot my password</value>
+    </data>
 </root>

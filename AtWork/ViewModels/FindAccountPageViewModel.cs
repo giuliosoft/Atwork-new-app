@@ -9,10 +9,10 @@ using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
-    public class StartUpPageViewModel : ViewModelBase
+    public class FindAccountPageViewModel : ViewModelBase
     {
         #region Constructor
-        public StartUpPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
+        public FindAccountPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
 
         }
@@ -33,7 +33,6 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
-        public DelegateCommand GoForFindAndClaimAccountCommand { get { return new DelegateCommand(async () => await FindAndClaimAccount()); } }
         #endregion
 
         #region private methods
@@ -43,18 +42,6 @@ namespace AtWork.ViewModels
             {
                 //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}", null);
                 await _navigationService.NavigateAsync(nameof(LoginPage));
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-        async Task FindAndClaimAccount()
-        {
-            try
-            {
-                //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}", null);
-                await _navigationService.NavigateAsync(nameof(FindAccountPage));
             }
             catch (Exception ex)
             {

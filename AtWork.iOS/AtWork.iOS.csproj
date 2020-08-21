@@ -68,6 +68,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -172,5 +173,11 @@
     <BundleResource Include="Resources\startupbackground%403x.png" />
     <BundleResource Include="Resources\README.md" />
     <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\headerbackblue.png" />
+    <BundleResource Include="Resources\headerbackblue%402x.png" />
+    <BundleResource Include="Resources\headerbackblue%403x.png" />
+    <BundleResource Include="Resources\headerbackgreen.png" />
+    <BundleResource Include="Resources\headerbackgreen%403x.png" />
+    <BundleResource Include="Resources\headerbackgreen%402x.png" />
   </ItemGroup>
 </Project>

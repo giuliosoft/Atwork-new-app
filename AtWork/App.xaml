@@ -3,7 +3,8 @@
                         xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         mc:Ignorable="d" x:Class="AtWork.App"
-                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        xmlns:SubViews="clr-namespace:AtWork.SubViews;assembly=AtWork">
     <Application.Resources>
         <ResourceDictionary>
             <!-- Application resource dictionary -->
@@ -21,6 +22,17 @@
             <!-- White -->
             <Color x:Key="WhiteColor">#FFFFFF</Color>
             <!-- Colors End -->
+             <ControlTemplate x:Key="Header_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:HeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>
