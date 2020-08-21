@@ -13,7 +13,7 @@ namespace AtWork.Services
         /// <returns></returns>
         public static string Navigate()
         {
-            return $"/{nameof(NavigationPage)}/{nameof(LoginPage)}";
+            return $"/{nameof(NavigationPage)}/{nameof(StartUpPage)}";
         }
     }
 }

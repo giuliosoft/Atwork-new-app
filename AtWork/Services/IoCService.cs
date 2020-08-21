@@ -38,6 +38,7 @@ namespace AtWork.Services
         private static void RegisterViewModelsForNavigation(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<StartUpPage, StartUpPageViewModel>();
         }
 
         /// <summary>
