@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Services;
+using AtWork.Views;
+using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
 
@@ -37,10 +39,22 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
+        public DelegateCommand GoForCancelCommand { get { return new DelegateCommand(async () => await GoForCancel()); } }
         #endregion
 
         #region private methods
-        
+        async Task GoForCancel()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         #endregion
 
         #region public methods
