@@ -29,13 +29,9 @@
 
             <StackLayout VerticalOptions="CenterAndExpand">
                     <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
-                        <Button Command="{Binding GoForLoginCommand}" FontAttributes="Bold" x:Name="btnLogin" Text="Submit" WidthRequest="50" FontSize="20" TextColor="White"/>
+                        <Button Command="{Binding GoForSubmitCommand}" FontAttributes="Bold" x:Name="btnLogin" Text="Submit" WidthRequest="50" FontSize="20" TextColor="White"/>
                     </Frame>
-                    <Label Text="New? Fnd and claim your account" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30,0,30,0"  TextDecorations="Underline" TextColor="White">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    
                 </StackLayout>
         </StackLayout>
     </ContentPage.Content>

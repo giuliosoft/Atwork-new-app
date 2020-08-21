@@ -32,16 +32,15 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForSubmitCommand { get { return new DelegateCommand(async () => await GoForSubmit()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        async Task GoForSubmit()
         {
             try
             {
-                //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}", null);
-                await _navigationService.NavigateAsync(nameof(LoginPage));
+                await _navigationService.NavigateAsync(nameof(ClaimProfilePage));
             }
             catch (Exception ex)
             {
