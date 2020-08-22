@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Multilingual;
+using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
 using Plugin.Connectivity;
@@ -78,6 +79,7 @@ namespace AtWork.ViewModels
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand AddNewsPostCommand { get { return new DelegateCommand(async () => await AddNewNewsPost()); } }
         public DelegateCommand AddNewsPostNextCommand { get { return new DelegateCommand(async () => await AddNewsPostNext()); } }
+        public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
 
         #endregion
 
@@ -232,6 +234,24 @@ namespace AtWork.ViewModels
         {
             await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
             AddNewsCancelImage = "AddNewsPostBack";
+        }
+        public async Task NewsOption()
+        {
+            NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
+            NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
+            newsOptionPopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
+            {
+                try
+                {
+                    var selectedProfileOption = SelectedObj;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            };
+            newsOptionPopup.BindingContext = newsOptionPopupViewModel;
+            await PopupNavigationService.ShowPopup(newsOptionPopup, true);
         }
         #endregion
     }

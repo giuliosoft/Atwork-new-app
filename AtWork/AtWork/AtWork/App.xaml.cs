@@ -17,6 +17,7 @@ namespace AtWork
 
         protected override void OnInitialized()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mjk3NDM5QDMxMzgyZTMxMmUzMFpzMmlxV0pZOHV3eG15VVBIZ3BwQlI1L1hVTjM1ZUhTMCtsSHlIR3VtY2s9");
             InitializeComponent();
 
             LayoutService.Init();
