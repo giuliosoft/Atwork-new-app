@@ -41,6 +41,10 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<StartUpPage, StartUpPageViewModel>();
             containerRegistry.RegisterForNavigation<FindAccountPage, FindAccountPageViewModel>();
             containerRegistry.RegisterForNavigation<ClaimProfilePage, ClaimProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<ClaimEditProfilePage, ClaimEditProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<ClaimThankYouReqeuestPage, ClaimThankYouRequestPageViewModel>();
+            containerRegistry.RegisterForNavigation<CreatePasswordPage, CreatePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<DisclaimerPage, DisclaimerPageViewModel>();
         }
 
         /// <summary>

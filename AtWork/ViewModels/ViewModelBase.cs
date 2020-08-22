@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Multilingual;
 using AtWork.Services;
+using AtWork.Views;
 using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Rg.Plugins.Popup.Pages;
+using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
@@ -54,6 +56,7 @@ namespace AtWork.ViewModels
         public DelegateCommand LeftCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
+        public DelegateCommand GreenHeaderViewBackCommand { get { return new DelegateCommand(async () => await GreenHeaderViewBack()); } }
 
         #endregion
 
@@ -96,6 +99,17 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.GoBackAsync();
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+        public async Task GreenHeaderViewBack()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ClaimProfilePage));
             }
             catch (Exception exception)
             {

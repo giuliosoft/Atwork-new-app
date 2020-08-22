@@ -26,7 +26,7 @@ namespace AtWork.iOS
 
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-            FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageSourceHandler();
+            //FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageSourceHandler();
 
             var config = new FFImageLoading.Config.Configuration()
             {

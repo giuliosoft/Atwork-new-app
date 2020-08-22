@@ -14,13 +14,23 @@
 
             <!-- Colors -->
             <!-- Light Gray -->
-            <Color x:Key="HeaderBackgroundColor">#101112</Color>
+            <Color x:Key="HeaderBackgroundColor">#E8E5E4</Color>
             <!-- Red -->
             <Color x:Key="RedColor">#ff151f</Color>
             <!-- Black -->
             <Color x:Key="BlackColor">#000000</Color>
             <!-- White -->
             <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <!-- Dark Brown -->
+            <Color x:Key="DarkBrownColor">#3C2E21</Color>
+            <!--Off White-->
+            <Color x:Key="OffWhiteColor">#F5F2F0</Color>
+            <!--Poster White-->
+            <Color x:Key="PosterWhiteColor">#E8E5E4</Color>
+            <!--Dark Green-->
+            <Color x:Key="DarkGreen">#0b4218</Color>
+            <!--Dark GreenShade2-->
+            <Color x:Key="DarkGreenShade">#0B421A</Color>
             <!-- Colors End -->
              <ControlTemplate x:Key="Header_Template">
                 <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
@@ -33,6 +43,16 @@
                 </Grid>
             </ControlTemplate>
 
+            <ControlTemplate x:Key="GreenBackHeader_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:GreenBackHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

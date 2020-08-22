@@ -160,7 +160,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\AtWork\AtWork.csproj">
-      <Project>{EF96D6D8-C8A2-45C7-8118-8C6762024351}</Project>
+      <Project>{8E7481D1-DE62-4318-9232-F24B2DD822E5}</Project>
       <Name>AtWork</Name>
     </ProjectReference>
   </ItemGroup>
@@ -179,5 +179,14 @@
     <BundleResource Include="Resources\headerbackgreen.png" />
     <BundleResource Include="Resources\headerbackgreen%403x.png" />
     <BundleResource Include="Resources\headerbackgreen%402x.png" />
+    <BundleResource Include="Resources\SubmitCorrection.png" />
+    <BundleResource Include="Resources\SubmitCorrection%402x.png" />
+    <BundleResource Include="Resources\SubmitCorrection%403x.png" />
+    <BundleResource Include="Resources\Passwordmessage.png" />
+    <BundleResource Include="Resources\Passwordmessage%402x.png" />
+    <BundleResource Include="Resources\Passwordmessage%403x.png" />
+    <BundleResource Include="Resources\Acceptdeclaimer.png" />
+    <BundleResource Include="Resources\Acceptdeclaimer%402x.png" />
+    <BundleResource Include="Resources\Group 711%403x.png" />
   </ItemGroup>
 </Project>

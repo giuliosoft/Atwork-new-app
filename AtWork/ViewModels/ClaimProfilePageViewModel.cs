@@ -40,6 +40,8 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForCancelCommand { get { return new DelegateCommand(async () => await GoForCancel()); } }
+        public DelegateCommand GoForFindAndClaimAccountCommand { get { return new DelegateCommand(async () => await GoForFindAndClaimAccount()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         #endregion
 
         #region private methods
@@ -48,6 +50,28 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        private async Task GoForFindAndClaimAccount()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ClaimEditProfilePage), null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        private async Task GoForLogin()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(CreatePasswordPage));
             }
             catch (Exception ex)
             {
