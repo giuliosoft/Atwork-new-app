@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Services;
+using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -12,7 +13,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public AddNewsPostPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            NextClickPageName = nameof(AddNewsPostPage);
         }
         #endregion
 

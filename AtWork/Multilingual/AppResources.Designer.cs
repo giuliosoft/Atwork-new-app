@@ -118,6 +118,7 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("StartWritingYourPost", resourceCulture);
             }
         }
+        
         internal static string DoneButtonText {
             get {
                 return ResourceManager.GetString("DoneButtonText", resourceCulture);
@@ -141,8 +142,8 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("SendText", resourceCulture);
             }
         }
-		
-		internal static string AddImagesToYourPost {
+        
+        internal static string AddImagesToYourPost {
             get {
                 return ResourceManager.GetString("AddImagesToYourPost", resourceCulture);
             }
@@ -151,6 +152,24 @@ namespace AtWork.Multilingual {
         internal static string AddAttachFileToYourPost {
             get {
                 return ResourceManager.GetString("AddAttachFileToYourPost", resourceCulture);
+            }
+        }
+        
+        internal static string StoragePermissionAlert {
+            get {
+                return ResourceManager.GetString("StoragePermissionAlert", resourceCulture);
+            }
+        }
+        
+        internal static string PermissionErrorText {
+            get {
+                return ResourceManager.GetString("PermissionErrorText", resourceCulture);
+            }
+        }
+        
+        internal static string EditCropButtonText {
+            get {
+                return ResourceManager.GetString("EditCropButtonText", resourceCulture);
             }
         }
     }

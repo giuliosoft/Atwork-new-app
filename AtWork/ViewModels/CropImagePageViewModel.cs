@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using AtWork.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
-    public class StructureViewModel : ViewModelBase
+    public class CropImagePageViewModel : ViewModelBase
     {
         #region Constructor
-        public StructureViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
+        public CropImagePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
 
         }
@@ -18,6 +19,7 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private string _Prop = string.Empty;
+        private ImageSource _NewsImageToCrop = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -25,6 +27,12 @@ namespace AtWork.ViewModels
         {
             get { return _Prop; }
             set { SetProperty(ref _Prop, value); }
+        }
+
+        public ImageSource NewsImageToCrop
+        {
+            get { return _NewsImageToCrop; }
+            set { SetProperty(ref _NewsImageToCrop, value); }
         }
         #endregion
 
@@ -58,6 +66,11 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            string imagePathToLoad = parameters.GetValue<string>("ImagePath");
+            if (!string.IsNullOrEmpty(imagePathToLoad))
+            {
+                NewsImageToCrop = ImageSource.FromFile(imagePathToLoad);
+            }
         }
     }
 }

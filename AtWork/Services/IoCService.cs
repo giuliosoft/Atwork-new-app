@@ -40,9 +40,10 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<NewsPage, NewsPageViewModel>();
             containerRegistry.RegisterForNavigation<NewsDetailPage, NewsDetailPageViewModel>();
-			containerRegistry.RegisterForNavigation<AddNewsPostPage, AddNewsPostPageViewModel>();
-            containerRegistry.RegisterForNavigation<AddNewsPostImagePage,AddNewsPostImagePageViewModel>();
+            containerRegistry.RegisterForNavigation<AddNewsPostPage, AddNewsPostPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddNewsPostImagePage, AddNewsPostImagePageViewModel>();
             containerRegistry.RegisterForNavigation<AddNewsAttachFilePage, AddNewsAttachFilePageViewModel>();
+            containerRegistry.RegisterForNavigation<CropImagePage, CropImagePageViewModel>();
         }
 
         /// <summary>

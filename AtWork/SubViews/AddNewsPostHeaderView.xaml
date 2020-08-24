@@ -27,7 +27,7 @@
                     <StackLayout HorizontalOptions="Fill" VerticalOptions="CenterAndExpand">
                         <Image Source="{TemplateBinding BindingContext.AddNewsNextImage}" Style="{StaticResource AppNewsPostImageStyle}" />
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}"/>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </ContentView>

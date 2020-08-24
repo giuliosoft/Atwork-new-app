@@ -59,7 +59,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <PancakeControl:PancakeView Grid.Column="0" CornerRadius="15" BackgroundColor="Transparent">
-                                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsImageCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="tutorialCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
+                                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsImageCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsPostCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
                                         <CarouselView.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AtWork.iOS.HelperServices;
 using FFImageLoading;
 using Foundation;
 using UIKit;
@@ -26,7 +27,9 @@ namespace AtWork.iOS
 
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-            FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageSourceHandler();
+            //FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageSourceHandler();
+
+            Syncfusion.SfImageEditor.XForms.iOS.SfImageEditorRenderer.Init();
 
             var config = new FFImageLoading.Config.Configuration()
             {

@@ -150,6 +150,21 @@
             </Style>
             <!--Label Styles End-->
 
+            <!--Button Styles Start-->
+            <Style x:Key="CropButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BorderColor" Value="{StaticResource DarkGreenColor}"/>
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <!--Button Styles End-->
+
             <!--Editor Styles Start-->
             <Style x:Key="NewsCommentEditorStyle" TargetType="CustomControl:CustomEditor">
                 <Setter Property="FontFamily" Value="" />

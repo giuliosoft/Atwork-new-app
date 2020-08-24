@@ -9,15 +9,23 @@ namespace AtWork.Views
     {
         public NewsPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
             //indicatorView.Position = 0;
         }
 
-        void tutorialCarousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
+        void newsPostCarousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
         {
-            var view = sender as CarouselView;
-
-            //indicatorView.Position = view.Position;
+            var cView = sender as CarouselView;
+            var pView = cView.Parent.Parent as Grid;
+            var children = pView.Children;
+            foreach (var c in children)
+            {
+                if (c.GetType().Name == nameof(IndicatorView))
+                {
+                    var indcView = c as IndicatorView;
+                    indcView.Position = cView.Position;
+                }
+            }
         }
     }
 

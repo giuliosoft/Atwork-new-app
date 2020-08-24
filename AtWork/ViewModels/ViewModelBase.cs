@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Multilingual;
 using AtWork.Popups;
 using AtWork.Services;
@@ -42,6 +43,7 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private bool _isVisiblePlayerBanner = false;
+        private string _NextClickPageName = TextResources.AddPostTitlePageText;
         private ImageSource _AddNewsCancelImage;
         private ImageSource _AddNewsNextImage;
         #endregion
@@ -69,6 +71,12 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _AddNewsNextImage, value); }
         }
 
+        public string NextClickPageName
+        {
+            get { return _NextClickPageName; }
+            set { SetProperty(ref _NextClickPageName, value); }
+        }
+
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }
@@ -78,7 +86,7 @@ namespace AtWork.ViewModels
         public DelegateCommand LeftCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand AddNewsPostCommand { get { return new DelegateCommand(async () => await AddNewNewsPost()); } }
-        public DelegateCommand AddNewsPostNextCommand { get { return new DelegateCommand(async () => await AddNewsPostNext()); } }
+        public DelegateCommand<string> AddNewsPostNextCommand { get { return new DelegateCommand<string>(async (obj) => await AddNewsPostNext(obj)); } }
         public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
 
         #endregion
@@ -230,11 +238,25 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-        public async Task AddNewsPostNext()
+
+        /// <summary>
+        /// ClosePopup
+        /// </summary>
+        /// <param name="selectedPageToNext">Page String</param>
+        /// <returns></returns>
+        public async Task AddNewsPostNext(string selectedPageToNext)
         {
-            await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
-            AddNewsCancelImage = "AddNewsPostBack";
+            if (selectedPageToNext == nameof(AddNewsPostPage))
+            {
+                await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
+                AddNewsCancelImage = "AddNewsPostBack";
+            }
+            else if (selectedPageToNext == nameof(AddNewsPostImagePage))
+            {
+                //your page to redirect
+            }
         }
+
         public async Task NewsOption()
         {
             NewsOptionPopup newsOptionPopup = new NewsOptionPopup();

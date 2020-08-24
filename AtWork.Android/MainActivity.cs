@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading;
+using Android.Content;
+using AtWork.Droid.HelperServices;
 
 namespace AtWork.Droid
 {
@@ -36,7 +38,7 @@ namespace AtWork.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
-            FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageViewHandler();
+            //FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageViewHandler();
 
             LoadApplication(new App());
         }
@@ -58,6 +60,13 @@ namespace AtWork.Droid
             {
                 // Do something if there are not any pages in the `PopupStack`
             }
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            MultiMediaPickerService.SharedInstance.OnActivityResult(requestCode, resultCode, data);
         }
 
         public class CustomLogger : FFImageLoading.Helpers.IMiniLogger

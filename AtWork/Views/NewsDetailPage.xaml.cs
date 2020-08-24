@@ -15,7 +15,7 @@ namespace AtWork.Views
             indicatorView.Position = 0;
         }
 
-        void tutorialCarousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
+        void newsPostCarousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
         {
             var view = sender as CarouselView;
 

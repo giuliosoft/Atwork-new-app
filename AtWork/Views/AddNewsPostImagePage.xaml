@@ -5,8 +5,8 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"             
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
@@ -15,12 +15,57 @@
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
             <StackLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
                 <Label Text="{x:Static Multilingual:AppResources.AddImagesToYourPost}" Style="{StaticResource AddPostImageLabelStyle}"/>
-                <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
-                <imageeditor:SfImageEditor Source="{Binding LikeImage}" x:Name="SelectName"/>
+                <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
+                <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsPostImageCarouselList}" HeightRequest="250" PeekAreaInsets="40" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsImageCarousel_PositionChanged" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="CurrentItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale" Value="1.1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="PreviousItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale" Value="0.9" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="NextItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale" Value="0.9" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="DefaultItem">
+                                                <VisualState.Setters>
+                                                    <Setter Property="Scale" Value="1" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <ffimageloading:CachedImage Grid.Row="0" DownsampleToViewSize="true" Source="{Binding ImagePreviewPath}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                                            </ffimageloading:CachedImage>
+                                        </Grid>
+                                    </PancakeControl:PancakeView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                        <Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>
+                    </StackLayout>
+                </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                     <ffimageloading:CachedImage Source="ChoosefromCameraroll" Margin="{DynamicResource MarginPadding00_00_00_20}" />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChoosefromCameraRollCommand}"/>
+                        <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </StackLayout>
