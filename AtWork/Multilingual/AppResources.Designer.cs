@@ -167,17 +167,14 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string EditCropButtonText
-        {
-            get
-            {
+        internal static string EditCropButtonText {
+            get {
                 return ResourceManager.GetString("EditCropButtonText", resourceCulture);
             }
         }
-        internal static string ChooseWhoCanSeeYourPost
-        {
-            get
-            {
+        
+        internal static string ChooseWhoCanSeeYourPost {
+            get {
                 return ResourceManager.GetString("ChooseWhoCanSeeYourPost", resourceCulture);
             }
         }
