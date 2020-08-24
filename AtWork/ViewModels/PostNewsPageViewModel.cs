@@ -5,26 +5,27 @@ using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
-    public class AddNewsAttachFilePageViewModel : ViewModelBase
+    public class PostNewsPageViewModel : ViewModelBase
     {
         #region Constructor
-        public AddNewsAttachFilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
+        public PostNewsPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            NextClickPageName = nameof(AddNewsAttachFilePage);
+            NextClickPageName = nameof(PostNewsPage);
             AddNewsCancelImage = "Back";
-            AddNewsNextImage = "Skip";
+            AddNewsNextImage = "Publish";
         }
         #endregion
 
         #region Private Properties
-
+        private string _ProductDetail = string.Empty;
+        
         #endregion
 
-        #region Public Properties
-        private string _ProductDetail = string.Empty;
+        #region Public Properties        
         public string ProductDetail
         {
             get { return _ProductDetail; }
@@ -34,10 +35,34 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand PostToEveryeodyCommand { get { return new DelegateCommand(async () => await PostToEveryeody()); } }
+        public DelegateCommand PostToYourGroupCommand { get { return new DelegateCommand(async () => await PostToYourGroup()); } }
         #endregion
 
         #region private methods
         async Task GoForLogin()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task PostToEveryeody()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task PostToYourGroup()
         {
             try
             {
@@ -57,12 +82,14 @@ namespace AtWork.ViewModels
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
+            
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            //AddNewsCancelImage = "Back";
+            //AddNewsNextImage = "Publish";
         }
     }
 }
-

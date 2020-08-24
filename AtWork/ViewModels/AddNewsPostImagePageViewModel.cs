@@ -19,10 +19,10 @@ namespace AtWork.ViewModels
         #region Constructor
         public AddNewsPostImagePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            AddNewsCancelImage = "AddNewsPostBack";
-            AddNewsNextImage = "AddNewsPostNext";
             NextClickPageName = nameof(AddNewsPostImagePage);
             _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
+            AddNewsCancelImage = "Back";
+            AddNewsNextImage = "Next";
         }
         #endregion
 

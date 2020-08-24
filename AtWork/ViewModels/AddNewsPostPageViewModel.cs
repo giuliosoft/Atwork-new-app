@@ -14,6 +14,13 @@ namespace AtWork.ViewModels
         public AddNewsPostPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NextClickPageName = nameof(AddNewsPostPage);
+            AddNewsCancelImage = "Back";
+            AddNewsNextImage = "Next";
+            if (SessionService.isEditNews)
+            {
+                //TODO Remove static text
+                NewsDescription = "Enter new Description Stay healthy over the weekend! Stay healthy over the weekend! Stay healthy over the weekend!";
+            }
         }
         #endregion
 
@@ -27,6 +34,18 @@ namespace AtWork.ViewModels
         {
             get { return _ProductDetail; }
             set { SetProperty(ref _ProductDetail, value); }
+        }
+        private string _NewsTitle = string.Empty;
+        public string NewsTitle
+        {
+            get { return _NewsTitle; }
+            set { SetProperty(ref _NewsTitle, value); }
+        }
+        private string _NewsDescription =string.Empty;
+        public string NewsDescription
+        {
+            get { return _NewsDescription; }
+            set { SetProperty(ref _NewsDescription, value); }
         }
         #endregion
 

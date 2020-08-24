@@ -78,5 +78,8 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="EditCropButtonText" xml:space="preserve">
         <value>Edit crop</value>
+
+    <data name="ChooseWhoCanSeeYourPost" xml:space="preserve">
+        <value>Choose Who Can See Your Post</value>
     </data>
 </root>

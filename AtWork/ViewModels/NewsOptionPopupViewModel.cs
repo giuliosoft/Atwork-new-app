@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
 using AtWork.Services;
+using AtWork.Views;
 using DLToolkit.Forms.Controls;
 using Prism.Commands;
 using Prism.Navigation;
@@ -38,6 +39,9 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand<string> ProfileOptionSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await ProfileOptionSelected(obj)); } }
         public DelegateCommand ProfileCloseCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
+        public DelegateCommand GoForClosePopupCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
+        public DelegateCommand GoForEditNewsCommand { get { return new DelegateCommand(async () => await EditNews()); } }
+        public DelegateCommand GoForDeleteNewsCommand { get { return new DelegateCommand(async () => await DeleteNews()); } }
         #endregion
 
         #region Private Methods
@@ -59,6 +63,31 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task EditNews()
+        {
+            try
+            {
+                SessionService.isEditNews = true;
+                await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+                await PopupNavigationService.ClosePopup(true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task DeleteNews()
+        {
+            try
+            {
+                await PopupNavigationService.ClosePopup(true);
+                await _navigationService.GoBackAsync();
             }
             catch (Exception ex)
             {

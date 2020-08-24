@@ -16,6 +16,7 @@ namespace AtWork.Services
         public static INavigationService AppNavigationService = null;
         public static bool IsOnGlueGuidePage = false;
         public static bool isLoadingPopupOpen = false;
+        public static bool isEditNews = false;
 
         /// <summary>
         /// Logout

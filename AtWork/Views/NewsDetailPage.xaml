@@ -109,6 +109,39 @@
                                             <Image Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                             <Label Text="3" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                         </StackLayout>
+                                        <!--<SwipeView>
+                                            <SwipeView.LeftItems>
+                                                <SwipeItems>
+                                                    <SwipeItemView Invoked="OnIncorrectAnswerInvoked">
+                                                        <Grid WidthRequest="100">
+                                                            <Frame BackgroundColor="DarkGray"
+                                                                   CornerRadius="30">
+                                                                <Label Text="1"
+                                                                       HorizontalOptions="Center"
+                                                                       VerticalOptions="Center" />
+                                                            </Frame>
+                                                        </Grid>
+                                                    </SwipeItemView>
+                                                    <SwipeItemView Invoked="OnCorrectAnswerInvoked">
+                                                        <Grid WidthRequest="100">
+                                                            <Frame BackgroundColor="DarkGray"
+                                                                   CornerRadius="30">
+                                                                <Label Text="2"
+                                                                       HorizontalOptions="Center"
+                                                                       VerticalOptions="Center" />
+                                                            </Frame>
+                                                        </Grid>
+                                                    </SwipeItemView>
+                                                </SwipeItems>
+                                            </SwipeView.LeftItems>
+                                            <Grid HeightRequest="70"
+                                                  WidthRequest="300"
+                                                  BackgroundColor="LightGray">
+                                                <Label Text="What's 1+1?"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center" />
+                                            </Grid>
+                                        </SwipeView>-->
                                     </Grid>
                                 </StackLayout>
                             </DataTemplate>

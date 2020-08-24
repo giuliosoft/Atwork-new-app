@@ -28,8 +28,6 @@ namespace AtWork.ViewModels
             _navigationService = navigationService;
             _facadeService = facadeService;
 
-            AddNewsCancelImage = "AddNewsPostCancel";
-            AddNewsNextImage = "AddNewsPostNext";
             LogoutCommand = null;
             CrossConnectivity.Current.ConnectivityChanged += async (sender, e) =>
             {
@@ -44,8 +42,9 @@ namespace AtWork.ViewModels
         #region Private Properties
         private bool _isVisiblePlayerBanner = false;
         private string _NextClickPageName = TextResources.AddPostTitlePageText;
-        private ImageSource _AddNewsCancelImage;
-        private ImageSource _AddNewsNextImage;
+        private string _AddNewsCancelImage;
+        private string _AddNewsNextImage;
+        string SelectedPage = string.Empty;
         #endregion
 
         public bool IsVisiblePlayerBanner
@@ -60,12 +59,12 @@ namespace AtWork.ViewModels
             get { return _UserProfileImage; }
             set { SetProperty(ref _UserProfileImage, value); }
         }
-        public ImageSource AddNewsCancelImage
+        public string AddNewsCancelImage
         {
             get { return _AddNewsCancelImage; }
             set { SetProperty(ref _AddNewsCancelImage, value); }
         }
-        public ImageSource AddNewsNextImage
+        public string AddNewsNextImage
         {
             get { return _AddNewsNextImage; }
             set { SetProperty(ref _AddNewsNextImage, value); }
@@ -108,8 +107,6 @@ namespace AtWork.ViewModels
         /// <param name="parameters">The navigation parameters.</param>
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-            AddNewsCancelImage = "AddNewsPostCancel";
-            AddNewsNextImage = "AddNewsPostNext";
         }
 
         /// <summary>
@@ -246,17 +243,28 @@ namespace AtWork.ViewModels
         /// <returns></returns>
         public async Task AddNewsPostNext(string selectedPageToNext)
         {
+
+            this.SelectedPage = selectedPageToNext;
             if (selectedPageToNext == nameof(AddNewsPostPage))
             {
                 await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
-                AddNewsCancelImage = "AddNewsPostBack";
             }
             else if (selectedPageToNext == nameof(AddNewsPostImagePage))
             {
-                //your page to redirect
+                await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
+                
             }
+            else if (selectedPageToNext == nameof(AddNewsAttachFilePage))
+            {
+                await _navigationService.NavigateAsync(nameof(PostNewsPage));
+            }
+            else if (selectedPageToNext == nameof(PostNewsPage))
+            {
+                await _navigationService.NavigateAsync(nameof(NewsPage));
+            }
+           
         }
-
+       
         public async Task NewsOption()
         {
             NewsOptionPopup newsOptionPopup = new NewsOptionPopup();

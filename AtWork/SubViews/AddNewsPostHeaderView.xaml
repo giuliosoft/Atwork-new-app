@@ -15,17 +15,23 @@
                     <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
                 </Grid.ColumnDefinitions>
                 <ContentView Grid.Column="0" Margin="{DynamicResource MarginPaddingm30_00_00_00}" Padding="0" HorizontalOptions="Fill" VerticalOptions="Fill">
-                    <StackLayout HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" >
+                    <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
                         <!--<Image Source="AddNewsPostCancel" Style="{StaticResource AppNewsPostImageStyle}" />-->
-                        <Image Source="{TemplateBinding BindingContext.AddNewsCancelImage}" Style="{StaticResource AppNewsPostImageStyle}" />
+                        <!--<Image IsVisible="false" Source="{TemplateBinding BindingContext.AddNewsCancelImage}" Style="{StaticResource AppNewsPostImageStyle}" />-->
+                        <Frame CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="120" BackgroundColor="{StaticResource DarkGreenColor}" >
+                            <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}" Margin="7,7,0,7" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                        </Frame>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </ContentView>
                 <ContentView Grid.Column="2"  Margin="{DynamicResource MarginPadding00_00_m30_00}" Padding="0" HorizontalOptions="Fill" VerticalOptions="Fill">
-                    <StackLayout HorizontalOptions="Fill" VerticalOptions="CenterAndExpand">
-                        <Image Source="{TemplateBinding BindingContext.AddNewsNextImage}" Style="{StaticResource AppNewsPostImageStyle}" />
+                    <StackLayout HorizontalOptions="End" VerticalOptions="CenterAndExpand" >
+                        <!--<Image Source="{TemplateBinding BindingContext.AddNewsNextImage}" Style="{StaticResource AppNewsPostImageStyle}" />-->
+                        <Frame CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="120" BackgroundColor="{StaticResource DarkGreenColor}" >
+                            <Label Text="{TemplateBinding BindingContext.AddNewsNextImage}" Margin="0,7,7,7" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                        </Frame>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
                         </StackLayout.GestureRecognizers>
