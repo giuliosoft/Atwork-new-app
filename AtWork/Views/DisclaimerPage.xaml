@@ -14,7 +14,7 @@
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                 <Image/>
-                <Label Text="Disclaimer" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" Margin="0,170,0,10"/>
+                <Label Text="{Binding DisclaimerLabel}" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" Margin="0,170,0,10"/>
                 <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
                     <ScrollView>
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="30,20,20,20">
@@ -28,14 +28,22 @@
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="0,20,0,20">
+                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Disclaimerbtn}"  VerticalOptions="End" Margin="0,20,0,20">
                 <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="180" HeightRequest="10" BackgroundColor="{StaticResource DarkGreenShade}">
-                    <Button Command="{Binding ContinueSetupCommand}" x:Name="btnLogin" Text="Accept disclaimer" WidthRequest="20" FontSize="18" TextColor="White" />
+                        <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="Accept disclaimer" WidthRequest="20" FontSize="18" TextColor="White" />
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
             </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Termsconditionbtn}" VerticalOptions="End" Margin="0,20,0,20">
+                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="10" BackgroundColor="{StaticResource DarkGreenShade}">
+                        <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="Accept terms and conditions" WidthRequest="20" FontSize="18" TextColor="White" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToAuthenticationIdCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

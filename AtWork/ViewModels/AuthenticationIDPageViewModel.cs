@@ -9,10 +9,10 @@ using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
-    public class ClaimEditProfilePageViewModel : ViewModelBase
+    public class AuthenticationIDPageViewModel : ViewModelBase
     {
         #region Constructor
-        public ClaimEditProfilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
+        public AuthenticationIDPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
 
         }
@@ -32,29 +32,28 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
-        public DelegateCommand ThankYouResquestedCommand { get { return new DelegateCommand(async () => await ThankYouResquested()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForenableCommand { get { return new DelegateCommand(async () => await GoForEnable()); } }
 
         #endregion
 
         #region private methods
-        //async Task GoForLogin()
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
-        private async Task ThankYouResquested()
+        async Task GoForLogin()
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ClaimThankYouReqeuestPage), null);
-                //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(ClaimThankYouReqeuestPage)}", null);
+                await _navigationService.NavigateAsync(nameof(LoginPage), null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        private async Task GoForEnable()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(TouchIDLoginPage), null);
             }
             catch (Exception ex)
             {

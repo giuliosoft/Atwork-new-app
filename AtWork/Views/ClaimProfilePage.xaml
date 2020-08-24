@@ -41,9 +41,9 @@
                         <Button Command="{Binding GoForCancelCommand}" x:Name="btnCancel" Text="Cancel" WidthRequest="50" FontSize="20" TextColor="White"/>
                     </Frame>
                     <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="230" HeightRequest="20" Margin="5,10,10,10" BackgroundColor="#0B421A">
-                        <Button Command="{Binding GoForLoginCommand}" x:Name="btnClaimProfile" Text="Claim profile" WidthRequest="50" FontSize="20" TextColor="White"/>
+                        <Button Command="{Binding GoForPasswordCommand}" x:Name="btnClaimProfile" Text="Claim profile" WidthRequest="50" FontSize="20" TextColor="White"/>
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoForLoginCommand}"/>
+                            <TapGestureRecognizer Command="{Binding GoForPasswordCommand}"/>
                         </Frame.GestureRecognizers>
                     </Frame>
                 </StackLayout>

@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading;
+using Plugin.Fingerprint;
 
 namespace AtWork.Droid
 {
@@ -19,6 +20,7 @@ namespace AtWork.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            CrossFingerprint.SetCurrentActivityResolver(() => this);
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
@@ -36,7 +38,7 @@ namespace AtWork.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
-            FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageViewHandler();
+            //FFImageLoading.Forms.Platform.CachedImageRenderer.InitImageViewHandler();
 
             LoadApplication(new App());
         }

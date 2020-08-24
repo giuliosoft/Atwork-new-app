@@ -34,5 +34,9 @@
 	<string>AtWork</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Need your face to unlock app</string>
+	<key>Custom Property</key>
+	<string></string>
 </dict>
 </plist>

@@ -61,36 +61,35 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand ConfiromPasswordCommand{ get { return new DelegateCommand(async () => await ConfiromPassword()); } }
 
         #endregion
 
         #region private methods
-        async Task GoForLogin()
-        {
-            try
-            {
+        //async Task GoForLogin()
+        //{
+        //    try
 
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
+
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex.Message);
+        //    }
+        //}
         private async Task ConfiromPassword()
         {
             try
             {
-                //if (!String.IsNullOrEmpty(CreatePassowrdEntrytext))
-                //{
-                //    CreatePassowrdLabeltext = "Confirm your password";
-                //    ConfirmPassword = CreatePassowrdEntrytext;
-                //    CreatePassowrdEntrytext = null;
-                //    Passwordmessage = false;
-                //}
+                if (!String.IsNullOrEmpty(CreatePassowrdEntrytext))
+                {
+                    CreatePassowrdLabeltext = "Confirm your password";
+                    ConfirmPassword = CreatePassowrdEntrytext;
+                    CreatePassowrdEntrytext = null;
+                    Passwordmessage = false;
+                }
                 
-                await _navigationService.NavigateAsync(nameof(DisclaimerPage));
+                //await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
             }
             catch (Exception ex)
             {

@@ -12,6 +12,7 @@ namespace AtWork.Views
         {
             InitializeComponent();
            //this.BindingContext = new CreatePasswordPageViewModel(null, null);
+            var pageViewModel = (CreatePasswordPageViewModel)this.BindingContext;
             vm = this.BindingContext as CreatePasswordPageViewModel;
             txtpassword.TextChanged += (sender, e) =>
             {

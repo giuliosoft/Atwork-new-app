@@ -32,22 +32,21 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand ContinueSetupCommand { get { return new DelegateCommand(async () => await ContinueSetup()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
-        {
-            try
-            {
+        //async Task GoForLogin()
+        //{
+        //    try
 
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
+
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(ex.Message);
+        //    }
+        //}
         private async Task ContinueSetup()
         {
             try

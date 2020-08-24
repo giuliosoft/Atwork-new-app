@@ -109,7 +109,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ClaimProfilePage));
+                await _navigationService.NavigateAsync(nameof(ClaimProfilePage),null);
             }
             catch (Exception exception)
             {
