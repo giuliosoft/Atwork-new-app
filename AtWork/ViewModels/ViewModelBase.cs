@@ -252,7 +252,7 @@ namespace AtWork.ViewModels
             else if (selectedPageToNext == nameof(AddNewsPostImagePage))
             {
                 await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
-                
+
             }
             else if (selectedPageToNext == nameof(AddNewsAttachFilePage))
             {
@@ -262,9 +262,13 @@ namespace AtWork.ViewModels
             {
                 await _navigationService.NavigateAsync(nameof(NewsPage));
             }
-           
+            else if (selectedPageToNext == nameof(CropImagePage))
+            {
+                SessionService.isImageCropped = true;
+                await BackClick();
+            }
         }
-       
+
         public async Task NewsOption()
         {
             NewsOptionPopup newsOptionPopup = new NewsOptionPopup();

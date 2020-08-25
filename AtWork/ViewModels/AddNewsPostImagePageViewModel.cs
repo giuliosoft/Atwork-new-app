@@ -8,6 +8,7 @@ using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Navigation;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -31,6 +32,7 @@ namespace AtWork.ViewModels
         private ObservableCollection<NewsImageModel> _NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>();
         private string _Prop = string.Empty;
         private bool _NewsPickedImageViewIsVisible = false;
+        private int NewsImageSelectedForCrop = -1;
         #endregion
 
         #region Public Properties
@@ -107,9 +109,10 @@ namespace AtWork.ViewModels
                     var carouselRef = pageObject.FindByName("newsImageCarousel") as CarouselView;
                     if (carouselRef != null)
                     {
-                        var cPosition = carouselRef.Position;
+                        NewsImageSelectedForCrop = carouselRef.Position;
                         var navigationParams = new NavigationParameters();
-                        navigationParams.Add("ImagePath", NewsPostImageCarouselList[cPosition].ImagePreviewPath);
+                        navigationParams.Add("ImagePath", NewsPostImageCarouselList[NewsImageSelectedForCrop].ImagePreviewPath);
+                        navigationParams.Add("SelectedNewsImage", NewsPostImageCarouselList[NewsImageSelectedForCrop]);
                         await _navigationService.NavigateAsync(nameof(CropImagePage), navigationParams);
                     }
                 }
@@ -178,12 +181,36 @@ namespace AtWork.ViewModels
         }
     }
 
-    public class NewsImageModel
+    public class NewsImageModel : BindableBase
     {
-        public string ImagePreviewPath { get; set; }
-        public string ImagePath { get; set; }
-        public MediaFileType FileType { get; set; }
-        public ImageSource NewsImage { get; set; }
+        public string _ImagePreviewPath; //{ get; set; }
+        public string _ImagePath; //{ get; set; }
+        public MediaFileType _FileType; //{ get; set; }
+        public ImageSource _NewsImage; //{ get; set; }
+
+        public string ImagePreviewPath
+        {
+            get { return _ImagePreviewPath; }
+            set { SetProperty(ref _ImagePreviewPath, value); }
+        }
+
+        public string ImagePath
+        {
+            get { return _ImagePath; }
+            set { SetProperty(ref _ImagePath, value); }
+        }
+
+        public MediaFileType FileType
+        {
+            get { return _FileType; }
+            set { SetProperty(ref _FileType, value); }
+        }
+
+        public ImageSource NewsImage
+        {
+            get { return _NewsImage; }
+            set { SetProperty(ref _NewsImage, value); }
+        }
     }
 }
 

@@ -6,10 +6,14 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:Syncfusion="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"             
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
-             NavigationPage.HasNavigationBar="True" BackgroundColor="{StaticResource OffWhiteColor}">
+             NavigationPage.HasNavigationBar="False"
+             ControlTemplate="{StaticResource AppNewsPostHeader_Template}"
+             BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
-            <Syncfusion:SfImageEditor Source="{Binding NewsImageToCrop}"/>
+        <StackLayout>
+            <StackLayout x:Name="SfImgEditor" BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+                <Syncfusion:SfImageEditor x:Name="sfImageEditor" Source="{Binding NewsImageToCrop}" ImageSaving="editor_ImageSaving" ImageSaved="editor_ImageSaved" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

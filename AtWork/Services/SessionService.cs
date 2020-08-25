@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace AtWork.Services
 {
@@ -17,7 +18,7 @@ namespace AtWork.Services
         public static bool IsOnGlueGuidePage = false;
         public static bool isLoadingPopupOpen = false;
         public static bool isEditNews = false;
-
+        public static bool isImageCropped = false;
         /// <summary>
         /// Logout
         /// clear social media account details

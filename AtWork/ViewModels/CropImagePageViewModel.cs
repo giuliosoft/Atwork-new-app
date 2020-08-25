@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
+using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
@@ -13,16 +15,20 @@ namespace AtWork.ViewModels
         #region Constructor
         public CropImagePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            NextClickPageName = nameof(CropImagePage);
+            AddNewsCancelImage = AppResources.BackButtonText;
+            AddNewsNextImage = AppResources.SaveButtonText;
         }
         #endregion
 
         #region Private Properties
         private string _Prop = string.Empty;
         private ImageSource _NewsImageToCrop = string.Empty;
+        private NewsImageModel _SelectedNewsImageValue = null;
         #endregion
 
-        #region Public Properties        
+        #region Public Properties
+        public CropImagePage pageObject;
         public string Prop
         {
             get { return _Prop; }
@@ -33,6 +39,12 @@ namespace AtWork.ViewModels
         {
             get { return _NewsImageToCrop; }
             set { SetProperty(ref _NewsImageToCrop, value); }
+        }
+
+        public NewsImageModel SelectedNewsImageValue
+        {
+            get { return _SelectedNewsImageValue; }
+            set { SetProperty(ref _SelectedNewsImageValue, value); }
         }
         #endregion
 
@@ -45,13 +57,15 @@ namespace AtWork.ViewModels
         {
             try
             {
-
+                
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
+
+
         #endregion
 
         #region public methods
@@ -66,10 +80,10 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            string imagePathToLoad = parameters.GetValue<string>("ImagePath");
-            if (!string.IsNullOrEmpty(imagePathToLoad))
+            SelectedNewsImageValue = parameters.GetValue<NewsImageModel>("SelectedNewsImage");
+            if (SelectedNewsImageValue != null)
             {
-                NewsImageToCrop = ImageSource.FromFile(imagePathToLoad);
+                NewsImageToCrop = SelectedNewsImageValue.ImagePreviewPath;
             }
         }
     }

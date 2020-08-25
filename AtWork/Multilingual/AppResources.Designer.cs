@@ -178,5 +178,17 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ChooseWhoCanSeeYourPost", resourceCulture);
             }
         }
+        
+        internal static string BackButtonText {
+            get {
+                return ResourceManager.GetString("BackButtonText", resourceCulture);
+            }
+        }
+        
+        internal static string SaveButtonText {
+            get {
+                return ResourceManager.GetString("SaveButtonText", resourceCulture);
+            }
+        }
     }
 }

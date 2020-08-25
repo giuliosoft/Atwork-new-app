@@ -148,6 +148,15 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             </Style>
+            <Style x:Key="AttachedFileLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
             <!--Label Styles End-->
 
             <!--Button Styles Start-->

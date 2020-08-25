@@ -89,7 +89,7 @@
       <Version>2.1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor">
-      <Version>18.1.0.59</Version>
+      <Version>18.1.0.42</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +101,7 @@
     <Compile Include="HelperServices\MultiMediaPickerService.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="HelperServices\ImageHelpers.cs" />
+    <Compile Include="HelperServices\HelperService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
