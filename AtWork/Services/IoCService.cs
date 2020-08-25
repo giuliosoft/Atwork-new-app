@@ -45,6 +45,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<AddNewsAttachFilePage, AddNewsAttachFilePageViewModel>();
             containerRegistry.RegisterForNavigation<CropImagePage, CropImagePageViewModel>();
             containerRegistry.RegisterForNavigation<PostNewsPage, PostNewsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ActivityPage, ActivityPageViewModel>();
         }
 
         /// <summary>

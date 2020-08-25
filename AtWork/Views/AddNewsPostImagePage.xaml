@@ -13,7 +13,7 @@
              ControlTemplate="{StaticResource AppNewsPostHeader_Template}">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
-            <StackLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
+            <StackLayout Padding="{DynamicResource MarginPadding00}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
                 <Label Text="{x:Static Multilingual:AppResources.AddImagesToYourPost}" Style="{StaticResource AddPostImageLabelStyle}"/>
                 <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
                 <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -63,12 +63,21 @@
                         <Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
+                <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}"  VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15" HeightRequest="20"  HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{StaticResource DarkGreenColor}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRole}" FontSize="22" TextColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+                <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                     <ffimageloading:CachedImage Source="ChoosefromCameraroll" Margin="{DynamicResource MarginPadding00_00_00_20}" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
+                    
+                </StackLayout>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

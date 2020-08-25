@@ -190,5 +190,47 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("SaveButtonText", resourceCulture);
             }
         }
+        
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        internal static string DeleteComment {
+            get {
+                return ResourceManager.GetString("DeleteComment", resourceCulture);
+            }
+        }
+        
+        internal static string DeleteCommentMessage {
+            get {
+                return ResourceManager.GetString("DeleteCommentMessage", resourceCulture);
+            }
+        }
+        
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        internal static string AttachFile {
+            get {
+                return ResourceManager.GetString("AttachFile", resourceCulture);
+            }
+        }
+        
+        internal static string ChooseFromCameraRole {
+            get {
+                return ResourceManager.GetString("ChooseFromCameraRole", resourceCulture);
+            }
+        }
     }
 }

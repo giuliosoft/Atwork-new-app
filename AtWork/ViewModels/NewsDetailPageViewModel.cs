@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -15,7 +16,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            NewsDetailBack = "Back";
         }
         #endregion
 
@@ -69,6 +70,10 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand LikeNewsPostCommand { get { return new DelegateCommand(async () => await LikeNewsPost()); } }
+        public DelegateCommand OnOpenSwipeViewClicked { get { return new DelegateCommand(async () => await OnOpenSwipeView()); } }
+        public DelegateCommand OnCloseSwipeViewClicked { get { return new DelegateCommand(async () => await OnCloseSwipeView()); } }
+        public DelegateCommand DeleteCommentCommand { get { return new DelegateCommand(async () => await DeleteComment()); } }
+        public DelegateCommand EditCommentCommand { get { return new DelegateCommand(async () => await EditComment()); } }
         #endregion
 
         #region private methods
@@ -88,6 +93,59 @@ namespace AtWork.ViewModels
                     LikeImage = "heart";
                     LikeCountTextColor = (Color)App.Current.Resources["BlackColor"];
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task OnOpenSwipeView()
+        {
+            try
+            {
+                //swipeView.Open(OpenSwipeItem.LeftItems);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task EditComment()
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task DeleteComment()
+        {
+            try
+            {
+                var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                if (result)
+                {
+                    //LanguageService.Init(selectedItem.RadioButtomItem);
+                    //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task OnCloseSwipeView()
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {
@@ -116,6 +174,7 @@ namespace AtWork.ViewModels
             NewsImageCarouselList = tempCList;
 
             var tempCmtList = new ObservableCollection<CarouselModel>();
+            tempCmtList.Add(new CarouselModel() { NewsImage = "bg" });
             tempCmtList.Add(new CarouselModel() { NewsImage = "bg" });
             PostCommentList = tempCmtList;
         }

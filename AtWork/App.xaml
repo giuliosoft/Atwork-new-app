@@ -125,7 +125,8 @@
             </Style>
             <Style x:Key="HeaderViewHeaderLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />

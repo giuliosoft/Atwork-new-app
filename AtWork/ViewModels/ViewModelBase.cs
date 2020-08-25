@@ -43,6 +43,7 @@ namespace AtWork.ViewModels
         private bool _isVisiblePlayerBanner = false;
         private string _NextClickPageName = TextResources.AddPostTitlePageText;
         private string _AddNewsCancelImage;
+        private string _NewsDetailBack;
         private string _AddNewsNextImage;
         string SelectedPage = string.Empty;
         #endregion
@@ -75,6 +76,11 @@ namespace AtWork.ViewModels
             get { return _NextClickPageName; }
             set { SetProperty(ref _NextClickPageName, value); }
         }
+        public string NewsDetailBack
+        {
+            get { return _NewsDetailBack; }
+            set { SetProperty(ref _NewsDetailBack, value); }
+        }
 
         #region Commands
 
@@ -87,6 +93,8 @@ namespace AtWork.ViewModels
         public DelegateCommand AddNewsPostCommand { get { return new DelegateCommand(async () => await AddNewNewsPost()); } }
         public DelegateCommand<string> AddNewsPostNextCommand { get { return new DelegateCommand<string>(async (obj) => await AddNewsPostNext(obj)); } }
         public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
+        public DelegateCommand GoToNewsPageCommand { get { return new DelegateCommand(async () => await GoToNewsPage()); } }
+        public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
 
         #endregion
 
@@ -144,6 +152,28 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+        private async Task GoToNewsPage()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(NewsPage), null);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+        private async Task GoToActivityPage()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ActivityPage), null);
             }
             catch (Exception exception)
             {

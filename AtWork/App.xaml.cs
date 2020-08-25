@@ -22,6 +22,7 @@ namespace AtWork
 
             LayoutService.Init();
             LanguageService.Init("language");
+            Device.SetFlags(new string[] {"SwipeView_Experimental" });
             NavigationService.NavigateAsync(InitNavigationPageService.Navigate()).Wait();
         }
 

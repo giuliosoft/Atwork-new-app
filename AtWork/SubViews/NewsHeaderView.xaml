@@ -3,14 +3,15 @@
              x:Class="AtWork.SubViews.NewsHeaderView"
              xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"            
              xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
-        <StackLayout Padding="0,7,0,5" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource HeaderBackgroundColor}">
+        <StackLayout Padding="0,0,0,0" HorizontalOptions="FillAndExpand" Spacing="0">
             <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
                 </Grid.ColumnDefinitions>
                 <ContentView x:Name="HeaderProfile" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="EndAndExpand">
                     <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
@@ -25,13 +26,15 @@
                     <ffImageLoading:CachedImage ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding imageURL}" Style="{StaticResource HeaderLogoImageStyle}">
                     </ffImageLoading:CachedImage>
                 </ContentView>
-                <ContentView x:Name="HeaderAddNews" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="EndAndExpand">
-                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Image Source="plusadd" Style="{StaticResource NewsAddImageStyle}"/>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostCommand}"/>
-                        </Grid.GestureRecognizers>
-                    </Grid>
+                <ContentView Grid.Column="2" Padding="0,10,0,10"   VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
+                        <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
+                            <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                             <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                        </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
                 </ContentView>
             </Grid>
         </StackLayout>

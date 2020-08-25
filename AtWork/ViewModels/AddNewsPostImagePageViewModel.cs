@@ -176,8 +176,6 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            AddNewsCancelImage = "AddNewsPostBack";
-            AddNewsNextImage = "AddNewsPostNext";
         }
     }
 
