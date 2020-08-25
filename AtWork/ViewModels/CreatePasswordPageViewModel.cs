@@ -12,7 +12,7 @@ namespace AtWork.ViewModels
     public class CreatePasswordPageViewModel : ViewModelBase
     {
         public string ConfirmPassword;
-
+        bool isCreatingPwd = true;
         #region Constructor
         public CreatePasswordPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -81,15 +81,32 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (isCreatingPwd)
+                {
+                    isCreatingPwd = false;
                 if (!String.IsNullOrEmpty(CreatePassowrdEntrytext))
                 {
                     CreatePassowrdLabeltext = "Confirm your password";
                     ConfirmPassword = CreatePassowrdEntrytext;
                     CreatePassowrdEntrytext = null;
                     Passwordmessage = false;
+                    }
                 }
-                
-                //await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
+                else
+                {
+                    if (String.IsNullOrEmpty(CreatePassowrdEntrytext))
+                    {
+                        CreatePassowrdLabeltext = "Confirm your password";
+                        ConfirmPassword = CreatePassowrdEntrytext;
+                        CreatePassowrdEntrytext = null;
+                        Passwordmessage = false;
+                        return;
+                    }
+                    else
+                    {
+                        await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
+                    }
+                }
             }
             catch (Exception ex)
             {
