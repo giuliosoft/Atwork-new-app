@@ -2,11 +2,14 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -56,23 +59,38 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                //if (string.IsNullOrEmpty(UserEmail) || string.IsNullOrEmpty(UserPassword))
-                //{
-                //    await DisplayAlertAsync(AppResources.LoginEmptyFieldMsg);
-                //    return;
-                //}
-                //else if (!CommonUtility.emailIsValid(UserEmail))
-                //{
-                //    await DisplayAlertAsync(AppResources.InvalidEmailMsg);
-                //    return;
-                //}
+                if (string.IsNullOrEmpty(UserEmail) || string.IsNullOrEmpty(UserPassword))
+                {
+                    await DisplayAlertAsync(TextResources.LoginEmptyFieldMsg);
+                    return;
+                }
+                else if (!CommonUtility.emailIsValid(UserEmail))
+                {
+                    await DisplayAlertAsync(TextResources.InvalidEmailMsg);
+                    return;
+                }
                 //else if (UserPassword.Length < 6)
                 //{
-                //    await DisplayAlertAsync(AppResources.PasswordLengthMsg);
+                //    await DisplayAlertAsync(TextResources.PasswordLengthMsg);
                 //    return;
                 //}
-                await _navigationService.NavigateAsync(nameof(NewsPage));
-                //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                SettingsService.LoggedInUserEmail = UserEmail;
+                SettingsService.LoggedInUserPassword = UserPassword;
+
+                LoginInputModel inputModel = new LoginInputModel();
+                inputModel.email = UserEmail;
+                inputModel.password = UserPassword;
+                var serviceResult = await UserServices.LoginToApp(inputModel);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    //await _navigationService.NavigateAsync(nameof(NewsPage));
+                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(NewsPage)}", null);
+                }
+                else
+                {
+                    await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
+                    return;
+                }
 
             }
             catch (Exception ex)

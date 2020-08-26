@@ -50,7 +50,10 @@
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Need your face to unlock app</string>
-	<key>Custom Property</key>
-	<string></string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
