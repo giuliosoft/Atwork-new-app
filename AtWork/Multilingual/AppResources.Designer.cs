@@ -393,11 +393,7 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ChooseFromCameraRole", resourceCulture);
             }
         }
-		 internal static string ForgotPasswordText {
-            get {
-                return ResourceManager.GetString("ForgotPasswordText", resourceCulture);
-            }
-        }
+		 
 		 public static string LoginEmptyFieldMsg
         {
             get
