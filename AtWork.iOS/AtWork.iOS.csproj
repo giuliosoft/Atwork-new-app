@@ -226,5 +226,8 @@
     <BundleResource Include="Resources\GMEmptyFolder.png" />
     <BundleResource Include="Resources\GMEmptyFolder%402x.png" />
     <BundleResource Include="Resources\GMEmptyFolder%403x.png" />
+    <BundleResource Include="Resources\leftarrow%403x.png" />
+    <BundleResource Include="Resources\leftarrow%402x.png" />
+    <BundleResource Include="Resources\leftarrow.png" />
   </ItemGroup>
 </Project>
