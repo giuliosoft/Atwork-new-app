@@ -75,6 +75,7 @@
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="HelperServices\MultiMediaPickerService.cs" />
     <Compile Include="HelperServices\HelperService.cs" />
+    <Compile Include="Renderers\CustomImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -252,5 +253,23 @@
     <BundleResource Include="Resources\leftarrow%403x.png" />
     <BundleResource Include="Resources\leftarrow%402x.png" />
     <BundleResource Include="Resources\leftarrow.png" />
+    <BundleResource Include="Resources\plus.png" />
+    <BundleResource Include="Resources\plus%402x.png" />
+    <BundleResource Include="Resources\plus%403x.png" />
+    <BundleResource Include="Resources\earth.png" />
+    <BundleResource Include="Resources\earth%402x.png" />
+    <BundleResource Include="Resources\earth%403x.png" />
+    <BundleResource Include="Resources\attachment%403x.png" />
+    <BundleResource Include="Resources\attachment.png" />
+    <BundleResource Include="Resources\attachment%402x.png" />
+    <BundleResource Include="Resources\heartfill.png" />
+    <BundleResource Include="Resources\heartfill%402x.png" />
+    <BundleResource Include="Resources\heartfill%403x.png" />
+    <BundleResource Include="Resources\heartoutline.png" />
+    <BundleResource Include="Resources\heartoutline%402x.png" />
+    <BundleResource Include="Resources\heartoutline%403x.png" />
+    <BundleResource Include="Resources\message.png" />
+    <BundleResource Include="Resources\message%402x.png" />
+    <BundleResource Include="Resources\message%403x.png" />
   </ItemGroup>
 </Project>

@@ -232,30 +232,10 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ChooseFromCameraRole", resourceCulture);
             }
         }
-		 internal static string ForgotPasswordText {
+        
+        internal static string ForgotPasswordText {
             get {
                 return ResourceManager.GetString("ForgotPasswordText", resourceCulture);
-            }
-        }
-		 public static string LoginEmptyFieldMsg
-        {
-            get
-            {
-                return ResourceManager.GetString("LoginEmptyFieldMsg", resourceCulture);
-            }
-        }
-        public static string InvalidEmailMsg
-        {
-            get
-            {
-                return ResourceManager.GetString("InvalidEmailMsg", resourceCulture);
-            }
-        }
-        public static string PasswordLengthMsg
-        {
-            get
-            {
-                return ResourceManager.GetString("PasswordLengthMsg", resourceCulture);
             }
         }
     }

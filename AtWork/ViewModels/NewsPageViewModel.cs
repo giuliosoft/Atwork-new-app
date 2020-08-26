@@ -50,6 +50,7 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand<NewsModel> NewsPostSelectedCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await GotoNewsPostDetailPage(obj)); } }
+        public DelegateCommand<NewsModel> EditNewsPostCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await EditNewsPost(obj)); } }
         #endregion
 
         #region private methods
@@ -66,6 +67,17 @@ namespace AtWork.ViewModels
         }
 
         async Task GotoNewsPostDetailPage(NewsModel selectedNewsPost)
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(NewsDetailPage), null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task EditNewsPost(NewsModel selectedNewsPost)
         {
             try
             {

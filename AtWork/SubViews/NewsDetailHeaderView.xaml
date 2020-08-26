@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.SubViews.NewsDetailHeaderView"
-             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:Customcontrol="clr-namespace:AtWork.CustomControls">
     <ContentView.Content>
         <StackLayout Padding="0,0,0,5" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource HeaderBackgroundColor}">
             <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -27,7 +28,7 @@
                     <Label Text="Post" Style="{StaticResource HeaderViewHeaderLabelStyle}"/>
                 </ContentView>
                 <ContentView x:Name="HeaderNewsOption" Grid.Column="2" Padding="20" HorizontalOptions="End" VerticalOptions="Center">
-                    <Image Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                    <Customcontrol:CustomImage Source="option" TintColor="{StaticResource DarkGreenColor}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
                     <ContentView.GestureRecognizers>
                             <TapGestureRecognizer Command="{TemplateBinding BindingContext.NewsOptionCommand}"/>
                         </ContentView.GestureRecognizers>

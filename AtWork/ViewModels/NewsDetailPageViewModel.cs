@@ -53,7 +53,7 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _SendButtonIsVisible, value); }
         }
 
-        private ImageSource _LikeImage = "heart";
+        private ImageSource _LikeImage = "heartoutline";
         public ImageSource LikeImage
         {
             get { return _LikeImage; }
@@ -84,14 +84,14 @@ namespace AtWork.ViewModels
                 if (!_isPostLiked)
                 {
                     _isPostLiked = true;
-                    LikeImage = "like";
-                    LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
+                    LikeImage = "heartoutline";
+                    LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
                 }
                 else
                 {
                     _isPostLiked = false;
-                    LikeImage = "heart";
-                    LikeCountTextColor = (Color)App.Current.Resources["BlackColor"];
+                    LikeImage = "heartfill";
+                    LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                 }
             }
             catch (Exception ex)
