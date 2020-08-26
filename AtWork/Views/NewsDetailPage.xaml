@@ -11,6 +11,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false"
+             xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
              ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
@@ -38,12 +39,12 @@
                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                 <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                    <Image Source="like" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                    <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
                             <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="EndAndExpand">
-                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
+                                <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
                                 <Label Text="14" Style="{StaticResource NewsPageLikeLabelStyle}" TextColor="{Binding LikeCountTextColor}"/>
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding LikeNewsPostCommand}"/>
@@ -81,7 +82,7 @@
                     </Grid>
                     <PancakeControl:PancakeView Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{StaticResource DarkGreenColor}">
                         <StackLayout Padding="0" Spacing="5" Orientation="Horizontal">
-                            <Image Source="pin" Aspect="AspectFit" HeightRequest="35" WidthRequest="45" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="attachment" Aspect="AspectFit" HeightRequest="20" WidthRequest="45" HorizontalOptions="Start" Margin="-10,0,0,0" VerticalOptions="Center"/>
                             <Label Margin="0,5,0,5" Text="Protect Yourself - Brochurepdf" Style="{StaticResource NewsDetailPinLabelStyle}"/>
                         </StackLayout>
                     </PancakeControl:PancakeView>
@@ -103,7 +104,7 @@
                                                             </StackLayout.GestureRecognizers>
                                                         </StackLayout>
                                                     </PancakeControl:PancakeView>
-                                                    <PancakeControl:PancakeView Padding="0,0,0,0" BorderColor="{StaticResource DarkGreenColor}" BorderThickness="2" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0">
+                                                    <PancakeControl:PancakeView Padding="0,0,0,0" HasShadow="False" BorderColor="Black" BorderThickness="2" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0">
                                                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
                                                             <Label Text="{x:Static Multilingual:AppResources.Delete}" WidthRequest="70" Margin="30,0,20,0" TextColor="{StaticResource DarkGreenColor}" FontSize="20" HorizontalTextAlignment="Center"></Label>
                                                             <StackLayout.GestureRecognizers>
@@ -131,7 +132,7 @@
                                                     <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod." Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
                                                 </StackLayout>
                                                 <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="StartAndExpand">
-                                                    <Image Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                    <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                     <Label Text="3" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                 </StackLayout>
                                         
