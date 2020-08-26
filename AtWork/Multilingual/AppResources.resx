@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="AppTitle" xml:space="preserve">
+        <value>AtWork</value>
+    </data>
+    <data name="InternalServerErrorMsg" xml:space="preserve">
+        <value>Internal server error, Please try again later</value>
+    </data>
+    <data name="UnauthorizedErrorMsg" xml:space="preserve">
+        <value>Unauthorized user</value>
+    </data>
+    <data name="RequestTimeoutErrorMsg" xml:space="preserve">
+        <value>Request timeout, Please try again</value>
+    </data>
+    <data name="SomethingWentWrongText" xml:space="preserve">
+        <value>Something went wrong. Please try again</value>
+    </data>
+    <data name="TooManyAttemptsText" xml:space="preserve">
+        <value>Too Many Attempts.</value>
+    </data>
+    <data name="BackendErrorText" xml:space="preserve">
+        <value>An error has occurred in our backend. Please try again</value>
+    </data>
+    <data name="AlertTitle" xml:space="preserve">
+        <value>ALERT</value>
+    </data>
+    <data name="AlertOkText" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="NoInternetMsg" xml:space="preserve">
+        <value>Could not connect to internet. Please check your internet connection.</value>
+    </data>
+    <data name="PostTitle" xml:space="preserve">
+        <value>Post title...</value>
+    </data>
+    <data name="StartWritingYourPost" xml:space="preserve">
+        <value>Start writing your post...</value>
+    </data>
+    <data name="StartWritingYourPost" xml:space="preserve">
+        <value>Start writing your post...</value>
+    </data>
+    <data name="DoneButtonText" xml:space="preserve">
+        <value>Done</value>
+    </data>
+    <data name="NextButtonText" xml:space="preserve">
+        <value>Next</value>
+    </data>
+    <data name="CommentPlaceholderText" xml:space="preserve">
+        <value>Add a comment</value>
+    </data>
+    <data name="SendText" xml:space="preserve">
+        <value>Send</value>
+    </data>
+    <data name="AddImagesToYourPost" xml:space="preserve">
+        <value>Add images to your post</value>
+    </data>
+    <data name="AddAttachFileToYourPost" xml:space="preserve">
+        <value>Attach a file for your post</value>
+    </data>
+    <data name="StoragePermissionAlert" xml:space="preserve">
+        <value>Need Storage permission to access to your photos.
+Permission Denied. Can not continue, try again.</value>
+    </data>
+    <data name="PermissionErrorText" xml:space="preserve">
+        <value>Error. Can not continue, try again.</value>
+    </data>
+    <data name="EditCropButtonText" xml:space="preserve">
+        <value>Edit crop</value>
+    </data>
+    <data name="ChooseWhoCanSeeYourPost" xml:space="preserve">
+        <value>Choose Who Can See Your Post</value>
+    </data>
+    <data name="BackButtonText" xml:space="preserve">
+        <value>Back</value>
+    </data>
+    <data name="SaveButtonText" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="Edit" xml:space="preserve">
+        <value>Edit</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="DeleteComment" xml:space="preserve">
+        <value>Delete Comment</value>
+    </data>
+    <data name="DeleteCommentMessage" xml:space="preserve">
+        <value>This action is permanent and cannot be undone.</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="AttachFile" xml:space="preserve">
+        <value>Attach file</value>
+    </data>
+     <data name="ChooseFromCameraRole" xml:space="preserve">
+        <value>Choose from camera role</value>
+    </data>
+</root>

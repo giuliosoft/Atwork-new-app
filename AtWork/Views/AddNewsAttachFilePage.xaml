@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.AddNewsAttachFilePage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
+             ControlTemplate="{StaticResource AppNewsPostHeader_Template}"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <StackLayout  Padding="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
+                <Label Text="{x:Static Multilingual:AppResources.AddAttachFileToYourPost}" Style="{StaticResource AddPostImageLabelStyle}"/>
+                <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
+                 <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}"   VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15" HeightRequest="20" WidthRequest="200" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{StaticResource DarkGreenColor}">
+                        <StackLayout Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="Start" VerticalOptions="Fill"/>
+                            <Label Text="{x:Static Multilingual:AppResources.AttachFile}" FontSize="22" TextColor="White"/>
+                             <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChoosefromCameraRollCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView> 
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

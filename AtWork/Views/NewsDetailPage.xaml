@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.NewsDetailPage"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
+             BackgroundColor="{DynamicResource HeaderBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0,0,0,20">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_00_15_00}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="230"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" RowSpacing="{DynamicResource Spacing10}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding NewsUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                <ffImageLoading:CachedImage.Transformations>
+                                    <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                                </ffImageLoading:CachedImage.Transformations>
+                            </ffImageLoading:CachedImage>
+                            <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
+                                    <Image Source="like" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                    <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="EndAndExpand">
+                                <Image Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
+                                <Label Text="14" Style="{StaticResource NewsPageLikeLabelStyle}" TextColor="{Binding LikeCountTextColor}"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LikeNewsPostCommand}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Grid>
+                        <StackLayout Grid.Row="1" Spacing="{DynamicResource Spacing05}" Padding="0,5,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="Stay healthy over the weekend!" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
+                        </StackLayout>
+                        <Grid Grid.Row="2" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid ColumnSpacing="{DynamicResource Spacing15}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <PancakeControl:PancakeView Grid.Column="0" CornerRadius="15" BackgroundColor="Transparent">
+                                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsImageCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsPostCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
+                                        <CarouselView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="bg.png" ErrorPlaceholder="bg.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CarouselView.ItemTemplate>
+                                    </CarouselView>
+                                </PancakeControl:PancakeView>
+                                <IndicatorView x:Name="indicatorView" Grid.Column="0" ItemsSource="{Binding NewsImageCarouselList}" SelectedIndicatorColor="White" Opacity="0.9" IndicatorSize="10" Padding="10" HorizontalOptions="Center" VerticalOptions="End" />
+                            </Grid>
+                        </Grid>
+                        <StackLayout Grid.Row="3" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                            <Label Text="How Can you protect yourself and others against the new coronavirus? Here's some tips..How Can you protect yourself and others against the new coronavirus? Here's some tips" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
+                        </StackLayout>
+                    </Grid>
+                    <PancakeControl:PancakeView Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{StaticResource DarkGreenColor}">
+                        <StackLayout Padding="0" Spacing="5" Orientation="Horizontal">
+                            <Image Source="pin" Aspect="AspectFit" HeightRequest="35" WidthRequest="45" HorizontalOptions="Start" VerticalOptions="Center"/>
+                            <Label Margin="0,5,0,5" Text="Protect Yourself - Brochurepdf" Style="{StaticResource NewsDetailPinLabelStyle}"/>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                    <CustomControl:RepeaterView x:Name="postCommentList" BackgroundColor="Transparent" ItemsSource="{Binding PostCommentList}" ColumnCount="1" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <CustomControl:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="15,5,15,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <SwipeView x:Name="swipeView" BackgroundColor="{StaticResource OffWhiteColor}">
+                                        <SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItemView>
+                                                <StackLayout Spacing="0" Padding="10,0,0,0">
+                                                    <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
+                                                        <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
+                                                            <Label Text="{x:Static Multilingual:AppResources.Edit}" WidthRequest="70" Margin="30,0,20,0" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding EditCommentCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                        </StackLayout>
+                                                    </PancakeControl:PancakeView>
+                                                    <PancakeControl:PancakeView Padding="0,0,0,0" BorderColor="{StaticResource DarkGreenColor}" BorderThickness="2" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0">
+                                                        <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
+                                                            <Label Text="{x:Static Multilingual:AppResources.Delete}" WidthRequest="70" Margin="30,0,20,0" TextColor="{StaticResource DarkGreenColor}" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding DeleteCommentCommand}" />
+                                                            </StackLayout.GestureRecognizers>
+                                                        </StackLayout>
+                                                    </PancakeControl:PancakeView>
+                                                </StackLayout>
+                                            </SwipeItemView>    
+                                            </SwipeItems>
+                                            </SwipeView.RightItems>
+                                            <Grid Grid.Row="0" RowSpacing="{DynamicResource Spacing10}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="40"/>
+                                                </Grid.ColumnDefinitions>
+                                                <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding NewsUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                                    <ffImageLoading:CachedImage.Transformations>
+                                                        <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                                                    </ffImageLoading:CachedImage.Transformations>
+                                                </ffImageLoading:CachedImage>
+                                                <StackLayout Spacing="0" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                                    <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod." Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
+                                                </StackLayout>
+                                                <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="StartAndExpand">
+                                                    <Image Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                    <Label Text="3" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                </StackLayout>
+                                        
+                                            </Grid>
+                                        </SwipeView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CustomControl:RepeaterView.ItemTemplate>
+                    </CustomControl:RepeaterView>
+                    <PancakeControl:PancakeView Margin="10,0,10,0" CornerRadius="20" Padding="10" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <CustomControl:CustomEditor x:Name="commentEditor" Grid.Column="0" ReturnType="Done" TextChanged="CommentEditor_TextChanged" Placeholder="{x:Static Multilingual:AppResources.CommentPlaceholderText}" Style="{StaticResource NewsCommentEditorStyle}"/>
+                            <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Label Text="{x:Static Multilingual:AppResources.SendText}" Style="{StaticResource SendLabelStyle}"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendCommentCommand}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                    </PancakeControl:PancakeView>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

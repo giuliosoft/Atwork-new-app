@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="AtWork.Popups.NewsOptionPopup"
+                 xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"
+                 xmlns:FlowListControl="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+    <pages:PopupPage.HasSystemPadding>
+        <OnPlatform x:TypeArguments="x:Boolean">
+            <OnPlatform.iOS>false</OnPlatform.iOS>
+            <OnPlatform.Android>true</OnPlatform.Android>
+        </OnPlatform>
+    </pages:PopupPage.HasSystemPadding>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Bottom" PositionOut="Bottom" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <!--<StackLayout Padding="60,20,0,70" Spacing="30" BackgroundColor="{StaticResource LightBlack}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="0,70,0,20">-->
+    <StackLayout Orientation="Vertical" VerticalOptions="End" HorizontalOptions="Fill" >
+    <Frame CornerRadius="20"  BackgroundColor="{StaticResource DarkBrownColor}">
+        <StackLayout Padding="0" Spacing="0">
+            <Button Command="{Binding GoForClosePopupCommand}" HorizontalOptions="Center" HeightRequest="3"  WidthRequest="40" Background="White"  Margin="0,0,0,10"></Button>
+            <StackLayout Orientation="Horizontal" Padding="0" Spacing="0">
+            <Frame HasShadow="False" CornerRadius="25" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"  WidthRequest="250" HeightRequest="15" Margin="10">
+                <Button Command="{Binding GoForEditNewsCommand}" Text="Edit post" WidthRequest="50" FontSize="20" TextColor="{StaticResource DarkBrownColor}" FontAttributes="Bold"/>
+            </Frame>
+            <Frame HasShadow="False" CornerRadius="25" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"  WidthRequest="250" HeightRequest="15" Margin="10">
+                <Button Command="{Binding GoForDeleteNewsCommand}" Text="Delete post" WidthRequest="50" FontSize="20" TextColor="{StaticResource DarkBrownColor}" FontAttributes="Bold"/>
+            </Frame> 
+                </StackLayout>
+        </StackLayout>
+     </Frame>
+
+    </StackLayout>
+</pages:PopupPage> 

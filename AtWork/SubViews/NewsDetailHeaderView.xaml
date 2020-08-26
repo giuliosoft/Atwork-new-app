@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.SubViews.NewsDetailHeaderView"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentView.Content>
+        <StackLayout Padding="0,0,0,5" HorizontalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource HeaderBackgroundColor}">
+            <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
+                </Grid.ColumnDefinitions>
+                <ContentView Grid.Column="0" Padding="0,0,20,0"  VerticalOptions="Center">
+                    <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="0,20,0,20" BackgroundColor="{StaticResource DarkGreenColor}" >
+                        <StackLayout HorizontalOptions="Start" VerticalOptions="Center" >
+                             <Image Source="leftarrow" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                             <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+                <ContentView x:Name="HeaderTitle" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Label Text="Post" Style="{StaticResource HeaderViewHeaderLabelStyle}"/>
+                </ContentView>
+                <ContentView x:Name="HeaderNewsOption" Grid.Column="2" Padding="20" HorizontalOptions="End" VerticalOptions="Center">
+                    <Image Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                    <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.NewsOptionCommand}"/>
+                        </ContentView.GestureRecognizers>
+                </ContentView>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
