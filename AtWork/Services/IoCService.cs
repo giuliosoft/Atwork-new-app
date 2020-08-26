@@ -46,6 +46,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<CropImagePage, CropImagePageViewModel>();
             containerRegistry.RegisterForNavigation<PostNewsPage, PostNewsPageViewModel>();
             containerRegistry.RegisterForNavigation<ActivityPage, ActivityPageViewModel>();
+            containerRegistry.RegisterForNavigation<ActivityDetailPage, ActivityDetailPageViewModel>();
         }
 
         /// <summary>

@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AtWork.Views.ActivityPage"
-              xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
-             xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
              xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
@@ -14,22 +11,14 @@
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0" Margin="0">
-            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Color="Black"/>
-            <!--<ScrollView Orientation="Horizontal" >
-                <StackLayout Orientation="Horizontal" HeightRequest="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource OffWhiteColor}">
-                    <Label Text="All categories" Style="{StaticResource ActivityPageHorizontalLabelStyle}" Margin="20,0,0,0" />
-                    <Label Text="Corporate volunteering" Style="{StaticResource ActivityPageHorizontalLabelStyle}" Margin="20,0,0,0"/>
-                    <Label Text="Education" Style="{StaticResource ActivityPageHorizontalLabelStyle}" Margin="20,0,0,0" />
-                    <Label Text="Spc" Style="{StaticResource ActivityPageHorizontalLabelStyle}" Margin="20,0,0,0" />
-                </StackLayout>
-            </ScrollView>-->
+            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Color="{StaticResource BlackColor}"/>
             <CollectionView x:Name="activitylist" ItemsSource="{Binding Activitylist}" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="{DynamicResource OffWhiteColor}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Label Text="{Binding title}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" Padding="20,0,0,0"/>
                         </StackLayout>
                     </DataTemplate>
@@ -63,20 +52,24 @@
                                 <Label Text="15 Joined"  Style="{StaticResource ActivityPageHorizontalLabelStyle}"/>
                             </StackLayout>
                         </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GotoActivityDetailsCommand}"/>
+                        </Frame.GestureRecognizers>
                     </Frame>
-
-                    <!--<Frame BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="15" HasShadow="False"   Margin="20">
+                    <Frame BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="15" HasShadow="False" Margin="20,0,20,0">
                         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
-                                <Frame HasShadow="False" HeightRequest="7" WidthRequest="150" HorizontalOptions="Start" VerticalOptions="StartAndExpand" BorderColor="Black" CornerRadius="20" >
-                                    <Label Text="#GetTogether" FontSize="10"/>
-                                </Frame>
-                                <Image Source="RoundPath" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="50,0,0,0"/>
+                                <PancakeControl:PancakeView HasShadow="False" BorderColor="Black" HeightRequest="30" WidthRequest="120" HorizontalOptions="StartAndExpand" BorderThickness="1" VerticalOptions="StartAndExpand" CornerRadius="10">
+                                    <Label Text="#GetTogether" FontSize="15" Padding="10"/>
+                                </PancakeControl:PancakeView>
+                                <Image Source="ActivityPeopleIcon" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,5"/>
                             </StackLayout>
                             <Label Text="Afterwork Beer!!" FontSize="20" FontAttributes="Bold"/>
-                            <ffImageLoading:CachedImage Source="Activitydemobg" Aspect="AspectFill" WidthRequest="230" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                            <PancakeControl:PancakeView HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10">
+                                <ffImageLoading:CachedImage Source="Activitydemobg" Aspect="Fill" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                            </PancakeControl:PancakeView>
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}"  />
+                                <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" />
                             </StackLayout>
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Label Text="3 Apr 2020" Style="{StaticResource ActivityPageLabelStyle}" />
@@ -85,10 +78,10 @@
                                 <Label Text="10:00 - 18:00" Style="{StaticResource ActivityPageLabelStyle}"/>
                             </StackLayout>
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label Text="15 Joined"  Style="{StaticResource ActivityPageHorizontalLabelStyle}"/>
+                                <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}"/>
                             </StackLayout>
                         </StackLayout>
-                    </Frame>-->
+                    </Frame>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

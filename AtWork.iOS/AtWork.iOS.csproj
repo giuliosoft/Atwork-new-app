@@ -160,7 +160,7 @@
       <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.PancakeView">
-      <Version>2.1.0.714</Version>
+      <Version>1.4.2</Version>
     </PackageReference>
     <PackageReference Include="GMImagePicker.Xamarin">
       <Version>2.4.0</Version>
@@ -226,5 +226,21 @@
     <BundleResource Include="Resources\GMEmptyFolder.png" />
     <BundleResource Include="Resources\GMEmptyFolder%402x.png" />
     <BundleResource Include="Resources\GMEmptyFolder%403x.png" />
+    <BundleResource Include="Resources\leftarrow%403x.png" />
+    <BundleResource Include="Resources\leftarrow%402x.png" />
+    <BundleResource Include="Resources\leftarrow.png" />
+
+    <BundleResource Include="Resources\Activitydemobg.png" />
+    <BundleResource Include="Resources\Activitydemobg%402x.png" />
+    <BundleResource Include="Resources\Activitydemobg%403x.png" />
+    <BundleResource Include="Resources\RoundPath .png" />
+    <BundleResource Include="Resources\RoundPath%402x.png" />
+    <BundleResource Include="Resources\RoundPath%403x.png" />
+    <BundleResource Include="Resources\ActivityPeopleIcon.png" />
+    <BundleResource Include="Resources\ActivityPeopleIcon%402x.png" />
+    <BundleResource Include="Resources\ActivityPeopleIcon%403x.png" />
+    <BundleResource Include="Resources\document.png" />
+    <BundleResource Include="Resources\document%402x.png" />
+    <BundleResource Include="Resources\document%403x.png" />
   </ItemGroup>
 </Project>

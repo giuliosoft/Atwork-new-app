@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.SubViews.NewsHeaderView"
-             xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"            
+             xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"  
              xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <StackLayout Padding="0,0,0,0" HorizontalOptions="FillAndExpand" Spacing="0">
             <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -26,13 +32,14 @@
                     <ffImageLoading:CachedImage ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding imageURL}" Style="{StaticResource HeaderLogoImageStyle}">
                     </ffImageLoading:CachedImage>
                 </ContentView>
-                <ContentView Grid.Column="2" Padding="0,10,0,10"   VerticalOptions="Fill">
-                    <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
-                        <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
-                            <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
-                             <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
-                        </StackLayout.GestureRecognizers>
+                <ContentView Grid.Column="2" Padding="0,10,0,10" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
+                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                            <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plusadd" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                            <Label IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
