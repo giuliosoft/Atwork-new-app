@@ -29,8 +29,8 @@
                 <ContentView Grid.Column="2" Padding="0,10,0,10"   VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
-                            <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
-                             <StackLayout.GestureRecognizers>
+                            <Image Source="plusadd" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                            <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
                         </StackLayout.GestureRecognizers>
                         </StackLayout>
