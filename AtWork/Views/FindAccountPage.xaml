@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.FindAccountPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource Header_Template}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Image x:Name="logoImage" Source="logo" WidthRequest="200" Margin="0,55,0,0" />
+            <StackLayout VerticalOptions="CenterAndExpand" Padding="0,0,0,0">
+                <StackLayout VerticalOptions="EndAndExpand" Padding="50,0,50,0">
+                    <Label Text="Access your profile by usign your company email" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="60,30,60,30" FontSize="18" TextColor="Black"/>
+                    <CustomControl:CustomEntry Placeholder="Email" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                    <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout VerticalOptions="StartAndExpand" Padding="50,0,50,0">
+                    <Label Text="Or enter the ID your company provided" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" Margin="60,30,60,30" TextColor="Black"/>
+                    <!--<Label Text="Or enter the ID your company provided"  HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30" TextColor="Black"/>-->
+                    <CustomControl:CustomEntry Placeholder="ID" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                    <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand">
+                    <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
+                        <Button Command="{Binding GoForSubmitCommand}" FontAttributes="Bold" x:Name="btnLogin" Text="Submit" WidthRequest="50" FontSize="20" TextColor="White"/>
+                    </Frame>
+                    
+                </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

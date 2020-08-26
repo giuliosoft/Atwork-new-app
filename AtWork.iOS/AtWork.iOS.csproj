@@ -162,6 +162,10 @@
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.1.0.714</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Fingerprint">
+      <Version>2.1.1</Version>
+          </PackageReference>
+
     <PackageReference Include="GMImagePicker.Xamarin">
       <Version>2.4.0</Version>
     </PackageReference>
@@ -226,5 +230,24 @@
     <BundleResource Include="Resources\GMEmptyFolder.png" />
     <BundleResource Include="Resources\GMEmptyFolder%402x.png" />
     <BundleResource Include="Resources\GMEmptyFolder%403x.png" />
+    <BundleResource Include="Resources\startupbackground.png" />
+    <BundleResource Include="Resources\startupbackground%402x.png" />
+    <BundleResource Include="Resources\startupbackground%403x.png" />
+    <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\headerbackblue.png" />
+    <BundleResource Include="Resources\headerbackblue%402x.png" />
+    <BundleResource Include="Resources\headerbackblue%403x.png" />
+    <BundleResource Include="Resources\headerbackgreen.png" />
+    <BundleResource Include="Resources\headerbackgreen%403x.png" />
+    <BundleResource Include="Resources\headerbackgreen%402x.png" />
+    <BundleResource Include="Resources\SubmitCorrection.png" />
+    <BundleResource Include="Resources\SubmitCorrection%402x.png" />
+    <BundleResource Include="Resources\SubmitCorrection%403x.png" />
+    <BundleResource Include="Resources\Passwordmessage.png" />
+    <BundleResource Include="Resources\Passwordmessage%402x.png" />
+    <BundleResource Include="Resources\Passwordmessage%403x.png" />
+    <BundleResource Include="Resources\Acceptdeclaimer.png" />
+    <BundleResource Include="Resources\Acceptdeclaimer%402x.png" />
+    <BundleResource Include="Resources\Group 711%403x.png" />
   </ItemGroup>
 </Project>

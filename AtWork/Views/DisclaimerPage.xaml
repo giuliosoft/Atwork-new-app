@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.DisclaimerPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork" xmlns:ffImageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource GreenBackHeader_Template}"
+             BackgroundColor="{StaticResource OffWhiteColor}">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                <Image/>
+                <Label Text="{Binding DisclaimerLabel}" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" Margin="0,170,0,10"/>
+                <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                    <ScrollView>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="30,20,20,20">
+                            <Label Text="Lorem ipsum dolor sit amet" FontSize="15" HorizontalTextAlignment="Start" />
+                            <Label Text="Consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." FontSize="15" LineBreakMode="WordWrap" HorizontalTextAlignment="Start" Margin="0,20,0,20" />
+                            <Label Text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " FontSize="15" HorizontalTextAlignment="Start" />
+                            <Label Text="Excepteur sint occaecat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." FontSize="15" HorizontalTextAlignment="Start" Margin="0,20,0,20" />
+                            <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." FontSize="15" HorizontalTextAlignment="Start" />
+                            <Label Text="Ut enim ad minim veniam, quis nostrud excercitation ullamoco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irue dolor in reprehenderit in voluptale velit esse cillum dolore eu fugiat nulla pariatur." FontSize="15" HorizontalTextAlignment="Start"  Margin="0,20,0,20" />
+                            <Label Text="Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offica deserunt mollit anim id est laborum." FontSize="15" HorizontalTextAlignment="Start" />
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Disclaimerbtn}"  VerticalOptions="End" Margin="0,20,0,20">
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="180" HeightRequest="10" BackgroundColor="{StaticResource DarkGreenShade}">
+                        <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="Accept disclaimer" WidthRequest="20" FontSize="18" TextColor="White" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Termsconditionbtn}" VerticalOptions="End" Margin="0,20,0,20">
+                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="10" BackgroundColor="{StaticResource DarkGreenShade}">
+                        <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="Accept terms and conditions" WidthRequest="20" FontSize="18" TextColor="White" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToAuthenticationIdCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

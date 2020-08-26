@@ -32,8 +32,22 @@
             <!--Dark Green-->
             <Color x:Key="DarkGreenColor">#0B421A</Color>
             <Color x:Key="DarkGreen">#0b4218</Color>
+            <!--Dark GreenShade2-->
+            <Color x:Key="DarkGreenShade">#0B421A</Color>
             <!-- Colors End -->
 
+
+	    <ControlTemplate x:Key="Header_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:HeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+	    
             <!--ControlTemplate-->
             <ControlTemplate x:Key="Dashboard_HeaderTemplate">
                 <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
@@ -52,6 +66,16 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <SubViews:NewsDetailHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+	    <ControlTemplate x:Key="GreenBackHeader_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:GreenBackHeaderView Grid.Row="0" />
                     <ContentPresenter Grid.Row="1" />
                 </Grid>
             </ControlTemplate>

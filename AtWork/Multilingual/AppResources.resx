@@ -109,4 +109,7 @@ Permission Denied. Can not continue, try again.</value>
      <data name="ChooseFromCameraRole" xml:space="preserve">
         <value>Choose from camera role</value>
     </data>
+    <data name="ForgotPasswordText" xml:space="preserve">
+        <value>I forgot my password</value>
+    </data>
 </root>

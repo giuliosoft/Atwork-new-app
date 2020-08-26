@@ -5,6 +5,7 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
+		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -47,5 +48,9 @@
 	<string>This app needs access to microphone.</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Need your face to unlock app</string>
+	<key>Custom Property</key>
+	<string></string>
 </dict>
 </plist>

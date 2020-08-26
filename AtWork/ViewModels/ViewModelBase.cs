@@ -95,7 +95,8 @@ namespace AtWork.ViewModels
         public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
         public DelegateCommand GoToNewsPageCommand { get { return new DelegateCommand(async () => await GoToNewsPage()); } }
         public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
-
+		public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
+        public DelegateCommand GreenHeaderViewBackCommand { get { return new DelegateCommand(async () => await GreenHeaderViewBack()); } }
         #endregion
 
         #region Methods
@@ -180,7 +181,17 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-
+		public async Task GreenHeaderViewBack()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ClaimProfilePage),null);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
         /// <summary>
         /// Destroy
         /// </summary>

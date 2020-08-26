@@ -85,6 +85,10 @@
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.1.0.714</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Fingerprint">
+      <Version>2.1.1</Version>
+          </PackageReference>
+
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
@@ -137,7 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtWork\AtWork.csproj">
-      <Project>{EF96D6D8-C8A2-45C7-8118-8C6762024351}</Project>
+      <Project>{8E7481D1-DE62-4318-9232-F24B2DD822E5}</Project>
       <Name>AtWork</Name>
     </ProjectReference>
   </ItemGroup>
