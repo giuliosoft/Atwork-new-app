@@ -17,6 +17,7 @@ namespace AtWork.ViewModels
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NewsDetailBack = "Back";
+            DetailHeaderOptionIsVisible = true;
         }
         #endregion
 
@@ -114,7 +115,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {

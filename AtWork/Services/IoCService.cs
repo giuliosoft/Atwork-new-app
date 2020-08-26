@@ -46,7 +46,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<CropImagePage, CropImagePageViewModel>();
             containerRegistry.RegisterForNavigation<PostNewsPage, PostNewsPageViewModel>();
             containerRegistry.RegisterForNavigation<ActivityPage, ActivityPageViewModel>();
-containerRegistry.RegisterForNavigation<StartUpPage, StartUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<StartUpPage, StartUpPageViewModel>();
             containerRegistry.RegisterForNavigation<FindAccountPage, FindAccountPageViewModel>();
             containerRegistry.RegisterForNavigation<ClaimProfilePage, ClaimProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<ClaimEditProfilePage, ClaimEditProfilePageViewModel>();
@@ -55,6 +55,7 @@ containerRegistry.RegisterForNavigation<StartUpPage, StartUpPageViewModel>();
             containerRegistry.RegisterForNavigation<DisclaimerPage, DisclaimerPageViewModel>();
             containerRegistry.RegisterForNavigation<AuthentificationIDPage, AuthenticationIDPageViewModel>();
             containerRegistry.RegisterForNavigation<TouchIDLoginPage, TouchIdLoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<ActivityDetailPage, ActivityDetailPageViewModel>();
         }
 
         /// <summary>

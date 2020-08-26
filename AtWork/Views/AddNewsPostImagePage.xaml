@@ -67,7 +67,7 @@
                 <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}"  VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="15" HeightRequest="20"  HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{StaticResource DarkGreenColor}">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRole}" FontSize="22" TextColor="White"/>
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRoll}" FontSize="22" TextColor="White"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
                             </StackLayout.GestureRecognizers>

@@ -46,6 +46,11 @@ namespace AtWork.ViewModels
         private string _NewsDetailBack;
         private string _AddNewsNextImage;
         string SelectedPage = string.Empty;
+        private string _NextOptionText;
+        private bool _DetailHeaderOptionIsVisible;
+        private bool _NextCustomLabelIsVisible;
+        private Color _NewsGreenbg;
+        private Color _ActivitiesGreenbg;
         #endregion
 
         public bool IsVisiblePlayerBanner
@@ -70,7 +75,6 @@ namespace AtWork.ViewModels
             get { return _AddNewsNextImage; }
             set { SetProperty(ref _AddNewsNextImage, value); }
         }
-
         public string NextClickPageName
         {
             get { return _NextClickPageName; }
@@ -81,7 +85,31 @@ namespace AtWork.ViewModels
             get { return _NewsDetailBack; }
             set { SetProperty(ref _NewsDetailBack, value); }
         }
-
+        public string NextOptionText
+        {
+            get { return _NextOptionText; }
+            set { SetProperty(ref _NextOptionText, value); }
+        }
+        public bool DetailHeaderOptionIsVisible
+        {
+            get { return _DetailHeaderOptionIsVisible; }
+            set { SetProperty(ref _DetailHeaderOptionIsVisible, value); }
+        }
+        public bool NextCustomLabelIsVisible
+        {
+            get { return _NextCustomLabelIsVisible; }
+            set { SetProperty(ref _NextCustomLabelIsVisible, value); }
+        }
+        public Color NewsGreenbg
+        {
+            get { return _NewsGreenbg; }
+            set { SetProperty(ref _NewsGreenbg, value); }
+        }
+        public Color ActivitiesGreenbg
+        {
+            get { return _ActivitiesGreenbg; }
+            set { SetProperty(ref _ActivitiesGreenbg, value); }
+        }
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }

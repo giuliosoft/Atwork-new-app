@@ -15,7 +15,7 @@
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
-            <ScrollView>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <CustomControl:RepeaterView x:Name="newsfeedList" BackgroundColor="Transparent" ItemsSource="{Binding NewsList}" ColumnCount="1" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                     <CustomControl:RepeaterView.ItemTemplate>
                         <DataTemplate>

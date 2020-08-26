@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>AtWork</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.AtWork</string>
+	<string>com.atlasics.atwork</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -52,5 +52,10 @@
 	<string>Need your face to unlock app</string>
 	<key>Custom Property</key>
 	<string></string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+	    <key>NSAllowsArbitraryLoads</key>
+	    <true/>
+	</dict>
 </dict>
 </plist>

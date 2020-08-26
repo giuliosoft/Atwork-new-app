@@ -15,7 +15,7 @@
             <StackLayout VerticalOptions="CenterAndExpand" Padding="30,0,0,0" >
                 <CustomControl:CustomEntry Placeholder="Email address or ID" Keyboard="Default" FontSize="25" IsBorderLess="True" PlaceholderColor="Black" Text="{Binding UserEmail}" >
                 </CustomControl:CustomEntry>
-                <CustomControl:CustomEntry Placeholder="Password" FontSize="25" Keyboard="Default" IsPassword="True" IsBorderLess="True" PlaceholderColor="Black">
+                <CustomControl:CustomEntry Placeholder="Password" FontSize="25" Keyboard="Default" IsPassword="True" IsBorderLess="True" PlaceholderColor="Black" Text="{Binding UserPassword}">
                 </CustomControl:CustomEntry>
                 <StackLayout VerticalOptions="Start">
                     <Label Text="{x:Static Multilingual:AppResources.ForgotPasswordText}" Padding="5,0,0,0" TextDecorations="Underline">

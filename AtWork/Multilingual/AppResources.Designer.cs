@@ -227,9 +227,159 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string ChooseFromCameraRole {
+        internal static string ChooseFromCameraRoll {
             get {
-                return ResourceManager.GetString("ChooseFromCameraRole", resourceCulture);
+                return ResourceManager.GetString("ChooseFromCameraRoll", resourceCulture);
+            }
+        }
+        
+        internal static string NewsFooterText {
+            get {
+                return ResourceManager.GetString("NewsFooterText", resourceCulture);
+            }
+        }
+        
+        internal static string ActivitiesFooterText {
+            get {
+                return ResourceManager.GetString("ActivitiesFooterText", resourceCulture);
+            }
+        }
+        
+        internal static string PulseFooterText {
+            get {
+                return ResourceManager.GetString("PulseFooterText", resourceCulture);
+            }
+        }
+        
+        internal static string JoinActivityText {
+            get {
+                return ResourceManager.GetString("JoinActivityText", resourceCulture);
+            }
+        }
+        
+        internal static string AboutActivityHeaderText {
+            get {
+                return ResourceManager.GetString("AboutActivityHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string MinGroupText {
+            get {
+                return ResourceManager.GetString("MinGroupText", resourceCulture);
+            }
+        }
+        
+        internal static string MaxGroupText {
+            get {
+                return ResourceManager.GetString("MaxGroupText", resourceCulture);
+            }
+        }
+        
+        internal static string TimeText {
+            get {
+                return ResourceManager.GetString("TimeText", resourceCulture);
+            }
+        }
+        
+        internal static string CostsCoveredByCompanyText {
+            get {
+                return ResourceManager.GetString("CostsCoveredByCompanyText", resourceCulture);
+            }
+        }
+        
+        internal static string CostsCoveredByEmployeeText {
+            get {
+                return ResourceManager.GetString("CostsCoveredByEmployeeText", resourceCulture);
+            }
+        }
+        
+        internal static string LanguageText {
+            get {
+                return ResourceManager.GetString("LanguageText", resourceCulture);
+            }
+        }
+        
+        internal static string CommentsText {
+            get {
+                return ResourceManager.GetString("CommentsText", resourceCulture);
+            }
+        }
+        
+        internal static string ActivityTypeText {
+            get {
+                return ResourceManager.GetString("ActivityTypeText", resourceCulture);
+            }
+        }
+        
+        internal static string SkillsText {
+            get {
+                return ResourceManager.GetString("SkillsText", resourceCulture);
+            }
+        }
+        
+        internal static string GoalText {
+            get {
+                return ResourceManager.GetString("GoalText", resourceCulture);
+            }
+        }
+        
+        internal static string SpecialrequirementsText {
+            get {
+                return ResourceManager.GetString("SpecialrequirementsText", resourceCulture);
+            }
+        }
+        
+        internal static string AboutOrganixationHeaderText {
+            get {
+                return ResourceManager.GetString("AboutOrganixationHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string NameText {
+            get {
+                return ResourceManager.GetString("NameText", resourceCulture);
+            }
+        }
+        
+        internal static string AddressText {
+            get {
+                return ResourceManager.GetString("AddressText", resourceCulture);
+            }
+        }
+        
+        internal static string ContactText {
+            get {
+                return ResourceManager.GetString("ContactText", resourceCulture);
+            }
+        }
+        
+        internal static string ShareThisActivityText {
+            get {
+                return ResourceManager.GetString("ShareThisActivityText", resourceCulture);
+            }
+        }
+        
+        internal static string MoreInformationHeaderText {
+            get {
+                return ResourceManager.GetString("MoreInformationHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string LinkText {
+            get {
+                return ResourceManager.GetString("LinkText", resourceCulture);
+            }
+        }
+        
+        internal static string CorporateVolunteeringText {
+            get {
+                return ResourceManager.GetString("CorporateVolunteeringText", resourceCulture);
+            }
+        }
+        
+        internal static string MyActivitiesHeaderText {
+            get {
+                return ResourceManager.GetString("MyActivitiesHeaderText", resourceCulture);
             }
         }
         
@@ -238,5 +388,37 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ForgotPasswordText", resourceCulture);
             }
         }
+		internal static string ChooseFromCameraRole {
+            get {
+                return ResourceManager.GetString("ChooseFromCameraRole", resourceCulture);
+            }
+        }
+		 internal static string ForgotPasswordText {
+            get {
+                return ResourceManager.GetString("ForgotPasswordText", resourceCulture);
+            }
+        }
+		 public static string LoginEmptyFieldMsg
+        {
+            get
+            {
+                return ResourceManager.GetString("LoginEmptyFieldMsg", resourceCulture);
+            }
+        }
+        public static string InvalidEmailMsg
+        {
+            get
+            {
+                return ResourceManager.GetString("InvalidEmailMsg", resourceCulture);
+            }
+        }
+		public static string PasswordLengthMsg
+        {
+            get
+            {
+                return ResourceManager.GetString("PasswordLengthMsg", resourceCulture);
+            }
+        }
+
     }
 }

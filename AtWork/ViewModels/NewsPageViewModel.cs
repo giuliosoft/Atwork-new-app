@@ -16,7 +16,10 @@ namespace AtWork.ViewModels
         #region Constructor
         public NewsPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            NextOptionText = "+";
+            NextCustomLabelIsVisible = false;
+            NewsGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+            ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
         }
         #endregion
 

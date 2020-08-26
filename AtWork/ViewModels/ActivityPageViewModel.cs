@@ -3,10 +3,12 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Models;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
@@ -15,6 +17,11 @@ namespace AtWork.ViewModels
         #region Constructor
         public ActivityPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
+            NextCustomLabelIsVisible = true;
+            NextOptionText = AppResources.MyActivitiesHeaderText;
+            NewsGreenbg = (Color)App.Current.Resources["LightBrownColor"];
+            ActivitiesGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+
             Activitylist.Add(new ActivityItems() { title = "All categories" });
             Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
             Activitylist.Add(new ActivityItems() { title = "Education" });
@@ -41,6 +48,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
         #endregion
 
         #region private methods
@@ -49,6 +57,18 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task GotoActivityDetails()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ActivityDetailPage), null);
             }
             catch (Exception ex)
             {

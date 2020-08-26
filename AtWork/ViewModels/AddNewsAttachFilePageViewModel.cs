@@ -89,15 +89,17 @@ namespace AtWork.ViewModels
                 {
                     if (fileData != null)
                     {
+                        AttachedFileViewIsVisible = true;
                         byte[] data = fileData.DataArray;
                         var FileBase64String = Convert.ToBase64String(data);
 
                         string FileName = fileData.FileName;
+                        NewsPostAttachFileName = FileName;
                         string FilePath = fileData.FilePath;
                         string name = (fileData.FilePath != null) ? Path.GetFileNameWithoutExtension(fileData.FilePath) : string.Empty;
                         string mimeType = Path.GetExtension(FilePath);
 
-                        await DisplayAlertAsync("File Picked Successfully");
+                        //await DisplayAlertAsync("File Picked Successfully");
                     }
                 });
 
