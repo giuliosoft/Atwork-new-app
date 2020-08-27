@@ -65,7 +65,7 @@
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
                 <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}"  VerticalOptions="Fill">
-                    <PancakeControl:PancakeView Padding="15" HeightRequest="20"  HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{StaticResource DarkGreenColor}">
+                    <PancakeControl:PancakeView Padding="15" HeightRequest="20"  HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRoll}" FontSize="22" TextColor="White"/>
                             <StackLayout.GestureRecognizers>

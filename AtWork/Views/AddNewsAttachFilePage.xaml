@@ -21,7 +21,7 @@
                     <Label Text="{Binding NewsPostAttachFileName}" Style="{StaticResource AttachedFileLabelStyle}"/>
                 </StackLayout>
                 <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}" VerticalOptions="End">
-                    <PancakeControl:PancakeView Padding="15" HeightRequest="20" WidthRequest="200" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{StaticResource DarkGreenColor}">
+                    <PancakeControl:PancakeView Padding="15" HeightRequest="20" WidthRequest="200" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="Start" VerticalOptions="Fill"/>
                             <Label Text="{x:Static Multilingual:AppResources.AttachFile}" FontSize="22" TextColor="White"/>

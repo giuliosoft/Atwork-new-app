@@ -16,8 +16,8 @@
             <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Padding="0" >
                 <Label Text="{x:Static Multilingual:AppResources.ChooseWhoCanSeeYourPost}" Style="{StaticResource AddPostImageLabelStyle}"/>
                 <StackLayout Margin="0" Padding="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                    <StackLayout Padding="20" BackgroundColor="{StaticResource DarkGreenColor}">
-                        <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="FillAndExpand" />
+                    <StackLayout Padding="20" BackgroundColor="{DynamicResource AccentColor}">
+                        <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="FillAndExpand" />
                         <Label Text="Post to your group" TextColor="White" FontSize="25"></Label>
                         <Label Text="21 people will see your post" TextColor="White"></Label>
                     </StackLayout>
@@ -27,9 +27,9 @@
                 </StackLayout>
                 <StackLayout Margin="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <StackLayout Padding="20">
-                        <Label Text="Post to view everybody" TextColor="{StaticResource DarkGreenColor}" FontSize="25"></Label>
+                        <Label Text="Post to view everybody" TextColor="{DynamicResource AccentColor}" FontSize="25"></Label>
                     </StackLayout>
-                    <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="FillAndExpand" />
+                    <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="FillAndExpand" />
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding PostToEveryeodyCommand}"/>
                     </StackLayout.GestureRecognizers>
