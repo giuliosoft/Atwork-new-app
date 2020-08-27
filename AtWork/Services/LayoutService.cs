@@ -16,7 +16,7 @@ namespace AtWork.Services
         public static void Init()
         {
             FlowListView.Init();
-            Device.SetFlags(new string[] { "CarouselView_Experimental" });
+            Device.SetFlags(new string[] { "CarouselView_Experimental", "SwipeView_Experimental", "CollectionView_Experimental" });
             if (Device.RuntimePlatform == Device.iOS)
             {
                 if (DeviceInfo.Version < Version.Parse("11.0"))

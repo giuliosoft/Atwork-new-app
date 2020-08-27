@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AtWork.ViewModels;
 using AtWork.Views;
 using Prism.Ioc;
