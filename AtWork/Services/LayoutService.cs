@@ -3,6 +3,7 @@ using System.Diagnostics;
 using DLToolkit.Forms.Controls;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.Services
 {
@@ -41,6 +42,7 @@ namespace AtWork.Services
             #region Font Size
 
             App.Current.Resources["FontSize10"] = sizeConvertAsPerDevice(10);
+            App.Current.Resources["FontSize11"] = sizeConvertAsPerDevice(11);
             App.Current.Resources["FontSize12"] = sizeConvertAsPerDevice(12);
             App.Current.Resources["FontSize14"] = sizeConvertAsPerDevice(14);
             App.Current.Resources["FontSize15"] = sizeConvertAsPerDevice(15);
@@ -248,7 +250,7 @@ namespace AtWork.Services
 
             App.Current.Resources["MarginPadding00_50_00_00"] = MarginPaddingConvertAsPerDevice(00, 50, 00, 00);
             App.Current.Resources["MarginPadding50_10_50_10"] = MarginPaddingConvertAsPerDevice(50, 10, 50, 10);
-
+            App.Current.Resources["MarginPadding30_30_30_30"] = MarginPaddingConvertAsPerDevice(30, 30, 30, 30);
             App.Current.Resources["MarginPadding50_20_50_20"] = MarginPaddingConvertAsPerDevice(50, 20, 50, 20);
             App.Current.Resources["MarginPadding00_00_00_50"] = MarginPaddingConvertAsPerDevice(00, 00, 00, 50);
             App.Current.Resources["MarginPaddin50_40_50_00"] = MarginPaddingConvertAsPerDevice(50, 40, 50, 00);
@@ -287,6 +289,15 @@ namespace AtWork.Services
             App.Current.Resources["PancakeViewCornerRadius30"] = PancakeViewSizeConvertAsPerDevice(30);
 
             #endregion
+        }
+
+        public static void ConvertThemeAsPerSettings(LoginOutputModel loginOutputModel)
+        {
+            App.Current.Resources["AccentColor"] = (Color)Color.FromHex(loginOutputModel.Accent); //(Color)loginOutputModel.AccentColur;
+            App.Current.Resources["DarkColor"] = (Color)Color.FromHex(loginOutputModel.Dark);
+            App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(loginOutputModel.Secondary_Dark);
+            App.Current.Resources["LightColor"] = (Color)Color.FromHex(loginOutputModel.Light);
+            App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(loginOutputModel.Secondary_Light);
         }
 
         static double SmallDeviceSize = 700;

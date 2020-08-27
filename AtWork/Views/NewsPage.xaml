@@ -96,7 +96,7 @@
                                         </Grid.GestureRecognizers>
                                     </Grid>
                                 </Grid>
-                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource LightDarkBlackColor}" HorizontalOptions="FillAndExpand"/>
                             </StackLayout>
                         </DataTemplate>
                     </CustomControl:RepeaterView.ItemTemplate>

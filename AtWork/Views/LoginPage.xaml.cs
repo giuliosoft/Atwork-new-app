@@ -11,5 +11,15 @@ namespace AtWork.Views
         {
             InitializeComponent();
         }
+
+        void entEmail_Focused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            slBtnLogin.VerticalOptions = LayoutOptions.StartAndExpand;
+        }
+
+        void entEmail_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            slBtnLogin.VerticalOptions = LayoutOptions.Start;
+        }
     }
 }

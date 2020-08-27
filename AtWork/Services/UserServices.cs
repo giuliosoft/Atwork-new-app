@@ -16,8 +16,9 @@ namespace AtWork.Services
             try
             {
                 var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.LoginServiceURL;
-                var jData = JsonConvert.SerializeObject(inputModel);
-                resultModel = await PostResponse<string>(loginServiceUrl, jData, true);
+                //var jData = JsonConvert.SerializeObject(inputModel);
+                //resultModel = await PostResponse<string>(loginServiceUrl, jData, true);
+                resultModel = await LoginPostResponse<string>(loginServiceUrl, inputModel, true);
             }
             catch (Exception ex)
             {

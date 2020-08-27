@@ -9,6 +9,7 @@ using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
 using Newtonsoft.Json;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.Services
 {
@@ -86,7 +87,46 @@ namespace AtWork.Services
 
                     if (isAddAuthorizationToken)
                     {
-                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
+                        client.DefaultRequestHeaders.Add("Authorization", "Bearer " + SettingsService.AuthorizationToken);
+                    }
+
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
+                    var content = new StringContent(jData, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(serviceUrl, content);
+                    resultModel = await HandleServerResponse<T>(response);
+                    return resultModel;
+                }
+            }
+            catch (Exception exception)
+            {
+                return HandleException<T>(exception);
+            }
+        }
+
+        /// <summary>
+        /// PostResponse
+        /// </summary>
+        /// <param name="serviceUrl">API Service Url</param>
+        /// <param name="Loing input">Input Json Data</param>
+        /// <param name="isAddAuthorizationToken">User Authorization Token</param>
+        /// <returns></returns>
+        public static async Task<BaseResponse<T>> LoginPostResponse<T>(string serviceUrl, LoginInputModel loginInputModel, bool isAddAuthorizationToken)
+        {
+            BaseResponse<T> resultModel = new BaseResponse<T>();
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var jData = JsonConvert.SerializeObject(loginInputModel);
+                    client.BaseAddress = new Uri(ConfigService.BaseServiceURL);
+                    Debug.WriteLine("\n\nAPI : " + ConfigService.BaseServiceURL + serviceUrl);
+                    Debug.WriteLine("\n\nRequest : " + jData);
+
+                    if (isAddAuthorizationToken)
+                    {
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{loginInputModel.email}:{loginInputModel.password}")));
                     }
 
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

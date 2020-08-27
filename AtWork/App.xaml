@@ -40,6 +40,8 @@
             <Color x:Key="GreenDisableColor">#546e5b</Color>
             <!-- Light Blue -->
             <Color x:Key="LightBlueColor">#515AE0</Color>
+            <!-- Light Dark Black-->
+            <Color x:Key="LightDarkBlackColor">#1D1D1B</Color>
             <!-- Colors End -->
 
             <!--ControlTemplate-->
@@ -99,8 +101,8 @@
 
             <!--Label Styles Start-->
             <Style x:Key="NewsPageUserLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -108,8 +110,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="NewsPagePostUpdateTimeLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize11}" />
                 <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -117,8 +119,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="NewsPagePostHeaderLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize22}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -126,8 +128,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="NewsPagePostDescriptionLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize17}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -136,8 +138,26 @@
                 <Setter Property="LineBreakMode" Value="WordWrap" />
             </Style>
             <Style x:Key="NewsPageLikeLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize11}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsDeialLikeLabelStyleFont10" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize10}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsDetailLikeLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize10}" />
                 <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -145,8 +165,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="NewsDetailPinLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize11}" />
                 <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
