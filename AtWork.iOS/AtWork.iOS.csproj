@@ -285,5 +285,17 @@
     <BundleResource Include="Resources\message.png" />
     <BundleResource Include="Resources\message%402x.png" />
     <BundleResource Include="Resources\message%403x.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\logodot%403x.png" />
+    <BundleResource Include="Resources\logodot.png" />
+    <BundleResource Include="Resources\logodot%402x.png" />
+    <BundleResource Include="Resources\logoatwork.png" />
+    <BundleResource Include="Resources\logoatwork%403x.png" />
+    <BundleResource Include="Resources\logoatwork%402x.png" />
+    <BundleResource Include="Resources\logoblue.png" />
+    <BundleResource Include="Resources\logoblue%402x.png" />
+    <BundleResource Include="Resources\logoblue%403x.png" />
   </ItemGroup>
 </Project>
