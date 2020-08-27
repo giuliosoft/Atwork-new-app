@@ -7,8 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading;
-using Android.Content;
-using AtWork.Droid.HelperServices;
+using Plugin.Fingerprint;
 
 namespace AtWork.Droid
 {
@@ -21,6 +20,7 @@ namespace AtWork.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            CrossFingerprint.SetCurrentActivityResolver(() => this);
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 

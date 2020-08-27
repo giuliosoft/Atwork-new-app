@@ -1,6 +1,7 @@
 ﻿using System;
 using AtWork.CustomControls;
 using AtWork.iOS.Renderers;
+using CoreGraphics;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

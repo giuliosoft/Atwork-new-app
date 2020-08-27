@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.ClaimEditProfilePage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork" xmlns:ffImageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource GreenBackHeader_Template}"
+             BackgroundColor="{StaticResource OffWhiteColor}">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <StackLayout Padding="20">
+                    <Label Text="NAME" HorizontalTextAlignment="Center" FontSize="15"/>
+                    <!--<Label  Text="David" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>-->
+                    <StackLayout Padding="40,5,40,0" >
+                        <CustomControl:CustomEntry Placeholder="David" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="SURNAME" HorizontalTextAlignment="Center" FontSize="15"/>
+                    <!--<Label Text="Smith" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>-->
+                    <StackLayout Padding="40,5,40,0" >
+                        <CustomControl:CustomEntry Placeholder="Smith" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="EMAIL" HorizontalTextAlignment="Center" FontSize="15"/>
+                    <!--<Label Text="david.smith@starbucks.com" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>-->
+                    <StackLayout Padding="40,5,40,0" >
+                        <CustomControl:CustomEntry Placeholder="david.smith@starbucks.com" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout> 
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                 <ffImageloading:CachedImage Source="SubmitCorrection" Aspect="AspectFit" Margin="0,0,0,20"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ThankYouResquestedCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
