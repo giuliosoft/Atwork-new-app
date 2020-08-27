@@ -93,7 +93,7 @@
                                         <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
                                     </Grid.GestureRecognizers>
                                 </Grid>
-                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource LightDarkBlackColor}" HorizontalOptions="FillAndExpand"/>
                             </StackLayout>
                         </DataTemplate>
                     </CustomControl:RepeaterView.ItemTemplate>

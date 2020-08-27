@@ -17,7 +17,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
+                    <ColumnDefinition Width="{DynamicResource HeightWidth55}" />
                 </Grid.ColumnDefinitions>
                 <ContentView x:Name="HeaderProfile" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="EndAndExpand">
                     <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
@@ -33,9 +33,9 @@
                     </ffImageLoading:CachedImage>
                 </ContentView>
                 <ContentView Grid.Column="2" Padding="0,10,0,10" HorizontalOptions="Fill" VerticalOptions="Fill">
-                    <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
-                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-                            <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                    <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}" WidthRequest="{DynamicResource HeightWidth55}">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="10,0,0,0">
+                            <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
                             <Label IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>

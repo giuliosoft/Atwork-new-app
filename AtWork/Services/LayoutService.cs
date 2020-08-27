@@ -37,6 +37,7 @@ namespace AtWork.Services
             #region Font Size
 
             App.Current.Resources["FontSize10"] = sizeConvertAsPerDevice(10);
+            App.Current.Resources["FontSize11"] = sizeConvertAsPerDevice(11);
             App.Current.Resources["FontSize12"] = sizeConvertAsPerDevice(12);
             App.Current.Resources["FontSize14"] = sizeConvertAsPerDevice(14);
             App.Current.Resources["FontSize15"] = sizeConvertAsPerDevice(15);
