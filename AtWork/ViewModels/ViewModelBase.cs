@@ -304,10 +304,10 @@ namespace AtWork.ViewModels
                 if (PopupNavigationService.Instance.PopupStack != null && PopupNavigationService.Instance.PopupStack.Count > 0)
                 {
                     var lastPage = PopupNavigationService.Instance.PopupStack.LastOrDefault();
-                    //if (lastPage.GetType() == typeof(LoadingPopup))
-                    //{
-                    //    SessionService.isLoadingPopupOpen = false;
-                    //}
+                    if (lastPage.GetType() == typeof(LoadingPopup))
+                    {
+                        SessionService.isLoadingPopupOpen = false;
+                    }
                     await PopupNavigationService.Instance.PopAsync(animate);
                 }
             }
@@ -367,6 +367,22 @@ namespace AtWork.ViewModels
             };
             newsOptionPopup.BindingContext = newsOptionPopupViewModel;
             await PopupNavigationService.ShowPopup(newsOptionPopup, true);
+        }
+        public async Task ShowLoader(bool animate = false)
+        {
+            try
+            {
+                if (SessionService.isLoadingPopupOpen)
+                {
+                    return;
+                }
+                SessionService.isLoadingPopupOpen = true;
+                await ShowPopup(new LoadingPopup(), animate);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
         }
         #endregion
     }

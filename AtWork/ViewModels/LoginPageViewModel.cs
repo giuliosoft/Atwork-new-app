@@ -6,6 +6,7 @@ using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
@@ -64,32 +65,35 @@ namespace AtWork.ViewModels
                     await DisplayAlertAsync(TextResources.LoginEmptyFieldMsg);
                     return;
                 }
-                else if (!CommonUtility.emailIsValid(UserEmail))
-                {
-                    await DisplayAlertAsync(TextResources.InvalidEmailMsg);
-                    return;
-                }
-                //else if (UserPassword.Length < 6)
-                //{
-                //    await DisplayAlertAsync(AppResources.PasswordLengthMsg);
-                //    return;
-                //}
-                SettingsService.LoggedInUserEmail = UserEmail;
-                SettingsService.LoggedInUserPassword = UserPassword;
+
+                await ShowLoader();
                 LoginInputModel inputModel = new LoginInputModel();
                 inputModel.email = UserEmail;
                 inputModel.password = UserPassword;
                 var serviceResult = await UserServices.LoginToApp(inputModel);
+                var serviceResultBody = JsonConvert.DeserializeObject<LoginOutputModel>(serviceResult.Body);
+                
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
-                    //await _navigationService.NavigateAsync(nameof(NewsPage));
-                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(NewsPage)}", null);
+                    SettingsService.LoggedInUserEmail = UserEmail;
+                    SettingsService.LoggedInUserPassword = UserPassword;
+                    LayoutService.ConvertThemeAsPerSettings(serviceResultBody);
+                    if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                    {
+                        //await _navigationService.NavigateAsync(nameof(NewsPage));
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(NewsPage)}", null);
+                    }
+                    else
+                    {
+                        await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
+                    }
                 }
                 else
                 {
-                    await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
-                    return;
+                    await ClosePopup();
+                    //await DisplayAlertAsync(serviceResultBody.Message);
                 }
+                await ClosePopup();
 
             }
             catch (Exception ex)

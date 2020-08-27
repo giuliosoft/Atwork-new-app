@@ -276,6 +276,7 @@
     <BundleResource Include="Resources\logoblue.png" />
     <BundleResource Include="Resources\logoblue%402x.png" />
     <BundleResource Include="Resources\logoblue%403x.png" />
+    <BundleResource Include="Resources\atworklogosmall.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
