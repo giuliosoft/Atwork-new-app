@@ -12,5 +12,7 @@ namespace AtWork.Helpers
         public static string InvalidEmailMsg = "This is not valid email. Please enter valid email address.";
         public static string PasswordLengthMsg = "Password must be atleast of 6 characters.";
         public static string InvalidUserNameorPaddword = "Invalid username or password.";
+        public static string NewsTabText = "News";
+        public static string ActivityTabText = "Activities";
     }
 }

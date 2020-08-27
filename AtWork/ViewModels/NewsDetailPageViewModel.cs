@@ -18,6 +18,8 @@ namespace AtWork.ViewModels
         {
             NewsDetailBack = "Back";
             DetailHeaderOptionIsVisible = true;
+
+            HeaderDetailsTitle = AppResources.PostText;
         }
         #endregion
 

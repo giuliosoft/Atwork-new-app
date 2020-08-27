@@ -26,7 +26,7 @@
                     </PancakeControl:PancakeView>
                 </ContentView>
                 <ContentView Grid.Column="2" Padding="0"  VerticalOptions="Center">
-                    <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
+                    <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource NextFrameColor}">
                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
                             <Label Text="{TemplateBinding BindingContext.AddNewsNextImage}" WidthRequest="70" Margin="30,0,20,0" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
                              <StackLayout.GestureRecognizers>

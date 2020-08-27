@@ -35,6 +35,10 @@ namespace AtWork.Services
 
         public static void DynamicLayoutServiceInit()
         {
+            #region Color
+            App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["DarkGreenColor"];
+            #endregion
+
             #region Font Size
 
             App.Current.Resources["FontSize10"] = sizeConvertAsPerDevice(10);

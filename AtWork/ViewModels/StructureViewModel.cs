@@ -18,7 +18,6 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private string _Prop = string.Empty;
-		private string _ProductDetail = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -26,11 +25,6 @@ namespace AtWork.ViewModels
         {
             get { return _Prop; }
             set { SetProperty(ref _Prop, value); }
-        }
-        public string ProductDetail
-        {
-            get { return _ProductDetail; }
-            set { SetProperty(ref _ProductDetail, value); }
         }
         #endregion
 

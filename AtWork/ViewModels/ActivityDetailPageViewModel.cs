@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using AtWork.Popups;
 
 namespace AtWork.ViewModels
 {
@@ -18,6 +20,8 @@ namespace AtWork.ViewModels
             ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Environment & nature" });
             ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Nature" });
             ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Physically active" });
+
+            HeaderDetailsTitle = AppResources.ActivityText;
         }
         #endregion
 
@@ -42,6 +46,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoToJoinActivityPopupCommand { get { return new DelegateCommand(async () => await GoToJoinActivityPopup()); } }
         #endregion
 
         #region private methods
@@ -50,6 +55,32 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task GoToJoinActivityPopup()
+        {
+            try
+            {
+                JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
+                JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
+                joinactivityPopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
+                await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
             }
             catch (Exception ex)
             {

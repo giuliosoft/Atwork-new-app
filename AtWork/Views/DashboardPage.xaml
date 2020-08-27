@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.DashboardPage"
+             xmlns:SubViews="clr-namespace:AtWork.SubViews;assembly=AtWork"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="{DynamicResource HeaderBackgroundColor}"
+             ControlTemplate="{StaticResource Dashboard_HeaderTemplate}">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
+            <SubViews:NewsView IsVisible="{Binding NewsViewIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <SubViews:ActivityView IsVisible="{Binding ActivityViewIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

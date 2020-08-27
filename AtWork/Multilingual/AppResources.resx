@@ -190,4 +190,19 @@ Permission Denied. Can not continue, try again.</value>
     <data name="ChooseFromCameraRole" xml:space="preserve">
         <value>Choose from camera role</value>
     </data>
+    <data name="ActivityText" xml:space="preserve">
+        <value>Activity</value>
+    </data>
+    <data name="PostText" xml:space="preserve">
+        <value>Post</value>
+    </data>
+    <data name="ImageSelectionAlertText" xml:space="preserve">
+        <value>Image for post can be minimum 1 and maximum 5.</value>
+    </data>
+    <data name="ThankYouSigningupText" xml:space="preserve">
+        <value>Thanks for signing up!</value>
+    </data>
+    <data name="WhatDateYouPlanToAttendText" xml:space="preserve">
+        <value>What date do you plan to attend?</value>
+    </data>
 </root>

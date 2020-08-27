@@ -42,6 +42,18 @@
     <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Lato_Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Thin.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Multilingual\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
@@ -54,5 +66,17 @@
     <Compile Update="Multilingual\AppResources.Designer.cs">
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Lato_Black.ttf" />
+    <None Remove="Resources\Fonts\Lato_BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Bold.ttf" />
+    <None Remove="Resources\Fonts\Lato_BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Italic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Light.ttf" />
+    <None Remove="Resources\Fonts\Lato_LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Regular.ttf" />
+    <None Remove="Resources\Fonts\Lato_Thin.ttf" />
+    <None Remove="Resources\Fonts\Lato_ThinItalic.ttf" />
   </ItemGroup>
 </Project>

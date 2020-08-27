@@ -24,6 +24,21 @@ namespace AtWork.ViewModels
             _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
             AddNewsCancelImage = "Back";
             AddNewsNextImage = "Next";
+            App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["GreenDisableColor"];
+
+            MessagingCenter.Subscribe<object>(this, "GoNext", async (sender) =>
+            {
+                if (NewsPostImageCarouselList != null && NewsPostImageCarouselList.Count == 0 || NewsPostImageCarouselList.Count > 5)
+                {
+                    await DisplayAlertAsync(AppResources.ImageSelectionAlertText);
+                    return;
+                }
+                else
+                {
+                    App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["DarkGreenColor"];
+                    await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
+                }
+            });
         }
         #endregion
 

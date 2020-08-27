@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AtWork.Views"
-              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:helpers="clr-namespace:AtWork.Helpers"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="AtWork.SubViews.DashboardFooterView">
     <ContentView.Content>
@@ -17,7 +18,7 @@
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
                         <Label Text="{x:Static Multilingual:AppResources.NewsFooterText}" Style="{StaticResource FooterTextLabelStyle}"/>
                         <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.GoToNewsPageCommand}"/>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.FooterNavigationCommand}" CommandParameter="{x:Static helpers:TextResources.NewsTabText}"/>
                         </ContentView.GestureRecognizers>
                     </ContentView>
                 </PancakeControl:PancakeView>
@@ -25,16 +26,16 @@
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
                         <Label Text="{x:Static Multilingual:AppResources.ActivitiesFooterText}" Style="{StaticResource FooterTextLabelStyle}"/>
                         <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.GoToActivityPageCommand}"/>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.FooterNavigationCommand}" CommandParameter="{x:Static helpers:TextResources.ActivityTabText}"/>
                         </ContentView.GestureRecognizers>
                     </ContentView>
                 </PancakeControl:PancakeView>
                 <!--<PancakeControl:PancakeView Margin="0" Padding="0" BackgroundColor="{TemplateBinding BindingContext.PulseGreenbg}" HeightRequest="40" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
-                        <Label Text="{x:Static Multilingual:AppResources.PulseFooterText}" Style="{StaticResource FooterTextLabelStyle}" />
-                        <ContentView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.GoToPulsePageCommand}"/>
-                        </ContentView.GestureRecognizers>
+                    <Label Text="{x:Static Multilingual:AppResources.PulseFooterText}" Style="{StaticResource FooterTextLabelStyle}" />
+                    <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{TemplateBinding BindingContext.GoToPulsePageCommand}"/>
+                    </ContentView.GestureRecognizers>
                     </ContentView>
                 </PancakeControl:PancakeView>-->
             </Grid>

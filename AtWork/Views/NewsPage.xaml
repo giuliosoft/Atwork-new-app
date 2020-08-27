@@ -44,8 +44,8 @@
                                                 <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                             </StackLayout>
                                         </StackLayout>
-                                       <Customcontrol:CustomImage TintColor="{StaticResource DarkGreenColor}" Grid.Row="0" Grid.Column="2" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
-                                           <Customcontrol:CustomImage.GestureRecognizers>
+                                        <Customcontrol:CustomImage TintColor="{StaticResource DarkGreenColor}" Grid.Row="0" Grid.Column="2" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                                            <Customcontrol:CustomImage.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding EditNewsPostCommand}" CommandParameter="{Binding .}"/>
                                             </Customcontrol:CustomImage.GestureRecognizers>
                                         </Customcontrol:CustomImage>
@@ -53,6 +53,9 @@
                                     <StackLayout Grid.Row="1" Spacing="{DynamicResource Spacing05}" Padding="0,5,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Label Text="Stay healthy over the weekend!" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
                                         <Label Text="How Can you protect yourself and others against the new coronavirus? Here's some tips.." Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                     <Grid Grid.Row="2" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Grid ColumnSpacing="{DynamicResource Spacing15}">
@@ -88,10 +91,10 @@
                                                 </StackLayout>
                                             </PancakeControl:PancakeView>
                                         </Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
                                     </Grid>
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
                                 </Grid>
                                 <BoxView HeightRequest="1" BackgroundColor="{StaticResource LightDarkBlackColor}" HorizontalOptions="FillAndExpand"/>
                             </StackLayout>
