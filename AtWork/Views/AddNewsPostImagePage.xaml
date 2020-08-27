@@ -10,7 +10,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
-             ControlTemplate="{StaticResource AppNewsPostHeader_Template}">
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
             <StackLayout Padding="{DynamicResource MarginPadding00}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">

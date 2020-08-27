@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using AtWork.Services;
 using AtWork.ViewModels;
 using Xamarin.Forms;
@@ -25,15 +26,22 @@ namespace AtWork.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (SessionService.isImageCropped)
+            try
             {
-                SessionService.isImageCropped = false;
-                var tempCList = new ObservableCollection<NewsImageModel>();
-                foreach (var nItem in VMContext.NewsPostImageCarouselList)
+                if (SessionService.isImageCropped)
                 {
-                    tempCList.Add(new NewsImageModel() { ImagePath = nItem.ImagePath, ImagePreviewPath = nItem.ImagePreviewPath, FileType = nItem.FileType, NewsImage = ImageSource.FromFile(nItem.ImagePreviewPath) });
+                    SessionService.isImageCropped = false;
+                    var tempCList = new ObservableCollection<NewsImageModel>();
+                    foreach (var nItem in VMContext.NewsPostImageCarouselList)
+                    {
+                        tempCList.Add(new NewsImageModel() { ImagePath = nItem.ImagePath, ImagePreviewPath = nItem.ImagePreviewPath, FileType = nItem.FileType, NewsImage = ImageSource.FromFile(nItem.ImagePreviewPath) });
+                    }
+                    VMContext.NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>(tempCList);
                 }
-                VMContext.NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>(tempCList);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
         }
     }

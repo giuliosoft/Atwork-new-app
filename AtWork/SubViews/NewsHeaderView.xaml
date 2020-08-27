@@ -36,7 +36,7 @@
                     <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
                         <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                             <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
-                            <Label IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}"/>
+                            <Label IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}" Padding="7"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.AddNewsPostNextCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
                             </StackLayout.GestureRecognizers>

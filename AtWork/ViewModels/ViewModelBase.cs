@@ -51,6 +51,8 @@ namespace AtWork.ViewModels
         private bool _NextCustomLabelIsVisible;
         private Color _NewsGreenbg;
         private Color _ActivitiesGreenbg;
+        private DelegateCommand<string> _FooterNavigationCommand;
+        private string _HeaderDetailsTitle;
         #endregion
 
         public bool IsVisiblePlayerBanner
@@ -110,6 +112,16 @@ namespace AtWork.ViewModels
             get { return _ActivitiesGreenbg; }
             set { SetProperty(ref _ActivitiesGreenbg, value); }
         }
+        public DelegateCommand<string> FooterNavigationCommand
+        {
+            get { return _FooterNavigationCommand; }
+            set { SetProperty(ref _FooterNavigationCommand, value); }
+        }
+        public string HeaderDetailsTitle
+        {
+            get { return _HeaderDetailsTitle; }
+            set { SetProperty(ref _HeaderDetailsTitle, value); }
+        }
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }
@@ -123,7 +135,7 @@ namespace AtWork.ViewModels
         public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
         public DelegateCommand GoToNewsPageCommand { get { return new DelegateCommand(async () => await GoToNewsPage()); } }
         public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
-		public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
+        public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
         public DelegateCommand GreenHeaderViewBackCommand { get { return new DelegateCommand(async () => await GreenHeaderViewBack()); } }
         #endregion
 
@@ -209,11 +221,11 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-		public async Task GreenHeaderViewBack()
+        public async Task GreenHeaderViewBack()
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ClaimProfilePage),null);
+                await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
             }
             catch (Exception exception)
             {
@@ -320,8 +332,8 @@ namespace AtWork.ViewModels
             }
             else if (selectedPageToNext == nameof(AddNewsPostImagePage))
             {
-                await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
-
+                MessagingCenter.Send<object>(this, "GoNext");
+                //await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
             }
             else if (selectedPageToNext == nameof(AddNewsAttachFilePage))
             {

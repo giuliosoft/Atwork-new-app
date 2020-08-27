@@ -36,20 +36,10 @@
             <Color x:Key="DarkGreenShade">#0B421A</Color>
             <!-- Light Brown -->
             <Color x:Key="LightBrownColor">#C8B9AA</Color>
+            <!--DisableGreen-->
+            <Color x:Key="GreenDisableColor">#546e5b</Color>
             <!-- Colors End -->
 
-
-	    <ControlTemplate x:Key="Header_Template">
-                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <SubViews:HeaderView Grid.Row="0" />
-                    <ContentPresenter Grid.Row="1" />
-                </Grid>
-            </ControlTemplate>
-	    
             <!--ControlTemplate-->
             <ControlTemplate x:Key="Dashboard_HeaderTemplate">
                 <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
@@ -73,7 +63,7 @@
                     <ContentPresenter Grid.Row="1" />
                 </Grid>
             </ControlTemplate>
-	    <ControlTemplate x:Key="GreenBackHeader_Template">
+            <ControlTemplate x:Key="GreenBackHeader_Template">
                 <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -83,13 +73,23 @@
                     <ContentPresenter Grid.Row="1" />
                 </Grid>
             </ControlTemplate>
-            <ControlTemplate x:Key="AppNewsPostHeader_Template">
+            <ControlTemplate x:Key="AddNewsPostHeader_Template">
                 <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <SubViews:AddNewsPostHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="Header_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:HeaderView Grid.Row="0" />
                     <ContentPresenter Grid.Row="1" />
                 </Grid>
             </ControlTemplate>
@@ -197,7 +197,7 @@
             </Style>
             <Style x:Key="ActivityPageLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -276,6 +276,24 @@
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="JoinActivityPopupHeaderStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="JoinActivityPopupTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
             <!--Label Styles End-->
 

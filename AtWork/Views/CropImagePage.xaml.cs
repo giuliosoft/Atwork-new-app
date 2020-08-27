@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using AtWork.Services;
@@ -30,8 +31,15 @@ namespace AtWork.Views
 
         private async void editor_ImageSaved(object sender, ImageSavedEventArgs args)
         {
-            string savedLocation = args.Location;
-            await _helperService.SaveImageFile(croppedImageStream, VMContext.SelectedNewsImageValue.ImagePath);
+            try
+            {
+                string savedLocation = args.Location;
+                await _helperService.SaveImageFile(croppedImageStream, VMContext.SelectedNewsImageValue.ImagePath);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

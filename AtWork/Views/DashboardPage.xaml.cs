@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Rg.Plugins.Popup.Pages;
+
 using Xamarin.Forms;
 
-namespace AtWork.Popups
+namespace AtWork.Views
 {
-    public partial class JoinActivityPopup : PopupPage
+    public partial class DashboardPage : ContentPage
     {
-        public JoinActivityPopup()
+        public DashboardPage()
         {
             InitializeComponent();
         }

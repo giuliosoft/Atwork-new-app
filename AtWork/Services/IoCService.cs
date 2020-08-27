@@ -56,6 +56,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<AuthentificationIDPage, AuthenticationIDPageViewModel>();
             containerRegistry.RegisterForNavigation<TouchIDLoginPage, TouchIdLoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ActivityDetailPage, ActivityDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<DashboardPage, DashboardPageViewModel>();
         }
 
         /// <summary>

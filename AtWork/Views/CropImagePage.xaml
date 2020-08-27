@@ -7,7 +7,7 @@
              xmlns:Syncfusion="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"             
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="False"
-             ControlTemplate="{StaticResource AppNewsPostHeader_Template}"
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout>
