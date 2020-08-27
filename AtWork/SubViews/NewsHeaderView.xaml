@@ -33,7 +33,7 @@
                     </ffImageLoading:CachedImage>
                 </ContentView>
                 <ContentView Grid.Column="2" Padding="0,10,0,10" HorizontalOptions="Fill" VerticalOptions="Fill">
-                    <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
+                    <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                             <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
                             <Label IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}"/>
