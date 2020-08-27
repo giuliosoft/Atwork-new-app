@@ -35,7 +35,7 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
-                    App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["DarkGreenColor"];
+                    App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["AccentColor"];
                     await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
                 }
             });

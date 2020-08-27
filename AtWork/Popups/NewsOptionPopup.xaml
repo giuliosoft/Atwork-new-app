@@ -24,15 +24,15 @@
     </pages:PopupPage.Resources>
     <!--<StackLayout Padding="60,20,0,70" Spacing="30" BackgroundColor="{StaticResource LightBlack}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="0,70,0,20">-->
     <StackLayout Orientation="Vertical" VerticalOptions="End" HorizontalOptions="Fill" >
-        <Frame HasShadow="False" CornerRadius="20"  BackgroundColor="{StaticResource DarkBrownColor}">
+        <Frame HasShadow="False" CornerRadius="20"  BackgroundColor="{DynamicResource DarkColor}">
             <StackLayout Padding="0" Spacing="0">
                 <Button Command="{Binding GoForClosePopupCommand}" HorizontalOptions="Center" CornerRadius="3" HeightRequest="5"  WidthRequest="40" Background="White"  Margin="0,0,0,10"></Button>
                 <StackLayout Orientation="Horizontal" Padding="0" Spacing="0">
                     <Frame HasShadow="False" CornerRadius="25" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"  WidthRequest="250" HeightRequest="15" Margin="10">
-                        <Button Command="{Binding GoForEditNewsCommand}" Text="Edit post" WidthRequest="50" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" TextColor="{StaticResource DarkBrownColor}" />
+                        <Button Command="{Binding GoForEditNewsCommand}" Text="Edit post" WidthRequest="50" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" TextColor="{DynamicResource DarkColor}" />
                     </Frame>
                     <Frame HasShadow="False" CornerRadius="25" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"  WidthRequest="250" HeightRequest="15" Margin="10">
-                        <Button Command="{Binding GoForDeleteNewsCommand}" Text="Delete post" WidthRequest="50" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" TextColor="{StaticResource DarkBrownColor}" />
+                        <Button Command="{Binding GoForDeleteNewsCommand}" Text="Delete post" WidthRequest="50" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" TextColor="{DynamicResource DarkColor}" />
                     </Frame>
                 </StackLayout>
             </StackLayout>

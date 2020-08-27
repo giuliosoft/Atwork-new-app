@@ -34,11 +34,11 @@
                                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                                 <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                                    <CustomControl:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="like" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                    <CustomControl:CustomImage TintColor="{DynamicResource AccentColor}" Source="like" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                                 </StackLayout>
                                             </StackLayout>
-                                            <Customcontrol:CustomImage TintColor="{StaticResource DarkGreenColor}" Grid.Row="0" Grid.Column="2" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                                            <Customcontrol:CustomImage TintColor="{DynamicResource AccentColor}" Grid.Row="0" Grid.Column="2" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
                                                 <Customcontrol:CustomImage.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsShowOptionCommand}" CommandParameter="{Binding .}" />
                                                 </Customcontrol:CustomImage.GestureRecognizers>

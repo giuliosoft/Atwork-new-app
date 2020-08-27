@@ -39,12 +39,12 @@
                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                 <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                    <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                    <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
                             <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="EndAndExpand">
-                                <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
+                                <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
                                 <Label Text="14" Style="{StaticResource NewsDetailLikeLabelStyle}" TextColor="{Binding LikeCountTextColor}"/>
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding LikeNewsPostCommand}"/>
@@ -80,9 +80,9 @@
                             <Label Text="How Can you protect yourself and others against the new coronavirus? Here's some tips..How Can you protect yourself and others against the new coronavirus? Here's some tips" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
                         </StackLayout>
                     </Grid>
-                    <PancakeControl:PancakeView Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{StaticResource DarkGreenColor}">
+                    <PancakeControl:PancakeView Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Padding="0" Spacing="5" Orientation="Horizontal">
-                            <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="attachment" Aspect="AspectFit" HeightRequest="20" WidthRequest="45" HorizontalOptions="Start" Margin="-10,0,0,0" VerticalOptions="Center"/>
+                            <Customcontrol:CustomImage TintColor="{StaticResource WhiteColor}" Source="attachment" Aspect="AspectFit" HeightRequest="20" WidthRequest="45" HorizontalOptions="Start" Margin="-10,0,0,0" VerticalOptions="Center"/>
                             <Label Margin="0,5,0,5" Text="Protect Yourself - Brochurepdf" Style="{StaticResource NewsDetailPinLabelStyle}"/>
                         </StackLayout>
                     </PancakeControl:PancakeView>
@@ -96,7 +96,7 @@
                                             <SwipeItems>
                                                 <SwipeItemView>
                                                     <StackLayout Spacing="0" Padding="10,0,0,0">
-                                                        <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{StaticResource DarkGreenColor}">
+                                                        <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
                                                             <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
                                                                 <Label Text="{x:Static Multilingual:AppResources.Edit}" WidthRequest="70" Margin="30,0,20,0" TextColor="White" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
                                                                 <StackLayout.GestureRecognizers>
@@ -104,9 +104,9 @@
                                                                 </StackLayout.GestureRecognizers>
                                                             </StackLayout>
                                                         </PancakeControl:PancakeView>
-                                                        <PancakeControl:PancakeView Padding="0,0,0,0" BorderColor="{StaticResource DarkGreenColor}" BorderThickness="2" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0">
+                                                        <PancakeControl:PancakeView Padding="0,0,0,0" BorderColor="{DynamicResource AccentColor}" BorderThickness="2" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0">
                                                             <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
-                                                                <Label Text="{x:Static Multilingual:AppResources.Delete}" WidthRequest="70" Margin="30,0,20,0" TextColor="{StaticResource DarkGreenColor}" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
+                                                                <Label Text="{x:Static Multilingual:AppResources.Delete}" WidthRequest="70" Margin="30,0,20,0" TextColor="{DynamicResource AccentColor}" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
                                                                 <StackLayout.GestureRecognizers>
                                                                     <TapGestureRecognizer Command="{Binding DeleteCommentCommand}" />
                                                                 </StackLayout.GestureRecognizers>
@@ -132,7 +132,7 @@
                                                 <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod." Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
                                             </StackLayout>
                                             <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="StartAndExpand">
-                                                <Customcontrol:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                 <Label Text="3" Style="{StaticResource NewsDeialLikeLabelStyleFont10}"/>
                                             </StackLayout>
                                         </Grid>
