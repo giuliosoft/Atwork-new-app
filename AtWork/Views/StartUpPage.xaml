@@ -10,29 +10,30 @@
     <ContentPage.Content>
         <AbsoluteLayout Padding="0">
             <Image Margin="0,80,0,0" Aspect="Fill" Source="startupbackground" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"  />
-            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,120,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
-                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <Image Source="logoblue" HorizontalOptions="CenterAndExpand"/>
-                    <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
-                    <Image Source="logodot" HorizontalOptions="Center"/>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,40,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+                <StackLayout HorizontalOptions="CenterAndExpand" Spacing="5" Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                    <Image Source="atworklogosmall" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth220}" WidthRequest="{DynamicResource HeightWidth220}"  HorizontalOptions="StartAndExpand"/>
+                    <!--<Image Source="logoatwork" Aspect="AspectFit" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+                    <Image Source="logodot" Aspect="AspectFit" HeightRequest="10" WidthRequest="10"  HorizontalOptions="Center"/>-->
                 </StackLayout>
                 <!--<Image x:Name="logoImage" Source="logo" WidthRequest="200" 
                         HorizontalOptions="Center"/>-->
-                <Label LineBreakMode="WordWrap" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" Padding="30,0,30,30">
+                <Label LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,0,30,30">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Welcome to " TextColor="White" FontAttributes="None" FontSize="20" />
-                            <Span Text="atwork, " TextColor="White" FontAttributes="Italic" FontSize="20"/>
-                            <Span Text="your hub to stay updated in company news, participate in activities and connect with your team." FontSize="20" TextColor="White" FontAttributes="None" />
+                            <Span Text="Welcome to " TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
+                            <Span Text="atwork, " TextColor="White" FontFamily="Lato_Italic" FontSize="{DynamicResource FontSize18}"/>
+                            <Span Text="your hub to&#x0a;stay updated in company news,&#x0a;participate in activities and&#x0a;connect with your team." FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" TextColor="White"/>
+                            <Span Text="&#x0a;&#x0a;Choose an option below to begin." TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text="Choose an option below to begin." FontSize="20" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White"></Label>
-                <StackLayout VerticalOptions="CenterAndExpand">
-                    <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20,20,20,5">
-                        <Button Command="{Binding GoForLoginCommand}" x:Name="btnLogin" Text="Log in" WidthRequest="50" FontSize="20" TextColor="#515AE0"/>
+                <!--<Label Text="Choose an option below to begin." FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White"></Label>-->
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20,0,20,5">
+                        <Button Command="{Binding GoForLoginCommand}" x:Name="btnLogin" Text="Log in" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" WidthRequest="50" TextColor="#515AE0"/>
                     </Frame>
-                    <Label Text="New? Find and claim your account" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30,0,30,0"  TextDecorations="Underline" TextColor="White">
+                    <Label Text="New? Find and claim your account" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize14}" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30,0,30,0"  TextDecorations="Underline" TextColor="White">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
                         </Label.GestureRecognizers>

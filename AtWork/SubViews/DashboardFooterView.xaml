@@ -9,9 +9,9 @@
         <PancakeControl:PancakeView BackgroundColor="{StaticResource LightBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" Margin="20,10,20,0">
             <Grid HeightRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" RowSpacing="0" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <!--<ColumnDefinition Width="120"/>-->
                 </Grid.ColumnDefinitions>
                 <PancakeControl:PancakeView BackgroundColor="{TemplateBinding BindingContext.NewsGreenbg}" Margin="0" Padding="0" HeightRequest="40" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
@@ -29,14 +29,14 @@
                         </ContentView.GestureRecognizers>
                     </ContentView>
                 </PancakeControl:PancakeView>
-                <PancakeControl:PancakeView Margin="0" Padding="0" BackgroundColor="{TemplateBinding BindingContext.PulseGreenbg}" HeightRequest="40" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" >
+                <!--<PancakeControl:PancakeView Margin="0" Padding="0" BackgroundColor="{TemplateBinding BindingContext.PulseGreenbg}" HeightRequest="40" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
                         <Label Text="{x:Static Multilingual:AppResources.PulseFooterText}" Style="{StaticResource FooterTextLabelStyle}" />
                         <ContentView.GestureRecognizers>
                             <TapGestureRecognizer Command="{TemplateBinding BindingContext.GoToPulsePageCommand}"/>
                         </ContentView.GestureRecognizers>
                     </ContentView>
-                </PancakeControl:PancakeView>
+                </PancakeControl:PancakeView>-->
             </Grid>
         </PancakeControl:PancakeView>
     </ContentView.Content>
