@@ -10,8 +10,13 @@
              NavigationPage.HasNavigationBar="false"
              ControlTemplate="{StaticResource Header_Template}">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand">
-            <Image x:Name="logoImage" Source="logo" WidthRequest="200" Margin="0,55,0,0"/>
+        <StackLayout VerticalOptions="FillAndExpand"  WidthRequest="200" Margin="0,55,0,0">
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Image Source="logoblue" HorizontalOptions="CenterAndExpand"/>
+                <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
+                <Image Source="logodot" HorizontalOptions="Center"/>
+            </StackLayout>
+            <!--<Image x:Name="logoImage" Source="logo"/>-->
             <StackLayout VerticalOptions="CenterAndExpand" Padding="30,0,0,0" >
                 <CustomControl:CustomEntry Placeholder="Email address or ID" Keyboard="Default" FontSize="25" IsBorderLess="True" PlaceholderColor="Black" Text="{Binding UserEmail}" >
                 </CustomControl:CustomEntry>

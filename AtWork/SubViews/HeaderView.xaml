@@ -5,17 +5,17 @@
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
         <StackLayout WidthRequest="100">
-            <Image x:Name="logoImage" Source="headerbackblue" HorizontalOptions="Start" Margin="10" />
-            <!--<ContentView Grid.Column="0" Padding="0"  VerticalOptions="Center">
-                    <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="0,20,0,20" BackgroundColor="{StaticResource DarkGreenColor}">
-                        <StackLayout HorizontalOptions="Start" VerticalOptions="Center" >
-                            <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}"  WidthRequest="70" Margin="20,0,30,0" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
+            <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
+                    <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,0,0" HeightRequest="30" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource LightBlueColor}">
+                        <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
+                            <Image x:Name="logoImage"  Source="back" Margin="2,0,0,0"/>
+                            <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}" Margin="5,0,0,0" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
                              <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </PancakeControl:PancakeView>
-                </ContentView>-->
+                </ContentView>
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.HeaderBack}"/>
             </StackLayout.GestureRecognizers>

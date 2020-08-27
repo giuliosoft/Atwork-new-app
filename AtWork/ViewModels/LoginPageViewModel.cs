@@ -18,7 +18,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public LoginPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            AddNewsCancelImage = "Back";
         }
         #endregion
 

@@ -38,6 +38,8 @@
             <Color x:Key="LightBrownColor">#C8B9AA</Color>
             <!--DisableGreen-->
             <Color x:Key="GreenDisableColor">#546e5b</Color>
+            <!-- Light Blue -->
+            <Color x:Key="LightBlueColor">#515AE0</Color>
             <!-- Colors End -->
 
             <!--ControlTemplate-->
