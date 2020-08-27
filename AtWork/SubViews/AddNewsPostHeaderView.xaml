@@ -16,7 +16,7 @@
                     <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
                 </Grid.ColumnDefinitions>
                 <ContentView Grid.Column="0" Padding="0"  VerticalOptions="Center">
-                    <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="0,20,0,20" BackgroundColor="{StaticResource DarkGreenColor}">
+                    <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="0,20,0,20" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout HorizontalOptions="Start" VerticalOptions="Center" >
                             <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}"  WidthRequest="70" Margin="20,0,30,0" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
                              <StackLayout.GestureRecognizers>

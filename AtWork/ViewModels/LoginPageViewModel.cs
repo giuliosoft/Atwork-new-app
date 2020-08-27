@@ -25,6 +25,7 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private string _ProductDetail = string.Empty;
+        private bool _wrongPasswordLabelIsVisible = false;
         #endregion
 
         #region Public Properties        
@@ -44,6 +45,11 @@ namespace AtWork.ViewModels
         {
             get { return _UserPassword; }
             set { SetProperty(ref _UserPassword, value); }
+        }
+        public bool WrongPasswordLabelIsVisible
+        {
+            get { return _wrongPasswordLabelIsVisible; }
+            set { SetProperty(ref _wrongPasswordLabelIsVisible, value); }
         }
         #endregion
 
@@ -81,7 +87,7 @@ namespace AtWork.ViewModels
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(NewsPage)}", null);
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                     }
                     else
                     {
