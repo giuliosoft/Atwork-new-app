@@ -85,6 +85,8 @@ namespace AtWork.ViewModels
                 {
                     SettingsService.LoggedInUserEmail = UserEmail;
                     SettingsService.LoggedInUserPassword = UserPassword;
+                    SettingsService.CompanyLogo = serviceResultBody.Data.coLogo;
+                    SettingsService.UserProfileImage = serviceResultBody.Data.coLogo;
                     LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
