@@ -37,9 +37,9 @@
                                 </ffImageLoading:CachedImage.Transformations>
                             </ffImageLoading:CachedImage>
                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                                <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                <Label Text="{Binding NewsTitle}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                    <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                    <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="{Binding newsPrivacy}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
@@ -52,7 +52,7 @@
                             </Grid>
                         </Grid>
                         <StackLayout Grid.Row="1" Spacing="{DynamicResource Spacing05}" Padding="0,5,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label Text="Stay healthy over the weekend!" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
+                            <Label Text="{Binding NewsTitle}" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
                         </StackLayout>
                         <Grid Grid.Row="2" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid ColumnSpacing="{DynamicResource Spacing15}">
@@ -83,7 +83,7 @@
                     <PancakeControl:PancakeView Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Padding="0" Spacing="5" Orientation="Horizontal">
                             <Customcontrol:CustomImage TintColor="{StaticResource WhiteColor}" Source="attachment" Aspect="AspectFit" HeightRequest="20" WidthRequest="45" HorizontalOptions="Start" Margin="-10,0,0,0" VerticalOptions="Center"/>
-                            <Label Margin="0,5,0,5" Text="Protect Yourself - Brochurepdf" Style="{StaticResource NewsDetailPinLabelStyle}"/>
+                            <Label Margin="0,5,0,5" Text="{Binding NewsDescription}" Style="{StaticResource NewsDetailPinLabelStyle}"/>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>

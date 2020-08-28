@@ -26,10 +26,8 @@ namespace AtWork.ViewModels
             Activitylist.Add(new ActivityItems() { title = "All categories" });
             Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
             Activitylist.Add(new ActivityItems() { title = "Education" });
-
-            NewsGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+            NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
             ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
-
             FooterNavigationCommand = DashboardFooterNavigationCommand;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
@@ -135,7 +133,7 @@ namespace AtWork.ViewModels
 
                     NextOptionText = "+";
                     NextCustomLabelIsVisible = false;
-                    NewsGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+                    NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
                     ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
                 }
                 else if (selectedTab == TextResources.ActivityTabText)
@@ -146,7 +144,7 @@ namespace AtWork.ViewModels
                     NextCustomLabelIsVisible = true;
                     NextOptionText = AppResources.MyActivitiesHeaderText;
                     NewsGreenbg = (Color)App.Current.Resources["LightBrownColor"];
-                    ActivitiesGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+                    ActivitiesGreenbg = (Color)App.Current.Resources["AccentColor"];
                 }
             }
             catch (Exception ex)

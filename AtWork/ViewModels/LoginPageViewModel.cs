@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
@@ -85,6 +85,9 @@ namespace AtWork.ViewModels
                 {
                     SettingsService.LoggedInUserEmail = UserEmail;
                     SettingsService.LoggedInUserPassword = UserPassword;
+                    SettingsService.CompanyLogo = serviceResultBody.Data.coLogo;
+                    SettingsService.UserProfileImage = serviceResultBody.Data.coLogo;
+
                     LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {

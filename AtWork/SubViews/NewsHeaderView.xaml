@@ -19,9 +19,9 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{DynamicResource HeightWidth55}" />
                 </Grid.ColumnDefinitions>
-                <ContentView x:Name="HeaderProfile" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="EndAndExpand">
+                <ContentView x:Name="HeaderProfile" Padding="10,10,0,10" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" WidthRequest="{DynamicResource HeightWidth55}">
                     <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
-                        <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.UserProfileImage}" ErrorPlaceholder="splash" LoadingPlaceholder="splash" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}">
+                        <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.UserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}">
                             <ffImageLoading:CachedImage.Transformations>
                                 <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                             </ffImageLoading:CachedImage.Transformations>
@@ -29,8 +29,7 @@
                     </StackLayout>
                 </ContentView>
                 <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <ffImageLoading:CachedImage ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding imageURL}" Style="{StaticResource HeaderLogoImageStyle}">
-                    </ffImageLoading:CachedImage>
+                    <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.CompanyLogo}" Style="{StaticResource HeaderLogoImageStyle}" Margin="{DynamicResource MarginPadding00_00_00_10}"/>
                 </ContentView>
                 <ContentView Grid.Column="2" Padding="0,10,0,10" HorizontalOptions="Fill" VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="5,0,0,0" HeightRequest="40" HorizontalOptions="EndAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}" >
