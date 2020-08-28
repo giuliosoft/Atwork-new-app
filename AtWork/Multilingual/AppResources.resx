@@ -205,4 +205,7 @@ Permission Denied. Can not continue, try again.</value>
     <data name="WhatDateYouPlanToAttendText" xml:space="preserve">
         <value>What date do you plan to attend?</value>
     </data>
+    <data name="PostDataAlertText" xml:space="preserve">
+        <value>Enter news post title &amp; description!</value>
+    </data>
 </root>

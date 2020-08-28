@@ -424,5 +424,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("WhatDateYouPlanToAttendText", resourceCulture);
             }
         }
+        
+        internal static string PostDataAlertText {
+            get {
+                return ResourceManager.GetString("PostDataAlertText", resourceCulture);
+            }
+        }
     }
 }
