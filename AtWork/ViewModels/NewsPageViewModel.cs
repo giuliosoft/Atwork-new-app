@@ -109,7 +109,7 @@ namespace AtWork.ViewModels
             tempCList.Add(new CarouselModel() { NewsImage = "bg" });
             tempCList.Add(new CarouselModel() { NewsImage = "bg" });
             tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            //NewsImageCarouselList = tempCList;
+            NewsImageCarouselList = new ObservableCollection<CarouselModel>(tempCList);
 
             var tempNews = new ObservableCollection<NewsModel>();
             for (var i = 0; i < 3; i++)

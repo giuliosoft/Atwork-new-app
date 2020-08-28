@@ -88,6 +88,8 @@ namespace AtWork.ViewModels
                     {
                         SettingsService.LoggedInUserData = serviceResultBody.Data;
                     }
+                    if (serviceResultBody.Data1 != null)
+                        SettingsService.VolunteersUserData = serviceResultBody.Data1;
 
                     LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
@@ -106,6 +108,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                await ClosePopup();
             }
         }
         async Task ExistingUserLoginToApp()

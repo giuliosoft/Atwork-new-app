@@ -31,21 +31,21 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="40"/>
                             </Grid.ColumnDefinitions>
-                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding NewsUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" Source="{Binding NewsUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                 <ffImageLoading:CachedImage.Transformations>
                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                 </ffImageLoading:CachedImage.Transformations>
                             </ffImageLoading:CachedImage>
                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                                <Label Text="{Binding NewsTitle}" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                <Label Text="{Binding NewsUserName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                    <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="{Binding newsPrivacy}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
-                                    <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
+                                    <Customcontrol:CustomImage IsVisible="{Binding PublishImageIsVisible}" TintColor="{DynamicResource DarkColor}" Source="{Binding PublishImageSource}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                    <Label Text="{Binding NewsUserTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
                             <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="EndAndExpand">
                                 <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
-                                <Label Text="14" Style="{StaticResource NewsDetailLikeLabelStyle}" TextColor="{Binding LikeCountTextColor}"/>
+                                <Label Text="{Binding NewsLikeCount}" Style="{StaticResource NewsDetailLikeLabelStyle}" TextColor="{Binding LikeCountTextColor}"/>
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding LikeNewsPostCommand}"/>
                                 </Grid.GestureRecognizers>
@@ -77,13 +77,13 @@
                             </Grid>
                         </Grid>
                         <StackLayout Grid.Row="3" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                            <Label Text="How Can you protect yourself and others against the new coronavirus? Here's some tips..How Can you protect yourself and others against the new coronavirus? Here's some tips" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
+                            <Label Text="{Binding NewsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
                         </StackLayout>
                     </Grid>
-                    <PancakeControl:PancakeView Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{DynamicResource AccentColor}">
+                    <PancakeControl:PancakeView IsVisible="{Binding AttachmentIsVisible}" Padding="0,0,20,0" HeightRequest="30" HorizontalOptions="StartAndExpand" CornerRadius="0,15,0,15" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Padding="0" Spacing="5" Orientation="Horizontal">
                             <Customcontrol:CustomImage TintColor="{StaticResource WhiteColor}" Source="attachment" Aspect="AspectFit" HeightRequest="20" WidthRequest="45" HorizontalOptions="Start" Margin="-10,0,0,0" VerticalOptions="Center"/>
-                            <Label Margin="0,5,0,5" Text="{Binding NewsDescription}" Style="{StaticResource NewsDetailPinLabelStyle}"/>
+                            <Label Margin="0,5,0,5" Text="{Binding NewsAttachmentTitle}" Style="{StaticResource NewsDetailPinLabelStyle}"/>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
@@ -100,7 +100,7 @@
                                                             <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
                                                                 <Label Text="{x:Static Multilingual:AppResources.Edit}" WidthRequest="70" Margin="30,0,20,0" TextColor="White" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
                                                                 <StackLayout.GestureRecognizers>
-                                                                    <TapGestureRecognizer Command="{Binding EditCommentCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference postCommentList},Path=BindingContext.EditCommentCommand}" CommandParameter="{Binding .}"/>
                                                                 </StackLayout.GestureRecognizers>
                                                             </StackLayout>
                                                         </PancakeControl:PancakeView>
@@ -108,7 +108,7 @@
                                                             <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
                                                                 <Label Text="{x:Static Multilingual:AppResources.Delete}" WidthRequest="70" Margin="30,0,20,0" TextColor="{DynamicResource AccentColor}" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
                                                                 <StackLayout.GestureRecognizers>
-                                                                    <TapGestureRecognizer Command="{Binding DeleteCommentCommand}" />
+                                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference postCommentList},Path=BindingContext.DeleteCommentCommand}" CommandParameter="{Binding .}"/>
                                                                 </StackLayout.GestureRecognizers>
                                                             </StackLayout>
                                                         </PancakeControl:PancakeView>
@@ -147,7 +147,8 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
-                            <CustomControl:CustomEditor x:Name="commentEditor" Grid.Column="0" ReturnType="Done" TextChanged="CommentEditor_TextChanged" Placeholder="{x:Static Multilingual:AppResources.CommentPlaceholderText}" Style="{StaticResource NewsCommentEditorStyle}"/>
+                            <CustomControl:CustomEditor x:Name="commentEditor" Text="{Binding CommentText}"  Grid.Column="0" ReturnType="Done" TextChanged="CommentEditor_TextChanged" Placeholder="{x:Static Multilingual:AppResources.CommentPlaceholderText}" Style="{StaticResource NewsCommentEditorStyle}"/>
+                            <!--<Customcontrol:CustomEditor  Text="{Binding NewsTitle}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PostTitle}"  Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>-->
                             <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                 <Label Text="{x:Static Multilingual:AppResources.SendText}" Style="{StaticResource SendLabelStyle}"/>
                                 <StackLayout.GestureRecognizers>
