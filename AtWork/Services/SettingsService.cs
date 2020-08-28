@@ -84,5 +84,22 @@ namespace AtWork.Services
                 AppSettings.AddOrUpdateValue(LoggedInUserDataKey, data);
             }
         }
+        private const string VolunteersUserDataKey = "VolunteersUserData_key";
+        public static Volunteers VolunteersUserData
+        {
+            get
+            {
+                var value = AppSettings.GetValueOrDefault(VolunteersUserDataKey, string.Empty);
+                if (string.IsNullOrEmpty(value)) { return null; }
+                else { return JsonConvert.DeserializeObject<Volunteers>(value); }
+            }
+            set
+            {
+                string data = string.Empty;
+                if (value != null) { data = JsonConvert.SerializeObject(value); }
+                AppSettings.AddOrUpdateValue(VolunteersUserDataKey, data);
+            }
+        }
+
     }
 }
