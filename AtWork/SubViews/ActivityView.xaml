@@ -55,8 +55,7 @@
                                         <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                             <Grid RowDefinitions="Auto">
                                                 <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
-                                                    <!-- add tint once image is replaced TintColor="{DynamicResource SecondaryLightColor}"-->
-                                                    <CustomControl:CustomImage  Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                    <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                                                 </PancakeControl:PancakeView>
                                                 <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
                                                     <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />

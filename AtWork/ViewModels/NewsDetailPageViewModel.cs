@@ -36,6 +36,7 @@ namespace AtWork.ViewModels
         private string _NewsLikeCount = string.Empty;
         private string _NewsUserTime = string.Empty;
         private string _NewsUserName = string.Empty;
+        private string _commentText = string.Empty;
         #endregion
 
         #region Public Properties
@@ -105,7 +106,7 @@ namespace AtWork.ViewModels
             get { return _LikeImage; }
             set { SetProperty(ref _LikeImage, value); }
         }
-        private ImageSource _PublishImageSource;
+        private ImageSource _PublishImageSource= "earth";
         public ImageSource PublishImageSource
         {
             get { return _PublishImageSource; }
@@ -132,14 +133,21 @@ namespace AtWork.ViewModels
             get { return _LikeCountTextColor; }
             set { SetProperty(ref _LikeCountTextColor, value); }
         }
+        public string CommentText
+        {
+            get { return _commentText; }
+            set { SetProperty(ref _commentText, value); }
+        }
+        News NewsDetailModel { get; set; }
         #endregion
 
         #region Commands
         public DelegateCommand LikeNewsPostCommand { get { return new DelegateCommand(async () => await LikeNewsPost()); } }
         public DelegateCommand OnOpenSwipeViewClicked { get { return new DelegateCommand(async () => await OnOpenSwipeView()); } }
         public DelegateCommand OnCloseSwipeViewClicked { get { return new DelegateCommand(async () => await OnCloseSwipeView()); } }
-        public DelegateCommand DeleteCommentCommand { get { return new DelegateCommand(async () => await DeleteComment()); } }
-        public DelegateCommand EditCommentCommand { get { return new DelegateCommand(async () => await EditComment()); } }
+        public DelegateCommand<CarouselModel> DeleteCommentCommand { get { return new DelegateCommand<CarouselModel>(async (obj) => await DeleteComment(obj)); } }
+        public DelegateCommand<CarouselModel> EditCommentCommand { get { return new DelegateCommand<CarouselModel>(async (obj) => await EditComment(obj)); } }
+        public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         #endregion
 
         #region private methods
@@ -176,24 +184,43 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task EditComment()
+        async Task EditComment(CarouselModel comment)
         {
             try
             {
-
+                return;
+                NewsComment newsComment = new NewsComment
+                {
+                    comDate = DateTime.Now,
+                    comContent = CommentText,
+                    coUniqueID = SettingsService.LoggedInUserData?.coUniqueID,
+                    newsUniqueID = NewsDetailModel?.newsUniqueID,
+                    comByID = SettingsService.VolunteersUserData?.volUniqueID
+                };
+                var serviceResult = await NewsService.EditComment(newsComment);
+                var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
+                if (serviceResultBody != null && serviceResultBody.Flag)
+                {
+                    await DisplayAlertAsync(serviceResultBody.Message);
+                    CommentText = string.Empty;
+                }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task DeleteComment()
+        async Task DeleteComment(CarouselModel comment)
         {
             try
             {
                 var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
                 if (result)
                 {
+                    return;
+                    var serviceResult = await NewsService.DeleteComment(string.Empty);
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
+                    //var serviceResult = await NewsService.AddComment(newsComment);
                     //LanguageService.Init(selectedItem.RadioButtomItem);
                     //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                 }
@@ -205,6 +232,35 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task AddComment()
+        {
+            try
+            {
+                NewsComment newsComment = new NewsComment
+                {
+                    comDate = DateTime.Now,
+                    comContent = CommentText,
+                    coUniqueID = SettingsService.LoggedInUserData?.coUniqueID,
+                    newsUniqueID = NewsDetailModel?.newsUniqueID,
+                    comByID = SettingsService.VolunteersUserData?.volUniqueID
+                };
+                var serviceResult = await NewsService.AddComment(newsComment);
+                var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
+                if (serviceResultBody != null && serviceResultBody.Flag)
+                {
+                    await DisplayAlertAsync(serviceResultBody.Message);
+                    CommentText = string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await ClosePopup();
             }
         }
         async Task OnCloseSwipeView()
@@ -231,6 +287,8 @@ namespace AtWork.ViewModels
                 {
                     if (serviceResultBody != null && serviceResultBody.Data != null)
                     {
+                        NewsDetailModel = serviceResultBody?.Data?.News;
+
                         if (serviceResultBody.Data.Volunteers != null)
                         {
                             NewsUserProfileImage = ImageSource.FromUri(new Uri(string.Format("http://app.atwork.ai/{0}", serviceResultBody.Data.Volunteers.volPicture)));
@@ -252,27 +310,30 @@ namespace AtWork.ViewModels
                                 LikeImage = "heartfill";
                                 LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                             }
+                            if (serviceResultBody.Data.News != null)
+                            {
 
-                            NewsTitle = serviceResultBody.Data.News.newsTitle;
-                            NewsDescription = serviceResultBody.Data.News.newsContent;
+                                NewsTitle = serviceResultBody.Data.News.newsTitle;
+                                NewsDescription = serviceResultBody.Data.News.newsContent;
+                                var NewsPrivicy = serviceResultBody?.Data?.News?.newsPrivacy;
+                                if (NewsPrivicy != null && NewsPrivicy.ToLower() == "everyone")
+                                {
+                                    PublishImageSource = "earth";
+                                }
+                                else if (NewsPrivicy != null && NewsPrivicy.ToLower() == "group")
+                                {
+                                    PublishImageSource = "ActivityPeopleIcon";
+                                }
+                                else
+                                {
+                                    PublishImageIsVisible = false;
+                                }
 
-                            if (serviceResultBody.Data.News.newsPrivacy?.ToLower() == "everyone")
-                            {
-                                PublishImageSource = "earth";
-                            }
-                            else if (serviceResultBody.Data.News.newsPrivacy?.ToLower() == "group")
-                            {
-                                PublishImageSource = "ActivityPeopleIcon";
-                            }
-                            else
-                            {
-                                PublishImageIsVisible = false;
-                            }
-
-                            if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
-                            {
-                                AttachmentIsVisible = true;
-                                NewsAttachmentTitle = serviceResultBody.Data.News.newsFile;
+                                if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
+                                {
+                                    AttachmentIsVisible = true;
+                                    NewsAttachmentTitle = serviceResultBody.Data.News.newsFile;
+                                }
                             }
                         }
                         //var tempCList = new ObservableCollection<CarouselModel>();
@@ -292,6 +353,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                await ClosePopup();
             }
         }
         #endregion

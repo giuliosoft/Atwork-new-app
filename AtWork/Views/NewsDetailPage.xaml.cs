@@ -24,6 +24,8 @@ namespace AtWork.Views
 
         void CommentEditor_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
+            if (VMContext == null)
+                return;
             string editorText = sender as string;
             if (!string.IsNullOrEmpty(commentEditor.Text))
             {

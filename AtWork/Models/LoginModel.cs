@@ -18,11 +18,13 @@ namespace AtWork.Models
             public int StatusCode { get; set; }
             public string Message { get; set; }
             public LoginOutputModel Data { get; set; }
+            public Volunteers Data1 { get; set; }
         }
 
         public class LoginOutputModel
         {
-
+            private string _coLogo = string.Empty;
+            
             public int id { get; set; }
 
             public string coUniqueID { get; set; }
@@ -65,8 +67,6 @@ namespace AtWork.Models
 
             public string coPhone { get; set; }
 
-            public string coLogo { get; set; }
-
             public string coURL { get; set; }
 
             public string coDescription { get; set; }
@@ -102,6 +102,84 @@ namespace AtWork.Models
             public string Secondary_Dark { get; set; }
             public string Light { get; set; }
             public string Secondary_Light { get; set; }
+
+
+            public string coLogo
+            {
+                get
+                {
+                    if (_coLogo == null)
+                        return string.Empty;
+                    return _coLogo;
+                }
+                set
+                {
+                    _coLogo = value;
+                }
+            }
+        }
+        public partial class Volunteers
+        {
+            private string _volPicture = string.Empty;
+
+            public int id { get; set; }
+
+            public string coUniqueID { get; set; }
+
+            public string volUniqueID { get; set; }
+
+            public string volFirstName { get; set; }
+
+            public string volLastName { get; set; }
+
+            public string volGender { get; set; }
+
+            public string volUserName { get; set; }
+
+            public string VolUserPassword { get; set; }
+
+            public string volEmail { get; set; }
+
+            public string volOnBoardStatus { get; set; }
+
+            public DateTime? volOnBoardDateSent { get; set; }
+
+            public string volEducation { get; set; }
+
+            public string volCompetencies { get; set; }
+
+            public string volCategories { get; set; }
+
+            public string volPhone { get; set; }
+
+            public string volStatus { get; set; }
+
+            public string restricted { get; set; }
+
+            public string reviewStatus { get; set; }
+
+            public DateTime? reviewDate { get; set; }
+
+            public string volDepartment { get; set; }
+
+            public string volLanguage { get; set; }
+
+            public string volAbout { get; set; }
+
+            public string volInterests { get; set; }
+            public string volPicture
+            {
+                get
+                {
+                    if (_volPicture == null)
+                        return string.Empty;
+                    return _volPicture;
+                }
+                set
+                {
+                    _volPicture = value;
+                }
+            }
         }
     }
 }
