@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
@@ -34,7 +34,7 @@ namespace AtWork.ViewModels
             get { return _ProductDetail; }
             set { SetProperty(ref _ProductDetail, value); }
         }
-		private string _UserEmail = string.Empty;
+        private string _UserEmail = string.Empty;
         public string UserEmail
         {
             get { return _UserEmail; }
@@ -80,13 +80,14 @@ namespace AtWork.ViewModels
                 SettingsService.LoggedInUserPassword = UserPassword;
                 var serviceResult = await UserServices.LoginToApp(inputModel);
                 var serviceResultBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult.Body);
-                
+
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     SettingsService.LoggedInUserEmail = UserEmail;
                     SettingsService.LoggedInUserPassword = UserPassword;
                     SettingsService.CompanyLogo = serviceResultBody.Data.coLogo;
                     SettingsService.UserProfileImage = serviceResultBody.Data.coLogo;
+
                     LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {

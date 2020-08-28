@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Xamarin.Forms;
 
@@ -11,7 +11,7 @@ namespace AtWork.Models
             public string email { get; set; }
             public string password { get; set; }
         }
-       
+
         public class LoginResponce
         {
             public bool Flag { get; set; }

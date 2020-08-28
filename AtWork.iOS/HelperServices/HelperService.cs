@@ -28,8 +28,9 @@ namespace AtWork.iOS.HelperServices
             });
         }
 
-        public async Task SaveImageFile(Stream StreamToWrite, string originalPathToReplace)
+        public async Task<string> SaveImageFile(Stream StreamToWrite, string originalPathToReplace)
         {
+            string croppedImgFilePath = string.Empty;
             try
             {
                 byte[] imgByteData = null;
@@ -54,7 +55,23 @@ namespace AtWork.iOS.HelperServices
                 }
                 File.WriteAllBytes(path, imgByteData);
                 Debug.WriteLine("Cropped File Save Path=== " + path);
-                File.Replace(path, originalPathToReplace, "oldfile");
+                //File.Replace(path, originalPathToReplace, "oldfile");
+                croppedImgFilePath = path;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return croppedImgFilePath;
+        }
+
+        public async Task ReplaceCroppedFile(string pathFromReplace, string pathToReplace)
+        {
+            try
+            {
+                Debug.WriteLine("Crop File pathFromReplace=== " + pathFromReplace);
+                Debug.WriteLine("Crop File pathToReplace=== " + pathToReplace);
+                File.Replace(pathFromReplace, pathToReplace, "oldfile");
             }
             catch (Exception ex)
             {
