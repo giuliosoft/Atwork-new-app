@@ -20,25 +20,19 @@ namespace AtWork.ViewModels
         #region Constructor
         public AddNewsPostImagePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            NextClickPageName = nameof(AddNewsPostImagePage);
-            _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
-            AddNewsCancelImage = "Back";
-            AddNewsNextImage = "Next";
-            App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["GreenDisableColor"];
-
-            MessagingCenter.Subscribe<object>(this, "GoNext", async (sender) =>
+            try
             {
-                if (NewsPostImageCarouselList != null && NewsPostImageCarouselList.Count == 0 || NewsPostImageCarouselList.Count > 5)
-                {
-                    await DisplayAlertAsync(AppResources.ImageSelectionAlertText);
-                    return;
-                }
-                else
-                {
-                    App.Current.Resources["NextFrameColor"] = (Color)App.Current.Resources["AccentColor"];
-                    await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
-                }
-            });
+                NextClickPageName = nameof(AddNewsPostImagePage);
+                _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
+                AddNewsCancelImage = "Back";
+                AddNewsNextImage = "Next";
+                NextTextColor = (Color)App.Current.Resources["ShadedWhiteColor"];
+                HeaderNextNavigationCommand = NewsPostProceedCommand;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
         #endregion
 
@@ -75,6 +69,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
         public DelegateCommand CropNewsImageCommand { get { return new DelegateCommand(async () => await CropNewsImage()); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -83,6 +78,27 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task NewsPostProceed(string selectedTab)
+        {
+            try
+            {
+                if (NewsPostImageCarouselList != null && NewsPostImageCarouselList.Count == 0 || NewsPostImageCarouselList.Count > 5)
+                {
+                    await DisplayAlertAsync(AppResources.ImageSelectionAlertText);
+                    return;
+                }
+                else
+                {
+                    NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                    await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
+                }
             }
             catch (Exception ex)
             {
@@ -100,6 +116,10 @@ namespace AtWork.ViewModels
                     var res = await _multiMediaPickerService.PickPhotosAsync();
                     if (res != null && res.Count > 0)
                     {
+                        if (res.Count <= 5)
+                        {
+                            NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                        }
                         NewsPickedImageViewIsVisible = true;
                         res.All((mFile) =>
                         {

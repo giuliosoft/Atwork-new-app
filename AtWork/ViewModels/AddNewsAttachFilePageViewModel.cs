@@ -20,6 +20,7 @@ namespace AtWork.ViewModels
             NextClickPageName = nameof(AddNewsAttachFilePage);
             AddNewsCancelImage = "Back";
             AddNewsNextImage = "Skip";
+            HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
         #endregion
 
@@ -52,6 +53,7 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand AttachFileCommand { get { return new DelegateCommand(async () => await AttachFile()); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -60,6 +62,18 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task NewsPostProceed(string selectedTab)
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(PostNewsPage));
             }
             catch (Exception ex)
             {

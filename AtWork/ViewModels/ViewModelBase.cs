@@ -52,7 +52,9 @@ namespace AtWork.ViewModels
         private Color _NewsGreenbg;
         private Color _ActivitiesGreenbg;
         private DelegateCommand<string> _FooterNavigationCommand;
+        private DelegateCommand<string> _HeaderNextNavigationCommand;
         private string _HeaderDetailsTitle;
+        private Color _NextTextColor = (Color)App.Current.Resources["WhiteColor"];
         #endregion
 
         public bool IsVisiblePlayerBanner
@@ -117,10 +119,20 @@ namespace AtWork.ViewModels
             get { return _FooterNavigationCommand; }
             set { SetProperty(ref _FooterNavigationCommand, value); }
         }
+        public DelegateCommand<string> HeaderNextNavigationCommand
+        {
+            get { return _HeaderNextNavigationCommand; }
+            set { SetProperty(ref _HeaderNextNavigationCommand, value); }
+        }
         public string HeaderDetailsTitle
         {
             get { return _HeaderDetailsTitle; }
             set { SetProperty(ref _HeaderDetailsTitle, value); }
+        }
+        public Color NextTextColor
+        {
+            get { return _NextTextColor; }
+            set { SetProperty(ref _NextTextColor, value); }
         }
         #region Commands
 
@@ -332,7 +344,6 @@ namespace AtWork.ViewModels
             }
             else if (selectedPageToNext == nameof(AddNewsPostImagePage))
             {
-                MessagingCenter.Send<object>(this, "GoNext");
                 //await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
             }
             else if (selectedPageToNext == nameof(AddNewsAttachFilePage))
@@ -341,7 +352,7 @@ namespace AtWork.ViewModels
             }
             else if (selectedPageToNext == nameof(PostNewsPage))
             {
-                await _navigationService.NavigateAsync(nameof(NewsPage));
+                await _navigationService.NavigateAsync(nameof(DashboardPage));
             }
             else if (selectedPageToNext == nameof(CropImagePage))
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using AtWork.Multilingual;
 using AtWork.Services;
@@ -18,6 +19,8 @@ namespace AtWork.ViewModels
             NextClickPageName = nameof(CropImagePage);
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.SaveButtonText;
+            HeaderNextNavigationCommand = NewsPostProceedCommand;
+            _helperService = DependencyService.Get<IHelper>();
         }
         #endregion
 
@@ -25,10 +28,13 @@ namespace AtWork.ViewModels
         private string _Prop = string.Empty;
         private ImageSource _NewsImageToCrop = string.Empty;
         private NewsImageModel _SelectedNewsImageValue = null;
+        IHelper _helperService;
+        public Stream CroppedImageStream;
         #endregion
 
         #region Public Properties
         public CropImagePage pageObject;
+        public string CroppedImageFilePath;
         public string Prop
         {
             get { return _Prop; }
@@ -50,6 +56,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -57,7 +64,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -65,7 +72,26 @@ namespace AtWork.ViewModels
             }
         }
 
-
+        async Task NewsPostProceed(string selectedTab)
+        {
+            try
+            {
+                if (CroppedImageStream != null)
+                {
+                    CroppedImageFilePath = await _helperService.SaveImageFile(CroppedImageStream, SelectedNewsImageValue.ImagePath);
+                }
+                if (!string.IsNullOrEmpty(CroppedImageFilePath))
+                {
+                    await _helperService.ReplaceCroppedFile(CroppedImageFilePath, SelectedNewsImageValue.ImagePath);
+                    SessionService.isImageCropped = true;
+                }
+                await BackClick();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         #endregion
 
         #region public methods

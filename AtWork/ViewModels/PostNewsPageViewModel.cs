@@ -17,12 +17,13 @@ namespace AtWork.ViewModels
             NextClickPageName = nameof(PostNewsPage);
             AddNewsCancelImage = "Back";
             AddNewsNextImage = "Publish";
+            HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
         #endregion
 
         #region Private Properties
         private string _ProductDetail = string.Empty;
-        
+
         #endregion
 
         #region Public Properties        
@@ -37,6 +38,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand PostToEveryeodyCommand { get { return new DelegateCommand(async () => await PostToEveryeody()); } }
         public DelegateCommand PostToYourGroupCommand { get { return new DelegateCommand(async () => await PostToYourGroup()); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -51,6 +53,19 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        async Task NewsPostProceed(string selectedTab)
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(DashboardPage));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task PostToEveryeody()
         {
             try
@@ -82,7 +97,7 @@ namespace AtWork.ViewModels
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
-            
+
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)

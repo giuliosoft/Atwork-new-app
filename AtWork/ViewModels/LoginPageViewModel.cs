@@ -34,7 +34,7 @@ namespace AtWork.ViewModels
             get { return _ProductDetail; }
             set { SetProperty(ref _ProductDetail, value); }
         }
-		private string _UserEmail = string.Empty;
+        private string _UserEmail = string.Empty;
         public string UserEmail
         {
             get { return _UserEmail; }
@@ -76,14 +76,16 @@ namespace AtWork.ViewModels
                 LoginInputModel inputModel = new LoginInputModel();
                 inputModel.email = UserEmail;
                 inputModel.password = UserPassword;
+                SettingsService.LoggedInUserEmail = UserEmail;
+                SettingsService.LoggedInUserPassword = UserPassword;
                 var serviceResult = await UserServices.LoginToApp(inputModel);
-                var serviceResultBody = JsonConvert.DeserializeObject<LoginOutputModel>(serviceResult.Body);
-                
+                var serviceResultBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult.Body);
+
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     SettingsService.LoggedInUserEmail = UserEmail;
                     SettingsService.LoggedInUserPassword = UserPassword;
-                    LayoutService.ConvertThemeAsPerSettings(serviceResultBody);
+                    LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));
@@ -93,11 +95,6 @@ namespace AtWork.ViewModels
                     {
                         await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
                     }
-                }
-                else
-                {
-                    await ClosePopup();
-                    //await DisplayAlertAsync(serviceResultBody.Message);
                 }
                 await ClosePopup();
 

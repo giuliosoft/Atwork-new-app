@@ -23,7 +23,12 @@ namespace AtWork.Droid.HelperServices
             image.Source = ImageSource.FromStream(() => memoryStream);
         }
 
-        public Task SaveImageFile(Stream StreamToWrite, string originalPathToReplace)
+        public Task<string> SaveImageFile(Stream StreamToWrite, string originalPathToReplace)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ReplaceCroppedFile(string pathFromReplace, string pathToReplace)
         {
             throw new NotImplementedException();
         }

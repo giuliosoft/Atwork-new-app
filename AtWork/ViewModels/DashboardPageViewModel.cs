@@ -31,6 +31,7 @@ namespace AtWork.ViewModels
             ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
 
             FooterNavigationCommand = DashboardFooterNavigationCommand;
+            HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
         #endregion
 
@@ -95,6 +96,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsModel> EditNewsPostCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await EditNewsPost(obj)); } }
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
         public DelegateCommand<NewsModel> NewsShowOptionCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await NewsShowOption(obj)); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -103,6 +105,18 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task NewsPostProceed(string selectedTab)
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(AddNewsPostPage));
             }
             catch (Exception ex)
             {

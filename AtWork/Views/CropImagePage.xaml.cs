@@ -27,6 +27,7 @@ namespace AtWork.Views
         {
             croppedImageStream = args.Stream;
             //ImageSource image = ImageSource.FromStream(() => croppedImageStream);
+            VMContext.CroppedImageStream = croppedImageStream;
         }
 
         private async void editor_ImageSaved(object sender, ImageSavedEventArgs args)
@@ -34,7 +35,7 @@ namespace AtWork.Views
             try
             {
                 string savedLocation = args.Location;
-                await _helperService.SaveImageFile(croppedImageStream, VMContext.SelectedNewsImageValue.ImagePath);
+                //var croppedImgFilePath = await _helperService.SaveImageFile(croppedImageStream, VMContext.SelectedNewsImageValue.ImagePath);                
             }
             catch (Exception ex)
             {
