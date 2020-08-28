@@ -20,7 +20,7 @@ namespace AtWork.ViewModels
             NextCustomLabelIsVisible = true;
             NextOptionText = AppResources.MyActivitiesHeaderText;
             NewsGreenbg = (Color)App.Current.Resources["LightBrownColor"];
-            ActivitiesGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+            ActivitiesGreenbg = (Color)App.Current.Resources["AccentColor"];
 
             Activitylist.Add(new ActivityItems() { title = "All categories" });
             Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });

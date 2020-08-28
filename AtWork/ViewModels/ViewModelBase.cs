@@ -7,6 +7,7 @@ using AtWork.Multilingual;
 using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
+using FFImageLoading.Forms;
 using Plugin.Connectivity;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -61,11 +62,11 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _isVisiblePlayerBanner, value); }
         }
 
-        private static ImageSource _UserProfileImage = "";
+        //private static ImageSource _UserProfileImage = "";
         public ImageSource UserProfileImage
         {
-            get { return _UserProfileImage; }
-            set { SetProperty(ref _UserProfileImage, value); }
+            get { return ImageSource.FromUri(new Uri(SettingsService.UserProfileImage)); }
+            //set { SetProperty(ref _UserProfileImage, value); }
         }
         public string AddNewsCancelImage
         {
@@ -121,6 +122,11 @@ namespace AtWork.ViewModels
         {
             get { return _HeaderDetailsTitle; }
             set { SetProperty(ref _HeaderDetailsTitle, value); }
+        }
+        public ImageSource CompanyLogo
+        {
+            get { return ImageSource.FromUri(new Uri(SettingsService.CompanyLogo)); }
+            //set { SetProperty(ref _companyLogo, value); }
         }
         #region Commands
 
