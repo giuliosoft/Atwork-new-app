@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -24,8 +25,8 @@ namespace AtWork.ViewModels
             {
                 NextClickPageName = nameof(AddNewsPostImagePage);
                 _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
-                AddNewsCancelImage = "Back";
-                AddNewsNextImage = "Next";
+                AddNewsCancelImage = AppResources.BackButtonText;
+                AddNewsNextImage = AppResources.NextButtonText;
                 NextTextColor = (Color)App.Current.Resources["ShadedWhiteColor"];
                 HeaderNextNavigationCommand = NewsPostProceedCommand;
             }
@@ -97,11 +98,21 @@ namespace AtWork.ViewModels
                 else
                 {
                     NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                    await ShowLoader();
+                    List<string> PostImageFiles = new List<string>();
+                    NewsPostImageCarouselList.All((arg) =>
+                    {
+                        PostImageFiles.Add(arg.ImagePath);
+                        return true;
+                    });
+                    SessionService.NewsPostImageFiles = new List<string>(PostImageFiles);
                     await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
+                    await ClosePopup();
                 }
             }
             catch (Exception ex)
             {
+                await ClosePopup();
                 Debug.WriteLine(ex.Message);
             }
         }

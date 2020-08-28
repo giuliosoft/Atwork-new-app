@@ -208,4 +208,10 @@ Permission Denied. Can not continue, try again.</value>
     <data name="PostDataAlertText" xml:space="preserve">
         <value>Enter news post title &amp; description!</value>
     </data>
+    <data name="SkipText" xml:space="preserve">
+        <value>Skip</value>
+    </data>
+    <data name="PublishText" xml:space="preserve">
+        <value>Publish</value>
+    </data>
 </root>

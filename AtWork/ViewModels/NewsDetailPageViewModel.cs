@@ -21,7 +21,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            NewsDetailBack = "Back";
+            NewsDetailBack = AppResources.BackButtonText;
             DetailHeaderOptionIsVisible = true;
 
             HeaderDetailsTitle = AppResources.PostText;
@@ -39,13 +39,13 @@ namespace AtWork.ViewModels
             get { return _NewsTitle; }
             set { SetProperty(ref _NewsTitle, value); }
         }
-       private string _NewsDescription = string.Empty;
+        private string _NewsDescription = string.Empty;
         public string NewsDescription
         {
             get { return _NewsDescription; }
             set { SetProperty(ref _NewsDescription, value); }
         }
-       
+
 
         private ObservableCollection<CarouselModel> _NewsImageCarouselList = new ObservableCollection<CarouselModel>();
         public ObservableCollection<CarouselModel> NewsImageCarouselList
@@ -178,7 +178,7 @@ namespace AtWork.ViewModels
             try
             {
                 await ShowLoader();
-                
+
                 var serviceResult = await NewsService.NewsDetail("/334");
                 var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
 

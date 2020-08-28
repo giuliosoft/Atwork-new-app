@@ -67,7 +67,8 @@ namespace AtWork.ViewModels
         //private static ImageSource _UserProfileImage = "";
         public ImageSource UserProfileImage
         {
-            get { return ImageSource.FromUri(new Uri(SettingsService.LoggedInUserData.coLogo)); }
+            get { return ""; }
+            //get { return ImageSource.FromUri(new Uri(SettingsService.LoggedInUserData.coLogo)); }
             //set { SetProperty(ref _UserProfileImage, value); }
         }
         public string AddNewsCancelImage
@@ -139,7 +140,8 @@ namespace AtWork.ViewModels
 
         public ImageSource CompanyLogo
         {
-            get { return ImageSource.FromUri(new Uri(SettingsService.LoggedInUserData.coLogo)); }
+            get { return ""; }
+            //get { return ImageSource.FromUri(new Uri(SettingsService.LoggedInUserData.coLogo)); }
             //set { SetProperty(ref _companyLogo, value); }
         }
 

@@ -430,5 +430,17 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("PostDataAlertText", resourceCulture);
             }
         }
+        
+        internal static string SkipText {
+            get {
+                return ResourceManager.GetString("SkipText", resourceCulture);
+            }
+        }
+        
+        internal static string PublishText {
+            get {
+                return ResourceManager.GetString("PublishText", resourceCulture);
+            }
+        }
     }
 }

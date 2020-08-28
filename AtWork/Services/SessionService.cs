@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.NewsModel;
 
 namespace AtWork.Services
 {
@@ -19,6 +21,10 @@ namespace AtWork.Services
         public static bool isLoadingPopupOpen = false;
         public static bool isEditNews = false;
         public static bool isImageCropped = false;
+        public static NewsDetailModel_Input NewsPostInputData = new NewsDetailModel_Input();
+        public static List<string> NewsPostImageFiles = new List<string>();
+        public static string NewsPostAttachmentFilePath = string.Empty;
+        public static string NewsPostAttachmentFileName = string.Empty;
         /// <summary>
         /// Logout
         /// clear social media account details
@@ -27,6 +33,7 @@ namespace AtWork.Services
         /// <returns></returns>
         public static async Task Logout()
         {
+            SessionService.NewsPostInputData = null;
             SessionService.AppNavigationService = null;
             SettingsService.LoggedInUserData = null;
         }

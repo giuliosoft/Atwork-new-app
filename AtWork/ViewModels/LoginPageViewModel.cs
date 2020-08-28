@@ -19,7 +19,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public LoginPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            AddNewsCancelImage = "Back";
+            AddNewsCancelImage = AppResources.BackButtonText;
         }
         #endregion
 
@@ -82,6 +82,8 @@ namespace AtWork.ViewModels
 
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
+                    SettingsService.LoggedInUserEmail = UserEmail;
+                    SettingsService.LoggedInUserPassword = UserPassword;
                     if (serviceResultBody.Data != null)
                     {
                         SettingsService.LoggedInUserData = serviceResultBody.Data;

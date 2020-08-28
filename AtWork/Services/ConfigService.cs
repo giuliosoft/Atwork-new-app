@@ -7,5 +7,6 @@ namespace AtWork.Services
         public static string LoginServiceURL = "/Login";
         public static string AuthorizationTokenKey = "Basic ";
         public static string NewsDetailsServiceURL = "/news/getrow";
+        public static string NewsAddPostServiceURL = "/news/addrow";
     }
 }
