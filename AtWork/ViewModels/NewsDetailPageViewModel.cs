@@ -18,6 +18,7 @@ namespace AtWork.ViewModels
 {
     public class NewsDetailPageViewModel : ViewModelBase
     {
+        int SelectedNewsId;
         #region Constructor
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -30,6 +31,11 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         bool _isPostLiked = false;
+        bool _AttachmentIsVisible = false;
+        private string _NewsAttachmentTitle = string.Empty;
+        private string _NewsLikeCount = string.Empty;
+        private string _NewsUserTime = string.Empty;
+        private string _NewsUserName = string.Empty;
         #endregion
 
         #region Public Properties
@@ -39,13 +45,38 @@ namespace AtWork.ViewModels
             get { return _NewsTitle; }
             set { SetProperty(ref _NewsTitle, value); }
         }
-       private string _NewsDescription = string.Empty;
+        private string _NewsDescription = string.Empty;
         public string NewsDescription
         {
             get { return _NewsDescription; }
             set { SetProperty(ref _NewsDescription, value); }
         }
-       
+        public string NewsAttachmentTitle
+        {
+            get { return _NewsAttachmentTitle; }
+            set { SetProperty(ref _NewsAttachmentTitle, value); }
+        }
+        public string NewsLikeCount
+        {
+            get { return _NewsLikeCount; }
+            set { SetProperty(ref _NewsLikeCount, value); }
+        }
+        public string NewsUserTime
+        {
+            get { return _NewsUserTime; }
+            set { SetProperty(ref _NewsUserTime, value); }
+        }
+        public string NewsUserName
+        {
+            get { return _NewsUserName; }
+            set { SetProperty(ref _NewsUserName, value); }
+        }
+
+        public bool AttachmentIsVisible
+        {
+            get { return _AttachmentIsVisible; }
+            set { SetProperty(ref _AttachmentIsVisible, value); }
+        }
 
         private ObservableCollection<CarouselModel> _NewsImageCarouselList = new ObservableCollection<CarouselModel>();
         public ObservableCollection<CarouselModel> NewsImageCarouselList
@@ -74,11 +105,25 @@ namespace AtWork.ViewModels
             get { return _LikeImage; }
             set { SetProperty(ref _LikeImage, value); }
         }
-        private ImageSource _PublishImage = "earth";
-        public ImageSource PublishImage
+        private ImageSource _PublishImageSource;
+        public ImageSource PublishImageSource
         {
-            get { return _PublishImage; }
-            set { SetProperty(ref _PublishImage, value); }
+            get { return _PublishImageSource; }
+            set { SetProperty(ref _PublishImageSource, value); }
+        }
+
+        private ImageSource _NewsUserProfileImage;
+        public ImageSource NewsUserProfileImage
+        {
+            get { return _NewsUserProfileImage; }
+            set { SetProperty(ref _NewsUserProfileImage, value); }
+        }
+
+        private bool _PublishImageIsVisible = false;
+        public bool PublishImageIsVisible
+        {
+            get { return _PublishImageIsVisible; }
+            set { SetProperty(ref _PublishImageIsVisible, value); }
         }
 
         private Color _LikeCountTextColor = (Color)App.Current.Resources["BlackColor"];
@@ -179,25 +224,63 @@ namespace AtWork.ViewModels
             {
                 await ShowLoader();
                 
-                var serviceResult = await NewsService.NewsDetail("/334");
+                var serviceResult = await NewsService.NewsDetail("/" +SelectedNewsId.ToString());
                 var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
 
                 if (serviceResultBody != null && serviceResultBody.Flag)
                 {
                     if (serviceResultBody != null && serviceResultBody.Data != null)
                     {
-                        NewsTitle = serviceResultBody.Data.newsTitle;
-                        NewsDescription = serviceResultBody.Data.newsContent;
-                        if (serviceResultBody.Data.newsPrivacy?.ToLower() == "everyone")
+                        if (serviceResultBody.Data.Volunteers != null)
                         {
-                            PublishImage = "earth";
-                        }
-                        else
-                        {
-                            PublishImage = "ActivityPeopleIcon";
-                        }
-                        //await _navigationService.NavigateAsync(nameof(NewsPage));
+                            NewsUserProfileImage = ImageSource.FromUri(new Uri(string.Format("http://app.atwork.ai/{0}", serviceResultBody.Data.Volunteers.volPicture)));
+                            NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
+                            NewsUserTime = serviceResultBody.Data.Day;
+                            NewsLikeCount = serviceResultBody.Data.Comments_Likes.ToString();
+
+                            _isPostLiked = false; // serviceResultBody.Data.NewsLiked;
+                            if (!_isPostLiked)
+                            {
+                                _isPostLiked = true;
+                                LikeImage = "heartoutline";
+                                LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
+                            }
+                            else
+                            {
+                                _isPostLiked = false;
+                                LikeImage = "heartfill";
+                                LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
+                            }
+
+                            NewsTitle = serviceResultBody.Data.News.newsTitle;
+                            NewsDescription = serviceResultBody.Data.News.newsContent;
+
+                            if (serviceResultBody.Data.News.newsPrivacy?.ToLower() == "everyone")
+                            {
+                                PublishImageSource = "earth";
+                            }
+                            else if (serviceResultBody.Data.News.newsPrivacy?.ToLower() == "group")
+                            {
+                                PublishImageSource = "ActivityPeopleIcon";
+                            }
+                            else
+                            {
+                                PublishImageIsVisible = false;
+                            }
+
+                            if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
+                            {
+                                AttachmentIsVisible = true;
+                                NewsAttachmentTitle = serviceResultBody.Data.News.newsFile;
+                            }
+                        }
+                        //var tempCList = new ObservableCollection<CarouselModel>();
+                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+                        //NewsImageCarouselList = tempCList;
                     }
                     else
                     {
@@ -225,6 +308,8 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+
+            SelectedNewsId = parameters.GetValue<int>("SelectedNewsID");
 
             var tempCList = new ObservableCollection<CarouselModel>();
             tempCList.Add(new CarouselModel() { NewsImage = "bg" });

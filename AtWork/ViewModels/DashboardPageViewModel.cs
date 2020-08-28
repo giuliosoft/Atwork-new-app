@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Helpers;
 using AtWork.Models;
@@ -11,6 +12,7 @@ using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.NewsModel;
 
 namespace AtWork.ViewModels
 {
@@ -39,7 +41,7 @@ namespace AtWork.ViewModels
         private bool _ActivityViewIsVisible = false;
         private ObservableCollection<ActivityItems> _Activitylist = new ObservableCollection<ActivityItems>();
         private ObservableCollection<CarouselModel> _NewsImageCarouselList = new ObservableCollection<CarouselModel>();
-        private ObservableCollection<NewsModel> _NewsList = new ObservableCollection<NewsModel>();
+        private ObservableCollection<News> _NewsList = new ObservableCollection<News>();
         private ObservableCollection<ActivityItems> _Activitycollectionlist = new ObservableCollection<ActivityItems>();
         #endregion
 
@@ -68,7 +70,7 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _NewsImageCarouselList, value); }
         }
 
-        public ObservableCollection<NewsModel> NewsList
+        public ObservableCollection<News> NewsList
         {
             get { return _NewsList; }
             set { SetProperty(ref _NewsList, value); }
@@ -90,7 +92,7 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand<string> DashboardFooterNavigationCommand { get { return new DelegateCommand<string>(async (obj) => await DashboardFooterNavigation(obj)); } }
-        public DelegateCommand<NewsModel> NewsPostSelectedCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await GotoNewsPostDetailPage(obj)); } }
+        public DelegateCommand<News> NewsPostSelectedCommand { get { return new DelegateCommand<News>(async (obj) => await GotoNewsPostDetailPage(obj)); } }
         public DelegateCommand<NewsModel> EditNewsPostCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await EditNewsPost(obj)); } }
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
         public DelegateCommand<NewsModel> NewsShowOptionCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await NewsShowOption(obj)); } }
@@ -114,6 +116,8 @@ namespace AtWork.ViewModels
         {
             try
             {
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("SelectedNewsID", selectedTab);
                 await _navigationService.NavigateAsync(nameof(AddNewsPostPage));
             }
             catch (Exception ex)
@@ -153,11 +157,13 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GotoNewsPostDetailPage(NewsModel selectedNewsPost)
+        async Task GotoNewsPostDetailPage(News selectedNewsPost)
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(NewsDetailPage), null);
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("SelectedNewsID", selectedNewsPost.id);
+                await _navigationService.NavigateAsync(nameof(NewsDetailPage), navigationParams);
             }
             catch (Exception ex)
             {
@@ -220,10 +226,13 @@ namespace AtWork.ViewModels
             tempCList.Add(new CarouselModel() { NewsImage = "bg" });
             //NewsImageCarouselList = tempCList;
 
-            var tempNews = new ObservableCollection<NewsModel>();
+            var tempNews = new ObservableCollection<News>();
             for (var i = 0; i < 3; i++)
             {
-                tempNews.Add(new NewsModel() { NewsImageCarouselList = tempCList });
+                tempNews.Add(new News() { id = 76 });
+                tempNews.Add(new News() { id = 68 });
+                tempNews.Add(new News() { id = 89 });
+                tempNews.Add(new News() { id = 92 });
             }
             NewsList = tempNews;
         }
