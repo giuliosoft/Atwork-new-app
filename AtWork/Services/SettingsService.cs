@@ -91,5 +91,31 @@ namespace AtWork.Services
                 AppSettings.AddOrUpdateValue(LoggedInUserPasswordKey, value);
             }
         }
+        private const string CompanyLogoKey = "LoggedInUserPassword_Key";
+        private static readonly string CompanyLogoDefault = string.Empty;
+        public static string CompanyLogo
+        {
+            get
+            {
+                return string.Format("http://app.atwork.ai/images/{0}", AppSettings.GetValueOrDefault(CompanyLogoKey, CompanyLogoDefault));
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(CompanyLogoKey, value);
+            }
+        }
+        private const string UserProfileImageKey = "UserProfileImage_Key";
+        private static readonly string UserProfileImageDefault = string.Empty;
+        public static string UserProfileImage
+        {
+            get
+            {
+                return string.Format("http://app.atwork.ai/images/{0}", AppSettings.GetValueOrDefault(UserProfileImageKey, UserProfileImageDefault));
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserProfileImageKey, value);
+            }
+        }
     }
 }

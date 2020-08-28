@@ -34,7 +34,7 @@
                                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                                 <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                                    <CustomControl:CustomImage TintColor="{DynamicResource AccentColor}" Source="like" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                    <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                                 </StackLayout>
                                             </StackLayout>
@@ -75,11 +75,11 @@
                                                 <PancakeControl:PancakeView Grid.Column="1" CornerRadius="12,0,12,0" Padding="10,12,10,12" BackgroundColor="{StaticResource PosterWhiteColor}" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                                     <StackLayout Spacing="{DynamicResource Spacing15}">
                                                         <StackLayout Spacing="{DynamicResource Spacing03}">
-                                                            <CustomControl:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="heartfill" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                            <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="heartfill" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                             <Label Text="14" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                         </StackLayout>
                                                         <StackLayout Spacing="{DynamicResource Spacing03}">
-                                                            <CustomControl:CustomImage TintColor="{StaticResource DarkBrownColor}" Source="message" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                            <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="message" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                             <Label Text="20" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                         </StackLayout>
                                                     </StackLayout>

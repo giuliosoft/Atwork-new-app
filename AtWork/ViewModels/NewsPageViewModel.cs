@@ -18,7 +18,7 @@ namespace AtWork.ViewModels
         {
             NextOptionText = "+";
             NextCustomLabelIsVisible = false;
-            NewsGreenbg = (Color)App.Current.Resources["DarkGreenColor"];
+            NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
             ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
         }
         #endregion

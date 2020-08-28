@@ -186,7 +186,7 @@
             <Style x:Key="SendLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
-                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
@@ -202,7 +202,7 @@
             <Style x:Key="AttachedFileLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
-                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
@@ -323,12 +323,12 @@
             <Style x:Key="CropButtonStyle" TargetType="Button">
                 <Setter Property="FontFamily" Value="" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
-                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HeightRequest" Value="30"/>
                 <Setter Property="WidthRequest" Value="100"/>
                 <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="BorderColor" Value="{StaticResource DarkGreenColor}"/>
+                <Setter Property="BorderColor" Value="{DynamicResource AccentColor}"/>
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
@@ -374,8 +374,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="HeaderLogoImageStyle" TargetType="Image">
-                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth35}" />
-                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth35}" />
+                <!--<Setter Property="HeightRequest" Value="{DynamicResource HeightWidth70}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth70}" />-->
                 <Setter Property="Aspect" Value="AspectFit"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
