@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.Services
 {
@@ -65,56 +67,21 @@ namespace AtWork.Services
         {
             AppSettings.Clear();
         }
-        private const string LoggedInUserEmailKey = "LoggedInUserEmail_Key";
-        private static readonly string LoggedInUserEmailDefault = string.Empty;
-        public static string LoggedInUserEmail
+
+        private const string LoggedInUserDataKey = "LoggedInUserData_key";
+        public static LoginOutputModel LoggedInUserData
         {
             get
             {
-                return AppSettings.GetValueOrDefault(LoggedInUserEmailKey, LoggedInUserEmailDefault);
+                var value = AppSettings.GetValueOrDefault(LoggedInUserDataKey, string.Empty);
+                if (string.IsNullOrEmpty(value)) { return null; }
+                else { return JsonConvert.DeserializeObject<LoginOutputModel>(value); }
             }
             set
             {
-                AppSettings.AddOrUpdateValue(LoggedInUserEmailKey, value);
-            }
-        }
-        private const string LoggedInUserPasswordKey = "LoggedInUserPassword_Key";
-        private static readonly string LoggedInUserPasswordDefault = string.Empty;
-        public static string LoggedInUserPassword
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(LoggedInUserPasswordKey, LoggedInUserPasswordDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(LoggedInUserPasswordKey, value);
-            }
-        }
-        private const string CompanyLogoKey = "LoggedInUserPassword_Key";
-        private static readonly string CompanyLogoDefault = string.Empty;
-        public static string CompanyLogo
-        {
-            get
-            {
-                return string.Format("http://app.atwork.ai/images/{0}", AppSettings.GetValueOrDefault(CompanyLogoKey, CompanyLogoDefault));
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(CompanyLogoKey, value);
-            }
-        }
-        private const string UserProfileImageKey = "UserProfileImage_Key";
-        private static readonly string UserProfileImageDefault = string.Empty;
-        public static string UserProfileImage
-        {
-            get
-            {
-                return string.Format("http://app.atwork.ai/images/{0}", AppSettings.GetValueOrDefault(UserProfileImageKey, UserProfileImageDefault));
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(UserProfileImageKey, value);
+                string data = string.Empty;
+                if (value != null) { data = JsonConvert.SerializeObject(value); }
+                AppSettings.AddOrUpdateValue(LoggedInUserDataKey, data);
             }
         }
     }

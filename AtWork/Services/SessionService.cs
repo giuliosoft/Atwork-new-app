@@ -28,6 +28,7 @@ namespace AtWork.Services
         public static async Task Logout()
         {
             SessionService.AppNavigationService = null;
+            SettingsService.LoggedInUserData = null;
         }
 
         #endregion

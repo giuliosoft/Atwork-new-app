@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -72,11 +73,28 @@ namespace AtWork.ViewModels
         {
             try
             {
+                await CheckValidations();
+                await ShowLoader();
                 await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
+                await ClosePopup();
             }
             catch (Exception ex)
             {
+                await ClosePopup();
                 Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task CheckValidations()
+        {
+            if (!await CheckConnectivity())
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(NewsTitle) || string.IsNullOrEmpty(NewsDescription))
+            {
+                await DisplayAlertAsync(AppResources.PostDataAlertText);
+                return;
             }
         }
         #endregion

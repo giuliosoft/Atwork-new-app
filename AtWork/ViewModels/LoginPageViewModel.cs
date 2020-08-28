@@ -76,17 +76,16 @@ namespace AtWork.ViewModels
                 LoginInputModel inputModel = new LoginInputModel();
                 inputModel.email = UserEmail;
                 inputModel.password = UserPassword;
-                SettingsService.LoggedInUserEmail = UserEmail;
-                SettingsService.LoggedInUserPassword = UserPassword;
+
                 var serviceResult = await UserServices.LoginToApp(inputModel);
                 var serviceResultBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult.Body);
 
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
-                    SettingsService.LoggedInUserEmail = UserEmail;
-                    SettingsService.LoggedInUserPassword = UserPassword;
-                    SettingsService.CompanyLogo = serviceResultBody.Data.coLogo;
-                    SettingsService.UserProfileImage = serviceResultBody.Data.coLogo;
+                    if (serviceResultBody.Data != null)
+                    {
+                        SettingsService.LoggedInUserData = serviceResultBody.Data;
+                    }
 
                     LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
