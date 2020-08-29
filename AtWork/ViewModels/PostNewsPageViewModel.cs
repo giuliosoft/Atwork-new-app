@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -94,11 +95,11 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
+
                 SessionService.NewsPostInputData.coUniqueID = SettingsService.LoggedInUserData.coUniqueID;
                 NewsDetailModel_Input inputModel = new NewsDetailModel_Input();
+
                 inputModel.coUniqueID = SessionService.NewsPostInputData.coUniqueID;
-                inputModel.newsUniqueID = null;
-                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
                 inputModel.newsTitle = SessionService.NewsPostInputData.newsTitle;
                 inputModel.newsContent = SessionService.NewsPostInputData.newsContent;
                 inputModel.newsDateTime = DateTime.Now;
@@ -111,9 +112,30 @@ namespace AtWork.ViewModels
                 inputModel.newsPrivacy = NewsPrivacy;
                 SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
 
-                var serviceResult = await NewsService.PostNewsFeed1(inputModel);
+                BaseResponse<string> serviceResult = null;
+                if (SessionService.isEditingNews)
+                {
+                    inputModel.newsUniqueID = SessionService.NewsPostInputData.newsUniqueID;
+                    inputModel.volUniqueID = SessionService.NewsPostInputData.volUniqueID;
+                    serviceResult = await NewsService.PostNewsFeedEdit(inputModel);
+                }
+                else
+                {
+                    inputModel.newsUniqueID = null;
+                    inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                    serviceResult = await NewsService.PostNewsFeed1(inputModel);
+                }
+
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
+                    SessionService.NewsPostInputData = new NewsDetailModel_Input();
+                    SessionService.NewsPostAttachmentFileName = string.Empty;
+                    SessionService.NewsPostAttachmentFilePath = string.Empty;
+                    SessionService.NewsPostImageFiles = new List<string>();
+                    if (SessionService.isEditingNews)
+                    {
+                        SessionService.isEditingNews = false;
+                    }
                     await _navigationService.NavigateAsync(nameof(DashboardPage));
                 }
                 await ClosePopup();
@@ -165,7 +187,6 @@ namespace AtWork.ViewModels
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
-
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)

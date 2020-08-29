@@ -28,7 +28,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-		public static async Task<BaseResponse<string>> AddComment(NewsComment NewsComment)
+        public static async Task<BaseResponse<string>> AddComment(NewsComment NewsComment)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
@@ -76,7 +76,7 @@ namespace AtWork.Services
             return resultModel;
         }
 
-		public static async Task<BaseResponse<string>> PostNewsFeed(NewsDetailModel_Input inputModel, List<string> filesToAttach)
+        public static async Task<BaseResponse<string>> PostNewsFeed(NewsDetailModel_Input inputModel, List<string> filesToAttach)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
@@ -110,5 +110,54 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-	}
+
+        public static async Task<BaseResponse<string>> PostNewsFeedEdit(NewsDetailModel_Input inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsPostEditServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(editNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> DeleteNewsPost(int id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var deleteNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsPostDeleteServiceURL;
+                resultModel = await PostResponse<string>($"{deleteNewsServiceUrl}{id}", string.Empty, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> GetNewsList(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var newsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsListServiceURL;
+                resultModel = await GetResponse<string>($"{newsServiceUrl}{id}", true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+    }
 }

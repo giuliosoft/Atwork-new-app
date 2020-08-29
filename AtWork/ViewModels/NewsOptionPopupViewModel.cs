@@ -16,6 +16,8 @@ namespace AtWork.ViewModels
     {
         public EventHandler<bool> ClosePopupEvent;
         public EventHandler<string> ProfileSelectedEvent;
+        public EventHandler<object> EditNewsEvent;
+        public EventHandler<object> DeleteNewsEvent;
         #region Constructor
         public NewsOptionPopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -73,21 +75,21 @@ namespace AtWork.ViewModels
         {
             try
             {
-                SessionService.isEditNews = true;
-                await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
                 await PopupNavigationService.ClosePopup(true);
+                EditNewsEvent?.Invoke(this, null);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
+
         async Task DeleteNews()
         {
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                await _navigationService.GoBackAsync();
+                DeleteNewsEvent?.Invoke(this, null);
             }
             catch (Exception ex)
             {
