@@ -145,12 +145,12 @@
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <CustomControl:CustomEditor x:Name="commentEditor" Text="{Binding CommentText}"  Grid.Column="0" ReturnType="Done" TextChanged="CommentEditor_TextChanged" Placeholder="{x:Static Multilingual:AppResources.CommentPlaceholderText}" Style="{StaticResource NewsCommentEditorStyle}"/>
                             <!--<Customcontrol:CustomEditor  Text="{Binding NewsTitle}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PostTitle}"  Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>-->
-                            <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                <Label Text="{x:Static Multilingual:AppResources.SendText}" Style="{StaticResource SendLabelStyle}"/>
+                            <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="{Binding SendButtonText}" Style="{StaticResource SendLabelStyle}"/>
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SendCommentCommand}"/>
                                 </StackLayout.GestureRecognizers>

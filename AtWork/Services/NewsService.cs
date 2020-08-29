@@ -61,7 +61,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> DeleteComment(string id)
+        public static async Task<BaseResponse<string>> DeleteComment(int id)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try

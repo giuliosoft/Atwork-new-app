@@ -232,12 +232,13 @@ namespace AtWork.ViewModels
                 var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
                 if (result)
                 {
-                    return;
-                    var serviceResult = await NewsService.DeleteComment(string.Empty);
+                    var serviceResult = await NewsService.DeleteComment(comment.Id);
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
-                    //var serviceResult = await NewsService.AddComment(newsComment);
-                    //LanguageService.Init(selectedItem.RadioButtomItem);
-                    //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                    if (serviceResultBody != null && serviceResultBody.Flag)
+                    {
+                        await DisplayAlertAsync(serviceResultBody.Message);
+                        CommentText = string.Empty;
+                    }
                 }
                 else
                 {
@@ -275,7 +276,7 @@ namespace AtWork.ViewModels
                 }
                 else if (SendButtonText == AppResources.Update)
                 {
-                    await ShowLoader();
+                    newsComment.Id = EditDeleteSelectedComment.Id;
                     var serviceResult = await NewsService.EditComment(newsComment);
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
