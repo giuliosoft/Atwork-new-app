@@ -10,10 +10,10 @@
         <ScrollView x:Name="pageScroll" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
                 <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <CustomControl:RepeaterView x:Name="newsfeedList" BackgroundColor="Transparent" ItemsSource="{Binding NewsList}" ColumnCount="1" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <CustomControl:RepeaterView x:Name="newsfeedList" BackgroundColor="Transparent" GridHeightUnitType="Auto" ItemsSource="{Binding NewsList}" ColumnCount="1" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <CustomControl:RepeaterView.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                                     <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_15_00_15}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="60"/>
@@ -26,13 +26,13 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="55"/>
                                             </Grid.ColumnDefinitions>
-                                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding NewsUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                                 <ffImageLoading:CachedImage.Transformations>
                                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                                 </ffImageLoading:CachedImage.Transformations>
                                             </ffImageLoading:CachedImage>
                                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                                                <Label Text="Carron Martin" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                                <Label Text="{Binding userName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
                                                     <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
@@ -47,8 +47,8 @@
                                             </StackLayout>
                                         </Grid>
                                         <StackLayout Grid.Row="1" Spacing="{DynamicResource Spacing05}" Padding="0,5,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <Label Text="Stay healthy over the weekend!" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
-                                            <Label Text="How Can you protect yourself and others against the new coronavirus? Here's some tips.." Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
+                                            <Label Text="{Binding newsTitle}" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
+                                            <Label Text="{Binding newsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
                                             <StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
                                             </StackLayout.GestureRecognizers>
@@ -60,7 +60,7 @@
                                                     <ColumnDefinition Width="40"/>
                                                 </Grid.ColumnDefinitions>
                                                 <PancakeControl:PancakeView Grid.Column="0" CornerRadius="15" BackgroundColor="Transparent">
-                                                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsImageCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsPostCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
+                                                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsPostCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
                                                         <CarouselView.ItemTemplate>
                                                             <DataTemplate>
                                                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -73,16 +73,16 @@
                                                         </CarouselView.ItemTemplate>
                                                     </CarouselView>
                                                 </PancakeControl:PancakeView>
-                                                <IndicatorView x:Name="indicatorView" Grid.Column="0" ItemsSource="{Binding NewsImageCarouselList}" SelectedIndicatorColor="White" Opacity="0.9" IndicatorSize="10" Padding="10" HorizontalOptions="Center" VerticalOptions="End" />
+                                                <IndicatorView x:Name="indicatorView" Grid.Column="0" ItemsSource="{Binding NewsCarouselList}" SelectedIndicatorColor="White" Opacity="0.9" IndicatorSize="10" Padding="10" HorizontalOptions="Center" VerticalOptions="End" />
                                                 <PancakeControl:PancakeView Grid.Column="1" CornerRadius="12,0,12,0" Padding="10,12,10,12" BackgroundColor="{StaticResource PosterWhiteColor}" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                                     <StackLayout Spacing="{DynamicResource Spacing15}">
                                                         <StackLayout Spacing="{DynamicResource Spacing03}">
                                                             <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="heartfill" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
-                                                            <Label Text="14" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                            <Label Text="{Binding CommentsCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                         </StackLayout>
                                                         <StackLayout Spacing="{DynamicResource Spacing03}">
                                                             <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="message" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
-                                                            <Label Text="20" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                            <Label Text="{Binding LikeCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </PancakeControl:PancakeView>

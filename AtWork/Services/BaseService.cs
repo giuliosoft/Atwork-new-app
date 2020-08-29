@@ -167,7 +167,7 @@ namespace AtWork.Services
                 {
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                 }
-
+                
                 MultipartFormDataContent Mcontent = new MultipartFormDataContent();
                 //if (fileToAttachList != null && fileToAttachList.Count > 0)
                 //{

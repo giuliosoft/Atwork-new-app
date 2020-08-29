@@ -20,6 +20,10 @@ namespace AtWork.ViewModels
         public LoginPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             AddNewsCancelImage = AppResources.BackButtonText;
+#if DEBUG
+            UserEmail = "jeff.jones@testing.com";
+            UserPassword = "1234";
+#endif
         }
         #endregion
 

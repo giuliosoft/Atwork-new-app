@@ -6,6 +6,7 @@ using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using static AtWork.Models.NewsModel;
 
 namespace AtWork.ViewModels
 {
@@ -17,11 +18,6 @@ namespace AtWork.ViewModels
             NextClickPageName = nameof(AddNewsPostPage);
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.NextButtonText;
-            if (SessionService.isEditNews)
-            {
-                //TODO Remove static text
-                NewsDescription = "Enter new Description Stay healthy over the weekend! Stay healthy over the weekend! Stay healthy over the weekend!";
-            }
             HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
         #endregion
@@ -105,6 +101,11 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            if (SessionService.isEditingNews)
+            {
+                NewsTitle = SessionService.NewsPostInputData.newsTitle;
+                NewsDescription = SessionService.NewsPostInputData.newsContent;
+            }
         }
     }
 }

@@ -6,7 +6,6 @@ using AtWork.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using static AtWork.Models.CommentsModel;
-using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 
 namespace AtWork.Services
@@ -29,7 +28,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-		public static async Task<BaseResponse<string>> AddComment(NewsComment NewsComment)
+        public static async Task<BaseResponse<string>> AddComment(NewsComment NewsComment)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
@@ -77,7 +76,7 @@ namespace AtWork.Services
             return resultModel;
         }
 
-		public static async Task<BaseResponse<string>> PostNewsFeed(NewsDetailModel_Input inputModel, List<string> filesToAttach)
+        public static async Task<BaseResponse<string>> PostNewsFeed(NewsDetailModel_Input inputModel, List<string> filesToAttach)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
@@ -119,6 +118,55 @@ namespace AtWork.Services
                 //var strCommentListUrl = "http://app.atwork.ai/api/commentslikes/getcommentlist/newscorp2019023511232400720208151822347";
                 var strCommentListUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsGetCommentListURL + NewsId;
                 resultModel = await GetResponse<string>(strCommentListUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> PostNewsFeedEdit(NewsDetailModel_Input inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsPostEditServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(editNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> DeleteNewsPost(int id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var deleteNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsPostDeleteServiceURL;
+                resultModel = await PostResponse<string>($"{deleteNewsServiceUrl}{id}", string.Empty, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> GetNewsList(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var newsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsListServiceURL;
+                resultModel = await GetResponse<string>($"{newsServiceUrl}{id}", true);
             }
             catch (Exception ex)
             {
