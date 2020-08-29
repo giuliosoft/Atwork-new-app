@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Helpers;
 using AtWork.Models;
@@ -322,7 +323,7 @@ namespace AtWork.ViewModels
 
                         if (serviceResultBody.Data.Volunteers != null)
                         {
-                            NewsUserProfileImage = ImageSource.FromUri(new Uri(string.Format("http://app.atwork.ai/{0}", serviceResultBody.Data.Volunteers.volPicture)));
+                            NewsUserProfileImage = ImageSource.FromUri(new Uri(string.Format(ConfigService.BaseServiceURLImage, serviceResultBody.Data.Volunteers.volPicture)));
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
                             NewsUserTime = serviceResultBody.Data.Day;
@@ -360,6 +361,23 @@ namespace AtWork.ViewModels
                                     PublishImageIsVisible = false;
                                 }
 
+                                var tempCList = new ObservableCollection<CarouselModel>();
+                                if (serviceResultBody?.Data?.News?.newsImage != string.Empty)
+                                {
+                                    var splittedList = serviceResultBody?.Data?.News?.newsImage.Split(',').ToList();
+                                    if (splittedList != null && splittedList.Count > 0)
+                                    {
+                                        splittedList.All((x) =>
+                                        {
+                                            tempCList.Add(new CarouselModel() { NewsImage = x });
+                                            return true;
+                                            
+                                        });
+                                    }
+                                }
+                                NewsImageCarouselList = tempCList;
+
+
                                 if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
                                 {
                                     AttachmentIsVisible = true;
@@ -367,12 +385,7 @@ namespace AtWork.ViewModels
                                 }
                             }
                         }
-                        //var tempCList = new ObservableCollection<CarouselModel>();
-                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-                        //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-                        //NewsImageCarouselList = tempCList;
+                       
                     }
                     else
                     {
@@ -404,14 +417,14 @@ namespace AtWork.ViewModels
 
             SelectedNewsId = parameters.GetValue<int>("SelectedNewsID");
 
-            var tempCList = new ObservableCollection<CarouselModel>();
-            tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            NewsImageCarouselList = tempCList;
+            //var tempCList = new ObservableCollection<CarouselModel>();
+            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+            //NewsImageCarouselList = tempCList;
 
             var tempCmtList = new ObservableCollection<NewsComment>();
-            tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
+            tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID, });
             tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
             tempCmtList.Add(new NewsComment() { comByID = null });
             PostCommentList = tempCmtList;

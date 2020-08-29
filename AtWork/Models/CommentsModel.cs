@@ -1,5 +1,6 @@
 ﻿using System;
 using AtWork.Services;
+using Xamarin.Forms;
 
 namespace AtWork.Models
 {
@@ -17,6 +18,20 @@ namespace AtWork.Models
             public string comByID { get; set; }
             public DateTime? comDate { get; set; }
             public string comContent { get; set; }
+            public string comUserName { get; set; }
+            public string comLineCount { get; set; }
+            public string ComUserProfileImage { get; set; }
+
+            public ImageSource NewsCommentUserProfileImage
+            {
+                get
+                {
+                    if (ComUserProfileImage == string.Empty)
+                        return string.Empty;
+                    return ImageSource.FromUri(new Uri(string.Format("http://app.atwork.ai/{0}", ComUserProfileImage)));
+                }
+            }
+
             //public virtual ICollection<tbl_News_Comments_Likes> tbl_News_Comments_Likes { get; set; }
             public bool CommentByLoggedInUser
             {

@@ -3,6 +3,7 @@ namespace AtWork.Services
 {
     public class ConfigService
     {
+        public static string BaseServiceURLImage = "http://app.atwork.ai/";
         public static string BaseServiceURL = "http://app.atwork.ai/api";
         public static string LoginServiceURL = "/Login";
         public static string AuthorizationTokenKey = "Basic ";
