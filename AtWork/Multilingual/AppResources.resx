@@ -214,4 +214,7 @@ Permission Denied. Can not continue, try again.</value>
     <data name="PublishText" xml:space="preserve">
         <value>Publish</value>
     </data>
+    <data name="Update" xml:space="preserve">
+        <value>Update</value>
+    </data>
 </root>

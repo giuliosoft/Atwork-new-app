@@ -13,6 +13,10 @@ namespace AtWork.Views
             InitializeComponent();
             VMContext = ((NewsDetailPageViewModel)this.BindingContext);
             indicatorView.Position = 0;
+            MessagingCenter.Subscribe<NewsDetailPage>(this, "CommentEdit", (sender) =>
+            {
+                commentEditor.Focus();
+            });
         }
 
         void newsPostCarousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)

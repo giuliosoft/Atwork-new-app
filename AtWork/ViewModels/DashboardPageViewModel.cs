@@ -95,7 +95,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<News> NewsPostSelectedCommand { get { return new DelegateCommand<News>(async (obj) => await GotoNewsPostDetailPage(obj)); } }
         public DelegateCommand<NewsModel> EditNewsPostCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await EditNewsPost(obj)); } }
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
-        public DelegateCommand<NewsModel> NewsShowOptionCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await NewsShowOption(obj)); } }
+        public DelegateCommand<News> NewsShowOptionCommand { get { return new DelegateCommand<News>(async (obj) => await NewsShowOption(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
@@ -194,7 +194,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task NewsShowOption(NewsModel selectedNewsPost)
+        async Task NewsShowOption(News selectedNewsPost)
         {
             try
             {

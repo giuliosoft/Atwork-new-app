@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AtWork.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
+using static AtWork.Models.CommentsModel;
 using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 

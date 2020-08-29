@@ -91,7 +91,7 @@
                         <CustomControl:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Padding="15,5,15,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <SwipeView x:Name="swipeView" BackgroundColor="{StaticResource OffWhiteColor}">
+                                    <SwipeView x:Name="swipeView" BackgroundColor="{StaticResource OffWhiteColor}" IsEnabled="{Binding CommentByLoggedInUser}">
                                         <SwipeView.RightItems>
                                             <SwipeItems>
                                                 <SwipeItemView>

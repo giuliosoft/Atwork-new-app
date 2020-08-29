@@ -7,10 +7,12 @@ using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
+using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.CommentsModel;
 using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 
@@ -37,6 +39,7 @@ namespace AtWork.ViewModels
         private string _NewsUserTime = string.Empty;
         private string _NewsUserName = string.Empty;
         private string _commentText = string.Empty;
+        private string _sendButtonText = AppResources.SendText;
         #endregion
 
         #region Public Properties
@@ -87,8 +90,8 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _NewsImageCarouselList, value); }
         }
 
-        private ObservableCollection<CarouselModel> _PostCommentList = new ObservableCollection<CarouselModel>();
-        public ObservableCollection<CarouselModel> PostCommentList
+        private ObservableCollection<NewsComment> _PostCommentList = new ObservableCollection<NewsComment>();
+        public ObservableCollection<NewsComment> PostCommentList
         {
             get { return _PostCommentList; }
             set { SetProperty(ref _PostCommentList, value); }
@@ -139,15 +142,21 @@ namespace AtWork.ViewModels
             get { return _commentText; }
             set { SetProperty(ref _commentText, value); }
         }
+        public string SendButtonText
+        {
+            get { return _sendButtonText; }
+            set { SetProperty(ref _sendButtonText, value); }
+        }
         News NewsDetailModel { get; set; }
+        NewsComment EditDeleteSelectedComment { get; set; }
         #endregion
 
         #region Commands
         public DelegateCommand LikeNewsPostCommand { get { return new DelegateCommand(async () => await LikeNewsPost()); } }
         public DelegateCommand OnOpenSwipeViewClicked { get { return new DelegateCommand(async () => await OnOpenSwipeView()); } }
         public DelegateCommand OnCloseSwipeViewClicked { get { return new DelegateCommand(async () => await OnCloseSwipeView()); } }
-        public DelegateCommand<CarouselModel> DeleteCommentCommand { get { return new DelegateCommand<CarouselModel>(async (obj) => await DeleteComment(obj)); } }
-        public DelegateCommand<CarouselModel> EditCommentCommand { get { return new DelegateCommand<CarouselModel>(async (obj) => await EditComment(obj)); } }
+        public DelegateCommand<NewsComment> DeleteCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await DeleteComment(obj)); } }
+        public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await EditComment(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         #endregion
 
@@ -185,33 +194,37 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task EditComment(CarouselModel comment)
+        async Task EditComment(NewsComment comment)
         {
             try
             {
-                return;
-                NewsComment newsComment = new NewsComment
-                {
-                    comDate = DateTime.Now,
-                    comContent = CommentText,
-                    coUniqueID = SettingsService.LoggedInUserData?.coUniqueID,
-                    newsUniqueID = NewsDetailModel?.newsUniqueID,
-                    comByID = SettingsService.VolunteersUserData?.volUniqueID
-                };
-                var serviceResult = await NewsService.EditComment(newsComment);
-                var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
-                if (serviceResultBody != null && serviceResultBody.Flag)
-                {
-                    await DisplayAlertAsync(serviceResultBody.Message);
-                    CommentText = string.Empty;
-                }
+                EditDeleteSelectedComment = comment;
+                SendButtonText = AppResources.Update;
+                CommentText = comment.comContent;
+                SendButtonIsVisible = true;
+                MessagingCenter.Send<NewsDetailPage>(new NewsDetailPage(), "CommentEdit");
+                //NewsComment newsComment = new NewsComment
+                //{
+                //    comDate = DateTime.Now,
+                //    comContent = CommentText,
+                //    coUniqueID = SettingsService.LoggedInUserData?.coUniqueID,
+                //    newsUniqueID = NewsDetailModel?.newsUniqueID,
+                //    comByID = SettingsService.VolunteersUserData?.volUniqueID
+                //};
+                //var serviceResult = await NewsService.EditComment(newsComment);
+                //var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
+                //if (serviceResultBody != null && serviceResultBody.Flag)
+                //{
+                //    await DisplayAlertAsync(serviceResultBody.Message);
+                //    CommentText = string.Empty;
+                //}
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task DeleteComment(CarouselModel comment)
+        async Task DeleteComment(NewsComment comment)
         {
             try
             {
@@ -239,20 +252,37 @@ namespace AtWork.ViewModels
         {
             try
             {
+                await ShowLoader();
                 NewsComment newsComment = new NewsComment
                 {
-                    comDate = DateTime.Now,
                     comContent = CommentText,
                     coUniqueID = SettingsService.LoggedInUserData?.coUniqueID,
                     newsUniqueID = NewsDetailModel?.newsUniqueID,
-                    comByID = SettingsService.VolunteersUserData?.volUniqueID
+                    comByID = SettingsService.VolunteersUserData?.volUniqueID,
+                    comDate = DateTime.Now
                 };
-                var serviceResult = await NewsService.AddComment(newsComment);
-                var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
-                if (serviceResultBody != null && serviceResultBody.Flag)
+                if (SendButtonText == AppResources.SendText)
                 {
-                    await DisplayAlertAsync(serviceResultBody.Message);
-                    CommentText = string.Empty;
+                    
+                    var serviceResult = await NewsService.AddComment(newsComment);
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Flag)
+                    {
+                        await DisplayAlertAsync(serviceResultBody.Message);
+                        CommentText = string.Empty;
+                    }
+                }
+                else if (SendButtonText == AppResources.Update)
+                {
+                    await ShowLoader();
+                    var serviceResult = await NewsService.EditComment(newsComment);
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Flag)
+                    {
+                        await DisplayAlertAsync(serviceResultBody.Message);
+                        CommentText = string.Empty;
+                    }
+                    SendButtonText = AppResources.SendText;
                 }
             }
             catch (Exception ex)
@@ -380,9 +410,10 @@ namespace AtWork.ViewModels
             tempCList.Add(new CarouselModel() { NewsImage = "bg" });
             NewsImageCarouselList = tempCList;
 
-            var tempCmtList = new ObservableCollection<CarouselModel>();
-            tempCmtList.Add(new CarouselModel() { NewsImage = "bg" });
-            tempCmtList.Add(new CarouselModel() { NewsImage = "bg" });
+            var tempCmtList = new ObservableCollection<NewsComment>();
+            tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
+            tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
+            tempCmtList.Add(new NewsComment() { comByID = null });
             PostCommentList = tempCmtList;
 
             LoadNewsDetails();
