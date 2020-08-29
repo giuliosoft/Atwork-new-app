@@ -16,9 +16,9 @@
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
-            <StackLayout.GestureRecognizers>
+            <!--<StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.HeaderBack}"/>
-            </StackLayout.GestureRecognizers>
+            </StackLayout.GestureRecognizers>-->
         </StackLayout>
     </ContentView.Content>
 </ContentView>
