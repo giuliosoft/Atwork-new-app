@@ -354,49 +354,50 @@ namespace AtWork.ViewModels
                                 LikeImage = "heartfill";
                                 LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                             }
-                            if (serviceResultBody.Data.News != null)
+                        }
+                        if (serviceResultBody.Data.News != null)
+                        {
+
+                            NewsTitle = serviceResultBody.Data.News.newsTitle;
+                            NewsDescription = serviceResultBody.Data.News.newsContent;
+                            var NewsPrivicy = serviceResultBody?.Data?.News?.newsPrivacy;
+                            if (NewsPrivicy != null && NewsPrivicy.ToLower() == "everyone")
                             {
+                                PublishImageSource = "earth";
+                            }
+                            else if (NewsPrivicy != null && NewsPrivicy.ToLower() == "group")
+                            {
+                                PublishImageSource = "ActivityPeopleIcon";
+                            }
+                            else
+                            {
+                                PublishImageIsVisible = false;
+                            }
 
-                                NewsTitle = serviceResultBody.Data.News.newsTitle;
-                                NewsDescription = serviceResultBody.Data.News.newsContent;
-                                var NewsPrivicy = serviceResultBody?.Data?.News?.newsPrivacy;
-                                if (NewsPrivicy != null && NewsPrivicy.ToLower() == "everyone")
+                            var tempCList = new ObservableCollection<CarouselModel>();
+                            var newsImage = serviceResultBody?.Data?.News?.newsImage;
+                            if (newsImage != null && newsImage != string.Empty)
+                            {
+                                var splittedList = serviceResultBody?.Data?.News?.newsImage.Split(',').ToList();
+                                if (splittedList != null && splittedList.Count > 0)
                                 {
-                                    PublishImageSource = "earth";
-                                }
-                                else if (NewsPrivicy != null && NewsPrivicy.ToLower() == "group")
-                                {
-                                    PublishImageSource = "ActivityPeopleIcon";
-                                }
-                                else
-                                {
-                                    PublishImageIsVisible = false;
-                                }
-
-                                var tempCList = new ObservableCollection<CarouselModel>();
-                                if (serviceResultBody?.Data?.News?.newsImage != string.Empty)
-                                {
-                                    var splittedList = serviceResultBody?.Data?.News?.newsImage.Split(',').ToList();
-                                    if (splittedList != null && splittedList.Count > 0)
+                                    splittedList.All((x) =>
                                     {
-                                        splittedList.All((x) =>
-                                        {
-                                            tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseServiceURLImage + x });
-                                            return true;
-                                            
-                                        });
-                                    }
-                                }
-                                NewsImageCarouselList = tempCList;
+                                        tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseServiceURLImage + x });
+                                        return true;
 
-
-                                if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
-                                {
-                                    AttachmentIsVisible = true;
-                                    NewsAttachmentTitle = serviceResultBody.Data.News.newsFile;
+                                    });
                                 }
                             }
+                            NewsImageCarouselList = tempCList;
+
+                            if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
+                            {
+                                AttachmentIsVisible = true;
+                                NewsAttachmentTitle = serviceResultBody.Data.News.newsFile;
+                            }
                         }
+
                         await GetComments();
                     }
                     else
