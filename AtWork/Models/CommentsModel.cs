@@ -70,15 +70,16 @@ namespace AtWork.Models
             }
 
             ////public virtual ICollection<tbl_News_Comments_Likes> tbl_News_Comments_Likes { get; set; }
-            //public bool CommentByLoggedInUser
-            //{
-            //    get
-            //    {
-            //        if (comByID != null && SettingsService.VolunteersUserData != null && SettingsService.VolunteersUserData.volUniqueID != null)
-            //            return comByID == SettingsService.VolunteersUserData.volUniqueID;
-            //        return false;
-            //    }
-            //}
+            [JsonIgnore]
+            public bool CommentByLoggedInUser
+            {
+                get
+                {
+                    if (comByID != null && SettingsService.VolunteersUserData != null && SettingsService.VolunteersUserData.volUniqueID != null)
+                        return comByID == SettingsService.VolunteersUserData.volUniqueID;
+                    return false;
+                }
+            }
         }
         public class NewsCommentResponce
         {

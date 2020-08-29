@@ -233,12 +233,13 @@ namespace AtWork.ViewModels
                 var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
                 if (result)
                 {
+                    await ShowLoader();
                     var serviceResult = await NewsService.DeleteComment(comment.Id);
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
                         await DisplayAlertAsync(serviceResultBody.Message);
-                        CommentText = string.Empty;
+                        await GetComments();
                     }
                 }
                 else
@@ -249,6 +250,10 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await ClosePopup();
             }
         }
         async Task AddComment()
@@ -287,6 +292,7 @@ namespace AtWork.ViewModels
                     }
                     SendButtonText = AppResources.SendText;
                 }
+                await GetComments();
             }
             catch (Exception ex)
             {
@@ -391,17 +397,27 @@ namespace AtWork.ViewModels
                                 }
                             }
                         }
-                       
+                        await GetComments();
                     }
                     else
                     {
                         await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
                     }
                 }
-
-                var serviceResultComment = await NewsService.GetNewsCommentListByID("newscorp2019023511232400720208151822347");
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await ClosePopup();
+            }
+        }
+        async Task GetComments()
+        {
+            try
+            {
+                var serviceResultComment = await NewsService.GetNewsCommentListByID(NewsDetailModel?.newsUniqueID);
                 var serviceResultBodyComment = JsonConvert.DeserializeObject<NewsCommentResponce>(serviceResultComment.Body);
-
                 if (serviceResultBodyComment != null && serviceResultBodyComment.Flag)
                 {
 
@@ -419,13 +435,10 @@ namespace AtWork.ViewModels
                     //tempCmtList.Add(new NewsComment() { comByID = null });
                     PostCommentList = tempCmtList;
                 }
-
-                await ClosePopup();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
-                await ClosePopup();
+
             }
         }
         #endregion
