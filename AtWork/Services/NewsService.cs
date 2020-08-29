@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AtWork.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
-using static AtWork.Models.LoginModel;
+using static AtWork.Models.CommentsModel;
 using static AtWork.Models.NewsModel;
 
 namespace AtWork.Services
@@ -60,7 +60,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> DeleteComment(string id)
+        public static async Task<BaseResponse<string>> DeleteComment(int id)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
@@ -102,6 +102,22 @@ namespace AtWork.Services
                 var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsAddPostServiceURL;
                 var jData = JsonConvert.SerializeObject(inputModel);
                 resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> GetNewsCommentListByID(string NewsId)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                //var strCommentListUrl = "http://app.atwork.ai/api/commentslikes/getcommentlist/newscorp2019023511232400720208151822347";
+                var strCommentListUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsGetCommentListURL + NewsId;
+                resultModel = await GetResponse<string>(strCommentListUrl, true);
             }
             catch (Exception ex)
             {

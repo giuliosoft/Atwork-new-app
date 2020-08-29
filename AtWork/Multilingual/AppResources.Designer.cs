@@ -442,5 +442,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("PublishText", resourceCulture);
             }
         }
+        
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AtWork.ViewModels;
@@ -97,23 +97,23 @@ namespace AtWork.Models
             public string newsImage { get; set; }
             public string newsFile { get; set; }
             public string newsFileOriginal { get; set; }
-        }
+       }
 
-        public partial class NewsComment
-        {
-            public NewsComment()
-            {
-                //tbl_News_Comments_Likes = new HashSet<tbl_News_Comments_Likes>();
-            }
-            public int Id { get; set; }
-            public string coUniqueID { get; set; }
-            public string newsUniqueID { get; set; }
-            public string comByID { get; set; }
-            public DateTime? comDate { get; set; }
-            public string comContent { get; set; }
-            //public virtual ICollection<tbl_News_Comments_Likes> tbl_News_Comments_Likes { get; set; }
+        //public partial class NewsComment
+        //{
+        //    public NewsComment()
+        //    {
+        //        //tbl_News_Comments_Likes = new HashSet<tbl_News_Comments_Likes>();
+        //    }
+        //    public int Id { get; set; }
+        //    public string coUniqueID { get; set; }
+        //    public string newsUniqueID { get; set; }
+        //    public string comByID { get; set; }
+        //    public DateTime? comDate { get; set; }
+        //    public string comContent { get; set; }
+        //    //public virtual ICollection<tbl_News_Comments_Likes> tbl_News_Comments_Likes { get; set; }
 
-        }
+        //}
     }
 }
 
