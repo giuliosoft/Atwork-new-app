@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Plugin.FilePicker;
@@ -18,8 +19,8 @@ namespace AtWork.ViewModels
         public AddNewsAttachFilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NextClickPageName = nameof(AddNewsAttachFilePage);
-            AddNewsCancelImage = "Back";
-            AddNewsNextImage = "Skip";
+            AddNewsCancelImage = AppResources.BackButtonText;
+            AddNewsNextImage = AppResources.SkipText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
         #endregion
@@ -28,6 +29,7 @@ namespace AtWork.ViewModels
         private string _ProductDetail = string.Empty;
         private bool _AttachedFileViewIsVisible = false;
         private string _NewsPostAttachFileName = string.Empty;
+        private string NewsPostAttachFilePath = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -73,10 +75,18 @@ namespace AtWork.ViewModels
         {
             try
             {
+                await ShowLoader();
+                if (!string.IsNullOrEmpty(NewsPostAttachFilePath) && !string.IsNullOrEmpty(NewsPostAttachFileName))
+                {
+                    SessionService.NewsPostAttachmentFilePath = NewsPostAttachFilePath;
+                    SessionService.NewsPostAttachmentFileName = NewsPostAttachFileName;
+                }
                 await _navigationService.NavigateAsync(nameof(PostNewsPage));
+                await ClosePopup();
             }
             catch (Exception ex)
             {
+                await ClosePopup();
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -104,20 +114,20 @@ namespace AtWork.ViewModels
                     if (fileData != null)
                     {
                         AttachedFileViewIsVisible = true;
+                        AddNewsNextImage = AppResources.NextButtonText;
                         byte[] data = fileData.DataArray;
                         var FileBase64String = Convert.ToBase64String(data);
 
                         string FileName = fileData.FileName;
                         NewsPostAttachFileName = FileName;
                         string FilePath = fileData.FilePath;
+                        NewsPostAttachFilePath = FilePath;
                         string name = (fileData.FilePath != null) ? Path.GetFileNameWithoutExtension(fileData.FilePath) : string.Empty;
                         string mimeType = Path.GetExtension(FilePath);
 
                         //await DisplayAlertAsync("File Picked Successfully");
                     }
                 });
-
-                
             }
             catch (Exception ex)
             {

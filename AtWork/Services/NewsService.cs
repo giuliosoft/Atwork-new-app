@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -27,7 +28,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> AddComment(NewsComment NewsComment)
+		public static async Task<BaseResponse<string>> AddComment(NewsComment NewsComment)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
@@ -74,5 +75,40 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-    }
+
+		public static async Task<BaseResponse<string>> PostNewsFeed(NewsDetailModel_Input inputModel, List<string> filesToAttach)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsAddPostServiceURL;
+                //var jData = JsonConvert.SerializeObject(inputModel);
+                //resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
+                resultModel = await FilePostResponse<string>(addNewsServiceUrl, filesToAttach, inputModel, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> PostNewsFeed1(NewsDetailModel_Input inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsAddPostServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+	}
 }

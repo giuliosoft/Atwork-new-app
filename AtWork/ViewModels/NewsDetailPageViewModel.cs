@@ -22,7 +22,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            NewsDetailBack = "Back";
+            NewsDetailBack = AppResources.BackButtonText;
             DetailHeaderOptionIsVisible = true;
 
             HeaderDetailsTitle = AppResources.PostText;
@@ -52,6 +52,7 @@ namespace AtWork.ViewModels
             get { return _NewsDescription; }
             set { SetProperty(ref _NewsDescription, value); }
         }
+
         public string NewsAttachmentTitle
         {
             get { return _NewsAttachmentTitle; }
@@ -279,7 +280,7 @@ namespace AtWork.ViewModels
             try
             {
                 await ShowLoader();
-                
+
                 var serviceResult = await NewsService.NewsDetail("/" +SelectedNewsId.ToString());
                 var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
 

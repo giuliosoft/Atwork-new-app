@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -14,7 +15,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public FindAccountPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            AddNewsCancelImage = "Back";
+            AddNewsCancelImage = AppResources.BackButtonText;
         }
         #endregion
 

@@ -229,10 +229,10 @@ namespace AtWork.ViewModels
             var tempNews = new ObservableCollection<News>();
             for (var i = 0; i < 3; i++)
             {
-                tempNews.Add(new News() { id = 76 });
-                tempNews.Add(new News() { id = 68 });
-                tempNews.Add(new News() { id = 89 });
-                tempNews.Add(new News() { id = 92 });
+                tempNews.Add(new News() { id = 76, NewsImageCarouselList = tempCList });
+                tempNews.Add(new News() { id = 68, NewsImageCarouselList = tempCList });
+                tempNews.Add(new News() { id = 89, NewsImageCarouselList = tempCList });
+                tempNews.Add(new News() { id = 92, NewsImageCarouselList = tempCList });
             }
             NewsList = tempNews;
         }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,6 +13,7 @@ using AtWork.Models;
 using AtWork.Multilingual;
 using Newtonsoft.Json;
 using static AtWork.Models.LoginModel;
+using static AtWork.Models.NewsModel;
 
 namespace AtWork.Services
 {
@@ -87,6 +91,7 @@ namespace AtWork.Services
 
                     if (isAddAuthorizationToken)
                     {
+                        //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + SettingsService.AuthorizationToken);
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                     }
 
@@ -138,6 +143,81 @@ namespace AtWork.Services
                     resultModel = await HandleServerResponse<T>(response);
                     return resultModel;
                 }
+            }
+            catch (Exception exception)
+            {
+                return HandleException<T>(exception);
+            }
+        }
+
+        /// <summary>
+        /// PostResponse
+        /// </summary>
+        /// <param name="serviceUrl">API Service Url</param>
+        /// <param name="Loing input">Input Json Data</param>
+        /// <param name="isAddAuthorizationToken">User Authorization Token</param>
+        /// <returns></returns>
+        public static async Task<BaseResponse<T>> FilePostResponse<T>(string serviceUrl, List<string> fileToAttachList, NewsDetailModel_Input inputModel, bool isAddAuthorizationToken)
+        {
+            BaseResponse<T> resultModel = new BaseResponse<T>();
+            try
+            {
+                var client = new HttpClient();
+                if (isAddAuthorizationToken)
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
+                }
+
+                MultipartFormDataContent Mcontent = new MultipartFormDataContent();
+                //if (fileToAttachList != null && fileToAttachList.Count > 0)
+                //{
+                //    var last = fileToAttachList.LastOrDefault();
+                //    var fileContentsInBytes = File.ReadAllBytes(last);
+                //    ByteArrayContent byteContent = new ByteArrayContent(fileContentsInBytes);
+                //    Mcontent.Add(byteContent, "NewsImage", inputModel.newsFileOriginal);
+                //    for (var arg = 0; arg < fileToAttachList.Count - 1; arg++)
+                //    {
+                //        var fileContentsInBytes1 = File.ReadAllBytes(fileToAttachList[arg]);
+                //        ByteArrayContent byteContent1 = new ByteArrayContent(fileContentsInBytes1);
+                //        Mcontent.Add(byteContent1, "NewsImage", "NewsPost.png");
+                //    }
+                //}
+
+                /*
+                StringContent coUniqueIDContent = new StringContent(inputModel.coUniqueID);
+                StringContent newsUniqueIDContent = new StringContent(inputModel.newsUniqueID);
+                StringContent volUniqueIDContent = new StringContent(inputModel.volUniqueID);
+                StringContent newsTitleContent = new StringContent(inputModel.newsTitle);
+                StringContent newsDescriptionContent = new StringContent(inputModel.newsContent);
+                StringContent newsDateTimeContent = new DateTime(inputModel.newsDateTime);
+                StringContent newsPostedTimeContent = new DateTime(inputModel.newsPostedTime);
+                StringContent newsPrivacyContent = new StringContent(inputModel.newsPrivacy);
+                StringContent newsStatusContent = new StringContent(inputModel.newsStatus);
+                StringContent newsOriginContent = new StringContent(inputModel.newsOrigin);
+                StringContent newsFileOriginalContent = new StringContent(inputModel.newsFileOriginal);
+
+                Mcontent.Add(coUniqueIDContent, nameof(inputModel.coUniqueID));
+                Mcontent.Add(newsUniqueIDContent, nameof(inputModel.newsUniqueID));
+                Mcontent.Add(volUniqueIDContent, nameof(inputModel.volUniqueID));
+                Mcontent.Add(newsTitleContent, nameof(inputModel.newsTitle));
+                Mcontent.Add(newsDescriptionContent, nameof(inputModel.newsContent));
+                Mcontent.Add(newsDateTimeContent, nameof(inputModel.newsDateTime));
+                Mcontent.Add(newsPostedTimeContent, nameof(inputModel.newsPostedTime));
+                Mcontent.Add(newsPrivacyContent, nameof(inputModel.newsPrivacy));
+                Mcontent.Add(newsStatusContent, nameof(inputModel.newsStatus));
+                Mcontent.Add(newsOriginContent, nameof(inputModel.newsOrigin));
+                Mcontent.Add(newsFileOriginalContent, nameof(inputModel.newsFileOriginal));
+                */
+
+                var jData = JsonConvert.SerializeObject(inputModel);
+                var content1 = new StringContent(jData, Encoding.UTF8, "application/json");
+                Mcontent.Add(content1, "Data");
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.Timeout = TimeSpan.FromSeconds(30);
+
+                var response = await client.PostAsync(serviceUrl, Mcontent);
+                resultModel = await HandleServerResponse<T>(response);
+                return resultModel;
             }
             catch (Exception exception)
             {

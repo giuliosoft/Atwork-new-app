@@ -15,8 +15,8 @@ namespace AtWork.ViewModels
         public AddNewsPostPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NextClickPageName = nameof(AddNewsPostPage);
-            AddNewsCancelImage = "Back";
-            AddNewsNextImage = "Next";
+            AddNewsCancelImage = AppResources.BackButtonText;
+            AddNewsNextImage = AppResources.NextButtonText;
             if (SessionService.isEditNews)
             {
                 //TODO Remove static text
@@ -73,8 +73,15 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await CheckValidations();
+                if (string.IsNullOrEmpty(NewsTitle) || string.IsNullOrEmpty(NewsDescription))
+                {
+                    await DisplayAlertAsync(AppResources.PostDataAlertText);
+                    return;
+                }
+
                 await ShowLoader();
+                SessionService.NewsPostInputData.newsTitle = NewsTitle;
+                SessionService.NewsPostInputData.newsContent = NewsDescription;
                 await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
                 await ClosePopup();
             }
@@ -82,19 +89,6 @@ namespace AtWork.ViewModels
             {
                 await ClosePopup();
                 Debug.WriteLine(ex.Message);
-            }
-        }
-
-        async Task CheckValidations()
-        {
-            if (!await CheckConnectivity())
-            {
-                return;
-            }
-            if (string.IsNullOrEmpty(NewsTitle) || string.IsNullOrEmpty(NewsDescription))
-            {
-                await DisplayAlertAsync(AppResources.PostDataAlertText);
-                return;
             }
         }
         #endregion
