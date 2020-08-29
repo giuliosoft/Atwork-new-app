@@ -111,5 +111,21 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-	}
+        public static async Task<BaseResponse<string>> GetNewsCommentListByID(string NewsId)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                //var strCommentListUrl = "http://app.atwork.ai/api/commentslikes/getcommentlist/newscorp2019023511232400720208151822347";
+                var strCommentListUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsGetCommentListURL + NewsId;
+                resultModel = await GetResponse<string>(strCommentListUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+    }
 }

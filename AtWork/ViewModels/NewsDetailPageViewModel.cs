@@ -14,6 +14,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
 using static AtWork.Models.CommentsModel;
+using static AtWork.Models.CommentsModel.NewsComment;
 using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 
@@ -311,9 +312,13 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
                 await ShowLoader();
 
-                var serviceResult = await NewsService.NewsDetail("/" +SelectedNewsId.ToString());
+                var serviceResult = await NewsService.NewsDetail(SelectedNewsId.ToString());
                 var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
 
                 if (serviceResultBody != null && serviceResultBody.Flag)
@@ -370,7 +375,7 @@ namespace AtWork.ViewModels
                                     {
                                         splittedList.All((x) =>
                                         {
-                                            tempCList.Add(new CarouselModel() { NewsImage = x });
+                                            tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseServiceURLImage + x });
                                             return true;
                                             
                                         });
@@ -393,6 +398,28 @@ namespace AtWork.ViewModels
                         await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
                     }
                 }
+
+                var serviceResultComment = await NewsService.GetNewsCommentListByID("newscorp2019023511232400720208151822347");
+                var serviceResultBodyComment = JsonConvert.DeserializeObject<NewsCommentResponce>(serviceResultComment.Body);
+
+                if (serviceResultBodyComment != null && serviceResultBodyComment.Flag)
+                {
+
+                    var tempCmtList = new ObservableCollection<NewsComment>();
+                    if (serviceResultBodyComment.Data != null && serviceResultBodyComment.Data.Count > 0)
+                    {
+                        serviceResultBodyComment.Data.All((x) =>
+                        {
+                            tempCmtList.Add(x);
+                            return true;
+                        });
+                    }
+                    //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID, });
+                    //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
+                    //tempCmtList.Add(new NewsComment() { comByID = null });
+                    PostCommentList = tempCmtList;
+                }
+
                 await ClosePopup();
             }
             catch (Exception ex)
@@ -424,11 +451,11 @@ namespace AtWork.ViewModels
             //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
             //NewsImageCarouselList = tempCList;
 
-            var tempCmtList = new ObservableCollection<NewsComment>();
-            tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID, });
-            tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
-            tempCmtList.Add(new NewsComment() { comByID = null });
-            PostCommentList = tempCmtList;
+            //var tempCmtList = new ObservableCollection<NewsComment>();
+            //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID, });
+            //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
+            //tempCmtList.Add(new NewsComment() { comByID = null });
+            //PostCommentList = tempCmtList;
 
             LoadNewsDetails();
         }
