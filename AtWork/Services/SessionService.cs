@@ -19,7 +19,7 @@ namespace AtWork.Services
         public static INavigationService AppNavigationService = null;
         public static bool IsOnGlueGuidePage = false;
         public static bool isLoadingPopupOpen = false;
-        public static bool isEditNews = false;
+        public static bool isEditingNews = false;
         public static bool isImageCropped = false;
         public static NewsDetailModel_Input NewsPostInputData = new NewsDetailModel_Input();
         public static List<string> NewsPostImageFiles = new List<string>();
