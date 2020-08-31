@@ -42,7 +42,7 @@
                                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                                 <Label Text="{Binding userName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                                    <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                    <CustomControl:CustomImage Source="{Binding newsPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                     <Label Text="20 min. ago" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                                 </StackLayout>
                                             </StackLayout>
@@ -86,11 +86,11 @@
                                                     <StackLayout Spacing="{DynamicResource Spacing15}">
                                                         <StackLayout Spacing="{DynamicResource Spacing03}">
                                                             <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="heartfill" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
-                                                            <Label Text="{Binding CommentsCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                            <Label Text="{Binding LikeCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                         </StackLayout>
                                                         <StackLayout Spacing="{DynamicResource Spacing03}">
                                                             <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="message" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
-                                                            <Label Text="{Binding LikeCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                            <Label Text="{Binding CommentsCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </PancakeControl:PancakeView>

@@ -350,6 +350,12 @@ namespace AtWork.ViewModels
                                 tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers?.volPicture : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
                                 tempData.newsDescription = nArg.news.newsContent;
+
+                                if (nArg.news.newsPrivacy == "everyone")
+                                    tempData.newsPostPublishType = "earth";
+                                else
+                                    tempData.newsPostPublishType = "ActivityPeopleIcon";
+
                                 if (!string.IsNullOrEmpty(nArg.news.newsImage))
                                 {
                                     string imgStr = nArg.news.newsImage;
@@ -375,6 +381,11 @@ namespace AtWork.ViewModels
                                             return true;
                                         });
                                     }
+                                }
+                                else
+                                {
+                                    tempData.NewsCarouselList = new ObservableCollection<NewsCarouselListModel>();
+                                    tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = "noimage" });
                                 }
                                 tempList.Add(tempData);
                                 return true;

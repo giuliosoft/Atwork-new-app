@@ -220,4 +220,13 @@ Permission Denied. Can not continue, try again.</value>
     <data name="DeletePostAlert" xml:space="preserve">
         <value>Delete post?</value>
     </data>
+    <data name="AcceptDisclaimer" xml:space="preserve">
+        <value>Accept Disclaimer</value>
+    </data>
+    <data name="AcceptTermsAndConditionsText" xml:space="preserve">
+        <value>Accept terms and conditions</value>
+    </data>
+    <data name="EnterSamePasswordText" xml:space="preserve">
+        <value>Please enter same password</value>
+    </data>
 </root>
