@@ -452,6 +452,7 @@ namespace AtWork.Multilingual {
         internal static string DeletePostAlert {
             get {
                 return ResourceManager.GetString("DeletePostAlert", resourceCulture);
+
             }
         }
     }

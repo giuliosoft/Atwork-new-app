@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using DLToolkit.Forms.Controls;
@@ -89,7 +90,11 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                DeleteNewsEvent?.Invoke(this, null);
+                var result = await App.Current.MainPage.DisplayAlert(AppResources.DeletePost, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                if (result)
+                {
+                    DeleteNewsEvent?.Invoke(this, null);
+                }
             }
             catch (Exception ex)
             {

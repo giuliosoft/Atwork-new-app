@@ -128,13 +128,6 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _NewsUserProfileImage, value); }
         }
 
-        private bool _PublishImageIsVisible = false;
-        public bool PublishImageIsVisible
-        {
-            get { return _PublishImageIsVisible; }
-            set { SetProperty(ref _PublishImageIsVisible, value); }
-        }
-
         private Color _LikeCountTextColor = (Color)App.Current.Resources["BlackColor"];
         public Color LikeCountTextColor
         {
@@ -427,17 +420,13 @@ namespace AtWork.ViewModels
                             NewsTitle = serviceResultBody.Data.News.newsTitle;
                             NewsDescription = serviceResultBody.Data.News.newsContent;
                             var NewsPrivicy = serviceResultBody?.Data?.News?.newsPrivacy;
-                            if (NewsPrivicy != null && NewsPrivicy.ToLower() == "everyone")
+                            if (NewsPrivicy != null && NewsPrivicy.ToLower() == "everyone") // everyone Or mygroup
                             {
                                 PublishImageSource = "earth";
                             }
-                            else if (NewsPrivicy != null && NewsPrivicy.ToLower() == "group")
-                            {
-                                PublishImageSource = "ActivityPeopleIcon";
-                            }
                             else
                             {
-                                PublishImageIsVisible = false;
+                                PublishImageSource = "ActivityPeopleIcon";
                             }
 
                             var tempCList = new ObservableCollection<CarouselModel>();

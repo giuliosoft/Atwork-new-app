@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -41,6 +41,7 @@ namespace AtWork.ViewModels
         private string _Prop = string.Empty;
         private bool _NewsViewIsVisible = true;
         private bool _ActivityViewIsVisible = false;
+        private int PageNo = 1;
         private ObservableCollection<ActivityItems> _Activitylist = new ObservableCollection<ActivityItems>();
         private ObservableCollection<CarouselModel> _NewsImageCarouselList = new ObservableCollection<CarouselModel>();
         private ObservableCollection<NewsListData_Model> _NewsList = new ObservableCollection<NewsListData_Model>();
@@ -64,6 +65,12 @@ namespace AtWork.ViewModels
         {
             get { return _ActivityViewIsVisible; }
             set { SetProperty(ref _ActivityViewIsVisible, value); }
+        }
+        bool _isRefreshing = false ;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set { SetProperty(ref _isRefreshing, value); }
         }
 
         public ObservableCollection<CarouselModel> NewsImageCarouselList
@@ -100,10 +107,24 @@ namespace AtWork.ViewModels
         //public DelegateCommand<News> NewsShowOptionCommand { get { return new DelegateCommand<News>(async (obj) => await NewsShowOption(obj)); } }
         public DelegateCommand<NewsListData_Model> NewsShowOptionCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await NewsShowOption(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
+        public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
+        public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         #endregion
 
         #region private methods
+        async Task ExecuteRefreshCommand()
+        {
+            IsRefreshing = true;
+            PageNo = 1;
+            await GetNewsListDetails_New();
+            IsRefreshing = false;
+        }
+        async Task NewsLoadMoreItems()
+        {
+            PageNo++;
+            await GetNewsListDetails_New();
+        }
         async Task GoForLogin()
         {
             try
@@ -299,7 +320,11 @@ namespace AtWork.ViewModels
                         if (serviceResultBody.Data != null)
                         {
                             var newsListData = serviceResultBody.Data;
-                            var tempList = new ObservableCollection<NewsListData_Model>();
+                            if (PageNo == 1)
+                            {
+                                NewsList.Clear();
+                            }
+                            var tempList = new ObservableCollection<NewsListData_Model>(NewsList);
                             newsListData.All((nArg) =>
                             {
                                 var tempData = new NewsListData_Model();
@@ -308,7 +333,7 @@ namespace AtWork.ViewModels
                                 tempData.news = nArg.news;
                                 tempData.Volunteers = nArg.Volunteers;
                                 tempData.userName = nArg.Volunteers != null ? nArg.Volunteers.volFirstName + " " + nArg.Volunteers.volLastName : string.Empty;
-                                tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers.volPicture : string.Empty;
+                                tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers?.volPicture : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
                                 tempData.newsDescription = nArg.news.newsContent;
                                 if (!string.IsNullOrEmpty(nArg.news.newsImage))

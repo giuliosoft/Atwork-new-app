@@ -7,11 +7,19 @@
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"             
              xmlns:Customcontrol="clr-namespace:AtWork.CustomControls">
     <ContentView.Content>
-        <ScrollView x:Name="pageScroll" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
-                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <CustomControl:RepeaterView x:Name="newsfeedList" BackgroundColor="Transparent" GridHeightUnitType="Auto" ItemsSource="{Binding NewsList}" ColumnCount="1" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <CustomControl:RepeaterView.ItemTemplate>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Spacing="0" Padding="0">
+            <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <CollectionView x:Name="newsfeedList" RemainingItemsThreshold="0" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" BackgroundColor="Transparent" ItemsSource="{Binding NewsList}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                     <!-- This is needed because otherwise:
+                         - the CollectionView scrolls to the bottom when initial data is loaded 
+                         - the parent RefreshView doesn't work -->
+                    <CollectionView.Header>
+                        <Grid HeightRequest="1">
+                            <!-- TODO: maybe we need to change the background color to match the header or first item -->
+                            <BoxView BackgroundColor="Transparent" />
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                                     <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_10_00_15}">
@@ -95,10 +103,9 @@
                                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource LightDarkBlackColor}" HorizontalOptions="FillAndExpand"/>
                                 </StackLayout>
                             </DataTemplate>
-                        </CustomControl:RepeaterView.ItemTemplate>
-                    </CustomControl:RepeaterView>
-                </ScrollView>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
             </StackLayout>
-        </ScrollView>
     </ContentView.Content>
 </ContentView>
