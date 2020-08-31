@@ -90,7 +90,7 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                var result = await App.Current.MainPage.DisplayAlert(AppResources.DeletePost, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                var result = await App.Current.MainPage.DisplayAlert(AppResources.DeletePostAlert, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
                 if (result)
                 {
                     DeleteNewsEvent?.Invoke(this, null);

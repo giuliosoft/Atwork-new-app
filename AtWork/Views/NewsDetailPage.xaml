@@ -31,7 +31,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="40"/>
                             </Grid.ColumnDefinitions>
-                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" Source="{Binding NewsUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0"  Source="{Binding NewsUserProfileImage}" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                 <ffImageLoading:CachedImage.Transformations>
                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                 </ffImageLoading:CachedImage.Transformations>
@@ -67,7 +67,7 @@
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
-                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="bg.png" ErrorPlaceholder="bg.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
                                                 </Grid>
                                             </DataTemplate>
                                         </CarouselView.ItemTemplate>
@@ -125,7 +125,7 @@
                                             </Grid.ColumnDefinitions>
                                             <StackLayout Grid.Column="3" HeightRequest="80" MinimumHeightRequest="80" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
                                             </StackLayout>
-                                            <ffImageLoading:CachedImage Grid.Column="0" Source="{Binding NewsCommentUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                            <ffImageLoading:CachedImage Grid.Column="0" Source="{Binding NewsCommentUserProfileImage}" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall"     HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                                 <ffImageLoading:CachedImage.Transformations>
                                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                                 </ffImageLoading:CachedImage.Transformations>

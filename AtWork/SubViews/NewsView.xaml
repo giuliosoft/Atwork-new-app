@@ -9,7 +9,7 @@
     <ContentView.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Spacing="0" Padding="0">
             <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <CollectionView x:Name="newsfeedList" RemainingItemsThreshold="0" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" BackgroundColor="Transparent" ItemsSource="{Binding NewsList}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView x:Name="newsfeedList" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" BackgroundColor="Transparent" ItemsSource="{Binding NewsList}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                      <!-- This is needed because otherwise:
                          - the CollectionView scrolls to the bottom when initial data is loaded 
                          - the parent RefreshView doesn't work -->
@@ -34,7 +34,7 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="55"/>
                                             </Grid.ColumnDefinitions>
-                                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" Aspect="AspectFit" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" Aspect="AspectFit" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                                 <ffImageLoading:CachedImage.Transformations>
                                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                                 </ffImageLoading:CachedImage.Transformations>
@@ -75,7 +75,7 @@
                                                                     <Grid.RowDefinitions>
                                                                         <RowDefinition Height="*"/>
                                                                     </Grid.RowDefinitions>
-                                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="bg.png" ErrorPlaceholder="bg.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
                                                                 </Grid>
                                                             </DataTemplate>
                                                         </CarouselView.ItemTemplate>
