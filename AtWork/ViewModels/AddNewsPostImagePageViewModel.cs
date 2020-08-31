@@ -43,6 +43,7 @@ namespace AtWork.ViewModels
         private string _Prop = string.Empty;
         private bool _NewsPickedImageViewIsVisible = false;
         private int NewsImageSelectedForCrop = -1;
+        private string _ImageOptionText = AppResources.EditCropButtonText;
         #endregion
 
         #region Public Properties
@@ -64,12 +65,18 @@ namespace AtWork.ViewModels
             get { return _NewsPickedImageViewIsVisible; }
             set { SetProperty(ref _NewsPickedImageViewIsVisible, value); }
         }
+
+        public string ImageOptionText
+        {
+            get { return _ImageOptionText; }
+            set { SetProperty(ref _ImageOptionText, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
-        public DelegateCommand CropNewsImageCommand { get { return new DelegateCommand(async () => await CropNewsImage()); } }
+        public DelegateCommand<string> CropNewsImageCommand { get { return new DelegateCommand<string>(async (obj) => await CropNewsImage(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
@@ -102,7 +109,10 @@ namespace AtWork.ViewModels
                     List<string> PostImageFiles = new List<string>();
                     NewsPostImageCarouselList.All((arg) =>
                     {
-                        PostImageFiles.Add(arg.ImagePath);
+                        if (!string.IsNullOrEmpty(arg.ImagePath))
+                        {
+                            PostImageFiles.Add(arg.ImagePath);
+                        }
                         return true;
                     });
                     SessionService.NewsPostImageFiles = new List<string>(PostImageFiles);
@@ -146,26 +156,63 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task CropNewsImage()
+        async Task CropNewsImage(string selectedOption)
         {
             try
             {
                 if (pageObject != null)
                 {
                     var carouselRef = pageObject.FindByName("newsImageCarousel") as CarouselView;
-                    if (carouselRef != null)
+                    if (selectedOption == AppResources.Delete)
                     {
-                        NewsImageSelectedForCrop = carouselRef.Position;
-                        var navigationParams = new NavigationParameters();
-                        navigationParams.Add("ImagePath", NewsPostImageCarouselList[NewsImageSelectedForCrop].ImagePreviewPath);
-                        navigationParams.Add("SelectedNewsImage", NewsPostImageCarouselList[NewsImageSelectedForCrop]);
-                        await _navigationService.NavigateAsync(nameof(CropImagePage), navigationParams);
+                        if (carouselRef != null)
+                        {
+                            var pos = carouselRef.Position;
+                            var tmpList = new ObservableCollection<NewsImageModel>(NewsPostImageCarouselList);
+                            tmpList.RemoveAt(pos);
+                            NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>(tmpList);
+                            SessionService.NewsPostCarouselImages.RemoveAt(pos);
+                            if (NewsPostImageCarouselList != null)
+                            {
+                                if (NewsPostImageCarouselList.Count == 1)
+                                {
+                                    if (string.IsNullOrEmpty(NewsPostImageCarouselList[0].ImagePath))
+                                    {
+                                        ImageOptionText = AppResources.EditCropButtonText;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (selectedOption == AppResources.EditCropButtonText)
+                    {
+                        if (carouselRef != null)
+                        {
+                            NewsImageSelectedForCrop = carouselRef.Position;
+                            var navigationParams = new NavigationParameters();
+                            navigationParams.Add("ImagePath", NewsPostImageCarouselList[NewsImageSelectedForCrop].ImagePreviewPath);
+                            navigationParams.Add("SelectedNewsImage", NewsPostImageCarouselList[NewsImageSelectedForCrop]);
+                            await _navigationService.NavigateAsync(nameof(CropImagePage), navigationParams);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+
+        void Carousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
+        {
+            var control = sender as CarouselView;
+            if (string.IsNullOrEmpty(NewsPostImageCarouselList[control.Position].ImagePath))
+            {
+                ImageOptionText = AppResources.Delete;
+            }
+            else
+            {
+                ImageOptionText = AppResources.EditCropButtonText;
             }
         }
         #endregion
@@ -222,15 +269,33 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            if (pageObject != null)
+            {
+                var carouselRef = pageObject.FindByName("newsImageCarousel") as CarouselView;
+                carouselRef.PositionChanged -= Carousel_PositionChanged;
+                carouselRef.PositionChanged += Carousel_PositionChanged;
+            }
+            if (SessionService.isEditingNews && SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
+            {
+                var tempList = new ObservableCollection<NewsImageModel>();
+                SessionService.NewsPostCarouselImages.All((arg) =>
+                {
+                    tempList.Add(new NewsImageModel() { NewsImage = ImageSource.FromUri(new Uri(arg)) });
+                    return true;
+                });
+                NewsPostImageCarouselList = tempList;
+                ImageOptionText = AppResources.Delete;
+                NewsPickedImageViewIsVisible = true;
+            }
         }
     }
 
     public class NewsImageModel : BindableBase
     {
-        public string _ImagePreviewPath; //{ get; set; }
-        public string _ImagePath; //{ get; set; }
-        public MediaFileType _FileType; //{ get; set; }
-        public ImageSource _NewsImage; //{ get; set; }
+        private string _ImagePreviewPath; //{ get; set; }
+        private string _ImagePath; //{ get; set; }
+        private MediaFileType _FileType; //{ get; set; }
+        private ImageSource _NewsImage; //{ get; set; }
 
         public string ImagePreviewPath
         {

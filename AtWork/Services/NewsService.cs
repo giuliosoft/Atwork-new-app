@@ -127,14 +127,15 @@ namespace AtWork.Services
             return resultModel;
         }
 
-        public static async Task<BaseResponse<string>> PostNewsFeedEdit(NewsDetailModel_Input inputModel)
+        public static async Task<BaseResponse<string>> PostNewsFeedEdit(NewsDetailModel_Input inputModel, List<string> filesToAttach)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
                 var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsPostEditServiceURL;
-                var jData = JsonConvert.SerializeObject(inputModel);
-                resultModel = await PostResponse<string>(editNewsServiceUrl, jData, true);
+                //var jData = JsonConvert.SerializeObject(inputModel);
+                //resultModel = await PostResponse<string>(editNewsServiceUrl, jData, true);
+                resultModel = await FilePostResponse<string>(editNewsServiceUrl, filesToAttach, inputModel, true);
             }
             catch (Exception ex)
             {
