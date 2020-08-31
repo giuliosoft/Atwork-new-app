@@ -341,29 +341,32 @@
                 <Setter Property="FontFamily" Value="" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource BlackColor}"/>
+                <Setter Property="PlaceholderColor" Value="DarkGray"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
             <Style x:Key="StartWritingYourPostStyle" TargetType="CustomControl:CustomEditor">
                 <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
                 <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
             <!--Editor Styles End-->
 
             <!--Entry Styles Start-->
             <Style x:Key="PostLabelStyle" TargetType="CustomControl:CustomEntry">
                 <Setter Property="FontSize" Value="{DynamicResource FontSize25}" />
-                <Setter Property="PlaceholderColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="IsBorderLess" Value="True"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
                 <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
             <!--Entry Styles End-->
 
@@ -386,6 +389,15 @@
                 <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth35}" />
                 <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth35}" />
                 <Setter Property="Aspect" Value="AspectFit"/>
+            </Style>
+            <Style x:Key="ScrollViewStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
             <!--Image Styles End-->
         </ResourceDictionary>

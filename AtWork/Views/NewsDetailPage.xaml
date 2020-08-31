@@ -39,7 +39,7 @@
                             <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                                 <Label Text="{Binding NewsUserName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
-                                    <Customcontrol:CustomImage IsVisible="{Binding PublishImageIsVisible}" TintColor="{DynamicResource DarkColor}" Source="{Binding PublishImageSource}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                    <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="{Binding PublishImageSource}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                     <Label Text="{Binding NewsUserTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
@@ -121,10 +121,10 @@
                                                 <ColumnDefinition Width="50"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="40"/>
-                                                <!--<ColumnDefinition Width="1"/>-->
+                                                <ColumnDefinition Width="1"/>
                                             </Grid.ColumnDefinitions>
-                                            <!--<StackLayout Grid.Column="3" HeightRequest="80" MinimumHeightRequest="80" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
-                                            </StackLayout>-->
+                                            <StackLayout Grid.Column="3" HeightRequest="80" MinimumHeightRequest="80" VerticalOptions="FillAndExpand" HorizontalOptions="Start">
+                                            </StackLayout>
                                             <ffImageLoading:CachedImage Grid.Column="0" Source="{Binding NewsCommentUserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                                 <ffImageLoading:CachedImage.Transformations>
                                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
