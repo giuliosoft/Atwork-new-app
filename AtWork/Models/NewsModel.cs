@@ -76,6 +76,7 @@ namespace AtWork.Models
             public Volunteers Volunteers { get; set; }
             public ObservableCollection<NewsCarouselListModel> NewsCarouselList { get; set; }
             public ImageSource newsPostUserProfilePic { get; set; }
+            public ImageSource newsPostPublishType { get; set; }
             public string userName { get; set; }
             public string newsTitle { get; set; }
             public string newsDescription { get; set; }

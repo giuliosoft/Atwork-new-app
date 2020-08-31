@@ -452,7 +452,24 @@ namespace AtWork.Multilingual {
         internal static string DeletePostAlert {
             get {
                 return ResourceManager.GetString("DeletePostAlert", resourceCulture);
-
+            }
+        }
+        
+        internal static string AcceptDisclaimer {
+            get {
+                return ResourceManager.GetString("AcceptDisclaimer", resourceCulture);
+            }
+        }
+        
+        internal static string AcceptTermsAndConditionsText {
+            get {
+                return ResourceManager.GetString("AcceptTermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        internal static string EnterSamePasswordText {
+            get {
+                return ResourceManager.GetString("EnterSamePasswordText", resourceCulture);
             }
         }
     }

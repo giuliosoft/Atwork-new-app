@@ -444,6 +444,10 @@ namespace AtWork.ViewModels
                                     });
                                 }
                             }
+                            else
+                            {
+                                tempCList.Add(new CarouselModel() { NewsImage = "noimage" });
+                            }
                             NewsImageCarouselList = tempCList;
 
                             if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.

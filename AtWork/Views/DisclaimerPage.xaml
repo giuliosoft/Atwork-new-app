@@ -8,6 +8,7 @@
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork" xmlns:ffImageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              NavigationPage.HasNavigationBar="false"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              ControlTemplate="{StaticResource GreenBackHeader_Template}"
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
@@ -30,7 +31,7 @@
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Disclaimerbtn}"  VerticalOptions="End" Margin="0,20,0,20">
                 <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="180" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
-                        <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="Accept disclaimer" WidthRequest="20" FontSize="18" TextColor="White" />
+                        <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="{x:Static Multilingual:AppResources.AcceptDisclaimer}" WidthRequest="20" FontSize="18" TextColor="White" />
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
                     </Frame.GestureRecognizers>
@@ -38,7 +39,7 @@
             </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Termsconditionbtn}" VerticalOptions="End" Margin="0,20,0,20">
                     <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
-                        <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="Accept terms and conditions" WidthRequest="20" FontSize="18" TextColor="White" />
+                        <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="{x:Static Multilingual:AppResources.AcceptTermsAndConditionsText}" WidthRequest="20" FontSize="18" TextColor="White" />
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToAuthenticationIdCommand}"/>
                         </Frame.GestureRecognizers>

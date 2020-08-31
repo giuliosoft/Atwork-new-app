@@ -72,6 +72,18 @@ namespace AtWork.ViewModels
             get { return _isRefreshing; }
             set { SetProperty(ref _isRefreshing, value); }
         }
+        bool _isBusy = false ;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
+        }
+        private int _remainingItemsThreshold = 0;
+        public int RemainingItemsThreshold
+        {
+            get { return _remainingItemsThreshold; }
+            set { SetProperty(ref _remainingItemsThreshold, value); }
+        }
 
         public ObservableCollection<CarouselModel> NewsImageCarouselList
         {
@@ -122,6 +134,10 @@ namespace AtWork.ViewModels
         }
         async Task NewsLoadMoreItems()
         {
+            if (IsBusy)
+            {
+                return;
+            }
             PageNo++;
             await GetNewsListDetails_New();
         }
@@ -306,17 +322,26 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (IsBusy)
+                {
+                    return;
+                }
+                IsBusy = true;
                 if (!await CheckConnectivity())
                 {
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await NewsService.GetNewsList(SettingsService.LoggedInUserData.coUniqueID+"/1");
+                var serviceResult = await NewsService.GetNewsList(SettingsService.LoggedInUserData.coUniqueID + "/" + PageNo);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsListResponse>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
+                        if (serviceResultBody.Data != null && serviceResultBody.Data.Count < 5)
+                            RemainingItemsThreshold = -1;
+                        else
+                            RemainingItemsThreshold = 0;
                         if (serviceResultBody.Data != null)
                         {
                             var newsListData = serviceResultBody.Data;
@@ -336,6 +361,12 @@ namespace AtWork.ViewModels
                                 tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers?.volPicture : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
                                 tempData.newsDescription = nArg.news.newsContent;
+
+                                if (nArg.news.newsPrivacy == "everyone")
+                                    tempData.newsPostPublishType = "earth";
+                                else
+                                    tempData.newsPostPublishType = "ActivityPeopleIcon";
+
                                 if (!string.IsNullOrEmpty(nArg.news.newsImage))
                                 {
                                     string imgStr = nArg.news.newsImage;
@@ -355,12 +386,17 @@ namespace AtWork.ViewModels
                                     {
                                         tempData.NewsCarouselList = new ObservableCollection<NewsCarouselListModel>();
                                         nimgUrlList.All((arg) =>
-                                        {                                            
+                                        {
                                             string imageUri = ConfigService.BaseImageURL + arg;
                                             tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)), NewsImageUrl = imageUri }); ;
                                             return true;
                                         });
                                     }
+                                }
+                                else
+                                {
+                                    tempData.NewsCarouselList = new ObservableCollection<NewsCarouselListModel>();
+                                    tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = "noimage" });
                                 }
                                 tempList.Add(tempData);
                                 return true;
@@ -375,6 +411,10 @@ namespace AtWork.ViewModels
             {
                 await ClosePopup();
                 Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
         #endregion
