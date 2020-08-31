@@ -7,12 +7,11 @@
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="AtWork.SubViews.DashboardFooterView">
     <ContentView.Content>
-        <PancakeControl:PancakeView BackgroundColor="{StaticResource LightBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" Margin="20,10,20,10">
+        <!--<PancakeControl:PancakeView BackgroundColor="{StaticResource LightBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" Margin="20,10,20,10">
             <Grid HeightRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" RowSpacing="0" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <!--<ColumnDefinition Width="120"/>-->
                 </Grid.ColumnDefinitions>
                 <PancakeControl:PancakeView BackgroundColor="{TemplateBinding BindingContext.NewsGreenbg}" Margin="0" Padding="0" HeightRequest="40" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
@@ -30,15 +29,30 @@
                         </ContentView.GestureRecognizers>
                     </ContentView>
                 </PancakeControl:PancakeView>
-                <!--<PancakeControl:PancakeView Margin="0" Padding="0" BackgroundColor="{TemplateBinding BindingContext.PulseGreenbg}" HeightRequest="40" Grid.Column="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" >
-                    <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
-                    <Label Text="{x:Static Multilingual:AppResources.PulseFooterText}" Style="{StaticResource FooterTextLabelStyle}" />
-                    <ContentView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{TemplateBinding BindingContext.GoToPulsePageCommand}"/>
-                    </ContentView.GestureRecognizers>
-                    </ContentView>
-                </PancakeControl:PancakeView>-->
             </Grid>
+        </PancakeControl:PancakeView>-->
+        <PancakeControl:PancakeView BackgroundColor="{StaticResource LightBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" Margin="20,10,20,10">
+            <AbsoluteLayout HorizontalOptions="FillAndExpand">
+                <PancakeControl:PancakeView x:Name="GreenView" IsVisible="true" BackgroundColor="{DynamicResource AccentColor}" AbsoluteLayout.LayoutBounds="0,0.5,200,40" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HasShadow="False" CornerRadius="20" >
+                    <ContentView VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="10"/>
+                </PancakeControl:PancakeView>
+                <PancakeControl:PancakeView x:Name="NewsLabel" Grid.Column="0" AbsoluteLayout.LayoutBounds="0,0.5,200,40" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40"  HasShadow="False" CornerRadius="20" >
+                    <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
+                        <Label Text="{x:Static Multilingual:AppResources.NewsFooterText}" Style="{StaticResource FooterTextLabelStyle}"/>
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.FooterNavigationCommand}" CommandParameter="{x:Static helpers:TextResources.NewsTabText}" Tapped="TapGestureRecognizer_News"/>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+                </PancakeControl:PancakeView>
+                <PancakeControl:PancakeView x:Name="ActivityLabel" Grid.Column="1" AbsoluteLayout.LayoutBounds="1,1,200,40" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40" HasShadow="False" CornerRadius="20" >
+                    <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
+                        <Label Text="{x:Static Multilingual:AppResources.ActivitiesFooterText}" Style="{StaticResource FooterTextLabelStyle}"/>
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.FooterNavigationCommand}" CommandParameter="{x:Static helpers:TextResources.ActivityTabText}" Tapped="TapGestureRecognizer_Activity"/>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+                </PancakeControl:PancakeView>
+            </AbsoluteLayout>
         </PancakeControl:PancakeView>
     </ContentView.Content>
 </ContentView>

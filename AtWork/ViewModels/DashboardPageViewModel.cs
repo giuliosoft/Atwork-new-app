@@ -30,8 +30,8 @@ namespace AtWork.ViewModels
             Activitylist.Add(new ActivityItems() { title = "All categories" });
             Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
             Activitylist.Add(new ActivityItems() { title = "Education" });
-            NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
-            ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
+            //NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
+            //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             FooterNavigationCommand = DashboardFooterNavigationCommand;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
@@ -97,12 +97,10 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsListData_Model> NewsPostSelectedCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await GotoNewsPostDetailPage(obj)); } }
         public DelegateCommand<NewsModel> EditNewsPostCommand { get { return new DelegateCommand<NewsModel>(async (obj) => await EditNewsPost(obj)); } }
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
-
         //public DelegateCommand<News> NewsShowOptionCommand { get { return new DelegateCommand<News>(async (obj) => await NewsShowOption(obj)); } }
-
         public DelegateCommand<NewsListData_Model> NewsShowOptionCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await NewsShowOption(obj)); } }
-
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
+        public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -122,9 +120,19 @@ namespace AtWork.ViewModels
         {
             try
             {
-                var navigationParams = new NavigationParameters();
-                navigationParams.Add("SelectedNewsID", selectedTab);
                 await _navigationService.NavigateAsync(nameof(AddNewsPostPage));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task ActivityPostProceed(string selectedTab)
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {
@@ -143,8 +151,10 @@ namespace AtWork.ViewModels
 
                     NextOptionText = "+";
                     NextCustomLabelIsVisible = false;
-                    NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
-                    ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
+                    //NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
+                    //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
+
+                    HeaderNextNavigationCommand = NewsPostProceedCommand;
                 }
                 else if (selectedTab == TextResources.ActivityTabText)
                 {
@@ -153,8 +163,10 @@ namespace AtWork.ViewModels
 
                     NextCustomLabelIsVisible = true;
                     NextOptionText = AppResources.MyActivitiesHeaderText;
-                    NewsGreenbg = (Color)App.Current.Resources["LightBrownColor"];
-                    ActivitiesGreenbg = (Color)App.Current.Resources["AccentColor"];
+                    //NewsGreenbg = (Color)App.Current.Resources["LightBrownColor"];
+                    //ActivitiesGreenbg = (Color)App.Current.Resources["AccentColor"];
+
+                    HeaderNextNavigationCommand = ActivityPostProceedCommand;
                 }
             }
             catch (Exception ex)

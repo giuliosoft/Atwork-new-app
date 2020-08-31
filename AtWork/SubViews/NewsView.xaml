@@ -14,7 +14,7 @@
                         <CustomControl:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                                    <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_15_00_15}">
+                                    <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_10_00_15}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="60"/>
                                             <RowDefinition Height="*"/>
@@ -26,12 +26,12 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="55"/>
                                             </Grid.ColumnDefinitions>
-                                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" Aspect="AspectFit" ErrorPlaceholder="like" LoadingPlaceholder="like" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                                 <ffImageLoading:CachedImage.Transformations>
                                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                                 </ffImageLoading:CachedImage.Transformations>
                                             </ffImageLoading:CachedImage>
-                                            <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                            <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                                 <Label Text="{Binding userName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
                                                     <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="earth" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>

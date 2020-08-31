@@ -16,26 +16,32 @@
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout Padding="10" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="0" Padding="0" Spacing="0">
-                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="15" HasShadow="False">
+                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="25" HasShadow="False" Padding="5,5,5,0" >
                             <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
-                                    <PancakeControl:PancakeView HasShadow="False" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderColor="{DynamicResource DarkColor}" HorizontalOptions="StartAndExpand" BorderThickness="1" VerticalOptions="StartAndExpand" CornerRadius="15" Padding="8" >
-                                        <Label Text="{x:Static Multilingual:AppResources.CorporateVolunteeringText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" />
+                                    <PancakeControl:PancakeView Padding="5" Margin="0,5,0,5" CornerRadius="10" BorderColor="{DynamicResource DarkColor}" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderThickness="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{x:Static Multilingual:AppResources.CorporateVolunteeringText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" Padding="2,0,2,0"/>
                                     </PancakeControl:PancakeView>
                                 </StackLayout>
                                 <Label Text="Le travall benevole @ La Maison de la Riviere" FontSize="20" FontAttributes="Bold"/>
-                                <CustomControl:CustomImage BackgroundColor="{DynamicResource AccentColor}" Source="Activitydemobg" TintColor="{DynamicResource SecondaryLightColor}" Aspect="AspectFill" WidthRequest="230" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" />
-                                </StackLayout>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Label Text="3 Apr 2020" Style="{StaticResource ActivityPageLabelStyle}" />
-                                </StackLayout>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Label Text="10:00 - 18:00" Style="{StaticResource ActivityPageLabelStyle}"/>
-                                </StackLayout>
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}"/>
+                                <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                    <Grid RowDefinitions="Auto">
+                                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                            <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        </PancakeControl:PancakeView>
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
+                                            <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                        </PancakeControl:PancakeView>
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="240" CornerRadius="10">
+                                            <Label Text="3 Apr 2020" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                        </PancakeControl:PancakeView>
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                            <Label Text="10:00 - 18:00" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
+                                        </PancakeControl:PancakeView>
+                                    </Grid>
+                                </PancakeControl:PancakeView>
+                                <StackLayout Margin="0,5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="John and 14 others Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
                                 </StackLayout>
                             </StackLayout>
                         </PancakeControl:PancakeView>
