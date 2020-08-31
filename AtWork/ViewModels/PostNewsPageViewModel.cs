@@ -110,7 +110,7 @@ namespace AtWork.ViewModels
                 inputModel.newsOrigin = "employee";
                 inputModel.newsStatus = "Active";
                 inputModel.newsPrivacy = NewsPrivacy;
-                SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
+                //SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
 
                 BaseResponse<string> serviceResult = null;
                 if (SessionService.isEditingNews)
@@ -123,7 +123,7 @@ namespace AtWork.ViewModels
                 {
                     inputModel.newsUniqueID = null;
                     inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                    serviceResult = await NewsService.PostNewsFeed1(inputModel);
+                    serviceResult = await NewsService.PostNewsFeed(inputModel, SessionService.NewsPostImageFiles);
                 }
 
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)

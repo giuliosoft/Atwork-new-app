@@ -167,54 +167,35 @@ namespace AtWork.Services
                 {
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                 }
-                
-                MultipartFormDataContent Mcontent = new MultipartFormDataContent();
-                //if (fileToAttachList != null && fileToAttachList.Count > 0)
-                //{
-                //    var last = fileToAttachList.LastOrDefault();
-                //    var fileContentsInBytes = File.ReadAllBytes(last);
-                //    ByteArrayContent byteContent = new ByteArrayContent(fileContentsInBytes);
-                //    Mcontent.Add(byteContent, "NewsImage", inputModel.newsFileOriginal);
-                //    for (var arg = 0; arg < fileToAttachList.Count - 1; arg++)
-                //    {
-                //        var fileContentsInBytes1 = File.ReadAllBytes(fileToAttachList[arg]);
-                //        ByteArrayContent byteContent1 = new ByteArrayContent(fileContentsInBytes1);
-                //        Mcontent.Add(byteContent1, "NewsImage", "NewsPost.png");
-                //    }
-                //}
 
-                /*
-                StringContent coUniqueIDContent = new StringContent(inputModel.coUniqueID);
-                StringContent newsUniqueIDContent = new StringContent(inputModel.newsUniqueID);
-                StringContent volUniqueIDContent = new StringContent(inputModel.volUniqueID);
-                StringContent newsTitleContent = new StringContent(inputModel.newsTitle);
-                StringContent newsDescriptionContent = new StringContent(inputModel.newsContent);
-                StringContent newsDateTimeContent = new DateTime(inputModel.newsDateTime);
-                StringContent newsPostedTimeContent = new DateTime(inputModel.newsPostedTime);
-                StringContent newsPrivacyContent = new StringContent(inputModel.newsPrivacy);
-                StringContent newsStatusContent = new StringContent(inputModel.newsStatus);
-                StringContent newsOriginContent = new StringContent(inputModel.newsOrigin);
-                StringContent newsFileOriginalContent = new StringContent(inputModel.newsFileOriginal);
-
-                Mcontent.Add(coUniqueIDContent, nameof(inputModel.coUniqueID));
-                Mcontent.Add(newsUniqueIDContent, nameof(inputModel.newsUniqueID));
-                Mcontent.Add(volUniqueIDContent, nameof(inputModel.volUniqueID));
-                Mcontent.Add(newsTitleContent, nameof(inputModel.newsTitle));
-                Mcontent.Add(newsDescriptionContent, nameof(inputModel.newsContent));
-                Mcontent.Add(newsDateTimeContent, nameof(inputModel.newsDateTime));
-                Mcontent.Add(newsPostedTimeContent, nameof(inputModel.newsPostedTime));
-                Mcontent.Add(newsPrivacyContent, nameof(inputModel.newsPrivacy));
-                Mcontent.Add(newsStatusContent, nameof(inputModel.newsStatus));
-                Mcontent.Add(newsOriginContent, nameof(inputModel.newsOrigin));
-                Mcontent.Add(newsFileOriginalContent, nameof(inputModel.newsFileOriginal));
-                */
-
+                string boundary = "---8d0f01e6b3b5dafaaadaad";
+                MultipartFormDataContent Mcontent = new MultipartFormDataContent(boundary);
+                if (fileToAttachList != null && fileToAttachList.Count > 0)
+                {
+                    for (var arg = 0; arg < fileToAttachList.Count; arg++)
+                    {
+                        try
+                        {
+                            var fileContentsInBytes1 = File.ReadAllBytes(fileToAttachList[arg]);
+                            ByteArrayContent baContent = new ByteArrayContent(fileContentsInBytes1);
+                            baContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                            baContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                            {
+                                Name = Path.GetFileName(fileToAttachList[arg]),
+                                FileName = Path.GetFileName(fileToAttachList[arg])
+                            };
+                            Mcontent.Add(baContent);//fileToAttachList[arg]), Path.GetFileName(fileToAttachList[arg]));
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
+                    }
+                }
                 var jData = JsonConvert.SerializeObject(inputModel);
                 var content1 = new StringContent(jData, Encoding.UTF8, "application/json");
                 Mcontent.Add(content1, "Data");
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.Timeout = TimeSpan.FromSeconds(30);
-
+                client.Timeout = new TimeSpan(0, 10, 0);
                 var response = await client.PostAsync(serviceUrl, Mcontent);
                 resultModel = await HandleServerResponse<T>(response);
                 return resultModel;
