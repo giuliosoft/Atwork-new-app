@@ -110,7 +110,8 @@ namespace AtWork.ViewModels
                 inputModel.newsOrigin = "employee";
                 inputModel.newsStatus = "Active";
                 inputModel.newsPrivacy = NewsPrivacy;
-                //SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
+                if (!string.IsNullOrEmpty(SessionService.NewsPostAttachmentFilePath))
+                    SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
 
                 BaseResponse<string> serviceResult = null;
                 if (SessionService.isEditingNews)
