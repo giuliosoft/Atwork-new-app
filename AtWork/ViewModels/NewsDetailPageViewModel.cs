@@ -365,7 +365,7 @@ namespace AtWork.ViewModels
                             {
                                 PublishImageSource = "earth";
                             }
-                            else if (NewsPrivicy != null && NewsPrivicy.ToLower() == "group")
+                            else if (NewsPrivicy != null && NewsPrivicy.ToLower() == "mygroup")
                             {
                                 PublishImageSource = "ActivityPeopleIcon";
                             }
