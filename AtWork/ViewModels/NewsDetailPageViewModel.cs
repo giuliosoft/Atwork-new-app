@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
+using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
 using Newtonsoft.Json;
@@ -28,6 +29,7 @@ namespace AtWork.ViewModels
         {
             NewsDetailBack = AppResources.BackButtonText;
             DetailHeaderOptionIsVisible = true;
+            NewsOptionCommand = ShowNewsOptionCommand;
 
             HeaderDetailsTitle = AppResources.PostText;
         }
@@ -112,7 +114,7 @@ namespace AtWork.ViewModels
             get { return _LikeImage; }
             set { SetProperty(ref _LikeImage, value); }
         }
-        private ImageSource _PublishImageSource= "earth";
+        private ImageSource _PublishImageSource = "earth";
         public ImageSource PublishImageSource
         {
             get { return _PublishImageSource; }
@@ -153,9 +155,73 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsComment> DeleteCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await DeleteComment(obj)); } }
         public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await EditComment(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
+        public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
         #endregion
 
         #region private methods
+        async Task ShowNewsOption()
+        {
+            try
+            {
+                NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
+                NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
+                newsOptionPopupViewModel.EditNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        await ShowLoader();
+                        if (NewsDetailModel != null)
+                        {
+                            SessionService.isEditingNews = true;
+                            SessionService.NewsPostInputData.newsTitle = NewsDetailModel.newsTitle;
+                            SessionService.NewsPostInputData.newsContent = NewsDetailModel.newsContent;
+                            SessionService.NewsPostInputData.newsUniqueID = NewsDetailModel.newsUniqueID;
+                            SessionService.NewsPostInputData.volUniqueID = NewsDetailModel.volUniqueID;
+                        }
+                        await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+                        await ClosePopup();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+
+                newsOptionPopupViewModel.DeleteNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        if (!await CheckConnectivity())
+                        {
+                            return;
+                        }
+                        var result = await App.Current.MainPage.DisplayAlert(AppResources.DeletePostAlert, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                        if (result)
+                        {
+                            await ShowLoader();
+                            var serviceResult = await NewsService.DeleteNewsPost(NewsDetailModel.id);
+                            if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            {
+                                await BackClick();
+                            }
+                            await ClosePopup();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                newsOptionPopup.BindingContext = newsOptionPopupViewModel;
+                await PopupNavigationService.ShowPopup(newsOptionPopup, true);
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task LikeNewsPost()
         {
             try
@@ -264,7 +330,7 @@ namespace AtWork.ViewModels
                 };
                 if (SendButtonText == AppResources.SendText)
                 {
-                    
+
                     var serviceResult = await NewsService.AddComment(newsComment);
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)

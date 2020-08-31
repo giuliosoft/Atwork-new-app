@@ -23,6 +23,7 @@ namespace AtWork.Views
             _helperService = DependencyService.Get<IHelper>();
         }
 
+        /*
         private void editor_ImageSaving(object sender, ImageSavingEventArgs args)
         {
             croppedImageStream = args.Stream;
@@ -42,5 +43,6 @@ namespace AtWork.Views
                 Debug.WriteLine(ex.Message);
             }
         }
+        */
     }
 }

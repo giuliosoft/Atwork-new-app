@@ -12,7 +12,8 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout x:Name="SfImgEditor" BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
-                <Syncfusion:SfImageEditor x:Name="sfImageEditor" Source="{Binding NewsImageToCrop}" ImageSaving="editor_ImageSaving" ImageSaved="editor_ImageSaved" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!--<Syncfusion:SfImageEditor x:Name="sfImageEditor" Source="{Binding NewsImageToCrop}" ImageSaving="editor_ImageSaving" ImageSaved="editor_ImageSaved" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                <Syncfusion:SfImageEditor x:Name="sfImageEditor" Source="{Binding NewsImageToCrop}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

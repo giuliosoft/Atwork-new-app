@@ -50,12 +50,13 @@ namespace AtWork.ViewModels
         private string _NextOptionText;
         private bool _DetailHeaderOptionIsVisible;
         private bool _NextCustomLabelIsVisible;
-        private Color _NewsGreenbg;
-        private Color _ActivitiesGreenbg;
+        //private Color _NewsGreenbg;
+        //private Color _ActivitiesGreenbg;
         private DelegateCommand<string> _FooterNavigationCommand;
         private DelegateCommand<string> _HeaderNextNavigationCommand;
         private string _HeaderDetailsTitle;
         private Color _NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+        private DelegateCommand _NewsOptionCommand;
         #endregion
 
         public bool IsVisiblePlayerBanner
@@ -110,16 +111,16 @@ namespace AtWork.ViewModels
             get { return _NextCustomLabelIsVisible; }
             set { SetProperty(ref _NextCustomLabelIsVisible, value); }
         }
-        public Color NewsGreenbg
-        {
-            get { return _NewsGreenbg; }
-            set { SetProperty(ref _NewsGreenbg, value); }
-        }
-        public Color ActivitiesGreenbg
-        {
-            get { return _ActivitiesGreenbg; }
-            set { SetProperty(ref _ActivitiesGreenbg, value); }
-        }
+        //public Color NewsGreenbg
+        //{
+        //    get { return _NewsGreenbg; }
+        //    set { SetProperty(ref _NewsGreenbg, value); }
+        //}
+        //public Color ActivitiesGreenbg
+        //{
+        //    get { return _ActivitiesGreenbg; }
+        //    set { SetProperty(ref _ActivitiesGreenbg, value); }
+        //}
         public DelegateCommand<string> FooterNavigationCommand
         {
             get { return _FooterNavigationCommand; }
@@ -153,6 +154,12 @@ namespace AtWork.ViewModels
             //set { SetProperty(ref _companyLogo, value); }
         }
 
+        public DelegateCommand NewsOptionCommand
+        {
+            get { return _NewsOptionCommand; }
+            set { SetProperty(ref _NewsOptionCommand, value); }
+        }
+
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }
@@ -163,7 +170,7 @@ namespace AtWork.ViewModels
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand AddNewsPostCommand { get { return new DelegateCommand(async () => await AddNewNewsPost()); } }
         public DelegateCommand<string> AddNewsPostNextCommand { get { return new DelegateCommand<string>(async (obj) => await AddNewsPostNext(obj)); } }
-        public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
+        //public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
         public DelegateCommand GoToNewsPageCommand { get { return new DelegateCommand(async () => await GoToNewsPage()); } }
         public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
         public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
@@ -380,24 +387,6 @@ namespace AtWork.ViewModels
             }
         }
 
-        public async Task NewsOption()
-        {
-            NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
-            NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
-            newsOptionPopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
-            {
-                try
-                {
-                    var selectedProfileOption = SelectedObj;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-            };
-            newsOptionPopup.BindingContext = newsOptionPopupViewModel;
-            await PopupNavigationService.ShowPopup(newsOptionPopup, true);
-        }
         public async Task ShowLoader(bool animate = false)
         {
             try

@@ -7,6 +7,7 @@ using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using Syncfusion.SfImageEditor.XForms;
 using Xamarin.Forms;
 
 namespace AtWork.ViewModels
@@ -76,6 +77,32 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (pageObject != null)
+                {
+                    var imgEditor = pageObject.FindByName("sfImageEditor") as SfImageEditor;
+                    if (imgEditor != null)
+                    {
+                        imgEditor.ImageSaving -= editor_ImageSaving;
+                        imgEditor.ImageSaving += editor_ImageSaving;
+                        imgEditor.Save();
+                        //imgEditor.ImageSaved -= editor_ImageSaved;
+                        //imgEditor.ImageSaved += editor_ImageSaved;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private async void editor_ImageSaving(object sender, ImageSavingEventArgs args)
+        {
+            try
+            {
+                await ShowLoader(true);
+                CroppedImageStream = args.Stream;
+                //ImageSource image = ImageSource.FromStream(() => croppedImageStream);
                 if (CroppedImageStream != null)
                 {
                     CroppedImageFilePath = await _helperService.SaveImageFile(CroppedImageStream, SelectedNewsImageValue.ImagePath);
@@ -86,6 +113,21 @@ namespace AtWork.ViewModels
                     SessionService.isImageCropped = true;
                 }
                 await BackClick();
+                await ClosePopup(true);
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup(true);
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private async void editor_ImageSaved(object sender, ImageSavedEventArgs args)
+        {
+            try
+            {
+                string savedLocation = args.Location;
+                //var croppedImgFilePath = await _helperService.SaveImageFile(croppedImageStream, VMContext.SelectedNewsImageValue.ImagePath);                
             }
             catch (Exception ex)
             {

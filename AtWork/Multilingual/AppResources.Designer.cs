@@ -449,9 +449,10 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string DeletePost {
+        internal static string DeletePostAlert {
             get {
-                return ResourceManager.GetString("DeletePost", resourceCulture);
+                return ResourceManager.GetString("DeletePostAlert", resourceCulture);
+
             }
         }
     }
