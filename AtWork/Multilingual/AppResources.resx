@@ -217,4 +217,7 @@ Permission Denied. Can not continue, try again.</value>
     <data name="Update" xml:space="preserve">
         <value>Update</value>
     </data>
+    <data name="DeletePost" xml:space="preserve">
+        <value>Delete Post</value>
+    </data>
 </root>
