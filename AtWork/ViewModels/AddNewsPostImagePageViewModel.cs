@@ -44,6 +44,7 @@ namespace AtWork.ViewModels
         private bool _NewsPickedImageViewIsVisible = false;
         private int NewsImageSelectedForCrop = -1;
         private string _ImageOptionText = AppResources.EditCropButtonText;
+        private int CarouselPosition = 0;
         #endregion
 
         #region Public Properties
@@ -176,10 +177,17 @@ namespace AtWork.ViewModels
                             {
                                 if (NewsPostImageCarouselList.Count > 0)
                                 {
-                                    if (!string.IsNullOrEmpty(NewsPostImageCarouselList[0].ImagePath))
+                                    if (NewsPostImageCarouselList[CarouselPosition] != null)
                                     {
-                                        ImageOptionText = AppResources.EditCropButtonText;
+                                        if (!string.IsNullOrEmpty(NewsPostImageCarouselList[CarouselPosition].ImagePath))
+                                        {
+                                            ImageOptionText = AppResources.EditCropButtonText;
+                                        }
                                     }
+                                }
+                                else if (NewsPostImageCarouselList.Count == 0)
+                                {
+                                    NewsPickedImageViewIsVisible = false;
                                 }
                             }
                         }
@@ -208,6 +216,7 @@ namespace AtWork.ViewModels
             try
             {
                 var control = sender as CarouselView;
+                CarouselPosition = control.Position;
                 if (string.IsNullOrEmpty(NewsPostImageCarouselList[control.Position].ImagePath))
                 {
                     ImageOptionText = AppResources.Delete;
