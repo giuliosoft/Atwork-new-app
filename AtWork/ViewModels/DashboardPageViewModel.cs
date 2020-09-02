@@ -360,16 +360,16 @@ namespace AtWork.ViewModels
                                 tempData.userName = nArg.Volunteers != null ? nArg.Volunteers.volFirstName + " " + nArg.Volunteers.volLastName : string.Empty;
                                 tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers?.volPicture : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
-                                tempData.newsDescription = nArg.news.newsContent;
+                                tempData.newsDescription = nArg.news?.newsContent;
 
-                                if (nArg.news.newsPrivacy == "everyone")
+                                if (nArg.news?.newsPrivacy.ToLower() == "everyone")
                                     tempData.newsPostPublishType = "earth";
                                 else
                                     tempData.newsPostPublishType = "ActivityPeopleIcon";
 
-                                if (!string.IsNullOrEmpty(nArg.news.newsImage))
+                                if (!string.IsNullOrEmpty(nArg.news?.newsImage))
                                 {
-                                    string imgStr = nArg.news.newsImage;
+                                    string imgStr = nArg.news?.newsImage;
                                     List<string> nimgUrlList = new List<string>();
                                     if (!string.IsNullOrEmpty(imgStr))
                                     {
