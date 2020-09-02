@@ -356,6 +356,7 @@ namespace AtWork.ViewModels
                                 var tempData = new NewsListData_Model();
                                 tempData.LikeCount = nArg.LikeCount;
                                 tempData.CommentsCount = nArg.CommentsCount;
+                                tempData.NewsCreatedTime = nArg.Day;
                                 tempData.news = nArg.news;
                                 tempData.Volunteers = nArg.Volunteers;
                                 tempData.userName = nArg.Volunteers != null ? nArg.Volunteers.volFirstName + " " + nArg.Volunteers.volLastName : string.Empty;
@@ -435,7 +436,6 @@ namespace AtWork.ViewModels
 
             try
             {
-                await GetNewsListDetails_New();
                 if (SessionService.isEditingNews)
                 {
                     SessionService.isEditingNews = false;
@@ -453,6 +453,10 @@ namespace AtWork.ViewModels
                         NewsList.Remove(newsItem);
                         SessionService.DeletedNewsPost = string.Empty;
                     }
+                }
+                else
+                {
+                    await GetNewsListDetails_New();
                 }
             }
             catch (Exception ex)
