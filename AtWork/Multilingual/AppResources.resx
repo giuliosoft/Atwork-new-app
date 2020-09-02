@@ -229,4 +229,13 @@ Permission Denied. Can not continue, try again.</value>
     <data name="EnterSamePasswordText" xml:space="preserve">
         <value>Please enter same password</value>
     </data>
+    <data name="MyActivitesText" xml:space="preserve">
+        <value>My activites</value>
+    </data>
+    <data name="PastActivitiesText" xml:space="preserve">
+        <value>Past activites</value>
+    </data>
+    <data name="CreateAGetTogetherText" xml:space="preserve">
+        <value>Create a #GetTogether</value>
+    </data>
 </root>

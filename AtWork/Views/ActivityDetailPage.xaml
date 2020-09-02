@@ -130,7 +130,7 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <StackLayout BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,5,15,0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+            <StackLayout BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
                 <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
                 </PancakeControl:PancakeView>
