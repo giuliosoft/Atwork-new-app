@@ -54,6 +54,9 @@
                                     </PancakeControl:PancakeView>
                                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference newActivityList},Path=BindingContext.JoinedMemberCommand}"/>
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </StackLayout>
                             </PancakeControl:PancakeView>

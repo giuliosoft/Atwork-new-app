@@ -122,6 +122,7 @@ namespace AtWork.ViewModels
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
         public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
+        public DelegateCommand JoinedMemberCommand { get { return new DelegateCommand(async () => await JoinedMember()); } }
         #endregion
 
         #region private methods
@@ -170,6 +171,18 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task JoinedMember()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(MemberListPage));
             }
             catch (Exception ex)
             {
