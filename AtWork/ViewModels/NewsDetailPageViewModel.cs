@@ -184,6 +184,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
+                        await ClosePopup();
                         Debug.WriteLine(ex.Message);
                     }
                 };
@@ -211,6 +212,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
+                        await ClosePopup();
                         Debug.WriteLine(ex.Message);
                     }
                 };
@@ -343,7 +345,7 @@ namespace AtWork.ViewModels
                         CommentText = string.Empty;
                     }
 
-                   // PostCommentList.Add();
+                    // PostCommentList.Add();
                 }
                 else if (SendButtonText == AppResources.Update)
                 {
@@ -400,7 +402,7 @@ namespace AtWork.ViewModels
 
                         if (serviceResultBody.Data.Volunteers != null)
                         {
-                            NewsUserProfileImage = ImageSource.FromUri(new Uri(string.Format(ConfigService.BaseServiceURLImage, serviceResultBody.Data.Volunteers.volPicture)));
+                            NewsUserProfileImage = !string.IsNullOrEmpty(serviceResultBody.Data.Volunteers?.volPicture) ? ImageSource.FromUri(new Uri(ConfigService.BaseImageURL + serviceResultBody.Data.Volunteers?.volPicture)) : string.Empty;
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
                             NewsUserTime = serviceResultBody.Data.Day;

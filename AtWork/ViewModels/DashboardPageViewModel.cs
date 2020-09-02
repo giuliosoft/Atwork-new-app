@@ -308,14 +308,18 @@ namespace AtWork.ViewModels
                         {
                             return;
                         }
-                        await ShowLoader();
-                        var serviceResult = await NewsService.DeleteNewsPost(selectedNewsPost.news.id);
-                        if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                        var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                        if (result)
                         {
-                            NewsList.Remove(selectedNewsPost);
-                            //await GetNewsListDetails_New();
+                            await ShowLoader();
+                            var serviceResult = await NewsService.DeleteNewsPost(selectedNewsPost.news.id);
+                            if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            {
+                                NewsList.Remove(selectedNewsPost);
+                                //await GetNewsListDetails_New();
+                            }
+                            await ClosePopup();
                         }
-                        await ClosePopup();
                     }
                     catch (Exception ex)
                     {
@@ -462,7 +466,7 @@ namespace AtWork.ViewModels
                     int NewsId = Convert.ToInt32(SessionService.DeletedNewsPost);
                     if (NewsId > 0)
                     {
-                        var newsItem =  NewsList.Where(x => x.news.id == NewsId).FirstOrDefault();
+                        var newsItem = NewsList.Where(x => x.news.id == NewsId).FirstOrDefault();
                         NewsList.Remove(newsItem);
                         SessionService.DeletedNewsPost = string.Empty;
                     }
