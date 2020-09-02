@@ -457,7 +457,7 @@ namespace AtWork.ViewModels
                     SessionService.NewsPostAttachmentFilePath = string.Empty;
                     SessionService.NewsPostImageFiles = new List<string>();
                 }
-                if (SessionService.DeletedNewsPost != null)
+                if (!string.IsNullOrEmpty(SessionService.DeletedNewsPost))
                 {
                     int NewsId = Convert.ToInt32(SessionService.DeletedNewsPost);
                     if (NewsId > 0)
