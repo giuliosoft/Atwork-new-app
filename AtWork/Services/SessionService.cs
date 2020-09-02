@@ -25,6 +25,7 @@ namespace AtWork.Services
         public static List<string> NewsPostImageFiles = new List<string>();
         public static string NewsPostAttachmentFilePath = string.Empty;
         public static string NewsPostAttachmentFileName = string.Empty;
+        public static List<string> NewsPostCarouselImages = new List<string>();
         /// <summary>
         /// Logout
         /// clear social media account details

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Models;
 using AtWork.Multilingual;
@@ -118,7 +119,11 @@ namespace AtWork.ViewModels
                 {
                     inputModel.newsUniqueID = SessionService.NewsPostInputData.newsUniqueID;
                     inputModel.volUniqueID = SessionService.NewsPostInputData.volUniqueID;
-                    serviceResult = await NewsService.PostNewsFeedEdit(inputModel);
+                    if (SessionService.NewsPostCarouselImages != null)
+                    {
+                        inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseImageURL, "")).ToList());
+                    }
+                    serviceResult = await NewsService.PostNewsFeedEdit(inputModel, SessionService.NewsPostImageFiles);
                 }
                 else
                 {

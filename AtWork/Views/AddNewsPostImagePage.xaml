@@ -50,9 +50,9 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
-                                            <!--<ffimageloading:CachedImage Grid.Row="0" DownsampleToViewSize="true" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
-                                            </ffimageloading:CachedImage>-->
-                                            <Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                            <ffimageloading:CachedImage BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                                            </ffimageloading:CachedImage>
+                                            <!--<Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>-->
                                         </Grid>
                                     </PancakeControl:PancakeView>
                                 </StackLayout>
@@ -60,7 +60,8 @@
                         </CarouselView.ItemTemplate>
                     </CarouselView>
                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                        <Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>
+                        <!--<Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>-->
+                        <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>

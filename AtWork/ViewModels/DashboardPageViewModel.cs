@@ -267,6 +267,17 @@ namespace AtWork.ViewModels
                         SessionService.NewsPostInputData.newsContent = selectedNewsPost.newsDescription;
                         SessionService.NewsPostInputData.newsUniqueID = selectedNewsPost.news.newsUniqueID;
                         SessionService.NewsPostInputData.volUniqueID = selectedNewsPost.Volunteers.volUniqueID;
+                        if (selectedNewsPost.NewsCarouselList != null && selectedNewsPost.NewsCarouselList.Count > 0)
+                        {
+                            var tempList = new List<string>();
+                            selectedNewsPost.NewsCarouselList.All((arg) =>
+                            {
+                                tempList.Add(arg.NewsImageUrl);
+                                return true;
+                            });
+                            SessionService.NewsPostCarouselImages = tempList;
+                        }
+
                         await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
                         await ClosePopup();
                     }
@@ -377,7 +388,7 @@ namespace AtWork.ViewModels
                                         nimgUrlList.All((arg) =>
                                         {
                                             string imageUri = ConfigService.BaseImageURL + arg;
-                                            tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)) });
+                                            tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)), NewsImageUrl = imageUri }); ;
                                             return true;
                                         });
                                     }

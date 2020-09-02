@@ -65,6 +65,7 @@ namespace AtWork.Models
         public class NewsCarouselListModel
         {
             public ImageSource NewsImage { get; set; }
+            public string NewsImageUrl { get; set; }
         }
 
         public class NewsListData_Model
