@@ -299,7 +299,8 @@ namespace AtWork.ViewModels
                         var serviceResult = await NewsService.DeleteNewsPost(selectedNewsPost.news.id);
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
-                            await GetNewsListDetails_New();
+                            NewsList.Remove(selectedNewsPost);
+                            //await GetNewsListDetails_New();
                         }
                         await ClosePopup();
                     }
@@ -442,6 +443,16 @@ namespace AtWork.ViewModels
                     SessionService.NewsPostAttachmentFileName = string.Empty;
                     SessionService.NewsPostAttachmentFilePath = string.Empty;
                     SessionService.NewsPostImageFiles = new List<string>();
+                }
+                if (SessionService.DeletedNewsPost != null)
+                {
+                    int NewsId = Convert.ToInt32(SessionService.DeletedNewsPost);
+                    if (NewsId > 0)
+                    {
+                        var newsItem =  NewsList.Where(x => x.news.id == NewsId).FirstOrDefault();
+                        NewsList.Remove(newsItem);
+                        SessionService.DeletedNewsPost = string.Empty;
+                    }
                 }
             }
             catch (Exception ex)

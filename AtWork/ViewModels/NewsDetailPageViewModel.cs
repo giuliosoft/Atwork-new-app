@@ -202,6 +202,7 @@ namespace AtWork.ViewModels
                             var serviceResult = await NewsService.DeleteNewsPost(NewsDetailModel.id);
                             if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                             {
+                                SessionService.DeletedNewsPost = NewsDetailModel.id.ToString();
                                 await BackClick();
                             }
                             await ClosePopup();
@@ -335,9 +336,11 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
-                        await DisplayAlertAsync(serviceResultBody.Message);
+                        //await DisplayAlertAsync(serviceResultBody.Message);
                         CommentText = string.Empty;
                     }
+
+                   // PostCommentList.Add();
                 }
                 else if (SendButtonText == AppResources.Update)
                 {
