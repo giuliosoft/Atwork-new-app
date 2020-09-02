@@ -44,6 +44,7 @@ namespace AtWork.ViewModels
         private string _NewsUserName = string.Empty;
         private string _commentText = string.Empty;
         private string _sendButtonText = AppResources.SendText;
+        private int NewsLikeCountNo = 0;
         #endregion
 
         #region Public Properties
@@ -232,12 +233,14 @@ namespace AtWork.ViewModels
                     _isPostLiked = true;
                     LikeImage = "heartoutline";
                     LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
+                    NewsLikeCount = (--NewsLikeCountNo).ToString();
                 }
                 else
                 {
                     _isPostLiked = false;
                     LikeImage = "heartfill";
                     LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
+                    NewsLikeCount = (++NewsLikeCountNo).ToString();
                 }
             }
             catch (Exception ex)
@@ -298,7 +301,7 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
-                        await DisplayAlertAsync(serviceResultBody.Message);
+                        //await DisplayAlertAsync(serviceResultBody.Message);
                         await GetComments();
                     }
                 }
@@ -402,6 +405,7 @@ namespace AtWork.ViewModels
 
                             NewsUserTime = serviceResultBody.Data.Day;
                             NewsLikeCount = serviceResultBody.Data.Comments_Likes.ToString();
+                            NewsLikeCountNo = serviceResultBody.Data.Comments_Likes;
 
                             _isPostLiked = false; // serviceResultBody.Data.NewsLiked;
                             if (!_isPostLiked)

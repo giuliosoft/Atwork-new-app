@@ -59,6 +59,7 @@ namespace AtWork.Models
             public int LikeCount { get; set; }
             public News news { get; set; }
             public Volunteers Volunteers { get; set; }
+            public string Day { get; set; }
         }
 
         #region Bind View Models
@@ -80,6 +81,7 @@ namespace AtWork.Models
             public string userName { get; set; }
             public string newsTitle { get; set; }
             public string newsDescription { get; set; }
+            public string NewsCreatedTime { get; set; }
         }
         #endregion
 
