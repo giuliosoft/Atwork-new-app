@@ -299,7 +299,8 @@ namespace AtWork.ViewModels
                         var serviceResult = await NewsService.DeleteNewsPost(selectedNewsPost.news.id);
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
-                            await GetNewsListDetails_New();
+                            NewsList.Remove(selectedNewsPost);
+                            //await GetNewsListDetails_New();
                         }
                         await ClosePopup();
                     }
@@ -360,16 +361,16 @@ namespace AtWork.ViewModels
                                 tempData.userName = nArg.Volunteers != null ? nArg.Volunteers.volFirstName + " " + nArg.Volunteers.volLastName : string.Empty;
                                 tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers?.volPicture : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
-                                tempData.newsDescription = nArg.news.newsContent;
+                                tempData.newsDescription = nArg.news?.newsContent;
 
-                                if (nArg.news.newsPrivacy == "everyone")
+                                if (nArg.news?.newsPrivacy.ToLower() == "everyone")
                                     tempData.newsPostPublishType = "earth";
                                 else
                                     tempData.newsPostPublishType = "ActivityPeopleIcon";
 
-                                if (!string.IsNullOrEmpty(nArg.news.newsImage))
+                                if (!string.IsNullOrEmpty(nArg.news?.newsImage))
                                 {
-                                    string imgStr = nArg.news.newsImage;
+                                    string imgStr = nArg.news?.newsImage;
                                     List<string> nimgUrlList = new List<string>();
                                     if (!string.IsNullOrEmpty(imgStr))
                                     {
@@ -442,6 +443,16 @@ namespace AtWork.ViewModels
                     SessionService.NewsPostAttachmentFileName = string.Empty;
                     SessionService.NewsPostAttachmentFilePath = string.Empty;
                     SessionService.NewsPostImageFiles = new List<string>();
+                }
+                if (SessionService.DeletedNewsPost != null)
+                {
+                    int NewsId = Convert.ToInt32(SessionService.DeletedNewsPost);
+                    if (NewsId > 0)
+                    {
+                        var newsItem =  NewsList.Where(x => x.news.id == NewsId).FirstOrDefault();
+                        NewsList.Remove(newsItem);
+                        SessionService.DeletedNewsPost = string.Empty;
+                    }
                 }
             }
             catch (Exception ex)

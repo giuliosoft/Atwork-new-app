@@ -99,7 +99,9 @@ namespace AtWork.ViewModels
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));
+                        await ClosePopup();
                         await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                        return;
                     }
                     else
                     {
