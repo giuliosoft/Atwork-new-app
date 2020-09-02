@@ -18,7 +18,7 @@
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0,0,0,20">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_00_15_00}">
+                    <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_10_15_00}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="Auto"/>
@@ -31,7 +31,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="40"/>
                             </Grid.ColumnDefinitions>
-                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0"  Source="{Binding NewsUserProfileImage}" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                            <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0"  Source="{Binding NewsUserProfileImage}" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                 <ffImageLoading:CachedImage.Transformations>
                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                 </ffImageLoading:CachedImage.Transformations>
@@ -43,7 +43,7 @@
                                     <Label Text="{Binding NewsUserTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
-                            <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="EndAndExpand">
+                            <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="StartAndExpand" Margin="0,5,0,0">
                                 <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Grid.Row="0" Grid.Column="0" Source="{Binding LikeImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}"/>
                                 <Label Text="{Binding NewsLikeCount}" Style="{StaticResource NewsDetailLikeLabelStyle}" TextColor="{Binding LikeCountTextColor}"/>
                                 <Grid.GestureRecognizers>
@@ -146,12 +146,14 @@
                     </CustomControl:RepeaterView>
                     <PancakeControl:PancakeView Margin="10,0,10,0" CornerRadius="20" Padding="10" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <CustomControl:CustomEditor x:Name="commentEditor" Text="{Binding CommentText}"  Grid.Column="0" ReturnType="Done" TextChanged="CommentEditor_TextChanged" Placeholder="{x:Static Multilingual:AppResources.CommentPlaceholderText}" Style="{StaticResource NewsCommentEditorStyle}"/>
-                            <!--<Customcontrol:CustomEditor  Text="{Binding NewsTitle}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PostTitle}"  Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>-->
                             <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                 <Label Text="{Binding SendButtonText}" Style="{StaticResource SendLabelStyle}"/>
                                 <StackLayout.GestureRecognizers>

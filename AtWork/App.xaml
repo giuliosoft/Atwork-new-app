@@ -186,8 +186,8 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="SendLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -338,8 +338,8 @@
 
             <!--Editor Styles Start-->
             <Style x:Key="NewsCommentEditorStyle" TargetType="CustomControl:CustomEditor">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="PlaceholderColor" Value="DarkGray"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />

@@ -66,13 +66,13 @@ namespace AtWork.ViewModels
             get { return _ActivityViewIsVisible; }
             set { SetProperty(ref _ActivityViewIsVisible, value); }
         }
-        bool _isRefreshing = false ;
+        bool _isRefreshing = false;
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
             set { SetProperty(ref _isRefreshing, value); }
         }
-        bool _isBusy = false ;
+        bool _isBusy = false;
         public bool IsBusy
         {
             get { return _isBusy; }
