@@ -472,5 +472,23 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("EnterSamePasswordText", resourceCulture);
             }
         }
+        
+        internal static string MyActivitesText {
+            get {
+                return ResourceManager.GetString("MyActivitesText", resourceCulture);
+            }
+        }
+        
+        internal static string PastActivitiesText {
+            get {
+                return ResourceManager.GetString("PastActivitiesText", resourceCulture);
+            }
+        }
+        
+        internal static string CreateAGetTogetherText {
+            get {
+                return ResourceManager.GetString("CreateAGetTogetherText", resourceCulture);
+            }
+        }
     }
 }

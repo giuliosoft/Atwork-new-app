@@ -170,7 +170,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-
+                await _navigationService.NavigateAsync(nameof(MyActivityPage));
             }
             catch (Exception ex)
             {
