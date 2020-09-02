@@ -40,7 +40,7 @@
                                 <Label Text="{Binding NewsUserName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                 <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
                                     <Customcontrol:CustomImage TintColor="{DynamicResource DarkColor}" Source="{Binding PublishImageSource}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
-                                    <Label Text="{Binding NewsCreatedTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
+                                    <Label Text="{Binding NewsUserTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                 </StackLayout>
                             </StackLayout>
                             <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="StartAndExpand" Margin="0,5,0,0">
