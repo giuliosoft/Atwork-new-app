@@ -27,9 +27,9 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Giulio Dellorbo (753NMX72VB)</CodesignKey>
+    <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>atwork_app_dev_provision_202008</CodesignProvision>
+    <CodesignProvision>atwork_app_adhoc_provision_202008</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -64,7 +64,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>atwork_app_adhoc_provision_202008</CodesignProvision>
+    <CodesignProvision>atwork_app_prod_provision_202008</CodesignProvision>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type --optimize=force-rejected-types-removal</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
