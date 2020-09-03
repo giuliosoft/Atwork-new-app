@@ -44,6 +44,7 @@ namespace AtWork.ViewModels
         private bool _NewsPickedImageViewIsVisible = false;
         private int NewsImageSelectedForCrop = -1;
         private string _ImageOptionText = AppResources.EditCropButtonText;
+        private int CarouselPosition = 0;
         #endregion
 
         #region Public Properties
@@ -174,12 +175,19 @@ namespace AtWork.ViewModels
                             SessionService.NewsPostCarouselImages.RemoveAt(pos);
                             if (NewsPostImageCarouselList != null)
                             {
-                                if (NewsPostImageCarouselList.Count == 1)
+                                if (NewsPostImageCarouselList.Count > 0)
                                 {
-                                    if (string.IsNullOrEmpty(NewsPostImageCarouselList[0].ImagePath))
+                                    if (NewsPostImageCarouselList[CarouselPosition] != null)
                                     {
-                                        ImageOptionText = AppResources.EditCropButtonText;
+                                        if (!string.IsNullOrEmpty(NewsPostImageCarouselList[CarouselPosition].ImagePath))
+                                        {
+                                            ImageOptionText = AppResources.EditCropButtonText;
+                                        }
                                     }
+                                }
+                                else if (NewsPostImageCarouselList.Count == 0)
+                                {
+                                    NewsPickedImageViewIsVisible = false;
                                 }
                             }
                         }
@@ -205,14 +213,22 @@ namespace AtWork.ViewModels
 
         void Carousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
         {
-            var control = sender as CarouselView;
-            if (string.IsNullOrEmpty(NewsPostImageCarouselList[control.Position].ImagePath))
+            try
             {
-                ImageOptionText = AppResources.Delete;
+                var control = sender as CarouselView;
+                CarouselPosition = control.Position;
+                if (string.IsNullOrEmpty(NewsPostImageCarouselList[control.Position].ImagePath))
+                {
+                    ImageOptionText = AppResources.Delete;
+                }
+                else
+                {
+                    ImageOptionText = AppResources.EditCropButtonText;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ImageOptionText = AppResources.EditCropButtonText;
+
             }
         }
         #endregion
@@ -269,23 +285,30 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (pageObject != null)
+            try
             {
-                var carouselRef = pageObject.FindByName("newsImageCarousel") as CarouselView;
-                carouselRef.PositionChanged -= Carousel_PositionChanged;
-                carouselRef.PositionChanged += Carousel_PositionChanged;
-            }
-            if (SessionService.isEditingNews && SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
-            {
-                var tempList = new ObservableCollection<NewsImageModel>();
-                SessionService.NewsPostCarouselImages.All((arg) =>
+                if (pageObject != null)
                 {
-                    tempList.Add(new NewsImageModel() { NewsImage = ImageSource.FromUri(new Uri(arg)) });
-                    return true;
-                });
-                NewsPostImageCarouselList = tempList;
-                ImageOptionText = AppResources.Delete;
-                NewsPickedImageViewIsVisible = true;
+                    var carouselRef = pageObject.FindByName("newsImageCarousel") as CarouselView;
+                    carouselRef.PositionChanged -= Carousel_PositionChanged;
+                    carouselRef.PositionChanged += Carousel_PositionChanged;
+                }
+                if (SessionService.isEditingNews && SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
+                {
+                    var tempList = new ObservableCollection<NewsImageModel>();
+                    SessionService.NewsPostCarouselImages.All((arg) =>
+                    {
+                        tempList.Add(new NewsImageModel() { NewsImage = ImageSource.FromUri(new Uri(arg)) });
+                        return true;
+                    });
+                    NewsPostImageCarouselList = tempList;
+                    ImageOptionText = AppResources.Delete;
+                    NewsPickedImageViewIsVisible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
         }
     }
