@@ -153,8 +153,8 @@ namespace AtWork.ViewModels
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
         public DelegateCommand ActivityLoadMoreItemsCommand { get { return new DelegateCommand(async () => await ActivityLoadMoreItems()); } }
-        public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
-        public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
+        public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
+        public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand JoinedMemberCommand { get { return new DelegateCommand(async () => await JoinedMember()); } }
         #endregion
@@ -172,7 +172,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
-            //await GetActivityList();
+            await GetActivityList();
             IsRefreshingActivities = false;
         }
 

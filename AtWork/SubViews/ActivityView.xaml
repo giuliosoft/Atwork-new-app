@@ -23,7 +23,7 @@
                     <TapGestureRecognizer />
                 </CollectionView.GestureRecognizers>
             </CollectionView>
-            <RefreshView IsRefreshing="{Binding IsRefreshingActivities, Mode=OneWay}" Command="{Binding RefreshCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <RefreshView IsRefreshing="{Binding IsRefreshingActivities, Mode=OneWay}" Command="{Binding ActivityRefreshCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <CollectionView x:Name="activityfeedList" Margin="10" RemainingItemsThreshold="{Binding RemainingActivityItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding ActivityLoadMoreItemsCommand}" BackgroundColor="Transparent" ItemsSource="{Binding Activitylist}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <CollectionView.Header>
                         <Grid HeightRequest="1">
