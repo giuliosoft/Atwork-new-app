@@ -18,7 +18,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Margin="0" Padding="0" Spacing="0">
                         <PancakeControl:PancakeView BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="25" HasShadow="False" Padding="5,5,5,0" >
                             <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
+                                <StackLayout IsVisible="{Binding IsShowCategotyType}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
                                     <PancakeControl:PancakeView Padding="5" Margin="0,5,0,5" CornerRadius="10" BorderColor="{DynamicResource DarkColor}" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderThickness="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding ActivityDetails.proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" Padding="2,0,2,0"/>
                                     </PancakeControl:PancakeView>

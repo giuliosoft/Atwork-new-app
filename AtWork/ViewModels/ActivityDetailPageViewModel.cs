@@ -15,6 +15,7 @@ namespace AtWork.ViewModels
 {
     public class ActivityDetailPageViewModel : ViewModelBase
     {
+        int SelectedActivityID;
         #region Constructor
         public ActivityDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -37,7 +38,7 @@ namespace AtWork.ViewModels
         private string _ActivityTitle = string.Empty;
         private string _ActivityDescription = string.Empty;
         private string _CategoryName = string.Empty;
-        private string _MinGroupSize = string.Empty;
+        private bool _IsShowCategotyType = false;
         private string _MaxGroupSize = string.Empty;
         private string _CostCoveredByCompany = string.Empty;
         private string _CostCoveredByEmployee = string.Empty;
@@ -83,6 +84,11 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _activityDetails, value); }
         }
 
+        public bool IsShowCategotyType
+        {
+            get { return _IsShowCategotyType; }
+            set { SetProperty(ref _IsShowCategotyType, value); }
+        }
         //public string MinGroupSize
         //{
         //    get { return _MinGroupSize; }
@@ -195,7 +201,7 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await ActivityServices.GetActivityDetail("procorp2019023511232400420207251552438");
+                var serviceResult = await ActivityServices.GetActivityDetail(SelectedActivityID.ToString());// "procorp2019023511232400420207251552438");
                 var serviceResultBody = JsonConvert.DeserializeObject<ActivityDetails>(serviceResult.Body);
 
                 ActivityDetails = serviceResultBody;
@@ -203,7 +209,10 @@ namespace AtWork.ViewModels
                 ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime  != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
                     ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
                     : string.Empty;
-
+                if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
+                {
+                    IsShowCategotyType = true;
+                }
                 await ClosePopup();
             }
             catch (Exception ex)
@@ -226,6 +235,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            SelectedActivityID = parameters.GetValue<int>("SelectedActivityID");
             LoadActivitiesDetails();
         }
     }

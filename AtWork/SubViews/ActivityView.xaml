@@ -58,6 +58,9 @@
                                             <TapGestureRecognizer Command="{Binding Source={x:Reference newActivityList},Path=BindingContext.JoinedMemberCommand}"/>
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference newActivityList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </PancakeControl:PancakeView>
                         </DataTemplate>
