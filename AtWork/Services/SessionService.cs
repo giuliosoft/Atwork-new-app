@@ -27,6 +27,7 @@ namespace AtWork.Services
         public static string NewsPostAttachmentFileName = string.Empty;
         public static List<string> NewsPostCarouselImages = new List<string>();
         public static string DeletedNewsPost = string.Empty;
+        public static bool IsNeedToRefreshNews = false;
         /// <summary>
         /// Logout
         /// clear social media account details

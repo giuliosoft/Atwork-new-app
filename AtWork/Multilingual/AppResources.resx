@@ -177,10 +177,7 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="LinkText" xml:space="preserve">
         <value>Link</value>
-    </data>
-    <data name="CorporateVolunteeringText" xml:space="preserve">
-        <value>Corporate volunteering</value>
-    </data>
+    </data>    
     <data name="MyActivitiesHeaderText" xml:space="preserve">
         <value>MY ACTIVITIES</value>
     </data>
@@ -237,5 +234,26 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="CreateAGetTogetherText" xml:space="preserve">
         <value>Create a #GetTogether</value>
+    </data>
+    <data name="AllCategoriesText" xml:space="preserve">
+        <value>All categories</value>
+    </data>
+    <data name="CorporateVolunteeringText" xml:space="preserve">
+        <value>Corporate volunteering</value>
+    </data>
+    <data name="SportsText" xml:space="preserve">
+        <value>Sports</value>
+    </data>
+    <data name="EducationsText" xml:space="preserve">
+        <value>Educations</value>
+    </data>
+    <data name="CultureText" xml:space="preserve">
+        <value>Culture</value>
+    </data>
+    <data name="CompanyEventsText" xml:space="preserve">
+        <value>Company events</value>
+    </data>
+    <data name="GetTogetherText" xml:space="preserve">
+        <value>Get-together</value>
     </data>
 </root>

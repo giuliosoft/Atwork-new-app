@@ -371,12 +371,6 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string CorporateVolunteeringText {
-            get {
-                return ResourceManager.GetString("CorporateVolunteeringText", resourceCulture);
-            }
-        }
-        
         internal static string MyActivitiesHeaderText {
             get {
                 return ResourceManager.GetString("MyActivitiesHeaderText", resourceCulture);
@@ -488,6 +482,48 @@ namespace AtWork.Multilingual {
         internal static string CreateAGetTogetherText {
             get {
                 return ResourceManager.GetString("CreateAGetTogetherText", resourceCulture);
+            }
+        }
+        
+        internal static string AllCategoriesText {
+            get {
+                return ResourceManager.GetString("AllCategoriesText", resourceCulture);
+            }
+        }
+        
+        internal static string CorporateVolunteeringText {
+            get {
+                return ResourceManager.GetString("CorporateVolunteeringText", resourceCulture);
+            }
+        }
+        
+        internal static string SportsText {
+            get {
+                return ResourceManager.GetString("SportsText", resourceCulture);
+            }
+        }
+        
+        internal static string EducationsText {
+            get {
+                return ResourceManager.GetString("EducationsText", resourceCulture);
+            }
+        }
+        
+        internal static string CultureText {
+            get {
+                return ResourceManager.GetString("CultureText", resourceCulture);
+            }
+        }
+        
+        internal static string CompanyEventsText {
+            get {
+                return ResourceManager.GetString("CompanyEventsText", resourceCulture);
+            }
+        }
+        
+        internal static string GetTogetherText {
+            get {
+                return ResourceManager.GetString("GetTogetherText", resourceCulture);
             }
         }
     }

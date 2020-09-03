@@ -15,7 +15,7 @@ namespace AtWork.ViewModels
 {
     public class ActivityDetailPageViewModel : ViewModelBase
     {
-        int SelectedActivityID;
+        string SelectedActivityID;
         #region Constructor
         public ActivityDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -33,7 +33,7 @@ namespace AtWork.ViewModels
         private string _Prop = string.Empty;
         private string _Location = string.Empty;
         private string _ActivityTime = string.Empty;
-        private ActivityDetails _activityDetails = new ActivityDetails();
+        private ActivityListModel _activityDetails = new ActivityListModel();
 
         private string _ActivityTitle = string.Empty;
         private string _ActivityDescription = string.Empty;
@@ -78,7 +78,7 @@ namespace AtWork.ViewModels
             get { return _ActivityTime; }
             set { SetProperty(ref _ActivityTime, value); }
         }
-        public ActivityDetails ActivityDetails
+        public ActivityListModel ActivityDetails
         {
             get { return _activityDetails; }
             set { SetProperty(ref _activityDetails, value); }
@@ -202,7 +202,7 @@ namespace AtWork.ViewModels
                 }
                 await ShowLoader();
                 var serviceResult = await ActivityServices.GetActivityDetail(SelectedActivityID.ToString());// "procorp2019023511232400420207251552438");
-                var serviceResultBody = JsonConvert.DeserializeObject<ActivityDetails>(serviceResult.Body);
+                var serviceResultBody = JsonConvert.DeserializeObject<ActivityListModel>(serviceResult.Body);
 
                 ActivityDetails = serviceResultBody;
                 Location = serviceResultBody?.proLocation + ", " +serviceResultBody?.proCountry;
@@ -235,8 +235,15 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            SelectedActivityID = parameters.GetValue<int>("SelectedActivityID");
-            LoadActivitiesDetails();
+            try
+            {
+                SelectedActivityID = parameters.GetValue<string>("SelectedActivityID");
+                await LoadActivitiesDetails();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 
