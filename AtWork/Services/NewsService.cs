@@ -176,5 +176,38 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+
+        public static async Task<BaseResponse<string>> LikeNewsFeed(NewsLikes newsLikes)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.CommentsLikesServiceURL + ConfigService.AddNewsLikeServiceURL;
+                var jData = JsonConvert.SerializeObject(newsLikes);
+                resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> UnLikeNewsFeed(NewsLikes newsLikes)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.CommentsLikesServiceURL + ConfigService.DeleteNewsLikeServiceURL;
+                var jData = JsonConvert.SerializeObject(newsLikes);
+                resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }

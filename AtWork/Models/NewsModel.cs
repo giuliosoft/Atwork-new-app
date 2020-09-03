@@ -118,6 +118,14 @@ namespace AtWork.Models
         //    //public virtual ICollection<tbl_News_Comments_Likes> tbl_News_Comments_Likes { get; set; }
 
         //}
+
+        public class NewsLikes
+        {
+            public int Id { get; set; }
+            public int newsId { get; set; }
+            public string likeByID { get; set; }
+            public DateTime? likeDate { get; set; }
+        }
     }
 }
 

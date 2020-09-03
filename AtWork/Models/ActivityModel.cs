@@ -1,0 +1,64 @@
+﻿using System;
+
+using Xamarin.Forms;
+
+namespace AtWork.Models
+{
+    public class ActivityModel 
+    {
+        public class ActivityResponce
+        {
+            public bool Flag { get; set; }
+            public int StatusCode { get; set; }
+            public string Message { get; set; }
+            public ActivityDetails Data { get; set; }
+        }
+        public class ActivityDetails
+        {
+            public int id { get; set; }
+            public string proUniqueID { get; set; }
+            public string proTitle { get; set; }
+            public string coUniqueID { get; set; }
+            public string proCompany { get; set; }
+            public string proDescription { get; set; }
+            public string proLocation { get; set; }
+            public string proAddress1 { get; set; }
+            public string proAddress2 { get; set; }
+            public string proPostalCode { get; set; }
+            public string proCity { get; set; }
+            public string proCountry { get; set; }
+            public string proContinent { get; set; }
+            public string proTimeCommitment { get; set; }
+            public string proTimeCommitmentDecimal { get; set; }
+            public string proDatesConfirmed { get; set; }
+            public string proType { get; set; }
+            public string proCategory { get; set; }
+            public string proCategoryName { get; set; }
+            public string proSubCategory { get; set; }
+            public string proSubCategoryName { get; set; }
+            public string proStatus { get; set; }
+            public string proPartner { get; set; }
+            public string proPartnerEmail { get; set; }
+            public string proActivityLanguage { get; set; }
+            public string proActivityLanguageID { get; set; }
+            public string proAudience { get; set; }
+            public string proSpecialRequirements { get; set; }
+            public string proCostCoveredEmployee { get; set; }
+            public string proCostCoveredCompany { get; set; }
+            public string proAddActivity_HoursCommitted { get; set; }
+            public string proAddActivity_StartTime { get; set; }
+            public string proAddActivity_EndTime { get; set; }
+            public string proAddActivity_ParticipantsMinNumber { get; set; }
+            public string proAddActivity_ParticipantsMaxNumber { get; set; }
+            public string proAddActivity_OrgName { get; set; }
+            public string proAddActivity_Website { get; set; }
+            public string proAddActivity_AdditionalInfo { get; set; }
+            public string proAddActivity_CoordinatorEmail { get; set; }
+            public DateTime? proPublishedDate { get; set; }
+            public DateTime? proAddActivityDate { get; set; }
+            public string proBackgroundImage { get; set; }
+            public string proDeliveryMethod { get; set; }
+        }
+    }
+}
+

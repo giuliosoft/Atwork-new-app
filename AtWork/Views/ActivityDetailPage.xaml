@@ -15,22 +15,22 @@
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout Padding="10" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="0" Padding="0" Spacing="0">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Margin="0" Padding="0" Spacing="0">
                         <PancakeControl:PancakeView BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="25" HasShadow="False" Padding="5,5,5,0" >
-                            <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
                                     <PancakeControl:PancakeView Padding="5" Margin="0,5,0,5" CornerRadius="10" BorderColor="{DynamicResource DarkColor}" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderThickness="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
-                                        <Label Text="{x:Static Multilingual:AppResources.CorporateVolunteeringText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" Padding="2,0,2,0"/>
+                                        <Label Text="{Binding CategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" Padding="2,0,2,0"/>
                                     </PancakeControl:PancakeView>
                                 </StackLayout>
-                                <Label Text="Le travall benevole @ La Maison de la Riviere" FontSize="20" FontAttributes="Bold"/>
+                                <Label Text="{Binding ActivityTitle}" FontSize="20" FontAttributes="Bold"/>
                                 <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                     <Grid RowDefinitions="Auto">
                                         <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
                                             <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                                         </PancakeControl:PancakeView>
                                         <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
-                                            <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                            <Label Text="{Binding Location}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
                                         </PancakeControl:PancakeView>
                                         <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="240" CornerRadius="10">
                                             <Label Text="3 Apr 2020" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
@@ -40,7 +40,7 @@
                                         </PancakeControl:PancakeView>
                                     </Grid>
                                 </PancakeControl:PancakeView>
-                                <StackLayout Margin="0,5,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout Margin="0,5,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                     <Label Text="John and 14 others Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
                                 </StackLayout>
                             </StackLayout>
@@ -48,7 +48,7 @@
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                        <Label Text="testlabel to test activity details. here is activity details which is included in my activity" Style="{StaticResource ActivityDescriptionLabelStyle}"/>
+                        <Label Text="{Binding ActivityDescription}" Style="{StaticResource ActivityDescriptionLabelStyle}"/>
                     </StackLayout>
                     <!--<StackLayout BindableLayout.ItemsSource="{Binding ActivityTagList}" Padding="5,0,5,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <BindableLayout.ItemTemplate>
@@ -79,11 +79,11 @@
                             <Label Grid.Row="2" Grid.Column="0" Text="{x:Static Multilingual:AppResources.TimeText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding Time}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="3" Grid.Column="0" Text="{x:Static Multilingual:AppResources.CostsCoveredByCompanyText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding CostsCoveredByCompany}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding CostCoveredByCompany}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="4" Grid.Column="0" Text="{x:Static Multilingual:AppResources.CostsCoveredByEmployeeText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="4" Grid.Column="1" Text="{Binding CostsCoveredByEmployee}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="4" Grid.Column="1" Text="{Binding CostCoveredByEmployee}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="5" Grid.Column="0" Text="{x:Static Multilingual:AppResources.LanguageText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="5" Grid.Column="1" Text="{Binding Language}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="5" Grid.Column="1" Text="{Binding ActivityLanguage}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="6" Grid.Column="0" Text="{x:Static Multilingual:AppResources.CommentsText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
                             <Label Grid.Row="6" Grid.Column="1" Text="{Binding Comments}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                         </Grid>
@@ -101,7 +101,7 @@
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Spacing="0" Padding="0">
                             <Label Text="{x:Static Multilingual:AppResources.SpecialrequirementsText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding SpecialRequirements}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" />
+                            <Label Text="{Binding SpecialRequirement}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" />
                         </StackLayout>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
@@ -109,15 +109,15 @@
                         <Label Text="{x:Static Multilingual:AppResources.AboutOrganixationHeaderText}" Style="{StaticResource ActivityAboutHeaderLabelStyle}"/>
                         <Grid ColumnDefinitions="70,*" RowDefinitions="Auto" RowSpacing="5" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                             <Label Grid.Row="0" Grid.Column="0" Text="{x:Static Multilingual:AppResources.NameText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding OrganiserName}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="1" Grid.Column="0" Text="{x:Static Multilingual:AppResources.AddressText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Address}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding OrganiserAddress}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                         </Grid>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <StackLayout Spacing="12" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                         <Label Text="{x:Static Multilingual:AppResources.MoreInformationHeaderText}" Style="{StaticResource ActivityAboutHeaderLabelStyle}"/>
-                        <Label Text="testlabel to test activity details. here is activity details which is included in my activity" Style="{StaticResource ActivityDescriptionLabelStyle}" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding AdditionalInfo}" Style="{StaticResource ActivityDescriptionLabelStyle}" HorizontalTextAlignment="Center"/>
                         <Label Text="{x:Static Multilingual:AppResources.LinkText}" TextDecorations="Underline" Style="{StaticResource ActivityDescriptionLabelStyle}" HorizontalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Spacing="10" Padding="5,10,5,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
