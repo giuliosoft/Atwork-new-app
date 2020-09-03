@@ -230,12 +230,17 @@ namespace AtWork.ViewModels
         {
             try
             {
+                NewsLikes newsLikes = new NewsLikes();
+                newsLikes.likeByID = SettingsService.LoggedInUserData.id.ToString();
+                newsLikes.newsId = SelectedNewsId;
+                newsLikes.likeDate = DateTime.Now;
                 if (!_isPostLiked)
                 {
                     _isPostLiked = true;
                     LikeImage = "heartoutline";
                     LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
                     NewsLikeCount = (--NewsLikeCountNo).ToString();
+                    await NewsService.UnLikeNewsFeed(newsLikes);
                 }
                 else
                 {
@@ -243,6 +248,7 @@ namespace AtWork.ViewModels
                     LikeImage = "heartfill";
                     LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                     NewsLikeCount = (++NewsLikeCountNo).ToString();
+                    await NewsService.LikeNewsFeed(newsLikes);
                 }
             }
             catch (Exception ex)
@@ -447,6 +453,7 @@ namespace AtWork.ViewModels
                                 {
                                     splittedList.All((x) =>
                                     {
+
                                         tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseNewsImageURL + x });
                                         return true;
 

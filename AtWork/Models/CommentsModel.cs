@@ -34,7 +34,11 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (Volunteers?.volFirstName != string.Empty)
+                    if (Volunteers?.volFirstName != string.Empty && Volunteers?.volLastName != string.Empty)
+                    {
+                        return Volunteers?.volFirstName + " " + Volunteers?.volLastName;
+                    }
+                    else if (Volunteers?.volFirstName != string.Empty)
                     {
                         return Volunteers?.volFirstName;
                     }

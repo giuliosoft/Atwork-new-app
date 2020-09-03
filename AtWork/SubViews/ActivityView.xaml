@@ -61,10 +61,13 @@
                                         </PancakeControl:PancakeView>
                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                             <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
-                                            <StackLayout.GestureRecognizers>
+                                            <!--<StackLayout.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.JoinedMemberCommand}"/>
-                                            </StackLayout.GestureRecognizers>
+                                            </StackLayout.GestureRecognizers>-->
                                         </StackLayout>
+                                         <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </PancakeControl:PancakeView>
                             </StackLayout>
@@ -107,6 +110,9 @@
                                             <TapGestureRecognizer Command="{Binding Source={x:Reference newActivityList},Path=BindingContext.JoinedMemberCommand}"/>
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference newActivityList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                             </PancakeControl:PancakeView>
                         </DataTemplate>

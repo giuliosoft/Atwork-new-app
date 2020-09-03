@@ -3,10 +3,10 @@ namespace AtWork.Services
 {
     public class ConfigService
     {
+
         //*****Local URL*****//
         //public static string BaseServiceURL = "http://6e3e3b0e32ce.ngrok.io/api";
         //public static string BaseImageURL = "http://6e3e3b0e32ce.ngrok.io/";
-        //
 
         //*****LIVE URL******//
         public static string BaseServerURL = "http://app.atwork.ai";
@@ -16,7 +16,7 @@ namespace AtWork.Services
         public static string BaseProfileImageURL = BaseServerURL + "/volunteerpics/";
         public static string BaseNewsAttachFileURL = BaseServerURL + "/newspostsfile/";
         public static string BaseActivityImageURL = BaseServerURL + "/activities/";
-        //        
+        
         public static string LoginServiceURL = "/Login";
         public static string AuthorizationTokenKey = "Basic ";
         public static string NewsDetailsServiceURL = "/news/getrow/";
@@ -28,6 +28,11 @@ namespace AtWork.Services
         public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist/";
         public static string NewsPostDeleteServiceURL = "/news/deleterow/";
         public static string NewsListServiceURL = "/news/getlist/";
+        public static string CommentsLikesServiceURL = "/commentslikes";
+        public static string AddNewsLikeServiceURL = "/AddNewsLike";
+        public static string DeleteNewsLikeServiceURL = "/DeleteNewsLike";
+        public static string ActivitiesGetRowServiceURL = "/activities/getrow/";
         public static string ActivityListServiceURL = "/activities/getlist/";
+
     }
 }
