@@ -32,39 +32,42 @@
                     </CollectionView.Header>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <PancakeControl:PancakeView BackgroundColor="{StaticResource PosterWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="25" HasShadow="False" Padding="10" Margin="0,10,0,10" >
-                                <StackLayout BackgroundColor="{StaticResource PosterWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
-                                        <PancakeControl:PancakeView HasShadow="False" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderColor="{DynamicResource DarkColor}" HorizontalOptions="StartAndExpand" BorderThickness="1" VerticalOptions="StartAndExpand" CornerRadius="15" >
-                                            <Label Text="{Binding proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" HorizontalTextAlignment="Center" Padding="10"/>
+                            <StackLayout Margin="0,10,0,10">
+                                <PancakeControl:PancakeView BackgroundColor="{StaticResource PosterWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" CornerRadius="25" HasShadow="False" Padding="10"  >
+                                    <StackLayout BackgroundColor="{StaticResource PosterWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
+                                            <PancakeControl:PancakeView HasShadow="False" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderColor="{DynamicResource DarkColor}" HorizontalOptions="StartAndExpand" BorderThickness="1" VerticalOptions="StartAndExpand" CornerRadius="15" >
+                                                <Label Text="{Binding proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" HorizontalTextAlignment="Center" Padding="10"/>
+                                            </PancakeControl:PancakeView>
+                                            <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="RoundPath" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>
+                                        <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                            <Grid RowDefinitions="Auto">
+                                                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                                    <!--<CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                                    <ffImageLoading:CachedImage LoadingPlaceholder="Activitydemobg" ErrorPlaceholder="Activitydemobg" Source="{Binding activityImage}" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                </PancakeControl:PancakeView>
+                                                <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
+                                                    <Label Text="{Binding activityLocation}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                                </PancakeControl:PancakeView>
+                                                <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="240" CornerRadius="10">
+                                                    <Label Text="{Binding activityDate}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                                </PancakeControl:PancakeView>
+                                                <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                                    <Label Text="{Binding activityDuration}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
+                                                </PancakeControl:PancakeView>
+                                            </Grid>
                                         </PancakeControl:PancakeView>
-                                        <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="RoundPath" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
+                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.JoinedMemberCommand}"/>
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
                                     </StackLayout>
-                                    <Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>
-                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
-                                        <Grid RowDefinitions="Auto">
-                                            <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
-                                                <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                                            </PancakeControl:PancakeView>
-                                            <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
-                                                <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
-                                            </PancakeControl:PancakeView>
-                                            <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="240" CornerRadius="10">
-                                                <Label Text="3 Apr 2020" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
-                                            </PancakeControl:PancakeView>
-                                            <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
-                                                <Label Text="10:00 - 18:00" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
-                                            </PancakeControl:PancakeView>
-                                        </Grid>
-                                    </PancakeControl:PancakeView>
-                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                        <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.JoinedMemberCommand}"/>
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                </StackLayout>
-                            </PancakeControl:PancakeView>
+                                </PancakeControl:PancakeView>
+                            </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

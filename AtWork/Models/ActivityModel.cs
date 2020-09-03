@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using AtWork.Services;
+using Xamarin.Forms;
 
 namespace AtWork.Models
 {
@@ -27,8 +30,77 @@ namespace AtWork.Models
             public object proAddActivity_HoursCommitted { get; set; }
             public string proAddActivity_ParticipantsMinNumber { get; set; }
             public string proAddActivity_ParticipantsMaxNumber { get; set; }
-            public object proBackgroundImage { get; set; }
+            public string proBackgroundImage { get; set; }
             public string proDeliveryMethod { get; set; }
+
+            //New fields:
+            public string activityLocation
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(proLocation))
+                        return string.Empty;
+                    return proLocation;
+                }
+            }
+
+            public string activityDate
+            {
+                get
+                {
+                    var retDate = string.Empty;
+                    try
+                    {
+                        if (proAddActivityDate == null)
+                            retDate = string.Empty;
+                        var date = proAddActivityDate.Date;
+                        retDate = date.ToString("d MMM yyyy");
+                    }
+                    catch (Exception ex) { }
+                    return retDate;
+                }
+            }
+
+            public string activityDuration
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(proAddActivity_StartTime) || string.IsNullOrEmpty(proAddActivity_EndTime))
+                        return string.Empty;
+                    return proAddActivity_StartTime + " - " + proAddActivity_EndTime;
+                }
+            }
+
+            public ImageSource activityImage
+            {
+                get
+                {
+                    ImageSource retVal = string.Empty;
+                    try
+                    {
+                        if (string.IsNullOrEmpty(proBackgroundImage))
+                            return string.Empty;
+                        List<string> aimgUrlList = new List<string>();
+                        if (proBackgroundImage.Contains(","))
+                        {
+                            aimgUrlList = proBackgroundImage.Split(',').ToList();
+                            if (aimgUrlList != null && aimgUrlList.Count > 0)
+                            {
+                                retVal = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + aimgUrlList[0]));
+                            }
+                        }
+                        else
+                        {
+                            retVal = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + proBackgroundImage));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    return retVal;
+                }
+            }
         }
 
         public class ActivityResponse

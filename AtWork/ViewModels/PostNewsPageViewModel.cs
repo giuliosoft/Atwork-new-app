@@ -141,6 +141,7 @@ namespace AtWork.ViewModels
                     if (SessionService.isEditingNews)
                     {
                         SessionService.isEditingNews = false;
+                        SessionService.IsNeedToRefreshNews = true;
                     }
                     await _navigationService.NavigateAsync(nameof(DashboardPage));
                 }

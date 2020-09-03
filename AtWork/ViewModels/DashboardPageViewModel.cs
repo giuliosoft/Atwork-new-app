@@ -24,9 +24,13 @@ namespace AtWork.ViewModels
         #region Constructor
         public DashboardPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            Activitycollectionlist.Add(new ActivityItems() { title = "All categories" });
-            Activitycollectionlist.Add(new ActivityItems() { title = "Corporate volunteering" });
-            Activitycollectionlist.Add(new ActivityItems() { title = "Education" });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.AllCategoriesText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.SportsText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.EducationsText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CultureText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CompanyEventsText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.GetTogetherText });
 
             //Activitylist.Add(new ActivityItems() { title = "All categories" });
             //Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
@@ -54,6 +58,8 @@ namespace AtWork.ViewModels
         bool _IsRefreshingActivities = false;
         private int _remainingActivityItemsThreshold = 0;
         bool _isBusyInActivityBinding = false;
+        bool _isRefreshingNewsFirstTime = true;
+        bool _isRefreshingActivityFirstTime = true;
         #endregion
 
         #region Public Properties        
@@ -258,6 +264,12 @@ namespace AtWork.ViewModels
                 {
                     NewsViewIsVisible = false;
                     ActivityViewIsVisible = true;
+
+                    if (_isRefreshingActivityFirstTime)
+                    {
+                        _isRefreshingActivityFirstTime = false;
+                        await GetActivityList();
+                    }
 
                     NextCustomLabelIsVisible = true;
                     NextOptionText = AppResources.MyActivitiesHeaderText;
@@ -506,7 +518,8 @@ namespace AtWork.ViewModels
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
                         if (serviceResultBody.Data != null)
-                        {                            
+                        {
+                            Activitylist = new ObservableCollection<ActivityListModel>(serviceResultBody.Data);
                         }
                     }
                 }
@@ -557,8 +570,10 @@ namespace AtWork.ViewModels
                         SessionService.DeletedNewsPost = string.Empty;
                     }
                 }
-                else
+                if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
                 {
+                    if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
+                    if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
                     await GetNewsListDetails_New();
                 }
                 //await GetActivityList();

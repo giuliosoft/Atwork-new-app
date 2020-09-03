@@ -9,11 +9,13 @@ namespace AtWork.Services
         //
 
         //*****LIVE URL******//
+        public static string BaseServerURL = "http://app.atwork.ai";
         public static string BaseServiceURL = "http://app.atwork.ai/api";
         public static string BaseImageURL = "http://app.atwork.ai/newsposts/";
-        public static string BaseNewsImageURL = "http://app.atwork.ai/newsposts/";
-        public static string BaseProfileImageURL = "http://app.atwork.ai/volunteerpics/";
-        public static string BaseNewsAttachFileURL = "http://app.atwork.ai/newspostsfile/";
+        public static string BaseNewsImageURL = BaseServerURL + "/newsposts/";
+        public static string BaseProfileImageURL = BaseServerURL + "/volunteerpics/";
+        public static string BaseNewsAttachFileURL = BaseServerURL + "/newspostsfile/";
+        public static string BaseActivityImageURL = BaseServerURL + "/activities/";
         //        
         public static string LoginServiceURL = "/Login";
         public static string AuthorizationTokenKey = "Basic ";
@@ -26,6 +28,6 @@ namespace AtWork.Services
         public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist/";
         public static string NewsPostDeleteServiceURL = "/news/deleterow/";
         public static string NewsListServiceURL = "/news/getlist/";
-        public static string ActivityListServiceURL = "/activities/getlist/";        
+        public static string ActivityListServiceURL = "/activities/getlist/";
     }
 }
