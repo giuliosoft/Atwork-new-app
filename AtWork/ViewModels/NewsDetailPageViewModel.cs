@@ -402,7 +402,7 @@ namespace AtWork.ViewModels
 
                         if (serviceResultBody.Data.Volunteers != null)
                         {
-                            NewsUserProfileImage = !string.IsNullOrEmpty(serviceResultBody.Data.Volunteers?.volPicture) ? ImageSource.FromUri(new Uri(ConfigService.BaseImageURL + serviceResultBody.Data.Volunteers?.volPicture)) : string.Empty;
+                            NewsUserProfileImage = !string.IsNullOrEmpty(serviceResultBody.Data.Volunteers?.volPicture) ? ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + serviceResultBody.Data.Volunteers?.volPicture)) : string.Empty;
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
                             NewsUserTime = serviceResultBody.Data.Day;
@@ -447,7 +447,7 @@ namespace AtWork.ViewModels
                                 {
                                     splittedList.All((x) =>
                                     {
-                                        tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseServiceURLImage + x });
+                                        tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseNewsImageURL + x });
                                         return true;
 
                                     });

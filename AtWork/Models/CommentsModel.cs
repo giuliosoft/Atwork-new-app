@@ -65,7 +65,7 @@ namespace AtWork.Models
                 {
                     if (Volunteers?.volPicture == string.Empty)
                         return string.Empty;
-                    return ImageSource.FromUri(new Uri(string.Format("http://app.atwork.ai/{0}", Volunteers?.volPicture)));
+                    return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + Volunteers?.volPicture));
                 }
             }
 
@@ -88,6 +88,6 @@ namespace AtWork.Models
             public List<NewsComment> Data { get; set; }
             public object Data1 { get; set; }
         }
-        
+
     }
 }

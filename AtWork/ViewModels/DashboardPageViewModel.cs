@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.ActivityModel;
 using static AtWork.Models.NewsModel;
 
 namespace AtWork.ViewModels
@@ -27,9 +28,9 @@ namespace AtWork.ViewModels
             Activitycollectionlist.Add(new ActivityItems() { title = "Corporate volunteering" });
             Activitycollectionlist.Add(new ActivityItems() { title = "Education" });
 
-            Activitylist.Add(new ActivityItems() { title = "All categories" });
-            Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
-            Activitylist.Add(new ActivityItems() { title = "Education" });
+            //Activitylist.Add(new ActivityItems() { title = "All categories" });
+            //Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
+            //Activitylist.Add(new ActivityItems() { title = "Education" });
             //NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
             //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             FooterNavigationCommand = DashboardFooterNavigationCommand;
@@ -42,10 +43,17 @@ namespace AtWork.ViewModels
         private bool _NewsViewIsVisible = true;
         private bool _ActivityViewIsVisible = false;
         private int PageNo = 1;
-        private ObservableCollection<ActivityItems> _Activitylist = new ObservableCollection<ActivityItems>();
+        private int ActivityPageNo = 1;
+        private ObservableCollection<ActivityListModel> _Activitylist = new ObservableCollection<ActivityListModel>();
         private ObservableCollection<CarouselModel> _NewsImageCarouselList = new ObservableCollection<CarouselModel>();
         private ObservableCollection<NewsListData_Model> _NewsList = new ObservableCollection<NewsListData_Model>();
         private ObservableCollection<ActivityItems> _Activitycollectionlist = new ObservableCollection<ActivityItems>();
+        bool _isRefreshing = false;
+        bool _isBusy = false;
+        private int _remainingItemsThreshold = 0;
+        bool _IsRefreshingActivities = false;
+        private int _remainingActivityItemsThreshold = 0;
+        bool _isBusyInActivityBinding = false;
         #endregion
 
         #region Public Properties        
@@ -66,19 +74,19 @@ namespace AtWork.ViewModels
             get { return _ActivityViewIsVisible; }
             set { SetProperty(ref _ActivityViewIsVisible, value); }
         }
-        bool _isRefreshing = false;
+
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
             set { SetProperty(ref _isRefreshing, value); }
         }
-        bool _isBusy = false;
+
         public bool IsBusy
         {
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value); }
         }
-        private int _remainingItemsThreshold = 0;
+
         public int RemainingItemsThreshold
         {
             get { return _remainingItemsThreshold; }
@@ -97,7 +105,7 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _NewsList, value); }
         }
 
-        public ObservableCollection<ActivityItems> Activitylist
+        public ObservableCollection<ActivityListModel> Activitylist
         {
             get { return _Activitylist; }
             set { SetProperty(ref _Activitylist, value); }
@@ -107,6 +115,24 @@ namespace AtWork.ViewModels
         {
             get { return _Activitycollectionlist; }
             set { SetProperty(ref _Activitycollectionlist, value); }
+        }
+
+        public bool IsRefreshingActivities
+        {
+            get { return _IsRefreshingActivities; }
+            set { SetProperty(ref _IsRefreshingActivities, value); }
+        }
+
+        public int RemainingActivityItemsThreshold
+        {
+            get { return _remainingActivityItemsThreshold; }
+            set { SetProperty(ref _remainingActivityItemsThreshold, value); }
+        }
+
+        public bool IsBusyInActivityBinding
+        {
+            get { return _isBusyInActivityBinding; }
+            set { SetProperty(ref _isBusyInActivityBinding, value); }
         }
         #endregion
 
@@ -120,7 +146,9 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsListData_Model> NewsShowOptionCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await NewsShowOption(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
-        public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
+        public DelegateCommand ActivityLoadMoreItemsCommand { get { return new DelegateCommand(async () => await ActivityLoadMoreItems()); } }
+        public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
+        public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand JoinedMemberCommand { get { return new DelegateCommand(async () => await JoinedMember()); } }
         #endregion
@@ -133,6 +161,15 @@ namespace AtWork.ViewModels
             await GetNewsListDetails_New();
             IsRefreshing = false;
         }
+
+        async Task ExecuteActivityRefreshCommand()
+        {
+            IsRefreshingActivities = true;
+            ActivityPageNo = 1;
+            //await GetActivityList();
+            IsRefreshingActivities = false;
+        }
+
         async Task NewsLoadMoreItems()
         {
             if (IsBusy)
@@ -142,6 +179,17 @@ namespace AtWork.ViewModels
             PageNo++;
             await GetNewsListDetails_New();
         }
+
+        async Task ActivityLoadMoreItems()
+        {
+            if (IsBusyInActivityBinding)
+            {
+                return;
+            }
+            ActivityPageNo++;
+            //await GetActivityList();
+        }
+
         async Task GoForLogin()
         {
             try
@@ -377,7 +425,7 @@ namespace AtWork.ViewModels
                                 tempData.news = nArg.news;
                                 tempData.Volunteers = nArg.Volunteers;
                                 tempData.userName = nArg.Volunteers != null ? nArg.Volunteers.volFirstName + " " + nArg.Volunteers.volLastName : string.Empty;
-                                tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseImageURL + nArg.Volunteers?.volPicture : string.Empty;
+                                tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseProfileImageURL + nArg.Volunteers?.volPicture : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
                                 tempData.newsDescription = nArg.news?.newsContent;
 
@@ -406,7 +454,7 @@ namespace AtWork.ViewModels
                                         tempData.NewsCarouselList = new ObservableCollection<NewsCarouselListModel>();
                                         nimgUrlList.All((arg) =>
                                         {
-                                            string imageUri = ConfigService.BaseImageURL + arg;
+                                            string imageUri = ConfigService.BaseNewsImageURL + arg;
                                             tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)), NewsImageUrl = imageUri }); ;
                                             return true;
                                         });
@@ -434,6 +482,44 @@ namespace AtWork.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        async Task GetActivityList()
+        {
+            try
+            {
+                if (IsBusyInActivityBinding)
+                {
+                    return;
+                }
+                IsBusyInActivityBinding = true;
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                var serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    var serviceResultBody = JsonConvert.DeserializeObject<ActivityResponse>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Flag)
+                    {
+                        if (serviceResultBody.Data != null)
+                        {                            
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                IsBusyInActivityBinding = false;
             }
         }
         #endregion
@@ -475,6 +561,7 @@ namespace AtWork.ViewModels
                 {
                     await GetNewsListDetails_New();
                 }
+                //await GetActivityList();
             }
             catch (Exception ex)
             {

@@ -121,7 +121,7 @@ namespace AtWork.ViewModels
                     inputModel.volUniqueID = SessionService.NewsPostInputData.volUniqueID;
                     if (SessionService.NewsPostCarouselImages != null)
                     {
-                        inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseImageURL, "")).ToList());
+                        inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseNewsImageURL, "")).ToList());
                     }
                     serviceResult = await NewsService.PostNewsFeedEdit(inputModel, SessionService.NewsPostImageFiles);
                 }
