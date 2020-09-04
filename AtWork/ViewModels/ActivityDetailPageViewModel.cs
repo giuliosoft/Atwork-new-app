@@ -31,6 +31,7 @@ namespace AtWork.ViewModels
             HeaderDetailsTitle = AppResources.ActivityText;
             if (IsFromMyActivity)
             {
+                IsFromMyActivity = false;
                 JoinActivity = false;
                 UnSubscribeActivity = true;
             }
