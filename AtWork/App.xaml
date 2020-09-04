@@ -377,6 +377,17 @@
                 <Setter Property="Keyboard" Value="Text"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
+             <Style x:Key="ActivityDetailLabelStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize22}" />
+                 <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
             <!--Entry Styles End-->
 
             <!--Image Styles Start-->

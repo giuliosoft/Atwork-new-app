@@ -24,6 +24,7 @@ namespace AtWork.Models
             public int Comments_Likes { get; set; }
             public string Day { get; set; }
             public Volunteers Volunteers { get; set; }
+            public bool LikeByLoginUser { get; set; }
         }
 
         public class News
@@ -135,6 +136,7 @@ namespace AtWork.Models
             public int newsId { get; set; }
             public string likeByID { get; set; }
             public DateTime? likeDate { get; set; }
+            public bool LikeByLoginUser { get; set; }
         }
     }
 }

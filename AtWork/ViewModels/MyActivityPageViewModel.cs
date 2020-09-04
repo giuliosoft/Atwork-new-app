@@ -67,7 +67,9 @@ namespace AtWork.ViewModels
         }
         #endregion
 
-        #region Commands        
+        #region Commands
+        //public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
+        public DelegateCommand GotoCreateActivityCommand { get { return new DelegateCommand(async () => await GotoCreateActivity()); } }
         public DelegateCommand MyActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteMyActivityRefreshCommand()); } }
         public DelegateCommand<ActivityListModel> UpcomingActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GotoActivityDetails(obj)); } }
         public DelegateCommand<ActivityListModel> PastActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GoToFeedBackPage(obj)); } }
@@ -237,6 +239,17 @@ namespace AtWork.ViewModels
             //{
             //    IsBusyInActivityBinding = false;
             //}
+        }
+        async Task GotoCreateActivity()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(CreateActivityPage), null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
         #endregion
 

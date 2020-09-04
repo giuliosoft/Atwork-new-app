@@ -244,7 +244,7 @@
                     <Label Text="{x:Static Multilingual:AppResources.CreateAGetTogetherText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer />
+                    <TapGestureRecognizer Command="{Binding GotoCreateActivityCommand}"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </StackLayout>

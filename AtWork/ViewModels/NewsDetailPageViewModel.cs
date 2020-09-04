@@ -232,6 +232,7 @@ namespace AtWork.ViewModels
                 newsLikes.likeByID = SettingsService.LoggedInUserData.id.ToString();
                 newsLikes.newsId = SelectedNewsId;
                 newsLikes.likeDate = DateTime.Now;
+                //newsLikes.LikeByLoginUser = 
                 if (!_isPostLiked)
                 {
                     _isPostLiked = true;
@@ -395,7 +396,7 @@ namespace AtWork.ViewModels
                 }
                 await ShowLoader();
 
-                var serviceResult = await NewsService.NewsDetail(SelectedNewsId.ToString());
+                var serviceResult = await NewsService.NewsDetail(SelectedNewsId.ToString(),SettingsService.VolunteersUserData?.volUniqueID);
                 var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
 
                 if (serviceResultBody != null && serviceResultBody.Flag)
@@ -414,7 +415,7 @@ namespace AtWork.ViewModels
                             NewsLikeCount = serviceResultBody.Data.Comments_Likes.ToString();
                             NewsLikeCountNo = serviceResultBody.Data.Comments_Likes;
 
-                            _isPostLiked = false; // serviceResultBody.Data.NewsLiked;
+                            _isPostLiked = serviceResultBody.Data.LikeByLoginUser;
                             if (!_isPostLiked)
                             {
                                 _isPostLiked = true;
@@ -545,7 +546,7 @@ namespace AtWork.ViewModels
             //tempCmtList.Add(new NewsComment() { comByID = null });
             //PostCommentList = tempCmtList;
 
-            LoadNewsDetails();
+            await LoadNewsDetails();
         }
     }
 }

@@ -527,6 +527,84 @@ namespace AtWork.Multilingual {
             }
         }
         
+        internal static string ActivityTitle {
+            get {
+                return ResourceManager.GetString("ActivityTitle", resourceCulture);
+            }
+        }
+        
+        internal static string PlaceholderActivityDescription {
+            get {
+                return ResourceManager.GetString("PlaceholderActivityDescription", resourceCulture);
+            }
+        }
+        
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        internal static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        internal static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        internal static string PriceOrPaymentPerPerson {
+            get {
+                return ResourceManager.GetString("PriceOrPaymentPerPerson", resourceCulture);
+            }
+        }
+        
+        internal static string ActivityDataAlertText {
+            get {
+                return ResourceManager.GetString("ActivityDataAlertText", resourceCulture);
+            }
+        }
+        
+        internal static string ActivityAddressAlertText {
+            get {
+                return ResourceManager.GetString("ActivityAddressAlertText", resourceCulture);
+            }
+        }
+        
+        internal static string ActivityCityAlertText {
+            get {
+                return ResourceManager.GetString("ActivityCityAlertText", resourceCulture);
+            }
+        }
+        
+        internal static string ActivityCountryAlertText {
+            get {
+                return ResourceManager.GetString("ActivityCountryAlertText", resourceCulture);
+            }
+        }
+        
+        internal static string AddaCoverForYour {
+            get {
+                return ResourceManager.GetString("AddaCoverForYour", resourceCulture);
+            }
+        }
+        
+        internal static string Orpickoneofours {
+            get {
+                return ResourceManager.GetString("Orpickoneofours", resourceCulture);
+            }
+        }
+        
+        internal static string InvitePeopleToYourActivity {
+            get {
+                return ResourceManager.GetString("InvitePeopleToYourActivity", resourceCulture);
+            }
+        }
+        
         internal static string AreYouSureText {
             get {
                 return ResourceManager.GetString("AreYouSureText", resourceCulture);

@@ -59,6 +59,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<DashboardPage, DashboardPageViewModel>();
             containerRegistry.RegisterForNavigation<MemberListPage, MemberListPageViewModel>();
             containerRegistry.RegisterForNavigation<MyActivityPage, MyActivityPageViewModel>();
+            containerRegistry.RegisterForNavigation<CreateActivityPage, CreateActivityPageViewModel>();
         }
 
         /// <summary>

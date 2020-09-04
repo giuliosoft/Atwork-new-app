@@ -13,8 +13,8 @@
              ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
-            <StackLayout Padding="{DynamicResource MarginPadding00}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
-                <Label Text="{x:Static Multilingual:AppResources.AddImagesToYourPost}" Style="{StaticResource AddPostImageLabelStyle}"/>
+            <StackLayout Padding="{DynamicResource MarginPadding00_00_00_30}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
+                <Label Text="{Binding AddImagesTitle}" Style="{StaticResource AddPostImageLabelStyle}"/>
                 <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
                 <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                     <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsPostImageCarouselList}" HeightRequest="250" PeekAreaInsets="40" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsImageCarousel_PositionChanged" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -65,10 +65,20 @@
                     </StackLayout>
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
-                <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}"  VerticalOptions="Fill">
-                    <PancakeControl:PancakeView Padding="15" HeightRequest="20"  HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                <ContentView  Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15"  Margin="40,0,40,0" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRoll}" FontSize="22" TextColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+                <ContentView IsVisible="{Binding ShowPickOgOurImage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="40,0,40,0" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.Orpickoneofours}" FontSize="22" TextColor="White"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
                             </StackLayout.GestureRecognizers>
