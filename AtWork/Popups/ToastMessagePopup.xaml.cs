@@ -12,6 +12,7 @@ namespace AtWork.Popups
         {
             InitializeComponent();
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

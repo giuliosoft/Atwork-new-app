@@ -23,7 +23,7 @@ namespace AtWork.ViewModels
         protected FacadeService _facadeService { get; private set; }
 
         #region Constructor
-
+        public static bool IsFromMyActivity { get; set; } = false;
         public ViewModelBase(INavigationService navigationService, FacadeService facadeService)
         {
             _navigationService = navigationService;
@@ -57,8 +57,19 @@ namespace AtWork.ViewModels
         private string _HeaderDetailsTitle;
         private Color _NextTextColor = (Color)App.Current.Resources["WhiteColor"];
         private DelegateCommand _NewsOptionCommand;
+        private bool _JoinActivity;
+        private bool _UnSubscribeActivity;
         #endregion
-
+        public bool JoinActivity
+        {
+            get { return _JoinActivity; }
+            set { SetProperty(ref _JoinActivity, value); }
+        }
+        public bool UnSubscribeActivity
+        {
+            get { return _UnSubscribeActivity; }
+            set { SetProperty(ref _UnSubscribeActivity, value); }
+        }
         public bool IsVisiblePlayerBanner
         {
             get { return _isVisiblePlayerBanner; }

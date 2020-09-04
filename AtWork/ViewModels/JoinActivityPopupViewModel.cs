@@ -11,7 +11,7 @@ namespace AtWork.ViewModels
     public class JoinActivityPopupViewModel : ViewModelBase
     {
         public EventHandler<bool> ClosePopupEvent;
-        public EventHandler<string> ProfileSelectedEvent;
+        public EventHandler<object> JoinActivityEvent;
         #region Constructor
         public JoinActivityPopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -68,10 +68,9 @@ namespace AtWork.ViewModels
         }
         #endregion
 
-        #region Commands
-        public DelegateCommand<string> ProfileOptionSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await ProfileOptionSelected(obj)); } }
-        //public DelegateCommand ProfileCloseCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
+        #region Commands        
         public DelegateCommand GoForClosePopupCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
+        public DelegateCommand JoinActivityCommand { get { return new DelegateCommand(async () => await JoinActivity()); } }
         public DelegateCommand FirstDateSelectedCommand { get { return new DelegateCommand(async () => await FirstDateSelected()); } }
         public DelegateCommand SecoundDateSelectedCommand { get { return new DelegateCommand(async () => await SecoundDateSelected()); } }
         public DelegateCommand ThirdDateSelectedCommand { get { return new DelegateCommand(async () => await ThirdDateSelected()); } }
@@ -79,23 +78,24 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Methods
-        async Task ProfileOptionSelected(string selectedProfileOption)
+        async Task CloseProfile()
         {
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                ProfileSelectedEvent?.Invoke(this, selectedProfileOption);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task CloseProfile()
+
+        async Task JoinActivity()
         {
             try
             {
                 await PopupNavigationService.ClosePopup(true);
+                JoinActivityEvent.Invoke(this, null);
             }
             catch (Exception ex)
             {

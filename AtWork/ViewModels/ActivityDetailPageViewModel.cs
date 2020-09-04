@@ -10,12 +10,15 @@ using AtWork.Popups;
 using AtWork.Helpers;
 using Newtonsoft.Json;
 using static AtWork.Models.ActivityModel;
+using AtWork.Models;
+using AtWork.Views;
+using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace AtWork.ViewModels
 {
     public class ActivityDetailPageViewModel : ViewModelBase
     {
-        string SelectedActivityID;
         #region Constructor
         public ActivityDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -26,6 +29,16 @@ namespace AtWork.ViewModels
             ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Physically active" });
 
             HeaderDetailsTitle = AppResources.ActivityText;
+            if (IsFromMyActivity)
+            {
+                JoinActivity = false;
+                UnSubscribeActivity = true;
+            }
+            else
+            {
+                JoinActivity = true;
+                UnSubscribeActivity = false;
+            }
         }
         #endregion
 
@@ -47,8 +60,10 @@ namespace AtWork.ViewModels
         private string _OrganisarName = string.Empty;
         //private string _OrganisarAddress = string.Empty;
         private string _AdditionalInfo = string.Empty;
-        
+
         private ObservableCollection<ActivityTagModel> _ActivityTagList = new ObservableCollection<ActivityTagModel>();
+        private ObservableCollection<ActivityCarouselListModel> _ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
+        string SelectedActivityID = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -135,22 +150,31 @@ namespace AtWork.ViewModels
         //    set { SetProperty(ref _AdditionalInfo, value); }
         //}
 
-        //public string Prop
-        //{
-        //    get { return _Prop; }
-        //    set { SetProperty(ref _Prop, value); }
-        //}
+        public string Prop
+        {
+            get { return _Prop; }
+            set { SetProperty(ref _Prop, value); }
+        }
 
         public ObservableCollection<ActivityTagModel> ActivityTagList
         {
             get { return _ActivityTagList; }
             set { SetProperty(ref _ActivityTagList, value); }
         }
+
+        public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList
+        {
+            get { return _ActivityCarouselList; }
+            set { SetProperty(ref _ActivityCarouselList, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand GoToJoinActivityPopupCommand { get { return new DelegateCommand(async () => await GoToJoinActivityPopup()); } }
+        public DelegateCommand GoToUnsubscribeActivityPopupCommand { get { return new DelegateCommand(async () => await GoToUnsubscribeActivityPopup()); } }
+        public DelegateCommand GoToToastMessageCommand { get { return new DelegateCommand(async () => await GoToToastMessage()); } }
+
         #endregion
 
         #region private methods
@@ -166,13 +190,15 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GoToJoinActivityPopup()
+        async Task GoToToastMessage()
         {
             try
             {
-                JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
-                JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
-                joinactivityPopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
+                await Clipboard.SetTextAsync("Hello World");
+                await Clipboard.GetTextAsync();
+                ToastMessagePopup ToastMessagePopup = new ToastMessagePopup();
+                ToastMessagePopupViewModel ToastMessagePopupViewModel = new ToastMessagePopupViewModel(_navigationService, _facadeService);
+                ToastMessagePopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
                 {
                     try
                     {
@@ -180,6 +206,83 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                ToastMessagePopup.BindingContext = ToastMessagePopupViewModel;
+                await PopupNavigationService.ShowPopup(ToastMessagePopup, true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task GoToUnsubscribeActivityPopup()
+        {
+            try
+            {
+                UnSubscribeActivityPopup UnSubscribeActivityPopup = new UnSubscribeActivityPopup();
+                UnSubscribeActivityPopupViewModel UnSubscribeActivityPopupViewModel = new UnSubscribeActivityPopupViewModel(_navigationService, _facadeService);
+                UnSubscribeActivityPopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
+                {
+                    try
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                UnSubscribeActivityPopup.BindingContext = UnSubscribeActivityPopupViewModel;
+                await PopupNavigationService.ShowPopup(UnSubscribeActivityPopup, true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task GoToJoinActivityPopup()
+        {
+            try
+            {
+                JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
+                JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
+                joinactivityPopupViewModel.JoinActivityEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        if (!await CheckConnectivity())
+                        {
+                            return;
+                        }
+                        await ShowLoader();
+                        JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                        inputModel.ActivityID = ActivityDetails.id;
+                        inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                        inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                        inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                        var serviceResult = await ActivityService.JoinActivity(inputModel);
+                        if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                        {
+                            if (serviceResult.Body != null)
+                            {
+                                var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                                if (serviceBody != null)
+                                {
+                                    if (serviceBody.Flag)
+                                    {
+                                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
+                                    }
+                                }
+                            }
+                        }
+                        await ClosePopup();
+                    }
+                    catch (Exception ex)
+                    {
+                        await ClosePopup();
                         Debug.WriteLine(ex.Message);
                     }
                 };
@@ -201,17 +304,20 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await ActivityServices.GetActivityDetail(SelectedActivityID.ToString());// "procorp2019023511232400420207251552438");
+                var serviceResult = await ActivityService.GetActivityDetail(SelectedActivityID.ToString());// "procorp2019023511232400420207251552438");
                 var serviceResultBody = JsonConvert.DeserializeObject<ActivityListModel>(serviceResult.Body);
 
-                ActivityDetails = serviceResultBody;
-                Location = serviceResultBody?.proLocation + ", " +serviceResultBody?.proCountry;
-                ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime  != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
-                    ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
-                    : string.Empty;
-                if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
+                if (serviceResultBody != null)
                 {
-                    IsShowCategotyType = true;
+                    ActivityDetails = serviceResultBody;
+                    Location = serviceResultBody?.proLocation + ", " + serviceResultBody?.proCountry;
+                    ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
+                        ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
+                        : string.Empty;
+                    if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
+                    {
+                        IsShowCategotyType = true;
+                    }
                 }
                 await ClosePopup();
             }
@@ -237,7 +343,16 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                SelectedActivityID = parameters.GetValue<string>("SelectedActivityID");
+                var activityId = parameters.GetValue<string>("SelectedActivityID");
+                if (!string.IsNullOrEmpty(activityId))
+                {
+                    SelectedActivityID = activityId;
+                }
+                var cList = parameters.GetValue<ObservableCollection<ActivityCarouselListModel>>("SelectedActivityImages");
+                if (cList != null)
+                {
+                    ActivityCarouselList = cList;
+                }
                 await LoadActivitiesDetails();
             }
             catch (Exception ex)

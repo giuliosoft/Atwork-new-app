@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Services;
-using Plugin.Clipboard;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
