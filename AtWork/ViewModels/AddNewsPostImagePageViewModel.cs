@@ -188,6 +188,7 @@ namespace AtWork.ViewModels
                                 else if (NewsPostImageCarouselList.Count == 0)
                                 {
                                     NewsPickedImageViewIsVisible = false;
+                                    ImageOptionText = AppResources.EditCropButtonText;
                                 }
                             }
                         }
