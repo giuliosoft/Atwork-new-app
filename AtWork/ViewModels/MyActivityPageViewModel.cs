@@ -42,6 +42,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
+        public DelegateCommand GotoCreateActivityCommand { get { return new DelegateCommand(async () => await GotoCreateActivity()); } }
         #endregion
 
         #region private methods
@@ -51,6 +52,17 @@ namespace AtWork.ViewModels
             try
             {
                 //await _navigationService.NavigateAsync(nameof(ActivityDetailPage), null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task GotoCreateActivity()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(CreateActivityPage), null);
             }
             catch (Exception ex)
             {

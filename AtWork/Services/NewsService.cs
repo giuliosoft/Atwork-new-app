@@ -12,12 +12,12 @@ namespace AtWork.Services
 {
     public class NewsService : BaseService
     {
-        public static async Task<BaseResponse<string>> NewsDetail(string NewUrl)
+        public static async Task<BaseResponse<string>> NewsDetail(string NewUrl, string CurrentUserId)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsServiceURL + NewUrl;
+                var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsServiceURL + NewUrl;// + "/" + CurrentUserId;
                 //resultModel = await PostResponse<string>(loginServiceUrl, jData, true);
                 resultModel = await GetResponse<string>(loginServiceUrl, true);
             }

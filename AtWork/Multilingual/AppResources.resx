@@ -255,5 +255,35 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="GetTogetherText" xml:space="preserve">
         <value>Get-together</value>
+    </data> 
+    <data name="ActivityTitle" xml:space="preserve">
+        <value>Activity Title...</value>
+    </data>
+    <data name="PlaceholderActivityDescription" xml:space="preserve">
+        <value>Describe your #GetTogether</value>
+    </data>
+    <data name="Address" xml:space="preserve">
+        <value>Address</value>
+    </data>
+    <data name="City" xml:space="preserve">
+        <value>City</value>
+    </data>
+    <data name="Country" xml:space="preserve">
+        <value>Country</value>
+    </data>
+    <data name="PriceOrPaymentPerPerson" xml:space="preserve">
+        <value>Price or payment per person</value>
+    </data>
+    <data name="ActivityDataAlertText" xml:space="preserve">
+        <value>Enter activity Activity title &amp; description!</value>
+    </data>
+    <data name="ActivityAddressAlertText" xml:space="preserve">
+        <value>Enter Address!</value>
+    </data>
+    <data name="ActivityCityAlertText" xml:space="preserve">
+        <value>Enter City!</value>
+    </data>
+    <data name="ActivityCountryAlertText" xml:space="preserve">
+        <value>Enter Country!</value>
     </data>
 </root>

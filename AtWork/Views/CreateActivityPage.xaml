@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.CreateActivityPage"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Padding="0" >
+                <StackLayout Margin="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <ScrollView>
+                        <StackLayout Padding="0" Spacing="0">
+                            <Customcontrol:CustomEditor Text="{Binding ActivityTitle}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.ActivityTitle}"  Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
+                                </StackLayout>
+                                <Customcontrol:CustomEditor VerticalOptions="Start" ReturnType="Done" Text="{Binding ActivityDescription}" Placeholder="{x:Static Multilingual:AppResources.PlaceholderActivityDescription}" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>
+                            </StackLayout>
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                            <Label Text="Date" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Bold"></Label>
+                            <Customcontrol:CustomDatePicker FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="100" FontSize="30" BackgroundColor="{StaticResource OffWhiteColor}" Date="{Binding SelectedDate}" />
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                            <Label Text="Time" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Bold"></Label>
+                            <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="100" FontSize="30" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedTime}" />
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                            <Customcontrol:CustomEditor Text="{Binding ActivityAddress}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Address}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                            <Customcontrol:CustomEditor Text="{Binding ActivityCity}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.City}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                            <Customcontrol:CustomEditor Text="{Binding ActivityCountry}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Country}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                            <Customcontrol:CustomEditor Text="{Binding ActivityPrice}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PriceOrPaymentPerPerson}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                            <BoxView HeightRequest="{DynamicResource HeightWidth01}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -79,6 +79,8 @@
     <Compile Include="HelperServices\MultiMediaPickerService.cs" />
     <Compile Include="HelperServices\HelperService.cs" />
     <Compile Include="Renderers\CustomImageRenderer.cs" />
+    <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
+    <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
