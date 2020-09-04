@@ -50,9 +50,9 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
-                                            <!--<ffimageloading:CachedImage BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
-                                            </ffimageloading:CachedImage>-->
-                                            <Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                            <ffimageloading:CachedImage CacheType="None" BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                                            </ffimageloading:CachedImage>
+                                            <!--<Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>-->
                                         </Grid>
                                     </PancakeControl:PancakeView>
                                 </StackLayout>
