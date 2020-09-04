@@ -15,7 +15,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public CreateActivityPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            //NextClickPageName = nameof(AddNewsPostPage);
+            NextClickPageName = nameof(CreateActivityPage);
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.NextButtonText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
@@ -111,7 +111,7 @@ namespace AtWork.ViewModels
                 }
                 else if (string.IsNullOrEmpty(ActivityAddress))
                 {
-                    await DisplayAlertAsync(AppResources.ActivityDataAlertText);
+                    await DisplayAlertAsync(AppResources.ActivityAddressAlertText);
                     return;
                 }
                 else if (string.IsNullOrEmpty(ActivityCity))
@@ -128,7 +128,9 @@ namespace AtWork.ViewModels
                 await ShowLoader();
                 //SessionService.NewsPostInputData.newsTitle = NewsTitle;
                 //SessionService.NewsPostInputData.newsContent = NewsDescription;
-                await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("isFromActivity", true);
+                await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage), navigationParams);
                 await ClosePopup();
             }
             catch (Exception ex)
