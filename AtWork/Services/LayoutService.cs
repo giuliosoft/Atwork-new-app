@@ -65,6 +65,7 @@ namespace AtWork.Services
 
             #region View Height Width
 
+            App.Current.Resources["HeightWidth"] = sizeConvertAsPerDevice(0.5);
             App.Current.Resources["HeightWidth01"] = sizeConvertAsPerDevice(01);
             App.Current.Resources["HeightWidth02"] = sizeConvertAsPerDevice(02);
             App.Current.Resources["HeightWidth03"] = sizeConvertAsPerDevice(03);

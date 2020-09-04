@@ -586,5 +586,21 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ActivityCountryAlertText", resourceCulture);
             }
         }
+        
+        internal static string AddaCoverForYour {
+            get {
+                return ResourceManager.GetString("AddaCoverForYour", resourceCulture);
+            }
+        }
+        internal static string Orpickoneofours {
+            get {
+                return ResourceManager.GetString("Orpickoneofours", resourceCulture);
+            }
+        }
+        internal static string InvitePeopleToYourActivity {
+            get {
+                return ResourceManager.GetString("InvitePeopleToYourActivity", resourceCulture);
+            }
+        }
     }
 }

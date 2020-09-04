@@ -16,6 +16,7 @@ namespace AtWork.ViewModels
 {
     public class PostNewsPageViewModel : ViewModelBase
     {
+        bool isActivity = false;
         #region Constructor
         public PostNewsPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -33,6 +34,10 @@ namespace AtWork.ViewModels
         private string NewsPrivacy = string.Empty;
         private Color _GroupTextColor = Color.White;
         private Color _PublicTextColor = (Color)App.Current.Resources["AccentColor"];
+        private string _PostTitle = AppResources.ChooseWhoCanSeeYourPost;
+        private string _PostToGroup = "Post to your group";
+        private string _GroupMember = "21 people will see your post";
+        private string _PostToEverybodyText = "Post to view everybody";
         #endregion
 
         #region Public Properties        
@@ -40,6 +45,26 @@ namespace AtWork.ViewModels
         {
             get { return _ProductDetail; }
             set { SetProperty(ref _ProductDetail, value); }
+        }
+        public string PostTitle
+        {
+            get { return _PostTitle; }
+            set { SetProperty(ref _PostTitle, value); }
+        }
+        public string PostToGroup
+        {
+            get { return _PostToGroup; }
+            set { SetProperty(ref _PostToGroup, value); }
+        }
+        public string GroupMember
+        {
+            get { return _GroupMember; }
+            set { SetProperty(ref _GroupMember, value); }
+        }
+        public string PostToEverybodyText
+        {
+            get { return _PostToEverybodyText; }
+            set { SetProperty(ref _PostToEverybodyText, value); }
         }
 
         public Color PublishGroupColor
@@ -201,6 +226,14 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             //AddNewsCancelImage = "Back";
             //AddNewsNextImage = "Publish";
+            isActivity = parameters.GetValue<bool>("isFromActivity");
+            if (isActivity)
+            {
+                PostTitle = AppResources.InvitePeopleToYourActivity;
+                PostToGroup = "Invite your group";
+                PostToEverybodyText = "Post To Everybody";
+                //ShowPickOgOurImage = true;
+            }
         }
     }
 }

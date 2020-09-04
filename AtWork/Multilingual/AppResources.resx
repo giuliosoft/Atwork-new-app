@@ -285,5 +285,15 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="ActivityCountryAlertText" xml:space="preserve">
         <value>Enter Country!</value>
+    </data> 
+    <data name="AddaCoverForYour" xml:space="preserve">
+        <value>Add a cover for your</value>
     </data>
+    <data name="Orpickoneofours" xml:space="preserve">
+        <value>Or pick one of ours</value>
+    </data>
+    <data name="InvitePeopleToYourActivity" xml:space="preserve">
+        <value>Invite people to your activity</value>
+    </data>
+    
 </root>

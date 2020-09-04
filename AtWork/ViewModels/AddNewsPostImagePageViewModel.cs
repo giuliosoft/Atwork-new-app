@@ -18,6 +18,7 @@ namespace AtWork.ViewModels
 {
     public class AddNewsPostImagePageViewModel : ViewModelBase
     {
+        bool isActivity = false;
         #region Constructor
         public AddNewsPostImagePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -44,6 +45,8 @@ namespace AtWork.ViewModels
         private bool _NewsPickedImageViewIsVisible = false;
         private int NewsImageSelectedForCrop = -1;
         private string _ImageOptionText = AppResources.EditCropButtonText;
+        private string _AddImagesTitle = AppResources.AddImagesToYourPost;
+        private bool _ShowPickOgOurImage = false;
         private int CarouselPosition = 0;
         #endregion
 
@@ -71,6 +74,16 @@ namespace AtWork.ViewModels
         {
             get { return _ImageOptionText; }
             set { SetProperty(ref _ImageOptionText, value); }
+        }
+        public string AddImagesTitle
+        {
+            get { return _AddImagesTitle; }
+            set { SetProperty(ref _AddImagesTitle, value); }
+        }
+        public bool ShowPickOgOurImage
+        {
+            get { return _ShowPickOgOurImage; }
+            set { SetProperty(ref _ShowPickOgOurImage, value); }
         }
         #endregion
 
@@ -117,7 +130,16 @@ namespace AtWork.ViewModels
                         return true;
                     });
                     SessionService.NewsPostImageFiles = new List<string>(PostImageFiles);
-                    await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
+                    if (isActivity)
+                    {
+                        var navigationParams = new NavigationParameters();
+                        navigationParams.Add("isFromActivity", true);
+                        await _navigationService.NavigateAsync(nameof(PostNewsPage), navigationParams);
+                    }
+                    else
+                    {
+                        await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
+                    }
                     await ClosePopup();
                 }
             }
@@ -305,6 +327,12 @@ namespace AtWork.ViewModels
                     NewsPostImageCarouselList = tempList;
                     ImageOptionText = AppResources.Delete;
                     NewsPickedImageViewIsVisible = true;
+                }
+                isActivity = parameters.GetValue<bool>("isFromActivity");
+                if (isActivity)
+                {
+                    AddImagesTitle = AppResources.AddaCoverForYour;
+                    ShowPickOgOurImage = true;
                 }
             }
             catch (Exception ex)

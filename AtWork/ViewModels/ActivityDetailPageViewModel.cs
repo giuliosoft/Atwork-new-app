@@ -201,7 +201,7 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await ActivityServices.GetActivityDetail(SelectedActivityID.ToString());// "procorp2019023511232400420207251552438");
+                var serviceResult = await ActivityService.GetActivityDetail(SelectedActivityID.ToString());// "procorp2019023511232400420207251552438");
                 var serviceResultBody = JsonConvert.DeserializeObject<ActivityListModel>(serviceResult.Body);
 
                 ActivityDetails = serviceResultBody;
