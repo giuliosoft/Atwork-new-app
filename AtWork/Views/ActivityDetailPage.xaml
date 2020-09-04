@@ -26,8 +26,20 @@
                                 <Label Text="{Binding ActivityDetails.proTitle}" FontSize="20" FontAttributes="Bold"/>
                                 <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                     <Grid RowDefinitions="Auto">
-                                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
-                                            <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                            <!--<CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                            <CarouselView x:Name="activityImageCarousel" ItemsSource="{Binding ActivityCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" HorizontalScrollBarVisibility="Never">
+                                                <CarouselView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding ActivityImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CarouselView.ItemTemplate>
+                                            </CarouselView>
                                         </PancakeControl:PancakeView>
                                         <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
                                             <Label Text="{Binding Location}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
@@ -126,16 +138,27 @@
                         </PancakeControl:PancakeView>
                         <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                             <Label Text="{x:Static Multilingual:AppResources.ShareThisActivityText}" Style="{StaticResource JoinActivityLabelStyle}"/>
+                            <PancakeControl:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoToToastMessageCommand}"/>
+                            </PancakeControl:PancakeView.GestureRecognizers>
                         </PancakeControl:PancakeView>
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <StackLayout BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+            <StackLayout IsVisible="{Binding JoinActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
                 <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoToJoinActivityPopupCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding UnSubscribeActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <Label Text="{x:Static Multilingual:AppResources.UnSubscribeFromActivtyText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
+                </PancakeControl:PancakeView>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToUnsubscribeActivityPopupCommand}"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </StackLayout>

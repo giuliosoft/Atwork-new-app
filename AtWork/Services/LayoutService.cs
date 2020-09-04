@@ -54,6 +54,7 @@ namespace AtWork.Services
             App.Current.Resources["FontSize24"] = sizeConvertAsPerDevice(24);
             App.Current.Resources["FontSize25"] = sizeConvertAsPerDevice(25);
             App.Current.Resources["FontSize27"] = sizeConvertAsPerDevice(27);
+            App.Current.Resources["FontSize28"] = sizeConvertAsPerDevice(28);
             App.Current.Resources["FontSize30"] = sizeConvertAsPerDevice(30);
             App.Current.Resources["FontSize32"] = sizeConvertAsPerDevice(32);
             App.Current.Resources["FontSize35"] = sizeConvertAsPerDevice(35);

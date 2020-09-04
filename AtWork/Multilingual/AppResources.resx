@@ -177,7 +177,7 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="LinkText" xml:space="preserve">
         <value>Link</value>
-    </data>    
+    </data>
     <data name="MyActivitiesHeaderText" xml:space="preserve">
         <value>MY ACTIVITIES</value>
     </data>
@@ -295,5 +295,46 @@ Permission Denied. Can not continue, try again.</value>
     <data name="InvitePeopleToYourActivity" xml:space="preserve">
         <value>Invite people to your activity</value>
     </data>
-    
+    <data name="AreYouSureText" xml:space="preserve">
+        <value>Are you sure?</value>
+    </data>
+    <data name="UnSubscribeFromActivtyText" xml:space="preserve">
+        <value>Unsubscribe from activity</value>
+    </data>
+    <data name="ConfirmText" xml:space="preserve">
+        <value>Confrim</value>
+    </data>
+    <data name="LinkCopiedText" xml:space="preserve">
+        <value>Link to activity copied to clipboard</value>
+    </data>
+    <data name="YourFeedbackText" xml:space="preserve">
+        <value>Your feedback</value>
+    </data>
+    <data name="GetTogetherText" xml:space="preserve">
+        <value>#GetTogether</value>
+    </data>
+    <data name="OverallExperienceText" xml:space="preserve">
+        <value>Overall experiences</value>
+    </data>
+    <data name="ImpactOfYourVolunteeringText" xml:space="preserve">
+        <value>Impact of your volunteering</value>
+    </data>
+    <data name="LikelihoodOfRecommendingText" xml:space="preserve">
+        <value>Likelihood of recommending</value>
+    </data>
+    <data name="HowDidYouFeelDuringTheActivityText" xml:space="preserve">
+        <value>How did you feel during the activity?</value>
+    </data>
+    <data name="WhatNeedsToImproveText" xml:space="preserve">
+        <value>What needs to improve?</value>
+    </data>
+    <data name="WhatDidYouLikeMostText" xml:space="preserve">
+        <value>What did you like most?</value>
+    </data>
+    <data name="AnythingElseYouWantToAddText" xml:space="preserve">
+        <value>Anything else you want to add?</value>
+    </data>
+    <data name="SubmitFeedBackText" xml:space="preserve">
+        <value>Submit feedback</value>
+    </data>
 </root>

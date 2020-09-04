@@ -44,9 +44,21 @@
                                         <Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>
                                         <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                             <Grid RowDefinitions="Auto">
-                                                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                                <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
                                                     <!--<CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
-                                                    <ffImageLoading:CachedImage LoadingPlaceholder="Activitydemobg" ErrorPlaceholder="Activitydemobg" Source="{Binding activityImage}" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                    <!--<ffImageLoading:CachedImage LoadingPlaceholder="Activitydemobg" ErrorPlaceholder="Activitydemobg" Source="{Binding activityImage}" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                                    <CarouselView x:Name="activityImageCarousel" ItemsSource="{Binding ActivityCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" HorizontalScrollBarVisibility="Never">
+                                                        <CarouselView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*"/>
+                                                                    </Grid.RowDefinitions>
+                                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding ActivityImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                                                                </Grid>
+                                                            </DataTemplate>
+                                                        </CarouselView.ItemTemplate>
+                                                    </CarouselView>
                                                 </PancakeControl:PancakeView>
                                                 <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
                                                     <Label Text="{Binding activityLocation}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
@@ -65,7 +77,7 @@
                                                 <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.JoinedMemberCommand}"/>
                                             </StackLayout.GestureRecognizers>-->
                                         </StackLayout>
-                                         <StackLayout.GestureRecognizers>
+                                        <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>

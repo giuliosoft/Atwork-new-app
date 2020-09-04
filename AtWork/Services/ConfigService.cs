@@ -5,8 +5,8 @@ namespace AtWork.Services
     {
 
         //*****Local URL*****//
-        //public static string BaseServerURL = "http://21a7c8a2834a.ngrok.io";
-        //public static string BaseServiceURL = "http://21a7c8a2834a.ngrok.io/api";
+        //public static string BaseServerURL = "http://d3a247eeba49.ngrok.io";
+        //public static string BaseServiceURL = "http://d3a247eeba49.ngrok.io/api";
         //
 
         //*****LIVE URL******//
@@ -35,6 +35,7 @@ namespace AtWork.Services
         public static string DeleteNewsLikeServiceURL = "/DeleteNewsLike";
         public static string ActivitiesGetRowServiceURL = "/activities/getrow/";
         public static string ActivityListServiceURL = "/activities/getlist/";
-
+        public static string ActivityJoinServiceURL = "/activities/joinActitvity/";
+        public static string MyActivityListServiceURL = "/activities/MyActivity/";
     }
 }

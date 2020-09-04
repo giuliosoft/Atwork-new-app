@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using AtWork.Services;
+using Prism.Mvvm;
 using Xamarin.Forms;
 
 namespace AtWork.Models
@@ -9,7 +11,7 @@ namespace AtWork.Models
 
     public class ActivityModel
     {
-        public class ActivityListModel
+        public class ActivityListModel : BindableBase
 
         {
             public int id { get; set; }
@@ -57,7 +59,9 @@ namespace AtWork.Models
             public string proAddActivity_CoordinatorEmail { get; set; }
             public DateTime? proPublishedDate { get; set; }
 
-            //New fields:
+            //New Fields:
+            public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
+
             public string activityLocation
             {
                 get
@@ -94,7 +98,14 @@ namespace AtWork.Models
                     return proAddActivity_StartTime + " - " + proAddActivity_EndTime;
                 }
             }
-
+            public bool _ShowPastActivity;
+            public bool ShowPastActivity
+            {
+                get { return _ShowPastActivity; }
+                set { SetProperty(ref _ShowPastActivity, value); }
+            }
+            public bool IsPastActivity {get;set;}
+            /*
             public ImageSource activityImage
             {
                 get
@@ -124,7 +135,7 @@ namespace AtWork.Models
                     }
                     return retVal;
                 }
-            }
+            }*/
         }
 
         public class ActivityResponse
@@ -132,7 +143,22 @@ namespace AtWork.Models
             public bool Flag { get; set; }
             public string Message { get; set; }
             public List<ActivityListModel> Data { get; set; }
-            public object Data1 { get; set; }
+            public List<ActivityListModel> Data1 { get; set; }
+        }
+
+        public class ActivityCarouselListModel
+        {
+            public ImageSource ActivityImage { get; set; }
+            public string ActivityImageUrl { get; set; }
+        }
+
+        public class JoinActivityInputModel
+        {
+            public int Id { get; set; }
+            public string coUniqueID { get; set; }
+            public string proUniqueID { get; set; }
+            public string volUniqueID { get; set; }
+            public int ActivityID { get; set; }
         }
     }
 }

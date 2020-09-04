@@ -53,7 +53,7 @@
             <PancakeControl:PancakeView BackgroundColor="{StaticResource OffWhiteColor}" HeightRequest="30" CornerRadius="25" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="20,40,20,25" Padding="10">
                 <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityPopupHeaderStyle}" TextColor="{StaticResource BlackColor}"/>
                 <PancakeControl:PancakeView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GotoActivityDetailsCommand}"/>
+                    <TapGestureRecognizer Command="{Binding JoinActivityCommand}"/>
                 </PancakeControl:PancakeView.GestureRecognizers>
             </PancakeControl:PancakeView>
         </StackLayout>

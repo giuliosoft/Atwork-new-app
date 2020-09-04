@@ -592,14 +592,94 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("AddaCoverForYour", resourceCulture);
             }
         }
+        
         internal static string Orpickoneofours {
             get {
                 return ResourceManager.GetString("Orpickoneofours", resourceCulture);
             }
         }
+        
         internal static string InvitePeopleToYourActivity {
             get {
                 return ResourceManager.GetString("InvitePeopleToYourActivity", resourceCulture);
+            }
+        }
+        
+        internal static string AreYouSureText {
+            get {
+                return ResourceManager.GetString("AreYouSureText", resourceCulture);
+            }
+        }
+        
+        internal static string UnSubscribeFromActivtyText {
+            get {
+                return ResourceManager.GetString("UnSubscribeFromActivtyText", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmText {
+            get {
+                return ResourceManager.GetString("ConfirmText", resourceCulture);
+            }
+        }
+        
+        internal static string LinkCopiedText {
+            get {
+                return ResourceManager.GetString("LinkCopiedText", resourceCulture);
+            }
+        }
+        
+        internal static string YourFeedbackText {
+            get {
+                return ResourceManager.GetString("YourFeedbackText", resourceCulture);
+            }
+        }
+        
+        internal static string OverallExperienceText {
+            get {
+                return ResourceManager.GetString("OverallExperienceText", resourceCulture);
+            }
+        }
+        
+        internal static string ImpactOfYourVolunteeringText {
+            get {
+                return ResourceManager.GetString("ImpactOfYourVolunteeringText", resourceCulture);
+            }
+        }
+        
+        internal static string LikelihoodOfRecommendingText {
+            get {
+                return ResourceManager.GetString("LikelihoodOfRecommendingText", resourceCulture);
+            }
+        }
+        
+        internal static string HowDidYouFeelDuringTheActivityText {
+            get {
+                return ResourceManager.GetString("HowDidYouFeelDuringTheActivityText", resourceCulture);
+            }
+        }
+        
+        internal static string WhatNeedsToImproveText {
+            get {
+                return ResourceManager.GetString("WhatNeedsToImproveText", resourceCulture);
+            }
+        }
+        
+        internal static string WhatDidYouLikeMostText {
+            get {
+                return ResourceManager.GetString("WhatDidYouLikeMostText", resourceCulture);
+            }
+        }
+        
+        internal static string AnythingElseYouWantToAddText {
+            get {
+                return ResourceManager.GetString("AnythingElseYouWantToAddText", resourceCulture);
+            }
+        }
+        
+        internal static string SubmitFeedBackText {
+            get {
+                return ResourceManager.GetString("SubmitFeedBackText", resourceCulture);
             }
         }
     }

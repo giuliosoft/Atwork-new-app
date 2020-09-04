@@ -225,6 +225,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                IsFromMyActivity = true;
                 await _navigationService.NavigateAsync(nameof(MyActivityPage));
             }
             catch (Exception ex)
@@ -299,12 +300,14 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
         async Task GotoActivityPostDetailPage(ActivityListModel selectedActivityPost)
         {
             try
             {
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("SelectedActivityID", selectedActivityPost.proUniqueID);
+                navigationParams.Add("SelectedActivityImages", selectedActivityPost.ActivityCarouselList);
                 await _navigationService.NavigateAsync(nameof(ActivityDetailPage), navigationParams);
             }
             catch (Exception ex)
@@ -532,10 +535,47 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<ActivityResponse>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
+                        var tempList = new ObservableCollection<ActivityListModel>();
                         if (serviceResultBody.Data != null)
                         {
-                            Activitylist = new ObservableCollection<ActivityListModel>(serviceResultBody.Data);
+                            tempList = new ObservableCollection<ActivityListModel>(serviceResultBody.Data);
                         }
+                        tempList.All((arg) =>
+                        {
+                            if (!string.IsNullOrEmpty(arg.proBackgroundImage))
+                            {
+                                string imgStr = arg.proBackgroundImage;
+                                List<string> nimgUrlList = new List<string>();
+                                if (!string.IsNullOrEmpty(imgStr))
+                                {
+                                    if (imgStr.Contains(","))
+                                    {
+                                        nimgUrlList = imgStr.Split(',').ToList();
+                                    }
+                                    else
+                                    {
+                                        nimgUrlList.Add(imgStr);
+                                    }
+                                }
+                                if (nimgUrlList != null && nimgUrlList.Count > 0)
+                                {
+                                    arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
+                                    nimgUrlList.All((Aarg) =>
+                                    {
+                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg;
+                                        arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = ImageSource.FromUri(new Uri(imageUri)), ActivityImageUrl = imageUri }); ;
+                                        return true;
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
+                                arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = "noimage" });
+                            }
+                            return true;
+                        });
+                        Activitylist = new ObservableCollection<ActivityListModel>(tempList);
                     }
                 }
                 await ClosePopup();
