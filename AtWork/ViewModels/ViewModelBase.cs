@@ -149,7 +149,7 @@ namespace AtWork.ViewModels
             {
                 if (SettingsService.LoggedInUserData.coLogo == string.Empty)
                     return string.Empty;
-                return ImageSource.FromUri(new Uri(string.Format("http://app.atwork.ai/{0}", SettingsService.LoggedInUserData.coLogo)));
+                return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SettingsService.LoggedInUserData.coLogo));
             }
             //set { SetProperty(ref _companyLogo, value); }
         }
