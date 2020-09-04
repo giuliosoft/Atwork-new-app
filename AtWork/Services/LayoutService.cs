@@ -291,6 +291,12 @@ namespace AtWork.Services
             App.Current.Resources["PancakeViewCornerRadius30"] = PancakeViewSizeConvertAsPerDevice(30);
 
             #endregion
+
+            #region AbsoluteLayout DeviceWidthFooterTab
+
+            App.Current.Resources["DeviceWidthFooterTab"] = DeviceDisplay.MainDisplayInfo.Width/4-20;
+
+            #endregion
         }
 
         public static void ConvertThemeAsPerSettings(LoginOutputModel loginOutputModel)
