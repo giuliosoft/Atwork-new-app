@@ -46,7 +46,7 @@
                                                     <Label Text="{Binding NewsCreatedTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
                                                 </StackLayout>
                                             </StackLayout>
-                                            <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                            <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill" IsVisible="{Binding NewsCreatedByLoggedInUser}">
                                                 <Customcontrol:CustomImage TintColor="{DynamicResource AccentColor}" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                                                 </Customcontrol:CustomImage>
                                                 <StackLayout.GestureRecognizers>
@@ -75,7 +75,7 @@
                                                                     <Grid.RowDefinitions>
                                                                         <RowDefinition Height="*"/>
                                                                     </Grid.RowDefinitions>
-                                                                    <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                                                                    <ffImageLoading:CachedImage Grid.Row="0" CacheType="Memory" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
                                                                 </Grid>
                                                             </DataTemplate>
                                                         </CarouselView.ItemTemplate>

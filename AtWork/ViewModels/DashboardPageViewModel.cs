@@ -370,6 +370,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
+                        await ClosePopup();
                         Debug.WriteLine(ex.Message);
                     }
                 };

@@ -22,5 +22,21 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+
+        public static async Task<BaseResponse<string>> GetActivityDetail(string NewUrl)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var ActivitiesDetailsUrl = ConfigService.BaseServiceURL + ConfigService.ActivitiesGetRowServiceURL + NewUrl;
+                resultModel = await GetResponse<string>(ActivitiesDetailsUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }

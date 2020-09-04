@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using AtWork.Services;
 using AtWork.ViewModels;
 using Xamarin.Forms;
 using static AtWork.Models.LoginModel;
@@ -83,6 +84,15 @@ namespace AtWork.Models
             public string newsTitle { get; set; }
             public string newsDescription { get; set; }
             public string NewsCreatedTime { get; set; }
+            public bool NewsCreatedByLoggedInUser
+            {
+                get
+                {
+                    if (Volunteers != null && SettingsService.VolunteersUserData != null)
+                        return Volunteers.volUniqueID == SettingsService.VolunteersUserData.volUniqueID;
+                    return false;
+                }
+            }
         }
         #endregion
 

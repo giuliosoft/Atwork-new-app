@@ -28,9 +28,7 @@ namespace AtWork.ViewModels
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NewsDetailBack = AppResources.BackButtonText;
-            DetailHeaderOptionIsVisible = true;
             NewsOptionCommand = ShowNewsOptionCommand;
-
             HeaderDetailsTitle = AppResources.PostText;
         }
         #endregion
@@ -409,6 +407,7 @@ namespace AtWork.ViewModels
 
                         if (serviceResultBody.Data.Volunteers != null)
                         {
+                            DetailHeaderOptionIsVisible = serviceResultBody.Data.Volunteers?.volUniqueID == SettingsService.VolunteersUserData?.volUniqueID;
                             NewsUserProfileImage = !string.IsNullOrEmpty(serviceResultBody.Data.Volunteers?.volPicture) ? ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + serviceResultBody.Data.Volunteers?.volPicture)) : string.Empty;
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
