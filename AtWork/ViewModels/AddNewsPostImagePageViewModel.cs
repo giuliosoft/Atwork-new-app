@@ -184,22 +184,22 @@ namespace AtWork.ViewModels
         {
             try
             {
-                ActivityImagePopup activityImagePopup = new ActivityImagePopup();
-                ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
-                activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
-                {
-                    try
-                    {
-                        //NewsPostImageCarouselList.Add(new NewsImageModel() { NewsImage = SelectedObj });
-                        //NewsPickedImageViewIsVisible = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-                };
-                activityImagePopup.BindingContext = activityImagePopupViewModel;
-                await PopupNavigationService.ShowPopup(activityImagePopup, true);
+                //ActivityImagePopup activityImagePopup = new ActivityImagePopup();
+                //ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
+                //activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
+                //{
+                //    try
+                //    {
+                //        //NewsPostImageCarouselList.Add(new NewsImageModel() { NewsImage = SelectedObj });
+                //        //NewsPickedImageViewIsVisible = true;
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        Debug.WriteLine(ex.Message);
+                //    }
+                //};
+                //activityImagePopup.BindingContext = activityImagePopupViewModel;
+                //await PopupNavigationService.ShowPopup(activityImagePopup, true);
                     
             }
             catch (Exception ex)
