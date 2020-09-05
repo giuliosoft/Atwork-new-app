@@ -80,7 +80,7 @@
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.Orpickoneofours}" FontSize="22" TextColor="White"/>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
+                                <TapGestureRecognizer Command="{Binding OurImagesCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </PancakeControl:PancakeView>

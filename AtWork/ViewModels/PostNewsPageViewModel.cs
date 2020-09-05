@@ -7,9 +7,11 @@ using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.ActivityModel;
 using static AtWork.Models.NewsModel;
 
 namespace AtWork.ViewModels
@@ -34,10 +36,11 @@ namespace AtWork.ViewModels
         private string NewsPrivacy = string.Empty;
         private Color _GroupTextColor = Color.White;
         private Color _PublicTextColor = (Color)App.Current.Resources["AccentColor"];
-        private string _PostTitle = AppResources.ChooseWhoCanSeeYourPost;
-        private string _PostToGroup = "Post to your group";
-        private string _GroupMember = "21 people will see your post";
-        private string _PostToEverybodyText = "Post to view everybody";
+        private string _PostTitle = string.Empty;
+        private string _PostToGroup = string.Empty;
+        private string _GroupMember = string.Empty;
+        private string _PostToEverybodyText = string.Empty;
+        private bool _IsShowOption = false;
         #endregion
 
         #region Public Properties        
@@ -65,6 +68,11 @@ namespace AtWork.ViewModels
         {
             get { return _PostToEverybodyText; }
             set { SetProperty(ref _PostToEverybodyText, value); }
+        }
+        public bool IsShowOption
+        {
+            get { return _IsShowOption; }
+            set { SetProperty(ref _IsShowOption, value); }
         }
 
         public Color PublishGroupColor
@@ -121,57 +129,82 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-
-                SessionService.NewsPostInputData.coUniqueID = SettingsService.LoggedInUserData.coUniqueID;
-                NewsDetailModel_Input inputModel = new NewsDetailModel_Input();
-
-                inputModel.coUniqueID = SessionService.NewsPostInputData.coUniqueID;
-                inputModel.newsTitle = SessionService.NewsPostInputData.newsTitle;
-                inputModel.newsContent = SessionService.NewsPostInputData.newsContent;
-                inputModel.newsDateTime = DateTime.Now;
-                inputModel.newsPostedTime = DateTime.Now;
-                inputModel.newsFileOriginal = SessionService.NewsPostAttachmentFileName;
-                inputModel.newsFile = "";
-                inputModel.newsImage = "";
-                inputModel.newsOrigin = "employee";
-                inputModel.newsStatus = "Active";
-                inputModel.newsPrivacy = NewsPrivacy;
-                if (!string.IsNullOrEmpty(SessionService.NewsPostAttachmentFilePath))
-                    SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
-
-                BaseResponse<string> serviceResult = null;
-                if (SessionService.isEditingNews)
+                if (isActivity)
                 {
-                    inputModel.newsUniqueID = SessionService.NewsPostInputData.newsUniqueID;
-                    inputModel.volUniqueID = SessionService.NewsPostInputData.volUniqueID;
-                    if (SessionService.NewsPostCarouselImages != null)
+                    BaseResponse<string> serviceResult = null;
+                    ActivityListModel input = new ActivityListModel();
+                    input.coUniqueID = SettingsService.LoggedInUserData?.coUniqueID;
+                    
+                    input.proTitle = SessionService.ActivityPostInputData.proTitle;
+                    input.proDescription = SessionService.ActivityPostInputData.proDescription;
+                    input.proAddress1 = SessionService.ActivityPostInputData.proAddress1;
+                    input.proCity = SessionService.ActivityPostInputData.proCity;
+                    input.proCountry = SessionService.ActivityPostInputData.proCountry;
+                    //input.proAddActivity_StartTime = "9am";
+                    //input.proAddActivityDate = "";
+                    input.proPublishedDate = DateTime.Now;
+                    input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
+                    input.proAudience = NewsPrivacy;
+                    serviceResult = await ActivityService.PostActivityFeedEdit(input, SessionService.NewsPostImageFiles);
+                    if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
-                        inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseNewsImageURL, "")).ToList());
+                        SessionService.ActivityPostInputData = new ActivityListModel();
+                        SessionService.NewsPostImageFiles = new List<string>();
+                        await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
-                    serviceResult = await NewsService.PostNewsFeedEdit(inputModel, SessionService.NewsPostImageFiles);
                 }
                 else
                 {
-                    inputModel.newsUniqueID = null;
-                    inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                    serviceResult = await NewsService.PostNewsFeed(inputModel, SessionService.NewsPostImageFiles);
-                }
+                    SessionService.NewsPostInputData.coUniqueID = SettingsService.LoggedInUserData.coUniqueID;
+                    NewsDetailModel_Input inputModel = new NewsDetailModel_Input();
 
-                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
-                {
-                    SessionService.NewsPostInputData = new NewsDetailModel_Input();
-                    SessionService.NewsPostAttachmentFileName = string.Empty;
-                    SessionService.NewsPostAttachmentFilePath = string.Empty;
-                    SessionService.NewsPostImageFiles = new List<string>();
+                    inputModel.coUniqueID = SessionService.NewsPostInputData.coUniqueID;
+                    inputModel.newsTitle = SessionService.NewsPostInputData.newsTitle;
+                    inputModel.newsContent = SessionService.NewsPostInputData.newsContent;
+                    inputModel.newsDateTime = DateTime.Now;
+                    inputModel.newsPostedTime = DateTime.Now;
+                    inputModel.newsFileOriginal = SessionService.NewsPostAttachmentFileName;
+                    inputModel.newsFile = "";
+                    inputModel.newsImage = "";
+                    inputModel.newsOrigin = "employee";
+                    inputModel.newsStatus = "Active";
+                    inputModel.newsPrivacy = NewsPrivacy;
+                    if (!string.IsNullOrEmpty(SessionService.NewsPostAttachmentFilePath))
+                        SessionService.NewsPostImageFiles.Add(SessionService.NewsPostAttachmentFilePath);
+
+                    BaseResponse<string> serviceResult = null;
                     if (SessionService.isEditingNews)
                     {
-                        SessionService.isEditingNews = false;
-                        SessionService.IsNeedToRefreshNews = true;
+                        inputModel.newsUniqueID = SessionService.NewsPostInputData.newsUniqueID;
+                        inputModel.volUniqueID = SessionService.NewsPostInputData.volUniqueID;
+                        if (SessionService.NewsPostCarouselImages != null)
+                        {
+                            inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseNewsImageURL, "")).ToList());
+                        }
+                        serviceResult = await NewsService.PostNewsFeedEdit(inputModel, SessionService.NewsPostImageFiles);
                     }
-                    await _navigationService.NavigateAsync(nameof(DashboardPage));
+                    else
+                    {
+                        inputModel.newsUniqueID = null;
+                        inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                        serviceResult = await NewsService.PostNewsFeed(inputModel, SessionService.NewsPostImageFiles);
+                    }
+
+                    if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                    {
+                        SessionService.NewsPostInputData = new NewsDetailModel_Input();
+                        SessionService.NewsPostAttachmentFileName = string.Empty;
+                        SessionService.NewsPostAttachmentFilePath = string.Empty;
+                        SessionService.NewsPostImageFiles = new List<string>();
+                        if (SessionService.isEditingNews)
+                        {
+                            SessionService.isEditingNews = false;
+                            SessionService.IsNeedToRefreshNews = true;
+                        }
+                        await _navigationService.NavigateAsync(nameof(DashboardPage));
+                    }
                 }
                 await ClosePopup();
-
             }
             catch (Exception ex)
             {
@@ -224,15 +257,28 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            //AddNewsCancelImage = "Back";
-            //AddNewsNextImage = "Publish";
-            isActivity = parameters.GetValue<bool>("isFromActivity");
-            if (isActivity)
+            try
             {
-                PostTitle = AppResources.InvitePeopleToYourActivity;
-                PostToGroup = "Invite your group";
-                PostToEverybodyText = "Post To Everybody";
-                //ShowPickOgOurImage = true;
+                isActivity = parameters.GetValue<bool>("isFromActivity");
+                if (isActivity)
+                {
+                    PostTitle = AppResources.InvitePeopleToYourActivity;
+                    PostToGroup = "Invite your group";
+                    GroupMember = "21 people will see your post";
+                    PostToEverybodyText = "Post To Everybody";
+                }
+                else
+                {
+                    PostTitle = AppResources.ChooseWhoCanSeeYourPost;
+                    PostToGroup = "Post to your group";
+                    GroupMember = "21 people will see your post";
+                    PostToEverybodyText = "Post to view everybody";
+                }
+                IsShowOption = true;
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

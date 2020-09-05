@@ -5,6 +5,7 @@ using System.Linq;
 using AtWork.Services;
 using Prism.Mvvm;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.Models
 {
@@ -59,7 +60,7 @@ namespace AtWork.Models
             public string proAddActivity_AdditionalInfo { get; set; }
             public string proAddActivity_CoordinatorEmail { get; set; }
             public DateTime? proPublishedDate { get; set; }
-
+            public string Member { get; set; }
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
 
@@ -105,7 +106,16 @@ namespace AtWork.Models
                 get { return _ShowPastActivity; }
                 set { SetProperty(ref _ShowPastActivity, value); }
             }
-            public bool IsPastActivity { get; set; }
+
+            public bool IsPastActivity {get;set;}
+            public bool ShowLink
+            {
+                get
+                {
+                    return !string.IsNullOrEmpty(proAddActivity_Website);
+                }
+            }
+
             /*
             public ImageSource activityImage
             {
@@ -169,6 +179,12 @@ namespace AtWork.Models
             public DateTime? proChosenDate { get; set; }
 
             public DateTime? proVolHourDates { get; set; }
+        }
+        public class ActivityJoinedMemberListResponse
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public List<Volunteers> Data { get; set; }
         }
     }
 }

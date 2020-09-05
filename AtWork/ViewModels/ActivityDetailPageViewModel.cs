@@ -174,7 +174,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoToJoinActivityPopupCommand { get { return new DelegateCommand(async () => await GoToJoinActivityPopup()); } }
         public DelegateCommand GoToUnsubscribeActivityPopupCommand { get { return new DelegateCommand(async () => await GoToUnsubscribeActivityPopup()); } }
         public DelegateCommand GoToToastMessageCommand { get { return new DelegateCommand(async () => await GoToToastMessage()); } }
-
+        public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => LinkClicked()); } }
         #endregion
 
         #region private methods
@@ -189,7 +189,21 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-
+        async Task LinkClicked()
+        {
+            try
+            {
+                if (ActivityDetails != null && !string.IsNullOrEmpty(ActivityDetails.proAddActivity_Website))
+                {
+                    var url = ActivityDetails.proAddActivity_Website.Substring(0, 4).ToLower() != "http" ? "http://" + ActivityDetails.proAddActivity_Website : ActivityDetails.proAddActivity_Website;
+                    await Browser.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
+            }
+        }
         async Task GoToToastMessage()
         {
             try

@@ -10,6 +10,12 @@ namespace AtWork.SubViews
         public DashboardFooterView()
         {
             InitializeComponent();
+            Content.SizeChanged += (object sender, EventArgs e) =>
+            {
+                GreenView.WidthRequest = Content.Width / 2;
+                NewsLabel.WidthRequest = Content.Width / 2;
+                ActivityLabel.WidthRequest = Content.Width / 2;
+            };
             MessagingCenter.Subscribe<object>(this, "GetActivityTabSelected", (sender) =>
               {
                   GreenView.TranslateTo((double)App.Current.Resources["DeviceWidthFooterTab"], 0, 300);
@@ -24,7 +30,7 @@ namespace AtWork.SubViews
 
         void TapGestureRecognizer_Activity(System.Object sender, System.EventArgs e)
         {
-            GreenView.TranslateTo((double)App.Current.Resources["DeviceWidthFooterTab"], 0, 300);
+           GreenView.TranslateTo(GreenView.WidthRequest, 0, 300);
         }
     }
 }

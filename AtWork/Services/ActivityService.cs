@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -73,7 +74,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-
+        
         public static async Task<BaseResponse<string>> UnSubscribeActivity(int id)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
@@ -81,6 +82,37 @@ namespace AtWork.Services
             {
                 var UnsubscribeActivityUrl = ConfigService.BaseServiceURL + ConfigService.ActivityUnsubscribeServiceURL;
                 resultModel = await PostResponse<string>($"{UnsubscribeActivityUrl}{id}", string.Empty, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> PostActivityFeedEdit(ActivityListModel inputModel, List<string> filesToAttach)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.CreateActivityServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await FilePostResponse<string>(editNewsServiceUrl, filesToAttach, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> GetActivityJoinedMemberList(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var ActivitiesDetailsUrl = ConfigService.BaseServiceURL + ConfigService.ActivitiesJoinedMembersServiceURL + id;
+                resultModel = await GetResponse<string>(ActivitiesDetailsUrl, true);
             }
             catch (Exception ex)
             {
