@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace AtWork.Services
 {
     public class ConfigService
@@ -39,5 +39,6 @@ namespace AtWork.Services
         public static string MyActivityListServiceURL = "/activities/MyActivity/";
         public static string CreateActivityServiceURL = "/activities/insertrow";
         public static string ActivitiesJoinedMembersServiceURL = "/activities/getActivitiesEmp/";
+        public static string ActivityUnsubscribeServiceURL = "/activities/deletejoinActitvity/";
     }
 }

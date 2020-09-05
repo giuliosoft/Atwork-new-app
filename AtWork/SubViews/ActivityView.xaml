@@ -8,14 +8,20 @@
     <ContentView.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="0" Margin="0">
             <BoxView HeightRequest="0.5" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Color="{StaticResource BlackColor}"/>
-            <CollectionView x:Name="Activitycollectionlist" ItemsSource="{Binding Activitycollectionlist}" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="{StaticResource PosterWhiteColor}">
+            <CollectionView x:Name="Activitycollectionlist" SelectionMode="Single" HorizontalScrollBarVisibility="Never" ItemsSource="{Binding Activitycollectionlist}" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="{StaticResource PosterWhiteColor}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <Label TextColor="{DynamicResource AccentColor}" Text="{Binding title}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" Padding="20,0,0,0"/>
+                        <StackLayout Padding="0,0,0,7">
+                            <StackLayout Spacing="0" Margin="20,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label TextColor="{DynamicResource AccentColor}" Text="{Binding title}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" />
+                                <BoxView IsVisible="{Binding UnderlineIsVisible}" HeightRequest="2" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill" VerticalOptions="Start"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Activitycollectionlist},Path=BindingContext.ActivityCategorySelectedCommand}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -41,7 +47,8 @@
                                             </PancakeControl:PancakeView>
                                             <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="RoundPath" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
                                         </StackLayout>
-                                        <Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>
+                                        <!--<Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>-->
+                                        <CustomControl:SelectableLabel Text="{Binding proTitle}" Style="{StaticResource ActivityTitleLabelStyle}"/>
                                         <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                             <Grid RowDefinitions="Auto">
                                                 <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">

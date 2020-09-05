@@ -6,7 +6,8 @@
                   xmlns:Converters="clr-namespace:AtWork.Converters"
                   xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                   x:Class="AtWork.Popups.ToastMessagePopup"
-                  xmlns:Multilingual="clr-namespace:AtWork.Multilingual">
+                  xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+                  BackgroundColor="Transparent">
     <pages:PopupPage.HasSystemPadding>
         <OnPlatform x:TypeArguments="x:Boolean">
             <OnPlatform.iOS>false</OnPlatform.iOS>

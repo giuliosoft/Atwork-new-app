@@ -12,6 +12,7 @@ using AtWork.Services;
 using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Navigation;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
@@ -158,6 +159,7 @@ namespace AtWork.ViewModels
         public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
+        public DelegateCommand<ActivityItems> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityItems>(async (obj) => await ActivityCategorySelected(obj)); } }
         #endregion
 
         #region private methods
@@ -202,6 +204,29 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task ActivityCategorySelected(ActivityItems selectedCategory)
+        {
+            try
+            {
+                Activitycollectionlist.All((categories) =>
+                {
+                    if (selectedCategory.title == categories.title)
+                    {
+                        categories.UnderlineIsVisible = true;
+                    }
+                    else
+                    {
+                        categories.UnderlineIsVisible = false;
+                    }
+                    return true;
+                });
             }
             catch (Exception ex)
             {
@@ -256,6 +281,13 @@ namespace AtWork.ViewModels
                 {
                     NewsViewIsVisible = true;
                     ActivityViewIsVisible = false;
+
+                    if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
+                    {
+                        if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
+                        if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
+                        await GetNewsListDetails_New();
+                    }
 
                     NextOptionText = "+";
                     NextCustomLabelIsVisible = false;
@@ -627,13 +659,20 @@ namespace AtWork.ViewModels
                         SessionService.DeletedNewsPost = string.Empty;
                     }
                 }
-                if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
+                if (SessionService.IsShowActivitiesIntial)
+                {
+                    SessionService.IsShowActivitiesIntial = false;
+                    MessagingCenter.Send<object>(this, "GetActivityTabSelected");
+                    DashboardFooterNavigationCommand.Execute(TextResources.ActivityTabText);
+                }
+                else if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
                 {
                     if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
                     if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
                     await GetNewsListDetails_New();
                 }
                 //await GetActivityList();
+                IsFromMyActivity = false;
             }
             catch (Exception ex)
             {
@@ -642,9 +681,16 @@ namespace AtWork.ViewModels
         }
     }
 
-    public class ActivityItems
+    public class ActivityItems : BindableBase
     {
         public string title { get; set; }
+
+        private bool _UnderlineIsVisible;
+        public bool UnderlineIsVisible
+        {
+            get { return _UnderlineIsVisible; }
+            set { SetProperty(ref _UnderlineIsVisible, value); }
+        }
     }
 
     public class ActivityModel
