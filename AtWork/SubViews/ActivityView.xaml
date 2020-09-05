@@ -68,19 +68,23 @@
                                                 </PancakeControl:PancakeView>
                                                 <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                                     <Label Text="{Binding activityDuration}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
+                                                    <PancakeControl:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                                    </PancakeControl:PancakeView.GestureRecognizers>
                                                 </PancakeControl:PancakeView>
                                             </Grid>
                                         </PancakeControl:PancakeView>
                                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
-                                            <!--<StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.JoinedMemberCommand}"/>
-                                            </StackLayout.GestureRecognizers>-->
+                                            <Label Text="15 Joined" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="Center" TextColor="{DynamicResource AccentColor}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.JoinedMemberCommand}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
                                         </StackLayout>
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
-                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
+                                    <PancakeControl:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference activityfeedList},Path=BindingContext.ActivityPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                    </PancakeControl:PancakeView.GestureRecognizers>
                                 </PancakeControl:PancakeView>
                             </StackLayout>
                         </DataTemplate>

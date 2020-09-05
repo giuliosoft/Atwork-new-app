@@ -105,6 +105,13 @@ namespace AtWork.Models
                 set { SetProperty(ref _ShowPastActivity, value); }
             }
             public bool IsPastActivity {get;set;}
+            public bool ShowLink
+            {
+                get
+                {
+                    return !string.IsNullOrEmpty(proAddActivity_Website);
+                }
+            }
             /*
             public ImageSource activityImage
             {
