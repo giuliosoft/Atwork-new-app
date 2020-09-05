@@ -90,5 +90,20 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> GetActivityJoinedMemberList(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var ActivitiesDetailsUrl = ConfigService.BaseServiceURL + ConfigService.ActivitiesJoinedMembersServiceURL + id;
+                resultModel = await GetResponse<string>(ActivitiesDetailsUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }

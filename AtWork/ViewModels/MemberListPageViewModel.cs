@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Services;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using static AtWork.Models.ActivityModel;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -14,8 +18,8 @@ namespace AtWork.ViewModels
         {
             DetailHeaderOptionIsVisible = false;
         }
-        private ObservableCollection<TempMember> _members = new ObservableCollection<TempMember>();
-        public ObservableCollection<TempMember> Members
+        private ObservableCollection<Volunteers> _members = new ObservableCollection<Volunteers>();
+        public ObservableCollection<Volunteers> Members
         {
             get { return _members; }
             set
@@ -24,45 +28,56 @@ namespace AtWork.ViewModels
                     HeaderDetailsTitle = $"{Members?.Count} joined";
             }
         }
-        public DelegateCommand<TempMember> SelectionChangedCommand { get { return new DelegateCommand<TempMember>(async (obj) => await OnSelectionChanged(obj)); } }
+        public DelegateCommand<Volunteers> SelectionChangedCommand { get { return new DelegateCommand<Volunteers>(async (obj) => await OnSelectionChanged(obj)); } }
 
-        private async Task OnSelectionChanged(TempMember member)
+        private async Task OnSelectionChanged(Volunteers member)
         {
-            await DisplayAlertAsync(member.Name);
+            //TODO Profile
+            //await DisplayAlertAsync(member.Name);
         }
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
         }
-
+        async Task LoadMembersList(string id)
+        {
+            try
+            {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                var serviceResult = await ActivityService.GetActivityJoinedMemberList(id);
+                var serviceResultBody = JsonConvert.DeserializeObject<ActivityJoinedMemberListResponse>(serviceResult.Body);
+                if (serviceResultBody != null && serviceResultBody.Data != null)
+                {
+                    List<Volunteers> tempMembers = new List<Volunteers>();
+                    foreach (var member in serviceResultBody.Data)
+                        tempMembers.Add(member);
+                    Members = new ObservableCollection<Volunteers>(tempMembers);
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await ClosePopup();
+            }
+        }
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            List<TempMember> Member = new List<TempMember>();
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Member.Add(new TempMember() { ProfileImage = "http://app.atwork.ai/images/Profiles/defaultpic.png", Name = "John Claar" });
-            Members = new ObservableCollection<TempMember>(Member);
-        }
-        //Remove this class when Api is implemented
-        public class TempMember
-        {
-            string name;
-            public string ProfileImage { get; set; }
-            public string Name { get; set; }
+            try
+            {
+                var activityId = parameters.GetValue<string>("ActivityID");
+                if (!string.IsNullOrEmpty(activityId))
+                    await LoadMembersList(activityId);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

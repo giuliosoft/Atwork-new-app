@@ -38,5 +38,6 @@ namespace AtWork.Services
         public static string ActivityJoinServiceURL = "/activities/joinActitvity/";
         public static string MyActivityListServiceURL = "/activities/MyActivity/";
         public static string CreateActivityServiceURL = "/activities/insertrow";
+        public static string ActivitiesJoinedMembersServiceURL = "/activities/getActivitiesEmp/";
     }
 }

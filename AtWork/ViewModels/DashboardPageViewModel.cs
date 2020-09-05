@@ -157,7 +157,7 @@ namespace AtWork.ViewModels
         public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
         public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
-        public DelegateCommand JoinedMemberCommand { get { return new DelegateCommand(async () => await JoinedMember()); } }
+        public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         #endregion
 
         #region private methods
@@ -234,11 +234,13 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task JoinedMember()
+        async Task JoinedMember(ActivityListModel selectedActivityPost)
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(MemberListPage));
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("ActivityID", selectedActivityPost.proUniqueID);
+                await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
             }
             catch (Exception ex)
             {
