@@ -7,6 +7,7 @@ using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
@@ -132,24 +133,23 @@ namespace AtWork.ViewModels
                 {
                     BaseResponse<string> serviceResult = null;
                     ActivityListModel input = new ActivityListModel();
+                    input.coUniqueID = SettingsService.LoggedInUserData?.coUniqueID;
+                    
                     input.proTitle = SessionService.ActivityPostInputData.proTitle;
                     input.proDescription = SessionService.ActivityPostInputData.proDescription;
-                    //input. =SessionService.ActivityPostInputData.proAddress1 = ActivityAddress; 
+                    input.proAddress1 = SessionService.ActivityPostInputData.proAddress1;
                     input.proCity = SessionService.ActivityPostInputData.proCity;
                     input.proCountry = SessionService.ActivityPostInputData.proCountry;
+                    //input.proAddActivity_StartTime = "9am";
+                    //input.proAddActivityDate = "";
+                    input.proPublishedDate = DateTime.Now;
                     input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
-                    //input.privicy = NewsPrivacy;
+                    input.proAudience = NewsPrivacy;
                     serviceResult = await ActivityService.PostActivityFeedEdit(input, SessionService.NewsPostImageFiles);
-
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         SessionService.NewsPostImageFiles = new List<string>();
-                        //if (SessionService.isEditingNews)
-                        //{
-                        //    SessionService.isEditingNews = false;
-                        //    SessionService.IsNeedToRefreshNews = true;
-                        //}
                         await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
                 }
