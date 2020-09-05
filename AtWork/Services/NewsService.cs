@@ -82,9 +82,9 @@ namespace AtWork.Services
             try
             {
                 var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsAddPostServiceURL;
-                //var jData = JsonConvert.SerializeObject(inputModel);
+                var jData = JsonConvert.SerializeObject(inputModel);
                 //resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
-                resultModel = await FilePostResponse<string>(addNewsServiceUrl, filesToAttach, inputModel, true);
+                resultModel = await FilePostResponse<string>(addNewsServiceUrl, filesToAttach, jData, true);
             }
             catch (Exception ex)
             {
@@ -133,9 +133,9 @@ namespace AtWork.Services
             try
             {
                 var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsPostEditServiceURL;
-                //var jData = JsonConvert.SerializeObject(inputModel);
+                var jData = JsonConvert.SerializeObject(inputModel);
                 //resultModel = await PostResponse<string>(editNewsServiceUrl, jData, true);
-                resultModel = await FilePostResponse<string>(editNewsServiceUrl, filesToAttach, inputModel, true);
+                resultModel = await FilePostResponse<string>(editNewsServiceUrl, filesToAttach, jData, true);
             }
             catch (Exception ex)
             {

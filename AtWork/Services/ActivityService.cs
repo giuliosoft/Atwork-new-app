@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -65,6 +66,22 @@ namespace AtWork.Services
                 var JoinActivityUrl = ConfigService.BaseServiceURL + ConfigService.ActivityJoinServiceURL;
                 var jData = JsonConvert.SerializeObject(joinActivityInputModel);
                 resultModel = await PostResponse<string>(JoinActivityUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> PostActivityFeedEdit(ActivityListModel inputModel, List<string> filesToAttach)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.CreateActivityServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await FilePostResponse<string>(editNewsServiceUrl, filesToAttach, jData, true);
             }
             catch (Exception ex)
             {

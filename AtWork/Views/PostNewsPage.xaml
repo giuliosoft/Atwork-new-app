@@ -12,7 +12,7 @@
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
              ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+        <StackLayout IsVisible="{Binding IsShowOption}" BackgroundColor="{StaticResource OffWhiteColor}" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
             <StackLayout  Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Padding="0" >
                 <Label Text="{Binding PostTitle}" Style="{StaticResource AddPostImageLabelStyle}"/>
                 <StackLayout Spacing="0" Margin="0" Padding="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">

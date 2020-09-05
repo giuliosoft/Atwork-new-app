@@ -41,9 +41,14 @@
                             <Customcontrol:CustomEditor Text="{Binding ActivityCountry}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Country}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
                             <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
-                            <Customcontrol:CustomEditor Text="{Binding ActivityPrice}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PriceOrPaymentPerPerson}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
+                            <Customcontrol:CustomEditor Text="{Binding ActivityPrice}"  ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PriceOrPaymentPerPerson}"  Style="{StaticResource ActivityDetailLabelStyle}" Keyboard="Numeric" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
                             <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
+                            <Label Text="Describe it with some emojis!" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
+                                </StackLayout>
+                            </StackLayout>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>

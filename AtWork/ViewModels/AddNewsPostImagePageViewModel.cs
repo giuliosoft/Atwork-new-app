@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Models;
 using AtWork.Multilingual;
+using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -90,6 +91,7 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
+        public DelegateCommand OurImagesCommand { get { return new DelegateCommand(async () => await OurImages()); } }
         public DelegateCommand<string> CropNewsImageCommand { get { return new DelegateCommand<string>(async (obj) => await CropNewsImage(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
@@ -172,6 +174,33 @@ namespace AtWork.ViewModels
                         });
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }   
+        }
+        async Task OurImages()
+        {
+            try
+            {
+                ActivityImagePopup activityImagePopup = new ActivityImagePopup();
+                ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
+                activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
+                {
+                    try
+                    {
+                        //NewsPostImageCarouselList.Add(new NewsImageModel() { NewsImage = SelectedObj });
+                        //NewsPickedImageViewIsVisible = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                activityImagePopup.BindingContext = activityImagePopupViewModel;
+                await PopupNavigationService.ShowPopup(activityImagePopup, true);
+                    
             }
             catch (Exception ex)
             {
@@ -328,7 +357,10 @@ namespace AtWork.ViewModels
                     ImageOptionText = AppResources.Delete;
                     NewsPickedImageViewIsVisible = true;
                 }
-                isActivity = parameters.GetValue<bool>("isFromActivity");
+                if (!isActivity)
+                {
+                    isActivity = parameters.GetValue<bool>("isFromActivity");
+                }
                 if (isActivity)
                 {
                     AddImagesTitle = AppResources.AddaCoverForYour;
