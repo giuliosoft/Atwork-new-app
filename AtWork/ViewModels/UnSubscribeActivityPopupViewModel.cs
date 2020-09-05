@@ -12,7 +12,7 @@ namespace AtWork.ViewModels
     public class UnSubscribeActivityPopupViewModel : ViewModelBase
     {
         public EventHandler<bool> ClosePopupEvent;
-        public EventHandler<string> ProfileSelectedEvent;
+        public EventHandler<object> ConfirmEvent;
         #region Constructor
         public UnSubscribeActivityPopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -21,42 +21,21 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private bool _IsVisibleGuestOptions = true;
 
         #endregion
 
         #region Public Properties
 
-        public bool IsVisibleGuestOptions
-        {
-            get { return _IsVisibleGuestOptions; }
-            set { SetProperty(ref _IsVisibleGuestOptions, value); }
-        }
-
         #endregion
 
         #region Commands
-        public DelegateCommand<string> ProfileOptionSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await ProfileOptionSelected(obj)); } }
-        //public DelegateCommand ProfileCloseCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
-        public DelegateCommand GoForClosePopupCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
-        public DelegateCommand GoForCancelCommand { get { return new DelegateCommand(async () => await GoForCancel()); } }
+        public DelegateCommand CloseConfirmPopupCommand { get { return new DelegateCommand(async () => await CloseClick()); } }
+        public DelegateCommand ConfirmCommand { get { return new DelegateCommand(async () => await ConfirmAction()); } }
 
         #endregion
 
-        #region Private Methods
-        async Task ProfileOptionSelected(string selectedProfileOption)
-        {
-            try
-            {
-                await PopupNavigationService.ClosePopup(true);
-                ProfileSelectedEvent?.Invoke(this, selectedProfileOption);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-        async Task CloseProfile()
+        #region Private Methods        
+        async Task CloseClick()
         {
             try
             {
@@ -67,12 +46,13 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task GoForCancel()
+
+        async Task ConfirmAction()
         {
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                await _navigationService.NavigateAsync(nameof(DashboardPage));
+                ConfirmEvent.Invoke(this, null);
             }
             catch (Exception ex)
             {

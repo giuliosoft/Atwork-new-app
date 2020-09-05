@@ -73,5 +73,21 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+
+        public static async Task<BaseResponse<string>> UnSubscribeActivity(int id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var UnsubscribeActivityUrl = ConfigService.BaseServiceURL + ConfigService.ActivityUnsubscribeServiceURL;
+                resultModel = await PostResponse<string>($"{UnsubscribeActivityUrl}{id}", string.Empty, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }

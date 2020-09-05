@@ -23,7 +23,8 @@
                                         <Label Text="{Binding ActivityDetails.proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" Padding="2,0,2,0"/>
                                     </PancakeControl:PancakeView>
                                 </StackLayout>
-                                <Label Text="{Binding ActivityDetails.proTitle}" FontSize="20" FontAttributes="Bold"/>
+                                <!--<Label Text="{Binding ActivityDetails.proTitle}" FontSize="20" FontAttributes="Bold"/>-->
+                                <CustomControl:SelectableLabel Text="{Binding ActivityDetails.proTitle}" Style="{StaticResource ActivityTitleLabelStyle}"/>
                                 <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                     <Grid RowDefinitions="Auto">
                                         <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
@@ -60,17 +61,9 @@
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                        <Label Text="{Binding ActivityDetails.proDescription}" Style="{StaticResource ActivityDescriptionLabelStyle}"/>
+                        <!--<Label Text="{Binding ActivityDetails.proDescription}" Style="{StaticResource ActivityDescriptionLabelStyle}"/>-->
+                        <CustomControl:SelectableLabel Text="{Binding ActivityDetails.proDescription}" Style="{StaticResource ActivityDescriptionLabelStyle}"/>
                     </StackLayout>
-                    <!--<StackLayout BindableLayout.ItemsSource="{Binding ActivityTagList}" Padding="5,0,5,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <PancakeControl:PancakeView CornerRadius="10" BorderColor="{StaticResource DarkGreenColor}" BorderThickness="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                    <Label Text="{Binding ActivityTag}" Style="{StaticResource ActivityTagLabelStyle}"/>
-                                </PancakeControl:PancakeView>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>-->
                     <CustomControl:RepeaterView x:Name="activityTagList" BackgroundColor="Transparent" ItemsSource="{Binding ActivityTagList}" Spacing="0" Padding="0" ColumnCount="2" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                         <CustomControl:RepeaterView.ItemTemplate>
                             <DataTemplate>
@@ -133,10 +126,10 @@
                         <Label Text="{x:Static Multilingual:AppResources.LinkText}" TextDecorations="Underline" Style="{StaticResource ActivityDescriptionLabelStyle}" HorizontalTextAlignment="Center"/>
                     </StackLayout>
                     <StackLayout Spacing="10" Padding="5,10,5,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                             <Label Text="{x:Static Multilingual:AppResources.ContactText}" Style="{StaticResource JoinActivityLabelStyle}"/>
                         </PancakeControl:PancakeView>
-                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                             <Label Text="{x:Static Multilingual:AppResources.ShareThisActivityText}" Style="{StaticResource JoinActivityLabelStyle}"/>
                             <PancakeControl:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding GoToToastMessageCommand}"/>
@@ -145,8 +138,8 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <StackLayout IsVisible="{Binding JoinActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+            <StackLayout IsVisible="{Binding JoinActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,10" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>
@@ -154,7 +147,7 @@
                 </StackLayout.GestureRecognizers>
             </StackLayout>
             <StackLayout IsVisible="{Binding UnSubscribeActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="15" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <Label Text="{x:Static Multilingual:AppResources.UnSubscribeFromActivtyText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>

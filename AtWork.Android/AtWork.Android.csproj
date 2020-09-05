@@ -107,6 +107,7 @@
     <Compile Include="HelperServices\ImageHelpers.cs" />
     <Compile Include="HelperServices\HelperService.cs" />
     <Compile Include="Renderers\CustomImageRenderer.cs" />
+    <Compile Include="Renderers\SelectableLabelRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

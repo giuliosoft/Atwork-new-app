@@ -302,7 +302,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Unsubscribe from activity</value>
     </data>
     <data name="ConfirmText" xml:space="preserve">
-        <value>Confrim</value>
+        <value>Confirm</value>
     </data>
     <data name="LinkCopiedText" xml:space="preserve">
         <value>Link to activity copied to clipboard</value>

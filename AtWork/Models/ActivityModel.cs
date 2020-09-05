@@ -18,6 +18,7 @@ namespace AtWork.Models
             public string proUniqueID { get; set; }
             public string proTitle { get; set; }
             public string coUniqueID { get; set; }
+            public int JoinActivityId { get; set; }
 
             public string proDescription { get; set; }
             public string proLocation { get; set; }
@@ -104,7 +105,7 @@ namespace AtWork.Models
                 get { return _ShowPastActivity; }
                 set { SetProperty(ref _ShowPastActivity, value); }
             }
-            public bool IsPastActivity {get;set;}
+            public bool IsPastActivity { get; set; }
             /*
             public ImageSource activityImage
             {
@@ -158,7 +159,16 @@ namespace AtWork.Models
             public string coUniqueID { get; set; }
             public string proUniqueID { get; set; }
             public string volUniqueID { get; set; }
-            public int ActivityID { get; set; }
+            //public int ActivityID { get; set; }
+            public string volTransport { get; set; }
+
+            public string volDiet { get; set; }
+
+            public string proStatus { get; set; }
+
+            public DateTime? proChosenDate { get; set; }
+
+            public DateTime? proVolHourDates { get; set; }
         }
     }
 }
