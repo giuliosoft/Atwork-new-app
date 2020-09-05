@@ -33,10 +33,10 @@
         </PancakeControl:PancakeView>-->
         <PancakeControl:PancakeView BackgroundColor="{StaticResource LightBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" CornerRadius="20" Margin="20,10,20,10">
             <AbsoluteLayout HorizontalOptions="FillAndExpand">
-                <PancakeControl:PancakeView x:Name="GreenView" IsVisible="true" BackgroundColor="{DynamicResource AccentColor}" WidthRequest="{DynamicResource DeviceWidthFooterTab}"  AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HasShadow="False" CornerRadius="20" >
+                <PancakeControl:PancakeView x:Name="GreenView" IsVisible="true" BackgroundColor="{DynamicResource AccentColor}" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40" HorizontalOptions="FillAndExpand" VerticalOptions="Start" HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="10"/>
                 </PancakeControl:PancakeView>
-                <PancakeControl:PancakeView  x:Name="NewsLabel" Grid.Column="0" WidthRequest="{DynamicResource DeviceWidthFooterTab}"  AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40"  HasShadow="False" CornerRadius="20" >
+                <PancakeControl:PancakeView  x:Name="NewsLabel" Grid.Column="0" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40"  HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
                         <Label Text="{x:Static Multilingual:AppResources.NewsFooterText}" Style="{StaticResource FooterTextLabelStyle}"/>
                         <ContentView.GestureRecognizers>
@@ -44,7 +44,7 @@
                         </ContentView.GestureRecognizers>
                     </ContentView>
                 </PancakeControl:PancakeView>
-                <PancakeControl:PancakeView x:Name="ActivityLabel" Grid.Column="1" WidthRequest="{DynamicResource DeviceWidthFooterTab}" AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40" HasShadow="False" CornerRadius="20" >
+                <PancakeControl:PancakeView x:Name="ActivityLabel" Grid.Column="1" AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Margin="0" Padding="0" HeightRequest="40" HasShadow="False" CornerRadius="20" >
                     <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10" >
                         <Label Text="{x:Static Multilingual:AppResources.ActivitiesFooterText}" Style="{StaticResource FooterTextLabelStyle}"/>
                         <ContentView.GestureRecognizers>
