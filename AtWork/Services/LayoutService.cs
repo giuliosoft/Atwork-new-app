@@ -80,6 +80,7 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth25"] = sizeConvertAsPerDevice(25);
             App.Current.Resources["HeightWidth28"] = sizeConvertAsPerDevice(28);
             App.Current.Resources["HeightWidth30"] = sizeConvertAsPerDevice(30);
+            App.Current.Resources["HeightWidth34"] = sizeConvertAsPerDevice(34);
             App.Current.Resources["HeightWidth35"] = sizeConvertAsPerDevice(35);
             App.Current.Resources["HeightWidth40"] = sizeConvertAsPerDevice(40);
             App.Current.Resources["HeightWidth50"] = sizeConvertAsPerDevice(50);
@@ -290,13 +291,14 @@ namespace AtWork.Services
 
             App.Current.Resources["PancakeViewCornerRadius10"] = PancakeViewSizeConvertAsPerDevice(10);
             App.Current.Resources["PancakeViewCornerRadius15"] = PancakeViewSizeConvertAsPerDevice(15);
+            App.Current.Resources["PancakeViewCornerRadius17"] = PancakeViewSizeConvertAsPerDevice(17);
             App.Current.Resources["PancakeViewCornerRadius30"] = PancakeViewSizeConvertAsPerDevice(30);
 
             #endregion
 
             #region AbsoluteLayout DeviceWidthFooterTab
 
-            App.Current.Resources["DeviceWidthFooterTab"] = DeviceDisplay.MainDisplayInfo.Width/4-20;
+            App.Current.Resources["DeviceWidthFooterTab"] = DeviceDisplay.MainDisplayInfo.Width / 4 - 20;
 
             #endregion
         }

@@ -142,17 +142,17 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <StackLayout IsVisible="{Binding JoinActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,10" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                    <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
+            <StackLayout IsVisible="{Binding JoinActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="{DynamicResource MarginPadding15_10_15_10}" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="{DynamicResource HeightWidth34}" CornerRadius="{DynamicResource PancakeViewCornerRadius17}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="{DynamicResource MarginPadding05}"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoToJoinActivityPopupCommand}"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout IsVisible="{Binding UnSubscribeActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,5" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                    <Label Text="{x:Static Multilingual:AppResources.UnSubscribeFromActivtyText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
+            <StackLayout IsVisible="{Binding UnSubscribeActivity}" BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="{DynamicResource MarginPadding15_10_15_10}" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="{DynamicResource HeightWidth34}" CornerRadius="{DynamicResource PancakeViewCornerRadius17}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <Label Text="{x:Static Multilingual:AppResources.UnSubscribeFromActivtyText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="{DynamicResource MarginPadding05}"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GoToUnsubscribeActivityPopupCommand}"/>

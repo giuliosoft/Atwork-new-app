@@ -238,7 +238,7 @@
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
             <Style x:Key="JoinActivityLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
                 <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
