@@ -128,10 +128,13 @@ namespace AtWork.ViewModels
                 await ShowLoader();
                 SessionService.ActivityPostInputData.proTitle = ActivityTitle;
                 SessionService.ActivityPostInputData.proDescription = ActivityDescription;
-                //SessionService.ActivityPostInputData.proAddress1 = ActivityAddress; 
+                SessionService.ActivityPostInputData.proAddress1 = ActivityAddress;
                 SessionService.ActivityPostInputData.proCity = ActivityCity;
                 SessionService.ActivityPostInputData.proCountry = ActivityCountry;
                 SessionService.ActivityPostInputData.proCostCoveredEmployee = ActivityPrice;
+                SessionService.ActivityPostInputData.proAddActivity_StartTime = SelectedTime.ToString("hh\\:mm");
+                SessionService.ActivityPostInputData.proAddActivityDate = SelectedDate;
+
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("isFromActivity", true);
                 await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage), navigationParams);

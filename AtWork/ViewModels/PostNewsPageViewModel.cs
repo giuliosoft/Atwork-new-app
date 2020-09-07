@@ -134,17 +134,24 @@ namespace AtWork.ViewModels
                     BaseResponse<string> serviceResult = null;
                     ActivityListModel input = new ActivityListModel();
                     input.coUniqueID = SettingsService.LoggedInUserData?.coUniqueID;
-                    
+                    input.volUniqueID = SettingsService.LoggedInUserData?.id.ToString();
                     input.proTitle = SessionService.ActivityPostInputData.proTitle;
                     input.proDescription = SessionService.ActivityPostInputData.proDescription;
                     input.proAddress1 = SessionService.ActivityPostInputData.proAddress1;
                     input.proCity = SessionService.ActivityPostInputData.proCity;
                     input.proCountry = SessionService.ActivityPostInputData.proCountry;
-                    //input.proAddActivity_StartTime = "9am";
-                    //input.proAddActivityDate = "";
+                    input.proAddActivity_StartTime = SessionService.ActivityPostInputData.proAddActivity_StartTime;
+                    input.proAddActivityDate = SessionService.ActivityPostInputData.proAddActivityDate;
                     input.proPublishedDate = DateTime.Now;
+                    input.proStatus = "Ongoing";
                     input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
-                    input.proAudience = NewsPrivacy;
+                    input.proCategoryName = "#gettogether";
+                    if (NewsPrivacy.ToLower() == "everyone"){
+                        input.proAudience = "Post to everybody";
+                    }
+                    else {
+                        input.proAudience = "Post to my group";
+                    }
                     serviceResult = await ActivityService.PostActivityFeedEdit(input, SessionService.NewsPostImageFiles);
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {

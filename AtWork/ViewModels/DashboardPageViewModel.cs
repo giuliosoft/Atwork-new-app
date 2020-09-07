@@ -604,7 +604,7 @@ namespace AtWork.ViewModels
                                     arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                     nimgUrlList.All((Aarg) =>
                                     {
-                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg;
+                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg.Trim();
                                         arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = ImageSource.FromUri(new Uri(imageUri)), ActivityImageUrl = imageUri }); ;
                                         return true;
                                     });
