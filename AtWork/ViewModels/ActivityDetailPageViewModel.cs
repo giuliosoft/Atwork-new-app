@@ -311,6 +311,7 @@ namespace AtWork.ViewModels
                 if (serviceResultBody != null)
                 {
                     ActivityDetails = serviceResultBody;
+                    ActivityDetails.proAddActivity_Website = "www.culturetoday.com";
                     Location = serviceResultBody?.proLocation + ", " + serviceResultBody?.proCountry;
                     ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
                         ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
+             BackgroundColor="{DynamicResource HeaderBackgroundColor}"
+             x:Class="AtWork.Views.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
+            <ScrollView>
+                <StackLayout>
+                    <ffImageLoading:CachedImage Margin="0,35,0,0" Grid.Column="0" Source="http://app.atwork.ai/newsposts/59324_1.png" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                        <ffImageLoading:CachedImage.Transformations>
+                            <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                        </ffImageLoading:CachedImage.Transformations>
+                    </ffImageLoading:CachedImage>
+                    <Label Margin="0,10,0,0" Text="Carron Martin" Style="{StaticResource PastActivityHeaderLabelStyle}"/>
+                    <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.MyStatsText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
+                    <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.DepartmentText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
+                    <Label Text="Marheting and Saled" Style="{StaticResource ProfileHeaderLabelStyle}"/>
+                    <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.JobTitleText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
+                    <Label Text="Sales consultant" Style="{StaticResource ProfileHeaderLabelStyle}"/>
+                    <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.ClassText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
+                    <Label Text="First year" Style="{StaticResource ProfileHeaderLabelStyle}"/>
+                    <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.AboutMeText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
+                    <Label Margin="50,0,50,0" Text="Hi, I am Martin and I am living in Zurich. In my job i am supporting as product manager. On weekends I am mainly in the nature for camping and hiking. Get in touch to get to know more about me!" Style="{StaticResource AboutMeDetailLabelStyle}"/>
+                    <StackLayout VerticalOptions="EndAndExpand" Margin="0,20,0,0">
+                        <StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
+                            <Label Margin="0,7,0,7" Text="{x:Static Multilingual:AppResources.SettingsText}" Style="{StaticResource SettingsLabelStyle}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SettingCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
+                            <Label Margin="0,7,0,7" Text="{x:Static Multilingual:AppResources.LogoutText}" Style="{StaticResource SettingsLabelStyle}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

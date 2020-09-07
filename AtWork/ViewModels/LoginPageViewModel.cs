@@ -100,7 +100,7 @@ namespace AtWork.ViewModels
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));
                         await ClosePopup();
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(ProfilePage)}", null);
                         return;
                     }
                     else
