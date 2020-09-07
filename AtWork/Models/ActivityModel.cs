@@ -60,6 +60,7 @@ namespace AtWork.Models
             public string proAddActivity_AdditionalInfo { get; set; }
             public string proAddActivity_CoordinatorEmail { get; set; }
             public DateTime? proPublishedDate { get; set; }
+            public string volUniqueID { get; set; }
             public string Member { get; set; }
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
