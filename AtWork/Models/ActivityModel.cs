@@ -61,6 +61,10 @@ namespace AtWork.Models
             public string proAddActivity_CoordinatorEmail { get; set; }
             public DateTime? proPublishedDate { get; set; }
             public string Member { get; set; }
+            public string StartDate { get; set; }
+            public string EndDate { get; set; }
+            public string DataType { get; set; }
+
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
 
@@ -180,6 +184,7 @@ namespace AtWork.Models
 
             public DateTime? proVolHourDates { get; set; }
         }
+
         public class ActivityJoinedMemberListResponse
         {
             public bool Flag { get; set; }

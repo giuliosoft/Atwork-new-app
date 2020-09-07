@@ -61,5 +61,7 @@
 	<string>Light</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app needs access to calendar.</string>
 </dict>
 </plist>

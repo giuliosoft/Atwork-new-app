@@ -10,13 +10,16 @@ namespace AtWork.Services
 {
     public class ActivityService : BaseService
     {
-        public static async Task<BaseResponse<string>> GetActivityList(string id)
+        public static async Task<BaseResponse<string>> GetActivityList(string id, string categoryId = "")
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
                 var activityListServiceUrl = ConfigService.BaseServiceURL + ConfigService.ActivityListServiceURL;
-                resultModel = await GetResponse<string>($"{activityListServiceUrl}{id}", true);
+                var paramServiceUrl = $"{activityListServiceUrl}{id}";
+                if (!string.IsNullOrEmpty(categoryId)) { paramServiceUrl += "/" + categoryId; }
+
+                resultModel = await GetResponse<string>(paramServiceUrl, true);
             }
             catch (Exception ex)
             {
@@ -74,7 +77,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        
+
         public static async Task<BaseResponse<string>> UnSubscribeActivity(int id)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();

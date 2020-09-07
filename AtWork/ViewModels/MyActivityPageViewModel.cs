@@ -85,8 +85,12 @@ namespace AtWork.ViewModels
                 {
                     var navigationParams = new NavigationParameters();
                     navigationParams.Add("SelectedActivityID", selectedActivityPost.proUniqueID);
-                    navigationParams.Add("SelectedActivityImages", selectedActivityPost.ActivityCarouselList);                    
+                    navigationParams.Add("SelectedActivityImages", selectedActivityPost.ActivityCarouselList);
                     await _navigationService.NavigateAsync(nameof(ActivityDetailPage), navigationParams);
+                }
+                else
+                {
+                    await _navigationService.NavigateAsync(nameof(YourFeedbackPage), null);
                 }
             }
             catch (Exception ex)
