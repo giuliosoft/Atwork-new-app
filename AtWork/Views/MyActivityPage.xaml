@@ -239,9 +239,9 @@
                     </CustomControl:RepeaterView>
                 </StackLayout>
             </ScrollView>-->
-            <StackLayout BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="15,10,15,10" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="34" CornerRadius="17" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
-                    <Label Text="{x:Static Multilingual:AppResources.CreateAGetTogetherText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="5"/>
+            <StackLayout BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="{DynamicResource MarginPadding15_10_15_10}" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="45" CornerRadius="20" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <Label Text="{x:Static Multilingual:AppResources.CreateAGetTogetherText}" Style="{StaticResource JoinActivityLabelStyle}" Padding="{DynamicResource MarginPadding05}"/>
                 </PancakeControl:PancakeView>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding GotoCreateActivityCommand}"/>
