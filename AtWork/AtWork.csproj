@@ -26,6 +26,7 @@
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.1" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
+    <PackageReference Include="CClarke.Plugin.Calendars" Version="1.0.14" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

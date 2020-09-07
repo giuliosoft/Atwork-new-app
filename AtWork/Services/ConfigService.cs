@@ -5,8 +5,8 @@ namespace AtWork.Services
     {
 
         //*****Local URL*****//
-        //public static string BaseServerURL = "http://d3a247eeba49.ngrok.io";
-        //public static string BaseServiceURL = "http://d3a247eeba49.ngrok.io/api";
+        //public static string BaseServerURL = "http://a3b41c661f73.ngrok.io";
+        //public static string BaseServiceURL = "http://a3b41c661f73.ngrok.io/api";
         //
 
         //*****LIVE URL******//

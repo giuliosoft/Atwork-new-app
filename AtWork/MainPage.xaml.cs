@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.Calendars;
+using Plugin.Calendars.Abstractions;
 using Xamarin.Forms;
 
 namespace AtWork
@@ -16,6 +18,21 @@ namespace AtWork
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            //var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+            //var defaultCalendar = calendars.Where((x) => x.AccountName == "Default" && x.CanEditEvents).FirstOrDefault();
+            //var calendarEvent = new CalendarEvent
+            //{
+            //    Name = "AtWork Activity Event",
+            //    Start = DateTime.Now,
+            //    End = DateTime.Now.AddHours(1),
+            //    Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+            //};
+            //await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
         }
     }
 }

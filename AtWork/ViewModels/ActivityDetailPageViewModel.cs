@@ -14,6 +14,10 @@ using AtWork.Models;
 using AtWork.Views;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using Plugin.Calendars;
+using System.Collections.Generic;
+using Plugin.Calendars.Abstractions;
+using System.Linq;
 
 namespace AtWork.ViewModels
 {
@@ -189,6 +193,7 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
         async Task LinkClicked()
         {
             try
@@ -204,6 +209,7 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.StackTrace);
             }
         }
+
         async Task GoToToastMessage()
         {
             try
@@ -247,15 +253,15 @@ namespace AtWork.ViewModels
                             return;
                         }
                         await ShowLoader();
-                        //var serviceResult = await ActivityService.UnSubscribeActivity(ActivityDetails.JoinActivityId);
-                        //if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
-                        //{
-                        //    SessionService.IsShowActivitiesIntial = true;
-                        //    await _navigationService.NavigateAsync(nameof(DashboardPage));
-                        //}
+                        var serviceResult = await ActivityService.UnSubscribeActivity(ActivityDetails.JoinActivityId);
+                        if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                        {
+                            SessionService.IsShowActivitiesIntial = true;
+                            await _navigationService.NavigateAsync(nameof(DashboardPage));
+                        }
                         await ClosePopup();
-                        SessionService.IsShowActivitiesIntial = true;
-                        await _navigationService.NavigateAsync(nameof(DashboardPage));
+                        //SessionService.IsShowActivitiesIntial = true;
+                        //await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
                     catch (Exception ex)
                     {
@@ -276,51 +282,112 @@ namespace AtWork.ViewModels
         {
             try
             {
-                JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
-                JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
-                joinactivityPopupViewModel.JoinActivityEvent += async (object sender, object SelectedObj) =>
+                var tempDtList = new ObservableCollection<JoinActivityDatesModel>();
+                if (!string.IsNullOrEmpty(ActivityDetails.StartDate))
                 {
-                    try
+                    string dateStr = ActivityDetails.StartDate;
+                    List<string> dateList = new List<string>();
+                    if (!string.IsNullOrEmpty(dateStr))
                     {
-                        if (!await CheckConnectivity())
+                        if (dateStr.Contains(","))
                         {
-                            return;
+                            dateList = dateStr.Split(',').ToList();
                         }
-                        //await ShowLoader();
-                        //JoinActivityInputModel inputModel = new JoinActivityInputModel();
-                        ////inputModel.ActivityID = ActivityDetails.id;
-                        //inputModel.coUniqueID = ActivityDetails.coUniqueID;
-                        //inputModel.proUniqueID = ActivityDetails.proUniqueID;
-                        //inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                        //inputModel.proStatus = "Active";
-                        //var serviceResult = await ActivityService.JoinActivity(inputModel);
-                        //if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
-                        //{
-                        //    if (serviceResult.Body != null)
-                        //    {
-                        //        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
-                        //        if (serviceBody != null)
-                        //        {
-                        //            if (serviceBody.Flag)
-                        //            {
-                        //                SessionService.IsShowActivitiesIntial = true;
-                        //                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
-                        //            }
-                        //        }
-                        //    }
-                        //}
-                        //await ClosePopup();
-                        SessionService.IsShowActivitiesIntial = true;
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
+                        else
+                        {
+                            dateList.Add(dateStr);
+                        }
                     }
-                    catch (Exception ex)
+                    if (dateList != null && dateList.Count > 0)
                     {
-                        await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        int i = 1;
+                        dateList.All((dtArg) =>
+                        {
+                            DateTime dtVal = DateTime.Now;
+                            bool parsed = DateTime.TryParse(dtArg, out dtVal);
+                            if (parsed)
+                            {
+                                string dtStrVal = dtVal.ToString("d MMM yyyy");
+                                tempDtList.Add(new JoinActivityDatesModel() { Id = i, DisplayDateString = dtStrVal, ActivityDate = dtVal, IsSelected = false });
+                                i++;
+                            }
+                            return true;
+                        });
                     }
-                };
-                JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
-                await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
+                }
+
+                if (ActivityDetails.DataType.Equals(TextResources.OnDemandCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (tempDtList != null && tempDtList.Count > 0)
+                    {
+                        DateTime dateToAddInCalendar = tempDtList[0].ActivityDate;
+                        var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+
+                        var calendarEvent = new CalendarEvent
+                        {
+                            Name = "AtWork Activity Event",
+                            Start = dateToAddInCalendar,
+                            End = dateToAddInCalendar.AddHours(1),
+                            Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+                        };
+                        await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+                    }
+
+                    JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                    //inputModel.ActivityID = ActivityDetails.id;
+                    inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                    inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                    inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                    inputModel.proStatus = "Active";
+
+                    await CallJoinActivityService(inputModel);
+                }
+                else if (ActivityDetails.DataType.Equals(TextResources.RecurringCategoryText, StringComparison.InvariantCultureIgnoreCase) || ActivityDetails.DataType.Equals(TextResources.RegularCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
+                    JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
+
+                    if (tempDtList != null && tempDtList.Count > 0)
+                    {
+                        joinactivityPopupViewModel.ActivityJoinDates = new ObservableCollection<JoinActivityDatesModel>(tempDtList);
+                    }
+
+                    joinactivityPopupViewModel.JoinActivityEvent += async (object sender, JoinActivityDatesModel SelectedObj) =>
+                    {
+                        try
+                        {
+                            if (SelectedObj != null)
+                            {
+                                if (!await CheckConnectivity())
+                                {
+                                    return;
+                                }
+
+                                JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                                //inputModel.ActivityID = ActivityDetails.id;
+                                inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                                inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                                inputModel.proStatus = "Active";
+                                inputModel.proVolHourDates = ActivityDetails.proAddActivityDate;
+                                inputModel.proChosenDate = SelectedObj.ActivityDate;
+
+                                await CallJoinActivityService(inputModel);
+                            }
+                            else
+                            {
+                                await DisplayAlertAsync(AppResources.JoinActivityAlertText);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
+                    };
+                    JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
+                    await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
+                }
             }
             catch (Exception ex)
             {
@@ -358,6 +425,36 @@ namespace AtWork.ViewModels
             {
                 Debug.WriteLine(ex.Message);
                 await ClosePopup();
+            }
+        }
+
+        async Task CallJoinActivityService(JoinActivityInputModel inputModel)
+        {
+            try
+            {
+                await ShowLoader();
+                var serviceResult = await ActivityService.JoinActivity(inputModel);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null)
+                        {
+                            if (serviceBody.Flag)
+                            {
+                                SessionService.IsShowActivitiesIntial = true;
+                                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
+                            }
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
             }
         }
         #endregion

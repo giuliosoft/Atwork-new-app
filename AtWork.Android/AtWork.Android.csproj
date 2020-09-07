@@ -95,6 +95,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor">
       <Version>18.1.0.42</Version>
     </PackageReference>
+    <PackageReference Include="CClarke.Plugin.Calendars">
+      <Version>1.0.14</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

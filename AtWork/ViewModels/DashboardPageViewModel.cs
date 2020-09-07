@@ -26,16 +26,13 @@ namespace AtWork.ViewModels
         public DashboardPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             Activitycollectionlist.Add(new ActivityItems() { title = AppResources.AllCategoriesText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.SportsText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.EducationsText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CultureText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CompanyEventsText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.GetTogetherText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText, categoryId = TextResources.CorpVolID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.SportsText, categoryId = TextResources.SportsID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.EducationsText, categoryId = TextResources.EducationID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CultureText, categoryId = TextResources.CultureID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CompanyEventsText, categoryId = TextResources.CompEventsID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.GetTogetherText, categoryId = TextResources.GetTogetherID });
 
-            //Activitylist.Add(new ActivityItems() { title = "All categories" });
-            //Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
-            //Activitylist.Add(new ActivityItems() { title = "Education" });
             //NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
             //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             FooterNavigationCommand = DashboardFooterNavigationCommand;
@@ -61,6 +58,7 @@ namespace AtWork.ViewModels
         bool _isBusyInActivityBinding = false;
         bool _isRefreshingNewsFirstTime = true;
         bool _isRefreshingActivityFirstTime = true;
+        private string SelectedActivityCategoryID = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -215,6 +213,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SelectedActivityCategoryID = selectedCategory.categoryId;
                 Activitycollectionlist.All((categories) =>
                 {
                     if (selectedCategory.title == categories.title)
@@ -227,6 +226,7 @@ namespace AtWork.ViewModels
                     }
                     return true;
                 });
+                await GetActivityList(SelectedActivityCategoryID);
             }
             catch (Exception ex)
             {
@@ -549,7 +549,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetActivityList()
+        async Task GetActivityList(string categoryId = "")
         {
             try
             {
@@ -563,7 +563,15 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID);
+                BaseResponse<string> serviceResult = null;
+                if (string.IsNullOrEmpty(categoryId))
+                {
+                    serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID);
+                }
+                else
+                {
+                    serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID, SelectedActivityCategoryID);
+                }
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<ActivityResponse>(serviceResult.Body);
@@ -683,6 +691,7 @@ namespace AtWork.ViewModels
 
     public class ActivityItems : BindableBase
     {
+        public string categoryId { get; set; }
         public string title { get; set; }
 
         private bool _UnderlineIsVisible;
