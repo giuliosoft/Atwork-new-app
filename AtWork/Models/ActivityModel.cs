@@ -69,9 +69,9 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (string.IsNullOrEmpty(proLocation))
+                    if (string.IsNullOrEmpty(proAddress1))
                         return string.Empty;
-                    return proLocation;
+                    return proAddress1;
                 }
             }
 
@@ -96,9 +96,14 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (string.IsNullOrEmpty(proAddActivity_StartTime) || string.IsNullOrEmpty(proAddActivity_EndTime))
+                    if (string.IsNullOrEmpty(proAddActivity_StartTime) && string.IsNullOrEmpty(proAddActivity_EndTime))
                         return string.Empty;
-                    return proAddActivity_StartTime + " - " + proAddActivity_EndTime;
+                    else if (proAddActivity_StartTime != null && proAddActivity_StartTime != string.Empty)
+                        return proAddActivity_StartTime;
+                    else if (proAddActivity_EndTime != null && proAddActivity_EndTime != string.Empty)
+                        return proAddActivity_EndTime;
+                    else
+                        return proAddActivity_StartTime + " - " + proAddActivity_EndTime;
                 }
             }
             public bool _ShowPastActivity;

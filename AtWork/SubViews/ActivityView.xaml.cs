@@ -12,9 +12,19 @@ namespace AtWork.SubViews
             InitializeComponent();
         }
 
-        void Activitycollectionlist_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        void activityImageCarousel_PositionChanged(System.Object sender, Xamarin.Forms.PositionChangedEventArgs e)
         {
-            string current = e.CurrentSelection.FirstOrDefault() as string;//(e.CurrentSelection.FirstOrDefault() as Monkey)?.Name;
+            var cView = sender as CarouselView;
+            var pView = cView.Parent.Parent as Grid;
+            var children = pView.Children;
+            foreach (var c in children)
+            {
+                if (c.GetType().Name == nameof(IndicatorView))
+                {
+                    var indcView = c as IndicatorView;
+                    indcView.Position = cView.Position;
+                }
+            }
         }
     }
 }
