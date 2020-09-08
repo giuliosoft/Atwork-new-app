@@ -255,7 +255,7 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="GetTogetherText" xml:space="preserve">
         <value>Get-together</value>
-    </data> 
+    </data>
     <data name="ActivityTitle" xml:space="preserve">
         <value>Activity Title...</value>
     </data>
@@ -285,7 +285,7 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="ActivityCountryAlertText" xml:space="preserve">
         <value>Enter Country!</value>
-    </data> 
+    </data>
     <data name="AddaCoverForYour" xml:space="preserve">
         <value>Add a cover for your</value>
     </data>
@@ -396,5 +396,17 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="JoinActivityAlertText" xml:space="preserve">
         <value>Select date to join activity!</value>
+    </data>
+    <data name="FeedbackText" xml:space="preserve">
+        <value>Take a moment to think about your completed activity. Your feedback is important. Thank you for answering the following questions.</value>
+    </data>
+    <data name="FeedbackMorePlaceholderText" xml:space="preserve">
+        <value>Tell us more...</value>
+    </data>
+    <data name="LikeMostPlaceholderText" xml:space="preserve">
+        <value>Describe it in a few sentences...</value>
+    </data>
+    <data name="AnythingElsePlaceholderText" xml:space="preserve">
+        <value>Let us know here...</value>
     </data>
 </root>

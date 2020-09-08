@@ -70,23 +70,7 @@ namespace AtWork.ViewModels
         string SelectedActivityID = string.Empty;
         #endregion
 
-        #region Public Properties        
-        //public string ActivityTitle
-        //{
-        //    get { return _ActivityTitle; }
-        //    set { SetProperty(ref _ActivityTitle, value); }
-        //}
-        //public string ActivityDescription
-        //{
-        //    get { return _ActivityDescription; }
-        //    set { SetProperty(ref _ActivityDescription, value); }
-        //}
-        //public string CategoryName
-        //{
-        //    get { return _CategoryName; }
-        //    set { SetProperty(ref _CategoryName, value); }
-        //}
-
+        #region Public Properties
         public string Location
         {
             get { return _Location; }
@@ -108,51 +92,6 @@ namespace AtWork.ViewModels
             get { return _IsShowCategotyType; }
             set { SetProperty(ref _IsShowCategotyType, value); }
         }
-        //public string MinGroupSize
-        //{
-        //    get { return _MinGroupSize; }
-        //    set { SetProperty(ref _MinGroupSize, value); }
-        //}
-        //public string MaxGroupSize
-        //{
-        //    get { return _MaxGroupSize; }
-        //    set { SetProperty(ref _MaxGroupSize, value); }
-        //}
-        //public string CostCoveredByCompany
-        //{
-        //    get { return _CostCoveredByCompany; }
-        //    set { SetProperty(ref _CostCoveredByCompany, value); }
-        //}
-        //public string CostCoveredByEmployee
-        //{
-        //    get { return _CostCoveredByEmployee; }
-        //    set { SetProperty(ref _CostCoveredByEmployee, value); }
-        //}
-        //public string ActivityLanguage
-        //{
-        //    get { return _ActivityLanguage; }
-        //    set { SetProperty(ref _ActivityLanguage, value); }
-        //}
-        //public string SpecialRequirement
-        //{
-        //    get { return _SpecialRequirement; }
-        //    set { SetProperty(ref _SpecialRequirement, value); }
-        //}
-        //public string OrganisarName
-        //{
-        //    get { return _OrganisarName; }
-        //    set { SetProperty(ref _OrganisarName, value); }
-        //}
-        //public string OrganisarAddress
-        //{
-        //    get { return _OrganisarAddress; }
-        //    set { SetProperty(ref _OrganisarAddress, value); }
-        //}
-        //public string AdditionalInfo
-        //{
-        //    get { return _AdditionalInfo; }
-        //    set { SetProperty(ref _AdditionalInfo, value); }
-        //}
 
         public string Prop
         {
@@ -252,16 +191,23 @@ namespace AtWork.ViewModels
                         {
                             return;
                         }
+                        JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                        inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                        inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                        inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                        inputModel.proStatus = TextResources.InActiveStatus;
+                        DateTime dtVal = DateTime.Now;
+                        bool parsed = DateTime.TryParse(ActivityDetails.proVolHourDates, out dtVal);
+                        if (parsed)
+                            inputModel.proVolHourDates = dtVal;
                         await ShowLoader();
-                        var serviceResult = await ActivityService.UnSubscribeActivity(ActivityDetails.JoinActivityId);
+                        var serviceResult = await ActivityService.UnSubscribeActivity(inputModel);
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
                             SessionService.IsShowActivitiesIntial = true;
                             await _navigationService.NavigateAsync(nameof(DashboardPage));
                         }
                         await ClosePopup();
-                        //SessionService.IsShowActivitiesIntial = true;
-                        //await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
                     catch (Exception ex)
                     {
@@ -339,7 +285,7 @@ namespace AtWork.ViewModels
                     inputModel.coUniqueID = ActivityDetails.coUniqueID;
                     inputModel.proUniqueID = ActivityDetails.proUniqueID;
                     inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                    inputModel.proStatus = "Active";
+                    inputModel.proStatus = TextResources.ActiveStatus;
 
                     await CallJoinActivityService(inputModel);
                 }
@@ -369,7 +315,7 @@ namespace AtWork.ViewModels
                                 inputModel.coUniqueID = ActivityDetails.coUniqueID;
                                 inputModel.proUniqueID = ActivityDetails.proUniqueID;
                                 inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                                inputModel.proStatus = "Active";
+                                inputModel.proStatus = TextResources.ActiveStatus;
                                 inputModel.proVolHourDates = ActivityDetails.proAddActivityDate;
                                 inputModel.proChosenDate = SelectedObj.ActivityDate;
 

@@ -5,14 +5,19 @@
              xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              xmlns:helpers="clr-namespace:AtWork.Helpers"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"  
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false"
              ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
              BackgroundColor="{DynamicResource PosterWhiteColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -49,44 +54,11 @@
                     </PancakeControl:PancakeView>
                     <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="10" Margin="20,0,20,0" >
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
-                            <Label Text="Take a moment to think about your completed activity. Your feedback is important. Thank you for answering the following questions." Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
+                            <Label Text="{x:Static Multilingual:AppResources.FeedbackText}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                     <Label Text="{x:Static Multilingual:AppResources.OverallExperienceText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <!--<CustomControl:RatingSlider x:Name="positionSlider" HorizontalOptions="FillAndExpand" ItemSpacing="0" SelectedPosition="0" ItemCornerRadius="20" NumberOfItems="5" Margin="50,20,50,30">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                            <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="30,0,20,0"/>
-                            <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                            <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                            <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                            <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}"/>
-                        </StackLayout>
-                        <CollectionView x:Name="PostitionSelected" ItemsSource="{Binding ImageList}" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="{DynamicResource OffWhiteColor}">
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout Orientation="Horizontal"/>
-                            </CollectionView.ItemsLayout>
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="{Binding RatingImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="20,0,20,0"/>
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                            <CollectionView.GestureRecognizers>
-                                <TapGestureRecognizer />
-                            </CollectionView.GestureRecognizers>
-                        </CollectionView>
-                        <CustomControl:RepeaterView x:Name="PostitionSelected" ItemsSource="{Binding ImageList}" HorizontalOptions="FillAndExpand" HeightRequest="40" BackgroundColor="{DynamicResource OffWhiteColor}">
-                                <CustomControl:RepeaterView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                            <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="{Binding RatingImage}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="20,0,20,0"/>
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </CustomControl:RepeaterView.ItemTemplate>
-                            </CustomControl:RepeaterView>
-                    </CustomControl:RatingSlider>-->
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,20,50,30" >
+                    <!--<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,20,50,30" >
                         <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="30,0,20,0"/>
                         <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
                         <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
@@ -110,24 +82,109 @@
                         <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
                         <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
                         <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}"/>
-                    </StackLayout>
+                    </StackLayout>-->
+                    <Grid ColumnDefinitions="60,60,60,60,60" ColumnSpacing="0" HeightRequest="70" Padding="0" Margin="50,0,50,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="25" WidthRequest="{Binding RatingPancakeWidth}" HorizontalOptions="StartAndExpand" HeightRequest="50" BackgroundColor="{StaticResource DarkGreenColor}">
+                            <!--<StackLayout></StackLayout>-->
+                        </PancakeControl:PancakeView>
+                        <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <CustomControl:CustomImage Source="heart" IsVisible="{Binding Rate1IsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                            <CustomControl:CustomImage IsVisible="{Binding Rate1IsVisible, Converter={StaticResource InverseConverter}}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                            <Grid RowDefinitions="*" ColumnDefinitions="30,30" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateOneHalf}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateOneFull}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <CustomControl:CustomImage Source="heart" IsVisible="{Binding Rate2IsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                            <CustomControl:CustomImage IsVisible="{Binding Rate2IsVisible, Converter={StaticResource InverseConverter}}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                            <Grid RowDefinitions="*" ColumnDefinitions="30,30" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateTwoHalf}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateTwoFull}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <CustomControl:CustomImage Source="heart" IsVisible="{Binding Rate3IsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                            <CustomControl:CustomImage IsVisible="{Binding Rate3IsVisible, Converter={StaticResource InverseConverter}}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                            <Grid RowDefinitions="*" ColumnDefinitions="30,30" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateThreeHalf}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateThreeFull}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="3" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <CustomControl:CustomImage Source="heart" IsVisible="{Binding Rate4IsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                            <CustomControl:CustomImage IsVisible="{Binding Rate4IsVisible, Converter={StaticResource InverseConverter}}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                            <Grid RowDefinitions="*" ColumnDefinitions="30,30" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFourHalf}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFourFull}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="4" HorizontalOptions="Fill" VerticalOptions="Fill">
+                            <CustomControl:CustomImage Source="heart" IsVisible="{Binding Rate5IsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                            <CustomControl:CustomImage IsVisible="{Binding Rate5IsVisible, Converter={StaticResource InverseConverter}}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                            <Grid RowDefinitions="*" ColumnDefinitions="30,30" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFiveHalf}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFiveFull}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <Label Text="{x:Static Multilingual:AppResources.HowDidYouFeelDuringTheActivityText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="70,20,70,0"/>
-                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  Padding="65,0,65,0" >
-                        <FlexLayout x:Name="flexView" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding FeedBackList}" Direction="Row"
-                                    Wrap="Wrap" JustifyContent="SpaceAround" AlignContent="Center" BackgroundColor="{StaticResource OffWhiteColor}">
+                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame HasShadow="False" BorderColor="{StaticResource DarkGreenShade}" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="15" Padding="10,5" Margin="0,5,0,5">
-                                        <Frame.Triggers>
-                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="Frame" Value="True">
+                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkGreenShade}" BorderThickness="2" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="30" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <PancakeControl:PancakeView.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
                                                 <Setter Property="BackgroundColor" Value="{StaticResource DarkGreenShade}" />
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="Frame" Value="False">
-                                                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}" />
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
                                             </DataTrigger>
-                                        </Frame.Triggers>
-                                        <Label Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" >
+                                        </PancakeControl:PancakeView.Triggers>
+                                        <Label Text="{Binding Title}" Style="{StaticResource FeedbackChipLabelStyle}" LineBreakMode="NoWrap">
                                             <Label.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
                                                     <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
@@ -137,68 +194,30 @@
                                                 </DataTrigger>
                                             </Label.Triggers>
                                         </Label>
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference flexView}, Path=BindingContext.SelectedTextCommand}" CommandParameter="{Binding .}" />
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
+                                        <PancakeControl:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference feelList}, Path=BindingContext.ActivityFeelingSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </PancakeControl:PancakeView.GestureRecognizers>
+                                    </PancakeControl:PancakeView>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </FlexLayout>
-                    </StackLayout>
-                    <!--<Grid>
-                        <buttons:SfChipGroup
-				            Padding="80,0,80,0">
-                            <buttons:SfChipGroup.ChipLayout>
-                                <FlexLayout x:Name="flexView" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding FeedBackList}" Direction="Row"
-                                    Wrap="Wrap" JustifyContent="SpaceAround" AlignContent="Center" BackgroundColor="{StaticResource OffWhiteColor}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Frame HasShadow="False" BorderColor="{StaticResource DarkGreenShade}" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="15" Padding="10,5" Margin="0,5,0,5">
-                                                <Frame.Triggers>
-                                                    <DataTrigger Binding="{Binding IsSelected}" TargetType="Frame" Value="True">
-                                                        <Setter Property="BackgroundColor" Value="{StaticResource DarkGreenShade}" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding IsSelected}" TargetType="Frame" Value="False">
-                                                        <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}" />
-                                                    </DataTrigger>
-                                                </Frame.Triggers>
-                                                <Label Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" >
-                                                    <Label.Triggers>
-                                                        <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
-                                                            <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
-                                                            <Setter Property="TextColor" Value="{StaticResource DarkGreenShade}" />
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                                <Frame.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference flexView}, Path=BindingContext.SelectedTextCommand}" CommandParameter="{Binding .}" />
-                                                </Frame.GestureRecognizers>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </FlexLayout>
-                            </buttons:SfChipGroup.ChipLayout>
-                        </buttons:SfChipGroup>
-                    </Grid>-->
+                    </Grid>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <Label Text="{x:Static Multilingual:AppResources.WhatNeedsToImproveText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Padding="55,0,55,0" >
-                        <FlexLayout x:Name="flexViewImproveOption" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding FeedBackListImproveList}" Direction="Row"
-                                    Wrap="Wrap" JustifyContent="SpaceAround" AlignContent="Center" BackgroundColor="{StaticResource OffWhiteColor}">
+                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <FlexLayout Grid.Column="0" x:Name="improvementList" BindableLayout.ItemsSource="{Binding FeedBackListImproveList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame HasShadow="False" BorderColor="Green" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="15" Padding="10,5" Margin="0,5,0,5">
-                                        <Frame.Triggers>
-                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="Frame" Value="True">
+                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkGreenShade}" BorderThickness="2" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="30" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <PancakeControl:PancakeView.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
                                                 <Setter Property="BackgroundColor" Value="{StaticResource DarkGreenShade}" />
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="Frame" Value="False">
-                                                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}" />
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
                                             </DataTrigger>
-                                        </Frame.Triggers>
-                                        <Label Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" >
+                                        </PancakeControl:PancakeView.Triggers>
+                                        <Label Text="{Binding Title}" Style="{StaticResource FeedbackChipLabelStyle}" LineBreakMode="NoWrap">
                                             <Label.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
                                                     <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
@@ -208,21 +227,21 @@
                                                 </DataTrigger>
                                             </Label.Triggers>
                                         </Label>
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference flexViewImproveOption}, Path=BindingContext.SelectedImproveTextCommand}" CommandParameter="{Binding .}" />
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
+                                        <PancakeControl:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference improvementList}, Path=BindingContext.ActivityImprovementSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </PancakeControl:PancakeView.GestureRecognizers>
+                                    </PancakeControl:PancakeView>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </FlexLayout>
-                    </StackLayout>
-                    <CustomControl:CustomEditor Placeholder="Tell us more..." Style="{StaticResource FeedBackStyle}" Margin="50,20,20,20"/>
+                    </Grid>
+                    <CustomControl:CustomEditor Placeholder="{x:Static Multilingual:AppResources.FeedbackMorePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,20,20,20"/>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <Label Text="{x:Static Multilingual:AppResources.WhatDidYouLikeMostText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <CustomControl:CustomEditor Placeholder="Describe it in a few sentences..." Style="{StaticResource FeedBackStyle}" Margin="50,15,0,0" HeightRequest="100" />
+                    <CustomControl:CustomEditor Placeholder="{x:Static Multilingual:AppResources.LikeMostPlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,15,0,0" HeightRequest="100" />
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <Label Text="{x:Static Multilingual:AppResources.AnythingElseYouWantToAddText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <CustomControl:CustomEditor Placeholder="Let us know here..." Style="{StaticResource FeedBackStyle}" Margin="50,15,0,15" />
+                    <CustomControl:CustomEditor Placeholder="{x:Static Multilingual:AppResources.AnythingElsePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,15,0,15" />
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkGreenColor}" HeightRequest="30" CornerRadius="25" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="30,20,30,25" Padding="10">
                         <Label Text="{x:Static Multilingual:AppResources.SubmitFeedBackText}" Style="{StaticResource YourFeedBackLabelStyle}" TextColor="{StaticResource WhiteColor}"/>

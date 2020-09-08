@@ -802,5 +802,29 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("JoinActivityAlertText", resourceCulture);
             }
         }
+        
+        internal static string FeedbackText {
+            get {
+                return ResourceManager.GetString("FeedbackText", resourceCulture);
+            }
+        }
+        
+        internal static string FeedbackMorePlaceholderText {
+            get {
+                return ResourceManager.GetString("FeedbackMorePlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string LikeMostPlaceholderText {
+            get {
+                return ResourceManager.GetString("LikeMostPlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string AnythingElsePlaceholderText {
+            get {
+                return ResourceManager.GetString("AnythingElsePlaceholderText", resourceCulture);
+            }
+        }
     }
 }

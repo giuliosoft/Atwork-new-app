@@ -26,6 +26,20 @@ namespace AtWork.Helpers
         public const string EducationID = "cat004";
         public const string CompEventsID = "cat005";
         public const string GetTogetherID = "cat006";
+
+        public const string ActiveStatus = "Active";
+        public const string InActiveStatus = "Inactive";
+
+        public const string RateOneHalf = "OneHalf";
+        public const string RateOneFull = "OneFull";
+        public const string RateTwoHalf = "TwoHalf";
+        public const string RateTwoFull = "TwoFull";
+        public const string RateThreeHalf = "ThreeHalf";
+        public const string RateThreeFull = "ThreeFull";
+        public const string RateFourHalf = "FourHalf";
+        public const string RateFourFull = "FourFull";
+        public const string RateFiveHalf = "FiveHalf";
+        public const string RateFiveFull = "FiveFull";
         #endregion
     }
 }
