@@ -892,5 +892,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ProfilePictureText", resourceCulture);
             }
         }
+        
+        internal static string StartWriting {
+            get {
+                return ResourceManager.GetString("StartWriting", resourceCulture);
+            }
+        }
     }
 }

@@ -441,5 +441,8 @@ Permission Denied. Can not continue, try again.</value>
 	</data>
     <data name="ProfilePictureText" xml:space="preserve">
         <value>Profile picture</value>
+    </data><data name="StartWriting" xml:space="preserve">
+        <value>Start writing...</value>
     </data>
+    
 </root>

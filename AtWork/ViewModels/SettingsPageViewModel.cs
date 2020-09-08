@@ -47,7 +47,7 @@ namespace AtWork.ViewModels
                 }
                 else if (item == AppResources.EditAboutMeText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(AboutMePage));
                 }
                 else if (item == AppResources.ChangeLanguageText)
                 {
