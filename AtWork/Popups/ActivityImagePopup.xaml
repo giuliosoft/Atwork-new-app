@@ -41,7 +41,7 @@
                 <PancakeControl:PancakeView IsVisible="{Binding ShowImage3}" HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
                     <ffImageLoading:CachedImage  Source="{Binding image3}" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
                     <PancakeControl:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SelectActivityImage2Command}"/>
+                        <TapGestureRecognizer Command="{Binding SelectActivityImage3Command}"/>
                     </PancakeControl:PancakeView.GestureRecognizers>
                 </PancakeControl:PancakeView>
             </StackLayout>
