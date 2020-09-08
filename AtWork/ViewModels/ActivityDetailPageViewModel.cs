@@ -118,6 +118,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoToUnsubscribeActivityPopupCommand { get { return new DelegateCommand(async () => await GoToUnsubscribeActivityPopup()); } }
         public DelegateCommand GoToToastMessageCommand { get { return new DelegateCommand(async () => await GoToToastMessage()); } }
         public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => LinkClicked()); } }
+        public DelegateCommand<string> JoinedMemberCommand { get { return new DelegateCommand<string>(async (obj) => await JoinedMember(obj)); } }
         #endregion
 
         #region private methods
@@ -148,7 +149,19 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.StackTrace);
             }
         }
-
+        async Task JoinedMember(string selectedActivityPost)
+        {
+            try
+            {
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("ActivityID", selectedActivityPost);
+                await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         async Task GoToToastMessage()
         {
             try
