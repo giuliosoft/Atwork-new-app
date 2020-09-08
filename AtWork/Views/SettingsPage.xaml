@@ -16,7 +16,7 @@
                         <Label Margin="15,7,0,7" Text="{Binding}" Style="{StaticResource SettingsListLabelStyle}"/>
                         <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer CommandParameter="{Binding Source={x:Reference clSettingsList}, Path=BindingContext.SelectionChangedCommand}" BindingContext="{Binding .}"/>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference clSettingsList}, Path=BindingContext.SelectionChangedCommand}" CommandParameter="{Binding .}"/>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>

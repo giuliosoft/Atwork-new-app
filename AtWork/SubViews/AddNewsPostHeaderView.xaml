@@ -25,6 +25,9 @@
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
+                <ContentView x:Name="HeaderTitle" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Label Text="{TemplateBinding BindingContext.HeaderDetailsTitle}" Style="{StaticResource HeaderViewHeaderLabelStyle}"/>
+                </ContentView>
                 <ContentView Grid.Column="2" Padding="0"  VerticalOptions="Center">
                     <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" >

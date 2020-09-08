@@ -439,4 +439,7 @@ Permission Denied. Can not continue, try again.</value>
     <data name="ManageNotificationText" xml:space="preserve">
         <value>Manage notification</value>
 	</data>
+    <data name="ProfilePictureText" xml:space="preserve">
+        <value>Profile picture</value>
+    </data>
 </root>

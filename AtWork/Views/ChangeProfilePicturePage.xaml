@@ -1,5 +1,64 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AtWork.Views.ChangeProfilePicturePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
+             BackgroundColor="{DynamicResource HeaderBackgroundColor}"
+             x:Class="AtWork.Views.ChangeProfilePicturePage">
     <ContentPage.Content>
+        <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
+            <StackLayout Padding="{DynamicResource MarginPadding00_00_00_30}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
+                <Label Text="{Binding AddImagesTitle}" Style="{StaticResource AddPostImageLabelStyle}"/>
+                <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
+                <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage CacheType="None" BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                            </ffimageloading:CachedImage>
+                            <Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+                    </PancakeControl:PancakeView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                        <!--<Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>-->
+                        <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
+                <ContentView  Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRoll}" FontSize="20" TextColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+                <ContentView IsVisible="{Binding ShowPickOgOurImage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.Orpickoneofours}" FontSize="20" TextColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OurImagesCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+                <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <ffimageloading:CachedImage Source="ChoosefromCameraroll" Margin="{DynamicResource MarginPadding00_00_00_20}" />
+                    
+                </StackLayout>-->
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

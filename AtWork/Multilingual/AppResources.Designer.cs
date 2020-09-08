@@ -802,7 +802,8 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("JoinActivityAlertText", resourceCulture);
             }
         }
-		        internal static string MyStatsText {
+        
+        internal static string MyStatsText {
             get {
                 return ResourceManager.GetString("MyStatsText", resourceCulture);
             }
@@ -883,7 +884,13 @@ namespace AtWork.Multilingual {
         internal static string ManageNotificationText {
             get {
                 return ResourceManager.GetString("ManageNotificationText", resourceCulture);
-			}
-		}
+            }
+        }
+        
+        internal static string ProfilePictureText {
+            get {
+                return ResourceManager.GetString("ProfilePictureText", resourceCulture);
+            }
+        }
     }
 }

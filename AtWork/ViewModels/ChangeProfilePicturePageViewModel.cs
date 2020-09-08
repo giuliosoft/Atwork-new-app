@@ -1,4 +1,5 @@
 ﻿using System;
+using AtWork.Multilingual;
 using AtWork.Services;
 using Prism.Navigation;
 
@@ -8,6 +9,9 @@ namespace AtWork.ViewModels
     {
         public ChangeProfilePicturePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
+            AddNewsCancelImage = AppResources.Cancel;
+            AddNewsNextImage = AppResources.SaveButtonText;
+            HeaderDetailsTitle = AppResources.ProfilePictureText;
         }
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
