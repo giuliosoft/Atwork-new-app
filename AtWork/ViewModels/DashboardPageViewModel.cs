@@ -37,6 +37,7 @@ namespace AtWork.ViewModels
             //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             FooterNavigationCommand = DashboardFooterNavigationCommand;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
+            ProfileTapCommand = DashboardProfileTapCommand;
         }
         #endregion
 
@@ -158,6 +159,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand<ActivityItems> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityItems>(async (obj) => await ActivityCategorySelected(obj)); } }
+		public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
         #endregion
 
         #region private methods
@@ -270,6 +272,16 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task ProfileTapped()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ProfilePage));
+            }
+            catch (Exception ex)
+            {
             }
         }
 

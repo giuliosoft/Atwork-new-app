@@ -802,5 +802,88 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("JoinActivityAlertText", resourceCulture);
             }
         }
+		        internal static string MyStatsText {
+            get {
+                return ResourceManager.GetString("MyStatsText", resourceCulture);
+            }
+        }
+        
+        internal static string DepartmentText {
+            get {
+                return ResourceManager.GetString("DepartmentText", resourceCulture);
+            }
+        }
+        
+        internal static string JobTitleText {
+            get {
+                return ResourceManager.GetString("JobTitleText", resourceCulture);
+            }
+        }
+        
+        internal static string ClassText {
+            get {
+                return ResourceManager.GetString("ClassText", resourceCulture);
+            }
+        }
+        
+        internal static string AboutMeText {
+            get {
+                return ResourceManager.GetString("AboutMeText", resourceCulture);
+            }
+        }
+        
+        internal static string SettingsText {
+            get {
+                return ResourceManager.GetString("SettingsText", resourceCulture);
+            }
+        }
+        
+        internal static string LogoutText {
+            get {
+                return ResourceManager.GetString("LogoutText", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileText {
+            get {
+                return ResourceManager.GetString("ProfileText", resourceCulture);
+            }
+        }
+        
+        internal static string ChangeProfilePictureText {
+            get {
+                return ResourceManager.GetString("ChangeProfilePictureText", resourceCulture);
+            }
+        }
+        
+        internal static string EditInterestsText {
+            get {
+                return ResourceManager.GetString("EditInterestsText", resourceCulture);
+            }
+        }
+        
+        internal static string EditAboutMeText {
+            get {
+                return ResourceManager.GetString("EditAboutMeText", resourceCulture);
+            }
+        }
+        
+        internal static string ChangeLanguageText {
+            get {
+                return ResourceManager.GetString("ChangeLanguageText", resourceCulture);
+            }
+        }
+        
+        internal static string ChangePasswordText {
+            get {
+                return ResourceManager.GetString("ChangePasswordText", resourceCulture);
+            }
+        }
+        
+        internal static string ManageNotificationText {
+            get {
+                return ResourceManager.GetString("ManageNotificationText", resourceCulture);
+			}
+		}
     }
 }

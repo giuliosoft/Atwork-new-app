@@ -50,6 +50,7 @@ namespace AtWork.Services
             App.Current.Resources["FontSize17"] = sizeConvertAsPerDevice(17);
             App.Current.Resources["FontSize18"] = sizeConvertAsPerDevice(18);
             App.Current.Resources["FontSize20"] = sizeConvertAsPerDevice(20);
+            App.Current.Resources["FontSize21"] = sizeConvertAsPerDevice(21);
             App.Current.Resources["FontSize22"] = sizeConvertAsPerDevice(22);
             App.Current.Resources["FontSize24"] = sizeConvertAsPerDevice(24);
             App.Current.Resources["FontSize25"] = sizeConvertAsPerDevice(25);
@@ -92,9 +93,11 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth90"] = sizeConvertAsPerDevice(90);
             App.Current.Resources["HeightWidth100"] = sizeConvertAsPerDevice(100);
             App.Current.Resources["HeightWidth115"] = sizeConvertAsPerDevice(115);
+            App.Current.Resources["HeightWidth130"] = sizeConvertAsPerDevice(130);
             App.Current.Resources["HeightWidth155"] = sizeConvertAsPerDevice(155);
             App.Current.Resources["HeightWidth160"] = sizeConvertAsPerDevice(160);
             App.Current.Resources["HeightWidth180"] = sizeConvertAsPerDevice(180);
+            App.Current.Resources["HeightWidth200"] = sizeConvertAsPerDevice(200);
             App.Current.Resources["HeightWidth218"] = sizeConvertAsPerDevice(218);
             App.Current.Resources["HeightWidth220"] = sizeConvertAsPerDevice(220);
             App.Current.Resources["HeightWidth250"] = sizeConvertAsPerDevice(250);
