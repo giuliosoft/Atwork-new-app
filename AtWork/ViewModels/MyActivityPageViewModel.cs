@@ -88,6 +88,10 @@ namespace AtWork.ViewModels
                     navigationParams.Add("SelectedActivityImages", selectedActivityPost.ActivityCarouselList);
                     await _navigationService.NavigateAsync(nameof(ActivityDetailPage), navigationParams);
                 }
+                else
+                {
+                    await _navigationService.NavigateAsync(nameof(YourFeedbackPage), null);
+                }
             }
             catch (Exception ex)
             {

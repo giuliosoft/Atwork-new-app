@@ -238,7 +238,7 @@
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
             <Style x:Key="JoinActivityLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
                 <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -328,6 +328,7 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
+<<<<<<< HEAD
             <Style x:Key="ProfileHeaderLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="Lato_Bold" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize17}" />
@@ -364,6 +365,43 @@
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Fill" />
+=======
+            <Style x:Key="ActivityTitleLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="JoinActivityDateLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="YourFeedBackLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="YourFeedBoxLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+>>>>>>> origin/Dev
             </Style>
             <!--Label Styles End-->
 
@@ -401,6 +439,15 @@
                 <Setter Property="Keyboard" Value="Text"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
+            <Style x:Key="FeedBackStyle" TargetType="CustomControl:CustomEditor">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize28}" />
+                <Setter Property="PlaceholderColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
             <!--Editor Styles End-->
 
             <!--Entry Styles Start-->
@@ -414,9 +461,9 @@
                 <Setter Property="Keyboard" Value="Text"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
-             <Style x:Key="ActivityDetailLabelStyle" TargetType="CustomControl:CustomEntry">
+            <Style x:Key="ActivityDetailLabelStyle" TargetType="CustomControl:CustomEntry">
                 <Setter Property="FontSize" Value="{DynamicResource FontSize22}" />
-                 <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
                 <Setter Property="PlaceholderColor" Value="DarkGray" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />

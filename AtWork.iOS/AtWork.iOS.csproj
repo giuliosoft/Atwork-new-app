@@ -81,6 +81,7 @@
     <Compile Include="Renderers\CustomImageRenderer.cs" />
     <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
     <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
+    <Compile Include="Renderers\SelectableLabelRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -156,6 +157,9 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor">
       <Version>18.1.0.42</Version>
+    </PackageReference>
+    <PackageReference Include="CClarke.Plugin.Calendars">
+      <Version>1.0.14</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

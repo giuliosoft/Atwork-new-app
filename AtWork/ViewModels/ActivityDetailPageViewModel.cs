@@ -14,6 +14,10 @@ using AtWork.Models;
 using AtWork.Views;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using Plugin.Calendars;
+using System.Collections.Generic;
+using Plugin.Calendars.Abstractions;
+using System.Linq;
 
 namespace AtWork.ViewModels
 {
@@ -31,7 +35,6 @@ namespace AtWork.ViewModels
             HeaderDetailsTitle = AppResources.ActivityText;
             if (IsFromMyActivity)
             {
-                IsFromMyActivity = false;
                 JoinActivity = false;
                 UnSubscribeActivity = true;
             }
@@ -175,7 +178,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoToJoinActivityPopupCommand { get { return new DelegateCommand(async () => await GoToJoinActivityPopup()); } }
         public DelegateCommand GoToUnsubscribeActivityPopupCommand { get { return new DelegateCommand(async () => await GoToUnsubscribeActivityPopup()); } }
         public DelegateCommand GoToToastMessageCommand { get { return new DelegateCommand(async () => await GoToToastMessage()); } }
-
+        public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => LinkClicked()); } }
         #endregion
 
         #region private methods
@@ -188,6 +191,22 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task LinkClicked()
+        {
+            try
+            {
+                if (ActivityDetails != null && !string.IsNullOrEmpty(ActivityDetails.proAddActivity_Website))
+                {
+                    var url = ActivityDetails.proAddActivity_Website.Substring(0, 4).ToLower() != "http" ? "http://" + ActivityDetails.proAddActivity_Website : ActivityDetails.proAddActivity_Website;
+                    await Browser.OpenAsync(new Uri(url), BrowserLaunchMode.SystemPreferred);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.StackTrace);
             }
         }
 
@@ -218,20 +237,35 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
         async Task GoToUnsubscribeActivityPopup()
         {
             try
             {
                 UnSubscribeActivityPopup UnSubscribeActivityPopup = new UnSubscribeActivityPopup();
                 UnSubscribeActivityPopupViewModel UnSubscribeActivityPopupViewModel = new UnSubscribeActivityPopupViewModel(_navigationService, _facadeService);
-                UnSubscribeActivityPopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
+                UnSubscribeActivityPopupViewModel.ConfirmEvent += async (object sender, object SelectedObj) =>
                 {
                     try
                     {
-
+                        if (!await CheckConnectivity())
+                        {
+                            return;
+                        }
+                        await ShowLoader();
+                        var serviceResult = await ActivityService.UnSubscribeActivity(ActivityDetails.JoinActivityId);
+                        if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                        {
+                            SessionService.IsShowActivitiesIntial = true;
+                            await _navigationService.NavigateAsync(nameof(DashboardPage));
+                        }
+                        await ClosePopup();
+                        //SessionService.IsShowActivitiesIntial = true;
+                        //await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
                     catch (Exception ex)
                     {
+                        await ClosePopup();
                         Debug.WriteLine(ex.Message);
                     }
                 };
@@ -248,47 +282,112 @@ namespace AtWork.ViewModels
         {
             try
             {
-                JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
-                JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
-                joinactivityPopupViewModel.JoinActivityEvent += async (object sender, object SelectedObj) =>
+                var tempDtList = new ObservableCollection<JoinActivityDatesModel>();
+                if (!string.IsNullOrEmpty(ActivityDetails.StartDate))
                 {
-                    try
+                    string dateStr = ActivityDetails.StartDate;
+                    List<string> dateList = new List<string>();
+                    if (!string.IsNullOrEmpty(dateStr))
                     {
-                        if (!await CheckConnectivity())
+                        if (dateStr.Contains(","))
                         {
-                            return;
+                            dateList = dateStr.Split(',').ToList();
                         }
-                        await ShowLoader();
-                        JoinActivityInputModel inputModel = new JoinActivityInputModel();
-                        inputModel.ActivityID = ActivityDetails.id;
-                        inputModel.coUniqueID = ActivityDetails.coUniqueID;
-                        inputModel.proUniqueID = ActivityDetails.proUniqueID;
-                        inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                        var serviceResult = await ActivityService.JoinActivity(inputModel);
-                        if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                        else
                         {
-                            if (serviceResult.Body != null)
+                            dateList.Add(dateStr);
+                        }
+                    }
+                    if (dateList != null && dateList.Count > 0)
+                    {
+                        int i = 1;
+                        dateList.All((dtArg) =>
+                        {
+                            DateTime dtVal = DateTime.Now;
+                            bool parsed = DateTime.TryParse(dtArg, out dtVal);
+                            if (parsed)
                             {
-                                var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
-                                if (serviceBody != null)
+                                string dtStrVal = dtVal.ToString("d MMM yyyy");
+                                tempDtList.Add(new JoinActivityDatesModel() { Id = i, DisplayDateString = dtStrVal, ActivityDate = dtVal, IsSelected = false });
+                                i++;
+                            }
+                            return true;
+                        });
+                    }
+                }
+
+                if (ActivityDetails.DataType.Equals(TextResources.OnDemandCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (tempDtList != null && tempDtList.Count > 0)
+                    {
+                        DateTime dateToAddInCalendar = tempDtList[0].ActivityDate;
+                        var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+
+                        var calendarEvent = new CalendarEvent
+                        {
+                            Name = "AtWork Activity Event",
+                            Start = dateToAddInCalendar,
+                            End = dateToAddInCalendar.AddHours(1),
+                            Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+                        };
+                        await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+                    }
+
+                    JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                    //inputModel.ActivityID = ActivityDetails.id;
+                    inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                    inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                    inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                    inputModel.proStatus = "Active";
+
+                    await CallJoinActivityService(inputModel);
+                }
+                else if (ActivityDetails.DataType.Equals(TextResources.RecurringCategoryText, StringComparison.InvariantCultureIgnoreCase) || ActivityDetails.DataType.Equals(TextResources.RegularCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
+                    JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
+
+                    if (tempDtList != null && tempDtList.Count > 0)
+                    {
+                        joinactivityPopupViewModel.ActivityJoinDates = new ObservableCollection<JoinActivityDatesModel>(tempDtList);
+                    }
+
+                    joinactivityPopupViewModel.JoinActivityEvent += async (object sender, JoinActivityDatesModel SelectedObj) =>
+                    {
+                        try
+                        {
+                            if (SelectedObj != null)
+                            {
+                                if (!await CheckConnectivity())
                                 {
-                                    if (serviceBody.Flag)
-                                    {
-                                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
-                                    }
+                                    return;
                                 }
+
+                                JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                                //inputModel.ActivityID = ActivityDetails.id;
+                                inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                                inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                                inputModel.proStatus = "Active";
+                                inputModel.proVolHourDates = ActivityDetails.proAddActivityDate;
+                                inputModel.proChosenDate = SelectedObj.ActivityDate;
+
+                                await CallJoinActivityService(inputModel);
+                            }
+                            else
+                            {
+                                await DisplayAlertAsync(AppResources.JoinActivityAlertText);
                             }
                         }
-                        await ClosePopup();
-                    }
-                    catch (Exception ex)
-                    {
-                        await ClosePopup();
-                        Debug.WriteLine(ex.Message);
-                    }
-                };
-                JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
-                await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
+                    };
+                    JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
+                    await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
+                }
             }
             catch (Exception ex)
             {
@@ -311,11 +410,18 @@ namespace AtWork.ViewModels
                 if (serviceResultBody != null)
                 {
                     ActivityDetails = serviceResultBody;
+<<<<<<< HEAD
                     ActivityDetails.proAddActivity_Website = "www.culturetoday.com";
                     Location = serviceResultBody?.proLocation + ", " + serviceResultBody?.proCountry;
                     ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
                         ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
                         : string.Empty;
+=======
+                    //Location = serviceResultBody?.proAddress1;// + ", " + serviceResultBody?.proCountry;
+                    //ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
+                    //    ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
+                    //    : string.Empty;
+>>>>>>> origin/Dev
                     if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
                     {
                         IsShowCategotyType = true;
@@ -327,6 +433,36 @@ namespace AtWork.ViewModels
             {
                 Debug.WriteLine(ex.Message);
                 await ClosePopup();
+            }
+        }
+
+        async Task CallJoinActivityService(JoinActivityInputModel inputModel)
+        {
+            try
+            {
+                await ShowLoader();
+                var serviceResult = await ActivityService.JoinActivity(inputModel);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null)
+                        {
+                            if (serviceBody.Flag)
+                            {
+                                SessionService.IsShowActivitiesIntial = true;
+                                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
+                            }
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
             }
         }
         #endregion

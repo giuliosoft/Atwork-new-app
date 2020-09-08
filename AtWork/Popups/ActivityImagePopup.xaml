@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AtWork.Popups.UnSubscribeActivityPopup"
+             x:Class="AtWork.Popups.ActivityImagePopup"
              xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -16,30 +16,37 @@
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation PositionIn="Bottom" PositionOut="Bottom" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
     <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="12">
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <PancakeControl:PancakeView CornerRadius="2" HasShadow="False" BorderThickness="1" BorderColor="White" WidthRequest="35" HeightRequest="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" Margin="0,12,0,0" BackgroundColor="{StaticResource WhiteColor}"/>
-            <Label Text="{x:Static Multilingual:AppResources.AreYouSureText}" Style="{StaticResource JoinActivityPopupHeaderStyle}" Margin="0,15,0,0"/>
-            <Label Text="Can't make it to the event?" Style="{StaticResource JoinActivityPopupTextStyle}" Margin="0,15,0,0"/>
-            <Label Text="If you confirm, you will no longer be subscribed and receive any more notifications for this activity." Style="{StaticResource JoinActivityPopupTextStyle}" Padding="20,15,20,15"/>
-            <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" Margin="0,15,0,15"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,5,0,30" Padding="0" Spacing="0" >
-                <PancakeControl:PancakeView HasShadow="False"  CornerRadius="20" HorizontalOptions="CenterAndExpand"  VerticalOptions="Center" WidthRequest="170" HeightRequest="40" BackgroundColor="{StaticResource OffWhiteColor}" Padding="0" Margin="20,0,0,0">
-                    <Label Text="{x:Static Multilingual:AppResources.ConfirmText}" Padding="15" Style="{StaticResource JoinActivityPopupHeaderStyle}" TextColor="{StaticResource BlackColor}"/>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                <PancakeControl:PancakeView HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
+                    <Image  HorizontalOptions="Center" Source="{Binding image1}"/>
                     <PancakeControl:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ConfirmCommand}"/>
+                        <TapGestureRecognizer Command="{Binding SelectActivityImage1Command}"/>
                     </PancakeControl:PancakeView.GestureRecognizers>
                 </PancakeControl:PancakeView>
-                <PancakeControl:PancakeView HasShadow="False" CornerRadius="20" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" WidthRequest="170" HeightRequest="40" BackgroundColor="{StaticResource OffWhiteColor}" Margin="0,0,20,0" Padding="0">
-                    <Label Text="{x:Static Multilingual:AppResources.Cancel}" Padding="15" Style="{StaticResource JoinActivityPopupHeaderStyle}" TextColor="{StaticResource BlackColor}"/>
+                <PancakeControl:PancakeView HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
+                    <Image  HorizontalOptions="Center" Source="{Binding image2}"/>
                     <PancakeControl:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding CloseConfirmPopupCommand}"/>
+                        <TapGestureRecognizer Command="{Binding SelectActivityImage2Command}"/>
+                    </PancakeControl:PancakeView.GestureRecognizers>
+                </PancakeControl:PancakeView>
+                <PancakeControl:PancakeView HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
+                    <Image  HorizontalOptions="Center" Source="{Binding image3}"/>
+                    <PancakeControl:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectActivityImage2Command}"/>
                     </PancakeControl:PancakeView.GestureRecognizers>
                 </PancakeControl:PancakeView>
             </StackLayout>
         </StackLayout>
         <PancakeControl:PancakeView.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding CloseConfirmPopupCommand}"/>
+            <TapGestureRecognizer Command="{Binding GoForClosePopupCommand}"/>
         </PancakeControl:PancakeView.GestureRecognizers>
     </PancakeControl:PancakeView>
 </pages:PopupPage>

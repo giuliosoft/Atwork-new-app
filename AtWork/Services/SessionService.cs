@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.ActivityModel;
 using static AtWork.Models.NewsModel;
 
 namespace AtWork.Services
@@ -22,12 +23,14 @@ namespace AtWork.Services
         public static bool isEditingNews = false;
         public static bool isImageCropped = false;
         public static NewsDetailModel_Input NewsPostInputData = new NewsDetailModel_Input();
+        public static ActivityListModel ActivityPostInputData = new ActivityListModel();
         public static List<string> NewsPostImageFiles = new List<string>();
         public static string NewsPostAttachmentFilePath = string.Empty;
         public static string NewsPostAttachmentFileName = string.Empty;
         public static List<string> NewsPostCarouselImages = new List<string>();
         public static string DeletedNewsPost = string.Empty;
         public static bool IsNeedToRefreshNews = false;
+        public static bool IsShowActivitiesIntial = false;
         /// <summary>
         /// Logout
         /// clear social media account details

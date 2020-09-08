@@ -8,11 +8,24 @@ namespace AtWork.Helpers
         public static string TooManyAttemptsText { get { return "Too Many Attempts."; } }
         public static string AddPostTitlePageText = nameof(AddNewsPostPage);
         public static string AddPostImagePageText = nameof(AddNewsPostImagePage);
-		public static string LoginEmptyFieldMsg = "Email or Password can't be empty.";
+        public static string LoginEmptyFieldMsg = "Email or Password can't be empty.";
         public static string InvalidEmailMsg = "This is not valid email. Please enter valid email address.";
         public static string PasswordLengthMsg = "Password must be atleast of 6 characters.";
         public static string InvalidUserNameorPaddword = "Invalid username or password.";
         public static string NewsTabText = "News";
         public static string ActivityTabText = "Activities";
+        public static string OnDemandCategoryText = "On-Demand";
+        public static string RegularCategoryText = "Regular";
+        public static string RecurringCategoryText = "Recurring";
+        public static string DefaultCalendarText = "Default";
+
+        #region App Constants
+        public const string CorpVolID = "cat001";
+        public const string SportsID = "cat002";
+        public const string CultureID = "cat003";
+        public const string EducationID = "cat004";
+        public const string CompEventsID = "cat005";
+        public const string GetTogetherID = "cat006";
+        #endregion
     }
 }

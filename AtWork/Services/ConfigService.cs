@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 namespace AtWork.Services
 {
     public class ConfigService
     {
 
         //*****Local URL*****//
-        //public static string BaseServerURL = "http://d3a247eeba49.ngrok.io";
-        //public static string BaseServiceURL = "http://d3a247eeba49.ngrok.io/api";
+        //public static string BaseServerURL = "http://a3b41c661f73.ngrok.io";
+        //public static string BaseServiceURL = "http://a3b41c661f73.ngrok.io/api";
         //
 
         //*****LIVE URL******//
@@ -37,5 +37,8 @@ namespace AtWork.Services
         public static string ActivityListServiceURL = "/activities/getlist/";
         public static string ActivityJoinServiceURL = "/activities/joinActitvity/";
         public static string MyActivityListServiceURL = "/activities/MyActivity/";
+        public static string CreateActivityServiceURL = "/activities/insertrow";
+        public static string ActivitiesJoinedMembersServiceURL = "/activities/getActivitiesEmp/";
+        public static string ActivityUnsubscribeServiceURL = "/activities/deletejoinActitvity/";
     }
 }

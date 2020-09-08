@@ -12,6 +12,7 @@ using AtWork.Services;
 using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
+using Prism.Mvvm;
 using Prism.Navigation;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
@@ -25,16 +26,13 @@ namespace AtWork.ViewModels
         public DashboardPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             Activitycollectionlist.Add(new ActivityItems() { title = AppResources.AllCategoriesText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.SportsText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.EducationsText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CultureText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CompanyEventsText });
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.GetTogetherText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText, categoryId = TextResources.CorpVolID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.SportsText, categoryId = TextResources.SportsID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.EducationsText, categoryId = TextResources.EducationID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CultureText, categoryId = TextResources.CultureID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CompanyEventsText, categoryId = TextResources.CompEventsID });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.GetTogetherText, categoryId = TextResources.GetTogetherID });
 
-            //Activitylist.Add(new ActivityItems() { title = "All categories" });
-            //Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
-            //Activitylist.Add(new ActivityItems() { title = "Education" });
             //NewsGreenbg = (Color)App.Current.Resources["AccentColor"];
             //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             FooterNavigationCommand = DashboardFooterNavigationCommand;
@@ -61,6 +59,7 @@ namespace AtWork.ViewModels
         bool _isBusyInActivityBinding = false;
         bool _isRefreshingNewsFirstTime = true;
         bool _isRefreshingActivityFirstTime = true;
+        private string SelectedActivityCategoryID = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -158,8 +157,13 @@ namespace AtWork.ViewModels
         public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
         public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
+<<<<<<< HEAD
         public DelegateCommand JoinedMemberCommand { get { return new DelegateCommand(async () => await JoinedMember()); } }
         public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
+=======
+        public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
+        public DelegateCommand<ActivityItems> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityItems>(async (obj) => await ActivityCategorySelected(obj)); } }
+>>>>>>> origin/Dev
         #endregion
 
         #region private methods
@@ -211,6 +215,31 @@ namespace AtWork.ViewModels
             }
         }
 
+        async Task ActivityCategorySelected(ActivityItems selectedCategory)
+        {
+            try
+            {
+                SelectedActivityCategoryID = selectedCategory.categoryId;
+                Activitycollectionlist.All((categories) =>
+                {
+                    if (selectedCategory.title == categories.title)
+                    {
+                        categories.UnderlineIsVisible = true;
+                    }
+                    else
+                    {
+                        categories.UnderlineIsVisible = false;
+                    }
+                    return true;
+                });
+                await GetActivityList(SelectedActivityCategoryID);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task NewsPostProceed(string selectedTab)
         {
             try
@@ -236,11 +265,13 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task JoinedMember()
+        async Task JoinedMember(ActivityListModel selectedActivityPost)
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(MemberListPage));
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("ActivityID", selectedActivityPost.proUniqueID);
+                await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
             }
             catch (Exception ex)
             {
@@ -267,6 +298,13 @@ namespace AtWork.ViewModels
                 {
                     NewsViewIsVisible = true;
                     ActivityViewIsVisible = false;
+
+                    if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
+                    {
+                        if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
+                        if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
+                        await GetNewsListDetails_New();
+                    }
 
                     NextOptionText = "+";
                     NextCustomLabelIsVisible = false;
@@ -528,7 +566,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetActivityList()
+        async Task GetActivityList(string categoryId = "")
         {
             try
             {
@@ -542,7 +580,15 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID);
+                BaseResponse<string> serviceResult = null;
+                if (string.IsNullOrEmpty(categoryId))
+                {
+                    serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID);
+                }
+                else
+                {
+                    serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID, SelectedActivityCategoryID);
+                }
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<ActivityResponse>(serviceResult.Body);
@@ -575,7 +621,7 @@ namespace AtWork.ViewModels
                                     arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                     nimgUrlList.All((Aarg) =>
                                     {
-                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg;
+                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg.Trim();
                                         arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = ImageSource.FromUri(new Uri(imageUri)), ActivityImageUrl = imageUri }); ;
                                         return true;
                                     });
@@ -638,13 +684,20 @@ namespace AtWork.ViewModels
                         SessionService.DeletedNewsPost = string.Empty;
                     }
                 }
-                if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
+                if (SessionService.IsShowActivitiesIntial)
+                {
+                    SessionService.IsShowActivitiesIntial = false;
+                    MessagingCenter.Send<object>(this, "GetActivityTabSelected");
+                    DashboardFooterNavigationCommand.Execute(TextResources.ActivityTabText);
+                }
+                else if (_isRefreshingNewsFirstTime || SessionService.IsNeedToRefreshNews)
                 {
                     if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
                     if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
                     await GetNewsListDetails_New();
                 }
                 //await GetActivityList();
+                IsFromMyActivity = false;
             }
             catch (Exception ex)
             {
@@ -653,9 +706,17 @@ namespace AtWork.ViewModels
         }
     }
 
-    public class ActivityItems
+    public class ActivityItems : BindableBase
     {
+        public string categoryId { get; set; }
         public string title { get; set; }
+
+        private bool _UnderlineIsVisible;
+        public bool UnderlineIsVisible
+        {
+            get { return _UnderlineIsVisible; }
+            set { SetProperty(ref _UnderlineIsVisible, value); }
+        }
     }
 
     public class ActivityModel

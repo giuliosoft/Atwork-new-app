@@ -157,7 +157,7 @@ namespace AtWork.Services
         /// <param name="Loing input">Input Json Data</param>
         /// <param name="isAddAuthorizationToken">User Authorization Token</param>
         /// <returns></returns>
-        public static async Task<BaseResponse<T>> FilePostResponse<T>(string serviceUrl, List<string> fileToAttachList, NewsDetailModel_Input inputModel, bool isAddAuthorizationToken)
+        public static async Task<BaseResponse<T>> FilePostResponse<T>(string serviceUrl, List<string> fileToAttachList, string jData, bool isAddAuthorizationToken)
         {
             BaseResponse<T> resultModel = new BaseResponse<T>();
             try
@@ -192,7 +192,7 @@ namespace AtWork.Services
                         }
                     }
                 }
-                var jData = JsonConvert.SerializeObject(inputModel);
+                
                 var content1 = new StringContent(jData, Encoding.UTF8, "application/json");
                 Mcontent.Add(content1, "Data");
                 client.Timeout = new TimeSpan(0, 10, 0);

@@ -683,6 +683,7 @@ namespace AtWork.Multilingual {
             }
         }
         
+<<<<<<< HEAD
         internal static string MyStatsText {
             get {
                 return ResourceManager.GetString("MyStatsText", resourceCulture);
@@ -764,6 +765,125 @@ namespace AtWork.Multilingual {
         internal static string ManageNotificationText {
             get {
                 return ResourceManager.GetString("ManageNotificationText", resourceCulture);
+=======
+        internal static string HappyText {
+            get {
+                return ResourceManager.GetString("HappyText", resourceCulture);
+            }
+        }
+        
+        internal static string CuriousText {
+            get {
+                return ResourceManager.GetString("CuriousText", resourceCulture);
+            }
+        }
+        
+        internal static string FullfilledText {
+            get {
+                return ResourceManager.GetString("FullfilledText", resourceCulture);
+            }
+        }
+        
+        internal static string TiredText {
+            get {
+                return ResourceManager.GetString("TiredText", resourceCulture);
+            }
+        }
+        
+        internal static string BoredText {
+            get {
+                return ResourceManager.GetString("BoredText", resourceCulture);
+            }
+        }
+        
+        internal static string ExcitedText {
+            get {
+                return ResourceManager.GetString("ExcitedText", resourceCulture);
+            }
+        }
+        
+        internal static string AnnoyedText {
+            get {
+                return ResourceManager.GetString("AnnoyedText", resourceCulture);
+            }
+        }
+        
+        internal static string ProudText {
+            get {
+                return ResourceManager.GetString("ProudText", resourceCulture);
+            }
+        }
+        
+        internal static string SuprisedText {
+            get {
+                return ResourceManager.GetString("SuprisedText", resourceCulture);
+            }
+        }
+        
+        internal static string SatisfiedText {
+            get {
+                return ResourceManager.GetString("SatisfiedText", resourceCulture);
+            }
+        }
+        
+        internal static string InterestedText {
+            get {
+                return ResourceManager.GetString("InterestedText", resourceCulture);
+            }
+        }
+        
+        internal static string EventOrganizationText {
+            get {
+                return ResourceManager.GetString("EventOrganizationText", resourceCulture);
+            }
+        }
+        
+        internal static string TransportationText {
+            get {
+                return ResourceManager.GetString("TransportationText", resourceCulture);
+            }
+        }
+        
+        internal static string FoodAndBeverageText {
+            get {
+                return ResourceManager.GetString("FoodAndBeverageText", resourceCulture);
+            }
+        }
+        
+        internal static string SecurityText {
+            get {
+                return ResourceManager.GetString("SecurityText", resourceCulture);
+            }
+        }
+        
+        internal static string NGOPartnersText {
+            get {
+                return ResourceManager.GetString("NGOPartnersText", resourceCulture);
+            }
+        }
+        
+        internal static string CommunicationText {
+            get {
+                return ResourceManager.GetString("CommunicationText", resourceCulture);
+            }
+        }
+        
+        internal static string EverythingWasSatisfactoryText {
+            get {
+                return ResourceManager.GetString("EverythingWasSatisfactoryText", resourceCulture);
+            }
+        }
+        
+        internal static string OtherText {
+            get {
+                return ResourceManager.GetString("OtherText", resourceCulture);
+            }
+        }
+        
+        internal static string JoinActivityAlertText {
+            get {
+                return ResourceManager.GetString("JoinActivityAlertText", resourceCulture);
+>>>>>>> origin/Dev
             }
         }
     }

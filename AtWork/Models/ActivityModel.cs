@@ -5,6 +5,7 @@ using System.Linq;
 using AtWork.Services;
 using Prism.Mvvm;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.Models
 {
@@ -18,6 +19,7 @@ namespace AtWork.Models
             public string proUniqueID { get; set; }
             public string proTitle { get; set; }
             public string coUniqueID { get; set; }
+            public int JoinActivityId { get; set; }
 
             public string proDescription { get; set; }
             public string proLocation { get; set; }
@@ -58,6 +60,11 @@ namespace AtWork.Models
             public string proAddActivity_AdditionalInfo { get; set; }
             public string proAddActivity_CoordinatorEmail { get; set; }
             public DateTime? proPublishedDate { get; set; }
+            public string volUniqueID { get; set; }
+            public string Member { get; set; }
+            public string StartDate { get; set; }
+            public string EndDate { get; set; }
+            public string DataType { get; set; }
 
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
@@ -66,9 +73,9 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (string.IsNullOrEmpty(proLocation))
+                    if (string.IsNullOrEmpty(proAddress1))
                         return string.Empty;
-                    return proLocation;
+                    return proAddress1;
                 }
             }
 
@@ -93,9 +100,14 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (string.IsNullOrEmpty(proAddActivity_StartTime) || string.IsNullOrEmpty(proAddActivity_EndTime))
+                    if (string.IsNullOrEmpty(proAddActivity_StartTime) && string.IsNullOrEmpty(proAddActivity_EndTime))
                         return string.Empty;
-                    return proAddActivity_StartTime + " - " + proAddActivity_EndTime;
+                    else if (proAddActivity_StartTime != null && proAddActivity_StartTime != string.Empty)
+                        return proAddActivity_StartTime;
+                    else if (proAddActivity_EndTime != null && proAddActivity_EndTime != string.Empty)
+                        return proAddActivity_EndTime;
+                    else
+                        return proAddActivity_StartTime + " - " + proAddActivity_EndTime;
                 }
             }
             public bool _ShowPastActivity;
@@ -104,7 +116,16 @@ namespace AtWork.Models
                 get { return _ShowPastActivity; }
                 set { SetProperty(ref _ShowPastActivity, value); }
             }
+
             public bool IsPastActivity {get;set;}
+            public bool ShowLink
+            {
+                get
+                {
+                    return !string.IsNullOrEmpty(proAddActivity_Website);
+                }
+            }
+
             /*
             public ImageSource activityImage
             {
@@ -158,7 +179,23 @@ namespace AtWork.Models
             public string coUniqueID { get; set; }
             public string proUniqueID { get; set; }
             public string volUniqueID { get; set; }
-            public int ActivityID { get; set; }
+            //public int ActivityID { get; set; }
+            public string volTransport { get; set; }
+
+            public string volDiet { get; set; }
+
+            public string proStatus { get; set; }
+
+            public DateTime? proChosenDate { get; set; }
+
+            public DateTime? proVolHourDates { get; set; }
+        }
+
+        public class ActivityJoinedMemberListResponse
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public List<Volunteers> Data { get; set; }
         }
     }
 }

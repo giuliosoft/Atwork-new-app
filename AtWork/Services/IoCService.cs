@@ -60,8 +60,12 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<MemberListPage, MemberListPageViewModel>();
             containerRegistry.RegisterForNavigation<MyActivityPage, MyActivityPageViewModel>();
             containerRegistry.RegisterForNavigation<CreateActivityPage, CreateActivityPageViewModel>();
+<<<<<<< HEAD
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPage, SettingsPageViewModel>();
+=======
+            containerRegistry.RegisterForNavigation<YourFeedbackPage, YourFeedbackPageViewModel>();
+>>>>>>> origin/Dev
         }
 
         /// <summary>

@@ -81,6 +81,7 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth25"] = sizeConvertAsPerDevice(25);
             App.Current.Resources["HeightWidth28"] = sizeConvertAsPerDevice(28);
             App.Current.Resources["HeightWidth30"] = sizeConvertAsPerDevice(30);
+            App.Current.Resources["HeightWidth34"] = sizeConvertAsPerDevice(34);
             App.Current.Resources["HeightWidth35"] = sizeConvertAsPerDevice(35);
             App.Current.Resources["HeightWidth40"] = sizeConvertAsPerDevice(40);
             App.Current.Resources["HeightWidth50"] = sizeConvertAsPerDevice(50);
@@ -222,6 +223,7 @@ namespace AtWork.Services
             App.Current.Resources["MarginPadding20_30_20_30"] = MarginPaddingConvertAsPerDevice(20, 30, 20, 30);
             App.Current.Resources["MarginPadding20_0_20_0"] = MarginPaddingConvertAsPerDevice(20, 0, 20, 0);
             App.Current.Resources["MarginPadding0_10_0_40"] = MarginPaddingConvertAsPerDevice(0, 10, 0, 40);
+            App.Current.Resources["MarginPadding30_0_30_0"] = MarginPaddingConvertAsPerDevice(30, 0, 30, 0);
 
             App.Current.Resources["MarginPadding00_20_00_10"] = MarginPaddingConvertAsPerDevice(00, 20, 00, 10);
             App.Current.Resources["MarginPadding20_10_20_20"] = MarginPaddingConvertAsPerDevice(20, 10, 20, 20);
@@ -293,13 +295,14 @@ namespace AtWork.Services
 
             App.Current.Resources["PancakeViewCornerRadius10"] = PancakeViewSizeConvertAsPerDevice(10);
             App.Current.Resources["PancakeViewCornerRadius15"] = PancakeViewSizeConvertAsPerDevice(15);
+            App.Current.Resources["PancakeViewCornerRadius17"] = PancakeViewSizeConvertAsPerDevice(17);
             App.Current.Resources["PancakeViewCornerRadius30"] = PancakeViewSizeConvertAsPerDevice(30);
 
             #endregion
 
             #region AbsoluteLayout DeviceWidthFooterTab
 
-            App.Current.Resources["DeviceWidthFooterTab"] = DeviceDisplay.MainDisplayInfo.Width/4-20;
+            App.Current.Resources["DeviceWidthFooterTab"] = DeviceDisplay.MainDisplayInfo.Width / 4 - 20;
 
             #endregion
         }

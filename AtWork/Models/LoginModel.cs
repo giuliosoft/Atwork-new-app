@@ -1,5 +1,5 @@
 using System;
-
+using AtWork.Services;
 using Xamarin.Forms;
 
 namespace AtWork.Models
@@ -178,6 +178,25 @@ namespace AtWork.Models
                 set
                 {
                     _volPicture = value;
+                }
+            }
+        }
+        public partial class Volunteers
+        {
+            public string FullName
+            {
+                get
+                {
+                    return string.Format("{0} {1}", volFirstName, volLastName);
+                }
+            }
+            public ImageSource UserProfileImage
+            {
+                get
+                {
+                    if (volPicture == string.Empty)
+                        return string.Empty;
+                    return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + volPicture));
                 }
             }
         }
