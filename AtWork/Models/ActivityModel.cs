@@ -23,7 +23,7 @@ namespace AtWork.Models
 
             public string proDescription { get; set; }
             public string proLocation { get; set; }
-            public DateTime proAddActivityDate { get; set; }
+            public DateTime? proAddActivityDate { get; set; }
             public string proAddActivity_StartTime { get; set; }
             public string proAddActivity_EndTime { get; set; }
             public string proAddress1 { get; set; }
@@ -88,8 +88,8 @@ namespace AtWork.Models
                     {
                         if (proAddActivityDate == null)
                             retDate = string.Empty;
-                        var date = proAddActivityDate.Date;
-                        retDate = date.ToString("d MMM yyyy");
+                        var date = proAddActivityDate?.Date;
+                        retDate = date?.ToString("d MMM yyyy");
                     }
                     catch (Exception ex) { }
                     return retDate;

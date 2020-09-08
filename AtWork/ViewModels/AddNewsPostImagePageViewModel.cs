@@ -44,11 +44,14 @@ namespace AtWork.ViewModels
         private ObservableCollection<NewsImageModel> _NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>();
         private string _Prop = string.Empty;
         private bool _NewsPickedImageViewIsVisible = false;
+        private bool _IsShowOurImage = false;
         private int NewsImageSelectedForCrop = -1;
         private string _ImageOptionText = AppResources.EditCropButtonText;
         private string _AddImagesTitle = AppResources.AddImagesToYourPost;
         private bool _ShowPickOgOurImage = false;
         private int CarouselPosition = 0;
+        private string _SelectedDefaultImage = string.Empty;
+        private ImageSource _OurSelectedImage = string.Empty;
         #endregion
 
         #region Public Properties
@@ -70,6 +73,11 @@ namespace AtWork.ViewModels
             get { return _NewsPickedImageViewIsVisible; }
             set { SetProperty(ref _NewsPickedImageViewIsVisible, value); }
         }
+        public bool IsShowOurImage
+        {
+            get { return _IsShowOurImage; }
+            set { SetProperty(ref _IsShowOurImage, value); }
+        }
 
         public string ImageOptionText
         {
@@ -85,6 +93,17 @@ namespace AtWork.ViewModels
         {
             get { return _ShowPickOgOurImage; }
             set { SetProperty(ref _ShowPickOgOurImage, value); }
+        }
+        public string SelectedDefaultImage
+        {
+            get { return _Prop; }
+            set { SetProperty(ref _Prop, value); }
+        }
+        
+        public ImageSource OurSelectedImage
+        {
+            get { return _OurSelectedImage; }
+            set { SetProperty(ref _OurSelectedImage, value); }
         }
         #endregion
 
@@ -113,7 +132,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                if (NewsPostImageCarouselList != null && NewsPostImageCarouselList.Count == 0 || NewsPostImageCarouselList.Count > 5)
+                if ((NewsPostImageCarouselList != null && NewsPostImageCarouselList.Count == 0 || NewsPostImageCarouselList.Count > 5) && string.IsNullOrEmpty(SelectedDefaultImage))
                 {
                     await DisplayAlertAsync(AppResources.ImageSelectionAlertText);
                     return;
@@ -123,7 +142,7 @@ namespace AtWork.ViewModels
                     NextTextColor = (Color)App.Current.Resources["WhiteColor"];
                     await ShowLoader();
                     List<string> PostImageFiles = new List<string>();
-                    NewsPostImageCarouselList.All((arg) =>
+                    NewsPostImageCarouselList?.All((arg) =>
                     {
                         if (!string.IsNullOrEmpty(arg.ImagePath))
                         {
@@ -131,7 +150,14 @@ namespace AtWork.ViewModels
                         }
                         return true;
                     });
-                    SessionService.NewsPostImageFiles = new List<string>(PostImageFiles);
+                    if (!string.IsNullOrEmpty(SelectedDefaultImage))
+                    {
+                        SessionService.SelectedDefaultImageForActivity = SelectedDefaultImage;
+                    }
+                    else
+                    {
+                        SessionService.NewsPostImageFiles = new List<string>(PostImageFiles);
+                    }
                     if (isActivity)
                     {
                         var navigationParams = new NavigationParameters();
@@ -159,6 +185,7 @@ namespace AtWork.ViewModels
                 var hasPermission = await TakePermissionsToPickPhoto();
                 if (hasPermission)
                 {
+                    NewsPostImageCarouselList.Clear();
                     var res = await _multiMediaPickerService.PickPhotosAsync();
                     if (res != null && res.Count > 0)
                     {
@@ -167,11 +194,13 @@ namespace AtWork.ViewModels
                             NextTextColor = (Color)App.Current.Resources["WhiteColor"];
                         }
                         NewsPickedImageViewIsVisible = true;
+                        SelectedDefaultImage = string.Empty;
                         res.All((mFile) =>
                         {
                             NewsPostImageCarouselList.Add(new NewsImageModel() { ImagePath = mFile.Path, ImagePreviewPath = mFile.PreviewPath, FileType = mFile.Type, NewsImage = ImageSource.FromFile(mFile.PreviewPath) });
                             return true;
                         });
+                        IsShowOurImage = false;
                     }
                 }
             }
@@ -184,23 +213,28 @@ namespace AtWork.ViewModels
         {
             try
             {
-                //ActivityImagePopup activityImagePopup = new ActivityImagePopup();
-                //ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
-                //activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
-                //{
-                //    try
-                //    {
-                //        //NewsPostImageCarouselList.Add(new NewsImageModel() { NewsImage = SelectedObj });
-                //        //NewsPickedImageViewIsVisible = true;
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Debug.WriteLine(ex.Message);
-                //    }
-                //};
-                //activityImagePopup.BindingContext = activityImagePopupViewModel;
-                //await PopupNavigationService.ShowPopup(activityImagePopup, true);
-                    
+                ActivityImagePopup activityImagePopup = new ActivityImagePopup();
+                ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
+                activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
+                {
+                    try
+                    {
+                        NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                        NewsPostImageCarouselList.Clear();
+                        NewsPickedImageViewIsVisible = false;
+                        IsShowOurImage = true;
+                        SelectedDefaultImage = SelectedObj;
+                        //NewsPostImageCarouselList.Add(new NewsImageModel() {  NewsImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage)) });
+                        OurSelectedImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                activityImagePopup.BindingContext = activityImagePopupViewModel;
+                await PopupNavigationService.ShowPopup(activityImagePopup, true);
+
             }
             catch (Exception ex)
             {
@@ -269,7 +303,7 @@ namespace AtWork.ViewModels
             {
                 var control = sender as CarouselView;
                 CarouselPosition = control.Position;
-                if (string.IsNullOrEmpty(NewsPostImageCarouselList[control.Position].ImagePath))
+                if (NewsPostImageCarouselList.Count > 0 && string.IsNullOrEmpty(NewsPostImageCarouselList[control.Position].ImagePath))
                 {
                     ImageOptionText = AppResources.Delete;
                 }

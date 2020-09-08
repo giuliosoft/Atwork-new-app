@@ -95,7 +95,7 @@ namespace AtWork.ViewModels
                     if (serviceResultBody.Data1 != null)
                         SettingsService.VolunteersUserData = serviceResultBody.Data1;
 
-                    LayoutService.ConvertThemeAsPerSettings(serviceResultBody.Data);
+                    LayoutService.ConvertThemeAsPerSettings();
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));

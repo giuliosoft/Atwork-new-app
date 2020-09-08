@@ -631,6 +631,23 @@ namespace AtWork.ViewModels
                             return true;
                         });
                         Activitylist = new ObservableCollection<ActivityListModel>(tempList);
+                        if (serviceResultBody.Data1 != null && serviceResultBody.Data1.Count > 0)
+                        {
+                            string imgStr = serviceResultBody.Data1[0].proBackgroundImage;
+                            List<string> lstImageName = new List<string>();
+                            if (!string.IsNullOrEmpty(imgStr))
+                            {
+                                if (imgStr.Contains(","))
+                                {
+                                    lstImageName = imgStr.Trim().Split(',').ToList();
+                                }
+                                else
+                                {
+                                    lstImageName.Add(imgStr.Trim());
+                                }
+                            }
+                            SessionService.CreateActivityOurImages = lstImageName;
+                        }
                     }
                 }
                 await ClosePopup();
@@ -662,6 +679,7 @@ namespace AtWork.ViewModels
 
             try
             {
+                LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews)
                 {
                     SessionService.isEditingNews = false;
