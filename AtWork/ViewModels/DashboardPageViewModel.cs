@@ -175,7 +175,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
-            await GetActivityList();
+            await GetActivityList(isPullToRefresh:true);
             IsRefreshingActivities = false;
         }
 
@@ -561,7 +561,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetActivityList(string categoryId = "")
+        async Task GetActivityList(string categoryId = "",bool isPullToRefresh = false)
         {
             try
             {
@@ -574,7 +574,8 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                await ShowLoader();
+                if (!isPullToRefresh)
+                    await ShowLoader();
                 BaseResponse<string> serviceResult = null;
                 if (string.IsNullOrEmpty(categoryId))
                 {

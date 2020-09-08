@@ -157,6 +157,7 @@ namespace AtWork.ViewModels
                     {
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         SessionService.NewsPostImageFiles = new List<string>();
+                        SessionService.IsShowActivitiesIntial = true;
                         await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
                 }
