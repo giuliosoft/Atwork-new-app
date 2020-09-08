@@ -54,6 +54,7 @@ namespace AtWork.ViewModels
         //private Color _ActivitiesGreenbg;
         private DelegateCommand<string> _FooterNavigationCommand;
         private DelegateCommand<string> _HeaderNextNavigationCommand;
+        private DelegateCommand _profileTapCommand;
         private string _HeaderDetailsTitle;
         private Color _NextTextColor = (Color)App.Current.Resources["WhiteColor"];
         private DelegateCommand _NewsOptionCommand;
@@ -170,7 +171,11 @@ namespace AtWork.ViewModels
             get { return _NewsOptionCommand; }
             set { SetProperty(ref _NewsOptionCommand, value); }
         }
-
+        public DelegateCommand ProfileTapCommand
+        {
+            get { return _profileTapCommand; }
+            set { SetProperty(ref _profileTapCommand, value); }
+        }
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }

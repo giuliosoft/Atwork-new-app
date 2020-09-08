@@ -37,6 +37,7 @@ namespace AtWork.ViewModels
             //ActivitiesGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             FooterNavigationCommand = DashboardFooterNavigationCommand;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
+            ProfileTapCommand = DashboardProfileTapCommand;
         }
         #endregion
 
@@ -158,6 +159,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand<ActivityItems> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityItems>(async (obj) => await ActivityCategorySelected(obj)); } }
+		public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
         #endregion
 
         #region private methods
@@ -173,7 +175,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
-            await GetActivityList();
+            await GetActivityList(isPullToRefresh:true);
             IsRefreshingActivities = false;
         }
 
@@ -270,6 +272,16 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task ProfileTapped()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ProfilePage));
+            }
+            catch (Exception ex)
+            {
             }
         }
 
@@ -549,7 +561,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetActivityList(string categoryId = "")
+        async Task GetActivityList(string categoryId = "",bool isPullToRefresh = false)
         {
             try
             {
@@ -562,7 +574,8 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                await ShowLoader();
+                if (!isPullToRefresh)
+                    await ShowLoader();
                 BaseResponse<string> serviceResult = null;
                 if (string.IsNullOrEmpty(categoryId))
                 {
@@ -618,6 +631,23 @@ namespace AtWork.ViewModels
                             return true;
                         });
                         Activitylist = new ObservableCollection<ActivityListModel>(tempList);
+                        if (serviceResultBody.Data1 != null && serviceResultBody.Data1.Count > 0)
+                        {
+                            string imgStr = serviceResultBody.Data1[0].proBackgroundImage;
+                            List<string> lstImageName = new List<string>();
+                            if (!string.IsNullOrEmpty(imgStr))
+                            {
+                                if (imgStr.Contains(","))
+                                {
+                                    lstImageName = imgStr.Trim().Split(',').ToList();
+                                }
+                                else
+                                {
+                                    lstImageName.Add(imgStr.Trim());
+                                }
+                            }
+                            SessionService.CreateActivityOurImages = lstImageName;
+                        }
                     }
                 }
                 await ClosePopup();
@@ -649,6 +679,7 @@ namespace AtWork.ViewModels
 
             try
             {
+                LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews)
                 {
                     SessionService.isEditingNews = false;

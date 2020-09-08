@@ -409,4 +409,46 @@ Permission Denied. Can not continue, try again.</value>
     <data name="AnythingElsePlaceholderText" xml:space="preserve">
         <value>Let us know here...</value>
     </data>
+    <data name="MyStatsText" xml:space="preserve">
+        <value>MY STATS</value>
+    </data>
+    <data name="DepartmentText" xml:space="preserve">
+        <value>DEPARTMENT</value>
+    </data>
+        <data name="JobTitleText" xml:space="preserve">
+        <value>JOB TITLE</value>
+    </data>
+    <data name="ClassText" xml:space="preserve">
+        <value>CLASS</value>
+    </data>
+     <data name="AboutMeText" xml:space="preserve">
+        <value>ABOUT ME</value>
+    </data>
+    <data name="SettingsText" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="LogoutText" xml:space="preserve">
+        <value>Log out</value>
+    </data>
+    <data name="ProfileText" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="ChangeProfilePictureText" xml:space="preserve">
+        <value>Change profile picture</value>
+    </data>
+    <data name="EditInterestsText" xml:space="preserve">
+        <value>Edit interests</value>
+    </data>
+    <data name="EditAboutMeText" xml:space="preserve">
+        <value>Edit about me</value>
+    </data>
+    <data name="ChangeLanguageText" xml:space="preserve">
+        <value>Change language</value>
+    </data>
+    <data name="ChangePasswordText" xml:space="preserve">
+        <value>Change password</value>
+    </data>
+    <data name="ManageNotificationText" xml:space="preserve">
+        <value>Manage notification</value>
+	</data>
 </root>

@@ -145,6 +145,7 @@ namespace AtWork.ViewModels
                     input.proPublishedDate = DateTime.Now;
                     input.proStatus = "Ongoing";
                     input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
+                    input.proBackgroundImage = SessionService.SelectedDefaultImageForActivity;
                     input.proCategoryName = "#gettogether";
                     if (NewsPrivacy.ToLower() == "everyone"){
                         input.proAudience = "Post to everybody";
@@ -157,6 +158,7 @@ namespace AtWork.ViewModels
                     {
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         SessionService.NewsPostImageFiles = new List<string>();
+                        SessionService.IsShowActivitiesIntial = true;
                         await _navigationService.NavigateAsync(nameof(DashboardPage));
                     }
                 }

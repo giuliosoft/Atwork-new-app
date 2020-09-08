@@ -31,6 +31,8 @@ namespace AtWork.Services
         public static string DeletedNewsPost = string.Empty;
         public static bool IsNeedToRefreshNews = false;
         public static bool IsShowActivitiesIntial = false;
+        public static List<string> CreateActivityOurImages = new List<string>();
+        public static string SelectedDefaultImageForActivity = string.Empty;
         /// <summary>
         /// Logout
         /// clear social media account details
