@@ -17,7 +17,7 @@ namespace AtWork.Services
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsServiceURL + NewUrl;// + "/" + CurrentUserId;
+                var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetails_V1ServiceURL + NewUrl + "/" + CurrentUserId;
                 //resultModel = await PostResponse<string>(loginServiceUrl, jData, true);
                 resultModel = await GetResponse<string>(loginServiceUrl, true);
             }
@@ -110,13 +110,13 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> GetNewsCommentListByID(string NewsId)
+        public static async Task<BaseResponse<string>> GetNewsCommentListByID(string NewsId,string VolId)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
                 //var strCommentListUrl = "http://app.atwork.ai/api/commentslikes/getcommentlist/newscorp2019023511232400720208151822347";
-                var strCommentListUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsGetCommentListURL + NewsId;
+                var strCommentListUrl = $"{ConfigService.BaseServiceURL}{ConfigService.NewsDetailsGetCommentListURL}{NewsId}/{VolId}";
                 resultModel = await GetResponse<string>(strCommentListUrl, true);
             }
             catch (Exception ex)
@@ -201,6 +201,38 @@ namespace AtWork.Services
                 var addNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.CommentsLikesServiceURL + ConfigService.DeleteNewsLikeServiceURL;
                 var jData = JsonConvert.SerializeObject(newsLikes);
                 resultModel = await PostResponse<string>(addNewsServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> AddNewsCommentLike(News_Comments_Likes news_Comments_Likes)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var addCommentServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsAddCommentLikeServiceURL;
+                var jData = JsonConvert.SerializeObject(news_Comments_Likes);
+                resultModel = await PostResponse<string>(addCommentServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> DeleteNewsCommentLike(News_Comments_Likes news_Comments_Likes)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var addCommentServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDeleteCommentLikeServiceURL;
+                var jData = JsonConvert.SerializeObject(news_Comments_Likes);
+                resultModel = await PostResponse<string>(addCommentServiceUrl, jData, true);
             }
             catch (Exception ex)
             {

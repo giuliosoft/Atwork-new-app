@@ -27,19 +27,19 @@
             <PancakeControl:PancakeView CornerRadius="2" HasShadow="False" BorderThickness="1" BorderColor="White" WidthRequest="35" HeightRequest="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" Margin="0,12,0,0" BackgroundColor="{StaticResource WhiteColor}"/>
             <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                 <PancakeControl:PancakeView HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
-                    <ffImageLoading:CachedImage  Source="{Binding image1}" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" BackgroundColor="White"/>
+                    <ffImageLoading:CachedImage  Source="{Binding image1}" RetryCount="3" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" BackgroundColor="{DynamicResource AccentColor}"/>
                     <PancakeControl:PancakeView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectActivityImage1Command}"/>
                     </PancakeControl:PancakeView.GestureRecognizers>
                 </PancakeControl:PancakeView> 
                 <PancakeControl:PancakeView IsVisible="{Binding ShowImage2}" HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
-                    <ffImageLoading:CachedImage  Source="{Binding image2}" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                    <ffImageLoading:CachedImage  Source="{Binding image2}" RetryCount="3" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AccentColor}"/>
                     <PancakeControl:PancakeView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectActivityImage2Command}"/>
                     </PancakeControl:PancakeView.GestureRecognizers>
                 </PancakeControl:PancakeView>
                 <PancakeControl:PancakeView IsVisible="{Binding ShowImage3}" HasShadow="False" CornerRadius="10" Margin="20" HorizontalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" >
-                    <ffImageLoading:CachedImage  Source="{Binding image3}" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                    <ffImageLoading:CachedImage  Source="{Binding image3}" RetryCount="3" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource AccentColor}"/>
                     <PancakeControl:PancakeView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectActivityImage3Command}"/>
                     </PancakeControl:PancakeView.GestureRecognizers>

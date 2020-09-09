@@ -134,7 +134,7 @@ namespace AtWork.ViewModels
                     BaseResponse<string> serviceResult = null;
                     ActivityListModel input = new ActivityListModel();
                     input.coUniqueID = SettingsService.LoggedInUserData?.coUniqueID;
-                    input.volUniqueID = SettingsService.LoggedInUserData?.id.ToString();
+                    input.volUniqueID = SettingsService.VolunteersUserData?.volUniqueID.ToString();
                     input.proTitle = SessionService.ActivityPostInputData.proTitle;
                     input.proDescription = SessionService.ActivityPostInputData.proDescription;
                     input.proAddress1 = SessionService.ActivityPostInputData.proAddress1;

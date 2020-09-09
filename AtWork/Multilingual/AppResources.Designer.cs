@@ -569,24 +569,6 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string ActivityAddressAlertText {
-            get {
-                return ResourceManager.GetString("ActivityAddressAlertText", resourceCulture);
-            }
-        }
-        
-        internal static string ActivityCityAlertText {
-            get {
-                return ResourceManager.GetString("ActivityCityAlertText", resourceCulture);
-            }
-        }
-        
-        internal static string ActivityCountryAlertText {
-            get {
-                return ResourceManager.GetString("ActivityCountryAlertText", resourceCulture);
-            }
-        }
-        
         internal static string AddaCoverForYour {
             get {
                 return ResourceManager.GetString("AddaCoverForYour", resourceCulture);

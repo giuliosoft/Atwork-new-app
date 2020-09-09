@@ -24,6 +24,7 @@ namespace AtWork.ViewModels
     public class NewsDetailPageViewModel : ViewModelBase
     {
         int SelectedNewsId;
+        int LikeId;
         #region Constructor
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -155,6 +156,8 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await EditComment(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
+        public DelegateCommand<NewsComment> CommentLikeCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await CommentLike(obj)); } }
+        //CommentLikeCommand
         #endregion
 
         #region private methods
@@ -229,17 +232,19 @@ namespace AtWork.ViewModels
             try
             {
                 NewsLikes newsLikes = new NewsLikes();
-                newsLikes.likeByID = SettingsService.LoggedInUserData.id.ToString();
+                newsLikes.likeByID = SettingsService.VolunteersUserData.volUniqueID.ToString();
                 newsLikes.newsId = SelectedNewsId;
                 newsLikes.likeDate = DateTime.Now;
-                //newsLikes.LikeByLoginUser = 
                 if (!_isPostLiked)
                 {
                     _isPostLiked = true;
                     LikeImage = "heartoutline";
                     LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
                     NewsLikeCount = (--NewsLikeCountNo).ToString();
+                    newsLikes.Id = LikeId;
+                    await ShowLoader();
                     await NewsService.UnLikeNewsFeed(newsLikes);
+                    await ClosePopup();
                 }
                 else
                 {
@@ -247,7 +252,14 @@ namespace AtWork.ViewModels
                     LikeImage = "heartfill";
                     LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                     NewsLikeCount = (++NewsLikeCountNo).ToString();
-                    await NewsService.LikeNewsFeed(newsLikes);
+                    await ShowLoader();
+                    var result = await NewsService.LikeNewsFeed(newsLikes);
+                    await ClosePopup();
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewsLikeRespnce>(result?.Body);
+                    if (serviceResultBody != null)
+                    {
+                        LikeId = serviceResultBody.Data;
+                    }
                 }
             }
             catch (Exception ex)
@@ -386,6 +398,44 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+        async Task CommentLike(NewsComment comment)
+        {
+            try
+            {
+                News_Comments_Likes news_Comments_Likes = new News_Comments_Likes
+                {
+                    newsCommentId = comment.Id,
+                    likeByID = SettingsService.VolunteersUserData?.volUniqueID,
+                    likeDate = DateTime.Now
+                };
+                await ShowLoader();
+                if (!comment.LikeByLoginUser)
+                {
+                    var serviceResult = await NewsService.AddNewsCommentLike(news_Comments_Likes);
+                    var serviceResultBody = JsonConvert.DeserializeObject<CommentLikeResponce>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Data != null)
+                    {
+                        comment.LikeId = serviceResultBody.Data;
+                        comment.LikeCount++;
+                    }
+                }
+                else
+                {
+                    news_Comments_Likes.Id = comment.LikeId;
+                    NewsService.DeleteNewsCommentLike(news_Comments_Likes);
+                    comment.LikeCount--;
+                }
+                comment.LikeByLoginUser = !comment.LikeByLoginUser;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await ClosePopup();
+            }
+        }
         async Task LoadNewsDetails()
         {
             try
@@ -412,8 +462,9 @@ namespace AtWork.ViewModels
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
                             NewsUserTime = serviceResultBody.Data.Day;
-                            NewsLikeCount = serviceResultBody.Data.Comments_Likes.ToString();
-                            NewsLikeCountNo = serviceResultBody.Data.Comments_Likes;
+                            NewsLikeCount = serviceResultBody.Data.LikeCount.ToString();
+                            NewsLikeCountNo = serviceResultBody.Data.LikeCount;
+                            LikeId = serviceResultBody.Data.LikeId;
 
                             _isPostLiked = serviceResultBody.Data.LikeByLoginUser;
                             if (!_isPostLiked)
@@ -492,7 +543,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                var serviceResultComment = await NewsService.GetNewsCommentListByID(NewsDetailModel?.newsUniqueID);
+                var serviceResultComment = await NewsService.GetNewsCommentListByID(NewsDetailModel?.newsUniqueID, SettingsService.VolunteersUserData?.volUniqueID);
                 var serviceResultBodyComment = JsonConvert.DeserializeObject<NewsCommentResponce>(serviceResultComment.Body);
                 if (serviceResultBodyComment != null && serviceResultBodyComment.Flag)
                 {

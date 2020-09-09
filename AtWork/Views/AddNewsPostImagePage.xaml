@@ -69,7 +69,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <ffimageloading:CachedImage  WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" IsVisible="{Binding IsShowGallaryImage}" CacheType="None" BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding OurSelectedImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                            <ffimageloading:CachedImage CacheType="All"  RetryCount="3" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" IsVisible="{Binding IsShowGallaryImage}" BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding OurSelectedImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
                             </ffimageloading:CachedImage>
                         </Grid>
                     </PancakeControl:PancakeView>

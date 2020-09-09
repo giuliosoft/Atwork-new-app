@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using AtWork.Services;
 using AtWork.ViewModels;
 using Xamarin.Forms;
+using static AtWork.Models.CommentsModel;
 using static AtWork.Models.LoginModel;
 
 namespace AtWork.Models
@@ -25,6 +26,8 @@ namespace AtWork.Models
             public string Day { get; set; }
             public Volunteers Volunteers { get; set; }
             public bool LikeByLoginUser { get; set; }
+            public int LikeCount { get; set; }
+            public int LikeId { get; set; }
         }
 
         public class News
@@ -137,6 +140,21 @@ namespace AtWork.Models
             public string likeByID { get; set; }
             public DateTime? likeDate { get; set; }
             public bool LikeByLoginUser { get; set; }
+        }
+
+        public class NewsLikeRespnce
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public int Data { get; set; }
+            public object Data1 { get; set; }
+	}
+        public class CommentLikeResponce
+        {
+            public bool Flag { get; set; }
+            public int StatusCode { get; set; }
+            public string Message { get; set; }
+            public int Data { get; set; }
         }
     }
 }
