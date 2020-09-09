@@ -155,6 +155,8 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await EditComment(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
+        public DelegateCommand<NewsComment> CommentLikeCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await CommentLike(obj)); } }
+        //CommentLikeCommand
         #endregion
 
         #region private methods
@@ -386,6 +388,44 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+        async Task CommentLike(NewsComment comment)
+        {
+            try
+            {
+                News_Comments_Likes news_Comments_Likes = new News_Comments_Likes
+                {
+                    newsCommentId = comment.Id,
+                    likeByID = SettingsService.VolunteersUserData?.volUniqueID,
+                    likeDate = DateTime.Now
+                };
+                await ShowLoader();
+                if (!comment.LikeByLoginUser)
+                {
+                    var serviceResult = await NewsService.AddNewsCommentLike(news_Comments_Likes);
+                    var serviceResultBody = JsonConvert.DeserializeObject<CommentLikeResponce>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Data != null)
+                    {
+                        comment.LikeId = serviceResultBody.Data;
+                        comment.LikeCount++;
+                    }
+                }
+                else
+                {
+                    news_Comments_Likes.Id = comment.LikeId;
+                    NewsService.DeleteNewsCommentLike(news_Comments_Likes);
+                    comment.LikeCount--;
+                }
+                comment.LikeByLoginUser = !comment.LikeByLoginUser;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await ClosePopup();
+            }
+        }
         async Task LoadNewsDetails()
         {
             try
@@ -492,7 +532,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                var serviceResultComment = await NewsService.GetNewsCommentListByID(NewsDetailModel?.newsUniqueID);
+                var serviceResultComment = await NewsService.GetNewsCommentListByID(NewsDetailModel?.newsUniqueID, SettingsService.VolunteersUserData?.volUniqueID);
                 var serviceResultBodyComment = JsonConvert.DeserializeObject<NewsCommentResponce>(serviceResultComment.Body);
                 if (serviceResultBodyComment != null && serviceResultBodyComment.Flag)
                 {

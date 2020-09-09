@@ -27,7 +27,7 @@ namespace AtWork.Services
         public static string NewsDetailsAddCommentServiceURL = "/commentslikes/addComment";
         public static string NewsDetailsEditCommentServiceURL = "/commentslikes/EditComment";
         public static string NewsDetailsDeleteCommentServiceURL = "/commentslikes/deleteComment/";
-        public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist/";
+        public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist_v1/";
         public static string NewsPostDeleteServiceURL = "/news/deleterow/";
         public static string NewsListServiceURL = "/news/getlist/";
         public static string CommentsLikesServiceURL = "/commentslikes";
@@ -40,5 +40,8 @@ namespace AtWork.Services
         public static string CreateActivityServiceURL = "/activities/insertrow";
         public static string ActivitiesJoinedMembersServiceURL = "/activities/getActivitiesEmp/";
         public static string ActivityUnsubscribeServiceURL = "/activities/deletejoinActitvity/";
+        public static string NewsCommentLinkServiceURL = "/news/getlist/";
+        public static string NewsAddCommentLikeServiceURL = "/commentslikes/AddNewsCommentLike";
+        public static string NewsDeleteCommentLikeServiceURL = "/commentslikes/DeleteNewsCommentLike";
     }
 }
