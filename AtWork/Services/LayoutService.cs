@@ -101,7 +101,8 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth218"] = sizeConvertAsPerDevice(218);
             App.Current.Resources["HeightWidth220"] = sizeConvertAsPerDevice(220);
             App.Current.Resources["HeightWidth250"] = sizeConvertAsPerDevice(250);
-            App.Current.Resources["HeightWidth325"] = sizeConvertAsPerDevice(325);      
+            App.Current.Resources["HeightWidth320"] = sizeConvertAsPerDevice(320);
+            App.Current.Resources["HeightWidth325"] = sizeConvertAsPerDevice(325);
             App.Current.Resources["HeightWidth300"] = sizeConvertAsPerDevice(300);      
             App.Current.Resources["HeightWidth350"] = sizeConvertAsPerDevice(350);
 

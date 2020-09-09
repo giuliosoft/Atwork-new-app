@@ -26,7 +26,12 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private string _Prop = string.Empty;
-      
+        private bool _Rate1IsVisible = true;
+        private bool _Rate2IsVisible = true;
+        private bool _Rate3IsVisible = true;
+        private bool _Rate4IsVisible = true;
+        private bool _Rate5IsVisible = true;
+        private double _RatingPancakeWidth = 0;
         #endregion
 
         #region Public Properties
@@ -48,22 +53,109 @@ namespace AtWork.ViewModels
             get { return _FeedBackListImproveList; }
             set { SetProperty(ref _FeedBackListImproveList, value); }
         }
-      
+
+        public double RatingPancakeWidth
+        {
+            get { return _RatingPancakeWidth; }
+            set { SetProperty(ref _RatingPancakeWidth, value); }
+        }
+
+        public bool Rate1IsVisible
+        {
+            get { return _Rate1IsVisible; }
+            set { SetProperty(ref _Rate1IsVisible, value); }
+        }
+
+        public bool Rate2IsVisible
+        {
+            get { return _Rate2IsVisible; }
+            set { SetProperty(ref _Rate2IsVisible, value); }
+        }
+
+        public bool Rate3IsVisible
+        {
+            get { return _Rate3IsVisible; }
+            set { SetProperty(ref _Rate3IsVisible, value); }
+        }
+
+        public bool Rate4IsVisible
+        {
+            get { return _Rate4IsVisible; }
+            set { SetProperty(ref _Rate4IsVisible, value); }
+        }
+
+        public bool Rate5IsVisible
+        {
+            get { return _Rate5IsVisible; }
+            set { SetProperty(ref _Rate5IsVisible, value); }
+        }
         #endregion
 
         #region Commands
-        public DelegateCommand<FeedBackUIModel> SelectedTextCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await SelectedText(obj)); } }
-        public DelegateCommand<FeedBackUIModel> SelectedImproveTextCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await SelectedImproveText(obj)); } }
+        public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
+        public DelegateCommand<FeedBackUIModel> ActivityImprovementSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityImprovementSelected(obj)); } }
         public DelegateCommand GoToMyActivityCommand { get { return new DelegateCommand(async () => await GoToMyActivity()); } }
-
+        public DelegateCommand<string> RatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await RatingSelected(obj)); } }
         #endregion
 
         #region private methods
+        async Task RatingSelected(string selectedRating)
+        {
+            try
+            {
+                if (selectedRating == TextResources.RateOneFull)
+                {
+                    Rate1IsVisible = false;
+                    Rate2IsVisible = true;
+                    Rate3IsVisible = true;
+                    Rate4IsVisible = true;
+                    Rate5IsVisible = true;
+                    RatingPancakeWidth = 60;
+                }
+                else if (selectedRating == TextResources.RateTwoFull)
+                {
+                    Rate1IsVisible = false;
+                    Rate2IsVisible = false;
+                    Rate3IsVisible = true;
+                    Rate4IsVisible = true;
+                    Rate5IsVisible = true;
+                    RatingPancakeWidth = 120;
+                }
+                else if (selectedRating == TextResources.RateThreeFull)
+                {
+                    Rate1IsVisible = false;
+                    Rate2IsVisible = false;
+                    Rate3IsVisible = false;
+                    Rate4IsVisible = true;
+                    Rate5IsVisible = true;
+                    RatingPancakeWidth = 180;
+                }
+                else if (selectedRating == TextResources.RateFourFull)
+                {
+                    Rate1IsVisible = false;
+                    Rate2IsVisible = false;
+                    Rate3IsVisible = false;
+                    Rate4IsVisible = false;
+                    Rate5IsVisible = true;
+                    RatingPancakeWidth = 240;
+                }
+                else if (selectedRating == TextResources.RateFiveFull)
+                {
+                    Rate1IsVisible = false;
+                    Rate2IsVisible = false;
+                    Rate3IsVisible = false;
+                    Rate4IsVisible = false;
+                    Rate5IsVisible = false;
+                    RatingPancakeWidth = 300;
+                }
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
 
-        #endregion
-
-        #region public methods
-        public async Task SelectedText(FeedBackUIModel selectedTab)
+        async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
         {
             try
             {
@@ -75,14 +167,15 @@ namespace AtWork.ViewModels
                     }
                     return true;
                 });
-               
+
             }
             catch (Exception exception)
             {
                 Debug.WriteLine(exception.Message);
             }
         }
-        public async Task SelectedImproveText(FeedBackUIModel selectedTab)
+
+        async Task ActivityImprovementSelected(FeedBackUIModel selectedTab)
         {
             try
             {
@@ -101,6 +194,9 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
+        #endregion
+
+        #region public methods        
         public async Task GoToMyActivity()
         {
             try
@@ -113,7 +209,6 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-
         #endregion
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -146,9 +241,6 @@ namespace AtWork.ViewModels
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.CommunicationText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.EverythingWasSatisfactoryText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.OtherText, IsSelected = false });
-
-            
         }
-        
     }
 }

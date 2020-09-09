@@ -802,7 +802,32 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("JoinActivityAlertText", resourceCulture);
             }
         }
-		        internal static string MyStatsText {
+        
+        internal static string FeedbackText {
+            get {
+                return ResourceManager.GetString("FeedbackText", resourceCulture);
+            }
+        }
+        
+        internal static string FeedbackMorePlaceholderText {
+            get {
+                return ResourceManager.GetString("FeedbackMorePlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string LikeMostPlaceholderText {
+            get {
+                return ResourceManager.GetString("LikeMostPlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string AnythingElsePlaceholderText {
+            get {
+                return ResourceManager.GetString("AnythingElsePlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string MyStatsText {
             get {
                 return ResourceManager.GetString("MyStatsText", resourceCulture);
             }
@@ -883,7 +908,7 @@ namespace AtWork.Multilingual {
         internal static string ManageNotificationText {
             get {
                 return ResourceManager.GetString("ManageNotificationText", resourceCulture);
-			}
-		}
+            }
+        }
     }
 }

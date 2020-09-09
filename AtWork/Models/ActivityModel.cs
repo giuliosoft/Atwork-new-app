@@ -65,6 +65,7 @@ namespace AtWork.Models
             public string StartDate { get; set; }
             public string EndDate { get; set; }
             public string DataType { get; set; }
+            public string proVolHourDates { get; set; }
 
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
@@ -117,7 +118,7 @@ namespace AtWork.Models
                 set { SetProperty(ref _ShowPastActivity, value); }
             }
 
-            public bool IsPastActivity {get;set;}
+            public bool IsPastActivity { get; set; }
             public bool ShowLink
             {
                 get

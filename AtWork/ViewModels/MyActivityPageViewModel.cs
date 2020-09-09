@@ -73,6 +73,7 @@ namespace AtWork.ViewModels
         public DelegateCommand MyActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteMyActivityRefreshCommand()); } }
         public DelegateCommand<ActivityListModel> UpcomingActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GotoActivityDetails(obj)); } }
         public DelegateCommand<ActivityListModel> PastActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GoToFeedBackPage(obj)); } }
+        public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         #endregion
 
         #region private methods
@@ -110,16 +111,28 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-
+        async Task JoinedMember(ActivityListModel selectedActivityPost)
+        {
+            try
+            {
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("ActivityID", selectedActivityPost.proUniqueID);
+                await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         async Task ExecuteMyActivityRefreshCommand()
         {
             IsRefreshingMyActivities = true;
             //ActivityPageNo = 1;
-            await GetMyActivityList();
+            await GetMyActivityList(isfromRefresh:true);
             IsRefreshingMyActivities = false;
         }
 
-        async Task GetMyActivityList()
+        async Task GetMyActivityList(bool isfromRefresh = false)
         {
             try
             {
@@ -132,7 +145,8 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                await ShowLoader();
+                if (!isfromRefresh)
+                    await ShowLoader();
                 var serviceResult = await ActivityService.GetMyActivityList(SettingsService.VolunteersUserData.volUniqueID);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {

@@ -62,7 +62,11 @@
                                     </Grid>
                                 </PancakeControl:PancakeView>
                                 <StackLayout Margin="0,5,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
-                                    <Label Text="{Binding Member}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
+                                    <Label Text="{Binding ActivityDetails.Member}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="Center" TextColor="{DynamicResource AccentColor}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding JoinedMemberCommand}" CommandParameter="{Binding ActivityDetails.proUniqueID}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                 </StackLayout>
                             </StackLayout>
                         </PancakeControl:PancakeView>
