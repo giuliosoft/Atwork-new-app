@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AtWork.Services;
 using Newtonsoft.Json;
+using Prism.Mvvm;
 using Xamarin.Forms;
 using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
@@ -10,11 +11,11 @@ namespace AtWork.Models
 {
     public class CommentsModel
     {
-        public class NewsComment
+        public class NewsComment : BindableBase
         {
             public NewsComment()
             {
-                //tbl_News_Comments_Likes = new HashSet<tbl_News_Comments_Likes>();
+                //News_Comments_Likes = new List<News_Comments_Likes>();
             }
             public int Id { get; set; }
             public string coUniqueID { get; set; }
@@ -26,9 +27,9 @@ namespace AtWork.Models
             public News News { get; set; }
             public int Comments_Likes { get; set; }
             public string Day { get; set; }
-            public Volunteers Volunteers { get; set; }
-            public int LikeCount { get; set; }
-
+            public Volunteers Volunteers { get; set; }            
+            public int LikeId { get; set; }
+            //public List<News_Comments_Likes> News_Comments_Likes { get; set; }
             [JsonIgnore]
             public string UserName
             {
@@ -45,15 +46,27 @@ namespace AtWork.Models
                     return string.Empty;
                 }
             }
-
+            private int _likeCount;
+            public int LikeCount
+            {
+                get
+                {
+                    return _likeCount;
+                }
+                set
+                {
+                    _likeCount = value;
+                    RaisePropertyChanged(nameof(CommentsLikes));
+                }
+            }
             [JsonIgnore]
             public string CommentsLikes
             {
                 get
                 {
-                    if (Comments_Likes != null)
+                    if (LikeCount != null)
                     {
-                        return Comments_Likes.ToString();
+                        return LikeCount.ToString();
                     }
                     return string.Empty;
                 }
@@ -73,7 +86,6 @@ namespace AtWork.Models
                 }
             }
 
-            ////public virtual ICollection<tbl_News_Comments_Likes> tbl_News_Comments_Likes { get; set; }
             [JsonIgnore]
             public bool CommentByLoggedInUser
             {
@@ -84,6 +96,31 @@ namespace AtWork.Models
                     return false;
                 }
             }
+            private bool _likeByLoggedInUser;
+            public bool LikeByLoginUser
+            {
+                get
+                {
+                    return _likeByLoggedInUser;
+                }
+                set
+                {
+                    _likeByLoggedInUser = value;
+                    RaisePropertyChanged(nameof(CommentLikeImage));
+                    RaisePropertyChanged(nameof(CommentsLikes));
+                }
+            }
+            [JsonIgnore]
+            public ImageSource CommentLikeImage
+            {
+                get
+                {
+                    if (LikeByLoginUser)
+                        return "heartfill";
+                    else
+                        return "heartoutline";
+                }
+            }
         }
         public class NewsCommentResponce
         {
@@ -92,6 +129,12 @@ namespace AtWork.Models
             public List<NewsComment> Data { get; set; }
             public object Data1 { get; set; }
         }
-
+        public class News_Comments_Likes
+        {
+            public int Id { get; set; }
+            public int newsCommentId { get; set; }
+            public string likeByID { get; set; }
+            public DateTime? likeDate { get; set; }
+        }
     }
 }
