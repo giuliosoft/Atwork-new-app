@@ -17,7 +17,7 @@ namespace AtWork.Services
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetailsServiceURL + NewUrl;// + "/" + CurrentUserId;
+                var loginServiceUrl = ConfigService.BaseServiceURL + ConfigService.NewsDetails_V1ServiceURL + NewUrl + "/" + CurrentUserId;
                 //resultModel = await PostResponse<string>(loginServiceUrl, jData, true);
                 resultModel = await GetResponse<string>(loginServiceUrl, true);
             }

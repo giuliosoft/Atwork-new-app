@@ -215,23 +215,32 @@ namespace AtWork.ViewModels
             {
                 ActivityImagePopup activityImagePopup = new ActivityImagePopup();
                 ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
-                activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
+                activityImagePopupViewModel.SelectedImageSourceEvent1 += async (string arg1, ImageSource arg2) =>
                 {
-                    try
-                    {
-                        NextTextColor = (Color)App.Current.Resources["WhiteColor"];
-                        NewsPostImageCarouselList.Clear();
-                        NewsPickedImageViewIsVisible = false;
-                        IsShowOurImage = true;
-                        SelectedDefaultImage = SelectedObj;
-                        //NewsPostImageCarouselList.Add(new NewsImageModel() {  NewsImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage)) });
-                        OurSelectedImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage));
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
+                    NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                    NewsPostImageCarouselList.Clear();
+                    NewsPickedImageViewIsVisible = false;
+                    IsShowOurImage = true;
+                    SelectedDefaultImage = arg1;
+                    OurSelectedImage = arg2;
                 };
+                //activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
+                //{
+                //    try
+                //    {
+                //        NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                //        NewsPostImageCarouselList.Clear();
+                //        NewsPickedImageViewIsVisible = false;
+                //        IsShowOurImage = true;
+                //        SelectedDefaultImage = SelectedObj;
+                //        //NewsPostImageCarouselList.Add(new NewsImageModel() {  NewsImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage)) });
+                //        OurSelectedImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage));
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        Debug.WriteLine(ex.Message);
+                //    }
+                //};
                 activityImagePopup.BindingContext = activityImagePopupViewModel;
                 await PopupNavigationService.ShowPopup(activityImagePopup, true);
 
@@ -240,6 +249,11 @@ namespace AtWork.ViewModels
             {
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private void ActivityImagePopupViewModel_SelectedImageSourceEvent1(string arg1, ImageSource arg2)
+        {
+            throw new NotImplementedException();
         }
 
         async Task CropNewsImage(string selectedOption)

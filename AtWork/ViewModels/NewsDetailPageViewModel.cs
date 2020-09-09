@@ -24,6 +24,7 @@ namespace AtWork.ViewModels
     public class NewsDetailPageViewModel : ViewModelBase
     {
         int SelectedNewsId;
+        int LikeId;
         #region Constructor
         public NewsDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -229,17 +230,19 @@ namespace AtWork.ViewModels
             try
             {
                 NewsLikes newsLikes = new NewsLikes();
-                newsLikes.likeByID = SettingsService.LoggedInUserData.id.ToString();
+                newsLikes.likeByID = SettingsService.VolunteersUserData.volUniqueID.ToString();
                 newsLikes.newsId = SelectedNewsId;
                 newsLikes.likeDate = DateTime.Now;
-                //newsLikes.LikeByLoginUser = 
                 if (!_isPostLiked)
                 {
                     _isPostLiked = true;
                     LikeImage = "heartoutline";
                     LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
                     NewsLikeCount = (--NewsLikeCountNo).ToString();
+                    newsLikes.Id = LikeId;
+                    await ShowLoader();
                     await NewsService.UnLikeNewsFeed(newsLikes);
+                    await ClosePopup();
                 }
                 else
                 {
@@ -247,7 +250,14 @@ namespace AtWork.ViewModels
                     LikeImage = "heartfill";
                     LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                     NewsLikeCount = (++NewsLikeCountNo).ToString();
-                    await NewsService.LikeNewsFeed(newsLikes);
+                    await ShowLoader();
+                    var result = await NewsService.LikeNewsFeed(newsLikes);
+                    await ClosePopup();
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewsLikeRespnce>(result?.Body);
+                    if (serviceResultBody != null)
+                    {
+                        LikeId = serviceResultBody.Data;
+                    }
                 }
             }
             catch (Exception ex)
@@ -412,8 +422,9 @@ namespace AtWork.ViewModels
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
 
                             NewsUserTime = serviceResultBody.Data.Day;
-                            NewsLikeCount = serviceResultBody.Data.Comments_Likes.ToString();
-                            NewsLikeCountNo = serviceResultBody.Data.Comments_Likes;
+                            NewsLikeCount = serviceResultBody.Data.LikeCount.ToString();
+                            NewsLikeCountNo = serviceResultBody.Data.LikeCount;
+                            LikeId = serviceResultBody.Data.LikeId;
 
                             _isPostLiked = serviceResultBody.Data.LikeByLoginUser;
                             if (!_isPostLiked)

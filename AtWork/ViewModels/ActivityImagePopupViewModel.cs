@@ -13,7 +13,8 @@ namespace AtWork.ViewModels
     public class ActivityImagePopupViewModel : ViewModelBase
     {
         public EventHandler<bool> ClosePopupEvent;
-        public EventHandler<string> SelectedImageSourceEvent;
+        //public EventHandler<string> SelectedImageSourceEvent;
+        public event Action<string,ImageSource> SelectedImageSourceEvent1;
         #region Constructor
         public ActivityImagePopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -96,7 +97,8 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                SelectedImageSourceEvent?.Invoke(this, SessionService.CreateActivityOurImages[0]);
+                //SelectedImageSourceEvent?.Invoke(this, SessionService.CreateActivityOurImages[0]);
+                SelectedImageSourceEvent1?.Invoke(SessionService.CreateActivityOurImages[0], image1);
             }
             catch (Exception ex)
             {
@@ -108,7 +110,8 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                SelectedImageSourceEvent?.Invoke(this, SessionService.CreateActivityOurImages[1]);
+                //SelectedImageSourceEvent?.Invoke(this, SessionService.CreateActivityOurImages[1]);
+                SelectedImageSourceEvent1?.Invoke(SessionService.CreateActivityOurImages[1], image2);
             }
             catch (Exception ex)
             {
@@ -120,7 +123,9 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                SelectedImageSourceEvent?.Invoke(this, SessionService.CreateActivityOurImages[2]);
+                //SelectedImageSourceEvent?.Invoke(this, SessionService.CreateActivityOurImages[2]);
+                SelectedImageSourceEvent1?.Invoke(SessionService.CreateActivityOurImages[2],image3);
+
             }
             catch (Exception ex)
             {

@@ -109,21 +109,6 @@ namespace AtWork.ViewModels
                     await DisplayAlertAsync(AppResources.ActivityDataAlertText);
                     return;
                 }
-                else if (string.IsNullOrEmpty(ActivityAddress))
-                {
-                    await DisplayAlertAsync(AppResources.ActivityAddressAlertText);
-                    return;
-                }
-                else if (string.IsNullOrEmpty(ActivityCity))
-                {
-                    await DisplayAlertAsync(AppResources.ActivityCityAlertText);
-                    return;
-                }
-                else if (string.IsNullOrEmpty(ActivityCountry))
-                {
-                    await DisplayAlertAsync(AppResources.ActivityCountryAlertText);
-                    return;
-                }
 
                 await ShowLoader();
                 SessionService.ActivityPostInputData.proTitle = ActivityTitle;
