@@ -18,6 +18,7 @@ using Plugin.Calendars;
 using System.Collections.Generic;
 using Plugin.Calendars.Abstractions;
 using System.Linq;
+using System.Globalization;
 
 namespace AtWork.ViewModels
 {
@@ -43,6 +44,7 @@ namespace AtWork.ViewModels
                 JoinActivity = true;
                 UnSubscribeActivity = false;
             }
+            _settingHelperService = DependencyService.Get<ISettingsHelper>();
         }
         #endregion
 
@@ -68,6 +70,7 @@ namespace AtWork.ViewModels
         private ObservableCollection<ActivityTagModel> _ActivityTagList = new ObservableCollection<ActivityTagModel>();
         private ObservableCollection<ActivityCarouselListModel> _ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
         string SelectedActivityID = string.Empty;
+        ISettingsHelper _settingHelperService;
         #endregion
 
         #region Public Properties
@@ -242,6 +245,8 @@ namespace AtWork.ViewModels
             try
             {
                 var tempDtList = new ObservableCollection<JoinActivityDatesModel>();
+                //ActivityDetails.DataType = TextResources.RecurringCategoryText;
+                //ActivityDetails.StartDate = "2019-12-15,2019-11-22";
                 if (!string.IsNullOrEmpty(ActivityDetails.StartDate))
                 {
                     string dateStr = ActivityDetails.StartDate;
@@ -264,6 +269,9 @@ namespace AtWork.ViewModels
                         {
                             DateTime dtVal = DateTime.Now;
                             bool parsed = DateTime.TryParse(dtArg, out dtVal);
+                            //dtVal = Convert.ToDateTime(dtArg);
+                            //string format = "yyyy-MM-dd";
+                            //bool parsed = DateTime.TryParseExact(dtArg, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dtVal);
                             if (parsed)
                             {
                                 string dtStrVal = dtVal.ToString("d MMM yyyy");
@@ -277,22 +285,6 @@ namespace AtWork.ViewModels
 
                 if (ActivityDetails.DataType.Equals(TextResources.OnDemandCategoryText, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    if (tempDtList != null && tempDtList.Count > 0)
-                    {
-                        DateTime dateToAddInCalendar = tempDtList[0].ActivityDate;
-                        var calendars = await CrossCalendars.Current.GetCalendarsAsync();
-                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
-
-                        var calendarEvent = new CalendarEvent
-                        {
-                            Name = "AtWork Activity Event",
-                            Start = dateToAddInCalendar,
-                            End = dateToAddInCalendar.AddHours(1),
-                            Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
-                        };
-                        await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
-                    }
-
                     JoinActivityInputModel inputModel = new JoinActivityInputModel();
                     //inputModel.ActivityID = ActivityDetails.id;
                     inputModel.coUniqueID = ActivityDetails.coUniqueID;
@@ -301,51 +293,128 @@ namespace AtWork.ViewModels
                     inputModel.proStatus = TextResources.ActiveStatus;
 
                     await CallJoinActivityService(inputModel);
+                    await DisplayAlertAsync(AppResources.JoinActivitySuccessfulText);
                 }
                 else if (ActivityDetails.DataType.Equals(TextResources.RecurringCategoryText, StringComparison.InvariantCultureIgnoreCase) || ActivityDetails.DataType.Equals(TextResources.RegularCategoryText, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
-                    JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
-
-                    if (tempDtList != null && tempDtList.Count > 0)
+                    if (tempDtList != null && tempDtList.Count > 1)
                     {
-                        joinactivityPopupViewModel.ActivityJoinDates = new ObservableCollection<JoinActivityDatesModel>(tempDtList);
-                    }
+                        JoinActivityPopup JoinActivityPopup = new JoinActivityPopup();
+                        JoinActivityPopupViewModel joinactivityPopupViewModel = new JoinActivityPopupViewModel(_navigationService, _facadeService);
+                        joinactivityPopupViewModel.SelectedActivityType = ActivityDetails.DataType;
 
-                    joinactivityPopupViewModel.JoinActivityEvent += async (object sender, JoinActivityDatesModel SelectedObj) =>
-                    {
-                        try
+                        if (tempDtList != null && tempDtList.Count > 0)
                         {
-                            if (SelectedObj != null)
+                            joinactivityPopupViewModel.ActivityJoinDates = new ObservableCollection<JoinActivityDatesModel>(tempDtList);
+                        }
+
+                        joinactivityPopupViewModel.JoinActivityEvent += async (object sender, List<JoinActivityDatesModel> SelectedDatesObj) =>
+                        {
+                            try
                             {
-                                if (!await CheckConnectivity())
+                                if (SelectedDatesObj != null && SelectedDatesObj.Count > 0)
                                 {
-                                    return;
+                                    var hasPermission = await TakePermissionForCalendar();
+                                    if (hasPermission)
+                                    {
+                                        var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+                                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                        List<string> selectedRecurringDates = new List<string>();
+                                        foreach (var selDt in SelectedDatesObj)
+                                        {
+                                            var dtString = selDt.ActivityDate.ToString("yyyy-MM-dd");
+                                            selectedRecurringDates.Add(dtString);
+                                            DateTime dateToAddInCalendar = selDt.ActivityDate;
+                                            var calendarEvent = new CalendarEvent
+                                            {
+                                                Name = "AtWork Activity Event",
+                                                Start = dateToAddInCalendar,
+                                                End = dateToAddInCalendar.AddHours(1),
+                                                Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+                                            };
+                                            await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+                                        }
+
+                                        if (!await CheckConnectivity())
+                                        {
+                                            return;
+                                        }
+
+                                        JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                                        //inputModel.ActivityID = ActivityDetails.id;
+                                        inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                                        inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                                        inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                                        inputModel.proStatus = TextResources.ActiveStatus;
+                                        inputModel.proVolHourDates = ActivityDetails.proAddActivityDate;
+                                        if (ActivityDetails.DataType.Equals(TextResources.RegularCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                                        {
+                                            inputModel.proChosenDate = SelectedDatesObj.FirstOrDefault().ActivityDate;
+                                        }
+                                        else if (ActivityDetails.DataType.Equals(TextResources.RecurringCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                                        {
+                                            string delim = ",";
+                                            string commaSeparatedDates = String.Join(delim, selectedRecurringDates);
+                                            inputModel.RecurringDates = commaSeparatedDates;
+                                        }
+                                        await CallJoinActivityService(inputModel);
+                                    }
                                 }
-
-                                JoinActivityInputModel inputModel = new JoinActivityInputModel();
-                                //inputModel.ActivityID = ActivityDetails.id;
-                                inputModel.coUniqueID = ActivityDetails.coUniqueID;
-                                inputModel.proUniqueID = ActivityDetails.proUniqueID;
-                                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                                inputModel.proStatus = TextResources.ActiveStatus;
-                                inputModel.proVolHourDates = ActivityDetails.proAddActivityDate;
-                                inputModel.proChosenDate = SelectedObj.ActivityDate;
-
-                                await CallJoinActivityService(inputModel);
+                                else
+                                {
+                                    await DisplayAlertAsync(AppResources.JoinActivityAlertText);
+                                }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                await DisplayAlertAsync(AppResources.JoinActivityAlertText);
+                                Debug.WriteLine(ex.Message);
                             }
-                        }
-                        catch (Exception ex)
+                        };
+                        JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
+                        await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
+                    }
+                    else if (tempDtList != null && tempDtList.Count == 1)
+                    {
+                        var hasPermission = await TakePermissionForCalendar();
+                        if (hasPermission)
                         {
-                            Debug.WriteLine(ex.Message);
+                            var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+                            var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+
+                            DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
+                            var calendarEvent = new CalendarEvent
+                            {
+                                Name = "AtWork Activity Event",
+                                Start = dateToAddInCalendar,
+                                End = dateToAddInCalendar.AddHours(1),
+                                Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+                            };
+                            await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+
+                            if (!await CheckConnectivity())
+                            {
+                                return;
+                            }
+
+                            JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                            //inputModel.ActivityID = ActivityDetails.id;
+                            inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                            inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                            inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                            inputModel.proStatus = TextResources.ActiveStatus;
+                            inputModel.proVolHourDates = ActivityDetails.proAddActivityDate;
+                            if (ActivityDetails.DataType.Equals(TextResources.RegularCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                inputModel.proChosenDate = tempDtList.FirstOrDefault().ActivityDate;
+                            }
+                            else if (ActivityDetails.DataType.Equals(TextResources.RecurringCategoryText, StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                inputModel.RecurringDates = tempDtList.FirstOrDefault().ActivityDate.ToString("yyyy-MM-dd");
+                            }
+
+                            await CallJoinActivityService(inputModel);
                         }
-                    };
-                    JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
-                    await PopupNavigationService.ShowPopup(JoinActivityPopup, true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -419,7 +488,52 @@ namespace AtWork.ViewModels
         #endregion
 
         #region public methods
+        async Task<bool> TakePermissionForCalendar()
+        {
+            var retVal = false;
+            try
+            {
+                var calendarWritePermissionStatus = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
+                if (calendarWritePermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
+                {
+                    calendarWritePermissionStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
+                }
 
+                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+                if (calendarReadPermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
+                {
+                    calendarReadPermissionStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+                }
+
+                if (calendarReadPermissionStatus == Xamarin.Essentials.PermissionStatus.Granted &&
+                    calendarWritePermissionStatus == Xamarin.Essentials.PermissionStatus.Granted)
+                {
+                    retVal = true;
+                }
+                else
+                {
+                    var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.CalendarPermissionAlert, AppResources.AlertOkText, AppResources.Cancel);
+                    if (res)
+                    {
+                        await _settingHelperService.OpenAppSettings();
+                    }
+                    //if (calendarWritePermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
+                    //{
+                    //    await DisplayAlertAsync(AppResources.CalendarPermissionAlert);
+                    //}
+                    //else if (calendarReadPermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
+                    //{
+                    //    await DisplayAlertAsync(AppResources.CalendarPermissionAlert);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await DisplayAlertAsync(AppResources.PermissionErrorText);
+            }
+            return retVal;
+        }
         #endregion
 
         public override void OnNavigatedFrom(INavigationParameters parameters)

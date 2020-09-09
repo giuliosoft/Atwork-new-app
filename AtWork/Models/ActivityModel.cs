@@ -190,6 +190,8 @@ namespace AtWork.Models
             public DateTime? proChosenDate { get; set; }
 
             public DateTime? proVolHourDates { get; set; }
+
+            public string RecurringDates { get; set; }
         }
 
         public class ActivityJoinedMemberListResponse
