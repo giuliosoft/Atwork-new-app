@@ -58,31 +58,6 @@
                         </StackLayout>
                     </PancakeControl:PancakeView>
                     <Label Text="{x:Static Multilingual:AppResources.OverallExperienceText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <!--<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,20,50,30" >
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="30,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}"/>
-                    </StackLayout>
-                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
-                    <Label Text="{x:Static Multilingual:AppResources.ImpactOfYourVolunteeringText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,20,50,30">
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="30,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}"/>
-                    </StackLayout>
-                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
-                    <Label Text="{x:Static Multilingual:AppResources.LikelihoodOfRecommendingText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="0,20,0,0"/>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="50,20,50,30">
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="30,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}" Margin="0,0,20,0"/>
-                        <CustomControl:CustomImage TintColor="{DynamicResource DarkGreenColor}"  Source="heart" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth30}" WidthRequest="{DynamicResource HeightWidth30}"/>
-                    </StackLayout>-->
                     <Grid ColumnDefinitions="60,60,60,60,60" ColumnSpacing="0" HeightRequest="70" Padding="0" Margin="50,0,50,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
                         <PancakeControl:PancakeView Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="25" WidthRequest="{Binding RatingPancakeWidth}" HorizontalOptions="StartAndExpand" HeightRequest="50" BackgroundColor="{StaticResource DarkGreenColor}">
                             <!--<StackLayout></StackLayout>-->

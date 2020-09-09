@@ -910,5 +910,23 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ManageNotificationText", resourceCulture);
             }
         }
+        
+        internal static string CategoryDataAlertText {
+            get {
+                return ResourceManager.GetString("CategoryDataAlertText", resourceCulture);
+            }
+        }
+        
+        internal static string CalendarPermissionAlert {
+            get {
+                return ResourceManager.GetString("CalendarPermissionAlert", resourceCulture);
+            }
+        }
+        
+        internal static string JoinActivitySuccessfulText {
+            get {
+                return ResourceManager.GetString("JoinActivitySuccessfulText", resourceCulture);
+            }
+        }
     }
 }

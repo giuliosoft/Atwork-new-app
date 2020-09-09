@@ -159,7 +159,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand<ActivityItems> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityItems>(async (obj) => await ActivityCategorySelected(obj)); } }
-		public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
+        public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
         #endregion
 
         #region private methods
@@ -175,7 +175,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
-            await GetActivityList(isPullToRefresh:true);
+            await GetActivityList(isPullToRefresh: true);
             IsRefreshingActivities = false;
         }
 
@@ -561,7 +561,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetActivityList(string categoryId = "",bool isPullToRefresh = false)
+        async Task GetActivityList(string categoryId = "", bool isPullToRefresh = false)
         {
             try
             {
@@ -647,6 +647,10 @@ namespace AtWork.ViewModels
                                 }
                             }
                             SessionService.CreateActivityOurImages = lstImageName;
+                        }
+                        if (!string.IsNullOrEmpty(categoryId) && tempList == null || tempList.Count < 1)
+                        {
+                            await DisplayAlertAsync(AppResources.CategoryDataAlertText);
                         }
                     }
                 }
