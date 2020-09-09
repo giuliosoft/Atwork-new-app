@@ -898,5 +898,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("StartWriting", resourceCulture);
             }
         }
+        
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
     }
 }

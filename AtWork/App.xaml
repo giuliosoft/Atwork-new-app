@@ -400,6 +400,15 @@
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="LanguageListLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize21}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+
 	    </Style>
             <!--Label Styles End-->
 

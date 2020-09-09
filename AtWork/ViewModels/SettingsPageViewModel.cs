@@ -51,11 +51,11 @@ namespace AtWork.ViewModels
                 }
                 else if (item == AppResources.ChangeLanguageText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(LanguageListPage)); 
                 }
                 else if (item == AppResources.ChangePasswordText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(ChangeUserPasswordPage)); 
                 }
                 else if (item == AppResources.ManageNotificationText)
                 {
