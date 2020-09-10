@@ -15,6 +15,7 @@ namespace AtWork.ViewModels
         public ProfilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             HeaderDetailsTitle = AppResources.ProfileText;
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
         }
         #region Commands
         public DelegateCommand SettingCommand { get { return new DelegateCommand(async () => await Setting()); } }

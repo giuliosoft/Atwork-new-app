@@ -60,6 +60,8 @@ namespace AtWork.ViewModels
         private DelegateCommand _NewsOptionCommand;
         private bool _JoinActivity;
         private bool _UnSubscribeActivity;
+        private double _headerDetailsTitleFontSize = (double)App.Current.Resources["FontSize20"];
+        private Color _headerDetailBackgroundColor = (Color)App.Current.Resources["OffWhiteColor"];
         #endregion
         public bool JoinActivity
         {
@@ -175,6 +177,16 @@ namespace AtWork.ViewModels
         {
             get { return _profileTapCommand; }
             set { SetProperty(ref _profileTapCommand, value); }
+        }
+        public double HeaderDetailsTitleFontSize
+        {
+            get { return _headerDetailsTitleFontSize; }
+            set { SetProperty(ref _headerDetailsTitleFontSize, value); }
+        }
+        public Color HeaderDetailBackgroundColor
+        {
+            get { return _headerDetailBackgroundColor; }
+            set { SetProperty(ref _headerDetailBackgroundColor, value); }
         }
         #region Commands
 
