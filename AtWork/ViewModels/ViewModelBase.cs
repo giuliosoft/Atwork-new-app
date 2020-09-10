@@ -203,6 +203,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
         public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
         public DelegateCommand GreenHeaderViewBackCommand { get { return new DelegateCommand(async () => await GreenHeaderViewBack()); } }
+        public DelegateCommand OpenProfileCommand { get { return new DelegateCommand(async () => await OpenProfile()); } }
         #endregion
 
         #region Methods
@@ -425,6 +426,18 @@ namespace AtWork.ViewModels
                 }
                 SessionService.isLoadingPopupOpen = true;
                 await ShowPopup(new LoadingPopup(), animate);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+        
+        async Task OpenProfile()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ProfilePage), null);
             }
             catch (Exception exception)
             {
