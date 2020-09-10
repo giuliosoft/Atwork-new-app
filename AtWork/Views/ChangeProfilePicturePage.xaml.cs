@@ -23,9 +23,11 @@ namespace AtWork.Views
                 if (SessionService.isImageCropped)
                 {
                     SessionService.isImageCropped = false;
-                    var temp = VMContext.SelectedNewsImageValue;
-                    VMContext.SelectedNewsImageValue = null;
-                    VMContext.SelectedNewsImageValue = temp;
+                    //var temp = VMContext.SelectedNewsImageValue;
+                    VMContext.ProfileImage = null;
+                    VMContext.ProfileImage = ImageSource.FromFile(VMContext.SelectedNewsImageValue.ImagePath);
+                    //VMContext.SelectedNewsImageValue = null;
+                    //VMContext.SelectedNewsImageValue = temp;
                 }
             }
             catch (Exception ex)

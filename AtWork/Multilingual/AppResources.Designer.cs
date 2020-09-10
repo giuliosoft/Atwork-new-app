@@ -934,5 +934,41 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("JoinActivitySuccessfulText", resourceCulture);
             }
         }
+        
+        internal static string ActivitiesText {
+            get {
+                return ResourceManager.GetString("ActivitiesText", resourceCulture);
+            }
+        }
+        
+        internal static string HoursText {
+            get {
+                return ResourceManager.GetString("HoursText", resourceCulture);
+            }
+        }
+        
+        internal static string AllowNotificationsTitleText {
+            get {
+                return ResourceManager.GetString("AllowNotificationsTitleText", resourceCulture);
+            }
+        }
+        
+        internal static string AllowNotificationsMsgText {
+            get {
+                return ResourceManager.GetString("AllowNotificationsMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string DontAllowText {
+            get {
+                return ResourceManager.GetString("DontAllowText", resourceCulture);
+            }
+        }
+        
+        internal static string AllowText {
+            get {
+                return ResourceManager.GetString("AllowText", resourceCulture);
+            }
+        }
     }
 }

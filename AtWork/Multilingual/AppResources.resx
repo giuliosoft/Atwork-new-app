@@ -463,4 +463,22 @@ Set permission manually from app settings.</value>
     <data name="JoinActivitySuccessfulText" xml:space="preserve">
         <value>Thank you for joining activity.</value>
     </data>
+    <data name="ActivitiesText" xml:space="preserve">
+        <value>Activities</value>
+    </data>
+    <data name="HoursText" xml:space="preserve">
+        <value>Hours</value>
+    </data>
+        <data name="AllowNotificationsTitleText" xml:space="preserve">
+        <value>Allow notifications?</value>
+    </data>
+        <data name="AllowNotificationsMsgText" xml:space="preserve">
+        <value>atwork sends updates on subscribed activities and important messages</value>
+    </data>
+        <data name="DontAllowText" xml:space="preserve">
+        <value>Don't allow</value>
+    </data>
+        <data name="AllowText" xml:space="preserve">
+        <value>Allow</value>
+    </data>
 </root>
