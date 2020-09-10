@@ -37,7 +37,7 @@
                                 <ColumnDefinition Width="{DynamicResource HeightWidth110}" />
                             </Grid.ColumnDefinitions>
                             <PancakeControl:PancakeView Style="{StaticResource ProfileTemplateImagePancakeStyle}">
-                                <CustomControl:CustomImage Source="earth" Style="{StaticResource ProfileTemplateImageStyle}">
+                                <CustomControl:CustomImage Source="{Binding }" Style="{StaticResource ProfileTemplateImageStyle}">
                                     <CustomControl:CustomImage.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={x:Reference clImages},Path=BindingContext.ImageSelectedCommand}" CommandParameter="{Binding .}"/>
                                     </CustomControl:CustomImage.GestureRecognizers>

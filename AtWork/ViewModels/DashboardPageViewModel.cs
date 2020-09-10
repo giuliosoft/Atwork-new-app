@@ -167,7 +167,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshing = true;
             PageNo = 1;
-            await GetNewsListDetails_New();
+            await GetNewsListDetails_New(true);
             IsRefreshing = false;
         }
 
@@ -460,7 +460,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetNewsListDetails_New()
+        async Task GetNewsListDetails_New(bool isPullToRefresh = false)
         {
             try
             {
@@ -473,7 +473,8 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                await ShowLoader();
+                if (!isPullToRefresh)
+                    await ShowLoader();
                 var serviceResult = await NewsService.GetNewsList(SettingsService.LoggedInUserData.coUniqueID + "/" + PageNo);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
