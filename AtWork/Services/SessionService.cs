@@ -33,6 +33,8 @@ namespace AtWork.Services
         public static bool IsShowActivitiesIntial = false;
         public static List<string> CreateActivityOurImages = new List<string>();
         public static string SelectedDefaultImageForActivity = string.Empty;
+        public static int? LikeNewsID;
+        public static int? LikeNewsCount;   
         /// <summary>
         /// Logout
         /// clear social media account details

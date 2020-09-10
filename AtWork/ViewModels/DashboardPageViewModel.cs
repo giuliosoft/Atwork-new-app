@@ -714,6 +714,15 @@ namespace AtWork.ViewModels
                     if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
                     await GetNewsListDetails_New();
                 }
+                if (SessionService.LikeNewsCount != null && SessionService.LikeNewsID != null)
+                {
+                    //int LikeNewsCount = Convert.ToInt32(SessionService.LikeNewsCount);
+                    var newsItem = NewsList.Where(x => x.news.id == SessionService.LikeNewsID).FirstOrDefault();
+                    newsItem.LikeCount = SessionService.LikeNewsCount.Value;
+                    SessionService.LikeNewsID = null;
+                    SessionService.LikeNewsCount = null;
+                }
+
                 //await GetActivityList();
                 IsFromMyActivity = false;
             }
