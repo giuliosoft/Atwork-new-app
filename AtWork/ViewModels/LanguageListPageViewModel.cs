@@ -21,6 +21,8 @@ namespace AtWork.ViewModels
             NextClickPageName = nameof(LanguageListPage);
             AddNewsCancelImage = AppResources.BackButtonText;
             HeaderDetailsTitle = AppResources.Language;
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
+            HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
             

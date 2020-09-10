@@ -1,27 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using AtWork.Multilingual;
 using AtWork.Services;
-using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
-using Xamarin.Forms;
+
 
 namespace AtWork.ViewModels
 {
-    public class ChangeUserPasswordPageViewModel : ViewModelBase
+    public class WelcomeSetupPageViewModel : ViewModelBase
     {
         #region Constructor
-        public ChangeUserPasswordPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
+        public WelcomeSetupPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            NextClickPageName = nameof(ChangeUserPasswordPage);
-            AddNewsCancelImage = AppResources.Cancel;
-            HeaderDetailsTitle = AppResources.ChangePasswordTitle;
-            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
-            HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
-            AddNewsNextImage = AppResources.SaveButtonText;
-            HeaderNextNavigationCommand = NewsPostProceedCommand;
+
         }
         #endregion
 
@@ -38,15 +30,15 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveDetail(obj)); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         #endregion
 
         #region private methods
-        async Task SaveDetail(string str)
+        async Task GoForLogin()
         {
             try
             {
-                await _navigationService.GoBackAsync();
+
             }
             catch (Exception ex)
             {
@@ -70,5 +62,3 @@ namespace AtWork.ViewModels
         }
     }
 }
-
-

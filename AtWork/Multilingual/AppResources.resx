@@ -463,4 +463,15 @@ Set permission manually from app settings.</value>
     <data name="JoinActivitySuccessfulText" xml:space="preserve">
         <value>Thank you for joining activity.</value>
     </data>
+    <data name="EnterCurrentPassword" xml:space="preserve">
+        <value>Please enter your current password</value>
+    </data>
+    
+    
+    <data name="WelcomeSetup1" xml:space="preserve">
+        <value>Set up your profile to choose your language, upload your picture, and let your team know more about you!</value>
+    </data>
+    <data name="WelcomeSetup2" xml:space="preserve">
+        <value>If you want to use your phone's default language and get straight to the news, you can skip this process.</value>
+    </data>
 </root>

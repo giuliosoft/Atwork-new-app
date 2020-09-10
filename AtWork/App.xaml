@@ -508,6 +508,14 @@
                 <Setter Property="Keyboard" Value="Text"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
+            <Style x:Key="PasswordEntryStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="IsPassword" Value="True"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
             <!--Entry Styles End-->
 
             <!--Image Styles Start-->

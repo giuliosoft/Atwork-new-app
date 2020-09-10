@@ -934,5 +934,23 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("JoinActivitySuccessfulText", resourceCulture);
             }
         }
+        
+        internal static string EnterCurrentPassword {
+            get {
+                return ResourceManager.GetString("EnterCurrentPassword", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeSetup1 {
+            get {
+                return ResourceManager.GetString("WelcomeSetup1", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeSetup2 {
+            get {
+                return ResourceManager.GetString("WelcomeSetup2", resourceCulture);
+            }
+        }
     }
 }

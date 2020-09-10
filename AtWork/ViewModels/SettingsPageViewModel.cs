@@ -44,7 +44,7 @@ namespace AtWork.ViewModels
                 }
                 else if (item == AppResources.EditInterestsText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(YourInterestsPage));
                 }
                 else if (item == AppResources.EditAboutMeText)
                 {
