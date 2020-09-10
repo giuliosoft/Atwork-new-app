@@ -15,10 +15,14 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
             <StackLayout Padding="{DynamicResource MarginPadding00_00_00_30}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
-                <Label Text="{Binding AddImagesTitle}" Style="{StaticResource AddPostImageLabelStyle}"/>
-                <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
                 <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                    <PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
+                    <ffimageloading:CachedImage CacheType="None" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding SelectedNewsImageValue.NewsImage}" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth155}" WidthRequest="{DynamicResource HeightWidth155}">
+                        <ffimageloading:CachedImage.Transformations>
+                            <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                    <Image Grid.Row="0" Source="{Binding SelectedNewsImageValue.NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                    <!--<PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
                         <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -27,7 +31,7 @@
                             </ffimageloading:CachedImage>
                             <Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
                         </Grid>
-                    </PancakeControl:PancakeView>
+                    </PancakeControl:PancakeView>-->
                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
                         <!--<Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>-->
                         <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>

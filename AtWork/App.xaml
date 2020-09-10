@@ -176,8 +176,7 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="HeaderViewHeaderLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />

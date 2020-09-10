@@ -25,7 +25,7 @@
                     </PancakeControl:PancakeView>
                 </ContentView>
                 <ContentView x:Name="HeaderTitle" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
-                    <Label Text="{TemplateBinding BindingContext.HeaderDetailsTitle}" Style="{StaticResource HeaderViewHeaderLabelStyle}"/>
+                    <Label Text="{TemplateBinding BindingContext.HeaderDetailsTitle}" Style="{StaticResource HeaderViewHeaderLabelStyle}" FontSize="{TemplateBinding BindingContext.HeaderDetailsTitleFontSize}"/>
                 </ContentView>
                 <ContentView x:Name="HeaderNewsOption" Grid.Column="2" IsVisible="{TemplateBinding BindingContext.DetailHeaderOptionIsVisible}" Padding="20" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                     <Customcontrol:CustomImage Source="option" TintColor="{DynamicResource AccentColor}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
