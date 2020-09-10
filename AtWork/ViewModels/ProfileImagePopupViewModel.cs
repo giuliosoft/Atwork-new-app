@@ -14,12 +14,12 @@ namespace AtWork.ViewModels
         public event Action<string> SelectedImageEvent;
         public ProfileImagePopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            ImageList.Add("earth");
-            ImageList.Add("earth");
-            ImageList.Add("earth");
-            ImageList.Add("earth");
-            ImageList.Add("earth");
-            ImageList.Add("earth");
+            ImageList.Add("01");
+            ImageList.Add("02");
+            ImageList.Add("03");
+            ImageList.Add("04");
+            ImageList.Add("05");
+            ImageList.Add("06");
         }
         #region Private Properties
         private ObservableCollection<string> _imageList = new ObservableCollection<string>();
