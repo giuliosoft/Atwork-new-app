@@ -19,26 +19,29 @@ namespace AtWork.ViewModels
         #region Constructor
         public YourInterestsPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            HeaderDetailsTitle = AppResources.YourFeedbackText;
-
+            AddNewsCancelImage = AppResources.Cancel;
+            HeaderDetailsTitle = AppResources.MyInterests;
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
+            HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
+            AddNewsNextImage = AppResources.SaveButtonText;
         }
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
-        private bool _Rate1IsVisible = true;
-        private bool _Rate2IsVisible = true;
-        private bool _Rate3IsVisible = true;
-        private bool _Rate4IsVisible = true;
-        private bool _Rate5IsVisible = true;
-        private double _RatingPancakeWidth = 0;
+        private string _commentText = string.Empty;
+        private bool _SendButtonIsVisible = false;
         #endregion
 
         #region Public Properties
-        public string Prop
+        public bool SendButtonIsVisible
         {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
+            get { return _SendButtonIsVisible; }
+            set { SetProperty(ref _SendButtonIsVisible, value); }
+        }
+        public string CommentText
+        {
+            get { return _commentText; }
+            set { SetProperty(ref _commentText, value); }
         }
 
         private ObservableCollection<FeedBackUIModel> _feedBackList = new ObservableCollection<FeedBackUIModel>();
@@ -54,49 +57,32 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _FeedBackListImproveList, value); }
         }
 
-        public double RatingPancakeWidth
-        {
-            get { return _RatingPancakeWidth; }
-            set { SetProperty(ref _RatingPancakeWidth, value); }
-        }
-
-        public bool Rate1IsVisible
-        {
-            get { return _Rate1IsVisible; }
-            set { SetProperty(ref _Rate1IsVisible, value); }
-        }
-
-        public bool Rate2IsVisible
-        {
-            get { return _Rate2IsVisible; }
-            set { SetProperty(ref _Rate2IsVisible, value); }
-        }
-
-        public bool Rate3IsVisible
-        {
-            get { return _Rate3IsVisible; }
-            set { SetProperty(ref _Rate3IsVisible, value); }
-        }
-
-        public bool Rate4IsVisible
-        {
-            get { return _Rate4IsVisible; }
-            set { SetProperty(ref _Rate4IsVisible, value); }
-        }
-
-        public bool Rate5IsVisible
-        {
-            get { return _Rate5IsVisible; }
-            set { SetProperty(ref _Rate5IsVisible, value); }
-        }
         #endregion
 
         #region Commands
         public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
+        public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         #endregion
 
         #region private methods
-
+        async Task AddComment()
+        {
+            try
+            {
+                FeedBackUIModel feedBackUIModel = new FeedBackUIModel();
+                feedBackUIModel.Title = CommentText;
+                FeedBackList.Add(feedBackUIModel);
+                CommentText = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                await ClosePopup();
+            }
+        }
         async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
         {
             try
@@ -115,40 +101,10 @@ namespace AtWork.ViewModels
             }
         }
 
-        //async Task ActivityImprovementSelected(FeedBackUIModel selectedTab)
-        //{
-        //    try
-        //    {
-        //        FeedBackListImproveList.All((item) =>
-        //        {
-        //            if (item == selectedTab)
-        //            {
-        //                item.IsSelected = !item.IsSelected;
-        //            }
-        //            return true;
-        //        });
-
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        Debug.WriteLine(exception.Message);
-        //    }
-        //}
         #endregion
 
         #region public methods        
-        //public async Task GoToMyActivity()
-        //{
-        //    try
-        //    {
-        //        await _navigationService.NavigateAsync(nameof(MyActivityPage), null);
-
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        Debug.WriteLine(exception.Message);
-        //    }
-        //}
+       
         #endregion
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -171,16 +127,6 @@ namespace AtWork.ViewModels
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.SuprisedText, IsSelected = false });
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.SatisfiedText, IsSelected = false });
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.InterestedText, IsSelected = false });
-
-            //FeedBackListImproveList = new ObservableCollection<FeedBackUIModel>();
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.EventOrganizationText, IsSelected = true });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.TransportationText, IsSelected = false });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.FoodAndBeverageText, IsSelected = false });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.SecurityText, IsSelected = false });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.NGOPartnersText, IsSelected = false });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.CommunicationText, IsSelected = false });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.EverythingWasSatisfactoryText, IsSelected = false });
-            //FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.OtherText, IsSelected = false });
         }
     }
 }

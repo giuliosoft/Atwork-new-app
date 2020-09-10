@@ -490,4 +490,8 @@ Set permission manually from app settings.</value>
         <data name="AllowText" xml:space="preserve">
         <value>Allow</value>
     </data>
+        
+    <data name="MyInterests" xml:space="preserve">
+        <value>My Interests</value>
+    </data>
 </root>

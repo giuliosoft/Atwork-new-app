@@ -11,8 +11,8 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false"
-             ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
-             BackgroundColor="{DynamicResource PosterWhiteColor}">
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
+             BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Converters:InverseBooleanConverter x:Key="InverseConverter" />
@@ -21,7 +21,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
                     <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
                         <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>
@@ -60,6 +60,25 @@
                             </BindableLayout.ItemTemplate>
                         </FlexLayout>
                     </Grid>
+                   <PancakeControl:PancakeView Margin="10,0,10,20" CornerRadius="20" Padding="10" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource NewsCommentEditorStyle}"/>
+                            <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="Send" Style="{StaticResource SendLabelStyle}"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SendCommentCommand}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                    </PancakeControl:PancakeView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
