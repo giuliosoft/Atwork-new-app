@@ -16,12 +16,11 @@
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
             <StackLayout Padding="{DynamicResource MarginPadding00_00_00_30}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
                 <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                    <ffimageloading:CachedImage CacheType="None" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding SelectedNewsImageValue.NewsImage}" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth155}" WidthRequest="{DynamicResource HeightWidth155}">
+                    <ffimageloading:CachedImage CacheType="None" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding ProfileImage}" Aspect="AspectFill" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth155}" WidthRequest="{DynamicResource HeightWidth155}">
                         <ffimageloading:CachedImage.Transformations>
                             <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                         </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
-                    <Image Grid.Row="0" Source="{Binding SelectedNewsImageValue.NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
                     <!--<PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
                         <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
@@ -34,7 +33,7 @@
                     </PancakeControl:PancakeView>-->
                     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
                         <!--<Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>-->
-                        <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>
+                        <Button Text="{Binding ImageOptionText}" IsVisible="{Binding ShowCropOption}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>

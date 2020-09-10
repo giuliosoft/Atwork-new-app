@@ -92,7 +92,9 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth80"] = sizeConvertAsPerDevice(80);
             App.Current.Resources["HeightWidth90"] = sizeConvertAsPerDevice(90);
             App.Current.Resources["HeightWidth100"] = sizeConvertAsPerDevice(100);
+            App.Current.Resources["HeightWidth110"] = sizeConvertAsPerDevice(110);
             App.Current.Resources["HeightWidth115"] = sizeConvertAsPerDevice(115);
+            App.Current.Resources["HeightWidth120"] = sizeConvertAsPerDevice(120);
             App.Current.Resources["HeightWidth130"] = sizeConvertAsPerDevice(130);
             App.Current.Resources["HeightWidth155"] = sizeConvertAsPerDevice(155);
             App.Current.Resources["HeightWidth160"] = sizeConvertAsPerDevice(160);
@@ -105,6 +107,7 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth325"] = sizeConvertAsPerDevice(325);
             App.Current.Resources["HeightWidth300"] = sizeConvertAsPerDevice(300);      
             App.Current.Resources["HeightWidth350"] = sizeConvertAsPerDevice(350);
+            App.Current.Resources["HeightWidth500"] = sizeConvertAsPerDevice(500);
 
             #endregion
 

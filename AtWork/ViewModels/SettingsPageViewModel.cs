@@ -60,7 +60,7 @@ namespace AtWork.ViewModels
                 }
                 else if (item == AppResources.ManageNotificationText)
                 {
-
+                    await DisplayAlertAsync(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
                 }
             }
             catch (Exception ex)

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Multilingual;
+using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
 using Plugin.Media.Abstractions;
@@ -26,8 +27,8 @@ namespace AtWork.ViewModels
             ProfileImage = UserProfileImage;
             ImageOptionText = AppResources.EditCropButtonText;
         }
-        MediaFile mFile = null;
-        private static ImageSource _userProfileImage;
+        private bool _showCropOption;
+        private ImageSource _userProfileImage;
         private string _ImageOptionText = AppResources.EditCropButtonText;
         private NewsImageModel _SelectedNewsImageValue = null;
         public ImageSource ProfileImage
@@ -52,6 +53,11 @@ namespace AtWork.ViewModels
                     //RaisePropertyChanged(nameof(ProfileImage));
             }
         }
+        public bool ShowCropOption
+        {
+            get { return _showCropOption; }
+            set { SetProperty(ref _showCropOption, value); }
+        }
         IMultiMediaPickerService _multiMediaPickerService;
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
         public DelegateCommand OurImagesCommand { get { return new DelegateCommand(async () => await OurImages()); } }
@@ -61,19 +67,6 @@ namespace AtWork.ViewModels
             try
             {
                 await TakePhotoFromGallery();
-                //var hasPermission = await TakePermissionsToPickPhoto();
-                //if (hasPermission)
-                //{
-                //    var res = await _multiMediaPickerService.PickPhotosAsync();
-                //    if (res != null && res.Count > 0)
-                //    {
-                //        var mFile = res[0];
-                //        ProfileImage = ImageSource.FromFile(mFile.PreviewPath);
-                //        SessionService.NewsPostImageFiles = new System.Collections.Generic.List<string>();
-                //        SessionService.NewsPostImageFiles.Add(mFile.Path);
-                //        SelectedNewsImageValue = new NewsImageModel() { ImagePath = mFile.Path, ImagePreviewPath = mFile.PreviewPath, FileType = mFile.Type, NewsImage = ImageSource.FromFile(mFile.PreviewPath) };
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -84,23 +77,54 @@ namespace AtWork.ViewModels
         {
             try
             {
+                ProfileImagePopup profileImagePopup = new ProfileImagePopup();
+                ProfileImagePopupViewModel profileImagePopupViewModel = new ProfileImagePopupViewModel(_navigationService, _facadeService);
+                profileImagePopupViewModel.SelectedImageEvent += ProfileImagePopupViewModel_ImageSelected;
                 //ActivityImagePopup activityImagePopup = new ActivityImagePopup();
                 //ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
+                //activityImagePopupViewModel.SelectedImageSourceEvent1 += async (string arg1, ImageSource arg2) =>
+                //{
+                //    NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                //    NewsPostImageCarouselList.Clear();
+                //    NewsPickedImageViewIsVisible = false;
+                //    IsShowOurImage = true;
+                //    SelectedDefaultImage = arg1;
+                //    OurSelectedImage = arg2;
+                //};
                 //activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
                 //{
                 //    try
                 //    {
-                //        //NewsPostImageCarouselList.Add(new NewsImageModel() { NewsImage = SelectedObj });
-                //        //NewsPickedImageViewIsVisible = true;
+                //        NextTextColor = (Color)App.Current.Resources["WhiteColor"];
+                //        NewsPostImageCarouselList.Clear();
+                //        NewsPickedImageViewIsVisible = false;
+                //        IsShowOurImage = true;
+                //        SelectedDefaultImage = SelectedObj;
+                //        //NewsPostImageCarouselList.Add(new NewsImageModel() {  NewsImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage)) });
+                //        OurSelectedImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage));
                 //    }
                 //    catch (Exception ex)
                 //    {
                 //        Debug.WriteLine(ex.Message);
                 //    }
                 //};
-                //activityImagePopup.BindingContext = activityImagePopupViewModel;
-                //await PopupNavigationService.ShowPopup(activityImagePopup, true);
+                profileImagePopup.BindingContext = profileImagePopupViewModel;
+                await PopupNavigationService.ShowPopup(profileImagePopup, true);
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private void ProfileImagePopupViewModel_ImageSelected(string obj)
+        {
+            try
+            {
+                ShowCropOption = false;
+                //ProfileImage = ImageSource.FromUri(new Uri(obj));
+                ProfileImage = obj;
             }
             catch (Exception ex)
             {
@@ -118,50 +142,6 @@ namespace AtWork.ViewModels
                 navigationParams.Add("ImagePath", SelectedNewsImageValue.ImagePreviewPath);
                 navigationParams.Add("SelectedNewsImage", SelectedNewsImageValue);
                 await _navigationService.NavigateAsync(nameof(CropImagePage), navigationParams);
-                //if (pageObject != null)
-                //{
-                //    var carouselRef = pageObject.FindByName("newsImageCarousel") as CarouselView;
-                //    if (selectedOption == AppResources.Delete)
-                //    {
-                //        if (carouselRef != null)
-                //        {
-                //            var pos = carouselRef.Position;
-                //            var tmpList = new ObservableCollection<NewsImageModel>(NewsPostImageCarouselList);
-                //            tmpList.RemoveAt(pos);
-                //            NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>(tmpList);
-                //            SessionService.NewsPostCarouselImages.RemoveAt(pos);
-                //            if (NewsPostImageCarouselList != null)
-                //            {
-                //                if (NewsPostImageCarouselList.Count > 0)
-                //                {
-                //                    if (NewsPostImageCarouselList[CarouselPosition] != null)
-                //                    {
-                //                        if (!string.IsNullOrEmpty(NewsPostImageCarouselList[CarouselPosition].ImagePath))
-                //                        {
-                //                            ImageOptionText = AppResources.EditCropButtonText;
-                //                        }
-                //                    }
-                //                }
-                //                else if (NewsPostImageCarouselList.Count == 0)
-                //                {
-                //                    NewsPickedImageViewIsVisible = false;
-                //                    ImageOptionText = AppResources.EditCropButtonText;
-                //                }
-                //            }
-                //        }
-                //    }
-                //    else if (selectedOption == AppResources.EditCropButtonText)
-                //    {
-                //        if (carouselRef != null)
-                //        {
-                //            NewsImageSelectedForCrop = carouselRef.Position;
-                //            var navigationParams = new NavigationParameters();
-                //            navigationParams.Add("ImagePath", NewsPostImageCarouselList[NewsImageSelectedForCrop].ImagePreviewPath);
-                //            navigationParams.Add("SelectedNewsImage", NewsPostImageCarouselList[NewsImageSelectedForCrop]);
-                //            await _navigationService.NavigateAsync(nameof(CropImagePage), navigationParams);
-                //        }
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -173,59 +153,22 @@ namespace AtWork.ViewModels
             var permissionRes = await TakePermissionsToPickPhoto();
             if (permissionRes)
             {
-                //if (!CrossMedia.Current.IsPickPhotoSupported)
-                //{
-                //    await DisplayAlertAsync(AppResources.PhotoPickAlert);
-                //    return;
-                //}
-
                 var pickedFile = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
                 {
                     SaveMetaData = true
-                    //PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,                    
                 });
 
                 if (pickedFile == null)
                     return;
-
                 Debug.WriteLine("Photo Location ===== " + pickedFile.Path);
-
-                mFile = pickedFile;
-                //IsImageLoading = true;
-                if (mFile != null && !string.IsNullOrEmpty(mFile.Path))
+                if (pickedFile != null && !string.IsNullOrEmpty(pickedFile.Path))
                 {
-                    SelectedNewsImageValue = new NewsImageModel() { ImagePath = mFile.AlbumPath, ImagePreviewPath = mFile.AlbumPath, NewsImage = ImageSource.FromFile(mFile.Path) };
-                    //new ImageCrop()
-                    //{
-                    //    CropShape = ImageCrop.CropShapeType.Rectangle,
-                    //    Success = (imageFile) =>
-                    //    {
-                    //        Device.BeginInvokeOnMainThread(() =>
-                    //        {
-                    //            LoggedInUserProfilePic = ImageSource.FromFile(imageFile);
-                    //            profilePicFilePath = imageFile;
-                    //            if (LoggedInUserProfilePic != null)
-                    //            {
-                    //                IsImageLoading = false;
-                    //            }
-                    //        });
-                    //    },
-                    //    Faiure = () =>
-                    //    {
-                    //        IsImageLoading = false;
-                    //    }
-                    //}.Show(pickedMediaFile.Path);
+                    SelectedNewsImageValue = new NewsImageModel() { ImagePath = pickedFile.Path, ImagePreviewPath = pickedFile.Path, NewsImage = ImageSource.FromFile(pickedFile.Path) };
+                    ProfileImage = ImageSource.FromFile(SelectedNewsImageValue.ImagePath);
+                    ShowCropOption = true;
+                    SessionService.NewsPostImageFiles = new System.Collections.Generic.List<string>();
+                    SessionService.NewsPostImageFiles.Add(pickedFile.Path);
                 }
-
-                //Stream pickedImageStream = null;
-                //LoggedInUserProfilePic = ImageSource.FromStream(() =>
-                //{
-                //    var stream = pickedFile.GetStream();
-                //    pickedImageStream = stream;
-                //    //pickedFile.Dispose();
-                //    return stream;
-                //});
-                //profilePicFilePath = pickedFile.Path;
             }
         }
         async Task<bool> TakePermissionsToPickPhoto()

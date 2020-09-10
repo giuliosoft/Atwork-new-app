@@ -17,6 +17,7 @@ namespace AtWork.ViewModels
             HeaderDetailsTitle = AppResources.ProfileText;
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
         }
+        public string Name { get; } = SettingsService.VolunteersUserData.FullName;
         #region Commands
         public DelegateCommand SettingCommand { get { return new DelegateCommand(async () => await Setting()); } }
         public DelegateCommand LogoutCommand { get { return new DelegateCommand(async () => await Logout()); } }

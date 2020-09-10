@@ -343,6 +343,16 @@ namespace AtWork.ViewModels
         }
 
         /// <summary>
+        /// DisplayAlertAsync
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        public static async Task DisplayAlertAsync(string titile, string message, string okText, string cancelText)
+        {
+            await App.Current.MainPage.DisplayAlert(titile, message, okText, cancelText);
+        }
+
+        /// <summary>
         /// ShowLoader
         /// </summary>
         /// <param name="animate">Pass true/false for animate the popup view</param>
