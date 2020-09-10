@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AtWork.Services;
 using AtWork.ViewModels;
+using Prism.Mvvm;
 using Xamarin.Forms;
 using static AtWork.Models.CommentsModel;
 using static AtWork.Models.LoginModel;
@@ -74,10 +75,9 @@ namespace AtWork.Models
             public string NewsImageUrl { get; set; }
         }
 
-        public class NewsListData_Model
+        public class NewsListData_Model : BindableBase
         {
             public int CommentsCount { get; set; }
-            public int LikeCount { get; set; }
             public News news { get; set; }
             public Volunteers Volunteers { get; set; }
             public ObservableCollection<NewsCarouselListModel> NewsCarouselList { get; set; }
@@ -87,6 +87,14 @@ namespace AtWork.Models
             public string newsTitle { get; set; }
             public string newsDescription { get; set; }
             public string NewsCreatedTime { get; set; }
+
+            public int _LikeCount;
+            public int LikeCount
+            {
+                get { return _LikeCount; }
+                set { SetProperty(ref _LikeCount, value); }
+            }
+
             public bool NewsCreatedByLoggedInUser
             {
                 get

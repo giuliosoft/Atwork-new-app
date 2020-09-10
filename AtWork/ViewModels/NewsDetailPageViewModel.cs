@@ -241,10 +241,15 @@ namespace AtWork.ViewModels
                     LikeImage = "heartoutline";
                     LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
                     NewsLikeCount = (--NewsLikeCountNo).ToString();
+
+                    SessionService.LikeNewsID = SelectedNewsId;
+                    SessionService.LikeNewsCount = Convert.ToInt32(NewsLikeCount);
+
                     newsLikes.Id = LikeId;
                     await ShowLoader();
-                    await NewsService.UnLikeNewsFeed(newsLikes);
+                    var result = await NewsService.UnLikeNewsFeed(newsLikes);
                     await ClosePopup();
+
                 }
                 else
                 {
@@ -259,6 +264,8 @@ namespace AtWork.ViewModels
                     if (serviceResultBody != null)
                     {
                         LikeId = serviceResultBody.Data;
+                        SessionService.LikeNewsID = SelectedNewsId;
+                        SessionService.LikeNewsCount = Convert.ToInt32(NewsLikeCount);
                     }
                 }
             }
