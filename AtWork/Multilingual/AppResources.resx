@@ -447,4 +447,7 @@ Permission Denied. Can not continue, try again.</value>
     <data name="Language" xml:space="preserve">
         <value>Language</value>
     </data>
+    <data name="ChangePasswordTitle" xml:space="preserve">
+        <value>Change Password</value>
+    </data>
 </root>

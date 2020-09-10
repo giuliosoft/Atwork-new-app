@@ -904,5 +904,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("Language", resourceCulture);
             }
         }
+        
+        internal static string ChangePasswordTitle {
+            get {
+                return ResourceManager.GetString("ChangePasswordTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -11,26 +12,45 @@ namespace AtWork.ViewModels
 {
     public class ChangeUserPasswordPageViewModel : ViewModelBase
     {
-        public string ConfirmPassword;
-        bool isCreatingPwd = true;
         #region Constructor
         public ChangeUserPasswordPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
+            NextClickPageName = nameof(ChangeUserPasswordPage);
+            AddNewsCancelImage = AppResources.Cancel;
+            HeaderDetailsTitle = AppResources.ChangePasswordTitle;
+            AddNewsNextImage = AppResources.SaveButtonText;
+            HeaderNextNavigationCommand = NewsPostProceedCommand;
         }
         #endregion
 
         #region Private Properties
+        private string _Prop = string.Empty;
         #endregion
 
-        #region Public Properties
-
+        #region Public Properties        
+        public string Prop
+        {
+            get { return _Prop; }
+            set { SetProperty(ref _Prop, value); }
+        }
         #endregion
 
         #region Commands
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveDetail(obj)); } }
         #endregion
 
         #region private methods
-
+        async Task SaveDetail(string str)
+        {
+            try
+            {
+                await _navigationService.GoBackAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         #endregion
 
         #region public methods
@@ -45,8 +65,8 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            CreatePassowrdLabeltext = "Create your password";
         }
     }
 }
+
 
