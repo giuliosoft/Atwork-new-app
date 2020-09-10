@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.YourInterestsPage"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:helpers="clr-namespace:AtWork.Helpers"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"  
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
+             BackgroundColor="{DynamicResource PosterWhiteColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
+                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkGreenShade}" BorderThickness="1" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="40" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+                                        <PancakeControl:PancakeView.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource DarkGreenShade}" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </DataTrigger>
+                                        </PancakeControl:PancakeView.Triggers>
+                                        <StackLayout  Orientation="Horizontal">
+                                            <Label Text="{Binding Title}" Margin="0,0,5,0" Style="{StaticResource FeedbackChipLabelStyle}" FontFamily="Lato_Light"  FontSize="22" TextColor="{StaticResource DarkGreenShade}" LineBreakMode="NoWrap">
+                                                <!--<Label.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
+                                                        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
+                                                        <Setter Property="TextColor" Value="{StaticResource DarkGreenShade}" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>-->
+                                            </Label>
+                                            <Label Text=" x" FontFamily="Lato_Light"  FontSize="22" TextColor="{StaticResource DarkGreenShade}">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference feelList}, Path=BindingContext.ActivityFeelingSelectedCommand}" CommandParameter="{Binding .}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </StackLayout>
+                                        <!--<PancakeControl:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference feelList}, Path=BindingContext.ActivityFeelingSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </PancakeControl:PancakeView.GestureRecognizers>-->
+                                    </PancakeControl:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

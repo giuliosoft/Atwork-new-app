@@ -4,6 +4,7 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         mc:Ignorable="d" x:Class="AtWork.App"
                         xmlns:SubViews="clr-namespace:AtWork.SubViews;assembly=AtWork"
+                        xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                         xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork"
                         xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
@@ -176,8 +177,7 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="HeaderViewHeaderLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -393,7 +393,7 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
 
-	    <Style x:Key="ProfileHeaderLabelStyle" TargetType="Label">
+            <Style x:Key="ProfileHeaderLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="Lato_Bold" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize17}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
@@ -429,7 +429,24 @@
                 <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Fill" />
-	    </Style>
+            </Style>
+            <Style x:Key="LanguageListLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize21}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivitiesCountLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize35}" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
             <!--Label Styles End-->
 
             <!--Button Styles Start-->
@@ -500,6 +517,14 @@
                 <Setter Property="Keyboard" Value="Text"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
+            <Style x:Key="PasswordEntryStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="IsPassword" Value="True"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
             <!--Entry Styles End-->
 
             <!--Image Styles Start-->
@@ -530,7 +555,43 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="TintColor" Value="{StaticResource OffWhiteColor}" />
             </Style>
-            <!--Image Styles End-->
+            <Style x:Key="EnterPasswordLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="ProfilePancakeStyle" TargetType="PancakeControl:PancakeView">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="BorderColor" Value="{DynamicResource DarkColor}" />
+                <Setter Property="BorderThickness" Value="10" />
+                <Setter Property="CornerRadius" Value="{DynamicResource HeightWidth55}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,15,0,10" />
+            </Style>
+            <Style x:Key="ProfileTemplateImagePancakeStyle" TargetType="PancakeControl:PancakeView">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="BorderColor" Value="{DynamicResource SecondaryDarkColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryDarkColor}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="{DynamicResource HeightWidth55}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,15,0,10" />
+            </Style>
+            <Style x:Key="ProfileTemplateImageStyle" TargetType="CustomControl:CustomImage">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="TintColor" Value="{DynamicResource DarkColor}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

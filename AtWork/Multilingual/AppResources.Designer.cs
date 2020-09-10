@@ -893,6 +893,30 @@ namespace AtWork.Multilingual {
             }
         }
         
+        internal static string ProfilePictureText {
+            get {
+                return ResourceManager.GetString("ProfilePictureText", resourceCulture);
+            }
+        }
+        
+        internal static string StartWriting {
+            get {
+                return ResourceManager.GetString("StartWriting", resourceCulture);
+            }
+        }
+        
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        internal static string ChangePasswordTitle {
+            get {
+                return ResourceManager.GetString("ChangePasswordTitle", resourceCulture);
+            }
+        }
+        
         internal static string CategoryDataAlertText {
             get {
                 return ResourceManager.GetString("CategoryDataAlertText", resourceCulture);
@@ -908,6 +932,60 @@ namespace AtWork.Multilingual {
         internal static string JoinActivitySuccessfulText {
             get {
                 return ResourceManager.GetString("JoinActivitySuccessfulText", resourceCulture);
+            }
+        }
+        
+        internal static string EnterCurrentPassword {
+            get {
+                return ResourceManager.GetString("EnterCurrentPassword", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeSetup1 {
+            get {
+                return ResourceManager.GetString("WelcomeSetup1", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeSetup2 {
+            get {
+                return ResourceManager.GetString("WelcomeSetup2", resourceCulture);
+            }
+        }
+        
+        internal static string ActivitiesText {
+            get {
+                return ResourceManager.GetString("ActivitiesText", resourceCulture);
+            }
+        }
+        
+        internal static string HoursText {
+            get {
+                return ResourceManager.GetString("HoursText", resourceCulture);
+            }
+        }
+        
+        internal static string AllowNotificationsTitleText {
+            get {
+                return ResourceManager.GetString("AllowNotificationsTitleText", resourceCulture);
+            }
+        }
+        
+        internal static string AllowNotificationsMsgText {
+            get {
+                return ResourceManager.GetString("AllowNotificationsMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string DontAllowText {
+            get {
+                return ResourceManager.GetString("DontAllowText", resourceCulture);
+            }
+        }
+        
+        internal static string AllowText {
+            get {
+                return ResourceManager.GetString("AllowText", resourceCulture);
             }
         }
     }

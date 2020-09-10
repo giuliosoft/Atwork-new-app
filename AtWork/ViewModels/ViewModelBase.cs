@@ -60,6 +60,8 @@ namespace AtWork.ViewModels
         private DelegateCommand _NewsOptionCommand;
         private bool _JoinActivity;
         private bool _UnSubscribeActivity;
+        private double _headerDetailsTitleFontSize = (double)App.Current.Resources["FontSize20"];
+        private Color _headerDetailBackgroundColor = (Color)App.Current.Resources["OffWhiteColor"];
         #endregion
         public bool JoinActivity
         {
@@ -176,6 +178,16 @@ namespace AtWork.ViewModels
             get { return _profileTapCommand; }
             set { SetProperty(ref _profileTapCommand, value); }
         }
+        public double HeaderDetailsTitleFontSize
+        {
+            get { return _headerDetailsTitleFontSize; }
+            set { SetProperty(ref _headerDetailsTitleFontSize, value); }
+        }
+        public Color HeaderDetailBackgroundColor
+        {
+            get { return _headerDetailBackgroundColor; }
+            set { SetProperty(ref _headerDetailBackgroundColor, value); }
+        }
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }
@@ -191,6 +203,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
         public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
         public DelegateCommand GreenHeaderViewBackCommand { get { return new DelegateCommand(async () => await GreenHeaderViewBack()); } }
+        public DelegateCommand OpenProfileCommand { get { return new DelegateCommand(async () => await OpenProfile()); } }
         #endregion
 
         #region Methods
@@ -330,6 +343,16 @@ namespace AtWork.ViewModels
         }
 
         /// <summary>
+        /// DisplayAlertAsync
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        public static async Task DisplayAlertAsync(string titile, string message, string okText, string cancelText)
+        {
+            await App.Current.MainPage.DisplayAlert(titile, message, okText, cancelText);
+        }
+
+        /// <summary>
         /// ShowLoader
         /// </summary>
         /// <param name="animate">Pass true/false for animate the popup view</param>
@@ -413,6 +436,18 @@ namespace AtWork.ViewModels
                 }
                 SessionService.isLoadingPopupOpen = true;
                 await ShowPopup(new LoadingPopup(), animate);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+        
+        async Task OpenProfile()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ProfilePage), null);
             }
             catch (Exception exception)
             {
