@@ -23,7 +23,7 @@ namespace AtWork.Models
 
             public string proDescription { get; set; }
             public string proLocation { get; set; }
-            public DateTime proAddActivityDate { get; set; }
+            public DateTime? proAddActivityDate { get; set; }
             public string proAddActivity_StartTime { get; set; }
             public string proAddActivity_EndTime { get; set; }
             public string proAddress1 { get; set; }
@@ -65,6 +65,7 @@ namespace AtWork.Models
             public string StartDate { get; set; }
             public string EndDate { get; set; }
             public string DataType { get; set; }
+            public string proVolHourDates { get; set; }
 
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
@@ -88,8 +89,8 @@ namespace AtWork.Models
                     {
                         if (proAddActivityDate == null)
                             retDate = string.Empty;
-                        var date = proAddActivityDate.Date;
-                        retDate = date.ToString("d MMM yyyy");
+                        var date = proAddActivityDate?.Date;
+                        retDate = date?.ToString("d MMM yyyy");
                     }
                     catch (Exception ex) { }
                     return retDate;
@@ -117,7 +118,7 @@ namespace AtWork.Models
                 set { SetProperty(ref _ShowPastActivity, value); }
             }
 
-            public bool IsPastActivity {get;set;}
+            public bool IsPastActivity { get; set; }
             public bool ShowLink
             {
                 get
@@ -189,6 +190,8 @@ namespace AtWork.Models
             public DateTime? proChosenDate { get; set; }
 
             public DateTime? proVolHourDates { get; set; }
+
+            public string RecurringDates { get; set; }
         }
 
         public class ActivityJoinedMemberListResponse

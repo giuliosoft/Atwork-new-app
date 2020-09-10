@@ -569,24 +569,6 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string ActivityAddressAlertText {
-            get {
-                return ResourceManager.GetString("ActivityAddressAlertText", resourceCulture);
-            }
-        }
-        
-        internal static string ActivityCityAlertText {
-            get {
-                return ResourceManager.GetString("ActivityCityAlertText", resourceCulture);
-            }
-        }
-        
-        internal static string ActivityCountryAlertText {
-            get {
-                return ResourceManager.GetString("ActivityCountryAlertText", resourceCulture);
-            }
-        }
-        
         internal static string AddaCoverForYour {
             get {
                 return ResourceManager.GetString("AddaCoverForYour", resourceCulture);
@@ -803,6 +785,30 @@ namespace AtWork.Multilingual {
             }
         }
         
+        internal static string FeedbackText {
+            get {
+                return ResourceManager.GetString("FeedbackText", resourceCulture);
+            }
+        }
+        
+        internal static string FeedbackMorePlaceholderText {
+            get {
+                return ResourceManager.GetString("FeedbackMorePlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string LikeMostPlaceholderText {
+            get {
+                return ResourceManager.GetString("LikeMostPlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string AnythingElsePlaceholderText {
+            get {
+                return ResourceManager.GetString("AnythingElsePlaceholderText", resourceCulture);
+            }
+        }
+        
         internal static string MyStatsText {
             get {
                 return ResourceManager.GetString("MyStatsText", resourceCulture);
@@ -908,6 +914,24 @@ namespace AtWork.Multilingual {
         internal static string ChangePasswordTitle {
             get {
                 return ResourceManager.GetString("ChangePasswordTitle", resourceCulture);
+            }
+        }
+        
+        internal static string CategoryDataAlertText {
+            get {
+                return ResourceManager.GetString("CategoryDataAlertText", resourceCulture);
+            }
+        }
+        
+        internal static string CalendarPermissionAlert {
+            get {
+                return ResourceManager.GetString("CalendarPermissionAlert", resourceCulture);
+            }
+        }
+        
+        internal static string JoinActivitySuccessfulText {
+            get {
+                return ResourceManager.GetString("JoinActivitySuccessfulText", resourceCulture);
             }
         }
     }

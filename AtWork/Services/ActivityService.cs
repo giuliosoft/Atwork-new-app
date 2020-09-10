@@ -78,13 +78,14 @@ namespace AtWork.Services
             return resultModel;
         }
 
-        public static async Task<BaseResponse<string>> UnSubscribeActivity(int id)
+        public static async Task<BaseResponse<string>> UnSubscribeActivity(JoinActivityInputModel unsubscribeActivityInputModel)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
                 var UnsubscribeActivityUrl = ConfigService.BaseServiceURL + ConfigService.ActivityUnsubscribeServiceURL;
-                resultModel = await PostResponse<string>($"{UnsubscribeActivityUrl}{id}", string.Empty, true);
+                var jData = JsonConvert.SerializeObject(unsubscribeActivityInputModel);
+                resultModel = await PostResponse<string>(UnsubscribeActivityUrl, jData, true);
             }
             catch (Exception ex)
             {
@@ -93,6 +94,7 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+
         public static async Task<BaseResponse<string>> PostActivityFeedEdit(ActivityListModel inputModel, List<string> filesToAttach)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();

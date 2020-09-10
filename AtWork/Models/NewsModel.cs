@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AtWork.Services;
 using AtWork.ViewModels;
+using Prism.Mvvm;
 using Xamarin.Forms;
+using static AtWork.Models.CommentsModel;
 using static AtWork.Models.LoginModel;
 
 namespace AtWork.Models
@@ -25,6 +27,8 @@ namespace AtWork.Models
             public string Day { get; set; }
             public Volunteers Volunteers { get; set; }
             public bool LikeByLoginUser { get; set; }
+            public int LikeCount { get; set; }
+            public int LikeId { get; set; }
         }
 
         public class News
@@ -71,10 +75,9 @@ namespace AtWork.Models
             public string NewsImageUrl { get; set; }
         }
 
-        public class NewsListData_Model
+        public class NewsListData_Model : BindableBase
         {
             public int CommentsCount { get; set; }
-            public int LikeCount { get; set; }
             public News news { get; set; }
             public Volunteers Volunteers { get; set; }
             public ObservableCollection<NewsCarouselListModel> NewsCarouselList { get; set; }
@@ -84,6 +87,14 @@ namespace AtWork.Models
             public string newsTitle { get; set; }
             public string newsDescription { get; set; }
             public string NewsCreatedTime { get; set; }
+
+            public int _LikeCount;
+            public int LikeCount
+            {
+                get { return _LikeCount; }
+                set { SetProperty(ref _LikeCount, value); }
+            }
+
             public bool NewsCreatedByLoggedInUser
             {
                 get
@@ -137,6 +148,21 @@ namespace AtWork.Models
             public string likeByID { get; set; }
             public DateTime? likeDate { get; set; }
             public bool LikeByLoginUser { get; set; }
+        }
+
+        public class NewsLikeRespnce
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public int Data { get; set; }
+            public object Data1 { get; set; }
+	}
+        public class CommentLikeResponce
+        {
+            public bool Flag { get; set; }
+            public int StatusCode { get; set; }
+            public string Message { get; set; }
+            public int Data { get; set; }
         }
     }
 }

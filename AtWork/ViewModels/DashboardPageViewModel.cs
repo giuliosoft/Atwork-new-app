@@ -159,7 +159,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand<ActivityItems> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityItems>(async (obj) => await ActivityCategorySelected(obj)); } }
-		public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
+        public DelegateCommand DashboardProfileTapCommand { get { return new DelegateCommand(async () => await ProfileTapped()); } }
         #endregion
 
         #region private methods
@@ -175,7 +175,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
-            await GetActivityList(isPullToRefresh:true);
+            await GetActivityList(isPullToRefresh: true);
             IsRefreshingActivities = false;
         }
 
@@ -561,7 +561,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GetActivityList(string categoryId = "",bool isPullToRefresh = false)
+        async Task GetActivityList(string categoryId = "", bool isPullToRefresh = false)
         {
             try
             {
@@ -631,6 +631,27 @@ namespace AtWork.ViewModels
                             return true;
                         });
                         Activitylist = new ObservableCollection<ActivityListModel>(tempList);
+                        if (serviceResultBody.Data1 != null && serviceResultBody.Data1.Count > 0)
+                        {
+                            string imgStr = serviceResultBody.Data1[0].proBackgroundImage;
+                            List<string> lstImageName = new List<string>();
+                            if (!string.IsNullOrEmpty(imgStr))
+                            {
+                                if (imgStr.Contains(","))
+                                {
+                                    lstImageName = imgStr.Trim().Split(',').ToList();
+                                }
+                                else
+                                {
+                                    lstImageName.Add(imgStr.Trim());
+                                }
+                            }
+                            SessionService.CreateActivityOurImages = lstImageName;
+                        }
+                        if (!string.IsNullOrEmpty(categoryId) && tempList == null || tempList.Count < 1)
+                        {
+                            await DisplayAlertAsync(AppResources.CategoryDataAlertText);
+                        }
                     }
                 }
                 await ClosePopup();
@@ -662,6 +683,7 @@ namespace AtWork.ViewModels
 
             try
             {
+                LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews)
                 {
                     SessionService.isEditingNews = false;
@@ -692,6 +714,15 @@ namespace AtWork.ViewModels
                     if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
                     await GetNewsListDetails_New();
                 }
+                if (SessionService.LikeNewsCount != null && SessionService.LikeNewsID != null)
+                {
+                    //int LikeNewsCount = Convert.ToInt32(SessionService.LikeNewsCount);
+                    var newsItem = NewsList.Where(x => x.news.id == SessionService.LikeNewsID).FirstOrDefault();
+                    newsItem.LikeCount = SessionService.LikeNewsCount.Value;
+                    SessionService.LikeNewsID = null;
+                    SessionService.LikeNewsCount = null;
+                }
+
                 //await GetActivityList();
                 IsFromMyActivity = false;
             }

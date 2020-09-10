@@ -52,7 +52,6 @@
                                             </Grid.RowDefinitions>
                                             <ffimageloading:CachedImage CacheType="None" BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
                                             </ffimageloading:CachedImage>
-                                            <!--<Image Grid.Row="0" Source="{Binding NewsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>-->
                                         </Grid>
                                     </PancakeControl:PancakeView>
                                 </StackLayout>
@@ -63,6 +62,17 @@
                         <!--<Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>-->
                         <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>
                     </StackLayout>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding IsShowOurImage}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage CacheType="All"  RetryCount="3" WidthRequest="{DynamicResource HeightWidth300}" MinimumWidthRequest="{DynamicResource HeightWidth300}" HeightRequest="{DynamicResource HeightWidth200}" MinimumHeightRequest="{DynamicResource HeightWidth200}" IsVisible="{Binding IsShowGallaryImage}" BackgroundColor="White" Grid.Row="0" DownsampleToViewSize="true" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{Binding OurSelectedImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand">
+                            </ffimageloading:CachedImage>
+                        </Grid>
+                    </PancakeControl:PancakeView>
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
                 <ContentView  Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">

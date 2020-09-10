@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Services;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -14,7 +16,7 @@ namespace AtWork.ViewModels
     public class JoinActivityPopupViewModel : ViewModelBase
     {
         public EventHandler<bool> ClosePopupEvent;
-        public EventHandler<JoinActivityDatesModel> JoinActivityEvent;
+        public EventHandler<List<JoinActivityDatesModel>> JoinActivityEvent;
         #region Constructor
         public JoinActivityPopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -24,7 +26,7 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private ObservableCollection<JoinActivityDatesModel> _ActivityJoinDates = new ObservableCollection<JoinActivityDatesModel>();
-        JoinActivityDatesModel SelectedDateToJoin = null;
+        List<JoinActivityDatesModel> SelectedDatesToJoin = new List<JoinActivityDatesModel>();
         #endregion
 
         #region Public Properties
@@ -33,6 +35,7 @@ namespace AtWork.ViewModels
             get { return _ActivityJoinDates; }
             set { SetProperty(ref _ActivityJoinDates, value); }
         }
+        public string SelectedActivityType = string.Empty;
         #endregion
 
         #region Commands        
@@ -46,20 +49,42 @@ namespace AtWork.ViewModels
         {
             try
             {
-                ActivityJoinDates.All((arg) =>
+                if (SelectedActivityType == TextResources.RegularCategoryText)
                 {
-                    if (arg.Id == selectedDate.Id)
+                    ActivityJoinDates.All((arg) =>
                     {
-                        arg.IsSelected = true;
-                        SelectedDateToJoin = new JoinActivityDatesModel();
-                        SelectedDateToJoin = arg;
-                    }
-                    else
+                        if (arg.Id == selectedDate.Id)
+                        {
+                            arg.IsSelected = true;
+                            SelectedDatesToJoin = new List<JoinActivityDatesModel>();
+                            SelectedDatesToJoin.Add(arg);
+                        }
+                        else
+                        {
+                            arg.IsSelected = false;
+                        }
+                        return true;
+                    });
+                }
+                else if (SelectedActivityType == TextResources.RecurringCategoryText)
+                {
+                    ActivityJoinDates.All((item) =>
                     {
-                        arg.IsSelected = false;
-                    }
-                    return true;
-                });
+                        if (item == selectedDate)
+                        {
+                            item.IsSelected = !item.IsSelected;
+                            if (item.IsSelected)
+                            {
+                                SelectedDatesToJoin.Add(item);
+                            }
+                            else
+                            {
+                                SelectedDatesToJoin.Remove(item);
+                            }
+                        }
+                        return true;
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -84,7 +109,7 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                JoinActivityEvent.Invoke(this, SelectedDateToJoin);
+                JoinActivityEvent.Invoke(this, SelectedDatesToJoin);
             }
             catch (Exception ex)
             {
