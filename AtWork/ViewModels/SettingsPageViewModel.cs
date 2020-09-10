@@ -16,7 +16,7 @@ namespace AtWork.ViewModels
             HeaderDetailsTitle = AppResources.SettingsText;
             SettingsList = new ObservableCollection<string>();
             SettingsList.Add(AppResources.ChangeProfilePictureText);
-            //SettingsList.Add(AppResources.EditInterestsText);
+            SettingsList.Add(AppResources.EditInterestsText);
             SettingsList.Add(AppResources.EditAboutMeText);
             SettingsList.Add(AppResources.ChangeLanguageText);
             SettingsList.Add(AppResources.ChangePasswordText);
