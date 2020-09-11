@@ -8,12 +8,25 @@
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork" xmlns:ffImageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              NavigationPage.HasNavigationBar="false"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
-             ControlTemplate="{StaticResource GreenBackHeader_Template}"
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                 <StackLayout WidthRequest="100">
+                    <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
+                            <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,0,0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource AccentColor}">
+                                <StackLayout BackgroundColor = "{DynamicResource AccentColor}" Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
+                                    <Image x:Name="logoImage" Source="back" Margin="2,0,0,0" />
+                                    <Label Text="Back" Margin="5,0,0,0" BackgroundColor = "{DynamicResource AccentColor}" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
+                                </StackLayout>
+                                <PancakeControl:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BackButtonCommand}"/>
+                                </PancakeControl:PancakeView.GestureRecognizers>
+                            </PancakeControl:PancakeView>
+                        </ContentView>
+                </StackLayout>
                 <Image/>
                 <Label Text="{Binding DisclaimerLabel}" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" Margin="0,170,0,10"/>
                 <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">

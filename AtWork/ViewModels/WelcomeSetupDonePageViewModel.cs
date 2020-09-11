@@ -67,7 +67,8 @@ namespace AtWork.ViewModels
                 var res = await App.Current.MainPage.DisplayAlert(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
                 //if (res)
                 //{
-                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                await _navigationService.NavigateAsync(nameof(DisclaimerPage));
+                
                 //}
                 //Task.Factory.StartNew(async () =>
                 //{
