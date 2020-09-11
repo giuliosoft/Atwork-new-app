@@ -37,6 +37,8 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SessionService.CurrentTab = 0;
+                SessionService.IsWelcomeSetup = false;
                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
             }
             catch (Exception ex)

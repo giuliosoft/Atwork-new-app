@@ -15,13 +15,13 @@ namespace AtWork.ViewModels
         #region Constructor
         public WelcomeSetupDonePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            AddNewsCancelImage = AppResources.Cancel;
             HeaderDetailsTitle = AppResources.MyInterests;
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             AddNewsNextImage = AppResources.SaveButtonText;
-            HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
-
+            HeaderView = (ControlTemplate)App.Current.Resources["BeginSetupHeader_Template"];
+            AddNewsCancelImage = AppResources.BackButtonText;
+            SessionService.CurrentTab = 4;
         }
         #endregion
 
@@ -63,6 +63,8 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SessionService.CurrentTab = 0;
+                SessionService.IsWelcomeSetup = false;
                 await Task.Delay(5000);
                 var res = await App.Current.MainPage.DisplayAlert(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
                 //if (res)

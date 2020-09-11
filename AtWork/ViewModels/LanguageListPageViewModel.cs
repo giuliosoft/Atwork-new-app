@@ -19,7 +19,6 @@ namespace AtWork.ViewModels
         public LanguageListPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NextClickPageName = nameof(LanguageListPage);
-            AddNewsCancelImage = AppResources.BackButtonText;
             HeaderDetailsTitle = AppResources.Language;
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
@@ -27,12 +26,15 @@ namespace AtWork.ViewModels
             HeaderNextNavigationCommand = NewsPostProceedCommand;
             if (SessionService.IsWelcomeSetup)
             {
-                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                HeaderView = (ControlTemplate)App.Current.Resources["BeginSetupHeader_Template"];
+                SessionService.CurrentTab = 0;
+                AddNewsCancelImage = AppResources.BackButtonText;
                 ShowChooseLanguage = true;
             }
             else
             {
                 HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                AddNewsCancelImage = AppResources.Cancel;
                 ShowChooseLanguage = false;
             }
 

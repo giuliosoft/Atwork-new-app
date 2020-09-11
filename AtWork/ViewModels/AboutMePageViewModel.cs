@@ -22,7 +22,8 @@ namespace AtWork.ViewModels
 
             if (SessionService.IsWelcomeSetup)
             {
-                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                HeaderView = (ControlTemplate)App.Current.Resources["BeginSetupHeader_Template"];
+                SessionService.CurrentTab = 2;
                 ShowHeadingText = true;
             }
             else

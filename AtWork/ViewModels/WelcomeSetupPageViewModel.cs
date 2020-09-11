@@ -51,6 +51,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SessionService.CurrentTab = 0;
                 await _navigationService.NavigateAsync(nameof(LanguageListPage), null);
             }
             catch (Exception ex)
