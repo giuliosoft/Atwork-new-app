@@ -305,7 +305,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>#GetTogether</value>
     </data>
     <data name="OverallExperienceText" xml:space="preserve">
-        <value>Overall experiences</value>
+        <value>Overall experience</value>
     </data>
     <data name="ImpactOfYourVolunteeringText" xml:space="preserve">
         <value>Impact of your volunteering</value>

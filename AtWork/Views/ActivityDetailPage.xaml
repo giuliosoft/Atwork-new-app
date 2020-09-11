@@ -126,9 +126,9 @@
                         <Label Text="{x:Static Multilingual:AppResources.AboutOrganixationHeaderText}" Style="{StaticResource ActivityAboutHeaderLabelStyle}"/>
                         <Grid ColumnDefinitions="70,*" RowDefinitions="Auto" RowSpacing="5" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                             <Label Grid.Row="0" Grid.Column="0" Text="{x:Static Multilingual:AppResources.NameText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ActivityDetails.proAddActivity_OrgName}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ActivityDetails.Companie_Name}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="1" Grid.Column="0" Text="{x:Static Multilingual:AppResources.AddressText}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding OrganisarAddress}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding OrganizationAddress}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                         </Grid>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>

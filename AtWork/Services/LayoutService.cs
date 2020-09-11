@@ -17,7 +17,7 @@ namespace AtWork.Services
         public static void Init()
         {
             FlowListView.Init();
-            Device.SetFlags(new string[] { "CarouselView_Experimental", "SwipeView_Experimental", "CollectionView_Experimental" });
+            Device.SetFlags(new string[] { "CarouselView_Experimental", "SwipeView_Experimental", "CollectionView_Experimental", "Shapes_Experimental", "Brush_Experimental" });
             if (Device.RuntimePlatform == Device.iOS)
             {
                 if (DeviceInfo.Version < Version.Parse("11.0"))
@@ -105,7 +105,7 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth250"] = sizeConvertAsPerDevice(250);
             App.Current.Resources["HeightWidth320"] = sizeConvertAsPerDevice(320);
             App.Current.Resources["HeightWidth325"] = sizeConvertAsPerDevice(325);
-            App.Current.Resources["HeightWidth300"] = sizeConvertAsPerDevice(300);      
+            App.Current.Resources["HeightWidth300"] = sizeConvertAsPerDevice(300);
             App.Current.Resources["HeightWidth350"] = sizeConvertAsPerDevice(350);
             App.Current.Resources["HeightWidth500"] = sizeConvertAsPerDevice(500);
 

@@ -28,10 +28,10 @@ namespace AtWork.ViewModels
         public ActivityDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             DetailHeaderOptionIsVisible = false;
-            ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Corporate volunteering" });
-            ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Environment & nature" });
-            ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Nature" });
-            ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Physically active" });
+            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Corporate volunteering" });
+            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Environment & nature" });
+            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Nature" });
+            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Physically active" });
 
             HeaderDetailsTitle = AppResources.ActivityText;
             if (IsFromMyActivity)
@@ -53,24 +53,12 @@ namespace AtWork.ViewModels
         private string _Location = string.Empty;
         private string _ActivityTime = string.Empty;
         private ActivityListModel _activityDetails = new ActivityListModel();
-
-        private string _ActivityTitle = string.Empty;
-        private string _ActivityDescription = string.Empty;
-        private string _CategoryName = string.Empty;
         private bool _IsShowCategotyType = false;
-        private string _MaxGroupSize = string.Empty;
-        private string _CostCoveredByCompany = string.Empty;
-        private string _CostCoveredByEmployee = string.Empty;
-        private string _ActivityLanguage = string.Empty;
-        private string _SpecialRequirement = string.Empty;
-        private string _OrganisarName = string.Empty;
-        //private string _OrganisarAddress = string.Empty;
-        private string _AdditionalInfo = string.Empty;
-
         private ObservableCollection<ActivityTagModel> _ActivityTagList = new ObservableCollection<ActivityTagModel>();
         private ObservableCollection<ActivityCarouselListModel> _ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
         string SelectedActivityID = string.Empty;
         ISettingsHelper _settingHelperService;
+        private string _OrganizationAddress = string.Empty;
         #endregion
 
         #region Public Properties
@@ -112,6 +100,12 @@ namespace AtWork.ViewModels
         {
             get { return _ActivityCarouselList; }
             set { SetProperty(ref _ActivityCarouselList, value); }
+        }
+
+        public string OrganizationAddress
+        {
+            get { return _OrganizationAddress; }
+            set { SetProperty(ref _OrganizationAddress, value); }
         }
         #endregion
 
@@ -245,8 +239,6 @@ namespace AtWork.ViewModels
             try
             {
                 var tempDtList = new ObservableCollection<JoinActivityDatesModel>();
-                //ActivityDetails.DataType = TextResources.RecurringCategoryText;
-                //ActivityDetails.StartDate = "2019-12-15,2019-11-22";
                 if (!string.IsNullOrEmpty(ActivityDetails.StartDate))
                 {
                     string dateStr = ActivityDetails.StartDate;
@@ -445,6 +437,35 @@ namespace AtWork.ViewModels
                     if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
                     {
                         IsShowCategotyType = true;
+                    }
+                    if (!string.IsNullOrEmpty(ActivityDetails.Keyword))
+                    {
+                        var keywordStr = ActivityDetails.Keyword;
+                        List<string> keywordList = new List<string>();
+
+                        if (keywordStr.Contains(","))
+                        {
+                            keywordList = keywordStr.Split(',').ToList();
+                        }
+                        else
+                        {
+                            keywordList.Add(keywordStr);
+                        }
+                        ObservableCollection<ActivityTagModel> tempTags = new ObservableCollection<ActivityTagModel>();
+                        keywordList.All((arg) =>
+                        {
+                            tempTags.Add(new ActivityTagModel() { ActivityTag = arg.Trim() });
+                            return true;
+                        });
+                        ActivityTagList = tempTags;
+                    }
+                    if (!string.IsNullOrEmpty(ActivityDetails.Companie_Address1) && !string.IsNullOrEmpty(ActivityDetails.Companie_Address2))
+                    {
+                        OrganizationAddress = ActivityDetails.Companie_Address1 + ", " + ActivityDetails.Companie_Address2;
+                    }
+                    else
+                    {
+                        OrganizationAddress = ActivityDetails.Companie_Address1;
                     }
                 }
                 await ClosePopup();
