@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Multilingual;
 using AtWork.Services;
@@ -21,6 +22,7 @@ namespace AtWork.ViewModels
             SettingsList.Add(AppResources.ChangeLanguageText);
             SettingsList.Add(AppResources.ChangePasswordText);
             SettingsList.Add(AppResources.ManageNotificationText);
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             SelectionChangedCommand = new DelegateCommand<string>(async (obj) => await OnSelectionChangedAsync(obj));
         }
         public ObservableCollection<string> SettingsList { get; }
@@ -43,28 +45,28 @@ namespace AtWork.ViewModels
                 }
                 else if (item == AppResources.EditInterestsText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(YourInterestsPage));
                 }
                 else if (item == AppResources.EditAboutMeText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(AboutMePage));
                 }
                 else if (item == AppResources.ChangeLanguageText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(LanguageListPage)); 
                 }
                 else if (item == AppResources.ChangePasswordText)
                 {
-
+                    await _navigationService.NavigateAsync(nameof(ChangeUserPasswordPage)); 
                 }
                 else if (item == AppResources.ManageNotificationText)
                 {
-
+                    await DisplayAlertAsync(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
                 }
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
     }

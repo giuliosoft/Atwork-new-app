@@ -442,6 +442,17 @@ Permission Denied. Can not continue, try again.</value>
     <data name="ManageNotificationText" xml:space="preserve">
         <value>Manage notification</value>
 	</data>
+    <data name="ProfilePictureText" xml:space="preserve">
+        <value>Profile picture</value>
+    </data><data name="StartWriting" xml:space="preserve">
+        <value>Start writing...</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Language</value>
+    </data>
+    <data name="ChangePasswordTitle" xml:space="preserve">
+        <value>Change Password</value>
+    </data>
     <data name="CategoryDataAlertText" xml:space="preserve">
         <value>No activity available for selected category!</value>
     </data>
@@ -451,5 +462,75 @@ Set permission manually from app settings.</value>
     </data>
     <data name="JoinActivitySuccessfulText" xml:space="preserve">
         <value>Thank you for joining activity.</value>
+    </data>
+    <data name="EnterCurrentPassword" xml:space="preserve">
+        <value>Please enter your current password</value>
+    </data>
+    <data name="WelcomeSetup1" xml:space="preserve">
+        <value>Set up your profile to choose your language, upload your picture, and let your team know more about you!</value>
+    </data>
+    <data name="WelcomeSetup2" xml:space="preserve">
+        <value>If you want to use your phone's default language and get straight to the news, you can skip this process.</value>
+    </data>
+    <data name="ActivitiesText" xml:space="preserve">
+        <value>Activities</value>
+    </data>
+    <data name="HoursText" xml:space="preserve">
+        <value>Hours</value>
+    </data>
+        <data name="AllowNotificationsTitleText" xml:space="preserve">
+        <value>Allow notifications?</value>
+    </data>
+        <data name="AllowNotificationsMsgText" xml:space="preserve">
+        <value>atwork sends updates on subscribed activities and important messages</value>
+    </data>
+        <data name="DontAllowText" xml:space="preserve">
+        <value>Don't allow</value>
+    </data>
+        <data name="AllowText" xml:space="preserve">
+        <value>Allow</value>
+    </data>
+        
+    <data name="MyInterests" xml:space="preserve">
+        <value>My Interests</value>
+    </data>
+    <data name="WelcomeSetup" xml:space="preserve">
+        <value>WELCOME &#10; SETUP</value>
+    </data>
+    <data name="BeginSetup" xml:space="preserve">
+        <value>Begin Setup</value>
+    </data>
+    <data name="ChooseLanguage" xml:space="preserve">
+        <value>Choose Language</value>
+    </data>
+    <data name="WelcomeTo" xml:space="preserve">
+        <value>Welcome to </value>
+    </data>
+    <data name="AtWork" xml:space="preserve">
+        <value>atwork &#x0a;</value>
+    </data>
+    <data name="Whatdoyoulooklike" xml:space="preserve">
+        <value>What do you look like?</value>
+    </data>
+    <data name="PleaseSelectYourLanguage" xml:space="preserve">
+        <value>Please select your language</value>
+    </data> 
+    <data name="SetProfilePicture" xml:space="preserve">
+        <value>Set profile picture</value>
+    </data>
+    <data name="NowScalandmove" xml:space="preserve">
+        <value>Now scal and move &#x0a;</value>
+    </data>
+    <data name="yourphotoinsidethe" xml:space="preserve">
+        <value>your photo inside the &#x0a;</value>
+    </data>
+    <data name="circularfram" xml:space="preserve">
+        <value>circular fram</value>
+    </data>
+    <data name="AboutYourSelf" xml:space="preserve">
+        <value>Can you tell us a bit about yourself?</value>
+    </data>
+    <data name="WriteYourInterests" xml:space="preserve">
+        <value>Now write down some of your interests!</value>
     </data>
 </root>

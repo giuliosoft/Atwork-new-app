@@ -60,6 +60,8 @@ namespace AtWork.ViewModels
         private DelegateCommand _NewsOptionCommand;
         private bool _JoinActivity;
         private bool _UnSubscribeActivity;
+        private double _headerDetailsTitleFontSize = (double)App.Current.Resources["FontSize20"];
+        private Color _headerDetailBackgroundColor = (Color)App.Current.Resources["OffWhiteColor"];
         #endregion
         public bool JoinActivity
         {
@@ -176,6 +178,16 @@ namespace AtWork.ViewModels
             get { return _profileTapCommand; }
             set { SetProperty(ref _profileTapCommand, value); }
         }
+        public double HeaderDetailsTitleFontSize
+        {
+            get { return _headerDetailsTitleFontSize; }
+            set { SetProperty(ref _headerDetailsTitleFontSize, value); }
+        }
+        public Color HeaderDetailBackgroundColor
+        {
+            get { return _headerDetailBackgroundColor; }
+            set { SetProperty(ref _headerDetailBackgroundColor, value); }
+        }
         #region Commands
 
         public DelegateCommand LogoutCommand { get; set; }
@@ -247,7 +259,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+                await _navigationService.NavigateAsync(nameof(WelcomeSetupPage), null);
             }
             catch (Exception exception)
             {
@@ -328,6 +340,16 @@ namespace AtWork.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, message, AppResources.AlertOkText);
             }
+        }
+
+        /// <summary>
+        /// DisplayAlertAsync
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        public static async Task DisplayAlertAsync(string titile, string message, string okText, string cancelText)
+        {
+            await App.Current.MainPage.DisplayAlert(titile, message, okText, cancelText);
         }
 
         /// <summary>

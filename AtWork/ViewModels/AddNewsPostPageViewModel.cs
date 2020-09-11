@@ -16,7 +16,7 @@ namespace AtWork.ViewModels
         public AddNewsPostPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             NextClickPageName = nameof(AddNewsPostPage);
-            AddNewsCancelImage = AppResources.BackButtonText;
+            AddNewsCancelImage = AppResources.Cancel;
             AddNewsNextImage = AppResources.NextButtonText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
         }

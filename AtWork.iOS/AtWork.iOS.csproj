@@ -162,6 +162,9 @@
     <PackageReference Include="CClarke.Plugin.Calendars">
       <Version>1.0.14</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -292,6 +295,24 @@
     <BundleResource Include="Resources\noimage.png" />
     <BundleResource Include="Resources\noimageSmall.png" />
     <BundleResource Include="Resources\loadingSmall.png" />
+    <BundleResource Include="Resources\01.png" />
+    <BundleResource Include="Resources\01%402x.png" />
+    <BundleResource Include="Resources\01%403x.png" />
+    <BundleResource Include="Resources\02.png" />
+    <BundleResource Include="Resources\02%402x.png" />
+    <BundleResource Include="Resources\02%403x.png" />
+    <BundleResource Include="Resources\03.png" />
+    <BundleResource Include="Resources\03%402x.png" />
+    <BundleResource Include="Resources\03%403x.png" />
+    <BundleResource Include="Resources\04.png" />
+    <BundleResource Include="Resources\04%402x.png" />
+    <BundleResource Include="Resources\04%403x.png" />
+    <BundleResource Include="Resources\05.png" />
+    <BundleResource Include="Resources\05%402x.png" />
+    <BundleResource Include="Resources\05%403x.png" />
+    <BundleResource Include="Resources\06.png" />
+    <BundleResource Include="Resources\06%402x.png" />
+    <BundleResource Include="Resources\06%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

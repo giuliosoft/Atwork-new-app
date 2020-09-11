@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.WelcomeSetupPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             BackgroundColor="{DynamicResource DarkColor}"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{DynamicResource DarkColor}">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <ffImageLoading:CachedImage Margin="0,50,0,0" Grid.Column="0" Source="http://app.atwork.ai/newsposts/59324_1.png" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                    <ffImageLoading:CachedImage.Transformations>
+                        <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                    </ffImageLoading:CachedImage.Transformations>
+                </ffImageLoading:CachedImage>
+                <Label Padding="{DynamicResource HeightWidth50}" Text="{x:Static Multilingual:AppResources.WelcomeSetup}" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{x:Static Multilingual:AppResources.WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{x:Static Multilingual:AppResources.WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <StackLayout Padding="{DynamicResource MarginPadding00_50_0_50}" Orientation="Horizontal"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="{DynamicResource DeviceWidthFooterTab}" HeightRequest="{DynamicResource HeightWidth20}" Margin="{DynamicResource MarginPadding20_10_5_10}" BackgroundColor="{DynamicResource LightColor}">
+                        <Button x:Name="btnBeginSetup" Text="{x:Static Multilingual:AppResources.BeginSetup}" WidthRequest="{DynamicResource HeightWidth50}" FontSize="20" VerticalOptions="FillAndExpand" TextColor="{DynamicResource DarkColor}"  Command="{Binding GoForBeginSetupCommand}"/>
+                    </Frame>
+                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="{DynamicResource DeviceWidthFooterTab}" HeightRequest="{DynamicResource HeightWidth20}" Margin="{DynamicResource MarginPadding05_10_20_10}" BackgroundColor="{DynamicResource LightColor}">
+                        <Button x:Name="btnSkip" Text="{x:Static Multilingual:AppResources.SkipText}" WidthRequest="{DynamicResource HeightWidth50}" VerticalOptions="FillAndExpand" FontSize="20" TextColor="{DynamicResource DarkColor}" Command="{Binding GoForSkipCommand}"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

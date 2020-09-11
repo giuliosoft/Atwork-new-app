@@ -2,10 +2,10 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.SubViews.AddNewsPostHeaderView"
-             BackgroundColor="{StaticResource OffWhiteColor}"
+             BackgroundColor="{TemplateBinding BindingContext.HeaderDetailBackgroundColor}"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentView.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" >
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0">
             <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" Margin="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -18,17 +18,20 @@
                 <ContentView Grid.Column="0" Padding="0"  VerticalOptions="Center">
                     <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="0,20,0,20" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout HorizontalOptions="Start" VerticalOptions="Center" >
-                            <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}"  WidthRequest="70" Margin="20,0,30,0" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                            <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}"  WidthRequest="70" Margin="10,0,10,0" TextColor="White" FontSize="20" HorizontalTextAlignment="Center"></Label>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
+                <ContentView x:Name="HeaderTitle" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Label Text="{TemplateBinding BindingContext.HeaderDetailsTitle}" Style="{StaticResource HeaderViewHeaderLabelStyle}" FontSize="{TemplateBinding BindingContext.HeaderDetailsTitleFontSize}"/>
+                </ContentView>
                 <ContentView Grid.Column="2" Padding="0"  VerticalOptions="Center">
                     <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
-                            <Label Text="{TemplateBinding BindingContext.AddNewsNextImage}" WidthRequest="70" Margin="30,0,20,0" TextColor="{TemplateBinding BindingContext.NextTextColor}" FontSize="20" HorizontalTextAlignment="Center"></Label>
+                            <Label Text="{TemplateBinding BindingContext.AddNewsNextImage}" WidthRequest="70" Margin="10,0,10,0" TextColor="{TemplateBinding BindingContext.NextTextColor}" FontSize="20" HorizontalTextAlignment="Center"></Label>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.HeaderNextNavigationCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
                             </StackLayout.GestureRecognizers>

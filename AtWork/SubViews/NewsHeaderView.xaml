@@ -29,6 +29,9 @@
                                 <TapGestureRecognizer Command="{TemplateBinding BindingContext.OpenProfileCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
                             </ffImageLoading:CachedImage.GestureRecognizers>
                         </ffImageLoading:CachedImage>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.ProfileTapCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </ContentView>
                 <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
