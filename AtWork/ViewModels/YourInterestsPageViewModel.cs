@@ -127,7 +127,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(YourInterestsPage));
+                await _navigationService.NavigateAsync(nameof(WelcomeSetupDonePage));
             }
             catch (Exception ex)
             {
