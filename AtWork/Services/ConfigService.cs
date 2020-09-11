@@ -30,12 +30,12 @@ namespace AtWork.Services
         public static string NewsDetailsDeleteCommentServiceURL = "/commentslikes/deleteComment/";
         public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist_v1/";
         public static string NewsPostDeleteServiceURL = "/news/deleterow/";
-        public static string NewsListServiceURL = "/news/getlist/";
+        public static string NewsListServiceURL = "/news/getlist_v1/";
         public static string CommentsLikesServiceURL = "/commentslikes";
         public static string AddNewsLikeServiceURL = "/AddNewsLike";
         public static string DeleteNewsLikeServiceURL = "/DeleteNewsLike";
         public static string ActivitiesGetRowServiceURL = "/activities/getrow/";
-        public static string ActivityListServiceURL = "/activities/getlist/";
+        public static string ActivityListServiceURL = "/activities/getlist_v1/";
         public static string ActivityJoinServiceURL = "/activities/joinActitvity/";
         public static string MyActivityListServiceURL = "/activities/MyActivity/";
         public static string CreateActivityServiceURL = "/activities/insertrow";
