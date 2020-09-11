@@ -5,6 +5,7 @@ using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
@@ -52,6 +53,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand BackButtonCommand { get { return new DelegateCommand(async () => await BackButton()); } }
         public DelegateCommand ContinueSetupCommand { get { return new DelegateCommand(async () => await TermsandCondition()); } }
         public DelegateCommand GoToAuthenticationIdCommand { get { return new DelegateCommand(async () => await GoToAuthenticationId()); } }
         #endregion
@@ -68,6 +70,17 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+        async Task BackButton()
+        {
+            try
+            {
+                await _navigationService.GoBackAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         private async Task TermsandCondition()
         {
             try
@@ -75,6 +88,7 @@ namespace AtWork.ViewModels
                 DisclaimerLabel = "Terms and condition";
                 Disclaimerbtn = false;
                 Termsconditionbtn = true;
+                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
             }
             catch (Exception ex)
             {

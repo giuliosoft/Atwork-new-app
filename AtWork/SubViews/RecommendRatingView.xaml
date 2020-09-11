@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.SubViews.RecommendRatingView"
+             xmlns:helpers="clr-namespace:AtWork.Helpers"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Grid ColumnDefinitions="60,60,60,60,60" ColumnSpacing="0" HeightRequest="70" Padding="0" Margin="50,0,50,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
+                <PancakeControl:PancakeView Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="{Binding RecommendRatingPancakeCornerRadius}" WidthRequest="{Binding RecommendRatingPancakeWidth}" HorizontalOptions="StartAndExpand" HeightRequest="50" BackgroundColor="{StaticResource DarkGreenColor}">
+                </PancakeControl:PancakeView>
+                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding RecommendRate1PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{StaticResource DarkGreenColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding RecommendRate1BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding RecommendRate1FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateOneHalf}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding RecommendRate1PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateOneFull}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding RecommendRate2PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{StaticResource DarkGreenColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding RecommendRate2BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding RecommendRate2FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateTwoHalf}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding RecommendRate2PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateTwoFull}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding RecommendRate3PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{StaticResource DarkGreenColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding RecommendRate3BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding RecommendRate3FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateThreeHalf}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding RecommendRate3PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateThreeFull}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="3" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding RecommendRate4PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{StaticResource DarkGreenColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding RecommendRate4BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding RecommendRate4FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFourHalf}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding RecommendRate4PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFourFull}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="4" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding RecommendRate5PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{StaticResource DarkGreenColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding RecommendRate5BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource DarkGreenColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding RecommendRate5FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFiveHalf}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding RecommendRate5PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{StaticResource DarkGreenColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RecommendRatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFiveFull}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
