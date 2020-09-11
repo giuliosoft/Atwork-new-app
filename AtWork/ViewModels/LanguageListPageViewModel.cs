@@ -27,7 +27,7 @@ namespace AtWork.ViewModels
             HeaderNextNavigationCommand = NewsPostProceedCommand;
             if (SessionService.IsWelcomeSetup)
             {
-                //HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
                 ShowChooseLanguage = true;
             }
             else

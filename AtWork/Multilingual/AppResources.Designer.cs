@@ -1030,5 +1030,47 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("Whatdoyoulooklike", resourceCulture);
             }
         }
+        
+        internal static string PleaseSelectYourLanguage {
+            get {
+                return ResourceManager.GetString("PleaseSelectYourLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string SetProfilePicture {
+            get {
+                return ResourceManager.GetString("SetProfilePicture", resourceCulture);
+            }
+        }
+        
+        internal static string NowScalandmove {
+            get {
+                return ResourceManager.GetString("NowScalandmove", resourceCulture);
+            }
+        }
+        
+        internal static string yourphotoinsidethe {
+            get {
+                return ResourceManager.GetString("yourphotoinsidethe", resourceCulture);
+            }
+        }
+        
+        internal static string circularfram {
+            get {
+                return ResourceManager.GetString("circularfram", resourceCulture);
+            }
+        }
+        
+        internal static string AboutYourSelf {
+            get {
+                return ResourceManager.GetString("AboutYourSelf", resourceCulture);
+            }
+        }
+        
+        internal static string WriteYourInterests {
+            get {
+                return ResourceManager.GetString("WriteYourInterests", resourceCulture);
+            }
+        }
     }
 }

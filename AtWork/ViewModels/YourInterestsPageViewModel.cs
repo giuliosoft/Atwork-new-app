@@ -24,12 +24,25 @@ namespace AtWork.ViewModels
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             AddNewsNextImage = AppResources.SaveButtonText;
+
+            if (SessionService.IsWelcomeSetup)
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                ShowHeadingText = true;
+            }
+            else
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                ShowHeadingText = false;
+            }
         }
         #endregion
 
         #region Private Properties
         private string _commentText = string.Empty;
         private bool _SendButtonIsVisible = false;
+        private bool _ShowHeadingText;
+        private ControlTemplate _Header;
         #endregion
 
         #region Public Properties
@@ -43,7 +56,11 @@ namespace AtWork.ViewModels
             get { return _commentText; }
             set { SetProperty(ref _commentText, value); }
         }
-
+        public ControlTemplate HeaderView
+        {
+            get { return _Header; }
+            set { SetProperty(ref _Header, value); }
+        }
         private ObservableCollection<FeedBackUIModel> _feedBackList = new ObservableCollection<FeedBackUIModel>();
         public ObservableCollection<FeedBackUIModel> FeedBackList
         {
@@ -56,12 +73,17 @@ namespace AtWork.ViewModels
             get { return _FeedBackListImproveList; }
             set { SetProperty(ref _FeedBackListImproveList, value); }
         }
-
+        public bool ShowHeadingText
+        {
+            get { return _ShowHeadingText; }
+            set { SetProperty(ref _ShowHeadingText, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
+        public DelegateCommand DoneCommand { get { return new DelegateCommand(async () => await DoneButton()); } }
         #endregion
 
         #region private methods
@@ -100,11 +122,22 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-
+        
+        async Task DoneButton()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(YourInterestsPage));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
         #endregion
 
         #region public methods        
-       
+
         #endregion
 
         public override void OnNavigatedFrom(INavigationParameters parameters)

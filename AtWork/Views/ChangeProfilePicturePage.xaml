@@ -15,12 +15,21 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
             <StackLayout Padding="{DynamicResource MarginPadding00_00_00_30}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_00}">
-                <Label IsVisible="{Binding isShowLooktexr}" LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,20,30,0">
+                <Label IsVisible="{Binding isShowLooktext}" LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,20,30,0">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{x:Static Multilingual:AppResources.WelcomeTo}" TextColor="Black" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
                             <Span Text="{x:Static Multilingual:AppResources.AtWork}" TextColor="Black" FontFamily="Lato_Italic" FontSize="{DynamicResource FontSize18}"/>
                             <Span Text="{x:Static Multilingual:AppResources.Whatdoyoulooklike}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" TextColor="Black"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label IsVisible="{Binding isShowEditPhoto}" LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,20,30,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static Multilingual:AppResources.NowScalandmove}" TextColor="Black" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
+                            <Span Text="{x:Static Multilingual:AppResources.yourphotoinsidethe}" TextColor="Black" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}"/>
+                            <Span Text="{x:Static Multilingual:AppResources.circularfram}" TextColor="Black" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -49,14 +58,14 @@
                 <ContentView  Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseFromCameraRoll}" FontSize="20" TextColor="White"/>
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding ChooseFromCamera}" FontSize="20" TextColor="White"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
-                <ContentView IsVisible="{Binding ShowPickOgOurImage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                <ContentView IsVisible="{Binding ShowPickOfOurImage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.Orpickoneofours}" FontSize="20" TextColor="White"/>
@@ -66,10 +75,6 @@
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
-                <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                    <ffimageloading:CachedImage Source="ChoosefromCameraroll" Margin="{DynamicResource MarginPadding00_00_00_20}" />
-                    
-                </StackLayout>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

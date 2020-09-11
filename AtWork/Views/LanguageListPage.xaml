@@ -12,7 +12,7 @@
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Please Select your language" HorizontalOptions="CenterAndExpand" Padding="20"/>
+            <Label IsVisible="{Binding ShowChooseLanguage}" Text="{x:Static Multilingual:AppResources.PleaseSelectYourLanguage}" HorizontalOptions="CenterAndExpand" Padding="20"/>
             <CollectionView x:Name="clLanguageList" ItemsSource="{Binding LanguageList}" BackgroundColor="{DynamicResource OffWhiteColor}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

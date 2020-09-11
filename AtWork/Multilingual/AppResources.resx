@@ -512,4 +512,25 @@ Set permission manually from app settings.</value>
     <data name="Whatdoyoulooklike" xml:space="preserve">
         <value>What do you look like?</value>
     </data>
+    <data name="PleaseSelectYourLanguage" xml:space="preserve">
+        <value>Please select your language</value>
+    </data> 
+    <data name="SetProfilePicture" xml:space="preserve">
+        <value>Set profile picture</value>
+    </data>
+    <data name="NowScalandmove" xml:space="preserve">
+        <value>Now scal and move &#x0a;</value>
+    </data>
+    <data name="yourphotoinsidethe" xml:space="preserve">
+        <value>your photo inside the &#x0a;</value>
+    </data>
+    <data name="circularfram" xml:space="preserve">
+        <value>circular fram</value>
+    </data>
+    <data name="AboutYourSelf" xml:space="preserve">
+        <value>Can you tell us a bit about yourself?</value>
+    </data>
+    <data name="WriteYourInterests" xml:space="preserve">
+        <value>Now write down some of your interests!</value>
+    </data>
 </root>

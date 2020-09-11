@@ -19,11 +19,24 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
+
+            if (SessionService.IsWelcomeSetup)
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                ShowHeadingText = true;
+            }
+            else
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                ShowHeadingText = false;
+            }
         }
         #endregion
 
         #region Private Properties
         private string _Prop = string.Empty;
+        private ControlTemplate _Header;
+        private bool _ShowHeadingText;
         #endregion
 
         #region Public Properties        
@@ -32,10 +45,21 @@ namespace AtWork.ViewModels
             get { return _Prop; }
             set { SetProperty(ref _Prop, value); }
         }
+        public ControlTemplate HeaderView
+        {
+            get { return _Header; }
+            set { SetProperty(ref _Header, value); }
+        }
+        public bool ShowHeadingText
+        {
+            get { return _ShowHeadingText; }
+            set { SetProperty(ref _ShowHeadingText, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveDetail(obj)); } }
+        public DelegateCommand DoneCommand { get { return new DelegateCommand(async () => await DoneButton()); } }
         #endregion
 
         #region private methods
@@ -44,6 +68,17 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.GoBackAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task DoneButton()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(YourInterestsPage));
             }
             catch (Exception ex)
             {

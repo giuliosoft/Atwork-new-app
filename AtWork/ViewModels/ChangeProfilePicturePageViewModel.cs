@@ -29,21 +29,25 @@ namespace AtWork.ViewModels
 
             if (SessionService.IsWelcomeSetup)
             {
-                //HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
-                isShowLooktexr = true;
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                isShowLooktext = true;
             }
             else
             {
                 HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
-                isShowLooktexr = false;
+                isShowLooktext = false;
             }
         }
         private bool _showCropOption;
         private ImageSource _userProfileImage;
         private string _ImageOptionText = AppResources.EditCropButtonText;
+        private string _ChooseFromCamera = AppResources.ChooseFromCameraRoll;
         private NewsImageModel _SelectedNewsImageValue = null;
         private ControlTemplate _Header;
-        private bool _isShowLooktexr;
+        private bool _isShowLooktext;
+        private bool _isShowEditPhoto = false;
+        private bool IsImageSelected = false;
+        private bool _ShowPickOfOurImage = true;
         public ImageSource ProfileImage
         {
             get
@@ -56,6 +60,11 @@ namespace AtWork.ViewModels
         {
             get { return _ImageOptionText; }
             set { SetProperty(ref _ImageOptionText, value); }
+        }
+        public string ChooseFromCamera 
+        {
+            get { return _ChooseFromCamera; }
+            set { SetProperty(ref _ChooseFromCamera, value); }
         }
         public NewsImageModel SelectedNewsImageValue
         {
@@ -76,10 +85,20 @@ namespace AtWork.ViewModels
             get { return _Header; }
             set { SetProperty(ref _Header, value); }
         }
-        public bool isShowLooktexr
+        public bool isShowLooktext
         {
-            get { return _isShowLooktexr; }
-            set { SetProperty(ref _isShowLooktexr, value); }
+            get { return _isShowLooktext; }
+            set { SetProperty(ref _isShowLooktext, value); }
+        }
+        public bool isShowEditPhoto
+        {
+            get { return _isShowEditPhoto; }
+            set { SetProperty(ref _isShowEditPhoto, value); }
+        }
+        public bool ShowPickOfOurImage
+        {
+            get { return _ShowPickOfOurImage; }
+            set { SetProperty(ref _ShowPickOfOurImage, value); }
         }
         IMultiMediaPickerService _multiMediaPickerService;
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
@@ -89,7 +108,14 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await TakePhotoFromGallery();
+                if (ChooseFromCamera == AppResources.ChooseFromCameraRoll)
+                {
+                    await TakePhotoFromGallery();
+                }
+                else
+                {
+                    await _navigationService.NavigateAsync(nameof(AboutMePage));
+                }
             }
             catch (Exception ex)
             {
@@ -145,9 +171,25 @@ namespace AtWork.ViewModels
         {
             try
             {
+                
                 ShowCropOption = false;
                 //ProfileImage = ImageSource.FromUri(new Uri(obj));
                 ProfileImage = obj;
+                if (SessionService.IsWelcomeSetup)
+                {
+                    IsImageSelected = true;
+                    isShowEditPhoto = false;
+                    isShowLooktext = false;
+                    ShowPickOfOurImage = false;
+                    ChooseFromCamera = AppResources.SetProfilePicture;
+                }
+                else
+                {
+                    isShowEditPhoto = false;
+                    isShowLooktext = true;
+                    ShowPickOfOurImage = true;
+                    ChooseFromCamera = AppResources.ChooseFromCameraRoll;
+                }
             }
             catch (Exception ex)
             {
@@ -191,6 +233,21 @@ namespace AtWork.ViewModels
                     ShowCropOption = true;
                     SessionService.NewsPostImageFiles = new System.Collections.Generic.List<string>();
                     SessionService.NewsPostImageFiles.Add(pickedFile.Path);
+                    if (SessionService.IsWelcomeSetup)
+                    {
+                        IsImageSelected = true;
+                        isShowEditPhoto = true;
+                        isShowLooktext = false;
+                        ShowPickOfOurImage = false;
+                        ChooseFromCamera = AppResources.SetProfilePicture;
+                    }
+                    else
+                    {
+                        isShowEditPhoto = false;
+                        isShowLooktext = true;
+                        ShowPickOfOurImage = true;
+                        ChooseFromCamera = AppResources.ChooseFromCameraRoll;
+                    }
                 }
             }
         }
