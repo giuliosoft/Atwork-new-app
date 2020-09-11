@@ -69,6 +69,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<ChangeUserPasswordPage, ChangeUserPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<WelcomeSetupPage, WelcomeSetupPageViewModel>();
             containerRegistry.RegisterForNavigation<YourInterestsPage, YourInterestsPageViewModel>();
+            containerRegistry.RegisterForNavigation<WelcomeSetupDonePage, WelcomeSetupDonePageViewModel>();
         }
 
         /// <summary>

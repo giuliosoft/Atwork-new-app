@@ -11,7 +11,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false"
-             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
+             ControlTemplate="{Binding HeaderView}"
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,7 +22,8 @@
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
-                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label IsVisible="{Binding ShowHeadingText}" Text="Now write down some of your interests!" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
+                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
                         <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
@@ -37,14 +38,14 @@
                                         </PancakeControl:PancakeView.Triggers>
                                         <StackLayout  Orientation="Horizontal">
                                             <Label Text="{Binding Title}" Margin="0,0,5,0" Style="{StaticResource FeedbackChipLabelStyle}" FontFamily="Lato_Light"  FontSize="22" TextColor="{StaticResource DarkGreenShade}" LineBreakMode="NoWrap">
-                                                <!--<Label.Triggers>
+                                                <Label.Triggers>
                                                     <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
                                                         <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
                                                         <Setter Property="TextColor" Value="{StaticResource DarkGreenShade}" />
                                                     </DataTrigger>
-                                                </Label.Triggers>-->
+                                                </Label.Triggers>
                                             </Label>
                                             <Label Text=" x" FontFamily="Lato_Light"  FontSize="22" TextColor="{StaticResource DarkGreenShade}">
                                                 <Label.GestureRecognizers>
@@ -52,14 +53,25 @@
                                                 </Label.GestureRecognizers>
                                             </Label>
                                         </StackLayout>
-                                        <!--<PancakeControl:PancakeView.GestureRecognizers>
+                                        <PancakeControl:PancakeView.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={x:Reference feelList}, Path=BindingContext.ActivityFeelingSelectedCommand}" CommandParameter="{Binding .}" />
-                                        </PancakeControl:PancakeView.GestureRecognizers>-->
+                                        </PancakeControl:PancakeView.GestureRecognizers>
                                     </PancakeControl:PancakeView>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </FlexLayout>
                     </Grid>
+                    <StackLayout VerticalOptions="EndAndExpand">
+                    <ContentView Padding="{DynamicResource MarginPadding10}" >
+                        <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                                <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.DoneButtonText}" FontSize="20" TextColor="White"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DoneCommand}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </PancakeControl:PancakeView>
+                    </ContentView>
                    <PancakeControl:PancakeView Margin="10,0,10,20" CornerRadius="20" Padding="10" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
                             <Grid.RowDefinitions>
@@ -70,7 +82,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource NewsCommentEditorStyle}"/>
+                            <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="Start writing..."  Style="{StaticResource NewsCommentEditorStyle}"/>
                             <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                 <Label Text="Send" Style="{StaticResource SendLabelStyle}"/>
                                 <StackLayout.GestureRecognizers>
@@ -79,6 +91,7 @@
                             </StackLayout>
                         </Grid>
                     </PancakeControl:PancakeView>
+                        </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

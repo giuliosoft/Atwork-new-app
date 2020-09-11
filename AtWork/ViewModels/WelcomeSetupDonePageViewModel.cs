@@ -10,33 +10,24 @@ using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
-    public class AboutMePageViewModel : ViewModelBase
+    public class WelcomeSetupDonePageViewModel : ViewModelBase
     {
         #region Constructor
-        public AboutMePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
+        public WelcomeSetupDonePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            NextClickPageName = nameof(AboutMePage);
-            AddNewsCancelImage = AppResources.BackButtonText;
+            AddNewsCancelImage = AppResources.Cancel;
+            HeaderDetailsTitle = AppResources.MyInterests;
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
+            HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             AddNewsNextImage = AppResources.SaveButtonText;
-            HeaderNextNavigationCommand = NewsPostProceedCommand;
+            HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
 
-            if (SessionService.IsWelcomeSetup)
-            {
-                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
-                ShowHeadingText = true;
-            }
-            else
-            {
-                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
-                ShowHeadingText = false;
-            }
         }
         #endregion
 
         #region Private Properties
         private string _Prop = string.Empty;
         private ControlTemplate _Header;
-        private bool _ShowHeadingText;
         #endregion
 
         #region Public Properties        
@@ -50,35 +41,42 @@ namespace AtWork.ViewModels
             get { return _Header; }
             set { SetProperty(ref _Header, value); }
         }
-        public bool ShowHeadingText
-        {
-            get { return _ShowHeadingText; }
-            set { SetProperty(ref _ShowHeadingText, value); }
-        }
         #endregion
 
         #region Commands
-        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveDetail(obj)); } }
-        public DelegateCommand DoneCommand { get { return new DelegateCommand(async () => await DoneButton()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         #endregion
 
         #region private methods
-        async Task SaveDetail(string str)
+        async Task GoForLogin()
         {
             try
             {
-                await _navigationService.GoBackAsync();
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task DoneButton()
+        async void OpenAlertDialouge()
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(YourInterestsPage));
+                await Task.Delay(5000);
+                var res = await App.Current.MainPage.DisplayAlert(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
+                //if (res)
+                //{
+                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                //}
+                //Task.Factory.StartNew(async () =>
+                //{
+                //    await Task.Delay(5000);
+                //    Application.Current.Dispatcher.Invoke(() =>
+                //    {
+                //        // Do something on the UI thread.
+                //    });
+                //});
             }
             catch (Exception ex)
             {
@@ -99,6 +97,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            OpenAlertDialouge();
         }
     }
 }

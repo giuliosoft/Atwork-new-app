@@ -8,13 +8,27 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
              ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
     <ContentPage.Content>
-        <ScrollView>
             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <Customcontrol:CustomEditor Text="{Binding Description}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource PostLabelStyle}" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                <Label IsVisible="{Binding ShowHeadingText}" Text="Can you tell us a bit about yourself?" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
+                <ScrollView VerticalOptions="FillAndExpand" >
+                    <StackLayout>
+                        <Customcontrol:CustomEditor Text="{Binding Description}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource PostLabelStyle}" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                        <ContentView IsVisible="{Binding ShowHeadingText}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                            <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                                    <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.DoneButtonText}" FontSize="20" TextColor="White"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DoneCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </PancakeControl:PancakeView>
+                        </ContentView>
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

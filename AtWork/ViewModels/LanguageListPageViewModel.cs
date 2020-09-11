@@ -25,35 +25,58 @@ namespace AtWork.ViewModels
             HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
-            
+            if (SessionService.IsWelcomeSetup)
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                ShowChooseLanguage = true;
+            }
+            else
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                ShowChooseLanguage = false;
+            }
+
         }
         #endregion
 
         #region Private Properties
         private ObservableCollection<Language> _LanguageList = new ObservableCollection<Language>();
-        
+        private ControlTemplate _Header;
         private string _Prop = string.Empty;
+        private bool _ShowChooseLanguage = false;
         #endregion
 
         #region Public Properties
         public string Selectedlanguage;
+        public List<string> LanguageName { get; set; }
         public string Prop
         {
             get { return _Prop; }
             set { SetProperty(ref _Prop, value); }
+        }
+        
+        public ControlTemplate HeaderView
+        {
+            get { return _Header; }
+            set { SetProperty(ref _Header, value); }
         }
         public ObservableCollection<Language> LanguageList
         {
             get { return _LanguageList; }
             set { SetProperty(ref _LanguageList, value); }
         }
-        public List<string> LanguageName { get; set; }
 
+        public bool ShowChooseLanguage
+        {
+            get { return _ShowChooseLanguage; }
+            set { SetProperty(ref _ShowChooseLanguage, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveDetail(obj)); } }
         public DelegateCommand<Language> SelectionChangedCommand { get { return new DelegateCommand<Language>(async (obj) => await OnSelectionChangedAsync(obj)); } }
+        public DelegateCommand SelectedLanguageCommand { get { return new DelegateCommand(async () => await SelectedLanguage()); } }
         #endregion
 
         #region private methods
@@ -62,6 +85,18 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.GoBackAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task SelectedLanguage()
+        {
+            try
+            {
+                //Selectedlanguage
+                await _navigationService.NavigateAsync(nameof(ChangeProfilePicturePage), null);
             }
             catch (Exception ex)
             {

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.WelcomeSetupDonePage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:helpers="clr-namespace:AtWork.Helpers"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"  
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{Binding HeaderView}"
+             BackgroundColor="{DynamicResource HeaderBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout Margin="50" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="Almost Done!" HorizontalTextAlignment="Center" Padding="10" FontSize="18" FontFamily="Lato_Regular" VerticalOptions="Center"/>
+            <Label Text="Allow notifications if you on subscribed activities. wish to receive updates" FontSize="18" FontFamily="Lato_Regular" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

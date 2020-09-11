@@ -994,5 +994,83 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("MyInterests", resourceCulture);
             }
         }
+        
+        internal static string WelcomeSetup {
+            get {
+                return ResourceManager.GetString("WelcomeSetup", resourceCulture);
+            }
+        }
+        
+        internal static string BeginSetup {
+            get {
+                return ResourceManager.GetString("BeginSetup", resourceCulture);
+            }
+        }
+        
+        internal static string ChooseLanguage {
+            get {
+                return ResourceManager.GetString("ChooseLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeTo {
+            get {
+                return ResourceManager.GetString("WelcomeTo", resourceCulture);
+            }
+        }
+        
+        internal static string AtWork {
+            get {
+                return ResourceManager.GetString("AtWork", resourceCulture);
+            }
+        }
+        
+        internal static string Whatdoyoulooklike {
+            get {
+                return ResourceManager.GetString("Whatdoyoulooklike", resourceCulture);
+            }
+        }
+        
+        internal static string PleaseSelectYourLanguage {
+            get {
+                return ResourceManager.GetString("PleaseSelectYourLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string SetProfilePicture {
+            get {
+                return ResourceManager.GetString("SetProfilePicture", resourceCulture);
+            }
+        }
+        
+        internal static string NowScalandmove {
+            get {
+                return ResourceManager.GetString("NowScalandmove", resourceCulture);
+            }
+        }
+        
+        internal static string yourphotoinsidethe {
+            get {
+                return ResourceManager.GetString("yourphotoinsidethe", resourceCulture);
+            }
+        }
+        
+        internal static string circularfram {
+            get {
+                return ResourceManager.GetString("circularfram", resourceCulture);
+            }
+        }
+        
+        internal static string AboutYourSelf {
+            get {
+                return ResourceManager.GetString("AboutYourSelf", resourceCulture);
+            }
+        }
+        
+        internal static string WriteYourInterests {
+            get {
+                return ResourceManager.GetString("WriteYourInterests", resourceCulture);
+            }
+        }
     }
 }

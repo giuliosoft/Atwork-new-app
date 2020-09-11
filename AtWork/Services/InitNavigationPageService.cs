@@ -13,14 +13,14 @@ namespace AtWork.Services
         /// <returns></returns>
         public static string Navigate()
         {
-            //if (SettingsService.LoggedInUserData != null)
-            //{
-            //    return $"/{nameof(NavigationPage)}/{nameof(DashboardPage)}";
-            //}
-            //else
-            //{
-            return $"/{nameof(NavigationPage)}/{nameof(StartUpPage)}";
-            //}
+            if (SettingsService.LoggedInUserData != null)
+            {
+                return $"/{nameof(NavigationPage)}/{nameof(DashboardPage)}";
+            }
+            else
+            {
+                return $"/{nameof(NavigationPage)}/{nameof(StartUpPage)}";
+            }
 
         }
     }
