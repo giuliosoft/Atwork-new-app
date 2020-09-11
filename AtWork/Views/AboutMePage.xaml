@@ -10,7 +10,7 @@
              xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
-             ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
+             ControlTemplate="{Binding HeaderView}">
     <ContentPage.Content>
             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Label IsVisible="{Binding ShowHeadingText}" Text="Can you tell us a bit about yourself?" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
