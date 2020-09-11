@@ -26,11 +26,24 @@ namespace AtWork.ViewModels
             _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
             ProfileImage = UserProfileImage;
             ImageOptionText = AppResources.EditCropButtonText;
+
+            if (SessionService.IsWelcomeSetup)
+            {
+                //HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                isShowLooktexr = true;
+            }
+            else
+            {
+                HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
+                isShowLooktexr = false;
+            }
         }
         private bool _showCropOption;
         private ImageSource _userProfileImage;
         private string _ImageOptionText = AppResources.EditCropButtonText;
         private NewsImageModel _SelectedNewsImageValue = null;
+        private ControlTemplate _Header;
+        private bool _isShowLooktexr;
         public ImageSource ProfileImage
         {
             get
@@ -57,6 +70,16 @@ namespace AtWork.ViewModels
         {
             get { return _showCropOption; }
             set { SetProperty(ref _showCropOption, value); }
+        }
+        public ControlTemplate HeaderView
+        {
+            get { return _Header; }
+            set { SetProperty(ref _Header, value); }
+        }
+        public bool isShowLooktexr
+        {
+            get { return _isShowLooktexr; }
+            set { SetProperty(ref _isShowLooktexr, value); }
         }
         IMultiMediaPickerService _multiMediaPickerService;
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }

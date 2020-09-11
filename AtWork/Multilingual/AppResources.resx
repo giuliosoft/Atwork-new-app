@@ -494,4 +494,22 @@ Set permission manually from app settings.</value>
     <data name="MyInterests" xml:space="preserve">
         <value>My Interests</value>
     </data>
+    <data name="WelcomeSetup" xml:space="preserve">
+        <value>WELCOME &#10; SETUP</value>
+    </data>
+    <data name="BeginSetup" xml:space="preserve">
+        <value>Begin Setup</value>
+    </data>
+    <data name="ChooseLanguage" xml:space="preserve">
+        <value>Choose Language</value>
+    </data>
+    <data name="WelcomeTo" xml:space="preserve">
+        <value>Welcome to </value>
+    </data>
+    <data name="AtWork" xml:space="preserve">
+        <value>atwork &#x0a;</value>
+    </data>
+    <data name="Whatdoyoulooklike" xml:space="preserve">
+        <value>What do you look like?</value>
+    </data>
 </root>

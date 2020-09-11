@@ -19,15 +19,15 @@
                         <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                     </ffImageLoading:CachedImage.Transformations>
                 </ffImageLoading:CachedImage>
-                <Label Padding="50" Text="WELCOME &#10; SETUP" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Label Margin="50,10,50,10" Text="{x:Static Multilingual:AppResources.WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Label Margin="50,10,50,10" Text="{x:Static Multilingual:AppResources.WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
-                <StackLayout Padding="0,50,0,50" Orientation="Horizontal"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="{DynamicResource DeviceWidthFooterTab}" HeightRequest="20" Margin="10,10,5,10" BackgroundColor="{DynamicResource AccentColor}">
-                        <Button x:Name="btnBeginSetup" Text="Begin Setup" WidthRequest="50" FontSize="20" VerticalOptions="FillAndExpand" TextColor="White"  Command="{Binding GoForCancelCommand}"/>
+                <Label Padding="{DynamicResource HeightWidth50}" Text="{x:Static Multilingual:AppResources.WelcomeSetup}" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{x:Static Multilingual:AppResources.WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{x:Static Multilingual:AppResources.WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <StackLayout Padding="{DynamicResource MarginPadding00_50_0_50}" Orientation="Horizontal"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="{DynamicResource DeviceWidthFooterTab}" HeightRequest="{DynamicResource HeightWidth20}" Margin="{DynamicResource MarginPadding20_10_5_10}" BackgroundColor="{DynamicResource LightColor}">
+                        <Button x:Name="btnBeginSetup" Text="{x:Static Multilingual:AppResources.BeginSetup}" WidthRequest="{DynamicResource HeightWidth50}" FontSize="20" VerticalOptions="FillAndExpand" TextColor="{DynamicResource DarkColor}"  Command="{Binding GoForBeginSetupCommand}"/>
                     </Frame>
-                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="{DynamicResource DeviceWidthFooterTab}" HeightRequest="20" Margin="10,10,5,10" BackgroundColor="{DynamicResource AccentColor}">
-                        <Button x:Name="btnSkip" Text="Skip" WidthRequest="50" VerticalOptions="FillAndExpand" FontSize="20" TextColor="White" Command="{Binding GoForPasswordCommand}"/>
+                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"  WidthRequest="{DynamicResource DeviceWidthFooterTab}" HeightRequest="{DynamicResource HeightWidth20}" Margin="{DynamicResource MarginPadding05_10_20_10}" BackgroundColor="{DynamicResource LightColor}">
+                        <Button x:Name="btnSkip" Text="{x:Static Multilingual:AppResources.SkipText}" WidthRequest="{DynamicResource HeightWidth50}" VerticalOptions="FillAndExpand" FontSize="20" TextColor="{DynamicResource DarkColor}" Command="{Binding GoForSkipCommand}"/>
                     </Frame>
                 </StackLayout>
             </StackLayout>

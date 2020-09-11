@@ -5,10 +5,14 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              NavigationPage.HasNavigationBar="false"
-             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
+             ControlTemplate="{Binding HeaderView}"
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Please Select your language" HorizontalOptions="CenterAndExpand" Padding="20"/>
             <CollectionView x:Name="clLanguageList" ItemsSource="{Binding LanguageList}" BackgroundColor="{DynamicResource OffWhiteColor}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -22,5 +26,16 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+            <ContentView IsVisible="{Binding ShowChooseLanguage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                    <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.ChooseLanguage}" FontSize="20" TextColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectedLanguageCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

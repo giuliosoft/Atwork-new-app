@@ -259,7 +259,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+                await _navigationService.NavigateAsync(nameof(WelcomeSetupPage), null);
             }
             catch (Exception exception)
             {

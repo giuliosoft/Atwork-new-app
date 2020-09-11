@@ -2,9 +2,10 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Services;
+using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
-
+using Xamarin.Forms;
 
 namespace AtWork.ViewModels
 {
@@ -13,7 +14,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public WelcomeSetupPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            SessionService.IsWelcomeSetup = true;
         }
         #endregion
 
@@ -30,15 +31,27 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForSkipCommand { get { return new DelegateCommand(async () => await GoForSkip()); } }
+        public DelegateCommand GoForBeginSetupCommand { get { return new DelegateCommand(async () => await GoForBeginSetup()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        async Task GoForSkip()
         {
             try
             {
-
+                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task GoForBeginSetup()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(LanguageListPage), null);
             }
             catch (Exception ex)
             {

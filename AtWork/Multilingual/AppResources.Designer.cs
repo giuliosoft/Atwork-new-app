@@ -994,5 +994,41 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("MyInterests", resourceCulture);
             }
         }
+        
+        internal static string WelcomeSetup {
+            get {
+                return ResourceManager.GetString("WelcomeSetup", resourceCulture);
+            }
+        }
+        
+        internal static string BeginSetup {
+            get {
+                return ResourceManager.GetString("BeginSetup", resourceCulture);
+            }
+        }
+        
+        internal static string ChooseLanguage {
+            get {
+                return ResourceManager.GetString("ChooseLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeTo {
+            get {
+                return ResourceManager.GetString("WelcomeTo", resourceCulture);
+            }
+        }
+        
+        internal static string AtWork {
+            get {
+                return ResourceManager.GetString("AtWork", resourceCulture);
+            }
+        }
+        
+        internal static string Whatdoyoulooklike {
+            get {
+                return ResourceManager.GetString("Whatdoyoulooklike", resourceCulture);
+            }
+        }
     }
 }
