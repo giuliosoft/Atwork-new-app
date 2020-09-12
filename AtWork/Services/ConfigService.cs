@@ -30,7 +30,7 @@ namespace AtWork.Services
         public static string NewsDetailsDeleteCommentServiceURL = "/commentslikes/deleteComment/";
         public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist_v1/";
         public static string NewsPostDeleteServiceURL = "/news/deleterow/";
-        public static string NewsListServiceURL = "/news/getlist_v1/";
+        public static string NewsListServiceURL = "/news/getlist/";//"/news/getlist_v1/";
         public static string CommentsLikesServiceURL = "/commentslikes";
         public static string AddNewsLikeServiceURL = "/AddNewsLike";
         public static string DeleteNewsLikeServiceURL = "/DeleteNewsLike";

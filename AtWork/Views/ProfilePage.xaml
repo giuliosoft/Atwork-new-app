@@ -38,7 +38,7 @@
                         </StackLayout>
                     </Grid>
                     <Label Margin="0,35,0,0" Text="{x:Static Multilingual:AppResources.DepartmentText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
-                    <Label Text="Marheting and Saled" Style="{StaticResource ProfileHeaderLabelStyle}"/>
+                    <Label Text="Marketing and Sales" Style="{StaticResource ProfileHeaderLabelStyle}"/>
                     <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.JobTitleText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
                     <Label Text="Sales consultant" Style="{StaticResource ProfileHeaderLabelStyle}"/>
                     <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.ClassText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
