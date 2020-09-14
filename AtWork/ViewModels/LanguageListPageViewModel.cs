@@ -125,7 +125,7 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-        async Task Getlanguage()
+        async Task GetLanguages()
         {
             try
             {
@@ -232,7 +232,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                Getlanguage();
+                GetLanguages();
             }
             catch (Exception ex)
             {

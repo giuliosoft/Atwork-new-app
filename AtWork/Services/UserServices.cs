@@ -111,5 +111,20 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> GetInterestsDetails()
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var InterestsServiceUrl = ConfigService.BaseServiceURL + ConfigService.GetInterestsServiceURL;
+                resultModel = await GetResponse<string>(InterestsServiceUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }
