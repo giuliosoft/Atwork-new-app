@@ -131,7 +131,7 @@ namespace AtWork.Services
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var GroupMemberCountUrl = ConfigService.BaseServiceURL + ConfigService.GroupMemberCount + id;
+                var GroupMemberCountUrl = ConfigService.BaseServiceURL + ConfigService.GroupMemberCountURL + id;
                 resultModel = await GetResponse<string>(GroupMemberCountUrl, true);
             }
             catch (Exception ex)

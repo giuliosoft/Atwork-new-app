@@ -1102,5 +1102,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("Inviteyourgroup", resourceCulture);
             }
         }
+        
+        internal static string MyInterestsProfile {
+            get {
+                return ResourceManager.GetString("MyInterestsProfile", resourceCulture);
+            }
+        }
     }
 }

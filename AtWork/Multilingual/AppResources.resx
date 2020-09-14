@@ -548,4 +548,7 @@ Set permission manually from app settings.</value>
     <data name="Inviteyourgroup" xml:space="preserve">
         <value>Invite your group</value>
     </data>
+     <data name="MyInterestsProfile" xml:space="preserve">
+        <value>MY INTERESTS</value>
+    </data>
 </root>

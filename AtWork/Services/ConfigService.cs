@@ -44,6 +44,7 @@ namespace AtWork.Services
         public static string NewsCommentLinkServiceURL = "/news/getlist/";
         public static string NewsAddCommentLikeServiceURL = "/commentslikes/AddNewsCommentLike";
         public static string NewsDeleteCommentLikeServiceURL = "/commentslikes/DeleteNewsCommentLike";
-        public static string GroupMemberCount = "/activities/CountGroupMember/";
+        public static string GroupMemberCountURL = "/activities/CountGroupMember/";
+        public static string UserProfileURL = "/user/getprofile/";
     }
 }
