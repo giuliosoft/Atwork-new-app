@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,8 @@ using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.ActivityModel;
+using static AtWork.Models.FeedbackModel;
 
 namespace AtWork.ViewModels
 {
@@ -26,6 +29,15 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private string _Prop = string.Empty;
+        ActivityListModel _SelectedPastActivity;
+        private int OverallExperienceRatingValue = 0;
+        private int ImpactRatingValue = 0;
+        private int RecommendRatingValue = 0;
+        List<FeedBackUIModel> SelectedActivityFeelingList = new List<FeedBackUIModel>();
+        List<FeedBackUIModel> SelectedImprovementList = new List<FeedBackUIModel>();
+        private string _FeedbackComments = string.Empty;
+        private string _FeedbackLikeMostComment = string.Empty;
+        private string _FeedbackAdditionalComments = string.Empty;
 
         private double _RatingPancakeWidth = 0;
         private CornerRadius _RatingPancakeCornerRadius = 25;
@@ -92,6 +104,12 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _Prop, value); }
         }
 
+        public ActivityListModel SelectedPastActivity
+        {
+            get { return _SelectedPastActivity; }
+            set { SetProperty(ref _SelectedPastActivity, value); }
+        }
+
         private ObservableCollection<FeedBackUIModel> _feedBackList = new ObservableCollection<FeedBackUIModel>();
         public ObservableCollection<FeedBackUIModel> FeedBackList
         {
@@ -103,6 +121,24 @@ namespace AtWork.ViewModels
         {
             get { return _FeedBackListImproveList; }
             set { SetProperty(ref _FeedBackListImproveList, value); }
+        }
+
+        public string FeedbackComments
+        {
+            get { return _FeedbackComments; }
+            set { SetProperty(ref _FeedbackComments, value); }
+        }
+
+        public string FeedbackLikeMostComment
+        {
+            get { return _FeedbackLikeMostComment; }
+            set { SetProperty(ref _FeedbackLikeMostComment, value); }
+        }
+
+        public string FeedbackAdditionalComments
+        {
+            get { return _FeedbackAdditionalComments; }
+            set { SetProperty(ref _FeedbackAdditionalComments, value); }
         }
 
         public double RatingPancakeWidth
@@ -370,13 +406,124 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
         public DelegateCommand<FeedBackUIModel> ActivityImprovementSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityImprovementSelected(obj)); } }
-        public DelegateCommand GoToMyActivityCommand { get { return new DelegateCommand(async () => await GoToMyActivity()); } }
+        public DelegateCommand SubmitFeedbackCommand { get { return new DelegateCommand(async () => await SubmitFeedback()); } }
         public DelegateCommand<string> RatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await RatingSelected(obj)); } }
         public DelegateCommand<string> ImpactRatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await ImpactRatingSelected(obj)); } }
         public DelegateCommand<string> RecommendRatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await RecommendRatingSelected(obj)); } }
+        public DelegateCommand<string> JoinedMemberCommand { get { return new DelegateCommand<string>(async (obj) => await JoinedMember(obj)); } }
         #endregion
 
         #region private methods
+        async Task JoinedMember(string selectedActivityPost)
+        {
+            try
+            {
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("ActivityID", selectedActivityPost);
+                await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task SubmitFeedback()
+        {
+            try
+            {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                ActivityFeedbackInputModel inputModel = new ActivityFeedbackInputModel();
+                inputModel.coUniqueID = SelectedPastActivity.coUniqueID;
+                inputModel.proUniqueID = SelectedPastActivity.proUniqueID;
+                inputModel.volUniqueID = SelectedPastActivity.volUniqueID;
+                inputModel.ActivityDate = SelectedPastActivity.proAddActivityDate;
+                //inputModel.selectedStarRating =;
+                //inputModel.SliderValue =;
+                //inputModel.SliderValue2 =;
+                string delim = ",";
+                string commaSeparatedFeelList = String.Join(delim, SelectedActivityFeelingList);
+                inputModel.ActivityFeedbackFeeling = commaSeparatedFeelList;
+                string commaSeparatedImproveList = String.Join(delim, SelectedImprovementList);
+                inputModel.ActivityFeedbackImprove = commaSeparatedImproveList;
+                inputModel.ActivityFeedbackComments = FeedbackComments;
+                inputModel.ActivityFeedback_Like = FeedbackLikeMostComment;
+                inputModel.ActivityFeedbackAdditional = FeedbackAdditionalComments;
+
+                var serviceResult = await FeedbackService.SubmitUserFeedback(inputModel);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    await BackClick();
+                }
+                await ClosePopup();
+            }
+            catch (Exception exception)
+            {
+                await ClosePopup();
+                Debug.WriteLine(exception.Message);
+            }
+        }
+
+        async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
+        {
+            try
+            {
+                FeedBackList.All((item) =>
+                {
+                    if (item == selectedTab)
+                    {
+                        item.IsSelected = !item.IsSelected;
+                        if (item.IsSelected)
+                        {
+                            SelectedActivityFeelingList.Add(item);
+                        }
+                        else
+                        {
+                            SelectedActivityFeelingList.Remove(item);
+                        }
+                    }
+                    return true;
+                });
+
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+
+        async Task ActivityImprovementSelected(FeedBackUIModel selectedTab)
+        {
+            try
+            {
+                FeedBackListImproveList.All((item) =>
+                {
+                    if (item == selectedTab)
+                    {
+                        item.IsSelected = !item.IsSelected;
+                        if (item.IsSelected)
+                        {
+                            SelectedImprovementList.Add(item);
+                        }
+                        else
+                        {
+                            SelectedImprovementList.Remove(item);
+                        }
+                    }
+                    return true;
+                });
+
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+
         async Task RatingSelected(string selectedRating)
         {
             try
@@ -402,6 +549,8 @@ namespace AtWork.ViewModels
 
                     RatingPancakeCornerRadius = 15;
                     RatingPancakeWidth = 30;
+
+                    //OverallExperienceRatingValue = 1.5;
                 }
                 else if (selectedRating == TextResources.RateOneFull)
                 {
@@ -1069,61 +1218,10 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-
-        async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
-        {
-            try
-            {
-                FeedBackList.All((item) =>
-                {
-                    if (item == selectedTab)
-                    {
-                        item.IsSelected = !item.IsSelected;
-                    }
-                    return true;
-                });
-
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
-
-        async Task ActivityImprovementSelected(FeedBackUIModel selectedTab)
-        {
-            try
-            {
-                FeedBackListImproveList.All((item) =>
-                {
-                    if (item == selectedTab)
-                    {
-                        item.IsSelected = !item.IsSelected;
-                    }
-                    return true;
-                });
-
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
         #endregion
 
         #region public methods        
-        public async Task GoToMyActivity()
-        {
-            try
-            {
-                await _navigationService.NavigateAsync(nameof(MyActivityPage), null);
 
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
         #endregion
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -1135,7 +1233,7 @@ namespace AtWork.ViewModels
         {
             base.OnNavigatedTo(parameters);
             FeedBackList = new ObservableCollection<FeedBackUIModel>();
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.HappyText, IsSelected = true });
+            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.HappyText, IsSelected = false });
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.CuriousText, IsSelected = false });
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.FullfilledText, IsSelected = false });
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.TiredText, IsSelected = false });
@@ -1148,7 +1246,7 @@ namespace AtWork.ViewModels
             FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.InterestedText, IsSelected = false });
 
             FeedBackListImproveList = new ObservableCollection<FeedBackUIModel>();
-            FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.EventOrganizationText, IsSelected = true });
+            FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.EventOrganizationText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.TransportationText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.FoodAndBeverageText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.SecurityText, IsSelected = false });
@@ -1156,6 +1254,12 @@ namespace AtWork.ViewModels
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.CommunicationText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.EverythingWasSatisfactoryText, IsSelected = false });
             FeedBackListImproveList.Add(new FeedBackUIModel() { Title = AppResources.OtherText, IsSelected = false });
+
+            var selectedActivity = parameters.GetValue<ActivityListModel>("SelectedPastActivity");
+            if (selectedActivity != null)
+            {
+                SelectedPastActivity = selectedActivity;
+            }
         }
     }
 }

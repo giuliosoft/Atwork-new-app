@@ -147,10 +147,12 @@ namespace AtWork.ViewModels
                     input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
                     input.proBackgroundImage = SessionService.SelectedDefaultImageForActivity;
                     input.proCategoryName = "#gettogether";
-                    if (NewsPrivacy.ToLower() == "everyone"){
+                    if (NewsPrivacy.ToLower() == "everyone")
+                    {
                         input.proAudience = "Post to everybody";
                     }
-                    else {
+                    else
+                    {
                         input.proAudience = "Post to my group";
                     }
                     serviceResult = await ActivityService.PostActivityFeedEdit(input, SessionService.NewsPostImageFiles);

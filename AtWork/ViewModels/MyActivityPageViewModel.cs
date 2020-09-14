@@ -91,7 +91,9 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
-                    await _navigationService.NavigateAsync(nameof(YourFeedbackPage), null);
+                    var navigationParams = new NavigationParameters();
+                    navigationParams.Add("SelectedPastActivity", selectedActivityPost);
+                    await _navigationService.NavigateAsync(nameof(YourFeedbackPage), navigationParams);
                 }
             }
             catch (Exception ex)
