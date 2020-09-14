@@ -533,4 +533,22 @@ Set permission manually from app settings.</value>
     <data name="WriteYourInterests" xml:space="preserve">
         <value>Now write down some of your interests!</value>
     </data>
+    <data name="GroupMemberPost" xml:space="preserve">
+        <value>people will see your post</value>
+    </data>
+    <data name="PosttoViewEverybody" xml:space="preserve">
+        <value>Post to view everybody</value>
+    </data>
+    <data name="PostToEverybody" xml:space="preserve">
+        <value>Post to everybody</value>
+    </data>
+    <data name="Posttoyourgroup" xml:space="preserve">
+        <value>Post to your group</value>
+    </data>
+    <data name="Inviteyourgroup" xml:space="preserve">
+        <value>Invite your group</value>
+    </data>
+     <data name="MyInterestsProfile" xml:space="preserve">
+        <value>MY INTERESTS</value>
+    </data>
 </root>

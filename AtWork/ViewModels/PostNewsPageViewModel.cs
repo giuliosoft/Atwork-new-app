@@ -274,22 +274,22 @@ namespace AtWork.ViewModels
                 if (isActivity)
                 {
                     PostTitle = AppResources.InvitePeopleToYourActivity;
-                    PostToGroup = "Invite your group";
-                    GroupMember = "21 people will see your post";
-                    PostToEverybodyText = "Post To Everybody";
+                    PostToGroup = AppResources.Inviteyourgroup;
+                    GroupMember = string.Format("{0} {1}", SessionService.GroupMemberCount, AppResources.GroupMemberPost);// "21 people will see your post";
+                    PostToEverybodyText = AppResources.PostToEverybody;
                 }
                 else
                 {
                     PostTitle = AppResources.ChooseWhoCanSeeYourPost;
-                    PostToGroup = "Post to your group";
-                    GroupMember = "21 people will see your post";
-                    PostToEverybodyText = "Post to view everybody";
+                    PostToGroup = AppResources.Posttoyourgroup;
+                    GroupMember = string.Format("{0} {1}", SessionService.GroupMemberCount, AppResources.GroupMemberPost);
+                    PostToEverybodyText = AppResources.PosttoViewEverybody;
                 }
                 IsShowOption = true;
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
     }

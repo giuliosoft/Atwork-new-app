@@ -51,6 +51,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SessionService.IsWelcomeSetup = false;
                 SessionService.CurrentTab = 0;
                 await _navigationService.NavigateAsync(nameof(LanguageListPage), null);
             }
