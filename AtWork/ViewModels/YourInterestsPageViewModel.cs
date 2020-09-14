@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -8,9 +9,12 @@ using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
+using static AtWork.Models.UserModel;
 
 namespace AtWork.ViewModels
 {
@@ -24,6 +28,7 @@ namespace AtWork.ViewModels
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             AddNewsNextImage = AppResources.SaveButtonText;
+            HeaderNextNavigationCommand = SaveCommand;
 
             if (SessionService.IsWelcomeSetup)
             {
@@ -86,6 +91,8 @@ namespace AtWork.ViewModels
         public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand DoneCommand { get { return new DelegateCommand(async () => await DoneButton()); } }
+        
+        public DelegateCommand<string> SaveCommand { get { return new DelegateCommand<string>(async (obj) => await SaveUserInterestsDetail(obj)); } }
         #endregion
 
         #region private methods
@@ -136,6 +143,95 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+        async Task GetInterests()
+        {
+            try
+            {
+                await ShowLoader();
+                var serviceResult = await UserServices.GetInterestsDetails();
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    var serviceResultBody = JsonConvert.DeserializeObject<LanguageResponce>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Data != null)
+                    {
+                        if (!string.IsNullOrEmpty(serviceResultBody.Data))
+                        {
+                            string strinterests = serviceResultBody.Data;
+                            List<string> lstInterests = new List<string>();
+                            if (!string.IsNullOrEmpty(strinterests))
+                            {
+                                if (strinterests.Contains(","))
+                                {
+                                    lstInterests = strinterests.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    lstInterests.Add(strinterests);
+                                }
+                            }
+                            if (lstInterests != null && lstInterests.Count > 0)
+                            {
+                                FeedBackList = new ObservableCollection<FeedBackUIModel>();
+                                lstInterests.All((arg) =>
+                                {
+                                    FeedBackList.Add(new FeedBackUIModel() { Title = arg, IsSelected = false });
+                                    return true;
+                                });
+                            }
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+        }
+        async Task SaveUserInterestsDetail(string str)
+        {
+            try
+            {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                Volunteers Input = new Volunteers();
+                //Input.volInterests = FeedBackList;
+                string selectedInterests = string.Empty;
+                foreach (var item in FeedBackList)
+                {
+                    if (string.IsNullOrEmpty(selectedInterests))
+                    {
+                        selectedInterests = item.Title;
+                    }
+                    else
+                    {
+                        selectedInterests = selectedInterests + ", " + item.Title;
+                    }
+                }
+                Input.volInterests = selectedInterests;
+                var serviceResult = await UserServices.UpdateInterestsDetail(Input);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null && serviceBody.Flag)
+                        {
+                            await _navigationService.GoBackAsync();
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+        }
         #endregion
 
         #region public methods        
@@ -150,18 +246,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            FeedBackList = new ObservableCollection<FeedBackUIModel>();
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.HappyText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.CuriousText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.FullfilledText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.TiredText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.BoredText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.ExcitedText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = "Long text Text one", IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.ProudText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.SuprisedText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.SatisfiedText, IsSelected = false });
-            FeedBackList.Add(new FeedBackUIModel() { Title = AppResources.InterestedText, IsSelected = false });
+            await GetInterests();
         }
     }
 }

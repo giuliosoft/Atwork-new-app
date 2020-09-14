@@ -21,6 +21,9 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
+        public bool isEnableDisclamerButton = false;
+        #endregion
+        #region Private Properties
         private string _ProductDetail = string.Empty;
         private string _DisclaimerLabel = string.Empty;
         private bool _Disclaimerbtn = true;
@@ -85,10 +88,13 @@ namespace AtWork.ViewModels
         {
             try
             {
-                DisclaimerLabel = "Terms and condition";
-                Disclaimerbtn = false;
-                Termsconditionbtn = true;
-                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                if (isEnableDisclamerButton)
+                {
+                    DisclaimerLabel = "Terms and condition";
+                    Disclaimerbtn = false;
+                    Termsconditionbtn = true;
+                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                }
             }
             catch (Exception ex)
             {

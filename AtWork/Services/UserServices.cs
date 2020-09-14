@@ -63,6 +63,22 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> UpdateUserLanguage(Volunteers inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserInfoServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateLanguageServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(updateUserInfoServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
 
         public static async Task<BaseResponse<string>> GetAboutUserInfo()
         {
@@ -79,6 +95,69 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+
+        public static async Task<BaseResponse<string>> UpdateAboutUserInfo(UserSettingInputModel inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserInfoServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateAboutUserServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(updateUserInfoServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> GetInterestsDetails()
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var InterestsServiceUrl = ConfigService.BaseServiceURL + ConfigService.GetInterestsServiceURL;
+                resultModel = await GetResponse<string>(InterestsServiceUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> UpdateInterestsDetail(Volunteers inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserInfoServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateInterestsServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(updateUserInfoServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        //public static async Task<BaseResponse<string>> GetAboutUserInfo()
+        //{
+        //    BaseResponse<string> resultModel = new BaseResponse<string>();
+        //    try
+        //    {
+        //        var aboutUserServiceUrl = ConfigService.BaseServiceURL + ConfigService.AboutUserServiceURL;
+        //        resultModel = await GetResponse<string>(aboutUserServiceUrl, true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        resultModel.Result = ResponseStatus.None;
+        //        Debug.WriteLine(ex.Message);
+        //    }
+        //    return resultModel;
+        //}
 
         public static async Task<BaseResponse<string>> UpdateAboutUserInfo(Volunteers inputModel)
         {

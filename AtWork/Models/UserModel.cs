@@ -19,7 +19,7 @@ namespace AtWork.Models
             public bool Flag { get; set; }
             public string Message { get; set; }
             public string Data { get; set; }
-            public object Data1 { get; set; }
+            public string Data1 { get; set; }
         }
     }
 }
