@@ -38,7 +38,8 @@ namespace AtWork.Services
         public static bool IsWelcomeSetup = false;
         public static int CurrentTab = 0;
         public static int GroupMemberCount = 0;
-        
+        public static bool isFromChangeUserProfile = false;
+
         /// <summary>
         /// Logout
         /// clear social media account details

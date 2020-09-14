@@ -432,6 +432,19 @@ namespace AtWork.ViewModels
         {
             try
             {
+                List<string> activityFeelingList = new List<string>();
+                SelectedActivityFeelingList.All((arg) =>
+                {
+                    activityFeelingList.Add(arg.Title);
+                    return true;
+                });
+                List<string> activityImproveList = new List<string>();
+                SelectedImprovementList.All((arg) =>
+                {
+                    activityImproveList.Add(arg.Title);
+                    return true;
+                });
+
                 if (!await CheckConnectivity())
                 {
                     return;
@@ -440,20 +453,25 @@ namespace AtWork.ViewModels
                 ActivityFeedbackInputModel inputModel = new ActivityFeedbackInputModel();
                 inputModel.coUniqueID = SelectedPastActivity.coUniqueID;
                 inputModel.proUniqueID = SelectedPastActivity.proUniqueID;
-                inputModel.volUniqueID = SelectedPastActivity.volUniqueID;
+                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
                 inputModel.ActivityDate = SelectedPastActivity.proAddActivityDate;
-                //inputModel.selectedStarRating =;
-                //inputModel.SliderValue =;
-                //inputModel.SliderValue2 =;
+                inputModel.selectedStarRating = OverallExperienceRatingValue;
+                inputModel.SliderValue = ImpactRatingValue;
+                inputModel.SliderValue2 = RecommendRatingValue;
                 string delim = ",";
-                string commaSeparatedFeelList = String.Join(delim, SelectedActivityFeelingList);
-                inputModel.ActivityFeedbackFeeling = commaSeparatedFeelList;
-                string commaSeparatedImproveList = String.Join(delim, SelectedImprovementList);
-                inputModel.ActivityFeedbackImprove = commaSeparatedImproveList;
+                if (activityFeelingList != null && activityFeelingList.Count > 0)
+                {
+                    string commaSeparatedFeelList = String.Join(delim, activityFeelingList);
+                    inputModel.ActivityFeedbackFeeling = commaSeparatedFeelList;
+                }
+                if (activityImproveList != null && activityImproveList.Count > 0)
+                {
+                    string commaSeparatedImproveList = String.Join(delim, activityImproveList);
+                    inputModel.ActivityFeedbackImprove = commaSeparatedImproveList;
+                }
                 inputModel.ActivityFeedbackComments = FeedbackComments;
                 inputModel.ActivityFeedback_Like = FeedbackLikeMostComment;
                 inputModel.ActivityFeedbackAdditional = FeedbackAdditionalComments;
-
                 var serviceResult = await FeedbackService.SubmitUserFeedback(inputModel);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
@@ -573,6 +591,8 @@ namespace AtWork.ViewModels
 
                     RatingPancakeCornerRadius = 30;
                     RatingPancakeWidth = 60;
+
+                    OverallExperienceRatingValue = 1;
                 }
                 else if (selectedRating == TextResources.RateTwoHalf)
                 {
@@ -617,6 +637,8 @@ namespace AtWork.ViewModels
 
                     RatingPancakeCornerRadius = 35;
                     RatingPancakeWidth = 120;
+
+                    OverallExperienceRatingValue = 2;
                 }
                 if (selectedRating == TextResources.RateThreeHalf)
                 {
@@ -661,6 +683,8 @@ namespace AtWork.ViewModels
 
                     RatingPancakeCornerRadius = 35;
                     RatingPancakeWidth = 180;
+
+                    OverallExperienceRatingValue = 3;
                 }
                 if (selectedRating == TextResources.RateFourHalf)
                 {
@@ -705,6 +729,8 @@ namespace AtWork.ViewModels
 
                     RatingPancakeCornerRadius = 35;
                     RatingPancakeWidth = 240;
+
+                    OverallExperienceRatingValue = 4;
                 }
                 if (selectedRating == TextResources.RateFiveHalf)
                 {
@@ -749,6 +775,8 @@ namespace AtWork.ViewModels
 
                     RatingPancakeCornerRadius = 35;
                     RatingPancakeWidth = 300;
+
+                    OverallExperienceRatingValue = 5;
                 }
             }
             catch (Exception exception)
@@ -804,6 +832,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 30;
                     ImpactRatingPancakeWidth = 60;
+
+                    ImpactRatingValue = 1;
                 }
                 else if (selectedRating == TextResources.RateTwoHalf)
                 {
@@ -848,6 +878,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 35;
                     ImpactRatingPancakeWidth = 120;
+
+                    ImpactRatingValue = 2;
                 }
                 if (selectedRating == TextResources.RateThreeHalf)
                 {
@@ -892,6 +924,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 35;
                     ImpactRatingPancakeWidth = 180;
+
+                    ImpactRatingValue = 3;
                 }
                 if (selectedRating == TextResources.RateFourHalf)
                 {
@@ -936,6 +970,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 35;
                     ImpactRatingPancakeWidth = 240;
+
+                    ImpactRatingValue = 4;
                 }
                 if (selectedRating == TextResources.RateFiveHalf)
                 {
@@ -980,6 +1016,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 35;
                     ImpactRatingPancakeWidth = 300;
+
+                    ImpactRatingValue = 5;
                 }
             }
             catch (Exception exception)
@@ -1035,6 +1073,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 30;
                     RecommendRatingPancakeWidth = 60;
+
+                    RecommendRatingValue = 1;
                 }
                 else if (selectedRating == TextResources.RateTwoHalf)
                 {
@@ -1079,6 +1119,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 35;
                     RecommendRatingPancakeWidth = 120;
+
+                    RecommendRatingValue = 2;
                 }
                 if (selectedRating == TextResources.RateThreeHalf)
                 {
@@ -1123,6 +1165,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 35;
                     RecommendRatingPancakeWidth = 180;
+
+                    RecommendRatingValue = 3;
                 }
                 if (selectedRating == TextResources.RateFourHalf)
                 {
@@ -1167,6 +1211,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 35;
                     RecommendRatingPancakeWidth = 240;
+
+                    RecommendRatingValue = 4;
                 }
                 if (selectedRating == TextResources.RateFiveHalf)
                 {
@@ -1211,6 +1257,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 35;
                     RecommendRatingPancakeWidth = 300;
+
+                    RecommendRatingValue = 5;
                 }
             }
             catch (Exception exception)
