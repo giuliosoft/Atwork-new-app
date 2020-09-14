@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Models;
 using AtWork.Multilingual;
@@ -88,7 +89,32 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<ProfileResponce>(serviceResult.Body);
                     if (serviceResultBody != null)
                     {
-                        volunteers = serviceResultBody.Data;
+                        volunteers = serviceResultBody?.Data;
+                        if (!string.IsNullOrEmpty(volunteers?.volInterests))
+                        {
+                            string imgStr = volunteers?.volInterests;
+                            List<string> VolInterestList = new List<string>();
+                            if (!string.IsNullOrEmpty(imgStr))
+                            {
+                                if (imgStr.Contains(","))
+                                {
+                                    VolInterestList = imgStr.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    VolInterestList.Add(imgStr);
+                                }
+                            }
+                            if (VolInterestList != null && VolInterestList.Count > 0)
+                            {
+                                interestList = new ObservableCollection<FeedBackUIModel>();
+                                VolInterestList.All((arg) =>
+                                {
+                                    interestList.Add(new FeedBackUIModel() { Title = arg });
+                                    return true;
+                                });
+                            }
+                        }
                     }
                 }
                 await ClosePopup();
@@ -113,12 +139,8 @@ namespace AtWork.ViewModels
         {
             base.OnNavigatedTo(parameters);
             await GetUserDetail();
-            interestList = new ObservableCollection<FeedBackUIModel>();
-            interestList.Add(new FeedBackUIModel() { Title = AppResources.HappyText});
-            interestList.Add(new FeedBackUIModel() { Title = AppResources.CuriousText});
-            interestList.Add(new FeedBackUIModel() { Title = AppResources.FullfilledText});
-            interestList.Add(new FeedBackUIModel() { Title = AppResources.TiredText});
-            interestList.Add(new FeedBackUIModel() { Title = AppResources.BoredText});
+            
+            
         }
     }
 }
