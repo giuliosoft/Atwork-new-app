@@ -12,7 +12,9 @@ using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 using static AtWork.Models.UserModel;
+using static AtWork.Models.UserSettingModel;
 
 namespace AtWork.ViewModels
 {
@@ -79,23 +81,13 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveDetail(obj)); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveUserLanguageDetail(obj)); } }
         public DelegateCommand<Language> SelectionChangedCommand { get { return new DelegateCommand<Language>(async (obj) => await OnSelectionChangedAsync(obj)); } }
         public DelegateCommand SelectedLanguageCommand { get { return new DelegateCommand(async () => await SelectedLanguage()); } }
         #endregion
 
         #region private methods
-        async Task SaveDetail(string str)
-        {
-            try
-            {
-                await _navigationService.GoBackAsync();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
+       
         async Task SelectedLanguage()
         {
             try
@@ -130,7 +122,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
         async Task Getlanguage()
@@ -161,12 +153,24 @@ namespace AtWork.ViewModels
                             }
                             if (lstLanguage != null && lstLanguage.Count > 0)
                             {
+                                string strCurrentSelectedLanguage = string.Empty;
+                                if (serviceResultBody.Data1 != null)
+                                {
+                                    strCurrentSelectedLanguage = serviceResultBody.Data1;
+                                }
                                 LanguageName = new List<string>();
                                 lstLanguage.All((arg) =>
                                 {
                                     LanguageName.Add(arg);
-                                    Selectedlanguage = arg;
-                                    LanguageList.Add(new Language() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"] }); ;
+                                    if (arg == strCurrentSelectedLanguage)
+                                    {
+                                        Selectedlanguage = arg;
+                                        LanguageList.Add(new Language() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"] }); ;
+                                    }
+                                    else
+                                    {
+                                        LanguageList.Add(new Language() { Name = arg, TextColor = (Color)App.Current.Resources["AccentColor"], BackGroundColour = (Color)App.Current.Resources["OffWhiteColor"] }); ;
+                                    }
                                     return true;
                                 });
                             }
@@ -178,7 +182,38 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task SaveUserLanguageDetail(string str)
+        {
+            try
+            {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                Volunteers Input = new Volunteers();
+                Input.volLanguage = Selectedlanguage;
+                var serviceResult = await UserServices.UpdateUserLanguage(Input);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null && serviceBody.Flag)
+                        {
+                            await _navigationService.GoBackAsync();
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
             }
         }
         #endregion
@@ -201,7 +236,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
     }

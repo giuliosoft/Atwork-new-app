@@ -62,6 +62,22 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> UpdateUserLanguage(Volunteers inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserInfoServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateLanguageServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(updateUserInfoServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
 
         public static async Task<BaseResponse<string>> GetAboutUserInfo()
         {

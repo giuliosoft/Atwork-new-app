@@ -50,5 +50,6 @@ namespace AtWork.Services
         public static string ActivityFeedbackServiceURL = "/activities/SaveFeedBack";
         public static string AboutUserServiceURL = "/user/Getabout";
         public static string UpdateAboutUserServiceURL = "/user/Updateabout";
+        public static string UpdateLanguageServiceURL = "/user/UpdateLanguage";
     }
 }

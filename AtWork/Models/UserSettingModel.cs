@@ -6,6 +6,7 @@ namespace AtWork.Models
         public class UserSettingInputModel
         {
             public string VolUserPassword { get; set; }
+            public string VolUserLanguage { get; set; }
         }
     }
 }
