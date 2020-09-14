@@ -42,5 +42,20 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> GetUserlanguage()
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var UserLanguageURL = ConfigService.BaseServiceURL + ConfigService.UserLanguageURL;
+                resultModel = await GetResponse<string>(UserLanguageURL, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }
