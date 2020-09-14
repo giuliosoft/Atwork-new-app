@@ -211,8 +211,8 @@ namespace AtWork.ViewModels
                         selectedInterests = selectedInterests + ", " + item.Title;
                     }
                 }
-                Input.volLanguage = selectedInterests;
-                var serviceResult = await UserServices.UpdateUserLanguage(Input);
+                Input.volInterests = selectedInterests;
+                var serviceResult = await UserServices.UpdateInterestsDetail(Input);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     if (serviceResult.Body != null)

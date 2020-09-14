@@ -551,4 +551,26 @@ Set permission manually from app settings.</value>
      <data name="MyInterestsProfile" xml:space="preserve">
         <value>MY INTERESTS</value>
     </data>
+    
+    <data name="DisclamerText" xml:space="preserve">
+        <value>
+        Volunty Corporate AG holds in high regard the data of our users. It is of the utmost importance that our user’s privacy and security is safeguarded at all costs. It is Volunty Corporate AG's policy to respect your privacy regarding any information we may collect from you across our website, https://atwork.ai, and other sites we own and operate. Hereinafter Volunty Corporate AG is represented by atwork.
+
+When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your computer’s Internet Protocol (IP) address, your browser type and version, the pages you visit, the time and date of your visit, the time spent on each page, and other details.
+
+We may ask for personal information, such as your: Name; Email; Phone/mobile number; Home/Mailing address; Work address
+
+By providing personal information to us, you consent to us collecting, holding, using and disclosing your personal information in accordance with this privacy policy. If you are under 16 years of age, you must have, and warrant to the extent permitted by law to us, that you have your parent or legal guardian’s permission to access and use the website and they (your parents or guardian) have consented to you providing us with your personal information. You do not have to provide personal information to us, however, if you do not, it may affect your use of this website or the products and/or services offered on or through it.
+
+If you have any questions or concerns, please contact us at gdpr@atwork.aiher
+
+        </value>
+    </data>
+    <data name="TermsText" xml:space="preserve">
+        <value>
+        By accessing the information provided on this platform, each user waives and releases Volunty Corporate AG to the full extent permitted by law from any and all claims related to the use of the subject information. Under no circumstances shall Volunty Corporate AG be liable for any direct, indirect, incidental, special, punitive or consequential damages that result in any way from your use of or inability to use the platform or your reliance on or use of information, services, activities or merchandise provided on or through the platform, or that result from mistakes, omissions, interruptions, deletion of files, errors, defects, delays in operation or transmission, or any failure of performance.
+
+In addition to locally mounted information, hyperlinks may be provided to external websites and/or information sources as a service to our users. The appearance of external hyperlinks shall not be taken as implying any connection between Volunty Corporate AG and the linked external information sources. These external information sources are outside the control of Volunty Corporate AG and Volunty Corporate AG does not exercise any editorial control over the information which a user may find at these locations. Use of any information obtained from such sources is voluntary, and reliance on it should only be undertaken after an independent review of its accuracy, completeness, currency, and reliability. Reference to any specific commercial product, process, or service by trade name, trademark, service mark, manufacturer, or otherwise does not constitute or imply endorsement, recommendation, or favoring by Volunty Corporate AG. In addition, the content of any such site does not necessarily reflect the opinions, standards, policy, or endorsement of Volunty Corporate AG.
+        </value>
+    </data>
 </root>

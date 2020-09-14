@@ -1108,5 +1108,17 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("MyInterestsProfile", resourceCulture);
             }
         }
+        
+        internal static string DisclamerText {
+            get {
+                return ResourceManager.GetString("DisclamerText", resourceCulture);
+            }
+        }
+        
+        internal static string TermsText {
+            get {
+                return ResourceManager.GetString("TermsText", resourceCulture);
+            }
+        }
     }
 }

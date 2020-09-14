@@ -40,6 +40,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SessionService.IsWelcomeSetup = false;
                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
             }
             catch (Exception ex)
@@ -51,7 +52,6 @@ namespace AtWork.ViewModels
         {
             try
             {
-                SessionService.IsWelcomeSetup = false;
                 SessionService.CurrentTab = 0;
                 await _navigationService.NavigateAsync(nameof(LanguageListPage), null);
             }
