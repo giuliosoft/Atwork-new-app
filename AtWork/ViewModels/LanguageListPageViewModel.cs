@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.UserModel;
 
 namespace AtWork.ViewModels
 {
@@ -130,6 +133,54 @@ namespace AtWork.ViewModels
 
             }
         }
+        async Task Getlanguage()
+        {
+            try
+            {
+                await ShowLoader();
+                var serviceResult = await UserServices.GetUserlanguage();
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    var serviceResultBody = JsonConvert.DeserializeObject<LanguageResponce>(serviceResult.Body);
+                    if (serviceResultBody != null && serviceResultBody.Data != null )
+                    {
+                        if (!string.IsNullOrEmpty(serviceResultBody.Data))
+                        {
+                            string strLanguage = serviceResultBody.Data;
+                            List<string> lstLanguage = new List<string>();
+                            if (!string.IsNullOrEmpty(strLanguage))
+                            {
+                                if (strLanguage.Contains(","))
+                                {
+                                    lstLanguage = strLanguage.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    lstLanguage.Add(strLanguage);
+                                }
+                            }
+                            if (lstLanguage != null && lstLanguage.Count > 0)
+                            {
+                                LanguageName = new List<string>();
+                                lstLanguage.All((arg) =>
+                                {
+                                    LanguageName.Add(arg);
+                                    Selectedlanguage = arg;
+                                    LanguageList.Add(new Language() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"] }); ;
+                                    return true;
+                                });
+                            }
+
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
         #endregion
 
         #region public methods
@@ -146,27 +197,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                LanguageName = new List<string>();
-                LanguageName.Add("English");
-                LanguageName.Add("German");
-                LanguageName.Add("French");
-                LanguageName.Add("Italian");
-
-                LanguageList = new ObservableCollection<Language>();
-                LanguageName.All((arg) =>
-                {
-                    if (arg == "English")
-                    {
-                        Selectedlanguage = arg;
-                        LanguageList.Add(new Language() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"] }); ;
-                    }
-                    else
-                    {
-                        LanguageList.Add(new Language() { Name = arg, TextColor = (Color)App.Current.Resources["AccentColor"], BackGroundColour = (Color)App.Current.Resources["OffWhiteColor"] }); ;
-                    }
-                    return true;
-                });
-
+                Getlanguage();
             }
             catch (Exception ex)
             {

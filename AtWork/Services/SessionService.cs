@@ -37,6 +37,8 @@ namespace AtWork.Services
         public static int? LikeNewsCount;
         public static bool IsWelcomeSetup = false;
         public static int CurrentTab = 0;
+        public static int GroupMemberCount = 0;
+        
         /// <summary>
         /// Logout
         /// clear social media account details

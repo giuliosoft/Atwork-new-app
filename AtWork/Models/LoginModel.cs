@@ -166,6 +166,10 @@ namespace AtWork.Models
 
             public string volAbout { get; set; }
 
+            public string volHours { get; set; }
+
+            public int Vortex_Activity_Count { get; set; }
+
             public string volInterests { get; set; }
             public string volPicture
             {

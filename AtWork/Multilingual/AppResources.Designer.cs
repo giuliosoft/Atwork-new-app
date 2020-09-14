@@ -1072,5 +1072,41 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("WriteYourInterests", resourceCulture);
             }
         }
+        
+        internal static string GroupMemberPost {
+            get {
+                return ResourceManager.GetString("GroupMemberPost", resourceCulture);
+            }
+        }
+        
+        internal static string PosttoViewEverybody {
+            get {
+                return ResourceManager.GetString("PosttoViewEverybody", resourceCulture);
+            }
+        }
+        
+        internal static string PostToEverybody {
+            get {
+                return ResourceManager.GetString("PostToEverybody", resourceCulture);
+            }
+        }
+        
+        internal static string Posttoyourgroup {
+            get {
+                return ResourceManager.GetString("Posttoyourgroup", resourceCulture);
+            }
+        }
+        
+        internal static string Inviteyourgroup {
+            get {
+                return ResourceManager.GetString("Inviteyourgroup", resourceCulture);
+            }
+        }
+        
+        internal static string MyInterestsProfile {
+            get {
+                return ResourceManager.GetString("MyInterestsProfile", resourceCulture);
+            }
+        }
     }
 }
