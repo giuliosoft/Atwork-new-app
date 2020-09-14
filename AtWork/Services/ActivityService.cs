@@ -126,5 +126,20 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> GetGroupMemberListCount(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var GroupMemberCountUrl = ConfigService.BaseServiceURL + ConfigService.GroupMemberCount + id;
+                resultModel = await GetResponse<string>(GroupMemberCountUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }

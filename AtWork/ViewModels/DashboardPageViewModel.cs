@@ -667,6 +667,26 @@ namespace AtWork.ViewModels
                 IsBusyInActivityBinding = false;
             }
         }
+        async Task GetGroupMemberListCount()
+        {
+            try
+            {
+                BaseResponse<string> serviceResult = null;
+                serviceResult = await ActivityService.GetGroupMemberListCount(SettingsService.LoggedInUserData.coUniqueID);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewsLikeRespnce>(serviceResult.Body);
+                    if (serviceResultBody!= null && serviceResultBody.Flag && serviceResultBody.Data != null)
+                    {
+                        SessionService.GroupMemberCount = serviceResultBody.Data;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
         #endregion
 
         #region public methods
