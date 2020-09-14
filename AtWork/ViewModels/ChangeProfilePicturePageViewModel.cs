@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Plugin.Media.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
@@ -26,6 +29,7 @@ namespace AtWork.ViewModels
             _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
             ProfileImage = UserProfileImage;
             ImageOptionText = AppResources.EditCropButtonText;
+            HeaderNextNavigationCommand = ProfileSettingProceedCommand;
 
             if (SessionService.IsWelcomeSetup)
             {
@@ -63,7 +67,7 @@ namespace AtWork.ViewModels
             get { return _ImageOptionText; }
             set { SetProperty(ref _ImageOptionText, value); }
         }
-        public string ChooseFromCamera 
+        public string ChooseFromCamera
         {
             get { return _ChooseFromCamera; }
             set { SetProperty(ref _ChooseFromCamera, value); }
@@ -74,7 +78,7 @@ namespace AtWork.ViewModels
             set
             {
                 SetProperty(ref _SelectedNewsImageValue, value);
-                    //RaisePropertyChanged(nameof(ProfileImage));
+                //RaisePropertyChanged(nameof(ProfileImage));
             }
         }
         public bool ShowCropOption
@@ -103,9 +107,47 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _ShowPickOfOurImage, value); }
         }
         IMultiMediaPickerService _multiMediaPickerService;
+
+        #region Commands
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
         public DelegateCommand OurImagesCommand { get { return new DelegateCommand(async () => await OurImages()); } }
         public DelegateCommand<string> CropNewsImageCommand { get { return new DelegateCommand<string>(async (obj) => await CropNewsImage(obj)); } }
+        public DelegateCommand<string> ProfileSettingProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveProfilePicture(obj)); } }
+        #endregion
+
+        #region Private Methods
+        async Task SaveProfilePicture(string str)
+        {
+            try
+            {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                List<string> profilePic = new List<string>();
+                profilePic.Add(SelectedNewsImageValue.ImagePath);
+                var serviceResult = await UserServices.UpdateProfilePicture(SettingsService.VolunteersUserData.volUniqueID, profilePic);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null && serviceBody.Flag)
+                        {
+                            await _navigationService.GoBackAsync();
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task AddImagesFromGallery()
         {
             try
@@ -173,7 +215,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                
+
                 ShowCropOption = false;
                 //ProfileImage = ImageSource.FromUri(new Uri(obj));
                 ProfileImage = obj;
@@ -181,14 +223,14 @@ namespace AtWork.ViewModels
                 {
                     IsImageSelected = true;
                     isShowEditPhoto = false;
-                    isShowLooktext = false;
+                    isShowLooktext = true;
                     ShowPickOfOurImage = false;
                     ChooseFromCamera = AppResources.SetProfilePicture;
                 }
                 else
                 {
                     isShowEditPhoto = false;
-                    isShowLooktext = true;
+                    isShowLooktext = false;
                     ShowPickOfOurImage = true;
                     ChooseFromCamera = AppResources.ChooseFromCameraRoll;
                 }
@@ -205,6 +247,7 @@ namespace AtWork.ViewModels
             {
                 if (SelectedNewsImageValue == null)
                     return;
+                SessionService.isFromChangeUserProfile = true;
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("ImagePath", SelectedNewsImageValue.ImagePreviewPath);
                 navigationParams.Add("SelectedNewsImage", SelectedNewsImageValue);
@@ -239,20 +282,21 @@ namespace AtWork.ViewModels
                     {
                         IsImageSelected = true;
                         isShowEditPhoto = true;
-                        isShowLooktext = false;
+                        isShowLooktext = true;
                         ShowPickOfOurImage = false;
                         ChooseFromCamera = AppResources.SetProfilePicture;
                     }
                     else
                     {
                         isShowEditPhoto = false;
-                        isShowLooktext = true;
+                        isShowLooktext = false;
                         ShowPickOfOurImage = true;
                         ChooseFromCamera = AppResources.ChooseFromCameraRoll;
                     }
                 }
             }
         }
+
         async Task<bool> TakePermissionsToPickPhoto()
         {
             var retVal = false;
@@ -294,6 +338,35 @@ namespace AtWork.ViewModels
             }
             return retVal;
         }
+
+        async Task GetUserExistingProfilePic()
+        {
+            try
+            {
+                await ShowLoader();
+                var serviceResult = await UserServices.GetUserProfilePicture();
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null && serviceBody.Flag)
+                        {
+                            var url = ConfigService.BaseProfileImageURL + serviceBody.Data as string;
+                            ProfileImage = ImageSource.FromUri(new Uri(url));
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        #endregion
+
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
@@ -301,6 +374,14 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            if (!SessionService.isFromChangeUserProfile)
+            {
+                await GetUserExistingProfilePic();
+            }
+            else
+            {
+                SessionService.isFromChangeUserProfile = false;
+            }
         }
     }
 }

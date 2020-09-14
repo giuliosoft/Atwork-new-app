@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 using static AtWork.Models.UserSettingModel;
 
 namespace AtWork.ViewModels
@@ -109,8 +110,9 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                UserSettingInputModel inputModel = new UserSettingInputModel();
-                inputModel.VolUserPassword = SettingsService.LoggedInUserPassword;
+                Volunteers inputModel = new Volunteers();
+                inputModel = SettingsService.VolunteersUserData;
+                inputModel.volAbout = AboutUserText;
                 var serviceResult = await UserServices.UpdateAboutUserInfo(inputModel);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {

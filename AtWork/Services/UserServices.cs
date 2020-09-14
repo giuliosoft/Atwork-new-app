@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -142,6 +143,70 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        //public static async Task<BaseResponse<string>> GetAboutUserInfo()
+        //{
+        //    BaseResponse<string> resultModel = new BaseResponse<string>();
+        //    try
+        //    {
+        //        var aboutUserServiceUrl = ConfigService.BaseServiceURL + ConfigService.AboutUserServiceURL;
+        //        resultModel = await GetResponse<string>(aboutUserServiceUrl, true);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        resultModel.Result = ResponseStatus.None;
+        //        Debug.WriteLine(ex.Message);
+        //    }
+        //    return resultModel;
+        //}
 
+        public static async Task<BaseResponse<string>> UpdateAboutUserInfo(Volunteers inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserInfoServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateAboutUserServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(updateUserInfoServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> GetUserProfilePicture()
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var userProfileServiceUrl = ConfigService.BaseServiceURL + ConfigService.GetUserProfilePicServiceURL;
+                resultModel = await GetResponse<string>(userProfileServiceUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> UpdateProfilePicture(string inputModel, List<string> profilePicFile)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserProfileImageServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateUserProfilePicServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await FilePostResponse<string>(updateUserProfileImageServiceUrl, profilePicFile, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }
