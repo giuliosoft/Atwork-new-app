@@ -70,7 +70,7 @@ namespace AtWork.ViewModels
                 //if (res)
                 //{
                 await _navigationService.NavigateAsync(nameof(DisclaimerPage));
-                
+
                 //}
                 //Task.Factory.StartNew(async () =>
                 //{

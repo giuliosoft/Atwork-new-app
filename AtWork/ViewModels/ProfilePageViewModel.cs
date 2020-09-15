@@ -53,7 +53,7 @@ namespace AtWork.ViewModels
         #endregion
 
         #region private methods
-        
+
         async Task Setting()
         {
             try
@@ -139,8 +139,8 @@ namespace AtWork.ViewModels
         {
             base.OnNavigatedTo(parameters);
             await GetUserDetail();
-            
-            
+
+
         }
     }
 }

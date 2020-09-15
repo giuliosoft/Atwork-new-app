@@ -30,6 +30,7 @@ namespace AtWork.ViewModels
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = SaveCommand;
 
+            IsFromWelcomeSetup = SessionService.IsWelcomeSetup;
             if (SessionService.IsWelcomeSetup)
             {
                 HeaderView = (ControlTemplate)App.Current.Resources["BeginSetupHeader_Template"];
@@ -50,6 +51,7 @@ namespace AtWork.ViewModels
         private bool _SendButtonIsVisible = false;
         private bool _ShowHeadingText;
         private ControlTemplate _Header;
+        private bool IsFromWelcomeSetup = false;
         #endregion
 
         #region Public Properties
@@ -91,7 +93,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand DoneCommand { get { return new DelegateCommand(async () => await DoneButton()); } }
-        
+
         public DelegateCommand<string> SaveCommand { get { return new DelegateCommand<string>(async (obj) => await SaveUserInterestsDetail(obj)); } }
         #endregion
 
@@ -118,24 +120,30 @@ namespace AtWork.ViewModels
         {
             try
             {
+                var retVal = true;
+                var tempInterestList = FeedBackList;
                 FeedBackList.All((item) =>
                 {
                     if (item == selectedTab)
-                        FeedBackList.Remove(item);
-                    return true;
+                    {
+                        tempInterestList.Remove(item);
+                        retVal = false;
+                    }
+                    return retVal;
                 });
-
+                FeedBackList = new ObservableCollection<FeedBackUIModel>(tempInterestList);
             }
             catch (Exception exception)
             {
                 Debug.WriteLine(exception.Message);
             }
         }
-        
+
         async Task DoneButton()
         {
             try
             {
+                SaveUserInterestsDetail("");
                 await _navigationService.NavigateAsync(nameof(WelcomeSetupDonePage));
             }
             catch (Exception ex)
@@ -143,6 +151,7 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
         async Task GetInterests()
         {
             try
@@ -151,12 +160,12 @@ namespace AtWork.ViewModels
                 var serviceResult = await UserServices.GetInterestsDetails();
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
-                    var serviceResultBody = JsonConvert.DeserializeObject<LanguageResponce>(serviceResult.Body);
+                    var serviceResultBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Data != null)
                     {
-                        if (!string.IsNullOrEmpty(serviceResultBody.Data))
+                        if (!string.IsNullOrEmpty(serviceResultBody.Data as string))
                         {
-                            string strinterests = serviceResultBody.Data;
+                            string strinterests = serviceResultBody.Data as string;
                             List<string> lstInterests = new List<string>();
                             if (!string.IsNullOrEmpty(strinterests))
                             {
@@ -174,7 +183,7 @@ namespace AtWork.ViewModels
                                 FeedBackList = new ObservableCollection<FeedBackUIModel>();
                                 lstInterests.All((arg) =>
                                 {
-                                    FeedBackList.Add(new FeedBackUIModel() { Title = arg, IsSelected = false });
+                                    FeedBackList.Add(new FeedBackUIModel() { Title = arg.Trim(), IsSelected = false });
                                     return true;
                                 });
                             }
@@ -188,17 +197,11 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
+
         async Task SaveUserInterestsDetail(string str)
         {
             try
             {
-                if (!await CheckConnectivity())
-                {
-                    return;
-                }
-                await ShowLoader();
-                Volunteers Input = new Volunteers();
-                //Input.volInterests = FeedBackList;
                 string selectedInterests = string.Empty;
                 foreach (var item in FeedBackList)
                 {
@@ -211,6 +214,14 @@ namespace AtWork.ViewModels
                         selectedInterests = selectedInterests + ", " + item.Title;
                     }
                 }
+
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                if (!IsFromWelcomeSetup)
+                    await ShowLoader();
+                Volunteers Input = new Volunteers();
                 Input.volInterests = selectedInterests;
                 var serviceResult = await UserServices.UpdateInterestsDetail(Input);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
@@ -220,11 +231,13 @@ namespace AtWork.ViewModels
                         var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                         if (serviceBody != null && serviceBody.Flag)
                         {
-                            await _navigationService.GoBackAsync();
+                            if (!IsFromWelcomeSetup)
+                                await _navigationService.GoBackAsync();
                         }
                     }
                 }
-                await ClosePopup();
+                if (!IsFromWelcomeSetup)
+                    await ClosePopup();
             }
             catch (Exception ex)
             {
@@ -246,7 +259,8 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            await GetInterests();
+            if (!SessionService.IsWelcomeSetup)
+                await GetInterests();
         }
     }
 }

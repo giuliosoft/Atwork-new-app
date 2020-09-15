@@ -16,18 +16,18 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-                 <StackLayout WidthRequest="100">
+                <StackLayout WidthRequest="100">
                     <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
-                            <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,0,0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource AccentColor}">
-                                <StackLayout BackgroundColor = "{DynamicResource AccentColor}" Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
-                                    <Image x:Name="logoImage" Source="back" Margin="2,0,0,0" />
-                                    <Label Text="Back" Margin="5,0,0,0" BackgroundColor = "{DynamicResource AccentColor}" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
-                                </StackLayout>
-                                <PancakeControl:PancakeView.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BackButtonCommand}"/>
-                                </PancakeControl:PancakeView.GestureRecognizers>
-                            </PancakeControl:PancakeView>
-                        </ContentView>
+                        <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,0,0" HeightRequest="45" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource AccentColor}">
+                            <StackLayout BackgroundColor = "{DynamicResource AccentColor}" Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
+                                <Image x:Name="logoImage" Source="back" Margin="2,0,0,0" />
+                                <Label Text="Back" Margin="5,0,0,0" BackgroundColor = "{DynamicResource AccentColor}" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
+                            </StackLayout>
+                            <PancakeControl:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BackButtonCommand}"/>
+                            </PancakeControl:PancakeView.GestureRecognizers>
+                        </PancakeControl:PancakeView>
+                    </ContentView>
                 </StackLayout>
                 <ffImageloading:CachedImage Margin="0,50,0,0" Grid.Column="0" Source="{Binding CompanyLogo}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                     <ffImageloading:CachedImage.Transformations>
@@ -43,13 +43,13 @@
                     </ScrollView>
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Disclaimerbtn}"  VerticalOptions="End" Margin="0,20,0,20">
-                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="180" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
+                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="180" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
                         <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="{x:Static Multilingual:AppResources.AcceptDisclaimer}" WidthRequest="20" FontSize="18" TextColor="White" />
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-            </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Termsconditionbtn}" VerticalOptions="End" Margin="0,20,0,20">
                     <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
                         <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="{x:Static Multilingual:AppResources.AcceptTermsAndConditionsText}" WidthRequest="20" FontSize="18" TextColor="White" />

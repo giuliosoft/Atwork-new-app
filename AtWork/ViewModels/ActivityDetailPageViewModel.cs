@@ -163,21 +163,19 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await Clipboard.SetTextAsync("Hello World");
-                await Clipboard.GetTextAsync();
                 ToastMessagePopup ToastMessagePopup = new ToastMessagePopup();
                 ToastMessagePopupViewModel ToastMessagePopupViewModel = new ToastMessagePopupViewModel(_navigationService, _facadeService);
-                ToastMessagePopupViewModel.ProfileSelectedEvent += async (object sender, string SelectedObj) =>
+                if (ActivityDetails != null && !string.IsNullOrEmpty(ActivityDetails.proAddActivity_Website))
                 {
-                    try
-                    {
+                    await Clipboard.SetTextAsync(ActivityDetails.proAddActivity_Website);
+                    await Clipboard.GetTextAsync();
+                    ToastMessagePopupViewModel.ToastText = AppResources.LinkCopiedText;
+                }
+                else
+                {
+                    ToastMessagePopupViewModel.ToastText = AppResources.ShareAlertText;
+                }
 
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-                };
                 ToastMessagePopup.BindingContext = ToastMessagePopupViewModel;
                 await PopupNavigationService.ShowPopup(ToastMessagePopup, true);
             }

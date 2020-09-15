@@ -109,7 +109,8 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                await ShowLoader();
+                if (!SessionService.IsWelcomeSetup)
+                    await ShowLoader();
                 Volunteers inputModel = new Volunteers();
                 inputModel = SettingsService.VolunteersUserData;
                 inputModel.volAbout = AboutUserText;
@@ -121,11 +122,13 @@ namespace AtWork.ViewModels
                         var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                         if (serviceBody != null && serviceBody.Flag)
                         {
-                            await _navigationService.GoBackAsync();
+                            if (!SessionService.IsWelcomeSetup)
+                                await _navigationService.GoBackAsync();
                         }
                     }
                 }
-                await ClosePopup();
+                if (!SessionService.IsWelcomeSetup)
+                    await ClosePopup();
             }
             catch (Exception ex)
             {
@@ -137,6 +140,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SaveUserAboutDetail(AboutUserText);
                 await _navigationService.NavigateAsync(nameof(YourInterestsPage));
             }
             catch (Exception ex)
@@ -158,7 +162,8 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            await GetAboutUserDetail();
+            if (!SessionService.IsWelcomeSetup)
+                await GetAboutUserDetail();
         }
     }
 }

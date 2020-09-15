@@ -176,6 +176,18 @@ namespace AtWork.ViewModels
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
             await GetActivityList(isPullToRefresh: true);
+            Activitycollectionlist.All((categories) =>
+            {
+                if (categories.title == AppResources.AllCategoriesText)
+                {
+                    categories.UnderlineIsVisible = true;
+                }
+                else
+                {
+                    categories.UnderlineIsVisible = false;
+                }
+                return true;
+            });
             IsRefreshingActivities = false;
         }
 
@@ -676,7 +688,7 @@ namespace AtWork.ViewModels
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsLikeRespnce>(serviceResult.Body);
-                    if (serviceResultBody!= null && serviceResultBody.Flag && serviceResultBody.Data != null)
+                    if (serviceResultBody != null && serviceResultBody.Flag && serviceResultBody.Data != null)
                     {
                         SessionService.GroupMemberCount = serviceResultBody.Data;
                     }
@@ -684,7 +696,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                
+
             }
         }
         #endregion

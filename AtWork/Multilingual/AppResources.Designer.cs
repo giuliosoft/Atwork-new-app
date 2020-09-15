@@ -1120,5 +1120,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("TermsText", resourceCulture);
             }
         }
+        
+        internal static string ShareAlertText {
+            get {
+                return ResourceManager.GetString("ShareAlertText", resourceCulture);
+            }
+        }
     }
 }
