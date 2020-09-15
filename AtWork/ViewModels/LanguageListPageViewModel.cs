@@ -154,14 +154,14 @@ namespace AtWork.ViewModels
                             if (lstLanguage != null && lstLanguage.Count > 0)
                             {
                                 string strCurrentSelectedLanguage = string.Empty;
-                                if (serviceResultBody.Data1 != null)
+                                if (serviceResultBody.Data != null)
                                 {
-                                    strCurrentSelectedLanguage = serviceResultBody.Data1;
+                                    strCurrentSelectedLanguage = serviceResultBody.Data;
                                 }
-                                LanguageName = new List<string>();
-                                lstLanguage.All((arg) =>
+                                //LanguageName = new List<string>();
+                                LanguageName.All((arg) =>
                                 {
-                                    LanguageName.Add(arg);
+                                    //LanguageName.Add(arg);
                                     if (arg == strCurrentSelectedLanguage)
                                     {
                                         Selectedlanguage = arg;
@@ -232,6 +232,12 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
+                LanguageName = new List<string>();
+                LanguageName.Add("English");
+                LanguageName.Add("German");
+                LanguageName.Add("French");
+                LanguageName.Add("Italian");
+
                 GetLanguages();
             }
             catch (Exception ex)

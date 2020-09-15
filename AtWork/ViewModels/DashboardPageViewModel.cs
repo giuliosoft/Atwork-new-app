@@ -743,7 +743,7 @@ namespace AtWork.ViewModels
                     SessionService.LikeNewsID = null;
                     SessionService.LikeNewsCount = null;
                 }
-
+                await GetGroupMemberListCount();
                 //await GetActivityList();
                 IsFromMyActivity = false;
             }
