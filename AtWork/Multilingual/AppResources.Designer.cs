@@ -1167,6 +1167,10 @@ namespace AtWork.Multilingual {
             get {
                 return ResourceManager.GetString("Passwordchangesuccessfully", resourceCulture);
             }
+        internal static string ShareAlertText {
+            get {
+                return ResourceManager.GetString("ShareAlertText", resourceCulture);
+            }
         }
     }
 }

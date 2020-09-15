@@ -11,9 +11,6 @@ namespace AtWork.ViewModels
     public class ToastMessagePopupViewModel : ViewModelBase
     {
         public EventHandler<bool> ClosePopupEvent;
-        public EventHandler<string> ProfileSelectedEvent;
-        public EventHandler<object> EditNewsEvent;
-        public EventHandler<object> DeleteNewsEvent;
         #region Constructor
         public ToastMessagePopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
@@ -22,51 +19,22 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-
+        private string _ToastText = string.Empty;
         #endregion
 
-        #region Public Properties
-        private bool _IsVisibleGuestOptions = true;
-        public bool IsVisibleGuestOptions
+        #region Public Properties        
+        public string ToastText
         {
-            get { return _IsVisibleGuestOptions; }
-            set { SetProperty(ref _IsVisibleGuestOptions, value); }
+            get { return _ToastText; }
+            set { SetProperty(ref _ToastText, value); }
         }
         #endregion
 
         #region Commands
-        public DelegateCommand<string> ProfileOptionSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await ProfileOptionSelected(obj)); } }
-        public DelegateCommand ProfileCloseCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
-        public DelegateCommand GoForClosePopupCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
         public DelegateCommand CopyTestCommand { get { return new DelegateCommand(async () => await CopyTest()); } }
-
         #endregion
 
         #region Private Methods
-        async Task ProfileOptionSelected(string selectedProfileOption)
-        {
-            try
-            {
-                await PopupNavigationService.ClosePopup(true);
-                ProfileSelectedEvent?.Invoke(this, selectedProfileOption);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-
-        async Task CloseProfile()
-        {
-            try
-            {
-                await PopupNavigationService.ClosePopup(true);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
         async Task CopyTest()
         {
             try
@@ -78,7 +46,6 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-
         #endregion
     }
 }

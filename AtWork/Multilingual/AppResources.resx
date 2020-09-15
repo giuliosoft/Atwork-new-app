@@ -444,7 +444,8 @@ Permission Denied. Can not continue, try again.</value>
 	</data>
     <data name="ProfilePictureText" xml:space="preserve">
         <value>Profile picture</value>
-    </data><data name="StartWriting" xml:space="preserve">
+    </data>
+    <data name="StartWriting" xml:space="preserve">
         <value>Start writing...</value>
     </data>
     <data name="Language" xml:space="preserve">
@@ -478,24 +479,24 @@ Set permission manually from app settings.</value>
     <data name="HoursText" xml:space="preserve">
         <value>Hours</value>
     </data>
-        <data name="AllowNotificationsTitleText" xml:space="preserve">
+    <data name="AllowNotificationsTitleText" xml:space="preserve">
         <value>Allow notifications?</value>
     </data>
-        <data name="AllowNotificationsMsgText" xml:space="preserve">
+    <data name="AllowNotificationsMsgText" xml:space="preserve">
         <value>atwork sends updates on subscribed activities and important messages</value>
     </data>
-        <data name="DontAllowText" xml:space="preserve">
+    <data name="DontAllowText" xml:space="preserve">
         <value>Don't allow</value>
     </data>
-        <data name="AllowText" xml:space="preserve">
+    <data name="AllowText" xml:space="preserve">
         <value>Allow</value>
     </data>
-        
     <data name="MyInterests" xml:space="preserve">
         <value>My Interests</value>
     </data>
     <data name="WelcomeSetup" xml:space="preserve">
-        <value>WELCOME &#10; SETUP</value>
+        <value>WELCOME 
+ SETUP</value>
     </data>
     <data name="BeginSetup" xml:space="preserve">
         <value>Begin Setup</value>
@@ -507,25 +508,28 @@ Set permission manually from app settings.</value>
         <value>Welcome to </value>
     </data>
     <data name="AtWork" xml:space="preserve">
-        <value>atwork &#x0a;</value>
+        <value>atwork 
+    </value>
     </data>
     <data name="Whatdoyoulooklike" xml:space="preserve">
         <value>What do you look like?</value>
     </data>
     <data name="PleaseSelectYourLanguage" xml:space="preserve">
         <value>Please select your language</value>
-    </data> 
+    </data>
     <data name="SetProfilePicture" xml:space="preserve">
         <value>Set profile picture</value>
     </data>
     <data name="NowScalandmove" xml:space="preserve">
-        <value>Now scal and move &#x0a;</value>
+        <value>Now scale and move 
+    </value>
     </data>
     <data name="yourphotoinsidethe" xml:space="preserve">
-        <value>your photo inside the &#x0a;</value>
+        <value>your photo inside the 
+    </value>
     </data>
     <data name="circularfram" xml:space="preserve">
-        <value>circular fram</value>
+        <value>circular frame</value>
     </data>
     <data name="AboutYourSelf" xml:space="preserve">
         <value>Can you tell us a bit about yourself?</value>
@@ -548,10 +552,9 @@ Set permission manually from app settings.</value>
     <data name="Inviteyourgroup" xml:space="preserve">
         <value>Invite your group</value>
     </data>
-     <data name="MyInterestsProfile" xml:space="preserve">
+    <data name="MyInterestsProfile" xml:space="preserve">
         <value>MY INTERESTS</value>
     </data>
-    
     <data name="DisclamerText" xml:space="preserve">
         <value>
         Volunty Corporate AG holds in high regard the data of our users. It is of the utmost importance that our user’s privacy and security is safeguarded at all costs. It is Volunty Corporate AG's policy to respect your privacy regarding any information we may collect from you across our website, https://atwork.ai, and other sites we own and operate. Hereinafter Volunty Corporate AG is represented by atwork.
@@ -596,5 +599,8 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     </data>
     <data name="Passwordchangesuccessfully" xml:space="preserve">
         <value>Password changed successfully</value>
+    </data>
+    <data name="ShareAlertText" xml:space="preserve">
+        <value>There is no link available to share currently!</value>
     </data>
 </root>

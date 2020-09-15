@@ -105,7 +105,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(AuthentificationIDPage),null);
+                await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
             }
             catch (Exception ex)
             {

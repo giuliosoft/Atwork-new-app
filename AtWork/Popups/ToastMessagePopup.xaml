@@ -17,14 +17,9 @@
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
-    <pages:PopupPage.Resources>
-        <ResourceDictionary>
-            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
-        </ResourceDictionary>
-    </pages:PopupPage.Resources>
     <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="0" HeightRequest="70" WidthRequest="220" CornerRadius="15">
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
-            <Label Text="{x:Static Multilingual:AppResources.LinkCopiedText}" Style="{StaticResource JoinActivityLabelStyle}"/>
+            <Label Text="{Binding ToastText}" Style="{StaticResource JoinActivityLabelStyle}"/>
         </StackLayout>
         <PancakeControl:PancakeView.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding CopyTestCommand}"/>

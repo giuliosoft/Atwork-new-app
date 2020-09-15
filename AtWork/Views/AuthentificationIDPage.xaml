@@ -17,19 +17,19 @@
                 <Label Text="authentification?" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="15" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" >
-                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="18,10,2,10" BackgroundColor="#0B421A">
-                        <Button Command="{Binding GoForenableCommand}" x:Name="yesenablebtn" Text="Yes, enable" WidthRequest="50" FontSize="20" TextColor="White"/>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoForenableCommand}"/>
-                        </Frame.GestureRecognizers>
-                    </Frame>
-                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="2,10,18,10" BackgroundColor="#0B421A">
-                        <Button Command="{Binding GoForLoginCommand}" x:Name="loginbtn" Text="No, log in" WidthRequest="50" FontSize="20" TextColor="White"/>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoForLoginCommand}"/>
-                        </Frame.GestureRecognizers>
-                    </Frame>
-                </StackLayout>
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="18,10,2,10" BackgroundColor="#0B421A">
+                    <Button Command="{Binding GoForenableCommand}" x:Name="yesenablebtn" Text="Yes, enable" WidthRequest="50" FontSize="20" TextColor="White"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoForenableCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="2,10,18,10" BackgroundColor="#0B421A">
+                    <Button Command="{Binding GoForLoginCommand}" x:Name="loginbtn" Text="No, log in" WidthRequest="50" FontSize="20" TextColor="White"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoForLoginCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

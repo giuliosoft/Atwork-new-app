@@ -62,36 +62,36 @@
                         </FlexLayout>
                     </Grid>
                     <StackLayout VerticalOptions="EndAndExpand">
-                    <ContentView IsVisible="{Binding ShowHeadingText}"  Padding="{DynamicResource MarginPadding10}" >
-                        <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                                <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.DoneButtonText}" FontSize="20" TextColor="White"/>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding DoneCommand}"/>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
+                        <ContentView IsVisible="{Binding ShowHeadingText}"  Padding="{DynamicResource MarginPadding10}" >
+                            <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                                    <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.DoneButtonText}" FontSize="20" TextColor="White"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DoneCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </PancakeControl:PancakeView>
+                        </ContentView>
+                        <PancakeControl:PancakeView Margin="10,0,10,20" CornerRadius="20" Padding="10" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="Start writing..."  Style="{StaticResource NewsCommentEditorStyle}"/>
+                                <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label Text="Send" Style="{StaticResource SendLabelStyle}"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SendCommentCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Grid>
                         </PancakeControl:PancakeView>
-                    </ContentView>
-                   <PancakeControl:PancakeView Margin="10,0,10,20" CornerRadius="20" Padding="10" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="Start writing..."  Style="{StaticResource NewsCommentEditorStyle}"/>
-                            <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                <Label Text="Send" Style="{StaticResource SendLabelStyle}"/>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SendCommentCommand}"/>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
-                        </Grid>
-                    </PancakeControl:PancakeView>
-                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

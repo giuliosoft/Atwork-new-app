@@ -124,7 +124,8 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
-                await ShowLoader();
+                if (!SessionService.IsWelcomeSetup)
+                    await ShowLoader();
                 List<string> profilePic = new List<string>();
                 profilePic.Add(SelectedNewsImageValue.ImagePath);
                 var serviceResult = await UserServices.UpdateProfilePicture(SettingsService.VolunteersUserData.volUniqueID, profilePic);
@@ -135,11 +136,13 @@ namespace AtWork.ViewModels
                         var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                         if (serviceBody != null && serviceBody.Flag)
                         {
-                            await _navigationService.GoBackAsync();
+                            if (!SessionService.IsWelcomeSetup)
+                                await _navigationService.GoBackAsync();
                         }
                     }
                 }
-                await ClosePopup();
+                if (!SessionService.IsWelcomeSetup)
+                    await ClosePopup();
             }
             catch (Exception ex)
             {
@@ -158,6 +161,7 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
+                    SaveProfilePicture(SelectedNewsImageValue.ImagePath);
                     await _navigationService.NavigateAsync(nameof(AboutMePage));
                 }
             }
@@ -223,7 +227,7 @@ namespace AtWork.ViewModels
                 {
                     IsImageSelected = true;
                     isShowEditPhoto = false;
-                    isShowLooktext = true;
+                    isShowLooktext = false;
                     ShowPickOfOurImage = false;
                     ChooseFromCamera = AppResources.SetProfilePicture;
                 }
@@ -282,7 +286,7 @@ namespace AtWork.ViewModels
                     {
                         IsImageSelected = true;
                         isShowEditPhoto = true;
-                        isShowLooktext = true;
+                        isShowLooktext = false;
                         ShowPickOfOurImage = false;
                         ChooseFromCamera = AppResources.SetProfilePicture;
                     }
@@ -374,13 +378,14 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (!SessionService.isFromChangeUserProfile)
+            if (!SessionService.isFromChangeUserProfile && !SessionService.IsWelcomeSetup)
             {
                 await GetUserExistingProfilePic();
             }
             else
             {
-                SessionService.isFromChangeUserProfile = false;
+                if (SessionService.isFromChangeUserProfile)
+                    SessionService.isFromChangeUserProfile = false;
             }
         }
     }
