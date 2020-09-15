@@ -8,16 +8,18 @@
         <StackLayout>
             <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
                 <StackLayout Padding="0" Spacing="0">
-                    <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,20,0" HeightRequest="25" HorizontalOptions="FillAndExpand" CornerRadius="12.5" BorderThickness="2" BorderColor="{DynamicResource AccentColor}">
+                    <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,20,5" HeightRequest="25" HorizontalOptions="FillAndExpand" CornerRadius="12.5" BorderThickness="2" BorderColor="{DynamicResource AccentColor}">
                         <StackLayout Orientation="Horizontal" Spacing="0">
                             <PancakeControl:PancakeView x:Name="tabBack" WidthRequest="90" Margin="0,0,0,0" HeightRequest="25" HorizontalOptions="StartAndExpand" CornerRadius="12.5" BackgroundColor="{DynamicResource AccentColor}">
-                                <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
-                                    <Image x:Name="logoImage"  Source="back" Margin="2,2,0,2"/>
-                                    <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}" Margin="5,0,0,0" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
+                                <PancakeControl:PancakeView WidthRequest="90" Margin="0,0,0,0" HeightRequest="25" HorizontalOptions="StartAndExpand" CornerRadius="12.5" BackgroundColor="{DynamicResource DarkColor}">
+                                    <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
+                                        <Image x:Name="logoImage"  Source="back" Margin="2,2,0,2"/>
+                                        <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}" Margin="5,0,0,0" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </PancakeControl:PancakeView>
                             </PancakeControl:PancakeView>
                             <StackLayout Spacing="0" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
                                 <PancakeControl:PancakeView x:Name="tab1" Margin="0" HeightRequest="25" HorizontalOptions="Start" >
