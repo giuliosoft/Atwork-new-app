@@ -1120,5 +1120,53 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("TermsText", resourceCulture);
             }
         }
+        
+        internal static string EnterNewPassword {
+            get {
+                return ResourceManager.GetString("EnterNewPassword", resourceCulture);
+            }
+        }
+        
+        internal static string EnteConformNewPassword {
+            get {
+                return ResourceManager.GetString("EnteConformNewPassword", resourceCulture);
+            }
+        }
+        
+        internal static string EnterCurrentPasswordAlert {
+            get {
+                return ResourceManager.GetString("EnterCurrentPasswordAlert", resourceCulture);
+            }
+        }
+        
+        internal static string EnterNewPasswordAlert {
+            get {
+                return ResourceManager.GetString("EnterNewPasswordAlert", resourceCulture);
+            }
+        }
+        
+        internal static string EnterConfirmNewPasswordAlert {
+            get {
+                return ResourceManager.GetString("EnterConfirmNewPasswordAlert", resourceCulture);
+            }
+        }
+        
+        internal static string EnterConfirmPasswordNotMatchdAlert {
+            get {
+                return ResourceManager.GetString("EnterConfirmPasswordNotMatchdAlert", resourceCulture);
+            }
+        }
+        
+        internal static string Currentpasswordnotmatch {
+            get {
+                return ResourceManager.GetString("Currentpasswordnotmatch", resourceCulture);
+            }
+        }
+        
+        internal static string Passwordchangesuccessfully {
+            get {
+                return ResourceManager.GetString("Passwordchangesuccessfully", resourceCulture);
+            }
+        }
     }
 }

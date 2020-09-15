@@ -155,8 +155,18 @@ namespace AtWork.Models
             public bool Flag { get; set; }
             public string Message { get; set; }
             public int Data { get; set; }
-            public object Data1 { get; set; }
-	}
+            public int Data1 { get; set; }
+        }
+        public class NewUnLikeRespnce
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public object Data { get; set; }
+            public int Data1 { get; set; }
+        }
+
+
+        
         public class CommentLikeResponce
         {
             public bool Flag { get; set; }

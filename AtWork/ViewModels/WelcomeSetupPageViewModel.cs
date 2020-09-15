@@ -14,7 +14,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public WelcomeSetupPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            SessionService.IsWelcomeSetup = true;
+            
         }
         #endregion
 
@@ -52,6 +52,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SessionService.IsWelcomeSetup = true;
                 SessionService.CurrentTab = 0;
                 await _navigationService.NavigateAsync(nameof(LanguageListPage), null);
             }

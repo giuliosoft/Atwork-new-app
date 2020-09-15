@@ -55,5 +55,6 @@ namespace AtWork.Services
         public static string UpdateInterestsServiceURL = "/user/UpdateInterests";
         public static string GetUserProfilePicServiceURL = "/user/GetProfilePicture";
         public static string UpdateUserProfilePicServiceURL = "/user/UpdateProfilePicture";
+        public static string UpdateUserPasswordServiceURL = "/user/UpdatePassword";
     }
 }

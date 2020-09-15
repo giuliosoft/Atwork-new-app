@@ -21,33 +21,33 @@ namespace AtWork.Services
             }
         }
 
-        private const string IsAgreeWithTermsKey = "IsAgreeWithTerms_key";
-        private static readonly bool IsAgreeWithTermsDefault = false;
-        public static bool IsAgreeWithTerms
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(IsAgreeWithTermsKey, IsAgreeWithTermsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(IsAgreeWithTermsKey, value);
-            }
-        }
+        //private const string IsAgreeWithTermsKey = "IsAgreeWithTerms_key";
+        //private static readonly bool IsAgreeWithTermsDefault = false;
+        //public static bool IsAgreeWithTerms
+        //{
+        //    get
+        //    {
+        //        return AppSettings.GetValueOrDefault(IsAgreeWithTermsKey, IsAgreeWithTermsDefault);
+        //    }
+        //    set
+        //    {
+        //        AppSettings.AddOrUpdateValue(IsAgreeWithTermsKey, value);
+        //    }
+        //}
 
-        private const string AuthorizationTokenKey = "AuthorizationToken_key";
-        private static readonly string AuthorizationTokenDefault = string.Empty;
-        public static string AuthorizationToken
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(AuthorizationTokenKey, AuthorizationTokenDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(AuthorizationTokenKey, value);
-            }
-        }
+        //private const string AuthorizationTokenKey = "AuthorizationToken_key";
+        //private static readonly string AuthorizationTokenDefault = string.Empty;
+        //public static string AuthorizationToken
+        //{
+        //    get
+        //    {
+        //        return AppSettings.GetValueOrDefault(AuthorizationTokenKey, AuthorizationTokenDefault);
+        //    }
+        //    set
+        //    {
+        //        AppSettings.AddOrUpdateValue(AuthorizationTokenKey, value);
+        //    }
+        //}
 
         private const string IsUsedBioMetricLoginKey = "IsUsedBioMetricLogin_key";
         private static readonly bool IsUsedBioMetricLoginDefault = false;
@@ -98,6 +98,7 @@ namespace AtWork.Services
                 AppSettings.AddOrUpdateValue(LoggedInUserEmailKey, value);
             }
         }
+
         private const string LoggedInUserPasswordKey = "LoggedInUserPassword_Key";
         private static readonly string LoggedInUserPasswordDefault = string.Empty;
         public static string LoggedInUserPassword
