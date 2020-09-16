@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Helpers;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -16,9 +18,10 @@ namespace AtWork.ViewModels
         #region Constructor
         public CreatePasswordPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            CreatePassowrdLabeltext = "Create your password";
+            CreatePassowrdLabeltext = AppResources.CreatePasswordText;
             Passwordmessage = true;
             Samepasswordworning = false;
+            ClaimProfileBackCommand = HeaderBackCommand;
         }
         #endregion
 
@@ -37,7 +40,7 @@ namespace AtWork.ViewModels
             get { return _ProductDetail; }
             set { SetProperty(ref _ProductDetail, value); }
         }
-       
+
         public string CreatePassowrdLabeltext
         {
             get { return _CreatePassowrdLabeltext; }
@@ -60,43 +63,59 @@ namespace AtWork.ViewModels
         }
         #endregion
 
-        #region Commands
-        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
-        public DelegateCommand ConfiromPasswordCommand{ get { return new DelegateCommand(async () => await ConfiromPassword()); } }
-
+        #region Commands        
+        public DelegateCommand ConfirmPasswordCommand { get { return new DelegateCommand(async () => await ConfirmPasswordClick()); } }
+        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
         #endregion
 
         #region private methods
-        //async Task GoForLogin()
-        //{
-        //    try
-
-
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
-        private async Task ConfiromPassword()
+        async Task PageHeaderBack(string str)
         {
             try
             {
                 if (isCreatingPwd)
                 {
-                    isCreatingPwd = false;
-                if (!String.IsNullOrEmpty(CreatePassowrdEntrytext))
+                    await BackClick();
+                }
+                else
                 {
-                    CreatePassowrdLabeltext = "Confirm your password";
-                    ConfirmPassword = CreatePassowrdEntrytext;
-                    CreatePassowrdEntrytext = null;
-                    Passwordmessage = false;
+                    ConfirmPassword = string.Empty;
+                    CreatePassowrdEntrytext = string.Empty;
+                    CreatePassowrdLabeltext = AppResources.CreatePasswordText;
+                    Passwordmessage = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task ConfirmPasswordClick()
+        {
+            try
+            {
+                if (isCreatingPwd)
+                {
+                    if (!CommonUtility.PasswordIsValid(CreatePassowrdEntrytext))
+                    {
+                        Passwordmessage = true;
+                        return;
+                    }
+                    isCreatingPwd = false;
+                    if (!String.IsNullOrEmpty(CreatePassowrdEntrytext))
+                    {
+                        CreatePassowrdLabeltext = AppResources.ConfirmPasswordText;
+                        ConfirmPassword = CreatePassowrdEntrytext;
+                        CreatePassowrdEntrytext = null;
+                        Passwordmessage = false;
                     }
                 }
                 else
                 {
                     if (String.IsNullOrEmpty(CreatePassowrdEntrytext))
                     {
-                        CreatePassowrdLabeltext = "Confirm your password";
+                        CreatePassowrdLabeltext = AppResources.ConfirmPasswordText;
                         ConfirmPassword = CreatePassowrdEntrytext;
                         CreatePassowrdEntrytext = null;
                         Passwordmessage = false;
@@ -104,6 +123,7 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
+                        SessionService.isFromClaimProfile = true;
                         await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
                     }
                 }
@@ -111,7 +131,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-            }          
+            }
         }
 
         #endregion
@@ -128,7 +148,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            CreatePassowrdLabeltext = "Create your password";
+            CreatePassowrdLabeltext = AppResources.CreatePasswordText;
         }
     }
 }

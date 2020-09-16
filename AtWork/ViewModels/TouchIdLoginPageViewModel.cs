@@ -15,7 +15,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public TouchIdLoginPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            ClaimProfileBackCommand = HeaderBackCommand;
         }
         #endregion
 
@@ -32,23 +32,24 @@ namespace AtWork.ViewModels
         }
         #endregion
 
-        #region Commands
-        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        #region Commands        
         public DelegateCommand BiometricAuthCommand { get { return new DelegateCommand(async () => await BiometricAuthClick()); } }
+        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
         #endregion
 
         #region private methods
-        //async Task GoForLogin()
-        //{
-        //    try
-        //    {
+        async Task PageHeaderBack(string str)
+        {
+            try
+            {
+                await BackClick();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
         public async Task BiometricAuthClick()
         {
             try
@@ -71,12 +72,12 @@ namespace AtWork.ViewModels
                 {
                     if (!SettingsService.IsUsedBioMetricLogin)
                     {
-                        await _navigationService.NavigateAsync(nameof(LoginPage),null);
+                        await _navigationService.NavigateAsync(nameof(LoginPage), null);
                     }
                     else
                     {
                         SettingsService.IsUsedBioMetricLogin = true;
-                        await _navigationService.NavigateAsync(nameof(LoginPage),null);
+                        await _navigationService.NavigateAsync(nameof(LoginPage), null);
                     }
 
                 }

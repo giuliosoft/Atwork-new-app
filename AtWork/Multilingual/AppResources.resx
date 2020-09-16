@@ -603,4 +603,10 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="ShareAlertText" xml:space="preserve">
         <value>There is no link available to share currently!</value>
     </data>
+    <data name="CreatePasswordText" xml:space="preserve">
+        <value>Create your password</value>
+    </data>
+    <data name="ConfirmPasswordText" xml:space="preserve">
+        <value>Confirm your password</value>
+    </data>
 </root>

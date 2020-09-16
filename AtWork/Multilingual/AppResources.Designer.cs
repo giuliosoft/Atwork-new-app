@@ -1175,5 +1175,17 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ShareAlertText", resourceCulture);
             }
         }
+        
+        internal static string CreatePasswordText {
+            get {
+                return ResourceManager.GetString("CreatePasswordText", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmPasswordText {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordText", resourceCulture);
+            }
+        }
     }
 }

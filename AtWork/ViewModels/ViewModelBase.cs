@@ -62,6 +62,7 @@ namespace AtWork.ViewModels
         private bool _UnSubscribeActivity;
         private double _headerDetailsTitleFontSize = (double)App.Current.Resources["FontSize20"];
         private Color _headerDetailBackgroundColor = (Color)App.Current.Resources["OffWhiteColor"];
+        private DelegateCommand<string> _ClaimProfileBackCommand;
         #endregion
         public bool JoinActivity
         {
@@ -187,6 +188,11 @@ namespace AtWork.ViewModels
         {
             get { return _headerDetailBackgroundColor; }
             set { SetProperty(ref _headerDetailBackgroundColor, value); }
+        }
+        public DelegateCommand<string> ClaimProfileBackCommand
+        {
+            get { return _ClaimProfileBackCommand; }
+            set { SetProperty(ref _ClaimProfileBackCommand, value); }
         }
         #region Commands
 
@@ -442,7 +448,7 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-        
+
         async Task OpenProfile()
         {
             try

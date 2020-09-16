@@ -6,7 +6,7 @@
         <StackLayout WidthRequest="100">
             <Image x:Name="headerbackgreen" Source="headerbackgreen" HorizontalOptions="Start" Margin="20,10,10,10" />
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{TemplateBinding BindingContext.GreenHeaderViewBackCommand}"/>
+                <TapGestureRecognizer Command="{TemplateBinding BindingContext.ClaimProfileBackCommand}"/>
             </StackLayout.GestureRecognizers>
         </StackLayout>
     </ContentView.Content>

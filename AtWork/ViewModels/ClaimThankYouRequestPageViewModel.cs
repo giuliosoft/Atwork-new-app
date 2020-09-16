@@ -14,7 +14,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public ClaimThankYouRequestPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            ClaimProfileBackCommand = HeaderBackCommand;
         }
         #endregion
 
@@ -31,28 +31,29 @@ namespace AtWork.ViewModels
         }
         #endregion
 
-        #region Commands
-        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        #region Commands        
         public DelegateCommand ContinueSetupCommand { get { return new DelegateCommand(async () => await ContinueSetup()); } }
+        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
         #endregion
 
         #region private methods
-        //async Task GoForLogin()
-        //{
-        //    try
+        async Task PageHeaderBack(string str)
+        {
+            try
+            {
+                await BackClick();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
 
-
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
         private async Task ContinueSetup()
         {
             try
             {
                 await _navigationService.NavigateAsync(nameof(CreatePasswordPage), null);
-                //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(await _navigationService.NavigateAsync(nameof(CreatePasswordPage), null);)}", null);
             }
             catch (Exception ex)
             {
