@@ -14,7 +14,7 @@
     <ContentPage.Content>
             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Label IsVisible="{Binding ShowHeadingText}" Text="Can you tell us a bit about yourself?" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
-                <ScrollView BackgroundColor="AliceBlue" Padding="0,0,0,100" VerticalOptions="StartAndExpand" >
+                <ScrollView Padding="0,0,0,100" VerticalOptions="StartAndExpand" >
                     <StackLayout>
                         <Customcontrol:CustomEditor Text="{Binding AboutUserText}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource PostLabelStyle}" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
                     </StackLayout>
