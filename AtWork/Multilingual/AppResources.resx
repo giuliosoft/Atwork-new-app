@@ -609,4 +609,10 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="ConfirmPasswordText" xml:space="preserve">
         <value>Confirm your password</value>
     </data>
+        <data name="DisclaimerHeaderText" xml:space="preserve">
+        <value>Disclaimer</value>
+    </data>
+        <data name="TermsAndConditionHeaderText" xml:space="preserve">
+        <value>Terms and condition</value>
+    </data>
 </root>
