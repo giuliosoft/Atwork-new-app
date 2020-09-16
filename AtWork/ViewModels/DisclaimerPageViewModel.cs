@@ -21,18 +21,19 @@ namespace AtWork.ViewModels
         }
         #endregion
 
-        #region Private Properties
-        public bool isEnableDisclamerButton = false;
-        #endregion
-        #region Private Properties
-        private string _DisclaimerLabel = string.Empty;
+        #region Private Properties        
+        private string _DisclaimerLabel = "Disclaimer";
         private string _disclaimerText = AppResources.DisclamerText;
         private bool _Disclaimerbtn = true;
         private bool _Termsconditionbtn = false;
         private ImageSource _UserCompanyLogo = string.Empty;
+        bool isDisclaimer = true;
         #endregion
 
         #region Public Properties
+        public bool isEnableDisclamerButton = false;
+        public DisclaimerPage pageObject = null;
+
         public string DisclaimerLabel
         {
             get { return _DisclaimerLabel; }
@@ -87,7 +88,19 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.GoBackAsync();
+                if (isDisclaimer)
+                {
+                    await _navigationService.GoBackAsync();
+                }
+                else
+                {
+                    isDisclaimer = true;
+                    DisclaimerLabel = "Disclaimer";
+                    DisclaimerText = AppResources.DisclamerText;
+                    Disclaimerbtn = true;
+                    Termsconditionbtn = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -100,6 +113,41 @@ namespace AtWork.ViewModels
             {
                 if (isEnableDisclamerButton)
                 {
+                    if (isDisclaimer)
+                    {
+                        isDisclaimer = false;
+                        DisclaimerLabel = "Terms and condition";
+                        DisclaimerText = AppResources.TermsText;
+                        Disclaimerbtn = false;
+                        Termsconditionbtn = true;
+                        if (pageObject != null)
+                        {
+                            isEnableDisclamerButton = false;
+                            var scrollRef = pageObject.FindByName("appDetailScrollView");
+                            if (scrollRef != null)
+                            {
+                                var scroller = scrollRef as ScrollView;
+                                await scroller.ScrollToAsync(0, 0, false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DisclaimerLabel = "Terms and condition";
+                        DisclaimerText = AppResources.TermsText;
+                        Disclaimerbtn = false;
+                        Termsconditionbtn = true;
+                        if (SessionService.isFromClaimProfile)
+                        {
+                            SessionService.isFromClaimProfile = false;
+                            await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
+                        }
+                        else
+                        {
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                        }
+                    }
+                    /*
                     if (SessionService.isFromClaimProfile)
                     {
                         SessionService.isFromClaimProfile = false;
@@ -113,6 +161,7 @@ namespace AtWork.ViewModels
                         Termsconditionbtn = true;
                         await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                     }
+                    */
                 }
             }
             catch (Exception ex)
@@ -147,21 +196,21 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                //var isDisclaimer = parameters.GetValue<bool>("isDisclaimer");
-                //if (isDisclaimer)
-                //{
-                //    DisclaimerLabel = AppResources.DisclaimerHeaderText;
-                //    DisclaimerText = AppResources.DisclamerText;
-                //}
-                //else
-                //{
-                //    DisclaimerLabel = AppResources.TermsAndConditionHeaderText;
-                //    DisclaimerText = AppResources.TermsText;
-                //}
+                var isDisclaimer = parameters.GetValue<bool>("isDisclaimer");
+                if (isDisclaimer)
+                {
+                    DisclaimerLabel = AppResources.DisclaimerHeaderText;
+                    DisclaimerText = AppResources.DisclamerText;
+                }
+                else
+                {
+                    DisclaimerLabel = AppResources.TermsAndConditionHeaderText;
+                    DisclaimerText = AppResources.TermsText;
+                }
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
     }

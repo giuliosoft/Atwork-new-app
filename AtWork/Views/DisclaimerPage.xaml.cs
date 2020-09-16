@@ -12,6 +12,7 @@ namespace AtWork.Views
         {
             InitializeComponent();
             VMContext = ((DisclaimerPageViewModel)this.BindingContext);
+            VMContext.pageObject = this;
         }
 
         void ScrollView_Scrolled(System.Object sender, Xamarin.Forms.ScrolledEventArgs e)
@@ -20,7 +21,6 @@ namespace AtWork.Views
                 return;
 
             VMContext.isEnableDisclamerButton = true;
-           
         }
     }
 }

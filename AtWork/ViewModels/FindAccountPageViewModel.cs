@@ -79,6 +79,7 @@ namespace AtWork.ViewModels
                             if (serviceBody.Data != null)
                             {
                                 LoginOutputModel tempData = new LoginOutputModel();
+                                tempData = serviceBody.Data;
                                 SessionService.tempClaimProfileData = tempData;
                                 LayoutService.ConvertThemeAsPerClaimProfileSettings();
                             }
@@ -90,7 +91,9 @@ namespace AtWork.ViewModels
                                 SettingsService.LoggedInUserPassword = tempUserVol.VolUserPassword;
                                 SessionService.tempVolunteerData = tempUserVol;
                             }
-                            await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
+                            NavigationParameters navigationParams = new NavigationParameters();
+                            navigationParams.Add("UserProfileData", serviceBody);
+                            await _navigationService.NavigateAsync(nameof(ClaimProfilePage), navigationParams);
                         }
                     }
                 }

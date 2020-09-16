@@ -145,8 +145,10 @@ namespace AtWork.ViewModels
                                     var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                                     if (serviceBody != null && serviceBody.Flag)
                                     {
-                                        //SessionService.isFromClaimProfile = true;
-                                        //await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
+                                        SessionService.isFromClaimProfile = true;
+                                        NavigationParameters parameter = new NavigationParameters();
+                                        parameter.Add("isDisclaimer", true);
+                                        await _navigationService.NavigateAsync(nameof(DisclaimerPage), parameter);
                                     }
                                 }
                             }
