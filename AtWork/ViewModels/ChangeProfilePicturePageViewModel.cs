@@ -182,6 +182,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                return;
                 ProfileImagePopup profileImagePopup = new ProfileImagePopup();
                 ProfileImagePopupViewModel profileImagePopupViewModel = new ProfileImagePopupViewModel(_navigationService, _facadeService);
                 profileImagePopupViewModel.ImageList = ImageList;
