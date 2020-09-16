@@ -576,6 +576,30 @@ If you have any questions or concerns, please contact us at gdpr@atwork.aiher
 In addition to locally mounted information, hyperlinks may be provided to external websites and/or information sources as a service to our users. The appearance of external hyperlinks shall not be taken as implying any connection between Volunty Corporate AG and the linked external information sources. These external information sources are outside the control of Volunty Corporate AG and Volunty Corporate AG does not exercise any editorial control over the information which a user may find at these locations. Use of any information obtained from such sources is voluntary, and reliance on it should only be undertaken after an independent review of its accuracy, completeness, currency, and reliability. Reference to any specific commercial product, process, or service by trade name, trademark, service mark, manufacturer, or otherwise does not constitute or imply endorsement, recommendation, or favoring by Volunty Corporate AG. In addition, the content of any such site does not necessarily reflect the opinions, standards, policy, or endorsement of Volunty Corporate AG.
         </value>
     </data>
+    <data name="EnterNewPassword" xml:space="preserve">
+        <value>Please enter your new password</value>
+    </data>
+    <data name="EnteConformNewPassword" xml:space="preserve">
+        <value>Please enter your conform new password</value>
+    </data>
+    <data name="EnterCurrentPasswordAlert" xml:space="preserve">
+        <value>Please enter your current password</value>
+    </data>
+    <data name="EnterNewPasswordAlert" xml:space="preserve">
+        <value>Please enter your new password</value>
+    </data>
+    <data name="EnterConfirmNewPasswordAlert" xml:space="preserve">
+        <value>Please enter your confirm new password</value>
+    </data>
+    <data name="EnterConfirmPasswordNotMatchdAlert" xml:space="preserve">
+        <value>Confirm password does not match</value>
+    </data>
+    <data name="Currentpasswordnotmatch" xml:space="preserve">
+        <value>Current password is wrong</value>
+    </data>
+    <data name="Passwordchangesuccessfully" xml:space="preserve">
+        <value>Password changed successfully</value>
+    </data>
     <data name="ShareAlertText" xml:space="preserve">
         <value>There is no link available to share currently!</value>
     </data>

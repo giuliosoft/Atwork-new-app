@@ -208,5 +208,21 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> ChangeUserPassword(Volunteers inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var updateUserPasswordServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateUserPasswordServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(updateUserPasswordServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }

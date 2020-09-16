@@ -39,8 +39,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <CodesignProvision>atwork_app_dev_provision_202008</CodesignProvision>
-    <CodesignKey>iPhone Developer: Giulio Dellorbo (753NMX72VB)</CodesignKey>
+    <CodesignProvision>atwork_app_prod_provision_202008</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>

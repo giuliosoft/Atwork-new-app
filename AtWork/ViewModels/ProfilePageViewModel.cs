@@ -41,7 +41,12 @@ namespace AtWork.ViewModels
             get { return _interestList; }
             set { SetProperty(ref _interestList, value); }
         }
-
+        private ObservableCollection<UserDetails> _UserDetailsList = new ObservableCollection<UserDetails>();
+        public ObservableCollection<UserDetails> UserDetailsList
+        {
+            get { return _UserDetailsList; }
+            set { SetProperty(ref _UserDetailsList, value); }
+        }
         #endregion
 
 
@@ -71,6 +76,7 @@ namespace AtWork.ViewModels
             {
                 SessionService.CurrentTab = 0;
                 SessionService.IsWelcomeSetup = false;
+                SessionService.Logout();
                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
             }
             catch (Exception ex)
@@ -114,6 +120,48 @@ namespace AtWork.ViewModels
                                     return true;
                                 });
                             }
+
+                            string UserDescription = volunteers?.classes;
+                            List<string> UserDescriptionList = new List<string>();
+                            if (!string.IsNullOrEmpty(UserDescription))
+                            {
+                                if (UserDescription.Contains(","))
+                                {
+                                    UserDescriptionList = UserDescription.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    UserDescriptionList.Add(UserDescription);
+                                }
+                            }
+
+                            if (UserDescriptionList != null && UserDescriptionList.Count > 0)
+                            {
+                                var tempCmtList = new ObservableCollection<UserDetails>();
+                                UserDescriptionList.All((arg) =>
+                                {
+                                    List<string> UserSingleDescriptionList = new List<string>();
+                                    if (!string.IsNullOrEmpty(arg))
+                                    {
+                                        if (arg.Contains(":"))
+                                        {
+                                            UserSingleDescriptionList = arg.Split(':').ToList();
+                                        }
+                                        else
+                                        {
+                                            UserSingleDescriptionList.Add(arg);
+                                        }
+                                        if (UserSingleDescriptionList.Count == 2)
+                                        {
+                                            tempCmtList.Add(new UserDetails() { UserDescriptionTitle = UserSingleDescriptionList[0].ToUpper(), UserDescriptionValue = UserSingleDescriptionList[1] });
+                                        }
+                                    }
+
+                                    return true;
+                                });
+                                UserDetailsList = tempCmtList;
+                            }
+
                         }
                     }
                 }
@@ -142,5 +190,11 @@ namespace AtWork.ViewModels
 
 
         }
+    }
+    public class UserDetails
+    {
+        public string UserDescriptionTitle { get; set; }
+        public string UserDescriptionValue { get; set; }
+
     }
 }

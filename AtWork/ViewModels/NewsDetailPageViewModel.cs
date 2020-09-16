@@ -231,39 +231,45 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
                 NewsLikes newsLikes = new NewsLikes();
                 newsLikes.likeByID = SettingsService.VolunteersUserData.volUniqueID.ToString();
                 newsLikes.newsId = SelectedNewsId;
                 newsLikes.likeDate = DateTime.Now;
                 if (!_isPostLiked)
                 {
-                    _isPostLiked = true;
                     LikeImage = "heartoutline";
                     LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
-                    NewsLikeCount = (--NewsLikeCountNo).ToString();
-
-                    SessionService.LikeNewsID = SelectedNewsId;
-                    SessionService.LikeNewsCount = Convert.ToInt32(NewsLikeCount);
-
                     newsLikes.Id = LikeId;
                     await ShowLoader();
                     var result = await NewsService.UnLikeNewsFeed(newsLikes);
+                    var serviceResultBody = JsonConvert.DeserializeObject<NewUnLikeRespnce>(result?.Body);
                     await ClosePopup();
-
+                    if (serviceResultBody != null && serviceResultBody.Flag)
+                    {
+                        _isPostLiked = true;
+                        //LikeId = serviceResultBody.Data;
+                        NewsLikeCount = serviceResultBody.Data1.ToString();
+                        SessionService.LikeNewsID = SelectedNewsId;
+                        SessionService.LikeNewsCount = Convert.ToInt32(NewsLikeCount);
+                    }
                 }
                 else
                 {
-                    _isPostLiked = false;
                     LikeImage = "heartfill";
                     LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
-                    NewsLikeCount = (++NewsLikeCountNo).ToString();
                     await ShowLoader();
                     var result = await NewsService.LikeNewsFeed(newsLikes);
                     await ClosePopup();
                     var serviceResultBody = JsonConvert.DeserializeObject<NewsLikeRespnce>(result?.Body);
                     if (serviceResultBody != null)
                     {
+                        _isPostLiked = false;
                         LikeId = serviceResultBody.Data;
+                        NewsLikeCount = serviceResultBody.Data1.ToString();
                         SessionService.LikeNewsID = SelectedNewsId;
                         SessionService.LikeNewsCount = Convert.ToInt32(NewsLikeCount);
                     }
@@ -349,6 +355,10 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
                 await ShowLoader();
                 NewsComment newsComment = new NewsComment
                 {
@@ -467,25 +477,24 @@ namespace AtWork.ViewModels
                             DetailHeaderOptionIsVisible = serviceResultBody.Data.Volunteers?.volUniqueID == SettingsService.VolunteersUserData?.volUniqueID;
                             NewsUserProfileImage = !string.IsNullOrEmpty(serviceResultBody.Data.Volunteers?.volPicture) ? ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + serviceResultBody.Data.Volunteers?.volPicture)) : string.Empty;
                             NewsUserName = serviceResultBody.Data.Volunteers.volFirstName + " " + serviceResultBody.Data.Volunteers.volLastName;
+                        }
+                        NewsUserTime = serviceResultBody.Data.Day;
+                        NewsLikeCount = serviceResultBody.Data.LikeCount.ToString();
+                        NewsLikeCountNo = serviceResultBody.Data.LikeCount;
+                        LikeId = serviceResultBody.Data.LikeId;
 
-                            NewsUserTime = serviceResultBody.Data.Day;
-                            NewsLikeCount = serviceResultBody.Data.LikeCount.ToString();
-                            NewsLikeCountNo = serviceResultBody.Data.LikeCount;
-                            LikeId = serviceResultBody.Data.LikeId;
-
-                            _isPostLiked = serviceResultBody.Data.LikeByLoginUser;
-                            if (!_isPostLiked)
-                            {
-                                _isPostLiked = true;
-                                LikeImage = "heartoutline";
-                                LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
-                            }
-                            else
-                            {
-                                _isPostLiked = false;
-                                LikeImage = "heartfill";
-                                LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
-                            }
+                        _isPostLiked = serviceResultBody.Data.LikeByLoginUser;
+                        if (!_isPostLiked)
+                        {
+                            _isPostLiked = true;
+                            LikeImage = "heartoutline";
+                            LikeCountTextColor = (Color)App.Current.Resources["DarkBrownColor"];
+                        }
+                        else
+                        {
+                            _isPostLiked = false;
+                            LikeImage = "heartfill";
+                            LikeCountTextColor = (Color)App.Current.Resources["WhiteColor"];
                         }
                         if (serviceResultBody.Data.News != null)
                         {

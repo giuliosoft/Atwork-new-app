@@ -52,6 +52,9 @@ namespace AtWork.Services
             SessionService.NewsPostInputData = null;
             SessionService.AppNavigationService = null;
             SettingsService.LoggedInUserData = null;
+            SettingsService.VolunteersUserData = null;
+            SettingsService.LoggedInUserEmail = string.Empty;
+            SettingsService.LoggedInUserPassword = string.Empty;
         }
 
         #endregion
