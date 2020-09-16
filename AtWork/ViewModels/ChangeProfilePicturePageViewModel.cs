@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace AtWork.ViewModels
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             HeaderDetailBackgroundColor = (Color)App.Current.Resources["HeaderBackgroundColor"];
             _multiMediaPickerService = DependencyService.Get<IMultiMediaPickerService>();
-            ProfileImage = UserProfileImage;
+            //ProfileImage = UserProfileImage;
             ImageOptionText = AppResources.EditCropButtonText;
             HeaderNextNavigationCommand = ProfileSettingProceedCommand;
 
@@ -44,6 +45,7 @@ namespace AtWork.ViewModels
                 isShowLooktext = false;
             }
         }
+        ObservableCollection<string> ImageList = new ObservableCollection<string>();
         private bool _showCropOption;
         private ImageSource _userProfileImage;
         private string _ImageOptionText = AppResources.EditCropButtonText;
@@ -133,9 +135,15 @@ namespace AtWork.ViewModels
                 {
                     if (serviceResult.Body != null)
                     {
+                        SessionService.IsNeedToRefreshNews = true;
                         var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                         if (serviceBody != null && serviceBody.Flag)
                         {
+                            string ImageName = serviceBody?.Data as string;
+                            if (!string.IsNullOrEmpty(ImageName))
+                             {
+                                SettingsService.UserProfile = ImageName;
+                            }
                             if (!SessionService.IsWelcomeSetup)
                                 await _navigationService.GoBackAsync();
                         }
@@ -176,6 +184,7 @@ namespace AtWork.ViewModels
             {
                 ProfileImagePopup profileImagePopup = new ProfileImagePopup();
                 ProfileImagePopupViewModel profileImagePopupViewModel = new ProfileImagePopupViewModel(_navigationService, _facadeService);
+                profileImagePopupViewModel.ImageList = ImageList;
                 profileImagePopupViewModel.SelectedImageEvent += ProfileImagePopupViewModel_ImageSelected;
                 //ActivityImagePopup activityImagePopup = new ActivityImagePopup();
                 //ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
@@ -223,6 +232,7 @@ namespace AtWork.ViewModels
                 ShowCropOption = false;
                 //ProfileImage = ImageSource.FromUri(new Uri(obj));
                 ProfileImage = obj;
+                obj = obj.Replace(ConfigService.BaseProfileImageURL, "");
                 if (SessionService.IsWelcomeSetup)
                 {
                     IsImageSelected = true;
@@ -358,6 +368,34 @@ namespace AtWork.ViewModels
                         {
                             var url = ConfigService.BaseProfileImageURL + serviceBody.Data as string;
                             ProfileImage = ImageSource.FromUri(new Uri(url));
+                            string strAvatarImage = serviceBody?.Data1 as string;
+
+                            if (!string.IsNullOrEmpty(strAvatarImage))
+                            {
+                                string imgStr = strAvatarImage;
+                                List<string> Avatarlist = new List<string>();
+                                if (!string.IsNullOrEmpty(imgStr))
+                                {
+                                    if (imgStr.Contains(","))
+                                    {
+                                        Avatarlist = imgStr.Split(',').ToList();
+                                    }
+                                    else
+                                    {
+                                        Avatarlist.Add(imgStr);
+                                    }
+                                }
+                                if (Avatarlist != null && Avatarlist.Count > 0)
+                                {
+                                    ImageList = new ObservableCollection<string>();
+                                    Avatarlist.All((arg) =>
+                                    {
+                                        string imageUri = ConfigService.BaseProfileImageURL + arg;
+                                        ImageList.Add(imageUri);
+                                        return true;
+                                    });
+                                }
+                            }
                         }
                     }
                 }

@@ -1163,13 +1163,12 @@ namespace AtWork.Multilingual {
             }
         }
         
-        internal static string Passwordchangesuccessfully
-        {
-            get
-            {
+        internal static string Passwordchangesuccessfully {
+            get {
                 return ResourceManager.GetString("Passwordchangesuccessfully", resourceCulture);
             }
         }
+        
         internal static string ShareAlertText {
             get {
                 return ResourceManager.GetString("ShareAlertText", resourceCulture);
@@ -1197,6 +1196,12 @@ namespace AtWork.Multilingual {
         internal static string TermsAndConditionHeaderText {
             get {
                 return ResourceManager.GetString("TermsAndConditionHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string LogoutAlert {
+            get {
+                return ResourceManager.GetString("LogoutAlert", resourceCulture);
             }
         }
     }

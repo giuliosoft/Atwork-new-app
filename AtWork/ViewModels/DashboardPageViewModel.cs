@@ -140,6 +140,12 @@ namespace AtWork.ViewModels
             get { return _isBusyInActivityBinding; }
             set { SetProperty(ref _isBusyInActivityBinding, value); }
         }
+        private static ImageSource _UserProfileImage = string.Empty;
+        public ImageSource UserProfileImageHeader
+        {
+            get { return _UserProfileImage; }
+            set { SetProperty(ref _UserProfileImage, value); }
+        }
         #endregion
 
         #region Commands
@@ -661,10 +667,10 @@ namespace AtWork.ViewModels
                             }
                             SessionService.CreateActivityOurImages = lstImageName;
                         }
-                        if (!string.IsNullOrEmpty(categoryId) && tempList == null || tempList.Count < 1)
-                        {
-                            await DisplayAlertAsync(AppResources.CategoryDataAlertText);
-                        }
+                        //if (!string.IsNullOrEmpty(categoryId) && tempList == null || tempList.Count < 1)
+                        //{
+                        //    //await DisplayAlertAsync(AppResources.CategoryDataAlertText);
+                        //}
                     }
                 }
                 await ClosePopup();
@@ -696,7 +702,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
         #endregion
@@ -745,6 +751,7 @@ namespace AtWork.ViewModels
                 {
                     if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
                     if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
+                    UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile));
                     await GetNewsListDetails_New();
                 }
                 if (SessionService.LikeNewsCount != null && SessionService.LikeNewsID != null)
