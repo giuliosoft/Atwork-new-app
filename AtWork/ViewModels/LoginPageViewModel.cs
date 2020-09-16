@@ -93,7 +93,10 @@ namespace AtWork.ViewModels
                         SettingsService.LoggedInUserData = serviceResultBody.Data;
                     }
                     if (serviceResultBody.Data1 != null)
+                    {
                         SettingsService.VolunteersUserData = serviceResultBody.Data1;
+                        SettingsService.UserProfile = serviceResultBody.Data1?.volPicture;
+                    }
 
                     LayoutService.ConvertThemeAsPerSettings();
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)

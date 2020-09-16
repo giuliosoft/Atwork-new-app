@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -25,6 +26,7 @@ namespace AtWork.ViewModels
         #endregion
         #region Private Properties
         private string _DisclaimerLabel = string.Empty;
+        private string _disclaimerText = AppResources.DisclamerText;
         private bool _Disclaimerbtn = true;
         private bool _Termsconditionbtn = false;
         private ImageSource _UserCompanyLogo = string.Empty;
@@ -54,6 +56,11 @@ namespace AtWork.ViewModels
                 return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
             }
             set { SetProperty(ref _UserCompanyLogo, value); }
+        }
+        public string DisclaimerText
+        {
+            get { return _disclaimerText; }
+            set { SetProperty(ref _disclaimerText, value); }
         }
         #endregion
 
@@ -101,6 +108,7 @@ namespace AtWork.ViewModels
                     else
                     {
                         DisclaimerLabel = "Terms and condition";
+                        DisclaimerText = AppResources.TermsText;
                         Disclaimerbtn = false;
                         Termsconditionbtn = true;
                         await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
@@ -137,7 +145,24 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            DisclaimerLabel = "Disclaimer";
+            try
+            {
+                //var isDisclaimer = parameters.GetValue<bool>("isDisclaimer");
+                //if (isDisclaimer)
+                //{
+                //    DisclaimerLabel = AppResources.DisclaimerHeaderText;
+                //    DisclaimerText = AppResources.DisclamerText;
+                //}
+                //else
+                //{
+                //    DisclaimerLabel = AppResources.TermsAndConditionHeaderText;
+                //    DisclaimerText = AppResources.TermsText;
+                //}
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

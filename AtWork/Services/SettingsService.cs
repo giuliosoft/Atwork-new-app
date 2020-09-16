@@ -130,6 +130,17 @@ namespace AtWork.Services
                 AppSettings.AddOrUpdateValue(VolunteersUserDataKey, data);
             }
         }
-
+        private const string UserProfileKey = "UserProfile_Key";
+        public static string UserProfile
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UserProfileKey, string.Empty);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UserProfileKey, value);
+            }
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Services;
 using Prism.Commands;
@@ -14,16 +16,11 @@ namespace AtWork.ViewModels
         public event Action<string> SelectedImageEvent;
         public ProfileImagePopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            ImageList.Add("01");
-            ImageList.Add("02");
-            ImageList.Add("03");
-            ImageList.Add("04");
-            ImageList.Add("05");
-            ImageList.Add("06");
         }
         #region Private Properties
         private ObservableCollection<string> _imageList = new ObservableCollection<string>();
         private string _selectedImage;
+        private string _AvatarImages;
         #endregion
         #region Public Properties
         public ObservableCollection<string> ImageList
@@ -35,6 +32,12 @@ namespace AtWork.ViewModels
         {
             get { return _selectedImage; }
             set { SetProperty(ref _selectedImage, value); }
+        }
+
+        public string AvatarImages
+        {
+            get { return _AvatarImages; }
+            set { SetProperty(ref _AvatarImages, value); }
         }
         #endregion
         #region Commands

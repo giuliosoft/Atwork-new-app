@@ -21,7 +21,7 @@
                 </Grid.ColumnDefinitions>
                 <ContentView x:Name="HeaderProfile" Padding="10,10,0,10" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" WidthRequest="{DynamicResource HeightWidth55}">
                     <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
-                        <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.UserProfileImage}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}">
+                        <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.UserProfileImageHeader}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}">
                             <ffImageLoading:CachedImage.Transformations>
                                 <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                             </ffImageLoading:CachedImage.Transformations>

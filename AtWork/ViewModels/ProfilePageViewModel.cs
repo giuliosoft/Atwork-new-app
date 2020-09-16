@@ -74,10 +74,14 @@ namespace AtWork.ViewModels
         {
             try
             {
-                SessionService.CurrentTab = 0;
-                SessionService.IsWelcomeSetup = false;
-                SessionService.Logout();
-                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
+                var result = await App.Current.MainPage.DisplayAlert(string.Empty, AppResources.LogoutAlert, AppResources.LogoutText, AppResources.Cancel);
+                if (result)
+                {
+                    SessionService.CurrentTab = 0;
+                    SessionService.IsWelcomeSetup = false;
+                    SessionService.Logout();
+                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
+                }
             }
             catch (Exception ex)
             {
