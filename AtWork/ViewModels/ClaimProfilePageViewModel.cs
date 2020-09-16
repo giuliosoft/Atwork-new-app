@@ -6,6 +6,7 @@ using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -19,22 +20,42 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-
+        private string _UserEmail = string.Empty;
+        private string _UserPassword = string.Empty;
+        private string _UserName = string.Empty;
+        private string _UserSurname = string.Empty;
+        private ImageSource _UserCompanyLogo = string.Empty;
         #endregion
 
         #region Public Properties
-
-        private string _UserEmail = string.Empty;
         public string UserEmail
         {
             get { return _UserEmail; }
             set { SetProperty(ref _UserEmail, value); }
         }
-        private string _UserPassword = string.Empty;
+
         public string UserPassword
         {
             get { return _UserPassword; }
             set { SetProperty(ref _UserPassword, value); }
+        }
+
+        public string UserName
+        {
+            get { return _UserName; }
+            set { SetProperty(ref _UserName, value); }
+        }
+
+        public string UserSurname
+        {
+            get { return _UserSurname; }
+            set { SetProperty(ref _UserSurname, value); }
+        }
+
+        public ImageSource UserCompanyLogo
+        {
+            get { return _UserCompanyLogo; }
+            set { SetProperty(ref _UserCompanyLogo, value); }
         }
         #endregion
 
@@ -60,7 +81,11 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ClaimEditProfilePage), null);
+                NavigationParameters navigationParams = new NavigationParameters();
+                navigationParams.Add("UserFirstName", UserName);
+                navigationParams.Add("UserSurname", UserSurname);
+                navigationParams.Add("UserEmail", UserEmail);
+                await _navigationService.NavigateAsync(nameof(ClaimEditProfilePage), navigationParams);
             }
             catch (Exception ex)
             {
@@ -71,7 +96,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(CreatePasswordPage),null);
+                await _navigationService.NavigateAsync(nameof(CreatePasswordPage), null);
             }
             catch (Exception ex)
             {
@@ -93,7 +118,24 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            try
+            {
+                var UserProfileDetails = parameters.GetValue<LoginResponce>("UserProfileData");
+                if (UserProfileDetails != null)
+                {
+                    UserName = UserProfileDetails.Data1?.volFirstName;
+                    UserSurname = UserProfileDetails.Data1?.volLastName;
+                    UserEmail = UserProfileDetails.Data1?.volEmail;
+                    if (!string.IsNullOrEmpty(UserProfileDetails.Data.coLogo))
+                    {
+                        UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + UserProfileDetails.Data.coLogo));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
-
     }
 }

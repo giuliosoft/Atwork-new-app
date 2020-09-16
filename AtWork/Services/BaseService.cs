@@ -51,7 +51,8 @@ namespace AtWork.Services
                         client.BaseAddress = new Uri(ConfigService.BaseServiceURL);
                     }
 
-                    Debug.WriteLine("\n\nAPI : " + ConfigService.BaseServiceURL + serviceUrl);
+                    //Debug.WriteLine("\n\nAPI : " + ConfigService.BaseServiceURL + serviceUrl);
+                    Debug.WriteLine("\n\nAPI : " + serviceUrl);
 
                     if (isAddAuthorizationToken)
                     {
@@ -86,7 +87,8 @@ namespace AtWork.Services
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(ConfigService.BaseServiceURL);
-                    Debug.WriteLine("\n\nAPI : " + ConfigService.BaseServiceURL + serviceUrl);
+                    //Debug.WriteLine("\n\nAPI : " + ConfigService.BaseServiceURL + serviceUrl);
+                    Debug.WriteLine("\n\nAPI : " + serviceUrl);
                     Debug.WriteLine("\n\nRequest : " + jData);
 
                     if (isAddAuthorizationToken)

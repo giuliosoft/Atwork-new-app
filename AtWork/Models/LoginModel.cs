@@ -24,7 +24,7 @@ namespace AtWork.Models
         public class LoginOutputModel
         {
             private string _coLogo = string.Empty;
-            
+
             public int id { get; set; }
 
             public string coUniqueID { get; set; }
@@ -206,6 +206,14 @@ namespace AtWork.Models
                     return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + volPicture));
                 }
             }
+        }
+
+        public class ProfileCorrectionInputModel
+        {
+            public string volUniqueID { get; set; }
+            public string newName { get; set; }
+            public string newSurName { get; set; }
+            public string newEmail { get; set; }
         }
     }
 }

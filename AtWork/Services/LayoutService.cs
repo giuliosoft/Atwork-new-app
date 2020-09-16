@@ -29,8 +29,47 @@ namespace AtWork.Services
                     App.Current.Resources["SafeAreaPadding"] = new Thickness(0, 0, 0, 0);
                 }
             }
-
             DynamicLayoutServiceInit();
+            setPopUpImageHeight();
+        }
+
+        public static void setPopUpImageHeight()
+        {
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+                {
+                    var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+                    var screenHeight = mainDisplayInfo.Height;
+
+                    if (screenHeight == 1920 || screenHeight == 2208)
+                    {
+                        //Height iPhone 6+/6S+/7+/8+
+                        App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(135);
+                    }
+                    else if (screenHeight == 1136)
+                    {
+                        // Height iPhone 5 or 5S or 5C
+                        App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(155);
+                    }
+                    else if (screenHeight == 1334)
+                    {
+                        // Height iPhone 6/6S/7/8
+                        App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(155);
+                    }
+                    else if (screenHeight == 2688 || screenHeight == 1792 || screenHeight == 2436)
+                    {
+                        // Height-2688 : iPhone XS Max, 11 Pro Max
+                        // Height-1792 : iPhone XR, 11
+                        // Height-2436 : iPhone X, XS, 11 Pro                        
+                        App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(180);
+                    }
+                }
+            }
+            else
+            {
+                App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(155);
+            }
         }
 
         public static void DynamicLayoutServiceInit()
@@ -96,6 +135,8 @@ namespace AtWork.Services
             App.Current.Resources["HeightWidth115"] = sizeConvertAsPerDevice(115);
             App.Current.Resources["HeightWidth120"] = sizeConvertAsPerDevice(120);
             App.Current.Resources["HeightWidth130"] = sizeConvertAsPerDevice(130);
+            App.Current.Resources["HeightWidth140"] = sizeConvertAsPerDevice(140);
+            App.Current.Resources["HeightWidth150"] = sizeConvertAsPerDevice(150);
             App.Current.Resources["HeightWidth155"] = sizeConvertAsPerDevice(155);
             App.Current.Resources["HeightWidth160"] = sizeConvertAsPerDevice(160);
             App.Current.Resources["HeightWidth170"] = sizeConvertAsPerDevice(170);
@@ -326,6 +367,15 @@ namespace AtWork.Services
             App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Secondary_Dark);
             App.Current.Resources["LightColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Light);
             App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Secondary_Light);
+        }
+
+        public static void ConvertThemeAsPerClaimProfileSettings()
+        {
+            App.Current.Resources["AccentColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Accent); //(Color)loginOutputModel.AccentColur;
+            App.Current.Resources["DarkColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Dark);
+            App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Secondary_Dark);
+            App.Current.Resources["LightColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Light);
+            App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Secondary_Light);
         }
 
         static double SmallDeviceSize = 700;

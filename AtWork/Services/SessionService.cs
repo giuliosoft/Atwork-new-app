@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Prism.Navigation;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
+using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 
 namespace AtWork.Services
@@ -40,6 +41,8 @@ namespace AtWork.Services
         public static int GroupMemberCount = 0;
         public static bool isFromChangeUserProfile = false;
         public static bool isFromClaimProfile = false;
+        public static Volunteers tempVolunteerData = null;
+        public static LoginOutputModel tempClaimProfileData = null;
 
         /// <summary>
         /// Logout
@@ -49,6 +52,8 @@ namespace AtWork.Services
         /// <returns></returns>
         public static async Task Logout()
         {
+            SessionService.tempVolunteerData = null;
+            SessionService.tempClaimProfileData = null;
             SessionService.NewsPostInputData = null;
             SessionService.AppNavigationService = null;
             SettingsService.LoggedInUserData = null;

@@ -24,13 +24,13 @@
                     <StackLayout VerticalOptions="CenterAndExpand" Padding="0,0,0,0">
                         <StackLayout VerticalOptions="EndAndExpand" Padding="50,0,50,0">
                             <Label Text="Access your profile by usign your company email" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="60,30,60,30" FontSize="18" TextColor="Black"/>
-                            <CustomControl:CustomEntry Placeholder="Email" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                            <CustomControl:CustomEntry Text="{Binding CompanyEmail}" Placeholder="Email" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                             <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                         </StackLayout>
                         <StackLayout VerticalOptions="StartAndExpand" Padding="50,0,50,0">
                             <Label Text="Or enter the ID your company provided" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" Margin="60,30,60,30" TextColor="Black"/>
                             <!--<Label Text="Or enter the ID your company provided"  HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30" TextColor="Black"/>-->
-                            <CustomControl:CustomEntry Placeholder="ID" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                            <CustomControl:CustomEntry Text="{Binding CompanyID}" Placeholder="ID" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                             <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                         </StackLayout>
                     </StackLayout>

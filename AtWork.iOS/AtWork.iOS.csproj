@@ -29,7 +29,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>atwork_app_prod_provision_202008</CodesignProvision>
+    <CodesignProvision>atwork_app_adhoc_provision_202008</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

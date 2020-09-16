@@ -687,10 +687,10 @@ namespace AtWork.ViewModels
                 serviceResult = await ActivityService.GetGroupMemberListCount(SettingsService.LoggedInUserData.coUniqueID);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
-                    var serviceResultBody = JsonConvert.DeserializeObject<NewsLikeRespnce>(serviceResult.Body);
+                    var serviceResultBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag && serviceResultBody.Data != null)
                     {
-                        SessionService.GroupMemberCount = serviceResultBody.Data;
+                        SessionService.GroupMemberCount = Convert.ToInt32(serviceResultBody.Data);
                     }
                 }
             }

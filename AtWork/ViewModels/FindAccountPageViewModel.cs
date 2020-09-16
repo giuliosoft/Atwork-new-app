@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -20,15 +23,21 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-
+        private string _CompanyEmail = string.Empty;
+        private string _CompanyID = string.Empty;
         #endregion
 
         #region Public Properties
-        private string _ProductDetail = string.Empty;
-        public string ProductDetail
+        public string CompanyID
         {
-            get { return _ProductDetail; }
-            set { SetProperty(ref _ProductDetail, value); }
+            get { return _CompanyID; }
+            set { SetProperty(ref _CompanyID, value); }
+        }
+
+        public string CompanyEmail
+        {
+            get { return _CompanyEmail; }
+            set { SetProperty(ref _CompanyEmail, value); }
         }
         #endregion
 
@@ -41,10 +50,55 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ClaimProfilePage));
+                if (string.IsNullOrEmpty(CompanyEmail) && string.IsNullOrEmpty(CompanyID))
+                {
+                    await DisplayAlertAsync(AppResources.ClaimInputAlertText);
+                }
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                string input = string.Empty;
+                if (!string.IsNullOrEmpty(CompanyEmail))
+                {
+                    input = CompanyEmail;
+                }
+                else if (!string.IsNullOrEmpty(CompanyID))
+                {
+                    input = CompanyID;
+                }
+                await ShowLoader();
+                var serviceResult = await UserServices.ClaimUserProfile(input);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult.Body);
+                        if (serviceBody != null && serviceBody.Flag)
+                        {
+                            if (serviceBody.Data != null)
+                            {
+                                LoginOutputModel tempData = new LoginOutputModel();
+                                SessionService.tempClaimProfileData = tempData;
+                                LayoutService.ConvertThemeAsPerClaimProfileSettings();
+                            }
+                            if (serviceBody.Data1 != null)
+                            {
+                                Volunteers tempUserVol = new Volunteers();
+                                tempUserVol = serviceBody.Data1;
+                                SettingsService.LoggedInUserEmail = tempUserVol.volUserName;
+                                SettingsService.LoggedInUserPassword = tempUserVol.VolUserPassword;
+                                SessionService.tempVolunteerData = tempUserVol;
+                            }
+                            await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
+                        }
+                    }
+                }
+                await ClosePopup();
             }
             catch (Exception ex)
             {
+                await ClosePopup();
                 Debug.WriteLine(ex.Message);
             }
         }

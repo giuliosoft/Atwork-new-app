@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Models;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -19,37 +23,38 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-
+        private string _UserEmail = string.Empty;
+        private string _UserPassword = string.Empty;
+        private string _UserName = string.Empty;
+        private string _UserSurname = string.Empty;
         #endregion
 
         #region Public Properties
-        private string _ProductDetail = string.Empty;
-        public string ProductDetail
+        public string UserEmail
         {
-            get { return _ProductDetail; }
-            set { SetProperty(ref _ProductDetail, value); }
+            get { return _UserEmail; }
+            set { SetProperty(ref _UserEmail, value); }
+        }
+
+        public string UserName
+        {
+            get { return _UserName; }
+            set { SetProperty(ref _UserName, value); }
+        }
+
+        public string UserSurname
+        {
+            get { return _UserSurname; }
+            set { SetProperty(ref _UserSurname, value); }
         }
         #endregion
 
-        #region Commands
-        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
-        public DelegateCommand ThankYouResquestedCommand { get { return new DelegateCommand(async () => await ThankYouResquested()); } }
+        #region Commands        
+        public DelegateCommand SubmitProfileCorrectionsCommand { get { return new DelegateCommand(async () => await SubmitProfileCorrections()); } }
         public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-
         async Task PageHeaderBack(string str)
         {
             try
@@ -62,15 +67,43 @@ namespace AtWork.ViewModels
             }
         }
 
-        private async Task ThankYouResquested()
+        private async Task SubmitProfileCorrections()
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ClaimThankYouReqeuestPage), null);
-                //await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(ClaimThankYouReqeuestPage)}", null);
+                if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(UserSurname) || string.IsNullOrEmpty(UserEmail))
+                {
+                    await DisplayAlertAsync(AppResources.ProfileCorrectionInputAlertText);
+                    return;
+                }
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                ProfileCorrectionInputModel inputModel = new ProfileCorrectionInputModel();
+                inputModel.newEmail = UserEmail;
+                inputModel.newName = UserName;
+                inputModel.newSurName = UserSurname;
+                inputModel.volUniqueID = SessionService.tempVolunteerData.volUniqueID;
+
+                var serviceResult = await UserServices.SubmitUserProfileCorrections(inputModel);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    if (serviceResult.Body != null)
+                    {
+                        var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                        if (serviceBody != null && serviceBody.Flag)
+                        {
+                            await _navigationService.NavigateAsync(nameof(ClaimThankYouReqeuestPage), null);
+                        }
+                    }
+                }
+                await ClosePopup();
             }
             catch (Exception ex)
             {
+                await ClosePopup();
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -88,6 +121,16 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            try
+            {
+                UserName = parameters.GetValue<string>("UserFirstName");
+                UserSurname = parameters.GetValue<string>("UserSurname");
+                UserEmail = parameters.GetValue<string>("UserEmail");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

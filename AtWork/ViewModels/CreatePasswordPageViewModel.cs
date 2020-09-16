@@ -2,9 +2,11 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
@@ -123,8 +125,39 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
-                        SessionService.isFromClaimProfile = true;
-                        await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
+                        try
+                        {
+                            if (!await CheckConnectivity())
+                            {
+                                return;
+                            }
+                            await ShowLoader();
+                            if (SessionService.tempVolunteerData != null)
+                            {
+                                SessionService.tempVolunteerData.VolUserPassword = CreatePassowrdEntrytext;
+                                SessionService.tempVolunteerData.oldPassword = string.Empty;
+                            }
+                            var serviceResult = await UserServices.ChangeUserPassword(SessionService.tempVolunteerData);
+                            if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            {
+                                if (serviceResult.Body != null)
+                                {
+                                    var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                                    if (serviceBody != null && serviceBody.Flag)
+                                    {
+                                        //SessionService.isFromClaimProfile = true;
+                                        //await _navigationService.NavigateAsync(nameof(DisclaimerPage), null);
+                                    }
+                                }
+                            }
+                            await ClosePopup();
+                        }
+                        catch (Exception ex)
+                        {
+                            await ClosePopup();
+                            Debug.WriteLine(ex.Message);
+                        }
+                        //await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
                     }
                 }
             }

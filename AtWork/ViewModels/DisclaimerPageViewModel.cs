@@ -24,19 +24,13 @@ namespace AtWork.ViewModels
         public bool isEnableDisclamerButton = false;
         #endregion
         #region Private Properties
-        private string _ProductDetail = string.Empty;
         private string _DisclaimerLabel = string.Empty;
         private bool _Disclaimerbtn = true;
         private bool _Termsconditionbtn = false;
+        private ImageSource _UserCompanyLogo = string.Empty;
         #endregion
 
         #region Public Properties
-
-        public string ProductDetail
-        {
-            get { return _ProductDetail; }
-            set { SetProperty(ref _ProductDetail, value); }
-        }
         public string DisclaimerLabel
         {
             get { return _DisclaimerLabel; }
@@ -51,6 +45,15 @@ namespace AtWork.ViewModels
         {
             get { return _Termsconditionbtn; }
             set { SetProperty(ref _Termsconditionbtn, value); }
+        }
+
+        public ImageSource UserCompanyLogo
+        {
+            get
+            {
+                return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+            }
+            set { SetProperty(ref _UserCompanyLogo, value); }
         }
         #endregion
 
