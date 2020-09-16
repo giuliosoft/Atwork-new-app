@@ -14,7 +14,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public ClaimEditProfilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            ClaimProfileBackCommand = HeaderBackCommand;
         }
         #endregion
 
@@ -34,21 +34,34 @@ namespace AtWork.ViewModels
         #region Commands
         //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand ThankYouResquestedCommand { get { return new DelegateCommand(async () => await ThankYouResquested()); } }
-
+        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
         #endregion
 
         #region private methods
-        //async Task GoForLogin()
-        //{
-        //    try
-        //    {
+        async Task GoForLogin()
+        {
+            try
+            {
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task PageHeaderBack(string str)
+        {
+            try
+            {
+                await BackClick();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         private async Task ThankYouResquested()
         {
             try

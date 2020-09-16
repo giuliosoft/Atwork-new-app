@@ -10,16 +10,16 @@
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,100,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
-                <Image x:Name="logoImage" Source="logo" WidthRequest="200" 
+            <Image x:Name="logoImage" Source="logo" WidthRequest="200" 
                         HorizontalOptions="Center"/>
             <StackLayout VerticalOptions="CenterAndExpand">
                 <StackLayout Padding="20">
                     <Label Text="NAME" HorizontalTextAlignment="Center" FontSize="15"/>
                     <Label  Text="David" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>
                     <StackLayout IsVisible="False" Padding="40,5,40,0" >
-                    <CustomControl:CustomEntry Placeholder="Email" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
-                    <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
-                        </StackLayout>
+                        <CustomControl:CustomEntry Placeholder="Email" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
                 </StackLayout>
                 <StackLayout Padding="20">
                     <Label Text="SURNAME" HorizontalTextAlignment="Center" FontSize="15"/>
@@ -32,10 +32,10 @@
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand">
                 <Label Text="Something not right? Let us know" HorizontalTextAlignment="Center" TextDecorations="Underline" TextColor="Black">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
                 <StackLayout Orientation="Horizontal" >
                     <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="230" HeightRequest="20" Margin="10,10,5,10" BackgroundColor="#0B421A">
                         <Button Command="{Binding GoForCancelCommand}" x:Name="btnCancel" Text="Cancel" WidthRequest="50" FontSize="20" TextColor="White"/>
@@ -48,6 +48,6 @@
                     </Frame>
                 </StackLayout>
             </StackLayout>
-            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -43,5 +43,23 @@ namespace AtWork.Helpers
                 return false;
             }
         }
+
+        public static bool PasswordIsValid(string password)
+        {
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinMaxChars = new Regex(@".{8,15}");
+            var hasLowerChar = new Regex(@"[a-z]+");
+            var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+
+            if (hasLowerChar.IsMatch(password) && hasUpperChar.IsMatch(password) && hasNumber.IsMatch(password) && hasMinMaxChars.IsMatch(password) && hasSymbols.IsMatch(password))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

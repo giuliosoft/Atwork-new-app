@@ -39,6 +39,7 @@ namespace AtWork.Services
         public static int CurrentTab = 0;
         public static int GroupMemberCount = 0;
         public static bool isFromChangeUserProfile = false;
+        public static bool isFromClaimProfile = false;
 
         /// <summary>
         /// Logout
