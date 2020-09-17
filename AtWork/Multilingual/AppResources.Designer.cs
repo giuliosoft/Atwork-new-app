@@ -1216,5 +1216,119 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("LogoutAlert", resourceCulture);
             }
         }
+        
+        internal static string FindProfileEmailHeaderText {
+            get {
+                return ResourceManager.GetString("FindProfileEmailHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string FindProfileIDHeaderText {
+            get {
+                return ResourceManager.GetString("FindProfileIDHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string SubmitText {
+            get {
+                return ResourceManager.GetString("SubmitText", resourceCulture);
+            }
+        }
+        
+        internal static string EmailPlaceholderText {
+            get {
+                return ResourceManager.GetString("EmailPlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string IDPlaceholderText {
+            get {
+                return ResourceManager.GetString("IDPlaceholderText", resourceCulture);
+            }
+        }
+        
+        internal static string NameHeaderText {
+            get {
+                return ResourceManager.GetString("NameHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string SurnameHeaderText {
+            get {
+                return ResourceManager.GetString("SurnameHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string EmailHeaderText {
+            get {
+                return ResourceManager.GetString("EmailHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileNotRightText {
+            get {
+                return ResourceManager.GetString("ProfileNotRightText", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileText {
+            get {
+                return ResourceManager.GetString("ClaimProfileText", resourceCulture);
+            }
+        }
+        
+        internal static string SubmitCorrectionText {
+            get {
+                return ResourceManager.GetString("SubmitCorrectionText", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileThankYouText1 {
+            get {
+                return ResourceManager.GetString("ClaimProfileThankYouText1", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileThankYouText2 {
+            get {
+                return ResourceManager.GetString("ClaimProfileThankYouText2", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileThankYouText3 {
+            get {
+                return ResourceManager.GetString("ClaimProfileThankYouText3", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileThankYouText4 {
+            get {
+                return ResourceManager.GetString("ClaimProfileThankYouText4", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileThankYouText5 {
+            get {
+                return ResourceManager.GetString("ClaimProfileThankYouText5", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileThankYouText6 {
+            get {
+                return ResourceManager.GetString("ClaimProfileThankYouText6", resourceCulture);
+            }
+        }
+        
+        internal static string ContinueSetupText {
+            get {
+                return ResourceManager.GetString("ContinueSetupText", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordValidationText {
+            get {
+                return ResourceManager.GetString("PasswordValidationText", resourceCulture);
+            }
+        }
     }
 }

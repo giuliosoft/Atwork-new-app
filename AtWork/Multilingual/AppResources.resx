@@ -218,7 +218,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Delete post?</value>
     </data>
     <data name="AcceptDisclaimer" xml:space="preserve">
-        <value>Accept Disclaimer</value>
+        <value>Accept disclaimer</value>
     </data>
     <data name="AcceptTermsAndConditionsText" xml:space="preserve">
         <value>Accept terms and conditions</value>
@@ -609,7 +609,6 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="ConfirmPasswordText" xml:space="preserve">
         <value>Confirm your password</value>
     </data>
-
     <data name="ClaimInputAlertText" xml:space="preserve">
         <value>Company email or Company ID needed for claiming profile!</value>
     </data>
@@ -622,7 +621,66 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="TermsAndConditionHeaderText" xml:space="preserve">
         <value>Terms and condition</value>
     </data>
-     <data name="LogoutAlert" xml:space="preserve">
+    <data name="LogoutAlert" xml:space="preserve">
         <value>Are you sure you want to log out?</value>
+    </data>
+    <data name="FindProfileEmailHeaderText" xml:space="preserve">
+        <value>Access your profile by using your company email</value>
+    </data>
+    <data name="FindProfileIDHeaderText" xml:space="preserve">
+        <value>Or enter the ID your company provided</value>
+    </data>
+    <data name="SubmitText" xml:space="preserve">
+        <value>Submit</value>
+    </data>
+    <data name="EmailPlaceholderText" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="IDPlaceholderText" xml:space="preserve">
+        <value>ID</value>
+    </data>
+    <data name="NameHeaderText" xml:space="preserve">
+        <value>NAME</value>
+    </data>
+    <data name="SurnameHeaderText" xml:space="preserve">
+        <value>SURNAME</value>
+    </data>
+    <data name="EmailHeaderText" xml:space="preserve">
+        <value>EMAIL</value>
+    </data>
+    <data name="ProfileNotRightText" xml:space="preserve">
+        <value>Something not right? Let us know</value>
+    </data>
+    <data name="ClaimProfileText" xml:space="preserve">
+        <value>Claim profile</value>
+    </data>
+    <data name="SubmitCorrectionText" xml:space="preserve">
+        <value>Submit corrections</value>
+    </data>
+    <data name="ClaimProfileThankYouText1" xml:space="preserve">
+        <value>Thank you for your request.</value>
+    </data>
+    <data name="ClaimProfileThankYouText2" xml:space="preserve">
+        <value>You can now continue setting</value>
+    </data>
+    <data name="ClaimProfileThankYouText3" xml:space="preserve">
+        <value>up your profile.</value>
+    </data>
+    <data name="ClaimProfileThankYouText4" xml:space="preserve">
+        <value>Once your coordinator has</value>
+    </data>
+    <data name="ClaimProfileThankYouText5" xml:space="preserve">
+        <value>approved the changes, your</value>
+    </data>
+    <data name="ClaimProfileThankYouText6" xml:space="preserve">
+        <value>profile will be uploaded.</value>
+    </data>
+    <data name="ContinueSetupText" xml:space="preserve">
+        <value>Continue setup</value>
+    </data>
+    <data name="PasswordValidationText" xml:space="preserve">
+        <value>Your password must include least 8 characters.
+At least one lowercase letter, one upercase
+letter, one number and one special character.</value>
     </data>
 </root>

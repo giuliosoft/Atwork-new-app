@@ -2,33 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.Views.ClaimThankYouReqeuestPage"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
-             xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork" xmlns:ffImageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
              NavigationPage.HasNavigationBar="false"
              BackgroundColor="{StaticResource OffWhiteColor}"
              ControlTemplate="{StaticResource GreenBackHeader_Template}">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                <Label Text="Thank you for your request." TextColor="Black" FontSize="19" HorizontalTextAlignment="Center"/>
-                <Label Text="You can now continue setting" TextColor="Black" FontSize="19" Margin="0,15,0,0" HorizontalTextAlignment="Center"/>
-                <Label Text="up your profile." TextColor="Black" FontSize="19" Margin="0,0,0,15" HorizontalTextAlignment="Center"/>
-                <Label Text="Once your coordinator has" TextColor="Black" FontSize="19"  HorizontalTextAlignment="Center"/>
-                <Label Text="approved the changes, your" TextColor="Black" FontSize="19"  HorizontalTextAlignment="Center"/>
-                <Label Text="profile will be uploaded." TextColor="Black" FontSize="19"  HorizontalTextAlignment="Center"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText1}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText2}" Margin="0,15,0,0" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText3}" Margin="0,0,0,15" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText4}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText5}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText6}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
             </StackLayout>
-            <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                 <ffImageloading:CachedImage Source="SubmitCorrection" Aspect="AspectFit" Margin="0,0,0,20"/>
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>-->
             <StackLayout VerticalOptions="End" Margin="0,0,0,10">
-                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="140" HeightRequest="3" BackgroundColor="{StaticResource DarkGreenShade}">
-                    <Button Command="{Binding ContinueSetupCommand}" x:Name="btnLogin" Text="Continue setup" WidthRequest="20" FontSize="18" TextColor="White" />
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="140" HeightRequest="3" BackgroundColor="{StaticResource DarkGreenShade}">
+                    <Button Text="{x:Static Multilingual:AppResources.ContinueSetupText}" Command="{Binding ContinueSetupCommand}" Style="{StaticResource ClaimProfileButtonStyle}" WidthRequest="20" />
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
                     </Frame.GestureRecognizers>

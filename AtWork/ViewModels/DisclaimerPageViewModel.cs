@@ -15,14 +15,14 @@ namespace AtWork.ViewModels
         #region Constructor
         public DisclaimerPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            DisclaimerLabel = "Disclaimer";
+            DisclaimerLabel = AppResources.DisclaimerHeaderText;
             Disclaimerbtn = true;
             Termsconditionbtn = false;
         }
         #endregion
 
         #region Private Properties        
-        private string _DisclaimerLabel = "Disclaimer";
+        private string _DisclaimerLabel = AppResources.DisclaimerHeaderText;
         private string _disclaimerText = AppResources.DisclamerText;
         private bool _Disclaimerbtn = true;
         private bool _Termsconditionbtn = false;
@@ -95,7 +95,7 @@ namespace AtWork.ViewModels
                 else
                 {
                     isDisclaimer = true;
-                    DisclaimerLabel = "Disclaimer";
+                    DisclaimerLabel = AppResources.DisclaimerHeaderText;
                     DisclaimerText = AppResources.DisclamerText;
                     Disclaimerbtn = true;
                     Termsconditionbtn = false;
@@ -116,7 +116,7 @@ namespace AtWork.ViewModels
                     if (isDisclaimer)
                     {
                         isDisclaimer = false;
-                        DisclaimerLabel = "Terms and condition";
+                        DisclaimerLabel = AppResources.TermsAndConditionHeaderText;
                         DisclaimerText = AppResources.TermsText;
                         Disclaimerbtn = false;
                         Termsconditionbtn = true;
@@ -133,7 +133,7 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
-                        DisclaimerLabel = "Terms and condition";
+                        DisclaimerLabel = AppResources.TermsAndConditionHeaderText;
                         DisclaimerText = AppResources.TermsText;
                         Disclaimerbtn = false;
                         Termsconditionbtn = true;
@@ -147,21 +147,6 @@ namespace AtWork.ViewModels
                             await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                         }
                     }
-                    /*
-                    if (SessionService.isFromClaimProfile)
-                    {
-                        SessionService.isFromClaimProfile = false;
-                        await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
-                    }
-                    else
-                    {
-                        DisclaimerLabel = "Terms and condition";
-                        DisclaimerText = AppResources.TermsText;
-                        Disclaimerbtn = false;
-                        Termsconditionbtn = true;
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
-                    }
-                    */
                 }
             }
             catch (Exception ex)
