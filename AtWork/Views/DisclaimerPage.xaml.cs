@@ -21,6 +21,8 @@ namespace AtWork.Views
                 return;
 
             VMContext.isEnableDisclamerButton = true;
+            VMContext.ButtonColor = (Color)App.Current.Resources["WhiteColor"];
+            
         }
     }
 }

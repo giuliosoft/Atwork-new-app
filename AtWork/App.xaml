@@ -45,6 +45,8 @@
             <Color x:Key="LightDarkBlackColor">#1D1D1B</Color>
             <!--Shaded White-->
             <Color x:Key="ShadedWhiteColor">#cccccc</Color>
+            <!--Shaded White-->
+            <Color x:Key="GrayColor">#999999</Color>
             <!-- Colors End -->
 
             <!--ControlTemplate-->
