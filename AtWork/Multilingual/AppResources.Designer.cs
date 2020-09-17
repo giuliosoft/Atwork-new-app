@@ -1450,5 +1450,41 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("DescribeItWithSomeEmojisText", resourceCulture);
             }
         }
+        
+        internal static string AppAuthenticationHeaderText {
+            get {
+                return ResourceManager.GetString("AppAuthenticationHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string AuthIDPageText1 {
+            get {
+                return ResourceManager.GetString("AuthIDPageText1", resourceCulture);
+            }
+        }
+        
+        internal static string AuthIDPageText2 {
+            get {
+                return ResourceManager.GetString("AuthIDPageText2", resourceCulture);
+            }
+        }
+        
+        internal static string AuthIDPageText3 {
+            get {
+                return ResourceManager.GetString("AuthIDPageText3", resourceCulture);
+            }
+        }
+        
+        internal static string AuthIDEnableText {
+            get {
+                return ResourceManager.GetString("AuthIDEnableText", resourceCulture);
+            }
+        }
+        
+        internal static string AuthIDSkipText {
+            get {
+                return ResourceManager.GetString("AuthIDSkipText", resourceCulture);
+            }
+        }
     }
 }

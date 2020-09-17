@@ -737,7 +737,6 @@ letter, one number and one special character.</value>
     <data name="ClaimProfileText" xml:space="preserve">
         <value>Claim profile</value>
     </data>
-
     <data name="ContinueSetupText" xml:space="preserve">
         <value>Continue setup</value>
     </data>
@@ -750,5 +749,22 @@ letter, one number and one special character.</value>
     <data name="DescribeItWithSomeEmojisText" xml:space="preserve">
         <value>Describe it with some emojis!</value>
     </data>
-    
+    <data name="AppAuthenticationHeaderText" xml:space="preserve">
+        <value>Use Face or touch id to unlock app.</value>
+    </data>
+    <data name="AuthIDPageText1" xml:space="preserve">
+        <value>Would you like to enable</value>
+    </data>
+    <data name="AuthIDPageText2" xml:space="preserve">
+        <value>Touch ID/Face ID for</value>
+    </data>
+    <data name="AuthIDPageText3" xml:space="preserve">
+        <value>authentification?</value>
+    </data>
+    <data name="AuthIDEnableText" xml:space="preserve">
+        <value>Yes, enable</value>
+    </data>
+    <data name="AuthIDSkipText" xml:space="preserve">
+        <value>No, log in</value>
+    </data>
 </root>

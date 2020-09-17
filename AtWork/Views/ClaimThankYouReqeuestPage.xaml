@@ -9,7 +9,7 @@
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
              NavigationPage.HasNavigationBar="false"
              BackgroundColor="{StaticResource OffWhiteColor}"
-             ControlTemplate="{StaticResource GreenBackHeader_Template}">
+             ControlTemplate="{StaticResource BackHeaderView_Template}">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -17,11 +17,11 @@
                 <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText2}" Margin="0,15,0,0" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
                 <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText3}" Margin="0,0,0,15" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
                 <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText4}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
-                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText5}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText5}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>    
                 <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText6}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
             </StackLayout>
             <StackLayout VerticalOptions="End" Margin="0,0,0,10">
-                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="140" HeightRequest="3" BackgroundColor="{StaticResource DarkGreenShade}">
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End" WidthRequest="140" HeightRequest="3" BackgroundColor="{StaticResource AccentColor}">
                     <Button Text="{x:Static Multilingual:AppResources.ContinueSetupText}" Command="{Binding ContinueSetupCommand}" Style="{StaticResource ClaimProfileButtonStyle}" WidthRequest="20" />
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>

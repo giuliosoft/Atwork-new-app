@@ -9,7 +9,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
              NavigationPage.HasNavigationBar="false"
-             ControlTemplate="{StaticResource GreenBackHeader_Template}"
+             ControlTemplate="{StaticResource BackHeaderView_Template}"
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -37,7 +37,7 @@
                 </StackLayout>
             </StackLayout>
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="250" HeightRequest="20" Margin="10,10,5,10" BackgroundColor="#0B421A">
+                <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="250" HeightRequest="20" Margin="10,10,5,10" BackgroundColor="{StaticResource AccentColor}">
                     <Button Command="{Binding SubmitProfileCorrectionsCommand}" Text="{x:Static Multilingual:AppResources.SubmitCorrectionText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SubmitProfileCorrectionsCommand}"/>

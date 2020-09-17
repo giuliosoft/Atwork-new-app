@@ -49,19 +49,6 @@ namespace AtWork.Services
         //    }
         //}
 
-        private const string IsUsedBioMetricLoginKey = "IsUsedBioMetricLogin_key";
-        private static readonly bool IsUsedBioMetricLoginDefault = false;
-        public static bool IsUsedBioMetricLogin
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(IsUsedBioMetricLoginKey, IsUsedBioMetricLoginDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(IsUsedBioMetricLoginKey, value);
-            }
-        }
         //This should be used with caution as it will remove all of your app’s specific settings that were ever created.
         public static void ClearEverything()
         {
@@ -140,6 +127,20 @@ namespace AtWork.Services
             set
             {
                 AppSettings.AddOrUpdateValue(UserProfileKey, value);
+            }
+        }
+
+        private const string IsBioMetricAuthenticationEnabledKey = "IsBioMetricAuthenticationEnabled_key";
+        private static readonly bool IsBioMetricAuthenticationEnabledDefault = false;
+        public static bool IsBioMetricAuthenticationEnabled
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IsBioMetricAuthenticationEnabledKey, IsBioMetricAuthenticationEnabledDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsBioMetricAuthenticationEnabledKey, value);
             }
         }
     }

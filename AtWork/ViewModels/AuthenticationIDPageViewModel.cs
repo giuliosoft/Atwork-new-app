@@ -42,6 +42,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                SettingsService.IsBioMetricAuthenticationEnabled = false;
                 await _navigationService.NavigateAsync(nameof(LoginPage), null);
             }
             catch (Exception ex)
@@ -49,10 +50,12 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
         private async Task GoForEnable()
         {
             try
             {
+                SettingsService.IsBioMetricAuthenticationEnabled = true;
                 await _navigationService.NavigateAsync(nameof(TouchIDLoginPage), null);
             }
             catch (Exception ex)

@@ -16,6 +16,7 @@ namespace AtWork.ViewModels
         public DisclaimerPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             DisclaimerLabel = AppResources.DisclaimerHeaderText;
+            BackCancelText = AppResources.BackButtonText;
             Disclaimerbtn = true;
             Termsconditionbtn = false;
             ButtonColor = (Color)App.Current.Resources["GrayColor"];

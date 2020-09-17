@@ -112,6 +112,16 @@
                     <ContentPresenter Grid.Row="1" />
                 </Grid>
             </ControlTemplate>
+            <ControlTemplate x:Key="BackHeaderView_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:BackHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
             <!--ControlTemplate End-->
 
             <!--Label Styles Start-->

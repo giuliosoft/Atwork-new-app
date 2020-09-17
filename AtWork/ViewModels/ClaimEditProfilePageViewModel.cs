@@ -18,7 +18,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public ClaimEditProfilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            ClaimProfileBackCommand = HeaderBackCommand;
+            BackCancelText = AppResources.BackButtonText;
         }
         #endregion
 
@@ -51,11 +51,12 @@ namespace AtWork.ViewModels
 
         #region Commands        
         public DelegateCommand SubmitProfileCorrectionsCommand { get { return new DelegateCommand(async () => await SubmitProfileCorrections()); } }
-        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
+        //public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
+        public DelegateCommand BackButtonCommand { get { return new DelegateCommand(async () => await PageHeaderBack()); } }
         #endregion
 
         #region private methods
-        async Task PageHeaderBack(string str)
+        async Task PageHeaderBack()
         {
             try
             {
