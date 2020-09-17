@@ -112,7 +112,6 @@ namespace AtWork.ViewModels
                     }
                 }
                 await ClosePopup();
-
             }
             catch (Exception ex)
             {

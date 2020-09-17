@@ -15,33 +15,30 @@
             <StackLayout VerticalOptions="CenterAndExpand">
                 <StackLayout Padding="20">
                     <Label Text="NAME" HorizontalTextAlignment="Center" FontSize="15"/>
-                    <!--<Label  Text="David" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>-->
                     <StackLayout Padding="40,5,40,0" >
-                        <CustomControl:CustomEntry Placeholder="David" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <CustomControl:CustomEntry Text="{Binding UserName}" Placeholder="David" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                         <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Padding="20">
                     <Label Text="SURNAME" HorizontalTextAlignment="Center" FontSize="15"/>
-                    <!--<Label Text="Smith" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>-->
                     <StackLayout Padding="40,5,40,0" >
-                        <CustomControl:CustomEntry Placeholder="Smith" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <CustomControl:CustomEntry Text="{Binding UserSurname}" Placeholder="Smith" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                         <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Padding="20">
                     <Label Text="EMAIL" HorizontalTextAlignment="Center" FontSize="15"/>
-                    <!--<Label Text="david.smith@starbucks.com" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>-->
                     <StackLayout Padding="40,5,40,0" >
-                        <CustomControl:CustomEntry Placeholder="david.smith@starbucks.com" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                        <CustomControl:CustomEntry Text="{Binding UserEmail}" Placeholder="david.smith@starbucks.com" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                         <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
-                </StackLayout> 
+                </StackLayout>
             </StackLayout>
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                 <ffImageloading:CachedImage Source="SubmitCorrection" Aspect="AspectFit" Margin="0,0,0,20"/>
+                <ffImageloading:CachedImage Source="SubmitCorrection" Aspect="AspectFit" Margin="0,0,0,20"/>
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ThankYouResquestedCommand}"/>
+                    <TapGestureRecognizer Command="{Binding SubmitProfileCorrectionsCommand}"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
         </StackLayout>

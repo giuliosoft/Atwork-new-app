@@ -5,8 +5,8 @@ namespace AtWork.Services
     {
 
         //*****Local URL*****//
-        //public static string BaseServerURL = "http://0e3a131627bb.ngrok.io";
-        //public static string BaseServiceURL = "http://0e3a131627bb.ngrok.io/api";
+        //public static string BaseServerURL = "http://e664521c6dc7.ngrok.io";
+        //public static string BaseServiceURL = "http://e664521c6dc7.ngrok.io/api";
         //
 
         //*****LIVE URL******//
@@ -56,5 +56,7 @@ namespace AtWork.Services
         public static string GetUserProfilePicServiceURL = "/user/GetProfilePicture";
         public static string UpdateUserProfilePicServiceURL = "/user/UpdateProfilePicture";
         public static string UpdateUserPasswordServiceURL = "/user/UpdatePassword";
+        public static string ClaimUserProfileServiceURL = "/user/claimprofile/";
+        public static string UserProfileCorrectionServiceURL = "/user/submitcorrection";
     }
 }

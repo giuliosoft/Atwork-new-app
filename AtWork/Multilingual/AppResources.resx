@@ -609,6 +609,13 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="ConfirmPasswordText" xml:space="preserve">
         <value>Confirm your password</value>
     </data>
+
+    <data name="ClaimInputAlertText" xml:space="preserve">
+        <value>Company email or Company ID needed for claiming profile!</value>
+    </data>
+    <data name="ProfileCorrectionInputAlertText" xml:space="preserve">
+        <value>Any of above fields can't be empty!</value>
+    </data>
     <data name="DisclaimerHeaderText" xml:space="preserve">
         <value>Disclaimer</value>
     </data>

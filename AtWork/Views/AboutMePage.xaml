@@ -14,21 +14,21 @@
     <ContentPage.Content>
             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Label IsVisible="{Binding ShowHeadingText}" Text="Can you tell us a bit about yourself?" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
-                <ScrollView VerticalOptions="StartAndExpand" >
+                <ScrollView Padding="0,0,0,100" VerticalOptions="StartAndExpand" >
                     <StackLayout>
                         <Customcontrol:CustomEditor Text="{Binding AboutUserText}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource PostLabelStyle}" VerticalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
-                        <ContentView IsVisible="{Binding ShowHeadingText}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                            <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                                    <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.DoneButtonText}" FontSize="20" TextColor="White"/>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding DoneCommand}"/>
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
-                            </PancakeControl:PancakeView>
-                        </ContentView>
                     </StackLayout>
                 </ScrollView>
+                <ContentView IsVisible="{Binding ShowHeadingText}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                    <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.DoneButtonText}" FontSize="20" TextColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DoneCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>
