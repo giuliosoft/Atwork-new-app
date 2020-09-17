@@ -18,6 +18,7 @@ namespace AtWork.ViewModels
             DisclaimerLabel = AppResources.DisclaimerHeaderText;
             Disclaimerbtn = true;
             Termsconditionbtn = false;
+            ButtonColor = (Color)App.Current.Resources["GrayColor"];
         }
         #endregion
 
@@ -27,6 +28,7 @@ namespace AtWork.ViewModels
         private bool _Disclaimerbtn = true;
         private bool _Termsconditionbtn = false;
         private ImageSource _UserCompanyLogo = string.Empty;
+        private Color _ButtonColor = (Color)App.Current.Resources["WhiteColor"];
         bool isDisclaimer = true;
         #endregion
 
@@ -49,7 +51,11 @@ namespace AtWork.ViewModels
             get { return _Termsconditionbtn; }
             set { SetProperty(ref _Termsconditionbtn, value); }
         }
-
+        public Color ButtonColor
+        {
+            get { return _ButtonColor; }
+            set { SetProperty(ref _ButtonColor, value); }
+        }
         public ImageSource UserCompanyLogo
         {
             get
@@ -69,7 +75,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand BackButtonCommand { get { return new DelegateCommand(async () => await BackButton()); } }
         public DelegateCommand ContinueSetupCommand { get { return new DelegateCommand(async () => await TermsandCondition()); } }
-        public DelegateCommand GoToAuthenticationIdCommand { get { return new DelegateCommand(async () => await GoToAuthenticationId()); } }
+        public DelegateCommand GoToAuthenticationIdCommand { get { return new DelegateCommand(async () => await TermsandCondition()); } }
         #endregion
 
         #region private methods
@@ -122,21 +128,18 @@ namespace AtWork.ViewModels
                         Termsconditionbtn = true;
                         if (pageObject != null)
                         {
-                            isEnableDisclamerButton = false;
                             var scrollRef = pageObject.FindByName("appDetailScrollView");
                             if (scrollRef != null)
                             {
                                 var scroller = scrollRef as ScrollView;
                                 await scroller.ScrollToAsync(0, 0, false);
                             }
+                            isEnableDisclamerButton = false;
+                            ButtonColor = (Color)App.Current.Resources["GrayColor"];
                         }
                     }
                     else
                     {
-                        DisclaimerLabel = AppResources.TermsAndConditionHeaderText;
-                        DisclaimerText = AppResources.TermsText;
-                        Disclaimerbtn = false;
-                        Termsconditionbtn = true;
                         if (SessionService.isFromClaimProfile)
                         {
                             SessionService.isFromClaimProfile = false;
@@ -158,7 +161,10 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
+                if (isEnableDisclamerButton)
+                {
+                    await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
+                }
             }
             catch (Exception ex)
             {
