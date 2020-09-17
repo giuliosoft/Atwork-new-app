@@ -1270,5 +1270,149 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("Logintoyourcompany", resourceCulture);
             }
         }
+        
+        internal static string WouldYouLikeToEnableMsgText {
+            get {
+                return ResourceManager.GetString("WouldYouLikeToEnableMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string TouchIDFaceIDForMsgText {
+            get {
+                return ResourceManager.GetString("TouchIDFaceIDForMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string authentificationQueMsgText {
+            get {
+                return ResourceManager.GetString("authentificationQueMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string YesEnableMsgText {
+            get {
+                return ResourceManager.GetString("YesEnableMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string NoLogInMsgText {
+            get {
+                return ResourceManager.GetString("NoLogInMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string NAMECapText {
+            get {
+                return ResourceManager.GetString("NAMECapText", resourceCulture);
+            }
+        }
+        
+        internal static string SURNAMECapText {
+            get {
+                return ResourceManager.GetString("SURNAMECapText", resourceCulture);
+            }
+        }
+        
+        internal static string EMAILCapText {
+            get {
+                return ResourceManager.GetString("EMAILCapText", resourceCulture);
+            }
+        }
+        
+        internal static string SomethingNotRightLetUsKnowMsgText {
+            get {
+                return ResourceManager.GetString("SomethingNotRightLetUsKnowMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string ClaimProfileText {
+            get {
+                return ResourceManager.GetString("ClaimProfileText", resourceCulture);
+            }
+        }
+        
+        internal static string ThankYouForYourRequestMsgText {
+            get {
+                return ResourceManager.GetString("ThankYouForYourRequestMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string YouCanNowContinueSettingMsgText {
+            get {
+                return ResourceManager.GetString("YouCanNowContinueSettingMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string UpYourProfileMsgText {
+            get {
+                return ResourceManager.GetString("UpYourProfileMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string OnceYourCoordinatorHasMsgText {
+            get {
+                return ResourceManager.GetString("OnceYourCoordinatorHasMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string ApprovedTheChangesYourMsgText {
+            get {
+                return ResourceManager.GetString("ApprovedTheChangesYourMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileWillBeUploadedMsgText {
+            get {
+                return ResourceManager.GetString("ProfileWillBeUploadedMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string ContinueSetupText {
+            get {
+                return ResourceManager.GetString("ContinueSetupText", resourceCulture);
+            }
+        }
+        
+        internal static string DateText {
+            get {
+                return ResourceManager.GetString("DateText", resourceCulture);
+            }
+        }
+        
+        internal static string TimeHeaderText {
+            get {
+                return ResourceManager.GetString("TimeHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string DescribeItWithSomeEmojisText {
+            get {
+                return ResourceManager.GetString("DescribeItWithSomeEmojisText", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordMustIncludeMsgText {
+            get {
+                return ResourceManager.GetString("PasswordMustIncludeMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string SubmitHeaderText {
+            get {
+                return ResourceManager.GetString("SubmitHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string AccessYourProfileByUsignYourCompanyEmailHeaderText {
+            get {
+                return ResourceManager.GetString("AccessYourProfileByUsignYourCompanyEmailHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string OrEnterTheIDYourCompanyProvidedHeaderText {
+            get {
+                return ResourceManager.GetString("OrEnterTheIDYourCompanyProvidedHeaderText", resourceCulture);
+            }
+        }
     }
 }

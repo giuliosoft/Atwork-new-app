@@ -609,7 +609,6 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="ConfirmPasswordText" xml:space="preserve">
         <value>Confirm your password</value>
     </data>
-
     <data name="ClaimInputAlertText" xml:space="preserve">
         <value>Company email or Company ID needed for claiming profile!</value>
     </data>
@@ -622,34 +621,106 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     <data name="TermsAndConditionHeaderText" xml:space="preserve">
         <value>Terms and condition</value>
     </data>
-     <data name="LogoutAlert" xml:space="preserve">
+    <data name="LogoutAlert" xml:space="preserve">
         <value>Are you sure you want to log out?</value>
     </data>
-         <data name="AtWorkActivityEventText" xml:space="preserve">
+    <data name="AtWorkActivityEventText" xml:space="preserve">
         <value>AtWork Activity Event</value>
     </data>
-             <data name="joinedText" xml:space="preserve">
+    <data name="joinedText" xml:space="preserve">
         <value>joined</value>
     </data>
     <data name="ErrorText" xml:space="preserve">
         <value>Error</value>
     </data>
-     <data name="BiometricAlertMsgText" xml:space="preserve">
+    <data name="BiometricAlertMsgText" xml:space="preserve">
         <value>Biometric authentication is not available or is not configured.</value>
     </data>
-         <data name="AuthenticationText" xml:space="preserve">
+    <data name="AuthenticationText" xml:space="preserve">
         <value>Authentication</value>
     </data>
-             <data name="AuthenticationAlertMsgText" xml:space="preserve">
+    <data name="AuthenticationAlertMsgText" xml:space="preserve">
         <value>Tap this fingerprint sensor!</value>
     </data>
     <data name="AuthenticationFailedAlertMsgText" xml:space="preserve">
         <value>Authentication failed</value>
     </data>
-       <data name="ComingSoonAlertMsgText" xml:space="preserve">
+    <data name="ComingSoonAlertMsgText" xml:space="preserve">
         <value>Coming Soon...</value>
         </data>
     <data name="Logintoyourcompany" xml:space="preserve">
         <value>Log in to your company</value>
+    </data>
+    <data name="WouldYouLikeToEnableMsgText" xml:space="preserve">
+        <value>Would you like to enable</value>
+    </data>
+    <data name="TouchIDFaceIDForMsgText" xml:space="preserve">
+        <value>Touch ID/Face ID for</value>
+    </data>
+    <data name="authentificationQueMsgText" xml:space="preserve">
+        <value>authentification?</value>
+    </data>
+    <data name="YesEnableMsgText" xml:space="preserve">
+        <value>Yes, enable</value>
+    </data>
+    <data name="NoLogInMsgText" xml:space="preserve">
+        <value>No, log in</value>
+    </data>
+    <data name="NAMECapText" xml:space="preserve">
+        <value>NAME</value>
+    </data>
+    <data name="SURNAMECapText" xml:space="preserve">
+        <value>SURNAME</value>
+    </data>
+    <data name="EMAILCapText" xml:space="preserve">
+        <value>EMAIL</value>
+    </data>
+    <data name="SomethingNotRightLetUsKnowMsgText" xml:space="preserve">
+        <value>Something not right? Let us know</value>
+    </data>
+    <data name="ClaimProfileText" xml:space="preserve">
+        <value>Claim profile</value>
+    </data>
+    <data name="ThankYouForYourRequestMsgText" xml:space="preserve">
+        <value>Thank you for your request.</value>
+    </data>
+    <data name="YouCanNowContinueSettingMsgText" xml:space="preserve">
+        <value>You can now continue setting</value>
+    </data>
+    <data name="UpYourProfileMsgText" xml:space="preserve">
+        <value>up your profile.</value>
+    </data>
+    <data name="OnceYourCoordinatorHasMsgText" xml:space="preserve">
+        <value>Once your coordinator has</value>
+    </data>
+    <data name="ApprovedTheChangesYourMsgText" xml:space="preserve">
+        <value>approved the changes, your</value>
+    </data>
+    <data name="ProfileWillBeUploadedMsgText" xml:space="preserve">
+        <value>profile will be uploaded.</value>
+    </data>
+    <data name="ContinueSetupText" xml:space="preserve">
+        <value>Continue setup</value>
+    </data>
+    <data name="DateText" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <data name="TimeHeaderText" xml:space="preserve">
+        <value>Time</value>
+    </data>
+    <data name="DescribeItWithSomeEmojisText" xml:space="preserve">
+        <value>Describe it with some emojis!</value>
+    </data>
+    <data name="PasswordMustIncludeMsgText" xml:space="preserve">
+        <value>Your password must include least 8 characters At least one lowercase letter , one upercase letter, one number and one special character.</value>
+    </data>
+    <data name="SubmitHeaderText" xml:space="preserve">
+        <value>Submit</value>
+    </data>
+    <data name="AccessYourProfileByUsignYourCompanyEmailHeaderText" xml:space="preserve">
+        <value>Access your profile by usign your company email</value>
+    </data>
+    <data name="OrEnterTheIDYourCompanyProvidedHeaderText" xml:space="preserve">
+        <value>Or enter the ID your company provided</value>
     </data>
 </root>

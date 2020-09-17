@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.Views.ClaimEditProfilePage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
@@ -14,21 +15,21 @@
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="CenterAndExpand">
                 <StackLayout Padding="20">
-                    <Label Text="NAME" HorizontalTextAlignment="Center" FontSize="15"/>
+                    <Label Text="{x:Static Multilingual:AppResources.NAMECapText}" HorizontalTextAlignment="Center" FontSize="15"/>
                     <StackLayout Padding="40,5,40,0" >
                         <CustomControl:CustomEntry Text="{Binding UserName}" Placeholder="David" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                         <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Padding="20">
-                    <Label Text="SURNAME" HorizontalTextAlignment="Center" FontSize="15"/>
+                    <Label Text="{x:Static Multilingual:AppResources.SURNAMECapText}" HorizontalTextAlignment="Center" FontSize="15"/>
                     <StackLayout Padding="40,5,40,0" >
                         <CustomControl:CustomEntry Text="{Binding UserSurname}" Placeholder="Smith" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                         <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Padding="20">
-                    <Label Text="EMAIL" HorizontalTextAlignment="Center" FontSize="15"/>
+                    <Label Text="{x:Static Multilingual:AppResources.EMAILCapText}" HorizontalTextAlignment="Center" FontSize="15"/>
                     <StackLayout Padding="40,5,40,0" >
                         <CustomControl:CustomEntry Text="{Binding UserEmail}" Placeholder="david.smith@starbucks.com" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
                         <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="2" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
