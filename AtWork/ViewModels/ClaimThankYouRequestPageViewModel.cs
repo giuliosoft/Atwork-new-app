@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -14,7 +15,9 @@ namespace AtWork.ViewModels
         #region Constructor
         public ClaimThankYouRequestPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            ClaimProfileBackCommand = HeaderBackCommand;
+            //ClaimProfileBackCommand = HeaderBackCommand;
+            BackCancelText = AppResources.BackButtonText;
+
         }
         #endregion
 
@@ -33,11 +36,12 @@ namespace AtWork.ViewModels
 
         #region Commands        
         public DelegateCommand ContinueSetupCommand { get { return new DelegateCommand(async () => await ContinueSetup()); } }
-        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
+        //public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
+        public DelegateCommand BackButtonCommand { get { return new DelegateCommand(async () => await PageHeaderBack()); } }
         #endregion
 
         #region private methods
-        async Task PageHeaderBack(string str)
+        async Task PageHeaderBack()
         {
             try
             {

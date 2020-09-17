@@ -9,7 +9,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
              NavigationPage.HasNavigationBar="false"
-             ControlTemplate="{StaticResource GreenBackHeader_Template}"
+             ControlTemplate="{StaticResource BackHeaderView_Template}"
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
