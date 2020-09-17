@@ -192,7 +192,7 @@ namespace AtWork.Services
             return resultModel;
         }
 
-        public static async Task<BaseResponse<string>> UpdateProfilePicture(string inputModel, List<string> profilePicFile)
+        public static async Task<BaseResponse<string>> UpdateProfilePicture(Volunteers inputModel, List<string> profilePicFile)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try

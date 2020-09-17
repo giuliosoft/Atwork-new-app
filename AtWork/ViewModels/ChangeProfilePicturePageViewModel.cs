@@ -15,6 +15,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -56,6 +57,7 @@ namespace AtWork.ViewModels
         private bool _isShowEditPhoto = false;
         private bool IsImageSelected = false;
         private bool _ShowPickOfOurImage = true;
+        public string selectedPicture = string.Empty;
         public ImageSource ProfileImage
         {
             get
@@ -129,8 +131,11 @@ namespace AtWork.ViewModels
                 if (!SessionService.IsWelcomeSetup)
                     await ShowLoader();
                 List<string> profilePic = new List<string>();
+                Volunteers Input = new Volunteers();
+                Input.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                Input.volDefaultPicture = selectedPicture;
                 profilePic.Add(SelectedNewsImageValue.ImagePath);
-                var serviceResult = await UserServices.UpdateProfilePicture(SettingsService.VolunteersUserData.volUniqueID, profilePic);
+                var serviceResult = await UserServices.UpdateProfilePicture(Input, profilePic);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     if (serviceResult.Body != null)
@@ -233,7 +238,7 @@ namespace AtWork.ViewModels
                 ShowCropOption = false;
                 //ProfileImage = ImageSource.FromUri(new Uri(obj));
                 ProfileImage = obj;
-                obj = obj.Replace(ConfigService.BaseProfileImageURL, "");
+                selectedPicture = obj.Replace(ConfigService.BaseProfileImageURL, "");
                 if (SessionService.IsWelcomeSetup)
                 {
                     IsImageSelected = true;
