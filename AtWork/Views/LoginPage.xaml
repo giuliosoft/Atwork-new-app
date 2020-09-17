@@ -40,8 +40,8 @@
                     </PancakeControl:PancakeView>
                     </StackLayout>
                     <StackLayout VerticalOptions="Start" Padding="0,0,0,0" x:Name="slBtnLogin">
-                        <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
-                            <Button Command="{Binding GoForLoginCommand}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" x:Name="btnLogin" Text="Log in to your company" WidthRequest="50" TextColor="White"/>
+                        <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
+                            <Button Command="{Binding GoForLoginCommand}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="50" TextColor="White"/>
                         </Frame>
                     </StackLayout>
                 </StackLayout>

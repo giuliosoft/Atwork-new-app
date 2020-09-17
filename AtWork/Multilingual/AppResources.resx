@@ -648,5 +648,8 @@ In addition to locally mounted information, hyperlinks may be provided to extern
     </data>
        <data name="ComingSoonAlertMsgText" xml:space="preserve">
         <value>Coming Soon...</value>
+        </data>
+    <data name="Logintoyourcompany" xml:space="preserve">
+        <value>Log in to your company</value>
     </data>
 </root>

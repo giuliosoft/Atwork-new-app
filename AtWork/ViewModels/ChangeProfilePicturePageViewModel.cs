@@ -187,39 +187,10 @@ namespace AtWork.ViewModels
         {
             try
             {
-                return;
                 ProfileImagePopup profileImagePopup = new ProfileImagePopup();
                 ProfileImagePopupViewModel profileImagePopupViewModel = new ProfileImagePopupViewModel(_navigationService, _facadeService);
                 profileImagePopupViewModel.ImageList = ImageList;
                 profileImagePopupViewModel.SelectedImageEvent += ProfileImagePopupViewModel_ImageSelected;
-                //ActivityImagePopup activityImagePopup = new ActivityImagePopup();
-                //ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
-                //activityImagePopupViewModel.SelectedImageSourceEvent1 += async (string arg1, ImageSource arg2) =>
-                //{
-                //    NextTextColor = (Color)App.Current.Resources["WhiteColor"];
-                //    NewsPostImageCarouselList.Clear();
-                //    NewsPickedImageViewIsVisible = false;
-                //    IsShowOurImage = true;
-                //    SelectedDefaultImage = arg1;
-                //    OurSelectedImage = arg2;
-                //};
-                //activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
-                //{
-                //    try
-                //    {
-                //        NextTextColor = (Color)App.Current.Resources["WhiteColor"];
-                //        NewsPostImageCarouselList.Clear();
-                //        NewsPickedImageViewIsVisible = false;
-                //        IsShowOurImage = true;
-                //        SelectedDefaultImage = SelectedObj;
-                //        //NewsPostImageCarouselList.Add(new NewsImageModel() {  NewsImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage)) });
-                //        OurSelectedImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage));
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Debug.WriteLine(ex.Message);
-                //    }
-                //};
                 profileImagePopup.BindingContext = profileImagePopupViewModel;
                 await PopupNavigationService.ShowPopup(profileImagePopup, true);
 

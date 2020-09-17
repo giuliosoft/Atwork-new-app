@@ -21,7 +21,7 @@ namespace AtWork.ViewModels
             SettingsList.Add(AppResources.EditAboutMeText);
             SettingsList.Add(AppResources.ChangeLanguageText);
             SettingsList.Add(AppResources.ChangePasswordText);
-            SettingsList.Add(AppResources.ManageNotificationText);
+            //SettingsList.Add(AppResources.ManageNotificationText);
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
             SelectionChangedCommand = new DelegateCommand<string>(async (obj) => await OnSelectionChangedAsync(obj));
         }
