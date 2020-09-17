@@ -123,9 +123,12 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                UserName = parameters.GetValue<string>("UserFirstName");
-                UserSurname = parameters.GetValue<string>("UserSurname");
-                UserEmail = parameters.GetValue<string>("UserEmail");
+                if (SessionService.tempVolunteerData != null && SessionService.tempClaimProfileData != null)
+                {
+                    UserName = SessionService.tempVolunteerData.volFirstName;
+                    UserSurname = SessionService.tempVolunteerData.volLastName;
+                    UserEmail = SessionService.tempVolunteerData.volEmail;
+                }
             }
             catch (Exception ex)
             {

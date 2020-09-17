@@ -34,25 +34,25 @@
                         <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                     </ffImageloading:CachedImage.Transformations>
                 </ffImageloading:CachedImage>
-                <Label Text="{Binding DisclaimerLabel}" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" Margin="0,20,0,10"/>
+                <Label Text="{Binding DisclaimerLabel}" Margin="0,20,0,10" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
                 <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
                     <ScrollView x:Name="appDetailScrollView" Scrolled="ScrollView_Scrolled">
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="30,20,20,20">
-                            <Label Text="{x:Static Multilingual:AppResources.DisclamerText}"  FontSize="15" HorizontalTextAlignment="Start" />
+                            <Label Text="{x:Static Multilingual:AppResources.DisclamerText}" Style="{StaticResource DisclaimerTextLabelStyle}" />
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Disclaimerbtn}"  VerticalOptions="End" Margin="0,20,0,20">
                     <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="180" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
-                        <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="{x:Static Multilingual:AppResources.AcceptDisclaimer}" WidthRequest="20" FontSize="18" TextColor="White" />
+                        <Button Command="{Binding ContinueSetupCommand}" x:Name="acceptdisclaimer" Text="{x:Static Multilingual:AppResources.AcceptDisclaimer}" Style="{StaticResource ClaimProfileButtonStyle}" />
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ContinueSetupCommand}"/>
                         </Frame.GestureRecognizers>
                     </Frame>
                 </StackLayout>
                 <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding Termsconditionbtn}" VerticalOptions="End" Margin="0,20,0,20">
-                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
-                        <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="{x:Static Multilingual:AppResources.AcceptTermsAndConditionsText}" WidthRequest="20" FontSize="18" TextColor="White" />
+                    <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="270" HeightRequest="10" BackgroundColor="{DynamicResource AccentColor}">
+                        <Button Command="{Binding GoToAuthenticationIdCommand}" x:Name="acceptconditions" Text="{x:Static Multilingual:AppResources.AcceptTermsAndConditionsText}" Style="{StaticResource ClaimProfileButtonStyle}" />
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToAuthenticationIdCommand}"/>
                         </Frame.GestureRecognizers>

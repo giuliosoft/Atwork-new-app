@@ -81,11 +81,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                NavigationParameters navigationParams = new NavigationParameters();
-                navigationParams.Add("UserFirstName", UserName);
-                navigationParams.Add("UserSurname", UserSurname);
-                navigationParams.Add("UserEmail", UserEmail);
-                await _navigationService.NavigateAsync(nameof(ClaimEditProfilePage), navigationParams);
+                await _navigationService.NavigateAsync(nameof(ClaimEditProfilePage), null);
             }
             catch (Exception ex)
             {
@@ -120,15 +116,14 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                var UserProfileDetails = parameters.GetValue<LoginResponce>("UserProfileData");
-                if (UserProfileDetails != null)
+                if (SessionService.tempVolunteerData != null && SessionService.tempClaimProfileData != null)
                 {
-                    UserName = UserProfileDetails.Data1?.volFirstName;
-                    UserSurname = UserProfileDetails.Data1?.volLastName;
-                    UserEmail = UserProfileDetails.Data1?.volEmail;
-                    if (!string.IsNullOrEmpty(UserProfileDetails.Data.coLogo))
+                    UserName = SessionService.tempVolunteerData.volFirstName;
+                    UserSurname = SessionService.tempVolunteerData.volLastName;
+                    UserEmail = SessionService.tempVolunteerData.volEmail;
+                    if (!string.IsNullOrEmpty(SessionService.tempClaimProfileData.coLogo))
                     {
-                        UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + UserProfileDetails.Data.coLogo));
+                        UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
                     }
                 }
             }

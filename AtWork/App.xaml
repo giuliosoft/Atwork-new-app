@@ -457,6 +457,52 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
+            <Style x:Key="ClaimProfileDetailHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileDetailsLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize22}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileNotRightLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileThanksLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="DisclaimerTextLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
             <!--Label Styles End-->
 
             <!--Button Styles Start-->
@@ -469,6 +515,15 @@
                 <Setter Property="WidthRequest" Value="100"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="BorderColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="WidthRequest" Value="50"/>
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
@@ -534,6 +589,16 @@
                 <Setter Property="IsBorderLess" Value="True"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="FindProfileEntryStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
             <!--Entry Styles End-->
 

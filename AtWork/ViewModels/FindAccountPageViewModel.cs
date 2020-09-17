@@ -53,6 +53,7 @@ namespace AtWork.ViewModels
                 if (string.IsNullOrEmpty(CompanyEmail) && string.IsNullOrEmpty(CompanyID))
                 {
                     await DisplayAlertAsync(AppResources.ClaimInputAlertText);
+                    return;
                 }
                 if (!await CheckConnectivity())
                 {
@@ -91,9 +92,7 @@ namespace AtWork.ViewModels
                                 SettingsService.LoggedInUserPassword = tempUserVol.VolUserPassword;
                                 SessionService.tempVolunteerData = tempUserVol;
                             }
-                            NavigationParameters navigationParams = new NavigationParameters();
-                            navigationParams.Add("UserProfileData", serviceBody);
-                            await _navigationService.NavigateAsync(nameof(ClaimProfilePage), navigationParams);
+                            await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
                         }
                     }
                 }

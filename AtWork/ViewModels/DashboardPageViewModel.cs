@@ -25,7 +25,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public DashboardPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.AllCategoriesText });
+            Activitycollectionlist.Add(new ActivityItems() { title = AppResources.AllCategoriesText, UnderlineIsVisible = true });
             Activitycollectionlist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText, categoryId = TextResources.CorpVolID });
             Activitycollectionlist.Add(new ActivityItems() { title = AppResources.SportsText, categoryId = TextResources.SportsID });
             Activitycollectionlist.Add(new ActivityItems() { title = AppResources.EducationsText, categoryId = TextResources.EducationID });

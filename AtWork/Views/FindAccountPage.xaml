@@ -14,30 +14,26 @@
         <StackLayout VerticalOptions="FillAndExpand">
             <ScrollView VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand">
-                    <!--<Image x:Name="logoImage" Source="logo" WidthRequest="200" Margin="0,55,0,0" />-->
                     <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0,55,0,0">
                         <Image Source="logoblue" HorizontalOptions="CenterAndExpand"/>
                         <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
                         <Image Source="logodot" HorizontalOptions="Center"/>
                     </StackLayout>
-                    <!--<Image x:Name="logoImage" Source="logo"/>-->
                     <StackLayout VerticalOptions="CenterAndExpand" Padding="0,0,0,0">
                         <StackLayout VerticalOptions="EndAndExpand" Padding="50,0,50,0">
-                            <Label Text="{x:Static Multilingual:AppResources.AccessYourProfileByUsignYourCompanyEmailHeaderText}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="60,30,60,30" FontSize="18" TextColor="Black"/>
-                            <CustomControl:CustomEntry Text="{Binding CompanyEmail}" Placeholder="Email" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                            <Label Text="{x:Static Multilingual:AppResources.FindProfileEmailHeaderText}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="60,30,60,30" FontSize="18" TextColor="Black"/>
+                            <CustomControl:CustomEntry Text="{Binding CompanyEmail}" Placeholder="{x:Static Multilingual:AppResources.EmailPlaceholderText}" Style="{StaticResource FindProfileEntryStyle}" />
                             <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                         </StackLayout>
                         <StackLayout VerticalOptions="StartAndExpand" Padding="50,0,50,0">
-                            <Label Text="{x:Static Multilingual:AppResources.OrEnterTheIDYourCompanyProvidedHeaderText}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" Margin="60,30,60,30" TextColor="Black"/>
-                            <!--<Label Text="Or enter the ID your company provided"  HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30" TextColor="Black"/>-->
-                            <CustomControl:CustomEntry Text="{Binding CompanyID}" Placeholder="ID" FontSize="18" IsBorderLess="True" HorizontalTextAlignment="Center" PlaceholderColor="Black" />
+                            <Label Text="{x:Static Multilingual:AppResources.FindProfileIDHeaderText}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" Margin="60,30,60,30" TextColor="Black"/>
+                            <CustomControl:CustomEntry Text="{Binding CompanyID}" Placeholder="{x:Static Multilingual:AppResources.IDPlaceholderText}" Style="{StaticResource FindProfileEntryStyle}" />
                             <BoxView BackgroundColor="Black" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
                         </StackLayout>
                     </StackLayout>
-
                     <StackLayout VerticalOptions="StartAndExpand">
                         <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
-                            <Button Command="{Binding GoForSubmitCommand}" FontAttributes="Bold" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.SubmitHeaderText}" WidthRequest="50" FontSize="20" TextColor="White"/>
+                            <Button Command="{Binding GoForSubmitCommand}" FontAttributes="Bold" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.SubmitText}" WidthRequest="50" FontSize="20" TextColor="White"/>
                         </Frame>
                     </StackLayout>
                 </StackLayout>

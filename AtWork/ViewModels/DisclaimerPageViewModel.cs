@@ -147,21 +147,6 @@ namespace AtWork.ViewModels
                             await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                         }
                     }
-                    /*
-                    if (SessionService.isFromClaimProfile)
-                    {
-                        SessionService.isFromClaimProfile = false;
-                        await _navigationService.NavigateAsync(nameof(AuthentificationIDPage), null);
-                    }
-                    else
-                    {
-                        DisclaimerLabel = "Terms and condition";
-                        DisclaimerText = AppResources.TermsText;
-                        Disclaimerbtn = false;
-                        Termsconditionbtn = true;
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
-                    }
-                    */
                 }
             }
             catch (Exception ex)
