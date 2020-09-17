@@ -21,9 +21,10 @@ namespace AtWork.ViewModels
         public CreatePasswordPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             CreatePassowrdLabeltext = AppResources.CreatePasswordText;
+            BackCancelText = AppResources.BackButtonText;
             Passwordmessage = true;
             Samepasswordworning = false;
-            ClaimProfileBackCommand = HeaderBackCommand;
+            //ClaimProfileBackCommand = BackButtonCommand;
         }
         #endregion
 
@@ -67,11 +68,12 @@ namespace AtWork.ViewModels
 
         #region Commands        
         public DelegateCommand ConfirmPasswordCommand { get { return new DelegateCommand(async () => await ConfirmPasswordClick()); } }
-        public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
+        //public DelegateCommand<string> HeaderBackCommand { get { return new DelegateCommand<string>(async (obj) => await PageHeaderBack(obj)); } }
+        public DelegateCommand BackButtonCommand { get { return new DelegateCommand(async () => await PageHeaderBack()); } }
         #endregion
 
         #region private methods
-        async Task PageHeaderBack(string str)
+        async Task PageHeaderBack()
         {
             try
             {
@@ -119,10 +121,10 @@ namespace AtWork.ViewModels
                 {
                     if (String.IsNullOrEmpty(CreatePassowrdEntrytext))
                     {
-                        CreatePassowrdLabeltext = AppResources.ConfirmPasswordText;
-                        ConfirmPassword = CreatePassowrdEntrytext;
-                        CreatePassowrdEntrytext = null;
-                        Passwordmessage = false;
+                        //CreatePassowrdLabeltext = AppResources.ConfirmPasswordText;
+                        //ConfirmPassword = CreatePassowrdEntrytext;
+                        //CreatePassowrdEntrytext = null;
+                        //Passwordmessage = false;
                         return;
                     }
                     else

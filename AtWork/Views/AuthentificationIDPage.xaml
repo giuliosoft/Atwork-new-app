@@ -17,13 +17,13 @@
                 <Label Text="{x:Static Multilingual:AppResources.AuthIDPageText3}" Style="{StaticResource ClaimProfileThanksLabelStyle}" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" >
-                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="18,10,2,10" BackgroundColor="#0B421A">
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="18,10,2,10" BackgroundColor="{StaticResource AccentColor}">
                     <Button Command="{Binding GoForenableCommand}" x:Name="yesenablebtn" Text="{x:Static Multilingual:AppResources.AuthIDEnableText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoForenableCommand}"/>
                     </Frame.GestureRecognizers>
                 </Frame>
-                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="2,10,18,10" BackgroundColor="#0B421A">
+                <Frame HasShadow="False" CornerRadius="22" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="120" HeightRequest="5" Margin="2,10,18,10" BackgroundColor="{StaticResource AccentColor}">
                     <Button Command="{Binding GoForLoginCommand}" x:Name="loginbtn" Text="{x:Static Multilingual:AppResources.AuthIDSkipText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoForLoginCommand}"/>

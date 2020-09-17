@@ -87,7 +87,7 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}");
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}/{nameof(LoginPage)}");
                     }
                 }
                 else

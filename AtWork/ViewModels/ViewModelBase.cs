@@ -44,6 +44,7 @@ namespace AtWork.ViewModels
         private bool _isVisiblePlayerBanner = false;
         private string _NextClickPageName = TextResources.AddPostTitlePageText;
         private string _AddNewsCancelImage;
+        private string _BackCancelText;
         private string _NewsDetailBack;
         private string _AddNewsNextImage;
         string SelectedPage = string.Empty;
@@ -95,6 +96,11 @@ namespace AtWork.ViewModels
         {
             get { return _AddNewsCancelImage; }
             set { SetProperty(ref _AddNewsCancelImage, value); }
+        }
+        public string BackCancelText
+        {
+            get { return _BackCancelText; }
+            set { SetProperty(ref _BackCancelText, value); }
         }
         public string AddNewsNextImage
         {

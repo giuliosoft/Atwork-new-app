@@ -12,11 +12,12 @@
              NavigationPage.HasNavigationBar="false"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             ControlTemplate="{StaticResource BackHeaderView_Template}"
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
-                <StackLayout WidthRequest="100">
+                <!--<StackLayout WidthRequest="100">
                     <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
                         <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,0,0" HeightRequest="45" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource AccentColor}">
                             <StackLayout BackgroundColor = "{DynamicResource AccentColor}" Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
@@ -28,7 +29,7 @@
                             </PancakeControl:PancakeView.GestureRecognizers>
                         </PancakeControl:PancakeView>
                     </ContentView>
-                </StackLayout>
+                </StackLayout>-->
                 <ffImageloading:CachedImage Margin="0,50,0,0" Grid.Column="0" Source="{Binding UserCompanyLogo}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                     <!--<ffImageloading:CachedImage.Transformations>
                         <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
