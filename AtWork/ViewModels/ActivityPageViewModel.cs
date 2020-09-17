@@ -22,9 +22,9 @@ namespace AtWork.ViewModels
             //NewsGreenbg = (Color)App.Current.Resources["LightBrownColor"];
             //ActivitiesGreenbg = (Color)App.Current.Resources["AccentColor"];
 
-            Activitylist.Add(new ActivityItems() { title = "All categories" });
-            Activitylist.Add(new ActivityItems() { title = "Corporate volunteering" });
-            Activitylist.Add(new ActivityItems() { title = "Education" });
+            Activitylist.Add(new ActivityItems() { title = AppResources.AllCategoriesText });
+            Activitylist.Add(new ActivityItems() { title = AppResources.CorporateVolunteeringText });
+            Activitylist.Add(new ActivityItems() { title = AppResources.EducationsText });
         }
         #endregion
 

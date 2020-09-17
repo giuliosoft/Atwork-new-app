@@ -18,7 +18,7 @@ namespace AtWork.SubViews
             };
             MessagingCenter.Subscribe<object>(this, "GetActivityTabSelected", (sender) =>
               {
-                  GreenView.TranslateTo((double)App.Current.Resources["DeviceWidthFooterTab"], 0, 300);
+                  GreenView.TranslateTo(GreenView.WidthRequest, 0, 300);
                   MessagingCenter.Unsubscribe<object>(this, "GetActivityTabSelected");
               });
         }

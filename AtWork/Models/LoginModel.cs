@@ -170,6 +170,8 @@ namespace AtWork.Models
 
             public string oldPassword { get; set; }
 
+            public string volDefaultPicture { get; set; }
+
             public int Vortex_Activity_Count { get; set; }
 
             public string classes { get; set; }

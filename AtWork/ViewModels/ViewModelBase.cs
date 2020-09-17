@@ -238,7 +238,7 @@ namespace AtWork.ViewModels
         /// <returns></returns>
         public async Task DisplayComingSoon()
         {
-            await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, "Coming Soon...", AppResources.AlertOkText);
+            await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.ComingSoonAlertMsgText, AppResources.AlertOkText);
         }
 
         /// <summary>

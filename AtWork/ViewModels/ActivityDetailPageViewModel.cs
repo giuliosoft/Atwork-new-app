@@ -317,7 +317,7 @@ namespace AtWork.ViewModels
                                             DateTime dateToAddInCalendar = selDt.ActivityDate;
                                             var calendarEvent = new CalendarEvent
                                             {
-                                                Name = "AtWork Activity Event",
+                                                Name = AppResources.AtWorkActivityEventText,
                                                 Start = dateToAddInCalendar,
                                                 End = dateToAddInCalendar.AddHours(1),
                                                 Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
@@ -374,7 +374,7 @@ namespace AtWork.ViewModels
                             DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
                             var calendarEvent = new CalendarEvent
                             {
-                                Name = "AtWork Activity Event",
+                                Name = AppResources.AtWorkActivityEventText,
                                 Start = dateToAddInCalendar,
                                 End = dateToAddInCalendar.AddHours(1),
                                 Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }

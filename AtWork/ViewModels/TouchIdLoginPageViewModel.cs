@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Plugin.Fingerprint;
@@ -60,12 +61,12 @@ namespace AtWork.ViewModels
                 bool isFingerprintAvailable = await CrossFingerprint.Current.IsAvailableAsync(false);
                 if (!isFingerprintAvailable)
                 {
-                    await _facadeService.dialogService.DisplayAlertAsync("Error", "Biometric authentication is not available or is not configured.", "OK");
+                    await _facadeService.dialogService.DisplayAlertAsync(AppResources.ErrorText, AppResources.BiometricAlertMsgText, AppResources.AlertOkText);
                     return;
                 }
 
-                AuthenticationRequestConfiguration conf = new AuthenticationRequestConfiguration("Authentication",
-                                                                        "Tap this fingerprint sensor!");
+                AuthenticationRequestConfiguration conf = new AuthenticationRequestConfiguration(AppResources.AuthenticationText,
+                                                                        AppResources.AuthenticationAlertMsgText);
 
                 var authResult = await CrossFingerprint.Current.AuthenticateAsync(conf);
                 if (authResult.Authenticated)
@@ -84,7 +85,7 @@ namespace AtWork.ViewModels
                 else
                 {
                     //SettingsService.IsUsedBioMetricLogin = false;
-                    await _facadeService.dialogService.DisplayAlertAsync("Error", "Authentication failed", "OK");
+                    await _facadeService.dialogService.DisplayAlertAsync(AppResources.ErrorText, AppResources.AuthenticationFailedAlertMsgText, AppResources.AlertOkText);
                 }
             }
             catch (Exception ex)

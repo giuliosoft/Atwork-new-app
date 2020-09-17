@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using Newtonsoft.Json;
 using Prism.Commands;
@@ -25,7 +26,7 @@ namespace AtWork.ViewModels
             set
             {
                 if (SetProperty(ref _members, value))
-                    HeaderDetailsTitle = $"{Members?.Count} joined";
+                    HeaderDetailsTitle = string.Format("{0} {1}", Members?.Count, AppResources.joinedText);
             }
         }
         public DelegateCommand<Volunteers> SelectionChangedCommand { get { return new DelegateCommand<Volunteers>(async (obj) => await OnSelectionChanged(obj)); } }

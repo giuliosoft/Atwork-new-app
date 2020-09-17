@@ -65,11 +65,11 @@ namespace AtWork.ViewModels
             {
                 SessionService.CurrentTab = 0;
                 SessionService.IsWelcomeSetup = false;
-                await Task.Delay(5000);
-                var res = await App.Current.MainPage.DisplayAlert(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
+                await Task.Delay(3000);
+                await _navigationService.NavigateAsync(nameof(DashboardPage));
+                //var res = await App.Current.MainPage.DisplayAlert(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
                 //if (res)
                 //{
-                await _navigationService.NavigateAsync(nameof(DisclaimerPage));
 
                 //}
                 //Task.Factory.StartNew(async () =>

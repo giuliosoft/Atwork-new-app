@@ -15,6 +15,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static AtWork.Models.LoginModel;
 
 namespace AtWork.ViewModels
 {
@@ -56,6 +57,7 @@ namespace AtWork.ViewModels
         private bool _isShowEditPhoto = false;
         private bool IsImageSelected = false;
         private bool _ShowPickOfOurImage = true;
+        public string selectedPicture = string.Empty;
         public ImageSource ProfileImage
         {
             get
@@ -129,8 +131,11 @@ namespace AtWork.ViewModels
                 if (!SessionService.IsWelcomeSetup)
                     await ShowLoader();
                 List<string> profilePic = new List<string>();
+                Volunteers Input = new Volunteers();
+                Input.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                Input.volDefaultPicture = selectedPicture;
                 profilePic.Add(SelectedNewsImageValue.ImagePath);
-                var serviceResult = await UserServices.UpdateProfilePicture(SettingsService.VolunteersUserData.volUniqueID, profilePic);
+                var serviceResult = await UserServices.UpdateProfilePicture(Input, profilePic);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     if (serviceResult.Body != null)
@@ -182,39 +187,10 @@ namespace AtWork.ViewModels
         {
             try
             {
-                return;
                 ProfileImagePopup profileImagePopup = new ProfileImagePopup();
                 ProfileImagePopupViewModel profileImagePopupViewModel = new ProfileImagePopupViewModel(_navigationService, _facadeService);
                 profileImagePopupViewModel.ImageList = ImageList;
                 profileImagePopupViewModel.SelectedImageEvent += ProfileImagePopupViewModel_ImageSelected;
-                //ActivityImagePopup activityImagePopup = new ActivityImagePopup();
-                //ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
-                //activityImagePopupViewModel.SelectedImageSourceEvent1 += async (string arg1, ImageSource arg2) =>
-                //{
-                //    NextTextColor = (Color)App.Current.Resources["WhiteColor"];
-                //    NewsPostImageCarouselList.Clear();
-                //    NewsPickedImageViewIsVisible = false;
-                //    IsShowOurImage = true;
-                //    SelectedDefaultImage = arg1;
-                //    OurSelectedImage = arg2;
-                //};
-                //activityImagePopupViewModel.SelectedImageSourceEvent += async (object sender, string SelectedObj) =>
-                //{
-                //    try
-                //    {
-                //        NextTextColor = (Color)App.Current.Resources["WhiteColor"];
-                //        NewsPostImageCarouselList.Clear();
-                //        NewsPickedImageViewIsVisible = false;
-                //        IsShowOurImage = true;
-                //        SelectedDefaultImage = SelectedObj;
-                //        //NewsPostImageCarouselList.Add(new NewsImageModel() {  NewsImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage)) });
-                //        OurSelectedImage = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SelectedDefaultImage));
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Debug.WriteLine(ex.Message);
-                //    }
-                //};
                 profileImagePopup.BindingContext = profileImagePopupViewModel;
                 await PopupNavigationService.ShowPopup(profileImagePopup, true);
 
@@ -233,7 +209,7 @@ namespace AtWork.ViewModels
                 ShowCropOption = false;
                 //ProfileImage = ImageSource.FromUri(new Uri(obj));
                 ProfileImage = obj;
-                obj = obj.Replace(ConfigService.BaseProfileImageURL, "");
+                selectedPicture = obj.Replace(ConfigService.BaseProfileImageURL, "");
                 if (SessionService.IsWelcomeSetup)
                 {
                     IsImageSelected = true;

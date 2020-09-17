@@ -103,7 +103,10 @@ namespace AtWork.ViewModels
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));
                         await ClosePopup();
-                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomeSetupPage)}", null);
+                        if (serviceResultBody.Data1?.volOnBoardStatus.ToLower() == "complete" && serviceResultBody.Data1?.volStatus.ToLower() == "active")
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
+                        else
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomeSetupPage)}", null);
                         return;
                     }
                     else
