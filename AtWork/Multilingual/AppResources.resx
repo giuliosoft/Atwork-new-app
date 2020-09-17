@@ -625,4 +625,7 @@ In addition to locally mounted information, hyperlinks may be provided to extern
      <data name="LogoutAlert" xml:space="preserve">
         <value>Are you sure you want to log out?</value>
     </data>
+    <data name="Logintoyourcompany" xml:space="preserve">
+        <value>Log in to your company</value>
+    </data>
 </root>

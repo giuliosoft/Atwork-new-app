@@ -1216,5 +1216,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("LogoutAlert", resourceCulture);
             }
         }
+        
+        internal static string Logintoyourcompany {
+            get {
+                return ResourceManager.GetString("Logintoyourcompany", resourceCulture);
+            }
+        }
     }
 }
