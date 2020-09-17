@@ -625,4 +625,28 @@ In addition to locally mounted information, hyperlinks may be provided to extern
      <data name="LogoutAlert" xml:space="preserve">
         <value>Are you sure you want to log out?</value>
     </data>
+         <data name="AtWorkActivityEventText" xml:space="preserve">
+        <value>AtWork Activity Event</value>
+    </data>
+             <data name="joinedText" xml:space="preserve">
+        <value>joined</value>
+    </data>
+    <data name="ErrorText" xml:space="preserve">
+        <value>Error</value>
+    </data>
+     <data name="BiometricAlertMsgText" xml:space="preserve">
+        <value>Biometric authentication is not available or is not configured.</value>
+    </data>
+         <data name="AuthenticationText" xml:space="preserve">
+        <value>Authentication</value>
+    </data>
+             <data name="AuthenticationAlertMsgText" xml:space="preserve">
+        <value>Tap this fingerprint sensor!</value>
+    </data>
+    <data name="AuthenticationFailedAlertMsgText" xml:space="preserve">
+        <value>Authentication failed</value>
+    </data>
+       <data name="ComingSoonAlertMsgText" xml:space="preserve">
+        <value>Coming Soon...</value>
+    </data>
 </root>

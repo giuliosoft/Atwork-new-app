@@ -13,9 +13,13 @@ namespace AtWork.Services
         /// <returns></returns>
         public static string Navigate()
         {
-            if (SettingsService.LoggedInUserData != null)
+            if (SettingsService.LoggedInUserData != null && SettingsService.VolunteersUserData != null)
             {
-                return $"/{nameof(NavigationPage)}/{nameof(DashboardPage)}";
+                LayoutService.ConvertThemeAsPerSettings();
+                if (SettingsService.VolunteersUserData?.volOnBoardStatus.ToLower() == "complete" && SettingsService.VolunteersUserData?.volStatus.ToLower() == "active")
+                    return $"/{nameof(NavigationPage)}/{nameof(DashboardPage)}";
+                else
+                    return $"/{nameof(NavigationPage)}/{nameof(WelcomeSetupPage)}";
             }
             else
             {
