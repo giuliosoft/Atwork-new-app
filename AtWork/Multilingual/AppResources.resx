@@ -683,4 +683,72 @@ In addition to locally mounted information, hyperlinks may be provided to extern
 At least one lowercase letter, one upercase
 letter, one number and one special character.</value>
     </data>
+    <data name="AtWorkActivityEventText" xml:space="preserve">
+        <value>AtWork Activity Event</value>
+    </data>
+    <data name="joinedText" xml:space="preserve">
+        <value>joined</value>
+    </data>
+    <data name="ErrorText" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="BiometricAlertMsgText" xml:space="preserve">
+        <value>Biometric authentication is not available or is not configured.</value>
+    </data>
+    <data name="AuthenticationText" xml:space="preserve">
+        <value>Authentication</value>
+    </data>
+    <data name="AuthenticationAlertMsgText" xml:space="preserve">
+        <value>Tap this fingerprint sensor!</value>
+    </data>
+    <data name="AuthenticationFailedAlertMsgText" xml:space="preserve">
+        <value>Authentication failed</value>
+    </data>
+    <data name="ComingSoonAlertMsgText" xml:space="preserve">
+        <value>Coming Soon...</value>
+        </data>
+    <data name="Logintoyourcompany" xml:space="preserve">
+        <value>Log in to your company</value>
+    </data>
+    <data name="WouldYouLikeToEnableMsgText" xml:space="preserve">
+        <value>Would you like to enable</value>
+    </data>
+    <data name="TouchIDFaceIDForMsgText" xml:space="preserve">
+        <value>Touch ID/Face ID for</value>
+    </data>
+    <data name="authentificationQueMsgText" xml:space="preserve">
+        <value>authentification?</value>
+    </data>
+    <data name="YesEnableMsgText" xml:space="preserve">
+        <value>Yes, enable</value>
+    </data>
+    <data name="NoLogInMsgText" xml:space="preserve">
+        <value>No, log in</value>
+    </data>
+    <data name="NAMECapText" xml:space="preserve">
+        <value>NAME</value>
+    </data>
+    <data name="SURNAMECapText" xml:space="preserve">
+        <value>SURNAME</value>
+    </data>
+    <data name="EMAILCapText" xml:space="preserve">
+        <value>EMAIL</value>
+    </data>
+    <data name="ClaimProfileText" xml:space="preserve">
+        <value>Claim profile</value>
+    </data>
+
+    <data name="ContinueSetupText" xml:space="preserve">
+        <value>Continue setup</value>
+    </data>
+    <data name="DateText" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <data name="TimeHeaderText" xml:space="preserve">
+        <value>Time</value>
+    </data>
+    <data name="DescribeItWithSomeEmojisText" xml:space="preserve">
+        <value>Describe it with some emojis!</value>
+    </data>
+    
 </root>

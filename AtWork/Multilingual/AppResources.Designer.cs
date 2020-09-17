@@ -1330,5 +1330,125 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("PasswordValidationText", resourceCulture);
             }
         }
+        
+        internal static string AtWorkActivityEventText {
+            get {
+                return ResourceManager.GetString("AtWorkActivityEventText", resourceCulture);
+            }
+        }
+        
+        internal static string joinedText {
+            get {
+                return ResourceManager.GetString("joinedText", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorText {
+            get {
+                return ResourceManager.GetString("ErrorText", resourceCulture);
+            }
+        }
+        
+        internal static string BiometricAlertMsgText {
+            get {
+                return ResourceManager.GetString("BiometricAlertMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string AuthenticationText {
+            get {
+                return ResourceManager.GetString("AuthenticationText", resourceCulture);
+            }
+        }
+        
+        internal static string AuthenticationAlertMsgText {
+            get {
+                return ResourceManager.GetString("AuthenticationAlertMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string AuthenticationFailedAlertMsgText {
+            get {
+                return ResourceManager.GetString("AuthenticationFailedAlertMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string ComingSoonAlertMsgText {
+            get {
+                return ResourceManager.GetString("ComingSoonAlertMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string Logintoyourcompany {
+            get {
+                return ResourceManager.GetString("Logintoyourcompany", resourceCulture);
+            }
+        }
+        
+        internal static string WouldYouLikeToEnableMsgText {
+            get {
+                return ResourceManager.GetString("WouldYouLikeToEnableMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string TouchIDFaceIDForMsgText {
+            get {
+                return ResourceManager.GetString("TouchIDFaceIDForMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string authentificationQueMsgText {
+            get {
+                return ResourceManager.GetString("authentificationQueMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string YesEnableMsgText {
+            get {
+                return ResourceManager.GetString("YesEnableMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string NoLogInMsgText {
+            get {
+                return ResourceManager.GetString("NoLogInMsgText", resourceCulture);
+            }
+        }
+        
+        internal static string NAMECapText {
+            get {
+                return ResourceManager.GetString("NAMECapText", resourceCulture);
+            }
+        }
+        
+        internal static string SURNAMECapText {
+            get {
+                return ResourceManager.GetString("SURNAMECapText", resourceCulture);
+            }
+        }
+        
+        internal static string EMAILCapText {
+            get {
+                return ResourceManager.GetString("EMAILCapText", resourceCulture);
+            }
+        }
+        
+        internal static string DateText {
+            get {
+                return ResourceManager.GetString("DateText", resourceCulture);
+            }
+        }
+        
+        internal static string TimeHeaderText {
+            get {
+                return ResourceManager.GetString("TimeHeaderText", resourceCulture);
+            }
+        }
+        
+        internal static string DescribeItWithSomeEmojisText {
+            get {
+                return ResourceManager.GetString("DescribeItWithSomeEmojisText", resourceCulture);
+            }
+        }
     }
 }
