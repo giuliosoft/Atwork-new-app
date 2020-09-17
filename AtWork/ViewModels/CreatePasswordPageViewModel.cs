@@ -129,6 +129,10 @@ namespace AtWork.ViewModels
                     {
                         try
                         {
+                            if (Samepasswordworning)
+                            {
+                                return;
+                            }
                             if (!await CheckConnectivity())
                             {
                                 return;
