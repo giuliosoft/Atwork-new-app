@@ -134,7 +134,7 @@ namespace AtWork.ViewModels
                 Volunteers Input = new Volunteers();
                 Input.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
                 Input.volDefaultPicture = selectedPicture;
-                profilePic.Add(SelectedNewsImageValue.ImagePath);
+                profilePic.Add(SelectedNewsImageValue?.ImagePath);
                 var serviceResult = await UserServices.UpdateProfilePicture(Input, profilePic);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
@@ -174,7 +174,7 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
-                    SaveProfilePicture(SelectedNewsImageValue.ImagePath);
+                    await SaveProfilePicture(SelectedNewsImageValue?.ImagePath);
                     await _navigationService.NavigateAsync(nameof(AboutMePage));
                 }
             }
@@ -265,7 +265,7 @@ namespace AtWork.ViewModels
                 if (pickedFile != null && !string.IsNullOrEmpty(pickedFile.Path))
                 {
                     SelectedNewsImageValue = new NewsImageModel() { ImagePath = pickedFile.Path, ImagePreviewPath = pickedFile.Path, NewsImage = ImageSource.FromFile(pickedFile.Path) };
-                    ProfileImage = ImageSource.FromFile(SelectedNewsImageValue.ImagePath);
+                    ProfileImage = ImageSource.FromFile(SelectedNewsImageValue?.ImagePath);
                     ShowCropOption = true;
                     SessionService.NewsPostImageFiles = new System.Collections.Generic.List<string>();
                     SessionService.NewsPostImageFiles.Add(pickedFile.Path);
@@ -393,7 +393,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (!SessionService.isFromChangeUserProfile && !SessionService.IsWelcomeSetup)
+            if (!SessionService.isFromChangeUserProfile)// && !SessionService.IsWelcomeSetup)
             {
                 await GetUserExistingProfilePic();
             }
