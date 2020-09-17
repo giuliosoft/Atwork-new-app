@@ -85,6 +85,8 @@ namespace AtWork.ViewModels
                     CreatePassowrdEntrytext = string.Empty;
                     CreatePassowrdLabeltext = AppResources.CreatePasswordText;
                     Passwordmessage = true;
+                    Samepasswordworning = false;
+                    isCreatingPwd = true;
                 }
             }
             catch (Exception ex)
