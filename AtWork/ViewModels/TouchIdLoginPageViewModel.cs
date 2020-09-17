@@ -21,7 +21,7 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-
+        bool isBusyInAuthentication = false;
         #endregion
 
         #region Public Properties
@@ -58,6 +58,12 @@ namespace AtWork.ViewModels
                 var IsConnected = await CheckConnectivity();
                 if (!IsConnected) return;
 
+                if (isBusyInAuthentication)
+                {
+                    return;
+                }
+                isBusyInAuthentication = true;
+
                 bool isFingerprintAvailable = await CrossFingerprint.Current.IsAvailableAsync(false);
                 if (!isFingerprintAvailable)
                 {
@@ -71,26 +77,31 @@ namespace AtWork.ViewModels
                 var authResult = await CrossFingerprint.Current.AuthenticateAsync(conf);
                 if (authResult.Authenticated)
                 {
-                    if (!SettingsService.IsUsedBioMetricLogin)
+                    if (SettingsService.LoggedInUserData != null && SettingsService.VolunteersUserData != null)
                     {
-                        await _navigationService.NavigateAsync(nameof(LoginPage), null);
+                        LayoutService.ConvertThemeAsPerSettings();
+                        if (SettingsService.VolunteersUserData?.volOnBoardStatus.ToLower() == "complete" && SettingsService.VolunteersUserData?.volStatus.ToLower() == "active")
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
+                        else
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WelcomeSetupPage)}");
                     }
                     else
                     {
-                        SettingsService.IsUsedBioMetricLogin = true;
-                        await _navigationService.NavigateAsync(nameof(LoginPage), null);
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}");
                     }
-
                 }
                 else
                 {
-                    //SettingsService.IsUsedBioMetricLogin = false;
                     await _facadeService.dialogService.DisplayAlertAsync(AppResources.ErrorText, AppResources.AuthenticationFailedAlertMsgText, AppResources.AlertOkText);
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                isBusyInAuthentication = false;
             }
         }
         #endregion
@@ -107,6 +118,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            await BiometricAuthClick();
         }
     }
 }
