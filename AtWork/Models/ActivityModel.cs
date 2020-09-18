@@ -13,7 +13,6 @@ namespace AtWork.Models
     public class ActivityModel
     {
         public class ActivityListModel : BindableBase
-
         {
             public int id { get; set; }
             public string proUniqueID { get; set; }
@@ -131,37 +130,18 @@ namespace AtWork.Models
                 }
             }
 
-            /*
-            public ImageSource activityImage
+            public ImageSource activityPostPublishType
             {
                 get
                 {
-                    ImageSource retVal = string.Empty;
-                    try
-                    {
-                        if (string.IsNullOrEmpty(proBackgroundImage))
-                            return string.Empty;
-                        List<string> aimgUrlList = new List<string>();
-                        if (proBackgroundImage.Contains(","))
-                        {
-                            aimgUrlList = proBackgroundImage.Split(',').ToList();
-                            if (aimgUrlList != null && aimgUrlList.Count > 0)
-                            {
-                                retVal = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + aimgUrlList[0]));
-                            }
-                        }
-                        else
-                        {
-                            retVal = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + proBackgroundImage));
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    return retVal;
+                    if (string.IsNullOrEmpty(proAudience))
+                        return string.Empty;
+                    if (proAudience.Equals("Post to everybody", StringComparison.InvariantCultureIgnoreCase))
+                        return "earth";
+                    else
+                        return "ActivityPeopleIcon";
                 }
-            }*/
+            }
         }
 
         public class ActivityResponse

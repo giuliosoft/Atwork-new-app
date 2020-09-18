@@ -767,4 +767,7 @@ letter, one number and one special character.</value>
     <data name="AuthIDSkipText" xml:space="preserve">
         <value>No, log in</value>
     </data>
+    <data name="PostCoordinatorUserText" xml:space="preserve">
+        <value>News</value>
+    </data>
 </root>

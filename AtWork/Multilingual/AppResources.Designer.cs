@@ -1486,5 +1486,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("AuthIDSkipText", resourceCulture);
             }
         }
+        
+        internal static string PostCoordinatorUserText {
+            get {
+                return ResourceManager.GetString("PostCoordinatorUserText", resourceCulture);
+            }
+        }
     }
 }

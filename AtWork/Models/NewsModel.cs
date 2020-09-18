@@ -104,6 +104,19 @@ namespace AtWork.Models
                     return false;
                 }
             }
+
+            public bool NewsPostUserIsVisible
+            {
+                get
+                {
+                    bool retVal = true;
+                    if (news != null)
+                    {
+                        retVal = news.newsOrigin.Equals("Coordinator", StringComparison.InvariantCultureIgnoreCase) ? false : true;
+                    }
+                    return retVal;
+                }
+            }
         }
         #endregion
 
@@ -123,7 +136,7 @@ namespace AtWork.Models
             public string newsImage { get; set; }
             public string newsFile { get; set; }
             public string newsFileOriginal { get; set; }
-       }
+        }
 
         //public partial class NewsComment
         //{
@@ -167,7 +180,7 @@ namespace AtWork.Models
         }
 
 
-        
+
         public class CommentLikeResponce
         {
             public bool Flag { get; set; }

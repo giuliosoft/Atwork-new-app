@@ -318,6 +318,9 @@
     <BundleResource Include="Resources\biometric_fingerprint%401x.png" />
     <BundleResource Include="Resources\biometric_fingerprint%402x.png" />
     <BundleResource Include="Resources\biometric_fingerprint%403x.png" />
+    <BundleResource Include="Resources\circlegroup.png" />
+    <BundleResource Include="Resources\circlegroup%402x.png" />
+    <BundleResource Include="Resources\circlegroup%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
