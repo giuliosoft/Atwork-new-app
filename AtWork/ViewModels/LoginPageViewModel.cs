@@ -22,7 +22,7 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
 #if DEBUG
             UserEmail = "jeff.jones@testing.com";
-            UserPassword = "1234";
+            UserPassword = "Password01@";
 #endif
         }
         #endregion
@@ -59,6 +59,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await LoginToApp()); } }
+        public DelegateCommand ForgotPasswordCommand { get { return new DelegateCommand(async () => await ForgotPassword()); } }
         #endregion
 
         #region private methods
@@ -82,7 +83,7 @@ namespace AtWork.ViewModels
                 inputModel.password = UserPassword;
 
                 var serviceResult = await UserServices.LoginToApp(inputModel);
-                var serviceResultBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult.Body);
+                var serviceResultBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult?.Body);
 
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
@@ -91,15 +92,15 @@ namespace AtWork.ViewModels
                     if (serviceResultBody.Data != null)
                     {
                         SettingsService.LoggedInUserData = serviceResultBody.Data;
+                        LayoutService.ConvertThemeAsPerSettings();
                     }
-                    if (serviceResultBody.Data1 != null)
+                    if (serviceResultBody.Data != null)
                     {
                         SettingsService.VolunteersUserData = serviceResultBody.Data1;
                         SettingsService.UserProfile = serviceResultBody.Data1?.volPicture;
                     }
-
-                    LayoutService.ConvertThemeAsPerSettings();
-                    if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                    
+                    if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok && !serviceResultBody.Message.ToLower().Contains("no record found."))
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));
                         await ClosePopup();
@@ -118,14 +119,15 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
                 await ClosePopup();
+                Debug.WriteLine(ex.Message);
             }
         }
-        async Task ExistingUserLoginToApp()
+        async Task ForgotPassword()
         {
             try
             {
+                await _navigationService.NavigateAsync(nameof(ForgotPasswordPage));
             }
             catch (Exception ex)
             {

@@ -30,7 +30,7 @@ namespace AtWork.Services
         public static string NewsDetailsDeleteCommentServiceURL = "/commentslikes/deleteComment/";
         public static string NewsDetailsGetCommentListURL = "/commentslikes/getcommentlist_v1/";
         public static string NewsPostDeleteServiceURL = "/news/deleterow/";
-        public static string NewsListServiceURL = "/news/getlist/";//"/news/getlist_v1/";
+        public static string NewsListServiceURL = "/news/getlist_v1/";//"/news/getlist_v1/";
         public static string CommentsLikesServiceURL = "/commentslikes";
         public static string AddNewsLikeServiceURL = "/AddNewsLike";
         public static string DeleteNewsLikeServiceURL = "/DeleteNewsLike";
@@ -58,5 +58,6 @@ namespace AtWork.Services
         public static string UpdateUserPasswordServiceURL = "/user/UpdatePassword";
         public static string ClaimUserProfileServiceURL = "/user/claimprofile/";
         public static string UserProfileCorrectionServiceURL = "/user/submitcorrection";
+        public static string UserForgotPasswordServiceURL = "/user/forgotpassword/";
     }
 }

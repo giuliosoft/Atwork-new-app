@@ -1486,5 +1486,41 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("AuthIDSkipText", resourceCulture);
             }
         }
+        
+        internal static string ForgotPasswordDescriptionText {
+            get {
+                return ResourceManager.GetString("ForgotPasswordDescriptionText", resourceCulture);
+            }
+        }
+        
+        internal static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        internal static string EmailAddressOrID {
+            get {
+                return ResourceManager.GetString("EmailAddressOrID", resourceCulture);
+            }
+        }
+        
+        internal static string EnterEmailAddressOrID {
+            get {
+                return ResourceManager.GetString("EnterEmailAddressOrID", resourceCulture);
+            }
+        }
+        
+        internal static string SuccessResetPassword {
+            get {
+                return ResourceManager.GetString("SuccessResetPassword", resourceCulture);
+            }
+        }
+        
+        internal static string EnterValidEmailAddressOrID {
+            get {
+                return ResourceManager.GetString("EnterValidEmailAddressOrID", resourceCulture);
+            }
+        }
     }
 }

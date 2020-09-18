@@ -766,5 +766,34 @@ letter, one number and one special character.</value>
     </data>
     <data name="AuthIDSkipText" xml:space="preserve">
         <value>No, log in</value>
+    </data>  
+    <data name="ForgotPasswordDescriptionText" xml:space="preserve">
+        <value> Enter your email or ID to
+reset your password. 
+        
+You will be provided with a
+new signup link in your email
+or, if you didn't enter an
+email,
+a new signup code
+through your company.
+        
+You can enter a new
+password once you claim</value>
+    </data>
+    <data name="ResetPassword" xml:space="preserve">
+        <value>Reset password</value>
+    </data>
+    <data name="EmailAddressOrID" xml:space="preserve">
+        <value>Email address or ID</value>
+    </data>
+    <data name="EnterEmailAddressOrID" xml:space="preserve">
+        <value>Please enter Email or ID</value>
+    </data>
+    <data name="SuccessResetPassword" xml:space="preserve">
+        <value>New password is sent on your registered email id</value>
+    </data>
+    <data name="EnterValidEmailAddressOrID" xml:space="preserve">
+        <value>Please enter your valid Email or ID</value>
     </data>
 </root>

@@ -257,5 +257,20 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> UserForgotPassword(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var forgotpasswordServiceURL = ConfigService.BaseServiceURL + ConfigService.UserForgotPasswordServiceURL + id;
+                resultModel = await GetResponse<string>(forgotpasswordServiceURL, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
     }
 }
