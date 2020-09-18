@@ -18,7 +18,7 @@
                 <Label IsVisible="{Binding isShowLooktext}" LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,20,30,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{x:Static Multilingual:AppResources.WelcomeTo}" TextColor="Black" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
+                            <Span Text="{x:Static Multilingual:AppResources.Welcometo}" TextColor="Black" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
                             <Span Text="{x:Static Multilingual:AppResources.AtWork}" TextColor="Black" FontFamily="Lato_Italic" FontSize="{DynamicResource FontSize18}"/>
                             <Span Text="{x:Static Multilingual:AppResources.Whatdoyoulooklike}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" TextColor="Black"/>
                         </FormattedString>

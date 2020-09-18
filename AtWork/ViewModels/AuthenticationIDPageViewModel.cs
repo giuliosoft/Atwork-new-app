@@ -43,7 +43,7 @@ namespace AtWork.ViewModels
             try
             {
                 SettingsService.IsBioMetricAuthenticationEnabled = false;
-                await _navigationService.NavigateAsync(nameof(LoginPage), null);
+                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}/{nameof(LoginPage)}");
             }
             catch (Exception ex)
             {

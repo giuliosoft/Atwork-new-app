@@ -192,6 +192,7 @@ namespace AtWork.ViewModels
         {
             base.OnNavigatedTo(parameters);
             CreatePassowrdLabeltext = AppResources.CreatePasswordText;
+            isCreatingPwd = true;
         }
     }
 }
