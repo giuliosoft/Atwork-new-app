@@ -362,11 +362,11 @@ namespace AtWork.Services
 
         public static void ConvertThemeAsPerSettings()
         {
-            App.Current.Resources["AccentColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Accent); //(Color)loginOutputModel.AccentColur;
-            App.Current.Resources["DarkColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Dark);
-            App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Secondary_Dark);
-            App.Current.Resources["LightColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Light);
-            App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData.Secondary_Light);
+            App.Current.Resources["AccentColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData?.Accent); //(Color)loginOutputModel.AccentColur;
+            App.Current.Resources["DarkColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData?.Dark);
+            App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData?.Secondary_Dark);
+            App.Current.Resources["LightColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData?.Light);
+            App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(SettingsService.LoggedInUserData?.Secondary_Light);
         }
 
         public static void ConvertThemeAsPerClaimProfileSettings()

@@ -70,6 +70,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<WelcomeSetupPage, WelcomeSetupPageViewModel>();
             containerRegistry.RegisterForNavigation<YourInterestsPage, YourInterestsPageViewModel>();
             containerRegistry.RegisterForNavigation<WelcomeSetupDonePage, WelcomeSetupDonePageViewModel>();
+            containerRegistry.RegisterForNavigation<ForgotPasswordPage, ForgotPasswordPageViewModel>();
         }
 
         /// <summary>

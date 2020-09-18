@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.Views.LoginPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
@@ -27,15 +28,15 @@
                         </CustomControl:CustomEntry>
                         <StackLayout VerticalOptions="Start">
                             <Label Text="{x:Static Multilingual:AppResources.ForgotPasswordText}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize14}" Padding="5,0,0,0" TextDecorations="Underline">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ForgotPassword}"/>
-                                </Label.GestureRecognizers>
                             </Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <PancakeControl:PancakeView IsVisible="{Binding WrongPasswordLabelIsVisible}" Margin="0,5,0,0" Padding="5,5,12,5" CornerRadius="15" HorizontalOptions="StartAndExpand" BackgroundColor="{StaticResource BlackColor}">
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0" Orientation="Horizontal">
                             <Image Source="GMSelected" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
-                            <Label Text="Wrong password entered" Style="{StaticResource NewsPagePostDescriptionLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
+                            <Label Text="{x:Static Multilingual:AppResources.Wrongpasswordentered}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
                         </StackLayout>
                     </PancakeControl:PancakeView>
                     </StackLayout>

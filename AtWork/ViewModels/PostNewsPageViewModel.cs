@@ -33,7 +33,7 @@ namespace AtWork.ViewModels
         private string _ProductDetail = string.Empty;
         private Color _PublishGroupColor = (Color)App.Current.Resources["AccentColor"];
         private Color _PublishPublicColor = Color.Transparent;
-        private string NewsPrivacy = string.Empty;
+        private string NewsPrivacy = "mygroup";
         private Color _GroupTextColor = Color.White;
         private Color _PublicTextColor = (Color)App.Current.Resources["AccentColor"];
         private string _PostTitle = string.Empty;
