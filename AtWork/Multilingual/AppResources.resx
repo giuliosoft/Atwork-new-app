@@ -794,6 +794,30 @@ password once you claim</value>
         <value>New password is sent on your registered email id</value>
     </data>
     <data name="EnterValidEmailAddressOrID" xml:space="preserve">
-        <value>Please enter your valid Email or ID</value>
+        <value>Please enter valid Email or ID</value>
+    </data>
+    <data name="Wrongpasswordentered" xml:space="preserve">
+        <value>Wrong password entered</value>
+    </data>
+    <data name="Welcometo" xml:space="preserve">
+        <value>Welcome to </value>
+    </data>
+    <data name="atworkWithComma" xml:space="preserve">
+        <value>atwork, </value>
+    </data>
+    <data name="WelcomeDiscription" xml:space="preserve">
+        <value>your hub to&#x0a;stay updated in company news,&#x0a;participate in activities and&#x0a;connect with your team.</value>
+    </data>
+    <data name="WelcomeDiscription2" xml:space="preserve">
+        <value>&#x0a;&#x0a;Choose an option below to begin.</value>
+    </data>
+    <data name="NewFindandclaimyouraccount" xml:space="preserve">
+        <value>New? Find and claim your account</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Log in</value>
+    </data>
+    <data name="PostCoordinatorUserText" xml:space="preserve">
+        <value>News</value>
     </data>
 </root>

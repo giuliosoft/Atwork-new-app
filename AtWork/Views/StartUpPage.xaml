@@ -4,6 +4,7 @@
              x:Class="AtWork.Views.StartUpPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false">
@@ -21,19 +22,19 @@
                 <Label LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,0,30,30">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Welcome to " TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
-                            <Span Text="atwork, " TextColor="White" FontFamily="Lato_Italic" FontSize="{DynamicResource FontSize18}"/>
-                            <Span Text="your hub to&#x0a;stay updated in company news,&#x0a;participate in activities and&#x0a;connect with your team." FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" TextColor="White"/>
-                            <Span Text="&#x0a;&#x0a;Choose an option below to begin." TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}"/>
+                            <Span Text="{x:Static Multilingual:AppResources.Welcometo}" TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
+                            <Span Text="{x:Static Multilingual:AppResources.atworkWithComma}" TextColor="White" FontFamily="Lato_Italic" FontSize="{DynamicResource FontSize18}"/>
+                            <Span Text="{x:Static Multilingual:AppResources.WelcomeDiscription}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" TextColor="White"/>
+                            <Span Text="{x:Static Multilingual:AppResources.WelcomeDiscription2}" TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
                 <!--<Label Text="Choose an option below to begin." FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White"></Label>-->
                 <StackLayout VerticalOptions="StartAndExpand">
                     <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20,0,20,5">
-                        <Button Command="{Binding GoForLoginCommand}" x:Name="btnLogin" Text="Log in" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" WidthRequest="50" TextColor="#515AE0"/>
+                        <Button Command="{Binding GoForLoginCommand}" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.Login}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" WidthRequest="50" TextColor="#515AE0"/>
                     </Frame>
-                    <Label Text="New? Find and claim your account" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize14}" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30,0,30,0"  TextDecorations="Underline" TextColor="White">
+                    <Label Text="{x:Static Multilingual:AppResources.NewFindandclaimyouraccount}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize14}" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30,0,30,0"  TextDecorations="Underline" TextColor="White">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
                         </Label.GestureRecognizers>

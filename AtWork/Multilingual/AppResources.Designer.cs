@@ -1522,5 +1522,64 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("EnterValidEmailAddressOrID", resourceCulture);
             }
         }
+        
+        internal static string Wrongpasswordentered {
+            get {
+                return ResourceManager.GetString("Wrongpasswordentered", resourceCulture);
+            }
+        }
+        internal static string Welcometo
+        {
+            get
+            {
+                return ResourceManager.GetString("Welcometo", resourceCulture);
+            }
+        }
+        internal static string atworkWithComma
+        {
+            get
+            {
+                return ResourceManager.GetString("atworkWithComma", resourceCulture);
+            }
+        }
+
+        internal static string WelcomeDiscription
+        {
+            get
+            {
+                return ResourceManager.GetString("WelcomeDiscription", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeDiscription2
+        {
+            get
+            {
+                return ResourceManager.GetString("WelcomeDiscription2", resourceCulture);
+            }
+        }
+        
+        internal static string NewFindandclaimyouraccount
+        {
+            get
+            {
+                return ResourceManager.GetString("NewFindandclaimyouraccount", resourceCulture);
+            }
+        }
+
+        internal static string Login
+        {
+            get
+            {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        internal static string PostCoordinatorUserText
+        {
+            get
+            {
+                return ResourceManager.GetString("PostCoordinatorUserText", resourceCulture);
+            }
+        }
     }
 }
