@@ -1,11 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AtWork.SubViews.NewsView"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"
              xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"             
              xmlns:Customcontrol="clr-namespace:AtWork.CustomControls">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Spacing="0" Padding="0">
             <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -34,13 +41,16 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="55"/>
                                         </Grid.ColumnDefinitions>
-                                        <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" Aspect="AspectFit" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                        <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" IsVisible="{Binding NewsPostUserIsVisible}" Aspect="AspectFit" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
                                             <ffImageLoading:CachedImage.Transformations>
                                                 <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                             </ffImageLoading:CachedImage.Transformations>
                                         </ffImageLoading:CachedImage>
+                                        <Customcontrol:CustomImage Grid.Row="0" Grid.Column="0" Source="circlegroup" TintColor="{DynamicResource AccentColor}" IsVisible="{Binding NewsPostUserIsVisible, Converter={StaticResource InverseConverter}}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                        </Customcontrol:CustomImage>
                                         <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                            <Label Text="{Binding userName}" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                            <Label Text="{Binding userName}" IsVisible="{Binding NewsPostUserIsVisible}" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                            <Label Text="{x:Static Multilingual:AppResources.PostCoordinatorUserText}" IsVisible="{Binding NewsPostUserIsVisible, Converter={StaticResource InverseConverter}}" Style="{StaticResource NewsPageUserLabelStyle}"/>
                                             <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
                                                 <CustomControl:CustomImage Source="{Binding newsPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
                                                 <Label Text="{Binding NewsCreatedTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>

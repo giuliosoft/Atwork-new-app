@@ -45,7 +45,7 @@
                                             <PancakeControl:PancakeView HasShadow="False" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderColor="{DynamicResource DarkColor}" HorizontalOptions="StartAndExpand" BorderThickness="1" VerticalOptions="StartAndExpand" CornerRadius="15" >
                                                 <Label Text="{Binding proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" HorizontalTextAlignment="Center" Padding="10"/>
                                             </PancakeControl:PancakeView>
-                                            <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="RoundPath" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
+                                            <CustomControl:CustomImage Source="{Binding activityPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
                                         </StackLayout>
                                         <!--<Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>-->
                                         <CustomControl:SelectableLabel Text="{Binding proTitle}" Style="{StaticResource ActivityTitleLabelStyle}"/>

@@ -23,7 +23,7 @@
                                 <PancakeControl:PancakeView HasShadow="False" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderColor="{DynamicResource DarkColor}" HorizontalOptions="StartAndExpand" BorderThickness="1" HeightRequest="30" VerticalOptions="StartAndExpand" CornerRadius="12" >
                                     <Label Text="{Binding SelectedPastActivity.proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" HorizontalTextAlignment="Center" Padding="10"/>
                                 </PancakeControl:PancakeView>
-                                <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="RoundPath" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
+                                <CustomControl:CustomImage Source="{Binding SelectedPastActivity.activityPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
                             </StackLayout>
                             <Label Text="{Binding SelectedPastActivity.proTitle}"/>
                             <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">

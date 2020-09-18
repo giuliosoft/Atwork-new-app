@@ -463,7 +463,7 @@ namespace AtWork.ViewModels
                 }
                 await ShowLoader();
 
-                var serviceResult = await NewsService.NewsDetail(SelectedNewsId.ToString(),SettingsService.VolunteersUserData?.volUniqueID);
+                var serviceResult = await NewsService.NewsDetail(SelectedNewsId.ToString(), SettingsService.VolunteersUserData?.volUniqueID);
                 var serviceResultBody = JsonConvert.DeserializeObject<NewsResponce>(serviceResult.Body);
 
                 if (serviceResultBody != null && serviceResultBody.Flag)
@@ -502,13 +502,13 @@ namespace AtWork.ViewModels
                             NewsTitle = serviceResultBody.Data.News.newsTitle;
                             NewsDescription = serviceResultBody.Data.News.newsContent;
                             var NewsPrivicy = serviceResultBody?.Data?.News?.newsPrivacy;
-                            if (NewsPrivicy != null && NewsPrivicy.ToLower() == "everyone") // everyone Or mygroup
+
+                            if (!string.IsNullOrEmpty(NewsPrivicy))
                             {
-                                PublishImageSource = "earth";
-                            }
-                            else
-                            {
-                                PublishImageSource = "ActivityPeopleIcon";
+                                if (NewsPrivicy.Equals("everyone", StringComparison.InvariantCultureIgnoreCase))
+                                    PublishImageSource = "earth";
+                                else
+                                    PublishImageSource = "ActivityPeopleIcon";
                             }
 
                             var tempCList = new ObservableCollection<CarouselModel>();

@@ -820,4 +820,7 @@ password once you claim</value>
     <data name="PostCoordinatorUserText" xml:space="preserve">
         <value>News</value>
     </data>
+    <data name="PostCoordinatorUserText" xml:space="preserve">
+        <value>News</value>
+    </data>
 </root>

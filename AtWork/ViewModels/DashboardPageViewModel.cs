@@ -524,10 +524,13 @@ namespace AtWork.ViewModels
                                 tempData.newsTitle = nArg.news.newsTitle;
                                 tempData.newsDescription = nArg.news?.newsContent;
 
-                                if (nArg.news?.newsPrivacy.ToLower() == "everyone")
-                                    tempData.newsPostPublishType = "earth";
-                                else
-                                    tempData.newsPostPublishType = "ActivityPeopleIcon";
+                                if (!string.IsNullOrEmpty(nArg.news?.newsPrivacy))
+                                {
+                                    if (nArg.news.newsPrivacy.Equals("everyone", StringComparison.InvariantCultureIgnoreCase))
+                                        tempData.newsPostPublishType = "earth";
+                                    else
+                                        tempData.newsPostPublishType = "ActivityPeopleIcon";
+                                }
 
                                 if (!string.IsNullOrEmpty(nArg.news?.newsImage))
                                 {

@@ -28,10 +28,6 @@ namespace AtWork.ViewModels
         public ActivityDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             DetailHeaderOptionIsVisible = false;
-            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Corporate volunteering" });
-            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Environment & nature" });
-            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Nature" });
-            //ActivityTagList.Add(new ActivityTagModel() { ActivityTag = "Physically active" });
 
             HeaderDetailsTitle = AppResources.ActivityText;
             if (IsFromMyActivity)
