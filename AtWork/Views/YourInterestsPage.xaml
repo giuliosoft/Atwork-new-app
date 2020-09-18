@@ -22,7 +22,7 @@
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
-                    <Label IsVisible="{Binding ShowHeadingText}" Text="Now write down some of your interests!" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
+                    <Label IsVisible="{Binding ShowHeadingText}" Text="{x:Static Multilingual:AppResources.Nowwritedowninterests}" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
                     <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
                         <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>
@@ -84,7 +84,7 @@
                                 </Grid.ColumnDefinitions>
                                 <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="Start writing..."  Style="{StaticResource NewsCommentEditorStyle}"/>
                                 <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                    <Label Text="Send" Style="{StaticResource SendLabelStyle}"/>
+                                    <Label Text="{x:Static Multilingual:AppResources.SendText}" Style="{StaticResource SendLabelStyle}"/>
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding SendCommentCommand}"/>
                                     </StackLayout.GestureRecognizers>

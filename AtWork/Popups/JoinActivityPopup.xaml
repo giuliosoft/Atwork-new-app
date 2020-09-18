@@ -26,8 +26,8 @@
             <PancakeControl:PancakeView CornerRadius="2" HasShadow="False" BorderThickness="1" BorderColor="White" WidthRequest="35" HeightRequest="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" Margin="0,12,0,0" BackgroundColor="{StaticResource WhiteColor}"/>
             <Label Text="{x:Static Multilingual:AppResources.ThankYouSigningupText}" Style="{StaticResource JoinActivityPopupHeaderStyle}" Margin="0,15,0,0"/>
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="40,0,40,0">
-                <Label Text="You will receive a detailed activity description and itinerary 30 days prior to the event." Style="{StaticResource JoinActivityPopupTextStyle}" Margin="0,10,0,10"/>
-                <Label Text="Make sure to clear your schedule, the NGO is counting on you!" Style="{StaticResource JoinActivityPopupTextStyle}" />
+                <Label Text="{x:Static Multilingual:AppResources.JoinActivityText1}" Style="{StaticResource JoinActivityPopupTextStyle}" Margin="0,10,0,10"/>
+                <Label Text="{x:Static Multilingual:AppResources.JoinActivityText2}" Style="{StaticResource JoinActivityPopupTextStyle}" />
             </StackLayout>
             <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" Margin="0,15,0,15"/>
             <Label Text="{x:Static Multilingual:AppResources.WhatDateYouPlanToAttendText}" Style="{StaticResource JoinActivityPopupTextStyle}" FontSize="18" Padding="25,0,25,10"/>

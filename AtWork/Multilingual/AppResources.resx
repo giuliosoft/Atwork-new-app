@@ -504,9 +504,6 @@ Set permission manually from app settings.</value>
     <data name="ChooseLanguage" xml:space="preserve">
         <value>Choose Language</value>
     </data>
-    <data name="WelcomeTo" xml:space="preserve">
-        <value>Welcome to </value>
-    </data>
     <data name="AtWork" xml:space="preserve">
         <value>atwork 
     </value>
@@ -823,4 +820,26 @@ password once you claim</value>
     <data name="PostCoordinatorUserText" xml:space="preserve">
         <value>News</value>
     </data>
+    <data name="JoinActivityText1" xml:space="preserve">
+        <value>You will receive a detailed activity description and itinerary 30 days prior to the event.</value>
+    </data>
+    <data name="JoinActivityText2" xml:space="preserve">
+        <value>Make sure to clear your schedule, the NGO is counting on you!</value>
+    </data>
+    <data name="Editpost" xml:space="preserve">
+        <value>Edit post</value>
+    </data>
+    <data name="Deletepost" xml:space="preserve">
+        <value>Delete post </value>
+    </data>
+    <data name="AlmostDone" xml:space="preserve">
+        <value>Almost Done!</value>
+    </data>
+     <data name="AllowNotification" xml:space="preserve">
+        <value>Allow notifications if you on subscribed activities. wish to receive updates</value>
+    </data>
+    <data name="Nowwritedowninterests" xml:space="preserve">
+        <value>Now write down some of your interests!</value>
+    </data>
+    
 </root>

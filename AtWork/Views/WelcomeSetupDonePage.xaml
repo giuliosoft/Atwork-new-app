@@ -15,8 +15,8 @@
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Margin="50" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="Almost Done!" HorizontalTextAlignment="Center" Padding="10" FontSize="18" FontFamily="Lato_Regular" VerticalOptions="Center"/>
-            <Label Text="Allow notifications if you on subscribed activities. wish to receive updates" FontSize="18" FontFamily="Lato_Regular" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+            <Label Text="{x:Static Multilingual:AppResources.AlmostDone}" HorizontalTextAlignment="Center" Padding="10" FontSize="18" FontFamily="Lato_Regular" VerticalOptions="Center"/>
+            <Label Text="{x:Static Multilingual:AppResources.AllowNotification}" FontSize="18" FontFamily="Lato_Regular" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
