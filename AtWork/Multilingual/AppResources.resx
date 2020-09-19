@@ -841,5 +841,8 @@ password once you claim</value>
     <data name="Nowwritedowninterests" xml:space="preserve">
         <value>Now write down some of your interests!</value>
     </data>
+    <data name="InvalidEmailOrPassword" xml:space="preserve">
+        <value>Invalid Email address/ID or Password</value>
+    </data>
     
 </root>

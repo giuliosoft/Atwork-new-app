@@ -371,11 +371,11 @@ namespace AtWork.Services
 
         public static void ConvertThemeAsPerClaimProfileSettings()
         {
-            App.Current.Resources["AccentColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Accent); //(Color)loginOutputModel.AccentColur;
-            App.Current.Resources["DarkColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Dark);
-            App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Secondary_Dark);
-            App.Current.Resources["LightColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Light);
-            App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData.Secondary_Light);
+            App.Current.Resources["AccentColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData?.Accent); //(Color)loginOutputModel.AccentColur;
+            App.Current.Resources["DarkColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData?.Dark);
+            App.Current.Resources["SecondaryDarkColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData?.Secondary_Dark);
+            App.Current.Resources["LightColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData?.Light);
+            App.Current.Resources["SecondaryLightColor"] = (Color)Color.FromHex(SessionService.tempClaimProfileData?.Secondary_Light);
         }
 
         static double SmallDeviceSize = 700;

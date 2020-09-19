@@ -54,7 +54,7 @@ namespace AtWork.Services
         {
             SessionService.tempVolunteerData = null;
             SessionService.tempClaimProfileData = null;
-            SessionService.NewsPostInputData = null;
+            SessionService.NewsPostInputData = new NewsDetailModel_Input();
             SessionService.AppNavigationService = null;
             SettingsService.LoggedInUserData = null;
             SettingsService.VolunteersUserData = null;

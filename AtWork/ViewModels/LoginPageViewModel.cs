@@ -112,7 +112,7 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
-                        await DisplayAlertAsync(TextResources.InvalidUserNameorPaddword);
+                        await DisplayAlertAsync(AppResources.InvalidEmailOrPassword);
                     }
                 }
                 await ClosePopup();

@@ -1606,5 +1606,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("Nowwritedowninterests", resourceCulture);
             }
         }
+        
+        internal static string InvalidEmailOrPassword {
+            get {
+                return ResourceManager.GetString("InvalidEmailOrPassword", resourceCulture);
+            }
+        }
     }
 }
