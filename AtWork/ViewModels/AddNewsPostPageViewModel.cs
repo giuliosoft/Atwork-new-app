@@ -76,7 +76,6 @@ namespace AtWork.ViewModels
                 }
 
                 await ShowLoader();
-                SessionService.NewsPostInputData = new NewsDetailModel_Input();
                 SessionService.NewsPostInputData.newsTitle = NewsTitle;
                 SessionService.NewsPostInputData.newsContent = NewsDescription;
                 await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
