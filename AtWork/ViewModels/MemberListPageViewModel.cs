@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Multilingual;
 using AtWork.Services;
+using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
@@ -33,6 +34,16 @@ namespace AtWork.ViewModels
 
         private async Task OnSelectionChanged(Volunteers member)
         {
+            try
+            {
+                var nav = new NavigationParameters();
+                nav.Add("VolId", member.volUniqueID);
+                await _navigationService.NavigateAsync(nameof(ProfilePage), nav);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
             //TODO Profile
             //await DisplayAlertAsync(member.Name);
         }
