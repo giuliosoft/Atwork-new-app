@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -28,12 +29,18 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         Volunteers _volunteers = new Volunteers();
+        private bool _isShowSettingLogout = false;
         #endregion
         #region Public Properties
         public Volunteers volunteers
         {
             get { return _volunteers; }
             set { SetProperty(ref _volunteers, value); }
+        }
+        public bool isShowSettingLogout
+        {
+            get { return _isShowSettingLogout; }
+            set { SetProperty(ref _isShowSettingLogout, value); }
         }
         private ObservableCollection<FeedBackUIModel> _interestList = new ObservableCollection<FeedBackUIModel>();
         public ObservableCollection<FeedBackUIModel> interestList
@@ -88,12 +95,12 @@ namespace AtWork.ViewModels
 
             }
         }
-        async Task GetUserDetail()
+        async Task GetUserDetail(string volunteerID)
         {
             try
             {
                 await ShowLoader();
-                var serviceResult = await UserServices.GetUserDetails(SettingsService.VolunteersUserData.volUniqueID);
+                var serviceResult = await UserServices.GetUserDetails(volunteerID);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<ProfileResponce>(serviceResult.Body);
@@ -190,9 +197,32 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            await GetUserDetail();
-
-
+            try
+            {
+                string VolunteerId = parameters.GetValue<string>("VolId");
+                if (!string.IsNullOrEmpty(VolunteerId))
+                {
+                    if (SettingsService.VolunteersUserData.volUniqueID == VolunteerId)
+                    {
+                        isShowSettingLogout = true;
+                    }
+                    else
+                    {
+                        isShowSettingLogout = false;
+                    }
+                    await GetUserDetail(VolunteerId);
+                }
+                else
+                {
+                    isShowSettingLogout = true;
+                    await GetUserDetail(SettingsService.VolunteersUserData.volUniqueID);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
     public class UserDetails

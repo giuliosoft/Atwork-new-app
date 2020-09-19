@@ -46,8 +46,9 @@
 
                             <Label Text="{x:Static Multilingual:AppResources.DescribeItWithSomeEmojisText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
                             <StackLayout Orientation="Horizontal">
-                                <StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
-                                </StackLayout>
+                                    <Label Text="{Binding Emoji1}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
+                                <!--<StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
+                                </StackLayout>-->
                             </StackLayout>
                         </StackLayout>
                     </ScrollView>
