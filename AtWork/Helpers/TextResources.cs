@@ -18,6 +18,7 @@ namespace AtWork.Helpers
         public static string RegularCategoryText = "Regular";
         public static string RecurringCategoryText = "Recurring";
         public static string DefaultCalendarText = "Default";
+        public static string iCloudCalendarText = "iCloud";
 
         #region App Constants
         public const string CorpVolID = "cat001";
@@ -40,6 +41,22 @@ namespace AtWork.Helpers
         public const string RateFourFull = "FourFull";
         public const string RateFiveHalf = "FiveHalf";
         public const string RateFiveFull = "FiveFull";
+
+        public const string EnglishCode = "en";
+        public const string GermanCode = "de";
+        public const string ItalianCode = "it";
+        public const string FrenchCode = "fr";
+        public const string SpanishCode = "es";
+        public const string RussianCode = "ru";
+        public const string MandarinCode = "";
+
+        public const string EnglishLanguage = "English";
+        public const string GermanLanguage = "German";
+        public const string ItalianLanguage = "Italian";
+        public const string FrenchLanguage = "French";
+        public const string SpanishLanguage = "Spanish";
+        public const string RussianLanguage = "Russian";
+        public const string MandarinLanguage = "Mandarin";
         #endregion
     }
 }

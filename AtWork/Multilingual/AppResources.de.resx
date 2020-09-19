@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -425,7 +425,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Profile</value>
     </data>
     <data name="ChangeProfilePictureText" xml:space="preserve">
-        <value>Change profile picture</value>
+        <value>Profilbild ändern</value>
     </data>
     <data name="EditInterestsText" xml:space="preserve">
         <value>Edit interests</value>
@@ -441,7 +441,7 @@ Permission Denied. Can not continue, try again.</value>
     </data>
     <data name="ManageNotificationText" xml:space="preserve">
         <value>Manage notification</value>
-	</data>
+    </data>
     <data name="ProfilePictureText" xml:space="preserve">
         <value>Profile picture</value>
     </data>

@@ -186,6 +186,8 @@ namespace AtWork.ViewModels
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
+            ConfirmPassword = string.Empty;
+            CreatePassowrdEntrytext = string.Empty;
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)

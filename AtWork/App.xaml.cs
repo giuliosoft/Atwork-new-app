@@ -31,7 +31,7 @@ namespace AtWork
             InitializeComponent();
 
             LayoutService.Init();
-            LanguageService.Init("language");
+            LanguageService.Init(SettingsService.AppLanguage);
             NavigationService.NavigateAsync(InitNavigationPageService.Navigate()).Wait();
         }
 

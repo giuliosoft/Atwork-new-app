@@ -321,6 +321,9 @@
     <BundleResource Include="Resources\circlegroup.png" />
     <BundleResource Include="Resources\circlegroup%402x.png" />
     <BundleResource Include="Resources\circlegroup%403x.png" />
+    <BundleResource Include="Resources\info.png" />
+    <BundleResource Include="Resources\info%402x.png" />
+    <BundleResource Include="Resources\info%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
