@@ -14,7 +14,7 @@ namespace AtWork.Services
         public static string BaseServiceURL = "http://app.atwork.ai/api";
         public static string BaseNewsImageURL = BaseServerURL + "/newsposts/";
         public static string BaseProfileImageURL = BaseServerURL + "/volunteers/";
-        public static string BaseNewsAttachFileURL = BaseServerURL + "/newspostsfile/";
+        public static string BaseNewsAttachFileURL = BaseServerURL + "/newspostsfiles/";
         public static string BaseActivityImageURL = BaseServerURL + "/activities/";
         public static string BaseCompanyLogoURL = BaseServerURL + "/companylogos/";
         //

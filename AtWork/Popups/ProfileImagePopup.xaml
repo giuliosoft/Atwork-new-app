@@ -24,7 +24,7 @@
             <Converters:InverseBooleanConverter x:Key="InverseConverter" />
         </ResourceDictionary>
     </pages:PopupPage.Resources>
-    <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="15">
+    <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="15,15,0,0">
         <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <PancakeControl:PancakeView CornerRadius="2" HasShadow="False" BorderThickness="1" BorderColor="White" WidthRequest="35" HeightRequest="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" Margin="0,12,0,0" BackgroundColor="{StaticResource WhiteColor}"/>
             <CollectionView x:Name="clImages" ItemsSource="{Binding ImageList}" ItemsLayout="VerticalGrid, 2" SelectionMode="None" Margin="0,40,0,40" VerticalOptions="EndAndExpand" HeightRequest="{DynamicResource HeightWidth500}">

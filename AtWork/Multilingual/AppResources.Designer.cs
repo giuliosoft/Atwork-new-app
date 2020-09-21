@@ -227,6 +227,12 @@ namespace AtWork.Multilingual {
             }
         }
         
+        internal static string ReplaceFile {
+            get {
+                return ResourceManager.GetString("ReplaceFile", resourceCulture);
+            }
+        }
+        
         internal static string ChooseFromCameraRoll {
             get {
                 return ResourceManager.GetString("ChooseFromCameraRoll", resourceCulture);

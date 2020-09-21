@@ -106,6 +106,9 @@ Permission Denied. Can not continue, try again.</value>
     <data name="AttachFile" xml:space="preserve">
         <value>Attach file</value>
     </data>
+    <data name="ReplaceFile" xml:space="preserve">
+        <value>Replace file</value>
+    </data>
     <data name="ChooseFromCameraRoll" xml:space="preserve">
         <value>Choose from camera roll</value>
     </data>

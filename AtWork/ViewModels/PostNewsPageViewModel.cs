@@ -174,8 +174,15 @@ namespace AtWork.ViewModels
                     inputModel.newsContent = SessionService.NewsPostInputData.newsContent;
                     inputModel.newsDateTime = DateTime.Now;
                     inputModel.newsPostedTime = DateTime.Now;
-                    inputModel.newsFileOriginal = SessionService.NewsPostAttachmentFileName;
-                    inputModel.newsFile = "";
+                    if (!string.IsNullOrEmpty(SessionService.NewsPostAttachmentFileName))
+                    {
+                        inputModel.newsFileOriginal = SessionService.NewsPostAttachmentFileName;
+                    }
+                    else
+                    {
+                        inputModel.newsFileOriginal = SessionService.NewsPostInputData.newsFileOriginal;
+                    }
+                    inputModel.newsFile = SessionService.NewsPostInputData.newsFile;
                     inputModel.newsImage = "";
                     inputModel.newsOrigin = "employee";
                     inputModel.newsStatus = "Active";

@@ -22,6 +22,7 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.SkipText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
+            AttachFileButtonText = AppResources.AttachFile;
         }
         #endregion
 
@@ -30,6 +31,7 @@ namespace AtWork.ViewModels
         private bool _AttachedFileViewIsVisible = false;
         private string _NewsPostAttachFileName = string.Empty;
         private string NewsPostAttachFilePath = string.Empty;
+        private string _AttachFileButtonText = string.Empty;
         #endregion
 
         #region Public Properties        
@@ -49,6 +51,12 @@ namespace AtWork.ViewModels
         {
             get { return _NewsPostAttachFileName; }
             set { SetProperty(ref _NewsPostAttachFileName, value); }
+        }
+
+        public string AttachFileButtonText
+        {
+            get { return _AttachFileButtonText; }
+            set { SetProperty(ref _AttachFileButtonText, value); }
         }
         #endregion
 
@@ -80,6 +88,10 @@ namespace AtWork.ViewModels
                 {
                     SessionService.NewsPostAttachmentFilePath = NewsPostAttachFilePath;
                     SessionService.NewsPostAttachmentFileName = NewsPostAttachFileName;
+                }
+                if (SessionService.NewsPostInputData != null)
+                {
+                    SessionService.NewsPostInputData.newsFile = NewsPostAttachFileName;
                 }
                 await _navigationService.NavigateAsync(nameof(PostNewsPage));
                 await ClosePopup();
@@ -114,6 +126,7 @@ namespace AtWork.ViewModels
                     if (fileData != null)
                     {
                         AttachedFileViewIsVisible = true;
+                        AttachFileButtonText = AppResources.ReplaceFile;
                         AddNewsNextImage = AppResources.NextButtonText;
                         byte[] data = fileData.DataArray;
                         var FileBase64String = Convert.ToBase64String(data);
@@ -148,6 +161,13 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            if (!string.IsNullOrEmpty(SessionService.NewsPostInputData.newsFileOriginal))
+            {
+                AttachedFileViewIsVisible = true;
+                AddNewsNextImage = AppResources.NextButtonText;
+                AttachFileButtonText = AppResources.ReplaceFile;
+                NewsPostAttachFileName = SessionService.NewsPostInputData.newsFileOriginal;
+            }
         }
     }
 }
