@@ -355,6 +355,7 @@ namespace AtWork.Services
 
             #region AbsoluteLayout DeviceWidthFooterTab
 
+            App.Current.Resources["DeviceWidth"] = DeviceDisplay.MainDisplayInfo.Width;
             App.Current.Resources["DeviceWidthFooterTab"] = DeviceDisplay.MainDisplayInfo.Width / 4 - 20;
 
             #endregion

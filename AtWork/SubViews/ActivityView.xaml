@@ -49,6 +49,15 @@
                                         </StackLayout>
                                         <!--<Label Text="{Binding proTitle}" FontSize="20" FontAttributes="Bold"/>-->
                                         <CustomControl:SelectableLabel Text="{Binding proTitle}" Style="{StaticResource ActivityTitleLabelStyle}"/>
+                                         <Grid WidthRequest="{DynamicResource DeviceWidth}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
+                                            <FlexLayout Grid.Column="0" x:Name="EmojiList" BindableLayout.ItemsSource="{Binding EmojiList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Start" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="0">
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Label Text="{Binding EmojiCode}" HeightRequest="30" WidthRequest="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </FlexLayout>
+                                        </Grid>
                                         <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
                                             <Grid RowDefinitions="Auto">
                                                 <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">

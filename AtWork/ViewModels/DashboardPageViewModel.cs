@@ -650,8 +650,33 @@ namespace AtWork.ViewModels
                                 arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                 arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = "noimage" });
                             }
+                            string strEmoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
+                            List<string> emojiList = new List<string>();
+                            if (!string.IsNullOrEmpty(strEmoji))
+                            {
+                                if (strEmoji.Contains(","))
+                                {
+                                    emojiList = strEmoji.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    emojiList.Add(strEmoji);
+                                }
+                            }
+                            ObservableCollection<EmojiDisplayModel> EmojisList = CommonUtility.EmojisList();
+                            if (emojiList != null && emojiList.Count > 0)
+                            {
+                                arg.EmojiList = new ObservableCollection<EmojiDisplayModel>();
+                                emojiList.All((Arg) =>
+                                {
+                                    string EmojiCode = EmojisList.Where(x => x.EmojiName == Arg).Select(x => x.EmojiCode).FirstOrDefault();
+                                    arg.EmojiList.Add(new EmojiDisplayModel() { EmojiCode = EmojiCode }); 
+                                    return true;
+                                });
+                            }
                             return true;
                         });
+                        
                         Activitylist = new ObservableCollection<ActivityListModel>(tempList);
                         if (serviceResultBody.Data1 != null && serviceResultBody.Data1.Count > 0)
                         {
@@ -765,6 +790,7 @@ namespace AtWork.ViewModels
                     SessionService.LikeNewsID = null;
                     SessionService.LikeNewsCount = null;
                 }
+                
                 await GetGroupMemberListCount();
                 //await GetActivityList();
                 IsFromMyActivity = false;

@@ -1,6 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using AtWork.Helpers;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
@@ -23,7 +29,9 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
+        List<EmojiDisplayModel> emojiDisplayModelsSelected = new List<EmojiDisplayModel>();
+        private string _Emoji1 = string.Empty;
+        private string _Emoji2 = string.Empty;
         private string _ActivityTitle = string.Empty;
         private string _ActivityDescription = string.Empty;
         private string _ActivityAddress = string.Empty;
@@ -32,13 +40,19 @@ namespace AtWork.ViewModels
         private string _ActivityPrice = string.Empty;
         private DateTime _SelectedDate = DateTime.Now;
         private TimeSpan _SelectedTime = DateTime.Now.TimeOfDay;
+        ObservableCollection<EmojiDisplayModel> _EmojiList = new ObservableCollection<EmojiDisplayModel>();
         #endregion
 
         #region Public Properties        
-        public string Prop
+        public string Emoji1
         {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
+            get { return _Emoji1; }
+            set { SetProperty(ref _Emoji1, value); }
+        }
+        public string Emoji2
+        {
+            get { return _Emoji2; }
+            set { SetProperty(ref _Emoji2, value); }
         }
         public string ActivityTitle
         {
@@ -81,14 +95,48 @@ namespace AtWork.ViewModels
             get { return _SelectedTime; }
             set { SetProperty(ref _SelectedTime, value); }
         }
+        public ObservableCollection<EmojiDisplayModel> EmojiList
+        {
+            get { return _EmojiList; }
+            set { SetProperty(ref _EmojiList, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
+        public DelegateCommand<EmojiDisplayModel> EmojiSelectionCommand { get { return new DelegateCommand<EmojiDisplayModel>(async (obj) => await EmojiSelection(obj)); } }
         #endregion
 
         #region private methods
+
+        async Task EmojiSelection(EmojiDisplayModel selectedTab)
+        {
+            try
+            {
+                EmojiList.All((item) =>
+                {
+                    if (item == selectedTab)
+                    {
+                        item.IsSelected = !item.IsSelected;
+                        if (item.IsSelected)
+                        {
+                            emojiDisplayModelsSelected.Add(item);
+                        }
+                        else
+                        {
+                            emojiDisplayModelsSelected.Remove(item);
+                        }
+                    }
+                    return true;
+                });
+
+            }
+            catch
+            {
+
+            }
+        }
         async Task GoForLogin()
         {
             try
@@ -119,7 +167,16 @@ namespace AtWork.ViewModels
                 SessionService.ActivityPostInputData.proCostCoveredEmployee = ActivityPrice;
                 SessionService.ActivityPostInputData.proAddActivity_StartTime = SelectedTime.ToString("hh\\:mm");
                 SessionService.ActivityPostInputData.proAddActivityDate = SelectedDate;
-
+                try
+                {
+                    List<string> lstEmoji = emojiDisplayModelsSelected.Where(x => x.IsSelected).ToList().Select(x => x.EmojiName).ToList();
+                    SessionService.SelectedEmojiForActivity = string.Join(", ", lstEmoji);
+                }
+                catch (Exception ex)
+                {
+                }
+                
+                
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("isFromActivity", true);
                 await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage), navigationParams);
@@ -145,6 +202,10 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            {
+                EmojiList = new ObservableCollection<EmojiDisplayModel>();
+                EmojiList = CommonUtility.EmojisList();
+            }
         }
     }
 }
