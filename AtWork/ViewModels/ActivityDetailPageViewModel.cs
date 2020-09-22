@@ -104,7 +104,7 @@ namespace AtWork.ViewModels
             get { return _OrganizationAddress; }
             set { SetProperty(ref _OrganizationAddress, value); }
         }
-        
+
         public ObservableCollection<EmojiDisplayModel> EmojiList
         {
             get { return _EmojiList; }

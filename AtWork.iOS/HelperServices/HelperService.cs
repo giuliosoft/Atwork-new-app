@@ -78,7 +78,7 @@ namespace AtWork.iOS.HelperServices
                 }
 
                 Guid uniqueId = Guid.NewGuid();
-                string FileName = $"{uniqueId}{".jpg"}";// "AtWorkImg.jpg";
+                string FileName = $"{uniqueId}{".jpg"}";
                 var Docdirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 var directory = Docdirectory + "/AtWorkImages";
 
@@ -108,7 +108,7 @@ namespace AtWork.iOS.HelperServices
             {
                 Debug.WriteLine("Crop File pathFromReplace=== " + pathFromReplace);
                 Debug.WriteLine("Crop File pathToReplace=== " + pathToReplace);
-                File.Replace(pathFromReplace, pathToReplace, "oldfile");
+                File.Replace(pathFromReplace, pathToReplace, "oldfile");//"oldfile.jpg.bac"
             }
             catch (Exception ex)
             {

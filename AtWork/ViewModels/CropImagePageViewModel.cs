@@ -109,14 +109,8 @@ namespace AtWork.ViewModels
                 }
                 if (!string.IsNullOrEmpty(CroppedImageFilePath))
                 {
-                    if (SessionService.isFromChangeUserProfile)
-                    {
-                        await _helperService.MoveCroppedFile(CroppedImageFilePath, SelectedNewsImageValue.ImagePath);
-                    }
-                    else
-                    {
-                        await _helperService.ReplaceCroppedFile(CroppedImageFilePath, SelectedNewsImageValue.ImagePath);
-                    }
+                    //await _helperService.ReplaceCroppedFile(CroppedImageFilePath, SelectedNewsImageValue.ImagePath);
+                    await _helperService.MoveCroppedFile(CroppedImageFilePath, SelectedNewsImageValue.ImagePath);
                     SessionService.isImageCropped = true;
                 }
                 await BackClick();
