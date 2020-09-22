@@ -218,7 +218,8 @@
             </Style>
             <Style x:Key="AddPostImageLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize80}"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}"/>
+                <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
