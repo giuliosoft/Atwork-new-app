@@ -17,7 +17,7 @@
                 <Label Text="{Binding AddImagesTitle}" Style="{StaticResource AddPostImageLabelStyle}"/>
                 <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_20_00_10}"/>
                 <StackLayout IsVisible="{Binding NewsPickedImageViewIsVisible}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsPostImageCarouselList}" HeightRequest="250" PeekAreaInsets="40" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsImageCarousel_PositionChanged" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsPostImageCarouselList}" HeightRequest="{DynamicResource HeightWidth250}" PeekAreaInsets="{DynamicResource HeightWidth40}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsImageCarousel_PositionChanged" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
@@ -63,7 +63,7 @@
                         <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}"/>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout IsVisible="{Binding IsShowOurImage}" Spacing="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout IsVisible="{Binding IsShowOurImage}" Spacing="{DynamicResource HeightWidth30}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                     <PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">
                         <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>

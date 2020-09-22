@@ -108,7 +108,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand AddImagesFromGalleryCommand { get { return new DelegateCommand(async () => await AddImagesFromGallery()); } }
         public DelegateCommand OurImagesCommand { get { return new DelegateCommand(async () => await OurImages()); } }
         public DelegateCommand<string> CropNewsImageCommand { get { return new DelegateCommand<string>(async (obj) => await CropNewsImage(obj)); } }
@@ -116,18 +115,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region private methods
-        async Task GoForLogin()
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-
         async Task NewsPostProceed(string selectedTab)
         {
             try
@@ -404,6 +391,7 @@ namespace AtWork.ViewModels
                     NewsPostImageCarouselList = tempList;
                     ImageOptionText = AppResources.Delete;
                     NewsPickedImageViewIsVisible = true;
+                    NextTextColor = (Color)App.Current.Resources["WhiteColor"];
                 }
                 if (!isActivity)
                 {

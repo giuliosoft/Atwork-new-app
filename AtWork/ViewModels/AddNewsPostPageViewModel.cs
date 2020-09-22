@@ -69,7 +69,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(NewsTitle) || string.IsNullOrEmpty(NewsDescription))
+                if (string.IsNullOrEmpty(NewsTitle.Trim()) || string.IsNullOrEmpty(NewsDescription.Trim()))
                 {
                     await DisplayAlertAsync(AppResources.PostDataAlertText);
                     return;

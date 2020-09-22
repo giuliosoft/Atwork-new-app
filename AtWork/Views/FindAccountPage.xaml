@@ -14,8 +14,8 @@
         <StackLayout VerticalOptions="FillAndExpand">
             <ScrollView VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand">
-                    <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0,55,0,0">
-                        <Image Source="logoblue" HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout Spacing="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0,55,0,0">
+                        <Image Margin="5" Source="logoblue" HorizontalOptions="CenterAndExpand"/>
                         <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
                         <Image Source="logodot" HorizontalOptions="Center"/>
                     </StackLayout>

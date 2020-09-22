@@ -469,6 +469,15 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
+            <Style x:Key="ActivitiesHoursLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
             <Style x:Key="ClaimProfileDetailHeaderLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="FontFamily" Value="Lato_Regular" />

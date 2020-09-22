@@ -60,6 +60,7 @@ namespace AtWork.iOS.HelperServices
             };
 
             currentPicker.FinishedPickingAssets += FinishedPickingAssets;
+            currentPicker.ShouldSelectAsset += (sender, args) => args.Cancel = currentPicker.SelectedAssets.Count >= 5;
 
             var window = UIApplication.SharedApplication.KeyWindow;
             var vc = window.RootViewController;
