@@ -218,7 +218,8 @@
             </Style>
             <Style x:Key="AddPostImageLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize80}"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}"/>
+                <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
@@ -463,6 +464,15 @@
             <Style x:Key="ActivitiesCountLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource FontSize35}" />
                 <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivitiesHoursLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center" />

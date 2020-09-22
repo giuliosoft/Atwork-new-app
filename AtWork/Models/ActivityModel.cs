@@ -69,6 +69,7 @@ namespace AtWork.Models
             public string Companie_Address1 { get; set; }
             public string Companie_Address2 { get; set; }
             public string Keyword { get; set; }
+            public string Emoji { get; set; }
 
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }

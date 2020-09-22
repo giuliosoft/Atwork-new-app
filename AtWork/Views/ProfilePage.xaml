@@ -33,7 +33,7 @@
                         </StackLayout>
                         <StackLayout Grid.Column="1">
                             <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}">
-                                <Label Text="{Binding volunteers.volHours}" Style="{StaticResource ActivitiesCountLabelStyle}"/>
+                                <Label Text="{Binding volunteers.volHours}" Style="{StaticResource ActivitiesHoursLabelStyle}"/>
                             </PancakeControl:PancakeView>
                             <Label Text="{x:Static Multilingual:AppResources.HoursText}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                         </StackLayout>

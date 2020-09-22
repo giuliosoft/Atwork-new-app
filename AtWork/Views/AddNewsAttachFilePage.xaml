@@ -20,7 +20,7 @@
                     <Image Source="document" Aspect="AspectFit" HeightRequest="70" WidthRequest="70" HorizontalOptions="Fill" VerticalOptions="Fill"/>
                     <Label Text="{Binding NewsPostAttachFileName}" Style="{StaticResource AttachedFileLabelStyle}"/>
                 </StackLayout>
-                <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}" VerticalOptions="End">
+                <ContentView Grid.Column="2" Padding="{DynamicResource MarginPadding0_10_0_40}" VerticalOptions="EndAndExpand">
                     <PancakeControl:PancakeView Padding="15" HeightRequest="20" WidthRequest="200" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="Start" VerticalOptions="Fill"/>

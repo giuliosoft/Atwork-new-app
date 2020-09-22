@@ -475,19 +475,20 @@ namespace AtWork.ViewModels
                     {
                         OrganizationAddress = ActivityDetails.Companie_Address1;
                     }
-                    string strEmoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
+                    //string ActivityDetails.Emoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
                     List<string> emojiList = new List<string>();
-                    if (!string.IsNullOrEmpty(strEmoji))
+                    if (!string.IsNullOrEmpty(ActivityDetails.Emoji))
                     {
-                        if (strEmoji.Contains(","))
+                        if (ActivityDetails.Emoji.Contains(","))
                         {
-                            emojiList = strEmoji.Split(',').ToList();
+                            emojiList = ActivityDetails.Emoji.Trim().Split(',').ToList();
                         }
                         else
                         {
-                            emojiList.Add(strEmoji);
+                            emojiList.Add(ActivityDetails.Emoji);
                         }
                     }
+                    emojiList = emojiList.Select(x => x.Trim()).ToList();
                     ObservableCollection<EmojiDisplayModel> EmojisList = CommonUtility.EmojisList();
                     if (emojiList != null && emojiList.Count > 0)
                     {

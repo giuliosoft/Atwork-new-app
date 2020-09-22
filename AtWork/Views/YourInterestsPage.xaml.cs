@@ -26,14 +26,21 @@ namespace AtWork.Views
         {
             if (VMContext == null)
                 return;
-            string editorText = sender as string;
-            if (!string.IsNullOrEmpty(commentEditor.Text))
+            try
             {
-                VMContext.SendButtonIsVisible = true;
+
+                if (!string.IsNullOrEmpty(commentEditor.Text?.Trim()))
+                {
+                    VMContext.SendButtonIsVisible = true;
+                }
+                else
+                {
+                    VMContext.SendButtonIsVisible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                VMContext.SendButtonIsVisible = false;
+                Console.WriteLine(ex.ToString());
             }
         }
     }

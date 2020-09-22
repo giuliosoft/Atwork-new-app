@@ -72,7 +72,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(UserSurname) || string.IsNullOrEmpty(UserEmail))
+                if (string.IsNullOrEmpty(UserName.Trim()) || string.IsNullOrEmpty(UserSurname.Trim()) || string.IsNullOrEmpty(UserEmail.Trim()))
                 {
                     await DisplayAlertAsync(AppResources.ProfileCorrectionInputAlertText);
                     return;

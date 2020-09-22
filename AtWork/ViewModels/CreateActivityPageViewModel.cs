@@ -152,7 +152,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(ActivityTitle) || string.IsNullOrEmpty(ActivityDescription))
+                if (string.IsNullOrEmpty(ActivityTitle.Trim()) || string.IsNullOrEmpty(ActivityDescription.Trim()))
                 {
                     await DisplayAlertAsync(AppResources.ActivityDataAlertText);
                     return;
