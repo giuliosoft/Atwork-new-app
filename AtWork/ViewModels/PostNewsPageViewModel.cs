@@ -284,15 +284,14 @@ namespace AtWork.ViewModels
                     PostTitle = AppResources.InvitePeopleToYourActivity;
                     PostToGroup = AppResources.Inviteyourgroup;
                     GroupMember = string.Format("{0} {1}", SessionService.GroupMemberCount, AppResources.GroupMemberPost);// "21 people will see your post";
-                    PostToEverybodyText = AppResources.PostToEverybody;
                 }
                 else
                 {
                     PostTitle = AppResources.ChooseWhoCanSeeYourPost;
                     PostToGroup = AppResources.Posttoyourgroup;
                     GroupMember = string.Format("{0} {1}", SessionService.GroupMemberCount, AppResources.GroupMemberPost);
-                    PostToEverybodyText = AppResources.PosttoViewEverybody;
                 }
+                    PostToEverybodyText = AppResources.PostToEverybody;
                 IsShowOption = true;
             }
             catch (Exception ex)
