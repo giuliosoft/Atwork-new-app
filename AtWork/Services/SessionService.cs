@@ -34,6 +34,7 @@ namespace AtWork.Services
         public static bool IsShowActivitiesIntial = false;
         public static List<string> CreateActivityOurImages = new List<string>();
         public static string SelectedDefaultImageForActivity = string.Empty;
+        public static string SelectedEmojiForActivity = string.Empty;
         public static int? LikeNewsID;
         public static int? LikeNewsCount;
         public static bool IsWelcomeSetup = false;

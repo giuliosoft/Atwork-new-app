@@ -6,6 +6,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}"
              ControlTemplate="{StaticResource AddNewsPostHeader_Template}">
@@ -46,9 +47,39 @@
 
                             <Label Text="{x:Static Multilingual:AppResources.DescribeItWithSomeEmojisText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
                             <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Emoji1}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
-                                <!--<StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
-                                </StackLayout>-->
+                                <Grid WidthRequest="{DynamicResource DeviceWidth}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
+                                    <FlexLayout Grid.Column="0" x:Name="EmojiList" BindableLayout.ItemsSource="{Binding EmojiList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Start" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="0">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <PancakeControl:PancakeView BorderColor="{DynamicResource AccentColor}" BorderThickness="1" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="40" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+                                                    <PancakeControl:PancakeView.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
+                                                            <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                                            <Setter Property="BackgroundColor" Value="Transparent" />
+                                                        </DataTrigger>
+                                                    </PancakeControl:PancakeView.Triggers>
+                                                    <StackLayout  Orientation="Horizontal">
+                                                        <Label Text="{Binding EmojiCode}" HeightRequest="30" WidthRequest="30" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">
+                                                            <Label.Triggers>
+                                                                <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
+                                                                    <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
+                                                                    <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                                                                </DataTrigger>
+                                                            </Label.Triggers>
+                                                        </Label>
+                                                    </StackLayout>
+                                                    <PancakeControl:PancakeView.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference EmojiList}, Path=BindingContext.EmojiSelectionCommand}" CommandParameter="{Binding .}" />
+                                                    </PancakeControl:PancakeView.GestureRecognizers>
+                                                </PancakeControl:PancakeView>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </FlexLayout>
+                                </Grid>
                             </StackLayout>
                         </StackLayout>
                     </ScrollView>

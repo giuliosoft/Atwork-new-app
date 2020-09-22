@@ -55,6 +55,7 @@ namespace AtWork.ViewModels
         string SelectedActivityID = string.Empty;
         ISettingsHelper _settingHelperService;
         private string _OrganizationAddress = string.Empty;
+        public ObservableCollection<EmojiDisplayModel> _EmojiList;
         #endregion
 
         #region Public Properties
@@ -102,6 +103,12 @@ namespace AtWork.ViewModels
         {
             get { return _OrganizationAddress; }
             set { SetProperty(ref _OrganizationAddress, value); }
+        }
+        
+        public ObservableCollection<EmojiDisplayModel> EmojiList
+        {
+            get { return _EmojiList; }
+            set { SetProperty(ref _EmojiList, value); }
         }
         #endregion
 
@@ -467,6 +474,30 @@ namespace AtWork.ViewModels
                     else
                     {
                         OrganizationAddress = ActivityDetails.Companie_Address1;
+                    }
+                    string strEmoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
+                    List<string> emojiList = new List<string>();
+                    if (!string.IsNullOrEmpty(strEmoji))
+                    {
+                        if (strEmoji.Contains(","))
+                        {
+                            emojiList = strEmoji.Split(',').ToList();
+                        }
+                        else
+                        {
+                            emojiList.Add(strEmoji);
+                        }
+                    }
+                    ObservableCollection<EmojiDisplayModel> EmojisList = CommonUtility.EmojisList();
+                    if (emojiList != null && emojiList.Count > 0)
+                    {
+                        EmojiList = new ObservableCollection<EmojiDisplayModel>();
+                        emojiList.All((Arg) =>
+                        {
+                            string EmojiCode = EmojisList.Where(x => x.EmojiName == Arg).Select(x => x.EmojiCode).FirstOrDefault();
+                            EmojiList.Add(new EmojiDisplayModel() { EmojiCode = EmojiCode });
+                            return true;
+                        });
                     }
                 }
                 await ClosePopup();

@@ -142,6 +142,12 @@ namespace AtWork.Models
                         return "ActivityPeopleIcon";
                 }
             }
+            public ObservableCollection<EmojiDisplayModel> _EmojiList;
+            public ObservableCollection<EmojiDisplayModel> EmojiList
+            {
+                get { return _EmojiList; }
+                set { SetProperty(ref _EmojiList, value); }
+            }
         }
 
         public class ActivityResponse

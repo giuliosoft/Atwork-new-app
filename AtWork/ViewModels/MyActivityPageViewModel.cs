@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
@@ -193,6 +194,30 @@ namespace AtWork.ViewModels
                                 {
                                     arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                     arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = "noimage" });
+                                }
+                                string strEmoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
+                                List<string> emojiList = new List<string>();
+                                if (!string.IsNullOrEmpty(strEmoji))
+                                {
+                                    if (strEmoji.Contains(","))
+                                    {
+                                        emojiList = strEmoji.Split(',').ToList();
+                                    }
+                                    else
+                                    {
+                                        emojiList.Add(strEmoji);
+                                    }
+                                }
+                                ObservableCollection<EmojiDisplayModel> EmojisList = CommonUtility.EmojisList();
+                                if (emojiList != null && emojiList.Count > 0)
+                                {
+                                    arg.EmojiList = new ObservableCollection<EmojiDisplayModel>();
+                                    emojiList.All((Arg) =>
+                                    {
+                                        string EmojiCode = EmojisList.Where(x => x.EmojiName == Arg).Select(x => x.EmojiCode).FirstOrDefault();
+                                        arg.EmojiList.Add(new EmojiDisplayModel() { EmojiCode = EmojiCode });
+                                        return true;
+                                    });
                                 }
                                 return true;
                             });
