@@ -169,6 +169,8 @@ namespace AtWork.Services
                 {
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                 }
+                Debug.WriteLine("\n\nAPI : " + ConfigService.BaseServiceURL + serviceUrl);
+                Debug.WriteLine("\n\nRequest : " + jData);
 
                 string boundary = "---8d0f01e6b3b5dafaaadaad";
                 MultipartFormDataContent Mcontent = new MultipartFormDataContent(boundary);

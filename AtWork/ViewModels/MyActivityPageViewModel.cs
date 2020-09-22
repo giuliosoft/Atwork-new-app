@@ -172,7 +172,7 @@ namespace AtWork.ViewModels
                                     {
                                         if (imgStr.Contains(","))
                                         {
-                                            nimgUrlList = imgStr.Split(',').ToList();
+                                            nimgUrlList = imgStr.Trim().Split(',').ToList();
                                         }
                                         else
                                         {
@@ -195,19 +195,20 @@ namespace AtWork.ViewModels
                                     arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                     arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = "noimage" });
                                 }
-                                string strEmoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
+                                //string arg.Emoji = "em em-smiley,em em-kissing_heart,em em-smirk,em em-slightly_frowning_face,em em-peace_symbol,em em-sunglasses,em em-sunglasses";
                                 List<string> emojiList = new List<string>();
-                                if (!string.IsNullOrEmpty(strEmoji))
+                                if (!string.IsNullOrEmpty(arg.Emoji))
                                 {
-                                    if (strEmoji.Contains(","))
+                                    if (arg.Emoji.Contains(","))
                                     {
-                                        emojiList = strEmoji.Split(',').ToList();
+                                        emojiList = arg.Emoji.Split(',').ToList();
                                     }
                                     else
                                     {
-                                        emojiList.Add(strEmoji);
+                                        emojiList.Add(arg.Emoji);
                                     }
                                 }
+                                emojiList = emojiList.Select(x => x.Trim()).ToList();
                                 ObservableCollection<EmojiDisplayModel> EmojisList = CommonUtility.EmojisList();
                                 if (emojiList != null && emojiList.Count > 0)
                                 {

@@ -18,17 +18,24 @@ namespace AtWork.ViewModels
         #region Constructor
         public ActivityImagePopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-            if (SessionService.CreateActivityOurImages.Count >= 0)
-                image1 = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SessionService.CreateActivityOurImages[0]));
-            if (SessionService.CreateActivityOurImages.Count >= 1)
+            try
             {
-                image2 = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SessionService.CreateActivityOurImages[1]));
-                ShowImage2 = true;
+                if (SessionService.CreateActivityOurImages.Count >= 0)
+                    image1 = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SessionService.CreateActivityOurImages[0]));
+                if (SessionService.CreateActivityOurImages.Count >= 1)
+                {
+                    image2 = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SessionService.CreateActivityOurImages[1]));
+                    ShowImage2 = true;
+                }
+                if (SessionService.CreateActivityOurImages.Count >= 2)
+                {
+                    image3 = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SessionService.CreateActivityOurImages[2]));
+                    ShowImage3 = true;
+                }
             }
-            if (SessionService.CreateActivityOurImages.Count >= 2)
+            catch (Exception ex)
             {
-                image3 = ImageSource.FromUri(new Uri(ConfigService.BaseActivityImageURL + SessionService.CreateActivityOurImages[2]));
-                ShowImage3 = true;
+
             }
         }
         #endregion
