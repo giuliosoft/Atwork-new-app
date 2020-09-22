@@ -13,6 +13,7 @@ using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static AtWork.Models.CommentsModel;
 using static AtWork.Models.CommentsModel.NewsComment;
@@ -38,6 +39,7 @@ namespace AtWork.ViewModels
         bool _isPostLiked = false;
         bool _AttachmentIsVisible = false;
         private string _NewsAttachmentTitle = string.Empty;
+        private string _NewsAttachmentFile = string.Empty;
         private string _NewsLikeCount = string.Empty;
         private string _NewsUserTime = string.Empty;
         private string _NewsUserName = string.Empty;
@@ -65,6 +67,13 @@ namespace AtWork.ViewModels
             get { return _NewsAttachmentTitle; }
             set { SetProperty(ref _NewsAttachmentTitle, value); }
         }
+
+        public string NewsAttachmentFile
+        {
+            get { return _NewsAttachmentFile; }
+            set { SetProperty(ref _NewsAttachmentFile, value); }
+        }
+
         public string NewsLikeCount
         {
             get { return _NewsLikeCount; }
@@ -157,10 +166,26 @@ namespace AtWork.ViewModels
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
         public DelegateCommand<NewsComment> CommentLikeCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await CommentLike(obj)); } }
-        //CommentLikeCommand
+        public DelegateCommand OpenAttachmentCommand { get { return new DelegateCommand(async () => await OpenNewsAttachment()); } }
         #endregion
 
         #region private methods
+        async Task OpenNewsAttachment()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(NewsAttachmentFile))
+                {
+                    var fileUrl = ConfigService.BaseNewsAttachFileURL + NewsAttachmentFile;
+                    await Launcher.OpenAsync(fileUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task ShowNewsOption()
         {
             try
@@ -179,6 +204,8 @@ namespace AtWork.ViewModels
                             SessionService.NewsPostInputData.newsContent = NewsDetailModel.newsContent;
                             SessionService.NewsPostInputData.newsUniqueID = NewsDetailModel.newsUniqueID;
                             SessionService.NewsPostInputData.volUniqueID = NewsDetailModel.volUniqueID;
+                            SessionService.NewsPostInputData.newsFileOriginal = NewsDetailModel.newsFileOriginal;
+                            SessionService.NewsPostInputData.newsFile = NewsDetailModel.newsFile;
                         }
                         await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
                         await ClosePopup();
@@ -533,10 +560,11 @@ namespace AtWork.ViewModels
                             }
                             NewsImageCarouselList = tempCList;
 
-                            if (serviceResultBody.Data.News.newsFile != null && serviceResultBody.Data.News.newsFile != string.Empty) //serviceResultBody.Data.
+                            if (!string.IsNullOrEmpty(serviceResultBody.Data.News?.newsFile))
                             {
                                 AttachmentIsVisible = true;
-                                NewsAttachmentTitle = serviceResultBody.Data.News.newsFile;
+                                NewsAttachmentTitle = serviceResultBody.Data.News.newsFileOriginal;
+                                NewsAttachmentFile = serviceResultBody.Data.News.newsFile;
                             }
                         }
 

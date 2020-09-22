@@ -548,6 +548,7 @@ namespace AtWork.ViewModels
             {
                 if (selectedRating == TextResources.RateOneHalf)
                 {
+                    return;
                     Rate1BorderedIsVisible = false;
                     Rate1FilledIsVisible = false;
                     Rate1PathIsVisible = true;
@@ -596,6 +597,7 @@ namespace AtWork.ViewModels
                 }
                 else if (selectedRating == TextResources.RateTwoHalf)
                 {
+                    return;
                     Rate2BorderedIsVisible = false;
                     Rate2FilledIsVisible = false;
                     Rate2PathIsVisible = true;
@@ -642,6 +644,7 @@ namespace AtWork.ViewModels
                 }
                 if (selectedRating == TextResources.RateThreeHalf)
                 {
+                    return;
                     Rate3BorderedIsVisible = false;
                     Rate3FilledIsVisible = false;
                     Rate3PathIsVisible = true;
@@ -688,6 +691,7 @@ namespace AtWork.ViewModels
                 }
                 if (selectedRating == TextResources.RateFourHalf)
                 {
+                    return;
                     Rate4BorderedIsVisible = false;
                     Rate4FilledIsVisible = false;
                     Rate4PathIsVisible = true;
@@ -734,6 +738,7 @@ namespace AtWork.ViewModels
                 }
                 if (selectedRating == TextResources.RateFiveHalf)
                 {
+                    return;
                     Rate5BorderedIsVisible = false;
                     Rate5FilledIsVisible = false;
                     Rate5PathIsVisible = true;

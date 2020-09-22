@@ -24,7 +24,7 @@
                     <PancakeControl:PancakeView Padding="15" HeightRequest="20" WidthRequest="200" HorizontalOptions="Center" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout Spacing="15" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                             <Image Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="Start" VerticalOptions="Fill"/>
-                            <Label Text="{x:Static Multilingual:AppResources.AttachFile}" FontSize="22" TextColor="White"/>
+                            <Label Text="{Binding AttachFileButtonText}" FontSize="22" TextColor="White"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding AttachFileCommand}"/>
                             </StackLayout.GestureRecognizers>

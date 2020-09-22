@@ -16,21 +16,21 @@ namespace AtWork.Multilingual {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResources {
+    internal class AppResources_it {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources() {
+        internal AppResources_it() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("AtWork.Multilingual.AppResources", typeof(AppResources).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("AtWork.Multilingual.AppResources.it", typeof(AppResources_it).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -224,12 +224,6 @@ namespace AtWork.Multilingual {
         internal static string AttachFile {
             get {
                 return ResourceManager.GetString("AttachFile", resourceCulture);
-            }
-        }
-        
-        internal static string ReplaceFile {
-            get {
-                return ResourceManager.GetString("ReplaceFile", resourceCulture);
             }
         }
         

@@ -87,6 +87,9 @@
                             <Customcontrol:CustomImage TintColor="{StaticResource WhiteColor}" Source="attachment" Aspect="AspectFit" HeightRequest="20" WidthRequest="45" HorizontalOptions="Start" Margin="-10,0,0,0" VerticalOptions="Center"/>
                             <Label Margin="0,5,0,5" Text="{Binding NewsAttachmentTitle}" Style="{StaticResource NewsDetailPinLabelStyle}"/>
                         </StackLayout>
+                        <PancakeControl:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenAttachmentCommand}"/>
+                        </PancakeControl:PancakeView.GestureRecognizers>
                     </PancakeControl:PancakeView>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <CustomControl:RepeaterView x:Name="postCommentList" GridHeightUnitType="Auto" BackgroundColor="Transparent" ItemsSource="{Binding PostCommentList}" ColumnCount="1" Spacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

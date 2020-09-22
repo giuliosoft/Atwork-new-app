@@ -73,7 +73,7 @@
                             </StackLayout>
                         </StackLayout>
                     </PancakeControl:PancakeView>
-                    <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" Margin="30,0,30,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="10">
+                    <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" Margin="30,0,30,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="10">
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
                             <Label Text="{x:Static Multilingual:AppResources.FeedbackText}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
                         </StackLayout>

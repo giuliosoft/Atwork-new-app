@@ -311,7 +311,11 @@ namespace AtWork.ViewModels
                                     if (hasPermission)
                                     {
                                         var calendars = await CrossCalendars.Current.GetCalendarsAsync();
-                                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                        //For simulator :
+                                        //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                        //For device :
+                                        var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+
                                         List<string> selectedRecurringDates = new List<string>();
                                         foreach (var selDt in SelectedDatesObj)
                                         {
@@ -372,7 +376,10 @@ namespace AtWork.ViewModels
                         if (hasPermission)
                         {
                             var calendars = await CrossCalendars.Current.GetCalendarsAsync();
-                            var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                            //For simulator :
+                            //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                            //For device :
+                            var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
                             DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
                             var calendarEvent = new CalendarEvent
@@ -545,10 +552,10 @@ namespace AtWork.ViewModels
                     calendarWritePermissionStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
                 }
 
-                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
                 if (calendarReadPermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
                 {
-                    calendarReadPermissionStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+                    calendarReadPermissionStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();
                 }
 
                 if (calendarReadPermissionStatus == Xamarin.Essentials.PermissionStatus.Granted &&

@@ -22,7 +22,7 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
 #if DEBUG
             UserEmail = "jeff.jones@testing.com";
-            UserPassword = "Password01@";
+            UserPassword = "1Qqe5K9Y";
 #endif
         }
         #endregion

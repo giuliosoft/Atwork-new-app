@@ -421,6 +421,8 @@ namespace AtWork.ViewModels
                         SessionService.NewsPostInputData.newsContent = selectedNewsPost.newsDescription;
                         SessionService.NewsPostInputData.newsUniqueID = selectedNewsPost.news.newsUniqueID;
                         SessionService.NewsPostInputData.volUniqueID = selectedNewsPost.Volunteers.volUniqueID;
+                        SessionService.NewsPostInputData.newsFileOriginal = selectedNewsPost.news?.newsFileOriginal;
+                        SessionService.NewsPostInputData.newsFile = selectedNewsPost.news?.newsFile;
                         if (selectedNewsPost.NewsCarouselList != null && selectedNewsPost.NewsCarouselList.Count > 0)
                         {
                             var tempList = new List<string>();

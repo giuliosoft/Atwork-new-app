@@ -1,4 +1,5 @@
 ﻿using System;
+using AtWork.Helpers;
 using Newtonsoft.Json;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
@@ -141,6 +142,20 @@ namespace AtWork.Services
             set
             {
                 AppSettings.AddOrUpdateValue(IsBioMetricAuthenticationEnabledKey, value);
+            }
+        }
+
+        private const string AppLanguageKey = "AppLanguage_key";
+        private static readonly string AppLanguageDefault = TextResources.EnglishLanguage;
+        public static string AppLanguage
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(AppLanguageKey, AppLanguageDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(AppLanguageKey, value);
             }
         }
     }

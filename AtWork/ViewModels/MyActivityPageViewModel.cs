@@ -83,6 +83,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                IsFromMyActivity = true;
                 if (!selectedActivityPost.IsPastActivity)
                 {
                     var navigationParams = new NavigationParameters();
@@ -131,7 +132,7 @@ namespace AtWork.ViewModels
         {
             IsRefreshingMyActivities = true;
             //ActivityPageNo = 1;
-            await GetMyActivityList(isfromRefresh:true);
+            await GetMyActivityList(isfromRefresh: true);
             IsRefreshingMyActivities = false;
         }
 
@@ -310,7 +311,8 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            await GetMyActivityList();
+            await GetMyActivityList();            
+            SessionService.IsShowActivitiesIntial = true;
         }
     }
 }
