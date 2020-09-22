@@ -34,15 +34,15 @@
                                         </BindableLayout.ItemTemplate>
                                     </FlexLayout>
                                 </Grid>
-                                <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth265}" CornerRadius="10">
                                     <Grid RowDefinitions="Auto">
-                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth215}" CornerRadius="10">
                                             <Label Text="{Binding ActivityDetails.proAddress1}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
                                         </PancakeControl:PancakeView>
-                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="240" CornerRadius="10">
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth240}" CornerRadius="10">
                                             <Label Text="{Binding ActivityDetails.activityDate}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
                                         </PancakeControl:PancakeView>
-                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                        <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth265}" CornerRadius="10">
                                             <Label Text="{Binding ActivityDetails.activityDuration}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
                                         </PancakeControl:PancakeView>
                                         <Grid  Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
@@ -50,7 +50,7 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                 </Grid.ColumnDefinitions>
-                                                <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                                <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth190}" CornerRadius="10">
                                                     <!--<CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
                                                     <CarouselView x:Name="activityImageCarousel" ItemsSource="{Binding ActivityCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="activityImageCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
                                                         <CarouselView.ItemTemplate>

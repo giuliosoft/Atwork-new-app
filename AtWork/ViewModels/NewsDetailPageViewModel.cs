@@ -96,8 +96,8 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _AttachmentIsVisible, value); }
         }
 
-        private ObservableCollection<CarouselModel> _NewsImageCarouselList = new ObservableCollection<CarouselModel>();
-        public ObservableCollection<CarouselModel> NewsImageCarouselList
+        private ObservableCollection<NewsCarouselListModel> _NewsImageCarouselList = new ObservableCollection<NewsCarouselListModel>();
+        public ObservableCollection<NewsCarouselListModel> NewsImageCarouselList
         {
             get { return _NewsImageCarouselList; }
             set { SetProperty(ref _NewsImageCarouselList, value); }
@@ -206,6 +206,16 @@ namespace AtWork.ViewModels
                             SessionService.NewsPostInputData.volUniqueID = NewsDetailModel.volUniqueID;
                             SessionService.NewsPostInputData.newsFileOriginal = NewsDetailModel.newsFileOriginal;
                             SessionService.NewsPostInputData.newsFile = NewsDetailModel.newsFile;
+                            if (NewsImageCarouselList != null && NewsImageCarouselList.Count > 0)
+                            {
+                                var tempList = new List<string>();
+                                NewsImageCarouselList.All((arg) =>
+                                {
+                                    tempList.Add(arg.NewsImageUrl);
+                                    return true;
+                                });
+                                SessionService.NewsPostCarouselImages = tempList;
+                            }
                         }
                         await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
                         await ClosePopup();
@@ -538,7 +548,7 @@ namespace AtWork.ViewModels
                                     PublishImageSource = "ActivityPeopleIcon";
                             }
 
-                            var tempCList = new ObservableCollection<CarouselModel>();
+                            var tempCList = new ObservableCollection<NewsCarouselListModel>();
                             var newsImage = serviceResultBody?.Data?.News?.newsImage;
                             if (newsImage != null && newsImage != string.Empty)
                             {
@@ -547,8 +557,8 @@ namespace AtWork.ViewModels
                                 {
                                     splittedList.All((x) =>
                                     {
-
-                                        tempCList.Add(new CarouselModel() { NewsImage = ConfigService.BaseNewsImageURL + x });
+                                        string imageUri = ConfigService.BaseNewsImageURL + x;
+                                        tempCList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)), NewsImageUrl = imageUri });
                                         return true;
 
                                     });
@@ -556,7 +566,7 @@ namespace AtWork.ViewModels
                             }
                             else
                             {
-                                tempCList.Add(new CarouselModel() { NewsImage = "noimage" });
+                                tempCList.Add(new NewsCarouselListModel() { NewsImage = "noimage" });
                             }
                             NewsImageCarouselList = tempCList;
 
@@ -609,7 +619,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
         }
         #endregion
@@ -628,19 +638,6 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
 
             SelectedNewsId = parameters.GetValue<int>("SelectedNewsID");
-
-            //var tempCList = new ObservableCollection<CarouselModel>();
-            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            //NewsImageCarouselList = tempCList;
-
-            //var tempCmtList = new ObservableCollection<NewsComment>();
-            //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID, });
-            //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
-            //tempCmtList.Add(new NewsComment() { comByID = null });
-            //PostCommentList = tempCmtList;
-
             await LoadNewsDetails();
         }
     }

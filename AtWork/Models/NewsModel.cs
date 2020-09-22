@@ -48,7 +48,7 @@ namespace AtWork.Models
             public string newsFile { get; set; }
             public string newsFileOriginal { get; set; }
             public string NewsImage { get; set; }
-            public List<CarouselModel> NewsImageCarouselList { get; set; }
+            public List<NewsCarouselListModel> NewsImageCarouselList { get; set; }
         }
 
         public class NewsListResponse

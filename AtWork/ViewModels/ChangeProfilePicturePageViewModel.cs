@@ -45,6 +45,7 @@ namespace AtWork.ViewModels
                 HeaderView = (ControlTemplate)App.Current.Resources["AddNewsPostHeader_Template"];
                 isShowLooktext = false;
             }
+            _helperService = DependencyService.Get<IHelper>();
         }
         ObservableCollection<string> ImageList = new ObservableCollection<string>();
         private bool _showCropOption;
@@ -58,6 +59,7 @@ namespace AtWork.ViewModels
         private bool IsImageSelected = false;
         private bool _ShowPickOfOurImage = true;
         public string selectedPicture = string.Empty;
+        IHelper _helperService;
         public ImageSource ProfileImage
         {
             get
@@ -146,7 +148,7 @@ namespace AtWork.ViewModels
                         {
                             string ImageName = serviceBody?.Data as string;
                             if (!string.IsNullOrEmpty(ImageName))
-                             {
+                            {
                                 SettingsService.UserProfile = ImageName;
                             }
                             if (!SessionService.IsWelcomeSetup)
@@ -251,40 +253,56 @@ namespace AtWork.ViewModels
         }
         async Task TakePhotoFromGallery()
         {
-            var permissionRes = await TakePermissionsToPickPhoto();
-            if (permissionRes)
+            try
             {
-                var pickedFile = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                var permissionRes = await TakePermissionsToPickPhoto();
+                if (permissionRes)
                 {
-                    SaveMetaData = true
-                });
+                    var pickedFile = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        SaveMetaData = true
+                    });
 
-                if (pickedFile == null)
-                    return;
-                Debug.WriteLine("Photo Location ===== " + pickedFile.Path);
-                if (pickedFile != null && !string.IsNullOrEmpty(pickedFile.Path))
-                {
-                    SelectedNewsImageValue = new NewsImageModel() { ImagePath = pickedFile.Path, ImagePreviewPath = pickedFile.Path, NewsImage = ImageSource.FromFile(pickedFile.Path) };
-                    ProfileImage = ImageSource.FromFile(SelectedNewsImageValue?.ImagePath);
-                    ShowCropOption = true;
-                    SessionService.NewsPostImageFiles = new System.Collections.Generic.List<string>();
-                    SessionService.NewsPostImageFiles.Add(pickedFile.Path);
-                    if (SessionService.IsWelcomeSetup)
+                    if (pickedFile == null)
+                        return;
+                    Debug.WriteLine("Photo Location ===== " + pickedFile.Path);
+                    if (pickedFile != null && !string.IsNullOrEmpty(pickedFile.Path))
                     {
-                        IsImageSelected = true;
-                        isShowEditPhoto = true;
-                        isShowLooktext = false;
-                        ShowPickOfOurImage = false;
-                        ChooseFromCamera = AppResources.SetProfilePicture;
-                    }
-                    else
-                    {
-                        isShowEditPhoto = false;
-                        isShowLooktext = false;
-                        ShowPickOfOurImage = true;
-                        ChooseFromCamera = AppResources.ChooseFromCameraRoll;
+                        //Old :
+                        //SelectedNewsImageValue = new NewsImageModel() { ImagePath = pickedFile.Path, ImagePreviewPath = pickedFile.Path, NewsImage = ImageSource.FromFile(pickedFile.Path) };
+                        //ProfileImage = ImageSource.FromFile(SelectedNewsImageValue?.ImagePath);
+
+                        //New :
+                        var imgStream = pickedFile.GetStream();
+                        if (imgStream == null)
+                            return;
+                        var newProfileImagePath = await _helperService.SaveProfileImage(imgStream);
+                        SelectedNewsImageValue = new NewsImageModel() { ImagePath = newProfileImagePath, ImagePreviewPath = newProfileImagePath, NewsImage = ImageSource.FromFile(newProfileImagePath) };
+                        ProfileImage = ImageSource.FromFile(SelectedNewsImageValue?.ImagePath);
+                        ShowCropOption = true;
+                        SessionService.NewsPostImageFiles = new System.Collections.Generic.List<string>();
+                        SessionService.NewsPostImageFiles.Add(newProfileImagePath);
+                        if (SessionService.IsWelcomeSetup)
+                        {
+                            IsImageSelected = true;
+                            isShowEditPhoto = true;
+                            isShowLooktext = false;
+                            ShowPickOfOurImage = false;
+                            ChooseFromCamera = AppResources.SetProfilePicture;
+                        }
+                        else
+                        {
+                            isShowEditPhoto = false;
+                            isShowLooktext = false;
+                            ShowPickOfOurImage = true;
+                            ChooseFromCamera = AppResources.ChooseFromCameraRoll;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
         }
 
@@ -393,14 +411,25 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (!SessionService.isFromChangeUserProfile)// && !SessionService.IsWelcomeSetup)
+            try
             {
-                await GetUserExistingProfilePic();
+                if (!SessionService.isFromChangeUserProfile)// && !SessionService.IsWelcomeSetup)
+                {
+                    await GetUserExistingProfilePic();
+                }
+                else
+                {
+                    if (SessionService.isFromChangeUserProfile)
+                        SessionService.isFromChangeUserProfile = false;
+                    //if (SelectedNewsImageValue != null && !string.IsNullOrEmpty(SelectedNewsImageValue.ImagePath))
+                    //{
+                    //    ProfileImage = ImageSource.FromFile(SelectedNewsImageValue.ImagePath);                    
+                    //}
+                }
             }
-            else
+            catch (Exception ex)
             {
-                if (SessionService.isFromChangeUserProfile)
-                    SessionService.isFromChangeUserProfile = false;
+                Debug.WriteLine(ex.Message);
             }
         }
     }

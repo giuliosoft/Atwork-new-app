@@ -26,26 +26,26 @@
                                 <CustomControl:CustomImage Source="{Binding SelectedPastActivity.activityPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
                             </StackLayout>
                             <Label Text="{Binding SelectedPastActivity.proTitle}"/>
-                            <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                            <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth265}" CornerRadius="10">
                                 <Grid RowDefinitions="Auto">
                                     <!--<PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
                                         <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                                     </PancakeControl:PancakeView>-->
-                                    <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="215" CornerRadius="10">
-                                        <Label Text="{Binding SelectedPastActivity.proAddress1}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
-                                    </PancakeControl:PancakeView>
-                                    <PancakeControl:PancakeView  VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="240" CornerRadius="10">
-                                        <Label Text="{Binding SelectedPastActivity.activityDate}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
-                                    </PancakeControl:PancakeView>
-                                    <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="265" CornerRadius="10">
+                                    <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth265}" CornerRadius="10">
                                         <Label Text="{Binding SelectedPastActivity.activityDuration}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
                                     </PancakeControl:PancakeView>
+                                    <PancakeControl:PancakeView  VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth240}" CornerRadius="10">
+                                        <Label Text="{Binding SelectedPastActivity.activityDate}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                    </PancakeControl:PancakeView>
+                                    <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth215}" CornerRadius="10">
+                                        <Label Text="{Binding SelectedPastActivity.proAddress1}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                    </PancakeControl:PancakeView>                                                                        
                                     <Grid  Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                         <Grid ColumnSpacing="{DynamicResource Spacing15}">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                            <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth190}" CornerRadius="10">
                                                 <CarouselView x:Name="activityImageCarousel" ItemsSource="{Binding SelectedPastActivity.ActivityCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" HorizontalScrollBarVisibility="Never">
                                                     <CarouselView.ItemTemplate>
                                                         <DataTemplate>
