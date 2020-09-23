@@ -16,39 +16,47 @@
                 <StackLayout Margin="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <ScrollView>
                         <StackLayout Padding="0" Spacing="0">
-                            <Customcontrol:CustomEditor Text="{Binding ActivityTitle}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.ActivityTitle}"  Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <Customcontrol:CustomEditor Text="{Binding ActivityTitle}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.ActivityTitle}"  PlaceholderColor="Gray" Style="{StaticResource PostLabelStyle}" Margin="{DynamicResource MarginPadding20_20_20_10}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
                             <StackLayout Orientation="Horizontal">
-                                <StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
+                                <!--<Customcontrol:CustomEditor VerticalOptions="Start" ReturnType="Done" Text="{Binding ActivityDescription}" Placeholder="{x:Static Multilingual:AppResources.PlaceholderActivityDescription}" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>-->
+                                <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                    <Customcontrol:CustomEditor Text="{Binding ActivityDescription, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1.01,200" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>
+                                    <Label Text="{x:Static Multilingual:AppResources.PlaceholderActivityDescription}"  TextColor="DarkGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1.01,200" VerticalTextAlignment="Start" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" InputTransparent="True" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource ActivityDetailLabelStyle}" IsVisible="{Binding IsAddrerssPlaceHolderVisible}"  HorizontalTextAlignment="Start"/>
+                                </AbsoluteLayout>
+                                 <StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
                                 </StackLayout>
-                                <Customcontrol:CustomEditor VerticalOptions="Start" ReturnType="Done" Text="{Binding ActivityDescription}" Placeholder="{x:Static Multilingual:AppResources.PlaceholderActivityDescription}" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>
                             </StackLayout>
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
                             <Label Text="{x:Static Multilingual:AppResources.DateText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
-                            <Customcontrol:CustomDatePicker FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Date="{Binding SelectedDate}" />
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <Customcontrol:CustomDatePicker Format="M/dd/yyyy" FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Date="{Binding SelectedDate}" />
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
                             <Label Text="{x:Static Multilingual:AppResources.TimeHeaderText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
-                            <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedTime}" />
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+                                <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedTime}" Format="HH:mm" Margin="20,0,0,0"/>
+                                <Label Text="to" HorizontalOptions="End"  FontSize="18" Padding="15" FontFamily="Lato_Regular"></Label>
+                                <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedEndTime}" Format="HH:mm" />
+                            </StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
-                            <Customcontrol:CustomEditor Text="{Binding ActivityAddress}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Address}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <Customcontrol:CustomEntry Text="{Binding ActivityAddress}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Address}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
-                            <Customcontrol:CustomEditor Text="{Binding ActivityCity}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.City}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <Customcontrol:CustomEntry Text="{Binding ActivityCity}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.City}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
-                            <Customcontrol:CustomEditor Text="{Binding ActivityCountry}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Country}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <Customcontrol:CustomEntry Text="{Binding ActivityCountry}" ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.Country}"  Style="{StaticResource ActivityDetailLabelStyle}" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
-                            <Customcontrol:CustomEditor Text="{Binding ActivityPrice}"  ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PriceOrPaymentPerPerson}"  Style="{StaticResource ActivityDetailLabelStyle}" Keyboard="Numeric" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
-                            <BoxView HeightRequest="{DynamicResource HeightWidth}" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
+                            <Customcontrol:CustomEntry Text="{Binding ActivityPrice}"  ReturnType="Done" Placeholder="{x:Static Multilingual:AppResources.PriceOrPaymentPerPerson}"  Style="{StaticResource ActivityDetailLabelStyle}" Keyboard="Numeric" Margin="{DynamicResource MarginPadding20_00_00_00}"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
 
                             <Label Text="{x:Static Multilingual:AppResources.DescribeItWithSomeEmojisText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
                             <StackLayout Orientation="Horizontal">
                                 <Grid WidthRequest="{DynamicResource DeviceWidth}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
-                                    <FlexLayout Grid.Column="0" x:Name="EmojiList" BindableLayout.ItemsSource="{Binding EmojiList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Start" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="0">
+                                    <FlexLayout Grid.Column="0" x:Name="EmojiList" BindableLayout.ItemsSource="{Binding EmojiList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="0">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
                                                 <PancakeControl:PancakeView BorderColor="{DynamicResource AccentColor}" BorderThickness="1" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="40" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >

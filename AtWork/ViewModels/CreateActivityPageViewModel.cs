@@ -62,11 +62,11 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _ActivityTitle, value); }
         }
         
-        public string ActivityDescription
-        {
-            get { return _ActivityDescription; }
-            set { SetProperty(ref _ActivityDescription, value); }
-        }
+        //public string ActivityDescription
+        //{
+        //    get { return _ActivityDescription; }
+        //    set { SetProperty(ref _ActivityDescription, value); }
+        //}
         public string ActivityAddress
         {
             get { return _ActivityAddress; }
@@ -101,6 +101,34 @@ namespace AtWork.ViewModels
         {
             get { return _EmojiList; }
             set { SetProperty(ref _EmojiList, value); }
+        }
+        private bool _labelIsVisible { get; set; } = true; public bool LabelIsVisible { get { return _labelIsVisible; } set { _labelIsVisible = value; OnPropertyChanged(nameof(LabelIsVisible)); } } 
+        public bool IsAddrerssPlaceHolderVisible
+        {
+            get => _labelIsVisible;
+            set
+            {
+                _labelIsVisible = value;
+                RaisePropertyChanged();
+            }
+        }
+        //private string _address = string.Empty;
+        public string ActivityDescription
+        {
+            get => _ActivityDescription;
+            set
+            {
+                _ActivityDescription = value;
+                if (value.Length > 0)
+                {
+                    IsAddrerssPlaceHolderVisible = false;
+                }
+                else
+                {
+                    IsAddrerssPlaceHolderVisible = true;
+                }
+                RaisePropertyChanged();
+            }
         }
         #endregion
 

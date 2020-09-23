@@ -584,7 +584,8 @@
 
             <!--Entry Styles Start-->
             <Style x:Key="PostLabelStyle" TargetType="CustomControl:CustomEntry">
-                <Setter Property="FontSize" Value="{DynamicResource FontSize25}" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize28}" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
                 <Setter Property="PlaceholderColor" Value="DarkGray" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="Center" />

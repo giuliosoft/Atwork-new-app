@@ -94,6 +94,10 @@ namespace AtWork.ViewModels
                             }
                             await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
                         }
+                        else if(serviceBody != null && !serviceBody.Flag && serviceBody.Data == null && serviceBody.Data1 == null)
+                        {
+                            await DisplayAlertAsync(AppResources.InvalidClainEmailOrId);
+                        }
                     }
                 }
                 await ClosePopup();
