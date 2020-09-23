@@ -525,7 +525,8 @@ namespace AtWork.ViewModels
                         {
                             if (serviceBody.Flag)
                             {
-                                SessionService.IsShowActivitiesIntial = true;
+                                //SessionService.IsShowActivitiesIntial = true;
+                                SessionService.isFromJoinActivity = true;
                                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
                             }
                         }
