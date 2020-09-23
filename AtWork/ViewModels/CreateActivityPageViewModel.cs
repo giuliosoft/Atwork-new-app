@@ -42,6 +42,7 @@ namespace AtWork.ViewModels
         private string _ActivityPrice = string.Empty;
         private DateTime _SelectedDate = DateTime.Now;
         private TimeSpan _SelectedTime = DateTime.Now.TimeOfDay;
+        private TimeSpan _SelectedEndTime = DateTime.Now.TimeOfDay;
         ObservableCollection<EmojiDisplayModel> _EmojiList = new ObservableCollection<EmojiDisplayModel>();
         #endregion
 
@@ -96,6 +97,11 @@ namespace AtWork.ViewModels
         {
             get { return _SelectedTime; }
             set { SetProperty(ref _SelectedTime, value); }
+        }
+        public TimeSpan SelectedEndTime
+        {
+            get { return _SelectedEndTime; }
+            set { SetProperty(ref _SelectedEndTime, value); }
         }
         public ObservableCollection<EmojiDisplayModel> EmojiList
         {
@@ -196,6 +202,7 @@ namespace AtWork.ViewModels
                 SessionService.ActivityPostInputData.proCountry = ActivityCountry;
                 SessionService.ActivityPostInputData.proCostCoveredEmployee = ActivityPrice;
                 SessionService.ActivityPostInputData.proAddActivity_StartTime = SelectedTime.ToString("hh\\:mm");
+                SessionService.ActivityPostInputData.proAddActivity_EndTime = SelectedEndTime.ToString("hh\\:mm");
                 SessionService.ActivityPostInputData.proAddActivityDate = SelectedDate;
                 try
                 {
