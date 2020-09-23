@@ -673,13 +673,13 @@ namespace AtWork.ViewModels
                                 emojiList.All((Arg) =>
                                 {
                                     string EmojiCode = EmojisList.Where(x => x.EmojiName == Arg).Select(x => x.EmojiCode).FirstOrDefault();
-                                    arg.EmojiList.Add(new EmojiDisplayModel() { EmojiCode = EmojiCode }); 
+                                    arg.EmojiList.Add(new EmojiDisplayModel() { EmojiCode = EmojiCode });
                                     return true;
                                 });
                             }
                             return true;
                         });
-                        
+
                         Activitylist = new ObservableCollection<ActivityListModel>(tempList);
                         if (serviceResultBody.Data1 != null && serviceResultBody.Data1.Count > 0)
                         {
@@ -793,7 +793,7 @@ namespace AtWork.ViewModels
                     SessionService.LikeNewsID = null;
                     SessionService.LikeNewsCount = null;
                 }
-                
+
                 await GetGroupMemberListCount();
                 //await GetActivityList();
                 IsFromMyActivity = false;

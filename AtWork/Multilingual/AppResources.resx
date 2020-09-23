@@ -80,7 +80,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Edit crop</value>
     </data>
     <data name="ChooseWhoCanSeeYourPost" xml:space="preserve">
-        <value>Choose Who Can See Your Post</value>
+        <value>Choose who can see your post</value>
     </data>
     <data name="BackButtonText" xml:space="preserve">
         <value>Back</value>

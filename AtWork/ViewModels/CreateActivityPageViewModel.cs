@@ -25,6 +25,8 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.NextButtonText;
             HeaderNextNavigationCommand = NewsPostProceedCommand;
+            EmojiList = new ObservableCollection<EmojiDisplayModel>();
+            EmojiList = CommonUtility.EmojisList();
         }
         #endregion
 
@@ -202,10 +204,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            {
-                EmojiList = new ObservableCollection<EmojiDisplayModel>();
-                EmojiList = CommonUtility.EmojisList();
-            }
+            
         }
     }
 }

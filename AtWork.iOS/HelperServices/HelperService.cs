@@ -65,13 +65,68 @@ namespace AtWork.iOS.HelperServices
             return croppedImgFilePath;
         }
 
+        public async Task<string> SaveProfileImage(Stream StreamToWrite)
+        {
+            string profileImgFilePath = string.Empty;
+            try
+            {
+                byte[] imgByteData = null;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    StreamToWrite.CopyTo(ms);
+                    imgByteData = ms.ToArray();
+                }
+
+                Guid uniqueId = Guid.NewGuid();
+                string FileName = $"{uniqueId}{".jpg"}";
+                var Docdirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                var directory = Docdirectory + "/AtWorkImages";
+
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                var path = Path.Combine(directory, FileName);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                File.WriteAllBytes(path, imgByteData);
+                Debug.WriteLine("Profile Image Save Path=== " + path);
+                profileImgFilePath = path;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return profileImgFilePath;
+        }
+
         public async Task ReplaceCroppedFile(string pathFromReplace, string pathToReplace)
         {
             try
             {
                 Debug.WriteLine("Crop File pathFromReplace=== " + pathFromReplace);
                 Debug.WriteLine("Crop File pathToReplace=== " + pathToReplace);
-                File.Replace(pathFromReplace, pathToReplace, "oldfile");
+                File.Replace(pathFromReplace, pathToReplace, "oldfile");//"oldfile.jpg.bac"
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public async Task MoveCroppedFile(string pathFromMove, string pathToMove)
+        {
+            try
+            {
+                Debug.WriteLine("Crop File pathFromMove=== " + pathFromMove);
+                Debug.WriteLine("Crop File pathToMove=== " + pathToMove);
+                if (File.Exists(pathToMove))
+                {
+                    File.Delete(pathToMove);
+                }
+                File.Move(pathFromMove, pathToMove);
             }
             catch (Exception ex)
             {
