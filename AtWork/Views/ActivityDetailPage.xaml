@@ -85,7 +85,7 @@
                         <!--<Label Text="{Binding ActivityDetails.proDescription}" Style="{StaticResource ActivityDescriptionLabelStyle}"/>-->
                         <CustomControl:SelectableLabel Text="{Binding ActivityDetails.proDescription}" Style="{StaticResource ActivityDescriptionLabelStyle}"/>
                     </StackLayout>
-                    <CustomControl:RepeaterView x:Name="activityTagList" BackgroundColor="Transparent" ItemsSource="{Binding ActivityTagList}" Spacing="0" Padding="0" ColumnCount="2" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                    <!--<CustomControl:RepeaterView x:Name="activityTagList" BackgroundColor="Transparent" ItemsSource="{Binding ActivityTagList}" Spacing="0" Padding="0" ColumnCount="2" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                         <CustomControl:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <PancakeControl:PancakeView Padding="5" Margin="10,5,0,5" CornerRadius="10" BorderColor="{DynamicResource DarkColor}" BackgroundColor="{DynamicResource SecondaryLightColor}"  BorderThickness="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
@@ -93,7 +93,18 @@
                                 </PancakeControl:PancakeView>
                             </DataTemplate>
                         </CustomControl:RepeaterView.ItemTemplate>
-                    </CustomControl:RepeaterView>
+                    </CustomControl:RepeaterView>-->
+                    <Grid ColumnDefinitions="*" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                        <FlexLayout Grid.Column="0" x:Name="activityTagList" BindableLayout.ItemsSource="{Binding ActivityTagList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Start" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="1" Margin="5" HasShadow="False" CornerRadius="10" HeightRequest="{DynamicResource HeightWidth30}" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <Label Text="{Binding ActivityTag}" Style="{StaticResource ActivityTagLabelStyle}" LineBreakMode="NoWrap"/>
+                                    </PancakeControl:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </Grid>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <StackLayout Spacing="12" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                         <Label Text="{x:Static Multilingual:AppResources.AboutActivityHeaderText}" Style="{StaticResource ActivityAboutHeaderLabelStyle}"/>

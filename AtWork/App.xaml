@@ -279,7 +279,7 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
             <Style x:Key="ActivityTagLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />

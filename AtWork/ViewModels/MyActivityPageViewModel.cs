@@ -307,13 +307,17 @@ namespace AtWork.ViewModels
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
+            if (SessionService.isFromJoinActivity)
+            {
+                SessionService.isFromJoinActivity = false;
+                SessionService.IsShowActivitiesIntial = true;
+            }
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            await GetMyActivityList();            
-            SessionService.IsShowActivitiesIntial = true;
+            await GetMyActivityList();
         }
     }
 }

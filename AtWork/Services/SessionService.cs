@@ -44,6 +44,7 @@ namespace AtWork.Services
         public static bool isFromClaimProfile = false;
         public static Volunteers tempVolunteerData = null;
         public static LoginOutputModel tempClaimProfileData = null;
+        public static bool isFromJoinActivity = false;
 
         /// <summary>
         /// Logout

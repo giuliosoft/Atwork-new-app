@@ -65,6 +65,11 @@ namespace AtWork.Services
                         App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(180);
                     }
                 }
+                else
+                {
+                    var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+                    App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(220);
+                }
             }
             else
             {
