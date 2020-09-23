@@ -21,7 +21,7 @@
                             <StackLayout Orientation="Horizontal">
                                 <!--<Customcontrol:CustomEditor VerticalOptions="Start" ReturnType="Done" Text="{Binding ActivityDescription}" Placeholder="{x:Static Multilingual:AppResources.PlaceholderActivityDescription}" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>-->
                                 <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                    <Customcontrol:CustomEditor Text="{Binding ActivityDescription, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1.01,200" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>
+                                    <Customcontrol:CustomEditor  Text="{Binding ActivityDescription, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" AbsoluteLayout.LayoutBounds="2.0,0,1.01,200" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource StartWritingYourPostStyle}"/>
                                     <Label Text="{x:Static Multilingual:AppResources.PlaceholderActivityDescription}"  TextColor="DarkGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  AbsoluteLayout.LayoutBounds="0,0,1.01,200" VerticalTextAlignment="Start" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" InputTransparent="True" Margin="{DynamicResource MarginPadding20_10_20_20}" Style="{StaticResource ActivityDetailLabelStyle}" IsVisible="{Binding IsAddrerssPlaceHolderVisible}"  HorizontalTextAlignment="Start"/>
                                 </AbsoluteLayout>
                                  <StackLayout HeightRequest="200"  MinimumHeightRequest="200" WidthRequest="1" BackgroundColor="Transparent">
@@ -35,7 +35,7 @@
 
                             <Label Text="{x:Static Multilingual:AppResources.TimeHeaderText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
-                                <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedTime}" Format="HH:mm" Margin="20,0,0,0"/>
+                                <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedTime}" Format="HH:mm" />
                                 <Label Text="to" HorizontalOptions="End"  FontSize="18" Padding="15" FontFamily="Lato_Regular"></Label>
                                 <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedEndTime}" Format="HH:mm" />
                             </StackLayout>

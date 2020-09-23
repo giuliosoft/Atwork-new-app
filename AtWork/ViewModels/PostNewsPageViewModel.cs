@@ -141,6 +141,7 @@ namespace AtWork.ViewModels
                     input.proCity = SessionService.ActivityPostInputData.proCity;
                     input.proCountry = SessionService.ActivityPostInputData.proCountry;
                     input.proAddActivity_StartTime = SessionService.ActivityPostInputData.proAddActivity_StartTime;
+                    input.proAddActivity_EndTime = SessionService.ActivityPostInputData.proAddActivity_EndTime;
                     input.proAddActivityDate = SessionService.ActivityPostInputData.proAddActivityDate;
                     input.Emoji = SessionService.SelectedEmojiForActivity;
                     input.proPublishedDate = DateTime.Now;
