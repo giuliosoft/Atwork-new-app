@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using AtWork.CustomControls;
 using AtWork.iOS.Renderers;
+using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -21,6 +22,8 @@ namespace AtWork.iOS.Renderers
                 Control.Layer.BorderWidth = 0;
                 Control.BorderStyle = UITextBorderStyle.None;
                 Control.TextAlignment = UITextAlignment.Center;
+                var timePicker = (UIDatePicker)Control.InputView;
+                timePicker.Locale = new NSLocale("no_nb");
             }
         }
     }

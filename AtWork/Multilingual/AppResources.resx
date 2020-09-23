@@ -263,7 +263,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Activity Title...</value>
     </data>
     <data name="PlaceholderActivityDescription" xml:space="preserve">
-        <value>Describe your #GetTogether</value>
+        <value>Describe your #GetTogether...</value>
     </data>
     <data name="Address" xml:space="preserve">
         <value>Address</value>
@@ -851,5 +851,8 @@ Choose an option below to begin.</value>
     </data>
     <data name="InvalidEmailOrPassword" xml:space="preserve">
         <value>Invalid Email address/ID or Password</value>
+    </data>
+    <data name="InvalidClainEmailOrId" xml:space="preserve">
+        <value>Please enter valid email or id</value>
     </data>
 </root>
