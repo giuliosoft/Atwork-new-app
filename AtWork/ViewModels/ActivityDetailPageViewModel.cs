@@ -603,15 +603,11 @@ namespace AtWork.ViewModels
                     try
                     {
                         await ShowLoader();
+                        SessionService.ActivityPostInputData = new ActivityListModel();
                         if (ActivityDetails != null)
                         {
                             SessionService.isEditingNews = true;
-                            //SessionService.NewsPostInputData.newsTitle = NewsDetailModel.newsTitle;
-                            //SessionService.NewsPostInputData.newsContent = NewsDetailModel.newsContent;
-                            //SessionService.NewsPostInputData.newsUniqueID = NewsDetailModel.newsUniqueID;
-                            //SessionService.NewsPostInputData.volUniqueID = NewsDetailModel.volUniqueID;
-                            //SessionService.NewsPostInputData.newsFileOriginal = NewsDetailModel.newsFileOriginal;
-                            //SessionService.NewsPostInputData.newsFile = NewsDetailModel.newsFile;
+                            SessionService.ActivityPostInputData = ActivityDetails;
                             if (ActivityCarouselList != null && ActivityCarouselList.Count > 0)
                             {
                                 var tempList = new List<string>();
@@ -623,7 +619,7 @@ namespace AtWork.ViewModels
                                 SessionService.NewsPostCarouselImages = tempList;
                             }
                         }
-                        await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+                        await _navigationService.NavigateAsync(nameof(CreateActivityPage), null);
                         await ClosePopup();
                     }
                     catch (Exception ex)

@@ -227,7 +227,27 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            
+            if (SessionService.isEditingNews)
+            {
+                try
+                {
+                    ActivityTitle = SessionService.ActivityPostInputData.proTitle;
+                    ActivityDescription = SessionService.ActivityPostInputData.proDescription;
+                    ActivityAddress = SessionService.ActivityPostInputData.proAddress1;
+                    ActivityCity = SessionService.ActivityPostInputData.proCity;
+                    ActivityCountry = SessionService.ActivityPostInputData.proCountry;
+                    ActivityPrice = SessionService.ActivityPostInputData.proCostCoveredEmployee;
+                    SelectedTime = TimeSpan.Parse(SessionService.ActivityPostInputData.proAddActivity_StartTime);
+                    SelectedEndTime = TimeSpan.Parse(SessionService.ActivityPostInputData.proAddActivity_EndTime);
+                    SelectedDate = Convert.ToDateTime(SessionService.ActivityPostInputData.proAddActivityDate);
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
         }
     }
 }
