@@ -178,6 +178,7 @@
   <ItemGroup>
     <Folder Include="Renderers\" />
     <Folder Include="HelperServices\" />
+    <Folder Include="Resources\de.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\AddNewsPostCancel.png" />
@@ -324,6 +325,7 @@
     <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\info%402x.png" />
     <BundleResource Include="Resources\info%403x.png" />
+    <BundleResource Include="Resources\de.lproj\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

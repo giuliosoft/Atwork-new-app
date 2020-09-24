@@ -13,25 +13,25 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="AppTitle" xml:space="preserve">
-        <value>AtWork</value>
+        <value>atwork</value>
     </data>
     <data name="InternalServerErrorMsg" xml:space="preserve">
-        <value>Internal server error, Please try again later</value>
+        <value>Internal server error. Please try again later.</value>
     </data>
     <data name="UnauthorizedErrorMsg" xml:space="preserve">
         <value>Unauthorized user</value>
     </data>
     <data name="RequestTimeoutErrorMsg" xml:space="preserve">
-        <value>Request timeout, Please try again</value>
+        <value>Request timeout. Please try again.</value>
     </data>
     <data name="SomethingWentWrongText" xml:space="preserve">
         <value>Something went wrong. Please try again</value>
     </data>
     <data name="TooManyAttemptsText" xml:space="preserve">
-        <value>Too Many Attempts.</value>
+        <value>Too many attempts.</value>
     </data>
     <data name="BackendErrorText" xml:space="preserve">
-        <value>An error has occurred in our backend. Please try again</value>
+        <value>An error has occurred in our backend. Please try again.</value>
     </data>
     <data name="AlertTitle" xml:space="preserve">
         <value>ALERT</value>
@@ -43,13 +43,10 @@
         <value>Could not connect to internet. Please check your internet connection.</value>
     </data>
     <data name="PostTitle" xml:space="preserve">
-        <value>Post title...</value>
+        <value>Add title…</value>
     </data>
     <data name="StartWritingYourPost" xml:space="preserve">
-        <value>Start writing your post...</value>
-    </data>
-    <data name="StartWritingYourPost" xml:space="preserve">
-        <value>Start writing your post...</value>
+        <value>Type your post…</value>
     </data>
     <data name="DoneButtonText" xml:space="preserve">
         <value>Done</value>
@@ -64,10 +61,10 @@
         <value>Send</value>
     </data>
     <data name="AddImagesToYourPost" xml:space="preserve">
-        <value>Add images to your post</value>
+        <value>Add an image</value>
     </data>
     <data name="AddAttachFileToYourPost" xml:space="preserve">
-        <value>Attach a file for your post</value>
+        <value>Attach file</value>
     </data>
     <data name="StoragePermissionAlert" xml:space="preserve">
         <value>Need Storage permission to access to your photos.
@@ -80,7 +77,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Edit crop</value>
     </data>
     <data name="ChooseWhoCanSeeYourPost" xml:space="preserve">
-        <value>Choose who can see your post</value>
+        <value>Select who can see your post</value>
     </data>
     <data name="BackButtonText" xml:space="preserve">
         <value>Back</value>
@@ -95,10 +92,10 @@ Permission Denied. Can not continue, try again.</value>
         <value>Delete</value>
     </data>
     <data name="DeleteComment" xml:space="preserve">
-        <value>Delete Comment</value>
+        <value>Delete comment</value>
     </data>
     <data name="DeleteCommentMessage" xml:space="preserve">
-        <value>This action is permanent and cannot be undone.</value>
+        <value>This cannot be undone.</value>
     </data>
     <data name="Cancel" xml:space="preserve">
         <value>Cancel</value>
@@ -122,7 +119,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>PULSE</value>
     </data>
     <data name="JoinActivityText" xml:space="preserve">
-        <value>Join activity</value>
+        <value>Join</value>
     </data>
     <data name="AboutActivityHeaderText" xml:space="preserve">
         <value>ABOUT THIS ACTIVITY</value>
@@ -137,10 +134,10 @@ Permission Denied. Can not continue, try again.</value>
         <value>Time:</value>
     </data>
     <data name="CostsCoveredByCompanyText" xml:space="preserve">
-        <value>Costs covered by company:</value>
+        <value>Cost covered by company:</value>
     </data>
     <data name="CostsCoveredByEmployeeText" xml:space="preserve">
-        <value>Costs covered by employee:</value>
+        <value>Cost for employee:</value>
     </data>
     <data name="LanguageText" xml:space="preserve">
         <value>Language:</value>
@@ -149,7 +146,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Comments:</value>
     </data>
     <data name="ActivityTypeText" xml:space="preserve">
-        <value>Activity type:</value>
+        <value>Type of activity</value>
     </data>
     <data name="SkillsText" xml:space="preserve">
         <value>Skills:</value>
@@ -188,7 +185,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>I forgot my password</value>
     </data>
     <data name="ChooseFromCameraRole" xml:space="preserve">
-        <value>Choose from camera role</value>
+        <value>Choose from camera roll</value>
     </data>
     <data name="ActivityText" xml:space="preserve">
         <value>Activity</value>
@@ -197,22 +194,22 @@ Permission Denied. Can not continue, try again.</value>
         <value>Post</value>
     </data>
     <data name="ImageSelectionAlertText" xml:space="preserve">
-        <value>Image for post can be minimum 1 and maximum 5.</value>
+        <value>Min. 1 and max. 5 images per post</value>
     </data>
     <data name="ThankYouSigningupText" xml:space="preserve">
         <value>Thanks for signing up!</value>
     </data>
     <data name="WhatDateYouPlanToAttendText" xml:space="preserve">
-        <value>What date do you plan to attend?</value>
+        <value>On which date would you like to attend?</value>
     </data>
     <data name="PostDataAlertText" xml:space="preserve">
-        <value>Enter news post title &amp; description!</value>
+        <value>Title &amp; info</value>
     </data>
     <data name="SkipText" xml:space="preserve">
         <value>Skip</value>
     </data>
     <data name="PublishText" xml:space="preserve">
-        <value>Publish</value>
+        <value>Post</value>
     </data>
     <data name="Update" xml:space="preserve">
         <value>Update</value>
@@ -236,7 +233,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Past activites</value>
     </data>
     <data name="CreateAGetTogetherText" xml:space="preserve">
-        <value>Create a #GetTogether</value>
+        <value>Create a get-together</value>
     </data>
     <data name="AllCategoriesText" xml:space="preserve">
         <value>All categories</value>
@@ -260,10 +257,10 @@ Permission Denied. Can not continue, try again.</value>
         <value>Get-together</value>
     </data>
     <data name="ActivityTitle" xml:space="preserve">
-        <value>Activity Title...</value>
+        <value>Title</value>
     </data>
     <data name="PlaceholderActivityDescription" xml:space="preserve">
-        <value>Describe your #GetTogether...</value>
+        <value>Explain your get-together</value>
     </data>
     <data name="Address" xml:space="preserve">
         <value>Address</value>
@@ -275,25 +272,25 @@ Permission Denied. Can not continue, try again.</value>
         <value>Country</value>
     </data>
     <data name="PriceOrPaymentPerPerson" xml:space="preserve">
-        <value>Price or payment per person</value>
+        <value>Cost per person</value>
     </data>
     <data name="ActivityDataAlertText" xml:space="preserve">
-        <value>Enter activity Activity title &amp; description!</value>
+        <value>Title &amp; description</value>
     </data>
     <data name="AddaCoverForYour" xml:space="preserve">
-        <value>Add a cover for your</value>
+        <value>Add an image</value>
     </data>
     <data name="Orpickoneofours" xml:space="preserve">
-        <value>Or pick one of ours</value>
+        <value>or choose one</value>
     </data>
     <data name="InvitePeopleToYourActivity" xml:space="preserve">
-        <value>Invite people to your activity</value>
+        <value>Invite others</value>
     </data>
     <data name="AreYouSureText" xml:space="preserve">
         <value>Are you sure?</value>
     </data>
     <data name="UnSubscribeFromActivtyText" xml:space="preserve">
-        <value>Unsubscribe from activity</value>
+        <value>Unregister from activity</value>
     </data>
     <data name="ConfirmText" xml:space="preserve">
         <value>Confirm</value>
@@ -304,29 +301,26 @@ Permission Denied. Can not continue, try again.</value>
     <data name="YourFeedbackText" xml:space="preserve">
         <value>Your feedback</value>
     </data>
-    <data name="GetTogetherText" xml:space="preserve">
-        <value>#GetTogether</value>
-    </data>
     <data name="OverallExperienceText" xml:space="preserve">
         <value>Overall experience</value>
     </data>
     <data name="ImpactOfYourVolunteeringText" xml:space="preserve">
-        <value>Impact of your volunteering</value>
+        <value>Impact of your activity</value>
     </data>
     <data name="LikelihoodOfRecommendingText" xml:space="preserve">
         <value>Likelihood of recommending</value>
     </data>
     <data name="HowDidYouFeelDuringTheActivityText" xml:space="preserve">
-        <value>How did you feel during the activity?</value>
+        <value>How did completing the activity make you feel?</value>
     </data>
     <data name="WhatNeedsToImproveText" xml:space="preserve">
-        <value>What needs to improve?</value>
+        <value>What could be improved?</value>
     </data>
     <data name="WhatDidYouLikeMostText" xml:space="preserve">
         <value>What did you like most?</value>
     </data>
     <data name="AnythingElseYouWantToAddText" xml:space="preserve">
-        <value>Anything else you want to add?</value>
+        <value>Anything to add?</value>
     </data>
     <data name="SubmitFeedBackText" xml:space="preserve">
         <value>Submit feedback</value>
@@ -383,31 +377,31 @@ Permission Denied. Can not continue, try again.</value>
         <value>Communication</value>
     </data>
     <data name="EverythingWasSatisfactoryText" xml:space="preserve">
-        <value>Everything was satisfactory</value>
+        <value>All good</value>
     </data>
     <data name="OtherText" xml:space="preserve">
         <value>Other</value>
     </data>
     <data name="JoinActivityAlertText" xml:space="preserve">
-        <value>Select date to join activity!</value>
+        <value>Select date</value>
     </data>
     <data name="FeedbackText" xml:space="preserve">
-        <value>Take a moment to think about your completed activity. Your feedback is important. Thank you for answering the following questions.</value>
+        <value>Please give feedback on the completed activity.</value>
     </data>
     <data name="FeedbackMorePlaceholderText" xml:space="preserve">
-        <value>Tell us more...</value>
+        <value>Add more…</value>
     </data>
     <data name="LikeMostPlaceholderText" xml:space="preserve">
-        <value>Describe it in a few sentences...</value>
+        <value>Describe…</value>
     </data>
     <data name="AnythingElsePlaceholderText" xml:space="preserve">
-        <value>Let us know here...</value>
+        <value>Let us know</value>
     </data>
     <data name="MyStatsText" xml:space="preserve">
         <value>MY STATS</value>
     </data>
     <data name="DepartmentText" xml:space="preserve">
-        <value>DEPARTMENT</value>
+        <value>TEAM</value>
     </data>
     <data name="JobTitleText" xml:space="preserve">
         <value>JOB TITLE</value>
@@ -443,38 +437,38 @@ Permission Denied. Can not continue, try again.</value>
         <value>Change password</value>
     </data>
     <data name="ManageNotificationText" xml:space="preserve">
-        <value>Manage notification</value>
+        <value>Manage notifications</value>
 	</data>
     <data name="ProfilePictureText" xml:space="preserve">
         <value>Profile picture</value>
     </data>
     <data name="StartWriting" xml:space="preserve">
-        <value>Start writing...</value>
+        <value>Type here…</value>
     </data>
     <data name="Language" xml:space="preserve">
         <value>Language</value>
     </data>
     <data name="ChangePasswordTitle" xml:space="preserve">
-        <value>Change Password</value>
+        <value>Change password</value>
     </data>
     <data name="CategoryDataAlertText" xml:space="preserve">
-        <value>No activity available for selected category!</value>
+        <value>No activity available in selected category</value>
     </data>
     <data name="CalendarPermissionAlert" xml:space="preserve">
-        <value>Need Calendar permission to add event to your device Calendar.
-Set permission manually from app settings.</value>
+        <value>Permission required to add event to calendar on your device.
+ Give permission in app settings.</value>
     </data>
     <data name="JoinActivitySuccessfulText" xml:space="preserve">
-        <value>Thank you for joining activity.</value>
+        <value>Thank you for joining!</value>
     </data>
     <data name="EnterCurrentPassword" xml:space="preserve">
-        <value>Please enter your current password</value>
+        <value>Please enter current password</value>
     </data>
     <data name="WelcomeSetup1" xml:space="preserve">
-        <value>Set up your profile to choose your language, upload your picture, and let your team know more about you!</value>
+        <value>Set up your profile and choose your language, upload your picture, and help your team get to know you!</value>
     </data>
     <data name="WelcomeSetup2" xml:space="preserve">
-        <value>If you want to use your phone's default language and get straight to the news, you can skip this process.</value>
+        <value>To use your phone's default language and go straight to news, skip this step.</value>
     </data>
     <data name="ActivitiesText" xml:space="preserve">
         <value>Activities</value>
@@ -486,7 +480,7 @@ Set permission manually from app settings.</value>
         <value>Allow notifications?</value>
     </data>
     <data name="AllowNotificationsMsgText" xml:space="preserve">
-        <value>atwork sends updates on subscribed activities and important messages</value>
+        <value>atwork sends updates on activities and important information</value>
     </data>
     <data name="DontAllowText" xml:space="preserve">
         <value>Don't allow</value>
@@ -495,7 +489,7 @@ Set permission manually from app settings.</value>
         <value>Allow</value>
     </data>
     <data name="MyInterests" xml:space="preserve">
-        <value>My Interests</value>
+        <value>My interests</value>
     </data>
     <data name="WelcomeSetup" xml:space="preserve">
         <value>WELCOME 
@@ -505,34 +499,34 @@ Set permission manually from app settings.</value>
         <value>Begin Setup</value>
     </data>
     <data name="ChooseLanguage" xml:space="preserve">
-        <value>Choose Language</value>
+        <value>Select language</value>
     </data>
     <data name="AtWork" xml:space="preserve">
         <value>atwork 
     </value>
     </data>
     <data name="Whatdoyoulooklike" xml:space="preserve">
-        <value>What do you look like?</value>
+        <value>Add a profile picture!</value>
     </data>
     <data name="PleaseSelectYourLanguage" xml:space="preserve">
         <value>Please select your language</value>
     </data>
     <data name="SetProfilePicture" xml:space="preserve">
-        <value>Set profile picture</value>
+        <value>Choose profile picture</value>
     </data>
     <data name="NowScalandmove" xml:space="preserve">
-        <value>Now scale and move 
+        <value>Scale &amp; move 
     </value>
     </data>
     <data name="yourphotoinsidethe" xml:space="preserve">
-        <value>your photo inside the 
+        <value>your photo in the 
     </value>
     </data>
     <data name="circularfram" xml:space="preserve">
         <value>circular frame</value>
     </data>
     <data name="AboutYourSelf" xml:space="preserve">
-        <value>Can you tell us a bit about yourself?</value>
+        <value>About me</value>
     </data>
     <data name="WriteYourInterests" xml:space="preserve">
         <value>Now write down some of your interests!</value>
@@ -550,7 +544,7 @@ Set permission manually from app settings.</value>
         <value>Post to your group</value>
     </data>
     <data name="Inviteyourgroup" xml:space="preserve">
-        <value>Invite your group</value>
+        <value>Invite group</value>
     </data>
     <data name="MyInterestsProfile" xml:space="preserve">
         <value>MY INTERESTS</value>
@@ -558,77 +552,77 @@ Set permission manually from app settings.</value>
     <data name="DisclamerText" xml:space="preserve">
         <value>
         Volunty Corporate AG holds in high regard the data of our users. It is of the utmost importance that our user’s privacy and security is safeguarded at all costs. It is Volunty Corporate AG's policy to respect your privacy regarding any information we may collect from you across our website, https://atwork.ai, and other sites we own and operate. Hereinafter Volunty Corporate AG is represented by atwork.
-
-When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your computer’s Internet Protocol (IP) address, your browser type and version, the pages you visit, the time and date of your visit, the time spent on each page, and other details.
-
-We may ask for personal information, such as your: Name; Email; Phone/mobile number; Home/Mailing address; Work address
-
-By providing personal information to us, you consent to us collecting, holding, using and disclosing your personal information in accordance with this privacy policy. If you are under 16 years of age, you must have, and warrant to the extent permitted by law to us, that you have your parent or legal guardian’s permission to access and use the website and they (your parents or guardian) have consented to you providing us with your personal information. You do not have to provide personal information to us, however, if you do not, it may affect your use of this website or the products and/or services offered on or through it.
-
-If you have any questions or concerns, please contact us at gdpr@atwork.aiher
+ 
+ When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your computer’s Internet Protocol (IP) address, your browser type and version, the pages you visit, the time and date of your visit, the time spent on each page, and other details.
+ 
+ We may ask for personal information, such as your: Name; Email; Phone/mobile number; Home/Mailing address; Work address
+ 
+ By providing personal information to us, you consent to us collecting, holding, using and disclosing your personal information in accordance with this privacy policy. If you are under 16 years of age, you must have, and warrant to the extent permitted by law to us, that you have your parent or legal guardian’s permission to access and use the website and they (your parents or guardian) have consented to you providing us with your personal information. You do not have to provide personal information to us, however, if you do not, it may affect your use of this website or the products and/or services offered on or through it.
+ 
+ If you have any questions or concerns, please contact us at gdpr@atwork.aiher
 
         </value>
     </data>
     <data name="TermsText" xml:space="preserve">
         <value>
         By accessing the information provided on this platform, each user waives and releases Volunty Corporate AG to the full extent permitted by law from any and all claims related to the use of the subject information. Under no circumstances shall Volunty Corporate AG be liable for any direct, indirect, incidental, special, punitive or consequential damages that result in any way from your use of or inability to use the platform or your reliance on or use of information, services, activities or merchandise provided on or through the platform, or that result from mistakes, omissions, interruptions, deletion of files, errors, defects, delays in operation or transmission, or any failure of performance.
-
-In addition to locally mounted information, hyperlinks may be provided to external websites and/or information sources as a service to our users. The appearance of external hyperlinks shall not be taken as implying any connection between Volunty Corporate AG and the linked external information sources. These external information sources are outside the control of Volunty Corporate AG and Volunty Corporate AG does not exercise any editorial control over the information which a user may find at these locations. Use of any information obtained from such sources is voluntary, and reliance on it should only be undertaken after an independent review of its accuracy, completeness, currency, and reliability. Reference to any specific commercial product, process, or service by trade name, trademark, service mark, manufacturer, or otherwise does not constitute or imply endorsement, recommendation, or favoring by Volunty Corporate AG. In addition, the content of any such site does not necessarily reflect the opinions, standards, policy, or endorsement of Volunty Corporate AG.
+ 
+ In addition to locally mounted information, hyperlinks may be provided to external websites and/or information sources as a service to our users. The appearance of external hyperlinks shall not be taken as implying any connection between Volunty Corporate AG and the linked external information sources. These external information sources are outside the control of Volunty Corporate AG and Volunty Corporate AG does not exercise any editorial control over the information which a user may find at these locations. Use of any information obtained from such sources is voluntary, and reliance on it should only be undertaken after an independent review of its accuracy, completeness, currency, and reliability. Reference to any specific commercial product, process, or service by trade name, trademark, service mark, manufacturer, or otherwise does not constitute or imply endorsement, recommendation, or favoring by Volunty Corporate AG. In addition, the content of any such site does not necessarily reflect the opinions, standards, policy, or endorsement of Volunty Corporate AG.
         </value>
     </data>
     <data name="EnterNewPassword" xml:space="preserve">
-        <value>Please enter your new password</value>
+        <value>Please enter new password</value>
     </data>
     <data name="EnteConformNewPassword" xml:space="preserve">
-        <value>Please enter your conform new password</value>
+        <value>Please confirm new password</value>
     </data>
     <data name="EnterCurrentPasswordAlert" xml:space="preserve">
-        <value>Please enter your current password</value>
+        <value>Please enter current password</value>
     </data>
     <data name="EnterNewPasswordAlert" xml:space="preserve">
-        <value>Please enter your new password</value>
+        <value>Please enter new password</value>
     </data>
     <data name="EnterConfirmNewPasswordAlert" xml:space="preserve">
-        <value>Please enter your confirm new password</value>
+        <value>Please confirm new password</value>
     </data>
     <data name="EnterConfirmPasswordNotMatchdAlert" xml:space="preserve">
-        <value>Confirm password does not match</value>
+        <value>Passwords don’t match</value>
     </data>
     <data name="Currentpasswordnotmatch" xml:space="preserve">
-        <value>Current password is wrong</value>
+        <value>Wrong password</value>
     </data>
     <data name="Passwordchangesuccessfully" xml:space="preserve">
         <value>Password changed successfully</value>
     </data>
     <data name="ShareAlertText" xml:space="preserve">
-        <value>There is no link available to share currently!</value>
+        <value>No link available to share</value>
     </data>
     <data name="CreatePasswordText" xml:space="preserve">
-        <value>Create your password</value>
+        <value>Create a password</value>
     </data>
     <data name="ConfirmPasswordText" xml:space="preserve">
         <value>Confirm your password</value>
     </data>
     <data name="ClaimInputAlertText" xml:space="preserve">
-        <value>Company email or Company ID needed for claiming profile!</value>
+        <value>Company email or ID needed to activate profile</value>
     </data>
     <data name="ProfileCorrectionInputAlertText" xml:space="preserve">
-        <value>Any of above fields can't be empty!</value>
+        <value>Please fill out all boxes</value>
     </data>
     <data name="DisclaimerHeaderText" xml:space="preserve">
         <value>Disclaimer</value>
     </data>
     <data name="TermsAndConditionHeaderText" xml:space="preserve">
-        <value>Terms and condition</value>
+        <value>Terms and conditions</value>
     </data>
     <data name="LogoutAlert" xml:space="preserve">
         <value>Are you sure you want to log out?</value>
     </data>
     <data name="FindProfileEmailHeaderText" xml:space="preserve">
-        <value>Access your profile by using your company email</value>
+        <value>Access your profile with your email address</value>
     </data>
     <data name="FindProfileIDHeaderText" xml:space="preserve">
-        <value>Or enter the ID your company provided</value>
+        <value>or the ID</value>
     </data>
     <data name="SubmitText" xml:space="preserve">
         <value>Submit</value>
@@ -649,16 +643,16 @@ In addition to locally mounted information, hyperlinks may be provided to extern
         <value>EMAIL</value>
     </data>
     <data name="ProfileNotRightText" xml:space="preserve">
-        <value>Something not right? Let us know</value>
+        <value>Something not working?</value>
     </data>
     <data name="ClaimProfileText" xml:space="preserve">
-        <value>Claim profile</value>
+        <value>Activate profile</value>
     </data>
     <data name="SubmitCorrectionText" xml:space="preserve">
         <value>Submit corrections</value>
     </data>
     <data name="ClaimProfileThankYouText1" xml:space="preserve">
-        <value>Thank you for your request.</value>
+        <value>Thank you for your request</value>
     </data>
     <data name="ClaimProfileThankYouText2" xml:space="preserve">
         <value>You can now continue setting</value>
@@ -684,7 +678,7 @@ At least one lowercase letter, one upercase
 letter, one number and one special character.</value>
     </data>
     <data name="AtWorkActivityEventText" xml:space="preserve">
-        <value>AtWork Activity Event</value>
+        <value>atwork activity event</value>
     </data>
     <data name="joinedText" xml:space="preserve">
         <value>joined</value>
@@ -699,19 +693,19 @@ letter, one number and one special character.</value>
         <value>Authentication</value>
     </data>
     <data name="AuthenticationAlertMsgText" xml:space="preserve">
-        <value>Tap this fingerprint sensor!</value>
+        <value>Tap the fingerprint sensor</value>
     </data>
     <data name="AuthenticationFailedAlertMsgText" xml:space="preserve">
         <value>Authentication failed</value>
     </data>
     <data name="ComingSoonAlertMsgText" xml:space="preserve">
-        <value>Coming Soon...</value>
+        <value>Coming soon...</value>
         </data>
     <data name="Logintoyourcompany" xml:space="preserve">
-        <value>Log in to your company</value>
+        <value>Log in</value>
     </data>
     <data name="WouldYouLikeToEnableMsgText" xml:space="preserve">
-        <value>Would you like to enable</value>
+        <value>Enable</value>
     </data>
     <data name="TouchIDFaceIDForMsgText" xml:space="preserve">
         <value>Touch ID/Face ID for</value>
@@ -723,7 +717,7 @@ letter, one number and one special character.</value>
         <value>Yes, enable</value>
     </data>
     <data name="NoLogInMsgText" xml:space="preserve">
-        <value>No, log in</value>
+        <value>No, log in.</value>
     </data>
     <data name="NAMECapText" xml:space="preserve">
         <value>NAME</value>
@@ -733,9 +727,6 @@ letter, one number and one special character.</value>
     </data>
     <data name="EMAILCapText" xml:space="preserve">
         <value>EMAIL</value>
-    </data>
-    <data name="ClaimProfileText" xml:space="preserve">
-        <value>Claim profile</value>
     </data>
     <data name="ContinueSetupText" xml:space="preserve">
         <value>Continue setup</value>
@@ -747,7 +738,7 @@ letter, one number and one special character.</value>
         <value>Time</value>
     </data>
     <data name="DescribeItWithSomeEmojisText" xml:space="preserve">
-        <value>Describe it with some emojis!</value>
+        <value>Add emojis:</value>
     </data>
     <data name="AppAuthenticationHeaderText" xml:space="preserve">
         <value>Use Face or touch id to unlock app.</value>

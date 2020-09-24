@@ -63,5 +63,14 @@
 	<string>1.0</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app needs access to calendar.</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>de</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>it</string>
+		<string>ru</string>
+	</array>
 </dict>
 </plist>
