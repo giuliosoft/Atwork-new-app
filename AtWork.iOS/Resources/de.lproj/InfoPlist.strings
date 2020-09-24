@@ -1,0 +1,6 @@
+﻿NSPhotoLibraryUsageDescription = "Test AtWork";
+NSPhotoLibraryAddUsageDescription = "Test AtWork";
+NSCameraUsageDescription = "Test AtWork";
+NSMicrophoneUsageDescription = "Test AtWork";
+NSFaceIDUsageDescription = "Test AtWork";
+NSCalendarsUsageDescription = "Test AtWork";
