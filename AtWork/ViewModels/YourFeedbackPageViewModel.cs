@@ -31,8 +31,8 @@ namespace AtWork.ViewModels
         private string _Prop = string.Empty;
         ActivityListModel _SelectedPastActivity;
         private int OverallExperienceRatingValue = 0;
-        private int ImpactRatingValue = 0;
-        private int RecommendRatingValue = 0;
+        private double ImpactRatingValue = 0;
+        private double RecommendRatingValue = 0;
         List<FeedBackUIModel> SelectedActivityFeelingList = new List<FeedBackUIModel>();
         List<FeedBackUIModel> SelectedImprovementList = new List<FeedBackUIModel>();
         private string _FeedbackComments = string.Empty;
@@ -456,8 +456,8 @@ namespace AtWork.ViewModels
                 inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
                 inputModel.ActivityDate = SelectedPastActivity.proAddActivityDate;
                 inputModel.selectedStarRating = OverallExperienceRatingValue;
-                inputModel.SliderValue = ImpactRatingValue;
-                inputModel.SliderValue2 = RecommendRatingValue;
+                inputModel.SliderValue = Convert.ToInt32(ImpactRatingValue * 2);
+                inputModel.SliderValue2 = Convert.ToInt32(RecommendRatingValue * 2);
                 string delim = ",";
                 if (activityFeelingList != null && activityFeelingList.Count > 0)
                 {
@@ -815,6 +815,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 15;
                     ImpactRatingPancakeWidth = 30;
+
+                    ImpactRatingValue = 0.5;
                 }
                 else if (selectedRating == TextResources.RateOneFull)
                 {
@@ -861,6 +863,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 25;
                     ImpactRatingPancakeWidth = 90;
+
+                    ImpactRatingValue = 1.5;
                 }
                 else if (selectedRating == TextResources.RateTwoFull)
                 {
@@ -907,6 +911,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 25;
                     ImpactRatingPancakeWidth = 150;
+
+                    ImpactRatingValue = 2.5;
                 }
                 else if (selectedRating == TextResources.RateThreeFull)
                 {
@@ -953,6 +959,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 25;
                     ImpactRatingPancakeWidth = 210;
+
+                    ImpactRatingValue = 3.5;
                 }
                 else if (selectedRating == TextResources.RateFourFull)
                 {
@@ -999,6 +1007,8 @@ namespace AtWork.ViewModels
 
                     ImpactRatingPancakeCornerRadius = 25;
                     ImpactRatingPancakeWidth = 270;
+
+                    ImpactRatingValue = 4.5;
                 }
                 else if (selectedRating == TextResources.RateFiveFull)
                 {
@@ -1056,6 +1066,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 15;
                     RecommendRatingPancakeWidth = 30;
+
+                    RecommendRatingValue = 0.5;
                 }
                 else if (selectedRating == TextResources.RateOneFull)
                 {
@@ -1102,6 +1114,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 25;
                     RecommendRatingPancakeWidth = 90;
+
+                    RecommendRatingValue = 1.5;
                 }
                 else if (selectedRating == TextResources.RateTwoFull)
                 {
@@ -1148,6 +1162,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 25;
                     RecommendRatingPancakeWidth = 150;
+
+                    RecommendRatingValue = 2.5;
                 }
                 else if (selectedRating == TextResources.RateThreeFull)
                 {
@@ -1194,6 +1210,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 25;
                     RecommendRatingPancakeWidth = 210;
+
+                    RecommendRatingValue = 3.5;
                 }
                 else if (selectedRating == TextResources.RateFourFull)
                 {
@@ -1240,6 +1258,8 @@ namespace AtWork.ViewModels
 
                     RecommendRatingPancakeCornerRadius = 25;
                     RecommendRatingPancakeWidth = 270;
+
+                    RecommendRatingValue = 4.5;
                 }
                 else if (selectedRating == TextResources.RateFiveFull)
                 {

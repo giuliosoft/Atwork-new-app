@@ -288,7 +288,7 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
             <Style x:Key="ActivityAboutHeaderLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -306,7 +306,7 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
             <Style x:Key="ActivityAboutGroupValueLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="End" />

@@ -144,6 +144,7 @@ namespace AtWork.ViewModels
                     input.proAddActivity_EndTime = SessionService.ActivityPostInputData.proAddActivity_EndTime;
                     input.proAddActivityDate = SessionService.ActivityPostInputData.proAddActivityDate;
                     input.Emoji = SessionService.SelectedEmojiForActivity;
+                    input.proCompany = SettingsService.LoggedInUserData?.coName;
                     input.proPublishedDate = DateTime.Now;
                     input.proStatus = "Ongoing";
                     input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
@@ -168,7 +169,7 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
-                    SessionService.NewsPostInputData.coUniqueID = SettingsService.LoggedInUserData.coUniqueID;
+                    SessionService.NewsPostInputData.coUniqueID = SettingsService.LoggedInUserData?.coUniqueID;
                     NewsDetailModel_Input inputModel = new NewsDetailModel_Input();
 
                     inputModel.coUniqueID = SessionService.NewsPostInputData.coUniqueID;

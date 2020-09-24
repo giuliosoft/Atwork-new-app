@@ -22,7 +22,10 @@ namespace AtWork.ViewModels
         #region Constructor
         public NewsOptionPopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            if (isActivity)
+            {
+                //EditPost = AppResources.
+            }
         }
         #endregion
 
@@ -31,11 +34,18 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Public Properties
+        public bool isActivity = false;
         private bool _IsVisibleGuestOptions = true;
         public bool IsVisibleGuestOptions
         {
             get { return _IsVisibleGuestOptions; }
             set { SetProperty(ref _IsVisibleGuestOptions, value); }
+        }
+        private string _EditPost = AppResources.Editpost;
+        public string EditPost
+        {
+            get { return _EditPost; }
+            set { SetProperty(ref _EditPost, value); }
         }
         #endregion
 
