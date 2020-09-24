@@ -28,7 +28,7 @@ namespace AtWork.ViewModels
         {
             _navigationService = navigationService;
             _facadeService = facadeService;
-
+            //SessionService.AppNavigationService = _navigationService;
             LogoutCommand = null;
             CrossConnectivity.Current.ConnectivityChanged += async (sender, e) =>
             {
@@ -466,6 +466,27 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
+        public async Task OpenUserProfileAsync(string UserId)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(UserId))
+                {
+                    var nav = new NavigationParameters();
+                    nav.Add("VolId", UserId);
+                    await _navigationService.NavigateAsync(nameof(ProfilePage), nav);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        //public async Task LogoutFromApp()
+        //{
+        //    SessionService.Logout();
+        //    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
+        //}
         #endregion
     }
 }

@@ -167,6 +167,7 @@ namespace AtWork.ViewModels
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
         public DelegateCommand<NewsComment> CommentLikeCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await CommentLike(obj)); } }
         public DelegateCommand OpenAttachmentCommand { get { return new DelegateCommand(async () => await OpenNewsAttachment()); } }
+        public DelegateCommand<NewsComment> OpenUserDetailCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await OpenUserDetail(obj)); } }
         #endregion
 
         #region private methods
@@ -446,6 +447,20 @@ namespace AtWork.ViewModels
             try
             {
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        async Task OpenUserDetail(NewsComment comment)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(comment?.Volunteers?.volUniqueID))
+                {
+                    await OpenUserProfileAsync(comment.Volunteers.volUniqueID);
+                }
             }
             catch (Exception ex)
             {

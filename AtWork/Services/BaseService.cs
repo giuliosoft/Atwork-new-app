@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
+using AtWork.Views;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 
@@ -265,6 +267,8 @@ namespace AtWork.Services
                         {
                             resultModel.Result = ResponseStatus.Unauthorized;
                             messageModel.message = AppResources.UnauthorizedErrorMsg;
+                            //SessionService.Logout();
+                           // await SessionService.AppNavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
                         }
                         else if ((int)response.StatusCode == 408)
                         {

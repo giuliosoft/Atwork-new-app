@@ -46,6 +46,7 @@ namespace AtWork.Services
         public static LoginOutputModel tempClaimProfileData = null;
         public static bool isFromJoinActivity = false;
 
+        public static bool isEditingActivity = false;
         /// <summary>
         /// Logout
         /// clear social media account details

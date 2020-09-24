@@ -28,7 +28,7 @@ namespace AtWork.ViewModels
         public ActivityDetailPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             DetailHeaderOptionIsVisible = false;
-
+            NewsOptionCommand = ShowNewsOptionCommand;
             HeaderDetailsTitle = AppResources.ActivityText;
             if (IsFromMyActivity)
             {
@@ -119,6 +119,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GoToToastMessageCommand { get { return new DelegateCommand(async () => await GoToToastMessage()); } }
         public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => LinkClicked()); } }
         public DelegateCommand<string> JoinedMemberCommand { get { return new DelegateCommand<string>(async (obj) => await JoinedMember(obj)); } }
+        public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
         #endregion
 
         #region private methods
@@ -442,6 +443,7 @@ namespace AtWork.ViewModels
                     //ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
                     //    ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
                     //    : string.Empty;
+                    DetailHeaderOptionIsVisible = true;//ActivityDetails?.volUniqueID == SettingsService.VolunteersUserData?.volUniqueID;
                     if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
                     {
                         IsShowCategotyType = true;
@@ -554,7 +556,7 @@ namespace AtWork.ViewModels
                     calendarWritePermissionStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
                 }
 
-                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
+                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>() ;
                 if (calendarReadPermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
                 {
                     calendarReadPermissionStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();
@@ -588,6 +590,84 @@ namespace AtWork.ViewModels
                 await DisplayAlertAsync(AppResources.PermissionErrorText);
             }
             return retVal;
+        }
+        async Task ShowNewsOption()
+        {
+            try
+            {
+                NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
+                NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
+                newsOptionPopupViewModel.isActivity = true;
+                newsOptionPopupViewModel.EditNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        await ShowLoader();
+                        if (ActivityDetails != null)
+                        {
+                            SessionService.isEditingNews = true;
+                            //SessionService.NewsPostInputData.newsTitle = NewsDetailModel.newsTitle;
+                            //SessionService.NewsPostInputData.newsContent = NewsDetailModel.newsContent;
+                            //SessionService.NewsPostInputData.newsUniqueID = NewsDetailModel.newsUniqueID;
+                            //SessionService.NewsPostInputData.volUniqueID = NewsDetailModel.volUniqueID;
+                            //SessionService.NewsPostInputData.newsFileOriginal = NewsDetailModel.newsFileOriginal;
+                            //SessionService.NewsPostInputData.newsFile = NewsDetailModel.newsFile;
+                            if (ActivityCarouselList != null && ActivityCarouselList.Count > 0)
+                            {
+                                var tempList = new List<string>();
+                                ActivityCarouselList.All((arg) =>
+                                {
+                                    tempList.Add(arg.ActivityImageUrl);
+                                    return true;
+                                });
+                                SessionService.NewsPostCarouselImages = tempList;
+                            }
+                        }
+                        await _navigationService.NavigateAsync(nameof(AddNewsPostPage), null);
+                        await ClosePopup();
+                    }
+                    catch (Exception ex)
+                    {
+                        await ClosePopup();
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+
+                newsOptionPopupViewModel.DeleteNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        if (!await CheckConnectivity())
+                        {
+                            return;
+                        }
+                        var result = await App.Current.MainPage.DisplayAlert(AppResources.DeletePostAlert, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                        if (result)
+                        {
+                            await ShowLoader();
+                            //var serviceResult = await NewsService.DeleteNewsPost(ActivityDetails.id);
+                            //if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            //{
+                            //    SessionService.DeletedNewsPost = ActivityDetails.id.ToString();
+                            //    await BackClick();
+                            //}
+                            await ClosePopup();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        await ClosePopup();
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                newsOptionPopup.BindingContext = newsOptionPopupViewModel;
+                await PopupNavigationService.ShowPopup(newsOptionPopup, true);
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
         }
         #endregion
 

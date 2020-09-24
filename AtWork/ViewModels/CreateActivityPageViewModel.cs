@@ -32,8 +32,6 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         List<EmojiDisplayModel> emojiDisplayModelsSelected = new List<EmojiDisplayModel>();
-        private string _Emoji1 = string.Empty;
-        private string _Emoji2 = string.Empty;
         private string _ActivityTitle = string.Empty;
         private string _ActivityDescription = string.Empty;
         private string _ActivityAddress = string.Empty;
@@ -47,16 +45,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Public Properties        
-        public string Emoji1
-        {
-            get { return _Emoji1; }
-            set { SetProperty(ref _Emoji1, value); }
-        }
-        public string Emoji2
-        {
-            get { return _Emoji2; }
-            set { SetProperty(ref _Emoji2, value); }
-        }
         public string ActivityTitle
         {
             get { return _ActivityTitle; }
