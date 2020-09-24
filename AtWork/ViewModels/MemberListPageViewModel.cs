@@ -36,9 +36,10 @@ namespace AtWork.ViewModels
         {
             try
             {
-                var nav = new NavigationParameters();
-                nav.Add("VolId", member.volUniqueID);
-                await _navigationService.NavigateAsync(nameof(ProfilePage), nav);
+                if (!string.IsNullOrEmpty(member.volUniqueID))
+                {
+                    await OpenUserProfileAsync(member.volUniqueID);
+                }
             }
             catch (Exception ex)
             {

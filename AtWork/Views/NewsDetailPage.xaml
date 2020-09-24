@@ -134,6 +134,9 @@
                                                 <ffImageLoading:CachedImage.Transformations>
                                                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                                                 </ffImageLoading:CachedImage.Transformations>
+                                                 <ffImageLoading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference postCommentList},Path=BindingContext.OpenUserDetailCommand}" CommandParameter="{Binding .}" />
+                                                </ffImageLoading:CachedImage.GestureRecognizers>
                                             </ffImageLoading:CachedImage>
                                             <StackLayout  Spacing="0" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                                 <Label Text="{Binding UserName}" Style="{StaticResource NewsPageUserLabelStyle}"/>

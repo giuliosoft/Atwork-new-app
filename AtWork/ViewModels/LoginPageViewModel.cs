@@ -19,6 +19,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public LoginPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
+            //SessionService.AppNavigationService = null;
             AddNewsCancelImage = AppResources.BackButtonText;
 #if DEBUG
             UserEmail = "jeff.jones@testing.com";

@@ -157,6 +157,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
         //public DelegateCommand<News> NewsShowOptionCommand { get { return new DelegateCommand<News>(async (obj) => await NewsShowOption(obj)); } }
         public DelegateCommand<NewsListData_Model> NewsShowOptionCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await NewsShowOption(obj)); } }
+        public DelegateCommand<NewsListData_Model> OpenUserDetailCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await OpenUserDetail(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
         public DelegateCommand ActivityLoadMoreItemsCommand { get { return new DelegateCommand(async () => await ActivityLoadMoreItems()); } }
@@ -397,6 +398,21 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.NavigateAsync(nameof(ActivityDetailPage), null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task OpenUserDetail(NewsListData_Model selectedNewsPost)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(selectedNewsPost?.Volunteers?.volUniqueID))
+                {
+                    await OpenUserProfileAsync(selectedNewsPost.Volunteers.volUniqueID);
+                }
             }
             catch (Exception ex)
             {
