@@ -39,7 +39,7 @@
                                     </PancakeControl:PancakeView>
                                     <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth215}" CornerRadius="10">
                                         <Label Text="{Binding SelectedPastActivity.proAddress1}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
-                                    </PancakeControl:PancakeView>                                                                        
+                                    </PancakeControl:PancakeView>
                                     <Grid  Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                         <Grid ColumnSpacing="{DynamicResource Spacing15}">
                                             <Grid.ColumnDefinitions>
@@ -73,7 +73,7 @@
                             </StackLayout>
                         </StackLayout>
                     </PancakeControl:PancakeView>
-                    <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" Margin="30,0,30,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="10">
+                    <PancakeControl:PancakeView IsVisible="{Binding IsUserAllowedToEditFeedback}" BackgroundColor="{DynamicResource DarkColor}" Margin="30,0,30,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="10">
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
                             <Label Text="{x:Static Multilingual:AppResources.FeedbackText}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
                         </StackLayout>
@@ -155,15 +155,15 @@
                             </BindableLayout.ItemTemplate>
                         </FlexLayout>
                     </Grid>
-                    <CustomControl:CustomEditor Text="{Binding FeedbackComments}" Placeholder="{x:Static Multilingual:AppResources.FeedbackMorePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,20,0"/>
+                    <CustomControl:CustomEditor Text="{Binding FeedbackComments}" IsEnabled="{Binding IsUserAllowedToEditFeedback}" Placeholder="{x:Static Multilingual:AppResources.FeedbackMorePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,20,0"/>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <Label Text="{x:Static Multilingual:AppResources.WhatDidYouLikeMostText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
-                    <CustomControl:CustomEditor Text="{Binding FeedbackLikeMostComment}" Placeholder="{x:Static Multilingual:AppResources.LikeMostPlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,0,0" HeightRequest="100" />
+                    <CustomControl:CustomEditor Text="{Binding FeedbackLikeMostComment}" IsEnabled="{Binding IsUserAllowedToEditFeedback}" Placeholder="{x:Static Multilingual:AppResources.LikeMostPlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,0,0" HeightRequest="100" />
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
                     <Label Text="{x:Static Multilingual:AppResources.AnythingElseYouWantToAddText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
-                    <CustomControl:CustomEditor Text="{Binding FeedbackAdditionalComments}" Placeholder="{x:Static Multilingual:AppResources.AnythingElsePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,0,15" />
+                    <CustomControl:CustomEditor Text="{Binding FeedbackAdditionalComments}" IsEnabled="{Binding IsUserAllowedToEditFeedback}" Placeholder="{x:Static Multilingual:AppResources.AnythingElsePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,0,15" />
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
-                    <PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="25" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="30,0,30,25" Padding="10">
+                    <PancakeControl:PancakeView Opacity="{Binding SubmitFeedbackOpacity}" BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="25" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="30,0,30,25" Padding="10">
                         <Label Text="{x:Static Multilingual:AppResources.SubmitFeedBackText}" Style="{StaticResource YourFeedBackLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
                         <PancakeControl:PancakeView.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SubmitFeedbackCommand}" />

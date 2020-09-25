@@ -23,13 +23,13 @@
                     <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateOneHalf}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="0"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <BoxView IsVisible="{Binding Rate1PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
                         <StackLayout Grid.Column="2">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateOneFull}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="1"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>
@@ -48,13 +48,13 @@
                     <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateTwoHalf}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="0"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <BoxView IsVisible="{Binding Rate2PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
                         <StackLayout Grid.Column="2">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateTwoFull}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="2"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>
@@ -73,13 +73,13 @@
                     <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateThreeHalf}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="0"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <BoxView IsVisible="{Binding Rate3PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
                         <StackLayout Grid.Column="2">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateThreeFull}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="3"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>
@@ -98,13 +98,13 @@
                     <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFourHalf}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="0"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <BoxView IsVisible="{Binding Rate4PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
                         <StackLayout Grid.Column="2">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFourFull}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="4"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>
@@ -123,13 +123,13 @@
                     <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFiveHalf}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="0"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <BoxView IsVisible="{Binding Rate5PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
                         <StackLayout Grid.Column="2">
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="{x:Static helpers:TextResources.RateFiveFull}"/>
+                                <TapGestureRecognizer Command="{Binding RatingSelectedCommand}" CommandParameter="5"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </Grid>

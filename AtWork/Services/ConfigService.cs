@@ -47,7 +47,8 @@ namespace AtWork.Services
         public static string GroupMemberCountURL = "/activities/CountGroupMember/";
         public static string UserProfileURL = "/user/getprofile/";
         public static string UserLanguageURL = "/user/GetLanguage";
-        public static string ActivityFeedbackServiceURL = "/activities/SaveFeedBack";
+        public static string ActivitySaveFeedbackServiceURL = "/activities/SaveFeedBack";
+        public static string ActivityGetFeedbackServiceURL = "/activities/GetFeedBackActivities/";
         public static string AboutUserServiceURL = "/user/Getabout";
         public static string UpdateAboutUserServiceURL = "/user/Updateabout";
         public static string UpdateLanguageServiceURL = "/user/UpdateLanguage";

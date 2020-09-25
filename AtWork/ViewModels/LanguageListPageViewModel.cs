@@ -174,7 +174,6 @@ namespace AtWork.ViewModels
         {
             try
             {
-                LanguageService.Init(Selectedlanguage);
                 if (!await CheckConnectivity())
                 {
                     return;
@@ -192,7 +191,15 @@ namespace AtWork.ViewModels
                         if (serviceBody != null && serviceBody.Flag)
                         {
                             if (!SessionService.IsWelcomeSetup)
-                                await _navigationService.GoBackAsync();
+                            {
+                                //await _navigationService.GoBackAsync();
+                                var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
+                                if (res)
+                                {
+                                    LanguageService.Init(Selectedlanguage);
+                                    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
+                                }
+                            }
                         }
                     }
                 }

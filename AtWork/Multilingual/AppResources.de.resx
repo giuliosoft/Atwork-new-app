@@ -468,7 +468,7 @@
         <value>Um die Standardsprache deines Geräts auszuwählen, diesen Schritt überspringen.</value>
     </data>
     <data name="ActivitiesText" xml:space="preserve">
-        <value>Activities</value>
+        <value>Aktivitäten</value>
     </data>
     <data name="HoursText" xml:space="preserve">
         <value>Stunden</value>
@@ -842,5 +842,9 @@ Choose an option below to begin.</value>
     </data>
     <data name="InvalidClainEmailOrId" xml:space="preserve">
         <value>Please enter valid email or id</value>
+    </data>
+    <data name="AppRelaunchAlert" xml:space="preserve">
+        <value>For new language setting, app will be relaunched.
+Are you sure want to do that?</value>
     </data>
 </root>

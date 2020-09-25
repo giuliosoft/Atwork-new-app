@@ -1624,5 +1624,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("InvalidClainEmailOrId", resourceCulture);
             }
         }
+        
+        internal static string AppRelaunchAlert {
+            get {
+                return ResourceManager.GetString("AppRelaunchAlert", resourceCulture);
+            }
+        }
     }
 }

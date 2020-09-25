@@ -11,10 +11,10 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
                 </Grid.ColumnDefinitions>
-                <ContentView Grid.Column="0" Padding="0,0,20,0"  VerticalOptions="CenterAndExpand">
+                <ContentView Grid.Column="0" Padding="0,0,0,0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
                     <PancakeControl:PancakeView Padding="0,0,0,0" HeightRequest="40" HorizontalOptions="Start" CornerRadius="0,20,0,20" BackgroundColor="{DynamicResource AccentColor}" >
                         <StackLayout HorizontalOptions="Start" VerticalOptions="Center" >
                             <Image Source="leftarrow" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth70}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
@@ -24,7 +24,7 @@
                         </StackLayout>
                     </PancakeControl:PancakeView>
                 </ContentView>
-                <ContentView x:Name="HeaderTitle" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                <ContentView x:Name="HeaderTitle" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
                     <Label Text="{TemplateBinding BindingContext.HeaderDetailsTitle}" Style="{StaticResource HeaderViewHeaderLabelStyle}" FontSize="{TemplateBinding BindingContext.HeaderDetailsTitleFontSize}"/>
                 </ContentView>
                 <ContentView x:Name="HeaderNewsOption" Grid.Column="2" IsVisible="{TemplateBinding BindingContext.DetailHeaderOptionIsVisible}" Padding="20" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
