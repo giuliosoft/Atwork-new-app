@@ -70,7 +70,9 @@ namespace AtWork.Models
             public string Companie_Address2 { get; set; }
             public string Keyword { get; set; }
             public string Emoji { get; set; }
-
+            public string ImageName { get; set; }
+            public string Goal { get; set; }
+            public string skills { get; set; }
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
 
@@ -152,6 +154,15 @@ namespace AtWork.Models
             {
                 get { return _EmojiList; }
                 set { SetProperty(ref _EmojiList, value); }
+            }
+            public bool ActivityCreatedByLoggedInUser
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(volUniqueID) && SettingsService.VolunteersUserData != null)
+                        return volUniqueID == SettingsService.VolunteersUserData.volUniqueID;
+                    return false;
+                }
             }
         }
 

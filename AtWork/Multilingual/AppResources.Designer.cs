@@ -1624,5 +1624,17 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("InvalidClainEmailOrId", resourceCulture);
             }
         }
+        
+        internal static string EditActivity {
+            get {
+                return ResourceManager.GetString("EditActivity", resourceCulture);
+            }
+        }
+        
+        internal static string DeleteActivity {
+            get {
+                return ResourceManager.GetString("DeleteActivity", resourceCulture);
+            }
+        }
     }
 }

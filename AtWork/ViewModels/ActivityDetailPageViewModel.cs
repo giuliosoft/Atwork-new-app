@@ -443,7 +443,7 @@ namespace AtWork.ViewModels
                     //ActivityTime = serviceResultBody?.proAddActivity_StartTime != null && serviceResultBody?.proAddActivity_StartTime != string.Empty && serviceResultBody?.proAddActivity_EndTime != null && serviceResultBody?.proAddActivity_EndTime != string.Empty
                     //    ? serviceResultBody.proAddActivity_StartTime + " to  " + serviceResultBody.proAddActivity_EndTime
                     //    : string.Empty;
-                    DetailHeaderOptionIsVisible = true;//ActivityDetails?.volUniqueID == SettingsService.VolunteersUserData?.volUniqueID;
+                    DetailHeaderOptionIsVisible = ActivityDetails?.volUniqueID == SettingsService.VolunteersUserData?.volUniqueID;
                     if (serviceResultBody?.proCategoryName != null && serviceResultBody?.proCategoryName != string.Empty)
                     {
                         IsShowCategotyType = true;
@@ -597,7 +597,8 @@ namespace AtWork.ViewModels
             {
                 NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
                 NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
-                newsOptionPopupViewModel.isActivity = true;
+                newsOptionPopupViewModel.DeletePost = AppResources.DeleteActivity;
+                newsOptionPopupViewModel.EditPost = AppResources.EditActivity;
                 newsOptionPopupViewModel.EditNewsEvent += async (object sender, object SelectedObj) =>
                 {
                     try
@@ -606,7 +607,7 @@ namespace AtWork.ViewModels
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         if (ActivityDetails != null)
                         {
-                            SessionService.isEditingNews = true;
+                            SessionService.isEditingActivity = true;
                             SessionService.ActivityPostInputData = ActivityDetails;
                             if (ActivityCarouselList != null && ActivityCarouselList.Count > 0)
                             {
@@ -641,12 +642,12 @@ namespace AtWork.ViewModels
                         if (result)
                         {
                             await ShowLoader();
-                            //var serviceResult = await NewsService.DeleteNewsPost(ActivityDetails.id);
-                            //if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
-                            //{
-                            //    SessionService.DeletedNewsPost = ActivityDetails.id.ToString();
-                            //    await BackClick();
-                            //}
+                            var serviceResult = await ActivityService.DeleteActivity(ActivityDetails.id);
+                            if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            {
+                                SessionService.DeletedActivityPost = ActivityDetails.id.ToString();
+                                await BackClick();
+                            }
                             await ClosePopup();
                         }
                     }

@@ -846,4 +846,12 @@ Choose an option below to begin.</value>
     <data name="InvalidClainEmailOrId" xml:space="preserve">
         <value>Please enter valid email or id</value>
     </data>
+    
+    <!--Pending in all file-->
+    <data name="EditActivity" xml:space="preserve">
+        <value>Edit Activity</value>
+    </data>
+    <data name="DeleteActivity" xml:space="preserve">
+        <value>Delete Activity</value>
+    </data>
 </root>

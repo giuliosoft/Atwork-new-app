@@ -194,7 +194,8 @@ namespace AtWork.ViewModels
                 SessionService.ActivityPostInputData.proAddActivityDate = SelectedDate;
                 try
                 {
-                    List<string> lstEmoji = emojiDisplayModelsSelected.Where(x => x.IsSelected).ToList().Select(x => x.EmojiName).ToList();
+                    //List<string> lstEmoji = emojiDisplayModelsSelected.Where(x => x.IsSelected).ToList().Select(x => x.EmojiName).ToList();
+                    List<string> lstEmoji = emojiDisplayModelsSelected.Select(x => x.EmojiName).ToList();
                     SessionService.SelectedEmojiForActivity = string.Join(", ", lstEmoji);
                 }
                 catch (Exception ex)
@@ -227,7 +228,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            if (SessionService.isEditingNews)
+            if (SessionService.isEditingActivity) 
             {
                 try
                 {
@@ -241,6 +242,28 @@ namespace AtWork.ViewModels
                     SelectedEndTime = TimeSpan.Parse(SessionService.ActivityPostInputData.proAddActivity_EndTime);
                     SelectedDate = Convert.ToDateTime(SessionService.ActivityPostInputData.proAddActivityDate);
 
+                    string strEmoji = SessionService.ActivityPostInputData.Emoji;
+                    List<string> SelectedEmojiList = new List<string>();
+                    if (!string.IsNullOrEmpty(strEmoji))
+                    {
+                        if (strEmoji.Contains(","))
+                        {
+                            SelectedEmojiList = strEmoji.Trim().Split(',').ToList();
+                        }
+                        else
+                        {
+                            SelectedEmojiList.Add(strEmoji);
+                        }
+                        SelectedEmojiList = SelectedEmojiList.Select(x => x.Trim()).ToList();
+                    }
+                    ObservableCollection<EmojiDisplayModel> TempEmojiList = CommonUtility.EmojisList();
+                    if (SelectedEmojiList != null && SelectedEmojiList.Count > 0)
+                    {
+                        var result = TempEmojiList.Where(x => SelectedEmojiList.Contains(x.EmojiName)).ToList();//.ForEach(f => f.IsSelected = true);
+                        result.ForEach(x => x.IsSelected = true);
+                        emojiDisplayModelsSelected = result; //new ObservableCollection<EmojiDisplayModel>(result as List<EmojiDisplayModel>); ;
+                        EmojiList = TempEmojiList;
+                    }
                 }
                 catch (Exception ex)
                 {
