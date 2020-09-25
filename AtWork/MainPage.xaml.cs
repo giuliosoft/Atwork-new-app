@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using AtWork.Helpers;
+using AtWork.Multilingual;
 using Plugin.Calendars;
 using Plugin.Calendars.Abstractions;
 using Xamarin.Forms;
@@ -23,6 +27,10 @@ namespace AtWork
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            //CultureInfo cultureInfo = new CultureInfo(TextResources.GermanCode);
+            //Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            //AppResources.Culture = cultureInfo;
+
             //var calendars = await CrossCalendars.Current.GetCalendarsAsync();
             //var defaultCalendar = calendars.Where((x) => x.AccountName == "Default" && x.CanEditEvents).FirstOrDefault();
             //var calendarEvent = new CalendarEvent

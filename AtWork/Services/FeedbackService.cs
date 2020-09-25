@@ -16,9 +16,26 @@ namespace AtWork.Services
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var feedbackServiceUrl = ConfigService.BaseServiceURL + ConfigService.ActivityFeedbackServiceURL;
+                var feedbackServiceUrl = ConfigService.BaseServiceURL + ConfigService.ActivitySaveFeedbackServiceURL;
                 var jData = JsonConvert.SerializeObject(inputModel);
                 resultModel = await PostResponse<string>(feedbackServiceUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> GetUserSubmittedFeedback(string input)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var getfeedbackServiceUrl = ConfigService.BaseServiceURL + ConfigService.ActivityGetFeedbackServiceURL;
+                var fUrl = $"{getfeedbackServiceUrl}{input}";
+                resultModel = await GetResponse<string>(fUrl, true);
             }
             catch (Exception ex)
             {

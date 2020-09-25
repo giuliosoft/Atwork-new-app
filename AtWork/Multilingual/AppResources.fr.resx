@@ -852,4 +852,8 @@ Choose an option below to begin.</value>
     <data name="InvalidClainEmailOrId" xml:space="preserve">
         <value>Please enter valid email or id</value>
     </data>
+    <data name="AppRelaunchAlert" xml:space="preserve">
+        <value>For new language setting, app will be relaunched.
+Are you sure want to do that?</value>
+    </data>
 </root>

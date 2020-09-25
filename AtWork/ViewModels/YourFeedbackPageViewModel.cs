@@ -9,6 +9,7 @@ using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms;
@@ -23,7 +24,6 @@ namespace AtWork.ViewModels
         public YourFeedbackPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             HeaderDetailsTitle = AppResources.YourFeedbackText;
-
         }
         #endregion
 
@@ -38,6 +38,9 @@ namespace AtWork.ViewModels
         private string _FeedbackComments = string.Empty;
         private string _FeedbackLikeMostComment = string.Empty;
         private string _FeedbackAdditionalComments = string.Empty;
+        private bool _IsUserAllowedToEditFeedback = true;
+        private double _SubmitFeedbackOpacity = 1;
+        private bool IsFromJoinActivityMemberList = false;
 
         private double _RatingPancakeWidth = 0;
         private CornerRadius _RatingPancakeCornerRadius = 25;
@@ -139,6 +142,18 @@ namespace AtWork.ViewModels
         {
             get { return _FeedbackAdditionalComments; }
             set { SetProperty(ref _FeedbackAdditionalComments, value); }
+        }
+
+        public bool IsUserAllowedToEditFeedback
+        {
+            get { return _IsUserAllowedToEditFeedback; }
+            set { SetProperty(ref _IsUserAllowedToEditFeedback, value); }
+        }
+
+        public double SubmitFeedbackOpacity
+        {
+            get { return _SubmitFeedbackOpacity; }
+            set { SetProperty(ref _SubmitFeedbackOpacity, value); }
         }
 
         public double RatingPancakeWidth
@@ -418,6 +433,7 @@ namespace AtWork.ViewModels
         {
             try
             {
+                IsFromJoinActivityMemberList = true;
                 var navigationParams = new NavigationParameters();
                 navigationParams.Add("ActivityID", selectedActivityPost);
                 await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
@@ -428,10 +444,56 @@ namespace AtWork.ViewModels
             }
         }
 
+        async Task GetSubmittedFeedbackData()
+        {
+            try
+            {
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                await ShowLoader();
+                if (!string.IsNullOrEmpty(SelectedPastActivity.proUniqueID))
+                {
+                    var serviceResult = await FeedbackService.GetUserSubmittedFeedback(SelectedPastActivity.proUniqueID);
+                    if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                    {
+                        if (serviceResult.Body != null && serviceResult.Result == ResponseStatus.Ok)
+                        {
+                            var serviceBody = JsonConvert.DeserializeObject<FeedbackResponseModel>(serviceResult.Body);
+                            if (serviceBody != null)
+                            {
+                                if (serviceBody.Flag && serviceBody.Data1 != null)
+                                {
+                                    var serviceFeedbackBody = serviceBody.Data1;
+                                    if (serviceFeedbackBody != null)
+                                    {
+                                        var userFeedbackData = serviceFeedbackBody;
+                                        await SetFeedbackData(userFeedbackData);
+                                        IsUserAllowedToEditFeedback = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                await ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         public async Task SubmitFeedback()
         {
             try
             {
+                if (!IsUserAllowedToEditFeedback)
+                {
+                    return;
+                }
                 List<string> activityFeelingList = new List<string>();
                 SelectedActivityFeelingList.All((arg) =>
                 {
@@ -486,10 +548,100 @@ namespace AtWork.ViewModels
             }
         }
 
+        async Task SetFeedbackData(ActivityFeedbackInputModel activityFeedbackData)
+        {
+            try
+            {
+                await RatingSelected(activityFeedbackData.selectedStarRating.ToString());
+                await ImpactRatingSelected(activityFeedbackData.SliderValue.ToString());
+                await RecommendRatingSelected(activityFeedbackData.SliderValue2.ToString());
+
+                FeedbackComments = activityFeedbackData.ActivityFeedbackComments;
+                FeedbackLikeMostComment = activityFeedbackData.ActivityFeedback_Like;
+                FeedbackAdditionalComments = activityFeedbackData.ActivityFeedbackAdditional;
+
+                if (!string.IsNullOrEmpty(activityFeedbackData.ActivityFeedbackFeeling))
+                {
+                    string feelingStr = activityFeedbackData.ActivityFeedbackFeeling;
+                    List<string> feelingList = new List<string>();
+                    if (!string.IsNullOrEmpty(feelingStr))
+                    {
+                        if (feelingStr.Contains(","))
+                        {
+                            feelingList = feelingStr.Split(',').ToList();
+                        }
+                        else
+                        {
+                            feelingList.Add(feelingStr);
+                        }
+                    }
+                    if (feelingList != null && feelingList.Count > 0)
+                    {
+                        feelingList.All((arg) =>
+                        {
+                            var retVal = true;
+                            FeedBackList.All((farg) =>
+                            {
+                                if (farg.Title.Equals(arg, StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    farg.IsSelected = true;
+                                    retVal = false;
+                                }
+                                return retVal;
+                            });
+                            return true;
+                        });
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(activityFeedbackData.ActivityFeedbackImprove))
+                {
+                    string improveStr = activityFeedbackData.ActivityFeedbackImprove;
+                    List<string> improveList = new List<string>();
+                    if (!string.IsNullOrEmpty(improveStr))
+                    {
+                        if (improveStr.Contains(","))
+                        {
+                            improveList = improveStr.Split(',').ToList();
+                        }
+                        else
+                        {
+                            improveList.Add(improveStr);
+                        }
+                    }
+                    if (improveList != null && improveList.Count > 0)
+                    {
+                        improveList.All((arg) =>
+                        {
+                            var retVal = true;
+                            FeedBackListImproveList.All((iarg) =>
+                            {
+                                if (iarg.Title.Equals(arg, StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    iarg.IsSelected = true;
+                                    retVal = false;
+                                }
+                                return retVal;
+                            });
+                            return true;
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
         {
             try
             {
+                if (!IsUserAllowedToEditFeedback)
+                {
+                    return;
+                }
                 FeedBackList.All((item) =>
                 {
                     if (item == selectedTab)
@@ -518,6 +670,10 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (!IsUserAllowedToEditFeedback)
+                {
+                    return;
+                }
                 FeedBackListImproveList.All((item) =>
                 {
                     if (item == selectedTab)
@@ -542,11 +698,16 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task RatingSelected(string selectedRating)
+        async Task RatingSelected(string selectedRatingParam)
         {
             try
             {
-                if (selectedRating == TextResources.RateOneHalf)
+                var selectedRating = Convert.ToInt32(selectedRatingParam);
+                if (!IsUserAllowedToEditFeedback)
+                {
+                    return;
+                }
+                if (selectedRating == 0)
                 {
                     return;
                     Rate1BorderedIsVisible = false;
@@ -571,7 +732,7 @@ namespace AtWork.ViewModels
 
                     //OverallExperienceRatingValue = 1.5;
                 }
-                else if (selectedRating == TextResources.RateOneFull)
+                else if (selectedRating == 1)
                 {
                     Rate1BorderedIsVisible = false;
                     Rate1FilledIsVisible = true;
@@ -595,7 +756,7 @@ namespace AtWork.ViewModels
 
                     OverallExperienceRatingValue = 1;
                 }
-                else if (selectedRating == TextResources.RateTwoHalf)
+                else if (selectedRating == 0)
                 {
                     return;
                     Rate2BorderedIsVisible = false;
@@ -618,7 +779,7 @@ namespace AtWork.ViewModels
                     RatingPancakeCornerRadius = 25;
                     RatingPancakeWidth = 90;
                 }
-                else if (selectedRating == TextResources.RateTwoFull)
+                else if (selectedRating == 2)
                 {
                     Rate2BorderedIsVisible = false;
                     Rate2FilledIsVisible = true;
@@ -642,7 +803,7 @@ namespace AtWork.ViewModels
 
                     OverallExperienceRatingValue = 2;
                 }
-                if (selectedRating == TextResources.RateThreeHalf)
+                if (selectedRating == 0)
                 {
                     return;
                     Rate3BorderedIsVisible = false;
@@ -665,7 +826,7 @@ namespace AtWork.ViewModels
                     RatingPancakeCornerRadius = 25;
                     RatingPancakeWidth = 150;
                 }
-                else if (selectedRating == TextResources.RateThreeFull)
+                else if (selectedRating == 3)
                 {
                     Rate3BorderedIsVisible = false;
                     Rate3FilledIsVisible = true;
@@ -689,7 +850,7 @@ namespace AtWork.ViewModels
 
                     OverallExperienceRatingValue = 3;
                 }
-                if (selectedRating == TextResources.RateFourHalf)
+                if (selectedRating == 0)
                 {
                     return;
                     Rate4BorderedIsVisible = false;
@@ -712,7 +873,7 @@ namespace AtWork.ViewModels
                     RatingPancakeCornerRadius = 25;
                     RatingPancakeWidth = 210;
                 }
-                else if (selectedRating == TextResources.RateFourFull)
+                else if (selectedRating == 4)
                 {
                     Rate4BorderedIsVisible = false;
                     Rate4FilledIsVisible = true;
@@ -736,7 +897,7 @@ namespace AtWork.ViewModels
 
                     OverallExperienceRatingValue = 4;
                 }
-                if (selectedRating == TextResources.RateFiveHalf)
+                if (selectedRating == 0)
                 {
                     return;
                     Rate5BorderedIsVisible = false;
@@ -759,7 +920,7 @@ namespace AtWork.ViewModels
                     RatingPancakeCornerRadius = 25;
                     RatingPancakeWidth = 270;
                 }
-                else if (selectedRating == TextResources.RateFiveFull)
+                else if (selectedRating == 5)
                 {
                     Rate5BorderedIsVisible = false;
                     Rate5FilledIsVisible = true;
@@ -790,11 +951,16 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task ImpactRatingSelected(string selectedRating)
+        async Task ImpactRatingSelected(string selectedRatingParam)
         {
             try
             {
-                if (selectedRating == TextResources.RateOneHalf)
+                var selectedRating = Convert.ToInt32(selectedRatingParam);
+                if (!IsUserAllowedToEditFeedback)
+                {
+                    return;
+                }
+                if (selectedRating == 1)
                 {
                     ImpactRate1BorderedIsVisible = false;
                     ImpactRate1FilledIsVisible = false;
@@ -818,7 +984,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 0.5;
                 }
-                else if (selectedRating == TextResources.RateOneFull)
+                else if (selectedRating == 2)
                 {
                     ImpactRate1BorderedIsVisible = false;
                     ImpactRate1FilledIsVisible = true;
@@ -842,7 +1008,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 1;
                 }
-                else if (selectedRating == TextResources.RateTwoHalf)
+                else if (selectedRating == 3)
                 {
                     ImpactRate2BorderedIsVisible = false;
                     ImpactRate2FilledIsVisible = false;
@@ -866,7 +1032,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 1.5;
                 }
-                else if (selectedRating == TextResources.RateTwoFull)
+                else if (selectedRating == 4)
                 {
                     ImpactRate2BorderedIsVisible = false;
                     ImpactRate2FilledIsVisible = true;
@@ -890,7 +1056,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 2;
                 }
-                if (selectedRating == TextResources.RateThreeHalf)
+                if (selectedRating == 5)
                 {
                     ImpactRate3BorderedIsVisible = false;
                     ImpactRate3FilledIsVisible = false;
@@ -914,7 +1080,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 2.5;
                 }
-                else if (selectedRating == TextResources.RateThreeFull)
+                else if (selectedRating == 6)
                 {
                     ImpactRate3BorderedIsVisible = false;
                     ImpactRate3FilledIsVisible = true;
@@ -938,7 +1104,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 3;
                 }
-                if (selectedRating == TextResources.RateFourHalf)
+                if (selectedRating == 7)
                 {
                     ImpactRate4BorderedIsVisible = false;
                     ImpactRate4FilledIsVisible = false;
@@ -962,7 +1128,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 3.5;
                 }
-                else if (selectedRating == TextResources.RateFourFull)
+                else if (selectedRating == 8)
                 {
                     ImpactRate4BorderedIsVisible = false;
                     ImpactRate4FilledIsVisible = true;
@@ -986,7 +1152,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 4;
                 }
-                if (selectedRating == TextResources.RateFiveHalf)
+                if (selectedRating == 9)
                 {
                     ImpactRate5BorderedIsVisible = false;
                     ImpactRate5FilledIsVisible = false;
@@ -1010,7 +1176,7 @@ namespace AtWork.ViewModels
 
                     ImpactRatingValue = 4.5;
                 }
-                else if (selectedRating == TextResources.RateFiveFull)
+                else if (selectedRating == 10)
                 {
                     ImpactRate5BorderedIsVisible = false;
                     ImpactRate5FilledIsVisible = true;
@@ -1041,11 +1207,16 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task RecommendRatingSelected(string selectedRating)
+        async Task RecommendRatingSelected(string selectedRatingParam)
         {
             try
             {
-                if (selectedRating == TextResources.RateOneHalf)
+                var selectedRating = Convert.ToInt32(selectedRatingParam);
+                if (!IsUserAllowedToEditFeedback)
+                {
+                    return;
+                }
+                if (selectedRating == 1)
                 {
                     RecommendRate1BorderedIsVisible = false;
                     RecommendRate1FilledIsVisible = false;
@@ -1069,7 +1240,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 0.5;
                 }
-                else if (selectedRating == TextResources.RateOneFull)
+                else if (selectedRating == 2)
                 {
                     RecommendRate1BorderedIsVisible = false;
                     RecommendRate1FilledIsVisible = true;
@@ -1093,7 +1264,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 1;
                 }
-                else if (selectedRating == TextResources.RateTwoHalf)
+                else if (selectedRating == 3)
                 {
                     RecommendRate2BorderedIsVisible = false;
                     RecommendRate2FilledIsVisible = false;
@@ -1117,7 +1288,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 1.5;
                 }
-                else if (selectedRating == TextResources.RateTwoFull)
+                else if (selectedRating == 4)
                 {
                     RecommendRate2BorderedIsVisible = false;
                     RecommendRate2FilledIsVisible = true;
@@ -1141,7 +1312,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 2;
                 }
-                if (selectedRating == TextResources.RateThreeHalf)
+                if (selectedRating == 5)
                 {
                     RecommendRate3BorderedIsVisible = false;
                     RecommendRate3FilledIsVisible = false;
@@ -1165,7 +1336,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 2.5;
                 }
-                else if (selectedRating == TextResources.RateThreeFull)
+                else if (selectedRating == 6)
                 {
                     RecommendRate3BorderedIsVisible = false;
                     RecommendRate3FilledIsVisible = true;
@@ -1189,7 +1360,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 3;
                 }
-                if (selectedRating == TextResources.RateFourHalf)
+                if (selectedRating == 7)
                 {
                     RecommendRate4BorderedIsVisible = false;
                     RecommendRate4FilledIsVisible = false;
@@ -1213,7 +1384,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 3.5;
                 }
-                else if (selectedRating == TextResources.RateFourFull)
+                else if (selectedRating == 8)
                 {
                     RecommendRate4BorderedIsVisible = false;
                     RecommendRate4FilledIsVisible = true;
@@ -1237,7 +1408,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 4;
                 }
-                if (selectedRating == TextResources.RateFiveHalf)
+                if (selectedRating == 9)
                 {
                     RecommendRate5BorderedIsVisible = false;
                     RecommendRate5FilledIsVisible = false;
@@ -1261,7 +1432,7 @@ namespace AtWork.ViewModels
 
                     RecommendRatingValue = 4.5;
                 }
-                else if (selectedRating == TextResources.RateFiveFull)
+                else if (selectedRating == 10)
                 {
                     RecommendRate5BorderedIsVisible = false;
                     RecommendRate5FilledIsVisible = true;
@@ -1332,6 +1503,15 @@ namespace AtWork.ViewModels
             if (selectedActivity != null)
             {
                 SelectedPastActivity = selectedActivity;
+            }
+            if (!IsFromJoinActivityMemberList)
+            {
+                await GetSubmittedFeedbackData();
+                SubmitFeedbackOpacity = IsUserAllowedToEditFeedback ? 1 : 0.5;
+            }
+            else
+            {
+                IsFromJoinActivityMemberList = false;
             }
         }
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using static AtWork.Models.ActivityModel;
+
 namespace AtWork.Models
 {
     public class FeedbackModel
@@ -18,6 +20,14 @@ namespace AtWork.Models
             public string ActivityFeedbackComments { get; set; }
             public string ActivityFeedbackAdditional { get; set; }
             public int? SliderValue2 { get; set; }
+        }
+
+        public class FeedbackResponseModel
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public ActivityListModel Data { get; set; }
+            public ActivityFeedbackInputModel Data1 { get; set; }
         }
     }
 }

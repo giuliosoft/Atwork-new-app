@@ -854,4 +854,8 @@ Choose an option below to begin.</value>
     <data name="DeleteActivity" xml:space="preserve">
         <value>Delete Activity</value>
     </data>
+    <data name="AppRelaunchAlert" xml:space="preserve">
+        <value>For new language setting, app will be relaunched.
+Are you sure want to do that?</value>
+    </data>
 </root>

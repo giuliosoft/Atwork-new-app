@@ -1636,5 +1636,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("DeleteActivity", resourceCulture);
             }
         }
+        
+        internal static string AppRelaunchAlert {
+            get {
+                return ResourceManager.GetString("AppRelaunchAlert", resourceCulture);
+            }
+        }
     }
 }
