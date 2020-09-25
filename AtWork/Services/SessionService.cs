@@ -47,6 +47,9 @@ namespace AtWork.Services
         public static bool isFromJoinActivity = false;
 
         public static bool isEditingActivity = false;
+        public static string DeletedActivityPost = string.Empty;
+        public static bool isFromMyactivity = false;
+
         /// <summary>
         /// Logout
         /// clear social media account details

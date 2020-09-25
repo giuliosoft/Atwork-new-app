@@ -157,6 +157,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GotoActivityDetailsCommand { get { return new DelegateCommand(async () => await GotoActivityDetails()); } }
         //public DelegateCommand<News> NewsShowOptionCommand { get { return new DelegateCommand<News>(async (obj) => await NewsShowOption(obj)); } }
         public DelegateCommand<NewsListData_Model> NewsShowOptionCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await NewsShowOption(obj)); } }
+        public DelegateCommand<ActivityListModel> ActivityOptionCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await ActivityShowOption(obj)); } }
         public DelegateCommand<NewsListData_Model> OpenUserDetailCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await OpenUserDetail(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
@@ -496,6 +497,81 @@ namespace AtWork.ViewModels
             }
         }
 
+        async Task ActivityShowOption(ActivityListModel ActivityDetails)
+        {
+            try
+            {
+                //await NewsOption();
+                NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
+                NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
+                newsOptionPopupViewModel.DeletePost = AppResources.DeleteActivity;
+                newsOptionPopupViewModel.EditPost = AppResources.EditActivity;
+                newsOptionPopupViewModel.EditNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        await ShowLoader();
+                        SessionService.ActivityPostInputData = new ActivityListModel();
+                        if (ActivityDetails != null)
+                        {
+                            SessionService.isEditingActivity = true;
+                            SessionService.ActivityPostInputData = ActivityDetails;
+                            if (ActivityDetails.ActivityCarouselList != null && ActivityDetails.ActivityCarouselList.Count > 0)
+                            {
+                                var tempList = new List<string>();
+                                ActivityDetails.ActivityCarouselList.All((arg) =>
+                                {
+                                    tempList.Add(arg.ActivityImageUrl);
+                                    return true;
+                                });
+                                SessionService.NewsPostCarouselImages = tempList;
+                            }
+                        }
+                        await _navigationService.NavigateAsync(nameof(CreateActivityPage), null);
+                        await ClosePopup();
+                    }
+                    catch (Exception ex)
+                    {
+                        await ClosePopup();
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+
+                newsOptionPopupViewModel.DeleteNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        if (!await CheckConnectivity())
+                        {
+                            return;
+                        }
+                        var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                        if (result)
+                        {
+                            await ShowLoader();
+                            var serviceResult = await ActivityService.DeleteActivity(ActivityDetails.id);
+                            if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            {
+                                Activitylist.Remove(ActivityDetails);
+                            }
+                            await ClosePopup();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                newsOptionPopup.BindingContext = newsOptionPopupViewModel;
+                await PopupNavigationService.ShowPopup(newsOptionPopup, true);
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         async Task GetNewsListDetails_New(bool isPullToRefresh = false)
         {
             try
@@ -770,9 +846,10 @@ namespace AtWork.ViewModels
             try
             {
                 LayoutService.ConvertThemeAsPerSettings();
-                if (SessionService.isEditingNews)
+                if (SessionService.isEditingNews || SessionService.isEditingActivity)
                 {
                     SessionService.isEditingNews = false;
+                    SessionService.isEditingActivity = false;
                     SessionService.NewsPostInputData = new NewsDetailModel_Input();
                     SessionService.NewsPostAttachmentFileName = string.Empty;
                     SessionService.NewsPostAttachmentFilePath = string.Empty;
@@ -788,6 +865,17 @@ namespace AtWork.ViewModels
                         SessionService.DeletedNewsPost = string.Empty;
                     }
                 }
+                if (!string.IsNullOrEmpty(SessionService.DeletedActivityPost))
+                {
+                    int ActivityId = Convert.ToInt32(SessionService.DeletedActivityPost);
+                    if (ActivityId > 0)
+                    {
+                        var ActivityItem = Activitylist.Where(x => x.id == ActivityId).FirstOrDefault();
+                        Activitylist.Remove(ActivityItem);
+                        SessionService.DeletedActivityPost = string.Empty;
+                    }
+                }
+
                 if (SessionService.IsShowActivitiesIntial)
                 {
                     SessionService.IsShowActivitiesIntial = false;

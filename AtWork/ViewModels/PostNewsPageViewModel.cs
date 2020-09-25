@@ -134,7 +134,6 @@ namespace AtWork.ViewModels
                     BaseResponse<string> serviceResult = null;
                     ActivityListModel input = new ActivityListModel();
                     input.coUniqueID = SettingsService.LoggedInUserData?.coUniqueID;
-                    input.volUniqueID = SettingsService.VolunteersUserData?.volUniqueID.ToString();
                     input.proTitle = SessionService.ActivityPostInputData.proTitle;
                     input.proDescription = SessionService.ActivityPostInputData.proDescription;
                     input.proAddress1 = SessionService.ActivityPostInputData.proAddress1;
@@ -147,8 +146,8 @@ namespace AtWork.ViewModels
                     input.proCompany = SettingsService.LoggedInUserData?.coName;
                     input.proPublishedDate = DateTime.Now;
                     input.proStatus = "Ongoing";
-                    input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
                     input.proBackgroundImage = SessionService.SelectedDefaultImageForActivity;
+                    input.proCostCoveredEmployee = SessionService.ActivityPostInputData.proCostCoveredEmployee;
                     input.proCategoryName = "#gettogether";
                     if (NewsPrivacy.ToLower() == "everyone")
                     {
@@ -158,13 +157,44 @@ namespace AtWork.ViewModels
                     {
                         input.proAudience = "Post to my group";
                     }
-                    serviceResult = await ActivityService.PostActivityFeedEdit(input, SessionService.NewsPostImageFiles);
+                    if (SessionService.isEditingActivity)
+                    {
+                        input.id = SessionService.ActivityPostInputData.id;
+                        input.proUniqueID = SessionService.ActivityPostInputData.proUniqueID;
+                        input.volUniqueID = SettingsService.VolunteersUserData?.volUniqueID.ToString();
+                        if (SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
+                        {
+                            input.ImageName = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseActivityImageURL, "")).ToList());
+                            input.proBackgroundImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseActivityImageURL, "")).ToList());
+                        }
+                        serviceResult = await ActivityService.ActivityEdit(input, SessionService.NewsPostImageFiles);
+                    }
+                    else
+                    {
+                        input.proUniqueID = null;
+                        input.volUniqueID = SettingsService.VolunteersUserData?.volUniqueID.ToString();
+                        input.proBackgroundImage = SessionService.SelectedDefaultImageForActivity;
+                        serviceResult = await ActivityService.PostActivityFeedEdit(input, SessionService.NewsPostImageFiles);
+                    }
+
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                     {
+                        if (SessionService.isEditingActivity)
+                        {
+                            SessionService.isEditingActivity = false;
+                        }
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         SessionService.NewsPostImageFiles = new List<string>();
                         SessionService.IsShowActivitiesIntial = true;
-                        await _navigationService.NavigateAsync(nameof(DashboardPage));
+                        if (SessionService.isFromMyactivity)
+                        {
+                            SessionService.isFromMyactivity = false;
+                            await _navigationService.NavigateAsync(nameof(MyActivityPage));
+                        }
+                        else
+                        {
+                            await _navigationService.NavigateAsync(nameof(DashboardPage));
+                        }
                     }
                 }
                 else

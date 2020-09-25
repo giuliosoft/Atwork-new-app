@@ -182,6 +182,8 @@ namespace AtWork.ViewModels
                         }
                         NewsPickedImageViewIsVisible = true;
                         SelectedDefaultImage = string.Empty;
+                        SessionService.SelectedDefaultImageForActivity = string.Empty;
+                        SessionService.NewsPostCarouselImages = new List<string>();
                         res.All((mFile) =>
                         {
                             NewsPostImageCarouselList.Add(new NewsImageModel() { ImagePath = mFile.Path, ImagePreviewPath = mFile.PreviewPath, FileType = mFile.Type, NewsImage = ImageSource.FromFile(mFile.PreviewPath) });
@@ -206,6 +208,7 @@ namespace AtWork.ViewModels
                 {
                     NextTextColor = (Color)App.Current.Resources["WhiteColor"];
                     NewsPostImageCarouselList.Clear();
+                    SessionService.NewsPostCarouselImages = new List<string>();
                     NewsPickedImageViewIsVisible = false;
                     IsShowOurImage = true;
                     SelectedDefaultImage = arg1;
@@ -380,14 +383,25 @@ namespace AtWork.ViewModels
                     carouselRef.PositionChanged -= Carousel_PositionChanged;
                     carouselRef.PositionChanged += Carousel_PositionChanged;
                 }
-                if (SessionService.isEditingNews && SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
+                if ((SessionService.isEditingNews || SessionService.isEditingActivity) && SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
                 {
                     var tempList = new ObservableCollection<NewsImageModel>();
-                    SessionService.NewsPostCarouselImages.All((arg) =>
+                    try
                     {
-                        tempList.Add(new NewsImageModel() { NewsImage = ImageSource.FromUri(new Uri(arg)) });
-                        return true;
-                    });
+                        SessionService.NewsPostCarouselImages.All((arg) =>
+                        {
+                            if (arg != null)
+                            {
+                                tempList.Add(new NewsImageModel() { NewsImage = ImageSource.FromUri(new Uri(arg)) });
+                                return true;
+                            }
+                            return false;
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                    }
                     NewsPostImageCarouselList = tempList;
                     ImageOptionText = AppResources.Delete;
                     NewsPickedImageViewIsVisible = true;

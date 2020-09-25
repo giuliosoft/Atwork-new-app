@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
+using AtWork.Popups;
 using AtWork.Services;
 using AtWork.Views;
 using Newtonsoft.Json;
@@ -75,6 +76,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<ActivityListModel> UpcomingActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GotoActivityDetails(obj)); } }
         public DelegateCommand<ActivityListModel> PastActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GoToFeedBackPage(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
+        public DelegateCommand<ActivityListModel> ActivityOptionCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await ActivityShowOption(obj)); } }
         #endregion
 
         #region private methods
@@ -286,6 +288,81 @@ namespace AtWork.ViewModels
             //{
             //    IsBusyInActivityBinding = false;
             //}
+        }
+        async Task ActivityShowOption(ActivityListModel ActivityDetails)
+        {
+            try
+            {
+                //await NewsOption();
+                NewsOptionPopup newsOptionPopup = new NewsOptionPopup();
+                NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
+                newsOptionPopupViewModel.DeletePost = AppResources.DeleteActivity;
+                newsOptionPopupViewModel.EditPost = AppResources.EditActivity;
+                SessionService.isFromMyactivity = true;
+                newsOptionPopupViewModel.EditNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        await ShowLoader();
+                        SessionService.ActivityPostInputData = new ActivityListModel();
+                        if (ActivityDetails != null)
+                        {
+                            SessionService.isEditingActivity = true;
+                            SessionService.ActivityPostInputData = ActivityDetails;
+                            if (ActivityDetails.ActivityCarouselList != null && ActivityDetails.ActivityCarouselList.Count > 0)
+                            {
+                                var tempList = new List<string>();
+                                ActivityDetails.ActivityCarouselList.All((arg) =>
+                                {
+                                    tempList.Add(arg.ActivityImageUrl);
+                                    return true;
+                                });
+                                SessionService.NewsPostCarouselImages = tempList;
+                            }
+                        }
+                        await _navigationService.NavigateAsync(nameof(CreateActivityPage), null);
+                        await ClosePopup();
+                    }
+                    catch (Exception ex)
+                    {
+                        await ClosePopup();
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+
+                newsOptionPopupViewModel.DeleteNewsEvent += async (object sender, object SelectedObj) =>
+                {
+                    try
+                    {
+                        if (!await CheckConnectivity())
+                        {
+                            return;
+                        }
+                        var result = await App.Current.MainPage.DisplayAlert(AppResources.Delete, AppResources.DeleteCommentMessage, AppResources.Delete, AppResources.Cancel);
+                        if (result)
+                        {
+                            await ShowLoader();
+                            var serviceResult = await ActivityService.DeleteActivity(ActivityDetails.id);
+                            if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                            {
+                                MyUpcomingActivitylist.Remove(ActivityDetails);
+                            }
+                            await ClosePopup();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                };
+                newsOptionPopup.BindingContext = newsOptionPopupViewModel;
+                await PopupNavigationService.ShowPopup(newsOptionPopup, true);
+            }
+            catch (Exception ex)
+            {
+                await ClosePopup();
+                Debug.WriteLine(ex.Message);
+            }
         }
         async Task GotoCreateActivity()
         {

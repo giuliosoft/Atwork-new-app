@@ -33,6 +33,13 @@
                                                     <Label Text="{Binding proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" HorizontalTextAlignment="Center" Padding="10"/>
                                                 </PancakeControl:PancakeView>
                                                 <CustomControl:CustomImage Source="{Binding activityPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
+                                                <StackLayout Padding="10,0,10,0" HorizontalOptions="Fill" VerticalOptions="Fill" IsVisible="{Binding ActivityCreatedByLoggedInUser}" Orientation="Horizontal">
+                                                    <CustomControl:CustomImage TintColor="{DynamicResource AccentColor}" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="Center">
+                                                    </CustomControl:CustomImage>
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={x:Reference myUpcomingActivityList},Path=BindingContext.ActivityOptionCommand}" CommandParameter="{Binding .}" />
+                                                    </StackLayout.GestureRecognizers>
+                                                </StackLayout>
                                             </StackLayout>
                                             <Label Text="{Binding proTitle}" FontSize="20"/>
                                             <Grid WidthRequest="{DynamicResource DeviceWidth}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >

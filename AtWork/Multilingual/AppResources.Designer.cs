@@ -1625,6 +1625,18 @@ namespace AtWork.Multilingual {
             }
         }
         
+        internal static string EditActivity {
+            get {
+                return ResourceManager.GetString("EditActivity", resourceCulture);
+            }
+        }
+        
+        internal static string DeleteActivity {
+            get {
+                return ResourceManager.GetString("DeleteActivity", resourceCulture);
+            }
+        }
+        
         internal static string AppRelaunchAlert {
             get {
                 return ResourceManager.GetString("AppRelaunchAlert", resourceCulture);

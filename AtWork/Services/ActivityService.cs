@@ -111,6 +111,23 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> ActivityEdit(ActivityListModel inputModel, List<string> filesToAttach)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var editNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.EditActivityServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                //resultModel = await PostResponse<string>(editNewsServiceUrl, jData, true);
+                resultModel = await FilePostResponse<string>(editNewsServiceUrl, filesToAttach, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
         public static async Task<BaseResponse<string>> GetActivityJoinedMemberList(string id)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
@@ -133,6 +150,21 @@ namespace AtWork.Services
             {
                 var GroupMemberCountUrl = ConfigService.BaseServiceURL + ConfigService.GroupMemberCountURL + id;
                 resultModel = await GetResponse<string>(GroupMemberCountUrl, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                Debug.WriteLine(ex.Message);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> DeleteActivity(int id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var deleteNewsServiceUrl = ConfigService.BaseServiceURL + ConfigService.ActivityDeleteServiceURL;
+                resultModel = await GetResponse<string>($"{deleteNewsServiceUrl}{id}", true);
             }
             catch (Exception ex)
             {

@@ -60,5 +60,7 @@ namespace AtWork.Services
         public static string ClaimUserProfileServiceURL = "/user/claimprofile/";
         public static string UserProfileCorrectionServiceURL = "/user/submitcorrection";
         public static string UserForgotPasswordServiceURL = "/user/forgotpassword/";
+        public static string EditActivityServiceURL = "/activities/EditActivities";
+        public static string ActivityDeleteServiceURL = "/activities/deleteActivities/";
     }
 }
