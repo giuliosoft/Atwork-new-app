@@ -3,6 +3,8 @@ namespace AtWork.Services
 {
     public class ConfigService
     {
+        //***** if Prodcution than true *****//
+        public static bool IsProduction = false;
 
         //*****Local URL*****//
         //public static string BaseServerURL = "http://e664521c6dc7.ngrok.io";
@@ -14,7 +16,7 @@ namespace AtWork.Services
         public static string BaseServiceURL = "http://app.atwork.ai/api";
         public static string BaseNewsImageURL = BaseServerURL + "/newsposts/";
         public static string BaseProfileImageURL = BaseServerURL + "/volunteers/";
-        public static string BaseNewsAttachFileURL = BaseServerURL + "/newspostsfiles/";
+        public static string BaseNewsAttachFileURL = BaseServerURL + "/newsposts/";
         public static string BaseActivityImageURL = BaseServerURL + "/activities/";
         public static string BaseCompanyLogoURL = BaseServerURL + "/companylogos/";
         //

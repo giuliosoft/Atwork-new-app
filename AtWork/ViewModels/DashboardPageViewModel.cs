@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
 using static AtWork.Models.NewsModel;
@@ -175,6 +176,11 @@ namespace AtWork.ViewModels
         {
             IsRefreshing = true;
             PageNo = 1;
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
+                //UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
+            });
             await GetNewsListDetails_New(true);
             IsRefreshing = false;
         }
@@ -183,6 +189,11 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
+                //UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
+            });
             await GetActivityList(isPullToRefresh: true);
             Activitycollectionlist.All((categories) =>
             {
@@ -614,7 +625,7 @@ namespace AtWork.ViewModels
                                 tempData.news = nArg.news;
                                 tempData.Volunteers = nArg.Volunteers;
                                 tempData.userName = nArg.Volunteers != null ? nArg.Volunteers.volFirstName + " " + nArg.Volunteers.volLastName : string.Empty;
-                                tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseProfileImageURL + nArg.Volunteers?.volPicture : string.Empty;
+                                tempData.newsPostUserProfilePic = !string.IsNullOrEmpty(nArg.Volunteers?.volPicture) ? ConfigService.BaseProfileImageURL + nArg.Volunteers?.volPicture + "?" + DateTime.Now.ToString() : string.Empty;
                                 tempData.newsTitle = nArg.news.newsTitle;
                                 tempData.newsDescription = nArg.news?.newsContent;
 
@@ -845,6 +856,8 @@ namespace AtWork.ViewModels
 
             try
             {
+                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
+               //UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
                 LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews || SessionService.isEditingActivity)
                 {
@@ -886,7 +899,7 @@ namespace AtWork.ViewModels
                 {
                     if (_isRefreshingNewsFirstTime) { _isRefreshingNewsFirstTime = false; };
                     if (SessionService.IsNeedToRefreshNews) { SessionService.IsNeedToRefreshNews = false; };
-                    UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile));
+                    //UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile));
                     await GetNewsListDetails_New();
                 }
                 if (SessionService.LikeNewsCount != null && SessionService.LikeNewsID != null)
