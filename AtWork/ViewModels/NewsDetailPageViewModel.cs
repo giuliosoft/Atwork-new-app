@@ -177,7 +177,7 @@ namespace AtWork.ViewModels
             {
                 if (!string.IsNullOrEmpty(NewsAttachmentFile))
                 {
-                    var fileUrl = ConfigService.BaseNewsAttachFileURL + NewsAttachmentFile;
+                    var fileUrl = ConfigService.BaseNewsImageURL + NewsAttachmentFile;
                     await Launcher.OpenAsync(fileUrl);
                 }
             }

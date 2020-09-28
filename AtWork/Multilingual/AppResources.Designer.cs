@@ -1642,5 +1642,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("AppRelaunchAlert", resourceCulture);
             }
         }
+        
+        internal static string EmailServiceAlert {
+            get {
+                return ResourceManager.GetString("EmailServiceAlert", resourceCulture);
+            }
+        }
     }
 }

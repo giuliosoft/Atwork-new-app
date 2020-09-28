@@ -816,9 +816,6 @@ Choose an option below to begin.</value>
     <data name="PostCoordinatorUserText" xml:space="preserve">
         <value>News</value>
     </data>
-    <data name="PostCoordinatorUserText" xml:space="preserve">
-        <value>News</value>
-    </data>
     <data name="JoinActivityText1" xml:space="preserve">
         <value>You will receive a detailed activity description and itinerary 30 days prior to the event.</value>
     </data>
@@ -846,8 +843,6 @@ Choose an option below to begin.</value>
     <data name="InvalidClainEmailOrId" xml:space="preserve">
         <value>Please enter valid email or id</value>
     </data>
-    
-    <!--Pending in all file-->
     <data name="EditActivity" xml:space="preserve">
         <value>Edit Activity</value>
     </data>
@@ -857,5 +852,8 @@ Choose an option below to begin.</value>
     <data name="AppRelaunchAlert" xml:space="preserve">
         <value>For new language setting, app will be relaunched.
 Are you sure want to do that?</value>
+    </data>
+    <data name="EmailServiceAlert" xml:space="preserve">
+        <value>Email service is not available on this device.</value>
     </data>
 </root>
