@@ -15,13 +15,16 @@
         <StackLayout Padding="0,0,0,0" HorizontalOptions="FillAndExpand" Spacing="0">
             <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />
-                    <ColumnDefinition Width="*" />
                     <!--<ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />-->
-                    <ColumnDefinition Width="Auto" />
+                    <!--<ColumnDefinition Width="*" />-->
+                    <!--<ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />-->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ContentView x:Name="HeaderProfile" Padding="10,10,0,10" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" WidthRequest="{DynamicResource HeightWidth55}">
-                    <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+                <!--<Label Grid.Column="0" IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}" TextColor="Transparent" Padding="10,7,10,5"/>-->
+                <ContentView x:Name="HeaderProfile" Padding="10,10,0,10" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" WidthRequest="{DynamicResource HeightWidth55}">
+                    <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
                         <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.UserProfileImageHeader}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}">
                             <ffImageLoading:CachedImage.Transformations>
                                 <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
@@ -38,7 +41,7 @@
                 <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <ffImageLoading:CachedImage Source="{TemplateBinding BindingContext.CompanyLogo}" Style="{StaticResource HeaderLogoImageStyle}" Margin="{DynamicResource MarginPadding00_00_00_10}"/>
                 </ContentView>
-                <ContentView Grid.Column="2" Padding="0"  VerticalOptions="Center">
+                <ContentView Grid.Column="2" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
                             <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth55}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>

@@ -120,6 +120,7 @@ namespace AtWork.ViewModels
         public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => LinkClicked()); } }
         public DelegateCommand<string> JoinedMemberCommand { get { return new DelegateCommand<string>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
+        public DelegateCommand ActivityContactCommand { get { return new DelegateCommand(async () => await ContactThroughMail()); } }
         #endregion
 
         #region private methods
@@ -185,6 +186,22 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        async Task ContactThroughMail()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(ActivityDetails.Contact))
+                {
+                    await Launcher.OpenAsync(new Uri(String.Format("mailto:{0}?subject={1}", ActivityDetails.Contact, AppResources.AppTitle)));
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync(AppResources.EmailServiceAlert);
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -556,7 +573,7 @@ namespace AtWork.ViewModels
                     calendarWritePermissionStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
                 }
 
-                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>() ;
+                var calendarReadPermissionStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
                 if (calendarReadPermissionStatus != Xamarin.Essentials.PermissionStatus.Granted)
                 {
                     calendarReadPermissionStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();

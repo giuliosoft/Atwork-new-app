@@ -73,6 +73,11 @@ namespace AtWork.Models
             public string ImageName { get; set; }
             public string Goal { get; set; }
             public string skills { get; set; }
+            public string Comments { get; set; }
+            public string Name { get; set; }
+            public string Address { get; set; }
+            public string Contact { get; set; }
+
             //New Fields:
             public ObservableCollection<ActivityCarouselListModel> ActivityCarouselList { get; set; }
 
@@ -117,8 +122,8 @@ namespace AtWork.Models
                         return proAddActivity_EndTime;
                     else
                         return string.Empty;
-                    
-                        
+
+
                 }
             }
             public bool _ShowPastActivity;

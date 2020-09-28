@@ -856,4 +856,13 @@ Choose an option below to begin.</value>
         <value>For new language setting, app will be relaunched.
 Are you sure want to do that?</value>
     </data>
+    <data name="EditActivity" xml:space="preserve">
+        <value>Edit Activity</value>
+    </data>
+    <data name="DeleteActivity" xml:space="preserve">
+        <value>Delete Activity</value>
+    </data>
+    <data name="EmailServiceAlert" xml:space="preserve">
+        <value>Email service is not available on this device.</value>
+    </data>
 </root>

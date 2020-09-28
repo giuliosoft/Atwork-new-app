@@ -738,54 +738,53 @@ eine Zahl und ein Sonderzeichen.</value>
         <value>Emojis hinzufügen:</value>
     </data>
     <data name="AppAuthenticationHeaderText" xml:space="preserve">
-        <value>Use Face or touch id to unlock app.</value>
+        <value>Verwenden Sie Face oder Touch ID, um die App zu entsperren.</value>
     </data>
     <data name="AuthIDPageText1" xml:space="preserve">
-        <value>Would you like to enable</value>
+        <value>Möchten Sie aktivieren</value>
     </data>
     <data name="AuthIDPageText2" xml:space="preserve">
-        <value>Touch ID/Face ID for</value>
+        <value>Berühren Sie ID / Gesichts-ID für</value>
     </data>
     <data name="AuthIDPageText3" xml:space="preserve">
-        <value>authentification?</value>
+        <value>Authentifizierung?</value>
     </data>
     <data name="AuthIDEnableText" xml:space="preserve">
-        <value>Yes, enable</value>
+        <value>Ja, freigeben</value>
     </data>
     <data name="AuthIDSkipText" xml:space="preserve">
-        <value>No, log in</value>
+        <value>Nein, melden Sie sich an</value>
     </data>
     <data name="ForgotPasswordDescriptionText" xml:space="preserve">
-        <value> Enter your email or ID to
-reset your password. 
-        
-You will be provided with a
-new signup link in your email
-or, if you didn't enter an
-email,
-a new signup code
-through your company.
-        
-You can enter a new
-password once you claim</value>
+        <value> Geben Sie Ihre E-Mail-Adresse oder ID ein,
+um Ihr Passwort zurückzusetzen.
+
+Sie erhalten einen neuen
+Anmeldelink in Ihrer E-Mail
+oder, falls Sie keine E-Mail eingegeben
+haben, 
+einen neuen Anmeldecode über Ihr Unternehmen.
+
+Sie können ein neues Passwort eingeben,
+sobald Sie es beanspruchen</value>
     </data>
     <data name="ResetPassword" xml:space="preserve">
-        <value>Reset password</value>
+        <value>Passwort zurücksetzen</value>
     </data>
     <data name="EmailAddressOrID" xml:space="preserve">
-        <value>Email address or ID</value>
+        <value>E-Mail-Adresse oder ID</value>
     </data>
     <data name="EnterEmailAddressOrID" xml:space="preserve">
-        <value>Please enter Email or ID</value>
+        <value>E-Mail-Adresse angeben oder ID</value>
     </data>
     <data name="SuccessResetPassword" xml:space="preserve">
-        <value>New password is sent on your registered email id</value>
+        <value>Ein neues Passwort wird an Ihre registrierte E-Mail-ID gesendet</value>
     </data>
     <data name="EnterValidEmailAddressOrID" xml:space="preserve">
-        <value>Please enter valid Email or ID</value>
+        <value>E-Mail-Adresse angeben oder ID</value>
     </data>
     <data name="Wrongpasswordentered" xml:space="preserve">
-        <value>Wrong password entered</value>
+        <value>Falsches Passwort eingegeben</value>
     </data>
     <data name="Welcometo" xml:space="preserve">
         <value>Willkommen bei </value>
@@ -794,57 +793,63 @@ password once you claim</value>
         <value>atwork, </value>
     </data>
     <data name="WelcomeDiscription" xml:space="preserve">
-        <value>your hub to
-stay updated in company news,
-participate in activities and
-connect with your team.</value>
+        <value>Ihr Hub, um in Unternehmensnachrichten
+auf dem Laufenden zu bleiben,
+an Aktivitäten teilzunehmen und 
+sich mit Ihrem Team zu verbinden.</value>
     </data>
     <data name="WelcomeDiscription2" xml:space="preserve">
         <value>
 
-Choose an option below to begin.</value>
+Wählen Sie unten eine Option, um zu beginnen.</value>
     </data>
     <data name="NewFindandclaimyouraccount" xml:space="preserve">
-        <value>New? Find and claim your account</value>
+        <value>Neu? Finden und beanspruchen Sie Ihr Konto</value>
     </data>
     <data name="Login" xml:space="preserve">
-        <value>Log in</value>
+        <value>Einloggen</value>
     </data>
     <data name="PostCoordinatorUserText" xml:space="preserve">
-        <value>News</value>
-    </data>
-    <data name="PostCoordinatorUserText" xml:space="preserve">
-        <value>News</value>
+        <value>news</value>
     </data>
     <data name="JoinActivityText1" xml:space="preserve">
-        <value>You will receive a detailed activity description and itinerary 30 days prior to the event.</value>
+        <value>Sie erhalten 30 Tage vor der Veranstaltung eine detaillierte Aktivitätsbeschreibung und Reiseroute.</value>
     </data>
     <data name="JoinActivityText2" xml:space="preserve">
-        <value>Make sure to clear your schedule, the NGO is counting on you!</value>
+        <value>Stellen Sie sicher, dass Sie Ihren Zeitplan löschen, die NGO zählt auf Sie!</value>
     </data>
     <data name="Editpost" xml:space="preserve">
-        <value>Edit post</value>
+        <value>Post bearbeiten</value>
     </data>
     <data name="Deletepost" xml:space="preserve">
-        <value>Delete post </value>
+        <value>Post löschen </value>
     </data>
     <data name="AlmostDone" xml:space="preserve">
-        <value>Almost Done!</value>
+        <value>Fast fertig!</value>
     </data>
     <data name="AllowNotification" xml:space="preserve">
-        <value>Allow notifications if you on subscribed activities. wish to receive updates</value>
+        <value>Benachrichtigungen zulassen, wenn Sie bei abonnierten Aktivitäten Updates erhalten möchten</value>
     </data>
     <data name="Nowwritedowninterests" xml:space="preserve">
-        <value>Now write down some of your interests!</value>
+        <value>Schreiben Sie nun einige Ihrer Interessen auf!</value>
     </data>
     <data name="InvalidEmailOrPassword" xml:space="preserve">
-        <value>Invalid Email address/ID or Password</value>
+        <value>Ungültige E-Mail-Adresse / ID oder Passwort</value>
     </data>
     <data name="InvalidClainEmailOrId" xml:space="preserve">
         <value>Please enter valid email or id</value>
     </data>
     <data name="AppRelaunchAlert" xml:space="preserve">
-        <value>For new language setting, app will be relaunched.
-Are you sure want to do that?</value>
+        <value>Für eine neue Spracheinstellung wird die App neu gestartet.
+Möchten Sie das wirklich tun?</value>
+    </data>
+    <data name="EditActivity" xml:space="preserve">
+        <value>Aktivität bearbeiten</value>
+    </data>
+    <data name="DeleteActivity" xml:space="preserve">
+        <value>Aktivität löschen</value>
+    </data>
+    <data name="EmailServiceAlert" xml:space="preserve">
+        <value>Email service is not available on this device.</value>
     </data>
 </root>
