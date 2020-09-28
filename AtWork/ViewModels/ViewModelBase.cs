@@ -88,7 +88,7 @@ namespace AtWork.ViewModels
             {
                 if (SettingsService.VolunteersUserData == null || SettingsService.VolunteersUserData.volPicture == string.Empty)
                     return string.Empty;
-                return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture));
+                return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
             }
             //set { SetProperty(ref _UserProfileImage, value); }
         }

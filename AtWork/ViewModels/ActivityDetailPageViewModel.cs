@@ -171,6 +171,15 @@ namespace AtWork.ViewModels
                 ToastMessagePopupViewModel ToastMessagePopupViewModel = new ToastMessagePopupViewModel(_navigationService, _facadeService);
                 if (ActivityDetails != null && !string.IsNullOrEmpty(ActivityDetails.proAddActivity_Website))
                 {
+                    string copyTextUrl = string.Empty;
+                    if (ConfigService.IsProduction)
+                    {
+                        copyTextUrl = string.Format("{0}{1}", "http://engage.atwork.ai/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
+                    }
+                    else
+                    {
+                        copyTextUrl = string.Format("{0}{1}","http://voluntycorporate.atlasics.com/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
+                    }
                     await Clipboard.SetTextAsync(ActivityDetails.proAddActivity_Website);
                     await Clipboard.GetTextAsync();
                     ToastMessagePopupViewModel.ToastText = AppResources.LinkCopiedText;
