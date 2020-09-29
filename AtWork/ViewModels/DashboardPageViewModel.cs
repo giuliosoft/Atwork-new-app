@@ -18,6 +18,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
 using static AtWork.Models.NewsModel;
+using static AtWork.Models.UserModel;
 
 namespace AtWork.ViewModels
 {
@@ -176,11 +177,6 @@ namespace AtWork.ViewModels
         {
             IsRefreshing = true;
             PageNo = 1;
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
-                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
-            });
             await GetNewsListDetails_New(true);
             IsRefreshing = false;
         }
@@ -189,11 +185,6 @@ namespace AtWork.ViewModels
         {
             IsRefreshingActivities = true;
             ActivityPageNo = 1;
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
-                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
-            });
             await GetActivityList(isPullToRefresh: true);
             Activitycollectionlist.All((categories) =>
             {
@@ -598,6 +589,8 @@ namespace AtWork.ViewModels
                 }
                 if (!isPullToRefresh)
                     await ShowLoader();
+                if (PageNo == 1)
+                    await GetUserProfileUrl();
                 var serviceResult = await NewsService.GetNewsList(SettingsService.LoggedInUserData.coUniqueID + "/" + PageNo);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
@@ -703,6 +696,7 @@ namespace AtWork.ViewModels
                 }
                 if (!isPullToRefresh)
                     await ShowLoader();
+                await GetUserProfileUrl();
                 BaseResponse<string> serviceResult = null;
                 if (string.IsNullOrEmpty(categoryId))
                 {
@@ -839,6 +833,30 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+        async Task GetUserProfileUrl()
+        {
+            try
+            {
+                var serviceResult = await UserServices.GetUserDetails(SettingsService.VolunteersUserData?.volUniqueID);
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                {
+                    var serviceResultBody = JsonConvert.DeserializeObject<ProfileResponce>(serviceResult?.Body);
+                    if (serviceResultBody != null && !string.IsNullOrEmpty(serviceResultBody?.Data?.volPicture))
+                    {
+                        SettingsService.UserProfile = serviceResultBody?.Data?.volPicture;
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now.ToString()));
+                            UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         #endregion
 
         #region public methods
@@ -856,8 +874,12 @@ namespace AtWork.ViewModels
 
             try
             {
-                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
-                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now.ToString()));
+                    UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
+                });
+                
                 LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews || SessionService.isEditingActivity)
                 {

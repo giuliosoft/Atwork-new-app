@@ -130,15 +130,15 @@
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Spacing="0" Padding="0">
                             <Label Text="{x:Static Multilingual:AppResources.SkillsText}" FontFamily="Lato_Bold" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding ActivityDetails.skills}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" />
+                            <Label Text="{Binding ActivityDetails.skills}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"  />
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Spacing="0" Padding="0">
                             <Label Text="{x:Static Multilingual:AppResources.GoalText}" FontFamily="Lato_Bold" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding ActivityDetails.Goal}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" />
+                            <Label Text="{Binding ActivityDetails.Goal}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" />
                         </StackLayout>
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,10,0,0" Spacing="0" Padding="0">
                             <Label Text="{x:Static Multilingual:AppResources.SpecialrequirementsText}" FontFamily="Lato_Bold" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding ActivityDetails.proSpecialRequirements}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" />
+                            <Label Text="{Binding ActivityDetails.proSpecialRequirements}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand"  />
                         </StackLayout>
                     </StackLayout>
                     <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
@@ -146,7 +146,7 @@
                         <Label Text="{x:Static Multilingual:AppResources.AboutOrganixationHeaderText}" Style="{StaticResource ActivityAboutHeaderLabelStyle}"/>
                         <Grid ColumnDefinitions="70,*" RowDefinitions="Auto" RowSpacing="5" ColumnSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                             <Label Grid.Row="0" Grid.Column="0" Text="{x:Static Multilingual:AppResources.NameText}" FontFamily="Lato_Bold" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ActivityDetails.Name}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ActivityDetails.proAddActivity_OrgName}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                             <Label Grid.Row="1" Grid.Column="0" Text="{x:Static Multilingual:AppResources.AddressText}" FontFamily="Lato_Bold" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}"/>
                             <Label Grid.Row="1" Grid.Column="1" Text="{Binding ActivityDetails.Address}" Style="{StaticResource ActivityAboutGroupValueLabelStyle}"/>
                         </Grid>
