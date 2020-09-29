@@ -339,9 +339,9 @@ namespace AtWork.ViewModels
                                     {
                                         var calendars = await CrossCalendars.Current.GetCalendarsAsync();
                                         //For simulator :
-                                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                        //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
                                         //For device :
-                                        //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+                                        var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
                                         List<string> selectedRecurringDates = new List<string>();
                                         foreach (var selDt in SelectedDatesObj)
@@ -412,9 +412,9 @@ namespace AtWork.ViewModels
                         {
                             var calendars = await CrossCalendars.Current.GetCalendarsAsync();
                             //For simulator :
-                            var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                            //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
                             //For device :
-                            //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+                            var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
                             DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
 
