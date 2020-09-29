@@ -205,7 +205,7 @@ namespace AtWork.Models
                 {
                     if (volPicture == string.Empty)
                         return string.Empty;
-                    return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + volPicture));
+                    return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + volPicture + "?" + DateTime.Now.ToString()));
                 }
             }
         }

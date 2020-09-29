@@ -170,7 +170,7 @@ namespace AtWork.ViewModels
             {
                 ToastMessagePopup ToastMessagePopup = new ToastMessagePopup();
                 ToastMessagePopupViewModel ToastMessagePopupViewModel = new ToastMessagePopupViewModel(_navigationService, _facadeService);
-                if (ActivityDetails != null && !string.IsNullOrEmpty(ActivityDetails.proAddActivity_Website))
+                if (ActivityDetails != null && !string.IsNullOrEmpty(ActivityDetails.proUniqueID))
                 {
                     string copyTextUrl = string.Empty;
                     if (ConfigService.IsProduction)
@@ -181,13 +181,9 @@ namespace AtWork.ViewModels
                     {
                         copyTextUrl = string.Format("{0}{1}","http://voluntycorporate.atlasics.com/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
                     }
-                    await Clipboard.SetTextAsync(ActivityDetails.proAddActivity_Website);
+                    await Clipboard.SetTextAsync(copyTextUrl);
                     await Clipboard.GetTextAsync();
                     ToastMessagePopupViewModel.ToastText = AppResources.LinkCopiedText;
-                }
-                else
-                {
-                    ToastMessagePopupViewModel.ToastText = AppResources.ShareAlertText;
                 }
 
                 ToastMessagePopup.BindingContext = ToastMessagePopupViewModel;

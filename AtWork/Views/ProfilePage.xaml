@@ -17,7 +17,7 @@
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
             <ScrollView>
                 <StackLayout>
-                    <ffImageLoading:CachedImage Margin="0,35,0,0" Grid.Column="0" Source="{Binding volunteers.UserProfileImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                    <ffImageLoading:CachedImage CacheType="None" Margin="0,35,0,0" Grid.Column="0" Source="{Binding volunteers.UserProfileImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                         <ffImageLoading:CachedImage.Transformations>
                             <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                         </ffImageLoading:CachedImage.Transformations>
