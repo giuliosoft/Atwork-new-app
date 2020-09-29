@@ -290,7 +290,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Are you sure?</value>
     </data>
     <data name="UnSubscribeFromActivtyText" xml:space="preserve">
-        <value>Unregister from activity</value>
+        <value>Unsubscribe from activity</value>
     </data>
     <data name="ConfirmText" xml:space="preserve">
         <value>Confirm</value>

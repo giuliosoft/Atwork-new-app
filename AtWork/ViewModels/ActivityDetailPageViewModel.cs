@@ -179,7 +179,7 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
-                        copyTextUrl = string.Format("{0}{1}","http://voluntycorporate.atlasics.com/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
+                        copyTextUrl = string.Format("{0}{1}", "http://voluntycorporate.atlasics.com/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
                     }
                     await Clipboard.SetTextAsync(ActivityDetails.proAddActivity_Website);
                     await Clipboard.GetTextAsync();
@@ -242,8 +242,12 @@ namespace AtWork.ViewModels
                         var serviceResult = await ActivityService.UnSubscribeActivity(inputModel);
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
-                            SessionService.IsShowActivitiesIntial = true;
-                            await _navigationService.NavigateAsync(nameof(DashboardPage));
+                            var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                            if (serviceBody != null && serviceBody.Flag)
+                            {
+                                SessionService.IsShowActivitiesIntial = true;
+                                await _navigationService.NavigateAsync(nameof(DashboardPage));
+                            }
                         }
                         await ClosePopup();
                     }
@@ -339,9 +343,9 @@ namespace AtWork.ViewModels
                                     {
                                         var calendars = await CrossCalendars.Current.GetCalendarsAsync();
                                         //For simulator :
-                                        //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                        var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
                                         //For device :
-                                        var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+                                        //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
                                         List<string> selectedRecurringDates = new List<string>();
                                         foreach (var selDt in SelectedDatesObj)
@@ -404,9 +408,9 @@ namespace AtWork.ViewModels
                         {
                             var calendars = await CrossCalendars.Current.GetCalendarsAsync();
                             //For simulator :
-                            //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                            var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
                             //For device :
-                            var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+                            //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
                             DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
                             var calendarEvent = new CalendarEvent
