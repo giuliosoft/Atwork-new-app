@@ -179,7 +179,7 @@ namespace AtWork.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
-                //UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
+                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
             });
             await GetNewsListDetails_New(true);
             IsRefreshing = false;
@@ -192,7 +192,7 @@ namespace AtWork.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
-                //UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
+                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
             });
             await GetActivityList(isPullToRefresh: true);
             Activitycollectionlist.All((categories) =>
@@ -857,7 +857,7 @@ namespace AtWork.ViewModels
             try
             {
                 UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now.ToString()));
-               //UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
+                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
                 LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews || SessionService.isEditingActivity)
                 {

@@ -81,7 +81,7 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _isVisiblePlayerBanner, value); }
         }
 
-        //private static ImageSource _UserProfileImage = "";
+        private static ImageSource _UserProfileImage = "";
         public ImageSource UserProfileImage
         {
             get
@@ -90,7 +90,7 @@ namespace AtWork.ViewModels
                     return string.Empty;
                 return ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.VolunteersUserData.volPicture + "?" + DateTime.Now));
             }
-            //set { SetProperty(ref _UserProfileImage, value); }
+            set { SetProperty(ref _UserProfileImage, value); }
         }
         public string AddNewsCancelImage
         {
