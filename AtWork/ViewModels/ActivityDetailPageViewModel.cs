@@ -349,11 +349,19 @@ namespace AtWork.ViewModels
                                             var dtString = selDt.ActivityDate.ToString("yyyy-MM-dd");
                                             selectedRecurringDates.Add(dtString);
                                             DateTime dateToAddInCalendar = selDt.ActivityDate;
+
+                                            //New for event creation based on date time from service :
+                                            var DateStr = dateToAddInCalendar.ToString(("MM/dd/yyyy"));
+                                            var startTimeStr = ActivityDetails.proAddActivity_StartTime;
+                                            DateTime eventStartDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(startTimeStr));
+                                            var endTimeStr = ActivityDetails.proAddActivity_EndTime;
+                                            DateTime eventEndDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(endTimeStr));
+
                                             var calendarEvent = new CalendarEvent
                                             {
                                                 Name = AppResources.AtWorkActivityEventText,
-                                                Start = dateToAddInCalendar,
-                                                End = dateToAddInCalendar.AddHours(1),
+                                                Start = eventStartDateTime,
+                                                End = eventEndDateTime,
                                                 Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
                                             };
                                             await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
@@ -409,11 +417,18 @@ namespace AtWork.ViewModels
                             //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
                             DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
+
+                            var DateStr = dateToAddInCalendar.ToString(("MM/dd/yyyy"));
+                            var startTimeStr = ActivityDetails.proAddActivity_StartTime;
+                            DateTime eventStartDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(startTimeStr));
+                            var endTimeStr = ActivityDetails.proAddActivity_EndTime;
+                            DateTime eventEndDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(endTimeStr));
+
                             var calendarEvent = new CalendarEvent
                             {
                                 Name = AppResources.AtWorkActivityEventText,
-                                Start = dateToAddInCalendar,
-                                End = dateToAddInCalendar.AddHours(1),
+                                Start = eventStartDateTime,
+                                End = eventEndDateTime,
                                 Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
                             };
                             await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
