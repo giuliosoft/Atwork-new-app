@@ -32,9 +32,14 @@ namespace AtWork.ViewModels
             LogoutCommand = null;
             CrossConnectivity.Current.ConnectivityChanged += async (sender, e) =>
             {
-                if (!e.IsConnected)
+                if (!e.IsConnected && !SessionService.isOpenInternerConnectionPopup)
                 {
-                    await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.NoInternetMsg, AppResources.AlertOkText);
+                    SessionService.isOpenInternerConnectionPopup = true;
+                    var result = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.NoInternetMsg,null, AppResources.AlertOkText);
+                    if (!result)
+                    {
+                        SessionService.isOpenInternerConnectionPopup = false;
+                    }
                 }
             };
         }

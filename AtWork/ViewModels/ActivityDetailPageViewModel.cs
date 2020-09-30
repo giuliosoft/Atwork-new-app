@@ -663,6 +663,14 @@ namespace AtWork.ViewModels
                         {
                             SessionService.isEditingActivity = true;
                             SessionService.ActivityPostInputData = ActivityDetails;
+                            if (ActivityDetails.proAudience.ToLower() == "post to everybody" )
+                            {
+                                SessionService.SelectedItemPosttype = "everyone";
+                            }
+                            else
+                            {
+                                SessionService.SelectedItemPosttype = "mygroup";
+                            }
                             if (ActivityCarouselList != null && ActivityCarouselList.Count > 0)
                             {
                                 var tempList = new List<string>();

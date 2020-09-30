@@ -49,6 +49,8 @@ namespace AtWork.Services
         public static bool isEditingActivity = false;
         public static string DeletedActivityPost = string.Empty;
         public static bool isFromMyactivity = false;
+        public static bool isOpenInternerConnectionPopup = false;
+        public static string SelectedItemPosttype = string.Empty;
 
         /// <summary>
         /// Logout
