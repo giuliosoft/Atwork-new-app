@@ -198,7 +198,7 @@ namespace AtWork.ViewModels
                         //New for saving file at project directory and use it :
                         foreach (var mFile in res)
                         {
-                            Stream selectedImgStream = await _helperService.RetriveImageStreamFromLocation(mFile.Path);
+                            Stream selectedImgStream = await _helperService.RetriveCompressedImageStreamFromLocation(mFile.Path);
                             if (selectedImgStream != null)
                             {
                                 var newProfileImagePath = await _helperService.SaveProfileImage(selectedImgStream);

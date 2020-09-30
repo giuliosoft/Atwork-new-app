@@ -28,14 +28,20 @@ namespace AtWork.iOS.HelperServices
             });
         }
 
-        public async Task<Stream> RetriveImageStreamFromLocation(string location)
+        public async Task<Stream> RetriveCompressedImageStreamFromLocation(string location)
         {
             Stream imgStream = null;
             try
             {
-                FileStream fs = new FileStream(location, FileMode.Open, FileAccess.Read);
-                StreamReader streamReader = new StreamReader(fs);
-                imgStream = streamReader.BaseStream;
+                //FileStream fs = new FileStream(location, FileMode.Open, FileAccess.Read);
+                //StreamReader streamReader = new StreamReader(fs);
+                //imgStream = streamReader.BaseStream;
+                byte[] imageAsBytes = File.ReadAllBytes(location);
+                UIKit.UIImage images = new UIKit.UIImage(Foundation.NSData.FromArray(imageAsBytes));
+                byte[] bytes = images.AsJPEG(0.5f).ToArray();
+                Stream imgStreamFromByte = new MemoryStream(bytes);
+                imgStream = imgStreamFromByte;
+                return imgStream;
             }
             catch (Exception ex)
             {

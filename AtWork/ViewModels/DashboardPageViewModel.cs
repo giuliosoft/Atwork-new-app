@@ -879,7 +879,7 @@ namespace AtWork.ViewModels
                     UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now.ToString()));
                     UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
                 });
-                
+
                 LayoutService.ConvertThemeAsPerSettings();
                 if (SessionService.isEditingNews || SessionService.isEditingActivity)
                 {

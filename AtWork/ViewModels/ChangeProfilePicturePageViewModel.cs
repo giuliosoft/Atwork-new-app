@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -272,11 +273,18 @@ namespace AtWork.ViewModels
                         //SelectedNewsImageValue = new NewsImageModel() { ImagePath = pickedFile.Path, ImagePreviewPath = pickedFile.Path, NewsImage = ImageSource.FromFile(pickedFile.Path) };
                         //ProfileImage = ImageSource.FromFile(SelectedNewsImageValue?.ImagePath);
 
-                        //New :
-                        var imgStream = pickedFile.GetStream();
-                        if (imgStream == null)
+                        //Old before heic changes :
+                        //var imgStream = pickedFile.GetStream();
+                        //if (imgStream == null)
+                        //    return;
+                        //var newProfileImagePath = await _helperService.SaveProfileImage(imgStream);
+
+                        //New for heic changes :
+                        Stream selectedImgStream = await _helperService.RetriveCompressedImageStreamFromLocation(pickedFile.Path);
+                        if (selectedImgStream == null)
                             return;
-                        var newProfileImagePath = await _helperService.SaveProfileImage(imgStream);
+                        var newProfileImagePath = await _helperService.SaveProfileImage(selectedImgStream);
+
                         SelectedNewsImageValue = new NewsImageModel() { ImagePath = newProfileImagePath, ImagePreviewPath = newProfileImagePath, NewsImage = ImageSource.FromFile(newProfileImagePath) };
                         ProfileImage = ImageSource.FromFile(SelectedNewsImageValue?.ImagePath);
                         ShowCropOption = true;
