@@ -21,7 +21,7 @@
             <Converters:InverseBooleanConverter x:Key="InverseConverter" />
         </ResourceDictionary>
     </pages:PopupPage.Resources>
-    <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="12">
+    <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="12,12,0,0">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <PancakeControl:PancakeView CornerRadius="2" HasShadow="False" BorderThickness="1" BorderColor="White" WidthRequest="35" HeightRequest="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" Margin="0,12,0,0" BackgroundColor="{StaticResource WhiteColor}"/>
             <Label Text="{x:Static Multilingual:AppResources.ThankYouSigningupText}" Style="{StaticResource JoinActivityPopupHeaderStyle}" Margin="0,15,0,0"/>

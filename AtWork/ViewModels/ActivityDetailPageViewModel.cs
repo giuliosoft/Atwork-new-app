@@ -179,7 +179,7 @@ namespace AtWork.ViewModels
                     }
                     else
                     {
-                        copyTextUrl = string.Format("{0}{1}","http://voluntycorporate.atlasics.com/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
+                        copyTextUrl = string.Format("{0}{1}", "http://voluntycorporate.atlasics.com/employee/Activity_Detail.aspx?uid=", ActivityDetails.proUniqueID);
                     }
                     await Clipboard.SetTextAsync(copyTextUrl);
                     await Clipboard.GetTextAsync();
@@ -238,8 +238,12 @@ namespace AtWork.ViewModels
                         var serviceResult = await ActivityService.UnSubscribeActivity(inputModel);
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
-                            SessionService.IsShowActivitiesIntial = true;
-                            await _navigationService.NavigateAsync(nameof(DashboardPage));
+                            var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
+                            if (serviceBody != null && serviceBody.Flag)
+                            {
+                                SessionService.IsShowActivitiesIntial = true;
+                                await _navigationService.NavigateAsync(nameof(DashboardPage));
+                            }
                         }
                         await ClosePopup();
                     }
@@ -333,28 +337,42 @@ namespace AtWork.ViewModels
                                     var hasPermission = await TakePermissionForCalendar();
                                     if (hasPermission)
                                     {
-                                        var calendars = await CrossCalendars.Current.GetCalendarsAsync();
-                                        //For simulator :
-                                        //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
-                                        //For device :
-                                        var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
-
                                         List<string> selectedRecurringDates = new List<string>();
-                                        foreach (var selDt in SelectedDatesObj)
+                                        try
                                         {
-                                            var dtString = selDt.ActivityDate.ToString("yyyy-MM-dd");
-                                            selectedRecurringDates.Add(dtString);
-                                            DateTime dateToAddInCalendar = selDt.ActivityDate;
-                                            var calendarEvent = new CalendarEvent
-                                            {
-                                                Name = AppResources.AtWorkActivityEventText,
-                                                Start = dateToAddInCalendar,
-                                                End = dateToAddInCalendar.AddHours(1),
-                                                Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
-                                            };
-                                            await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
-                                        }
+                                            var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+                                            //For simulator :
+                                            //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                            //For device :
+                                            var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
+                                            foreach (var selDt in SelectedDatesObj)
+                                            {
+                                                var dtString = selDt.ActivityDate.ToString("yyyy-MM-dd");
+                                                selectedRecurringDates.Add(dtString);
+                                                DateTime dateToAddInCalendar = selDt.ActivityDate;
+
+                                                //New for event creation based on date time from service :
+                                                var DateStr = dateToAddInCalendar.ToString(("MM/dd/yyyy"));
+                                                var startTimeStr = ActivityDetails.proAddActivity_StartTime;
+                                                DateTime eventStartDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(startTimeStr));
+                                                var endTimeStr = ActivityDetails.proAddActivity_EndTime;
+                                                DateTime eventEndDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(endTimeStr));
+
+                                                var calendarEvent = new CalendarEvent
+                                                {
+                                                    Name = AppResources.AtWorkActivityEventText,
+                                                    Start = eventStartDateTime,
+                                                    End = eventEndDateTime,
+                                                    Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+                                                };
+                                                await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Debug.WriteLine(ex.Message);
+                                        }
                                         if (!await CheckConnectivity())
                                         {
                                             return;
@@ -398,27 +416,39 @@ namespace AtWork.ViewModels
                         var hasPermission = await TakePermissionForCalendar();
                         if (hasPermission)
                         {
-                            var calendars = await CrossCalendars.Current.GetCalendarsAsync();
-                            //For simulator :
-                            //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
-                            //For device :
-                            var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
-
-                            DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
-                            var calendarEvent = new CalendarEvent
+                            try
                             {
-                                Name = AppResources.AtWorkActivityEventText,
-                                Start = dateToAddInCalendar,
-                                End = dateToAddInCalendar.AddHours(1),
-                                Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
-                            };
-                            await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+                                var calendars = await CrossCalendars.Current.GetCalendarsAsync();
+                                //For simulator :
+                                //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+                                //For device :
+                                var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
 
+                                DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
+
+                                var DateStr = dateToAddInCalendar.ToString(("MM/dd/yyyy"));
+                                var startTimeStr = ActivityDetails.proAddActivity_StartTime;
+                                DateTime eventStartDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(startTimeStr));
+                                var endTimeStr = ActivityDetails.proAddActivity_EndTime;
+                                DateTime eventEndDateTime = Convert.ToDateTime(DateStr).Add(TimeSpan.Parse(endTimeStr));
+
+                                var calendarEvent = new CalendarEvent
+                                {
+                                    Name = AppResources.AtWorkActivityEventText,
+                                    Start = eventStartDateTime,
+                                    End = eventEndDateTime,
+                                    Reminders = new List<CalendarEventReminder> { new CalendarEventReminder() }
+                                };
+                                await CrossCalendars.Current.AddOrUpdateEventAsync(defaultCalendar, calendarEvent);
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine(ex.Message);
+                            }
                             if (!await CheckConnectivity())
                             {
                                 return;
                             }
-
                             JoinActivityInputModel inputModel = new JoinActivityInputModel();
                             //inputModel.ActivityID = ActivityDetails.id;
                             inputModel.coUniqueID = ActivityDetails.coUniqueID;
