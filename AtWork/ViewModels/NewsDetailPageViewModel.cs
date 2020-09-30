@@ -214,6 +214,14 @@ namespace AtWork.ViewModels
                             SessionService.NewsPostInputData.volUniqueID = NewsDetailModel.volUniqueID;
                             SessionService.NewsPostInputData.newsFileOriginal = NewsDetailModel.newsFileOriginal;
                             SessionService.NewsPostInputData.newsFile = NewsDetailModel.newsFile;
+                            if (NewsDetailModel.newsPrivacy.ToLower() == "everyone")
+                            {
+                                SessionService.SelectedItemPosttype = "everyone";
+                            }
+                            else
+                            {
+                                SessionService.SelectedItemPosttype = "mygroup";
+                            }
                             if (NewsImageCarouselList != null && NewsImageCarouselList.Count > 0)
                             {
                                 var tempList = new List<string>();

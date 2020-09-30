@@ -442,6 +442,14 @@ namespace AtWork.ViewModels
                         SessionService.NewsPostInputData.volUniqueID = selectedNewsPost.Volunteers.volUniqueID;
                         SessionService.NewsPostInputData.newsFileOriginal = selectedNewsPost.news?.newsFileOriginal;
                         SessionService.NewsPostInputData.newsFile = selectedNewsPost.news?.newsFile;
+                        if (selectedNewsPost.news?.newsPrivacy.ToLower() == "everyone")
+                        {
+                            SessionService.SelectedItemPosttype = "everyone";
+                        }
+                        else
+                        {
+                            SessionService.SelectedItemPosttype = "mygroup";
+                        }
                         if (selectedNewsPost.NewsCarouselList != null && selectedNewsPost.NewsCarouselList.Count > 0)
                         {
                             var tempList = new List<string>();
@@ -518,6 +526,14 @@ namespace AtWork.ViewModels
                         {
                             SessionService.isEditingActivity = true;
                             SessionService.ActivityPostInputData = ActivityDetails;
+                            if (ActivityDetails.proAudience.ToLower() == "post to everybody")
+                            {
+                                SessionService.SelectedItemPosttype = "everyone";
+                            }
+                            else
+                            {
+                                SessionService.SelectedItemPosttype = "mygroup";
+                            }
                             if (ActivityDetails.ActivityCarouselList != null && ActivityDetails.ActivityCarouselList.Count > 0)
                             {
                                 var tempList = new List<string>();

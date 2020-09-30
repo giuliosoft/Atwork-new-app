@@ -186,6 +186,7 @@ namespace AtWork.ViewModels
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         SessionService.NewsPostImageFiles = new List<string>();
                         SessionService.IsShowActivitiesIntial = true;
+                        SessionService.SelectedItemPosttype = string.Empty;
                         if (SessionService.isFromMyactivity)
                         {
                             SessionService.isFromMyactivity = false;
@@ -246,6 +247,7 @@ namespace AtWork.ViewModels
                         SessionService.NewsPostInputData = new NewsDetailModel_Input();
                         SessionService.NewsPostAttachmentFileName = string.Empty;
                         SessionService.NewsPostAttachmentFilePath = string.Empty;
+                        SessionService.SelectedItemPosttype = string.Empty;
                         SessionService.NewsPostImageFiles = new List<string>();
                         if (SessionService.isEditingNews)
                         {
@@ -268,11 +270,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                NewsPrivacy = "Everyone";
-                PublishGroupColor = Color.Transparent;
-                PublishPublicColor = (Color)App.Current.Resources["AccentColor"];
-                GroupTextColor = (Color)App.Current.Resources["AccentColor"];
-                PublicTextColor = Color.White;
+                SelectType("Everyone");
             }
             catch (Exception ex)
             {
@@ -283,15 +281,37 @@ namespace AtWork.ViewModels
         {
             try
             {
-                NewsPrivacy = "mygroup";
-                PublishGroupColor = (Color)App.Current.Resources["AccentColor"];
-                PublishPublicColor = Color.Transparent;
-                PublicTextColor = (Color)App.Current.Resources["AccentColor"];
-                GroupTextColor = Color.White;
+                SelectType("mygroup");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+        }
+        void SelectType(string selectedType)
+        {
+            try
+            {
+                if (selectedType.ToLower() == "everyone")
+                {
+                    NewsPrivacy = "Everyone";
+                    PublishGroupColor = Color.Transparent;
+                    PublishPublicColor = (Color)App.Current.Resources["AccentColor"];
+                    GroupTextColor = (Color)App.Current.Resources["AccentColor"];
+                    PublicTextColor = Color.White;
+                }
+                else
+                {
+                    NewsPrivacy = "mygroup";
+                    PublishGroupColor = (Color)App.Current.Resources["AccentColor"];
+                    PublishPublicColor = Color.Transparent;
+                    GroupTextColor = Color.White;
+                    PublicTextColor = (Color)App.Current.Resources["AccentColor"];
+                }
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
         #endregion
@@ -310,6 +330,8 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
+                SelectType(SessionService.SelectedItemPosttype);
+
                 isActivity = parameters.GetValue<bool>("isFromActivity");
                 if (isActivity)
                 {
