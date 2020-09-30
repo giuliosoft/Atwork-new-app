@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
@@ -118,8 +119,9 @@ namespace AtWork.ViewModels
                 //    string filePath = fileData.FilePath;
                 //}
 
+                string[] strFileType = DependencyService.Get<FileNameInterface>().FileTypeList();
                 FileData fileData = new FileData();
-                fileData = await CrossFilePicker.Current.PickFile();
+                fileData = await CrossFilePicker.Current.PickFile(allowedTypes: strFileType);
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
