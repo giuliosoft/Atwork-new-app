@@ -8,6 +8,7 @@ namespace AtWork.Services
     public interface IHelper
     {
         void RetriveImageFromLocation(string location, Image image);
+        Task<Stream> RetriveImageStreamFromLocation(string location);
         Task<string> SaveImageFile(Stream StreamToWrite, string originalPathToReplace);
         Task<string> SaveProfileImage(Stream StreamToWrite);
         Task ReplaceCroppedFile(string pathFromReplace, string pathToReplace);

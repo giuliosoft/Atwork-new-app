@@ -28,6 +28,22 @@ namespace AtWork.iOS.HelperServices
             });
         }
 
+        public async Task<Stream> RetriveImageStreamFromLocation(string location)
+        {
+            Stream imgStream = null;
+            try
+            {
+                FileStream fs = new FileStream(location, FileMode.Open, FileAccess.Read);
+                StreamReader streamReader = new StreamReader(fs);
+                imgStream = streamReader.BaseStream;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return imgStream;
+        }
+
         public async Task<string> SaveImageFile(Stream StreamToWrite, string originalPathToReplace)
         {
             string croppedImgFilePath = string.Empty;

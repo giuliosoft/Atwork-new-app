@@ -323,7 +323,7 @@ namespace AtWork.ViewModels
                     PostToGroup = AppResources.Posttoyourgroup;
                     GroupMember = string.Format("{0} {1}", SessionService.GroupMemberCount, AppResources.GroupMemberPost);
                 }
-                    PostToEverybodyText = AppResources.PostToEverybody;
+                PostToEverybodyText = AppResources.PostToEverybody;
                 IsShowOption = true;
             }
             catch (Exception ex)

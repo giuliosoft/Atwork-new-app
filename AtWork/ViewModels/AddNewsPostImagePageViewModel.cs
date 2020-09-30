@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Models;
@@ -31,6 +32,8 @@ namespace AtWork.ViewModels
                 AddNewsNextImage = AppResources.NextButtonText;
                 NextTextColor = (Color)App.Current.Resources["ShadedWhiteColor"];
                 HeaderNextNavigationCommand = NewsPostProceedCommand;
+
+                _helperService = DependencyService.Get<IHelper>();
             }
             catch (Exception ex)
             {
@@ -52,6 +55,7 @@ namespace AtWork.ViewModels
         private int CarouselPosition = 0;
         private string _SelectedDefaultImage = string.Empty;
         private ImageSource _OurSelectedImage = string.Empty;
+        IHelper _helperService;
         #endregion
 
         #region Public Properties
@@ -99,7 +103,7 @@ namespace AtWork.ViewModels
             get { return _Prop; }
             set { SetProperty(ref _Prop, value); }
         }
-        
+
         public ImageSource OurSelectedImage
         {
             get { return _OurSelectedImage; }
@@ -184,11 +188,26 @@ namespace AtWork.ViewModels
                         SelectedDefaultImage = string.Empty;
                         SessionService.SelectedDefaultImageForActivity = string.Empty;
                         SessionService.NewsPostCarouselImages = new List<string>();
-                        res.All((mFile) =>
+                        //Original for taking original path that is picked :
+                        //res.All((mFile) =>
+                        //{                            
+                        //    NewsPostImageCarouselList.Add(new NewsImageModel() { ImagePath = mFile.Path, ImagePreviewPath = mFile.PreviewPath, FileType = mFile.Type, NewsImage = ImageSource.FromFile(mFile.PreviewPath) });
+                        //    return true;
+                        //});
+
+                        //New for saving file at project directory and use it :
+                        foreach (var mFile in res)
                         {
-                            NewsPostImageCarouselList.Add(new NewsImageModel() { ImagePath = mFile.Path, ImagePreviewPath = mFile.PreviewPath, FileType = mFile.Type, NewsImage = ImageSource.FromFile(mFile.PreviewPath) });
-                            return true;
-                        });
+                            Stream selectedImgStream = await _helperService.RetriveImageStreamFromLocation(mFile.Path);
+                            if (selectedImgStream != null)
+                            {
+                                var newProfileImagePath = await _helperService.SaveProfileImage(selectedImgStream);
+                                if (!string.IsNullOrEmpty(newProfileImagePath))
+                                {
+                                    NewsPostImageCarouselList.Add(new NewsImageModel() { ImagePath = newProfileImagePath, ImagePreviewPath = newProfileImagePath, NewsImage = ImageSource.FromFile(newProfileImagePath) });
+                                }
+                            }
+                        }
                         IsShowOurImage = false;
                     }
                 }
@@ -196,7 +215,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-            }   
+            }
         }
         async Task OurImages()
         {
@@ -400,7 +419,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        
+
                     }
                     NewsPostImageCarouselList = tempList;
                     ImageOptionText = AppResources.Delete;
