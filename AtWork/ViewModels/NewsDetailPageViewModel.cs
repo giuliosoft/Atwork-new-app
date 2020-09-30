@@ -46,6 +46,7 @@ namespace AtWork.ViewModels
         private string _commentText = string.Empty;
         private string _sendButtonText = AppResources.SendText;
         private int NewsLikeCountNo = 0;
+        bool _NewsPostUserIsVisible = true;
         #endregion
 
         #region Public Properties
@@ -155,6 +156,12 @@ namespace AtWork.ViewModels
         }
         News NewsDetailModel { get; set; }
         NewsComment EditDeleteSelectedComment { get; set; }
+
+        public bool NewsPostUserIsVisible
+        {
+            get { return _NewsPostUserIsVisible; }
+            set { SetProperty(ref _NewsPostUserIsVisible, value); }
+        }
         #endregion
 
         #region Commands
@@ -524,6 +531,8 @@ namespace AtWork.ViewModels
                     {
                         NewsDetailModel = serviceResultBody?.Data?.News;
 
+                        NewsPostUserIsVisible = NewsDetailModel.newsOrigin.Equals("Coordinator", StringComparison.InvariantCultureIgnoreCase) ? false : true;
+
                         if (serviceResultBody.Data.Volunteers != null)
                         {
                             DetailHeaderOptionIsVisible = serviceResultBody.Data.Volunteers?.volUniqueID == SettingsService.VolunteersUserData?.volUniqueID;
@@ -550,7 +559,6 @@ namespace AtWork.ViewModels
                         }
                         if (serviceResultBody.Data.News != null)
                         {
-
                             NewsTitle = serviceResultBody.Data.News.newsTitle;
                             NewsDescription = serviceResultBody.Data.News.newsContent;
                             var NewsPrivicy = serviceResultBody?.Data?.News?.newsPrivacy;
