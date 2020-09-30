@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using Plugin.Calendars.Abstractions;
 using System.Linq;
 using System.Globalization;
+using System.Web;
 
 namespace AtWork.ViewModels
 {
@@ -513,6 +514,7 @@ namespace AtWork.ViewModels
                         {
                             keywordList.Add(keywordStr);
                         }
+                        keywordList = keywordList.Select(x => HttpUtility.HtmlDecode(x)).ToList();
                         ObservableCollection<ActivityTagModel> tempTags = new ObservableCollection<ActivityTagModel>();
                         keywordList.All((arg) =>
                         {

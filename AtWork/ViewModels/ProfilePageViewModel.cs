@@ -131,7 +131,9 @@ namespace AtWork.ViewModels
                                     return true;
                                 });
                             }
-
+                        }
+                        if (!string.IsNullOrEmpty(volunteers?.classes))
+                        {
                             string UserDescription = volunteers?.classes;
                             List<string> UserDescriptionList = new List<string>();
                             if (!string.IsNullOrEmpty(UserDescription))
@@ -172,7 +174,6 @@ namespace AtWork.ViewModels
                                 });
                                 UserDetailsList = tempCmtList;
                             }
-
                         }
                     }
                 }
