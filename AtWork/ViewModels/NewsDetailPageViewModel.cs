@@ -588,7 +588,7 @@ namespace AtWork.ViewModels
                                 {
                                     splittedList.All((x) =>
                                     {
-                                        string imageUri = ConfigService.BaseNewsImageURL + x;
+                                        string imageUri = ConfigService.BaseNewsImageURL + x + "?" + DateTime.Now.ToString();
                                         tempCList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)), NewsImageUrl = imageUri });
                                         return true;
 

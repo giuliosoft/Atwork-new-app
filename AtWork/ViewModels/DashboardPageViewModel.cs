@@ -666,7 +666,7 @@ namespace AtWork.ViewModels
                                         tempData.NewsCarouselList = new ObservableCollection<NewsCarouselListModel>();
                                         nimgUrlList.All((arg) =>
                                         {
-                                            string imageUri = ConfigService.BaseNewsImageURL + arg;
+                                            string imageUri = ConfigService.BaseNewsImageURL + arg + "?" + DateTime.Now.ToString();
                                             tempData.NewsCarouselList.Add(new NewsCarouselListModel() { NewsImage = ImageSource.FromUri(new Uri(imageUri)), NewsImageUrl = imageUri }); ;
                                             return true;
                                         });
@@ -754,7 +754,7 @@ namespace AtWork.ViewModels
                                     arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                     nimgUrlList.All((Aarg) =>
                                     {
-                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg.Trim();
+                                        string imageUri = ConfigService.BaseActivityImageURL + Aarg.Trim() + "?" + DateTime.Now;
                                         arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = ImageSource.FromUri(new Uri(imageUri)), ActivityImageUrl = imageUri }); ;
                                         return true;
                                     });

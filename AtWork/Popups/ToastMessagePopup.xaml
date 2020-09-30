@@ -17,7 +17,7 @@
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
-    <PancakeControl:PancakeView BackgroundColor="{StaticResource DarkBrownColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="0" HeightRequest="{DynamicResource HeightWidth70}" WidthRequest="{DynamicResource HeightWidth220}" CornerRadius="15">
+    <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="0" HeightRequest="{DynamicResource HeightWidth70}" WidthRequest="{DynamicResource HeightWidth220}" CornerRadius="15">
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
             <Label Text="{Binding ToastText}" Style="{StaticResource JoinActivityLabelStyle}"/>
         </StackLayout>
