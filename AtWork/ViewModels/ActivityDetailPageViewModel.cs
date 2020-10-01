@@ -663,7 +663,7 @@ namespace AtWork.ViewModels
                         {
                             SessionService.isEditingActivity = true;
                             SessionService.ActivityPostInputData = ActivityDetails;
-                            if (ActivityDetails.proAudience.ToLower() == "post to everybody" )
+                            if (ActivityDetails.proAudience.ToLower() == "post to everybody")
                             {
                                 SessionService.SelectedItemPosttype = "everyone";
                             }

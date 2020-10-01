@@ -41,6 +41,7 @@ namespace AtWork.ViewModels
         private string _GroupMember = string.Empty;
         private string _PostToEverybodyText = string.Empty;
         private bool _IsShowOption = false;
+        private bool IsPostPrivacyEditable = true;
         #endregion
 
         #region Public Properties        
@@ -144,6 +145,7 @@ namespace AtWork.ViewModels
                     input.proAddActivityDate = SessionService.ActivityPostInputData.proAddActivityDate;
                     input.Emoji = SessionService.SelectedEmojiForActivity;
                     input.proCompany = SettingsService.LoggedInUserData?.coName;
+                    input.proAddActivity_CoordinatorEmail = SettingsService.VolunteersUserData?.volEmail;
                     input.proPublishedDate = DateTime.Now;
                     input.proStatus = "Ongoing";
                     input.proBackgroundImage = SessionService.SelectedDefaultImageForActivity;
@@ -270,6 +272,8 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (!IsPostPrivacyEditable)
+                    return;
                 SelectType("Everyone");
             }
             catch (Exception ex)
@@ -281,6 +285,8 @@ namespace AtWork.ViewModels
         {
             try
             {
+                if (!IsPostPrivacyEditable)
+                    return;
                 SelectType("mygroup");
             }
             catch (Exception ex)
@@ -311,7 +317,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                
+
             }
         }
         #endregion
@@ -347,6 +353,10 @@ namespace AtWork.ViewModels
                 }
                 PostToEverybodyText = AppResources.PostToEverybody;
                 IsShowOption = true;
+                if (!string.IsNullOrEmpty(SessionService.SelectedItemPosttype) && SessionService.SelectedItemPosttype.Equals("everyone", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    IsPostPrivacyEditable = false;
+                }
             }
             catch (Exception ex)
             {

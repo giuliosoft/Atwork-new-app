@@ -905,6 +905,7 @@ namespace AtWork.ViewModels
                     SessionService.NewsPostAttachmentFileName = string.Empty;
                     SessionService.NewsPostAttachmentFilePath = string.Empty;
                     SessionService.NewsPostImageFiles = new List<string>();
+                    SessionService.SelectedItemPosttype = string.Empty;
                 }
                 if (!string.IsNullOrEmpty(SessionService.DeletedNewsPost))
                 {
