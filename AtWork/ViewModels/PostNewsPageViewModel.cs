@@ -164,8 +164,8 @@ namespace AtWork.ViewModels
                         input.volUniqueID = SettingsService.VolunteersUserData?.volUniqueID.ToString();
                         if (SessionService.NewsPostCarouselImages != null && SessionService.NewsPostCarouselImages.Count > 0)
                         {
-                            input.ImageName = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseActivityImageURL, "")).ToList());
-                            input.proBackgroundImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseActivityImageURL, "")).ToList());
+                            input.ImageName = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Remove(x.IndexOf('?')).Replace(ConfigService.BaseActivityImageURL, "")).ToList());
+                            input.proBackgroundImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Remove(x.IndexOf('?')).Replace(ConfigService.BaseActivityImageURL, "")).ToList());
                         }
                         serviceResult = await ActivityService.ActivityEdit(input, SessionService.NewsPostImageFiles);
                     }
@@ -231,7 +231,7 @@ namespace AtWork.ViewModels
                         inputModel.volUniqueID = SessionService.NewsPostInputData.volUniqueID;
                         if (SessionService.NewsPostCarouselImages != null)
                         {
-                            inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Replace(ConfigService.BaseNewsImageURL, "")).ToList());
+                            inputModel.newsImage = String.Join(",", SessionService.NewsPostCarouselImages.Where((x) => !string.IsNullOrEmpty(x)).Select(x => x.Remove(x.IndexOf('?')).Replace(ConfigService.BaseNewsImageURL, "")).ToList());
                         }
                         serviceResult = await NewsService.PostNewsFeedEdit(inputModel, SessionService.NewsPostImageFiles);
                     }
