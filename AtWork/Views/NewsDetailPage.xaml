@@ -110,17 +110,17 @@
                                             <SwipeItems>
                                                 <SwipeItemView IsVisible="{Binding CommentByLoggedInUser}">
                                                     <StackLayout Spacing="0" Padding="10,0,0,0">
-                                                        <PancakeControl:PancakeView  Padding="0,0,0,0" MinimumHeightRequest="40" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
+                                                        <PancakeControl:PancakeView Padding="0,0,0,0" MinimumHeightRequest="40" HeightRequest="40" HorizontalOptions="FillAndExpand" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
                                                             <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
-                                                                <Label Text="{x:Static Multilingual:AppResources.Edit}" WidthRequest="70" Margin="30,0,20,0" TextColor="White" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
+                                                                <Label Text="{x:Static Multilingual:AppResources.Edit}" Margin="30,0,20,0" TextColor="White" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
                                                                 <StackLayout.GestureRecognizers>
                                                                     <TapGestureRecognizer Command="{Binding Source={x:Reference postCommentList},Path=BindingContext.EditCommentCommand}" CommandParameter="{Binding .}"/>
                                                                 </StackLayout.GestureRecognizers>
                                                             </StackLayout>
                                                         </PancakeControl:PancakeView>
-                                                        <PancakeControl:PancakeView Padding="0,0,0,0" MinimumHeightRequest="40" BorderColor="{DynamicResource AccentColor}" BorderThickness="2" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0">
+                                                        <PancakeControl:PancakeView Padding="0,0,0,0" MinimumHeightRequest="40" BorderColor="{DynamicResource AccentColor}" BorderThickness="2" HeightRequest="40" HorizontalOptions="FillAndExpand" CornerRadius="20,0,20,0">
                                                             <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
-                                                                <Label Text="{x:Static Multilingual:AppResources.Delete}" WidthRequest="70" Margin="30,0,20,0" TextColor="{DynamicResource AccentColor}" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
+                                                                <Label Text="{x:Static Multilingual:AppResources.Delete}" Margin="30,0,20,0" TextColor="{DynamicResource AccentColor}" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" HorizontalTextAlignment="Center"></Label>
                                                                 <StackLayout.GestureRecognizers>
                                                                     <TapGestureRecognizer Command="{Binding Source={x:Reference postCommentList},Path=BindingContext.DeleteCommentCommand}" CommandParameter="{Binding .}"/>
                                                                 </StackLayout.GestureRecognizers>
