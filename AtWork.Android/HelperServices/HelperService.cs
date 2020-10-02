@@ -32,5 +32,20 @@ namespace AtWork.Droid.HelperServices
         {
             throw new NotImplementedException();
         }
+
+        public Task<Stream> RetriveCompressedImageStreamFromLocation(string location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> SaveProfileImage(Stream StreamToWrite)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task MoveCroppedFile(string pathFromMove, string pathToMove)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
