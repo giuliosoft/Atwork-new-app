@@ -8,16 +8,20 @@ using Android.Widget;
 using Android.OS;
 using FFImageLoading;
 using Plugin.Fingerprint;
+using AtWork.Droid.HelperServices;
+using Android.Content;
+using Android.Security;
 
 namespace AtWork.Droid
 {
-    [Activity(Label = "AtWork", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "AtWork", Icon = "@mipmap/icon", Theme = "@style/MyTheme.CustomSplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            base.SetTheme(Resource.Style.MainTheme);
 
             base.OnCreate(savedInstanceState);
             CrossFingerprint.SetCurrentActivityResolver(() => this);
