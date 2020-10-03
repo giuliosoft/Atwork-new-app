@@ -29,7 +29,7 @@
         <PancakeControl:PancakeView HasShadow="False" CornerRadius="20,20,0,0" Padding="20"  BackgroundColor="{DynamicResource DarkColor}">
             <StackLayout Padding="0" Spacing="0">
                 <Button Command="{Binding GoForClosePopupCommand}" HorizontalOptions="Center" CornerRadius="3" HeightRequest="5"  WidthRequest="40" Background="White"  Margin="0,0,0,10"></Button>
-                <StackLayout Orientation="Horizontal" Padding="0" Spacing="0">
+                <StackLayout Orientation="Vertical" >
                     <Frame HasShadow="False" CornerRadius="25" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="15" Margin="2">
                         <Button Command="{Binding GoForEditNewsCommand}" Text="{Binding EditPost}" WidthRequest="{DynamicResource HeightWidth50}" FontFamily="Lato_Bold" FontSize = "{DynamicResource FontSize20}" TextColor="{DynamicResource DarkColor}" />
                     </Frame>
