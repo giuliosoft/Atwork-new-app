@@ -345,7 +345,14 @@ namespace AtWork.ViewModels
                                             //For simulator :
                                             //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
                                             //For device :
+                                            //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+
+#if DEBUG
+                                            var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+#else      
                                             var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+#endif
+
 
                                             foreach (var selDt in SelectedDatesObj)
                                             {
@@ -423,7 +430,13 @@ namespace AtWork.ViewModels
                                 //For simulator :
                                 //var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
                                 //For device :
+                                //var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+
+#if DEBUG
+                                var defaultCalendar = calendars.Where((x) => x.AccountName == TextResources.DefaultCalendarText && x.CanEditEvents).FirstOrDefault();
+#else      
                                 var defaultCalendar = calendars.Where((x) => x.AccountName.Equals(TextResources.iCloudCalendarText, StringComparison.InvariantCultureIgnoreCase) && x.CanEditEvents).FirstOrDefault();
+#endif
 
                                 DateTime dateToAddInCalendar = tempDtList.FirstOrDefault().ActivityDate;
 

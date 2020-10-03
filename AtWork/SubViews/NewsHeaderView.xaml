@@ -19,7 +19,7 @@
                     <!--<ColumnDefinition Width="*" />-->
                     <!--<ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />-->
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <!--<Label Grid.Column="0" IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}" TextColor="Transparent" Padding="10,7,10,5"/>-->

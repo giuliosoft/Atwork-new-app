@@ -176,10 +176,14 @@ namespace AtWork.ViewModels
                 var hasPermission = await TakePermissionsToPickPhoto();
                 if (hasPermission)
                 {
-                    NewsPostImageCarouselList.Clear();
                     var res = await _multiMediaPickerService.PickPhotosAsync();
                     if (res != null && res.Count > 0)
                     {
+                        //if (isActivity)
+                        //{
+                        NewsPostImageCarouselList.Clear();
+                        SessionService.NewsPostCarouselImages = new List<string>();
+                        //}
                         if (res.Count <= 5)
                         {
                             NextTextColor = (Color)App.Current.Resources["WhiteColor"];
@@ -187,7 +191,6 @@ namespace AtWork.ViewModels
                         NewsPickedImageViewIsVisible = true;
                         SelectedDefaultImage = string.Empty;
                         SessionService.SelectedDefaultImageForActivity = string.Empty;
-                        SessionService.NewsPostCarouselImages = new List<string>();
                         //Original for taking original path that is picked :
                         //res.All((mFile) =>
                         //{                            
