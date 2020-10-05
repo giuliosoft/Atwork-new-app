@@ -82,7 +82,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="Start writing..."  Style="{StaticResource NewsCommentEditorStyle}"/>
+                                <CustomControl:CustomEditor x:Name="commentEditor" MaxLength="30" Text="{Binding CommentText}" TextChanged="commentEditor_TextChanged_2" Grid.Column="0" ReturnType="Done" Margin="0" Placeholder="{x:Static Multilingual:AppResources.StartWriting}"  Style="{StaticResource NewsCommentEditorStyle}"/>
                                 <StackLayout IsVisible="{Binding SendButtonIsVisible}" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                     <Label Text="{x:Static Multilingual:AppResources.SendText}" Style="{StaticResource SendLabelStyle}"/>
                                     <StackLayout.GestureRecognizers>
