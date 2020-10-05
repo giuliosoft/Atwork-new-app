@@ -186,7 +186,7 @@ namespace AtWork.ViewModels
                                         arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                         nimgUrlList.All((Aarg) =>
                                         {
-                                            string imageUri = ConfigService.BaseActivityImageURL + Aarg;
+                                            string imageUri = ConfigService.BaseActivityImageURL + Aarg + "?" + DateTime.Now.ToString();
                                             arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = ImageSource.FromUri(new Uri(imageUri)), ActivityImageUrl = imageUri }); ;
                                             return true;
                                         });
@@ -253,7 +253,7 @@ namespace AtWork.ViewModels
                                         arg.ActivityCarouselList = new ObservableCollection<ActivityCarouselListModel>();
                                         nimgUrlList.All((Aarg) =>
                                         {
-                                            string imageUri = ConfigService.BaseActivityImageURL + Aarg;
+                                            string imageUri = ConfigService.BaseActivityImageURL + Aarg + "?" + DateTime.Now.ToString();
                                             arg.ActivityCarouselList.Add(new ActivityCarouselListModel() { ActivityImage = ImageSource.FromUri(new Uri(imageUri)), ActivityImageUrl = imageUri }); ;
                                             return true;
                                         });
@@ -298,11 +298,12 @@ namespace AtWork.ViewModels
                 NewsOptionPopupViewModel newsOptionPopupViewModel = new NewsOptionPopupViewModel(_navigationService, _facadeService);
                 newsOptionPopupViewModel.DeletePost = AppResources.DeleteActivity;
                 newsOptionPopupViewModel.EditPost = AppResources.EditActivity;
-                SessionService.isFromMyactivity = true;
+
                 newsOptionPopupViewModel.EditNewsEvent += async (object sender, object SelectedObj) =>
                 {
                     try
                     {
+                        SessionService.isFromMyactivity = true;
                         await ShowLoader();
                         SessionService.ActivityPostInputData = new ActivityListModel();
                         if (ActivityDetails != null)
@@ -402,6 +403,7 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            SessionService.isFromMyactivity = false;
             await GetMyActivityList();
         }
     }

@@ -243,7 +243,7 @@ namespace AtWork.ViewModels
                             if (serviceBody != null && serviceBody.Flag)
                             {
                                 SessionService.IsShowActivitiesIntial = true;
-                                await _navigationService.NavigateAsync(nameof(DashboardPage));
+                                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                             }
                         }
                         await ClosePopup();
@@ -306,15 +306,28 @@ namespace AtWork.ViewModels
 
                 if (ActivityDetails.DataType.Equals(TextResources.OnDemandCategoryText, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    JoinActivityInputModel inputModel = new JoinActivityInputModel();
-                    //inputModel.ActivityID = ActivityDetails.id;
-                    inputModel.coUniqueID = ActivityDetails.coUniqueID;
-                    inputModel.proUniqueID = ActivityDetails.proUniqueID;
-                    inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
-                    inputModel.proStatus = TextResources.ActiveStatus;
+                    if (!string.IsNullOrEmpty(ActivityDetails.EndDate.Trim()))
+                    {
+                        DateTime endDateVal = DateTime.Now;
+                        bool parsedEndDate = DateTime.TryParse(ActivityDetails.EndDate, out endDateVal);
 
-                    await CallJoinActivityService(inputModel);
-                    await DisplayAlertAsync(AppResources.JoinActivitySuccessfulText);
+                        if (parsedEndDate)
+                        {
+                            DateTime currDate = DateTime.Now.Date;
+                            if (endDateVal > currDate)
+                            {
+                                JoinActivityInputModel inputModel = new JoinActivityInputModel();
+                                //inputModel.ActivityID = ActivityDetails.id;
+                                inputModel.coUniqueID = ActivityDetails.coUniqueID;
+                                inputModel.proUniqueID = ActivityDetails.proUniqueID;
+                                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
+                                inputModel.proStatus = TextResources.ActiveStatus;
+
+                                await CallJoinActivityService(inputModel);
+                                await DisplayAlertAsync(AppResources.JoinActivitySuccessfulText);
+                            }
+                        }
+                    }
                 }
                 else if (ActivityDetails.DataType.Equals(TextResources.RecurringCategoryText, StringComparison.InvariantCultureIgnoreCase) || ActivityDetails.DataType.Equals(TextResources.RegularCategoryText, StringComparison.InvariantCultureIgnoreCase))
                 {

@@ -192,11 +192,11 @@ namespace AtWork.ViewModels
                         if (SessionService.isFromMyactivity)
                         {
                             SessionService.isFromMyactivity = false;
-                            await _navigationService.NavigateAsync(nameof(MyActivityPage));
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}/{nameof(MyActivityPage)}", null);
                         }
                         else
                         {
-                            await _navigationService.NavigateAsync(nameof(DashboardPage));
+                            await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                         }
                     }
                 }
@@ -256,7 +256,7 @@ namespace AtWork.ViewModels
                             SessionService.isEditingNews = false;
                             SessionService.IsNeedToRefreshNews = true;
                         }
-                        await _navigationService.NavigateAsync(nameof(DashboardPage));
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}", null);
                     }
                 }
                 await ClosePopup();
