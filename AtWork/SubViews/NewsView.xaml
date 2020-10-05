@@ -71,7 +71,7 @@
                                         <!--<Label Text="{Binding newsTitle}" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
                                             <Label Text="{Binding newsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>-->
                                         <Customcontrol:SelectableLabel Text="{Binding newsTitle}" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
-                                        <Customcontrol:LinksLabel LinksText="{Binding newsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>
+                                        <Customcontrol:LinksLabel LinksText="{Binding newsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}" Padding="{DynamicResource MarginPadding07_0_0_0}"/>
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
