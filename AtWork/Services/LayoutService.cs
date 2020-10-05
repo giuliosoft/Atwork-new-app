@@ -77,6 +77,17 @@ namespace AtWork.Services
             }
         }
 
+        #region Static Properties
+        public static GridLength GridHeightWidth10 { get; set; }
+        public static GridLength GridHeightWidth20 { get; set; }
+        public static GridLength GridHeightWidth25 { get; set; }
+        public static GridLength GridHeightWidth30 { get; set; }
+        public static GridLength GridHeightWidth40 { get; set; }
+        public static GridLength GridHeightWidth60 { get; set; }
+        public static GridLength GridHeightWidth70 { get; set; }
+        public static GridLength GridHeightWidth100 { get; set; }
+        #endregion
+
         public static void DynamicLayoutServiceInit()
         {
             #region Color
@@ -173,6 +184,16 @@ namespace AtWork.Services
             App.Current.Resources["GridHeightWidth70"] = (GridLength)sizeConvertAsPerDevice(70);
             App.Current.Resources["GridHeightWidth100"] = (GridLength)sizeConvertAsPerDevice(100);
 
+            /* New with Static Property :
+            GridHeightWidth10 = sizeConvertAsPerDevice(10);
+            GridHeightWidth20 = sizeConvertAsPerDevice(20);
+            GridHeightWidth25 = sizeConvertAsPerDevice(25);
+            GridHeightWidth30 = sizeConvertAsPerDevice(30);
+            GridHeightWidth40 = sizeConvertAsPerDevice(40);
+            GridHeightWidth60 = sizeConvertAsPerDevice(60);
+            GridHeightWidth70 = sizeConvertAsPerDevice(70);
+            GridHeightWidth100 = sizeConvertAsPerDevice(100);
+            */
             #endregion
 
             #region View Spacing

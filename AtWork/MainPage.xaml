@@ -1,7 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="AtWork.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" x:Class="AtWork.MainPage"
+             xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork">
     <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <!--<Grid ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Static Services:LayoutService.GridHeightWidth40}"/>
+                <ColumnDefinition Width="{Static Services:LayoutService.GridHeightWidth40}"/>
+                <ColumnDefinition Width="{Static Services:LayoutService.GridHeightWidth40}"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" BackgroundColor="Yellow" Text="Test1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            <Label Grid.Column="1" BackgroundColor="Pink" Text="Test2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            <Label Grid.Column="2" BackgroundColor="Yellow" Text="Test3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Grid>-->
     </StackLayout>
 </ContentPage>
