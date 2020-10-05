@@ -856,4 +856,7 @@ Are you sure want to do that?</value>
     <data name="EmailServiceAlert" xml:space="preserve">
         <value>Email service is not available on this device.</value>
     </data>
+    <data name="PasswordText" xml:space="preserve">
+        <value>Password</value>
+    </data>
 </root>

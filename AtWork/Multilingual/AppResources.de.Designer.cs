@@ -1642,5 +1642,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("EmailServiceAlert", resourceCulture);
             }
         }
+        
+        internal static string PasswordText {
+            get {
+                return ResourceManager.GetString("PasswordText", resourceCulture);
+            }
+        }
     }
 }
