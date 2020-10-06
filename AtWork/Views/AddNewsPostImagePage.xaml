@@ -58,10 +58,14 @@
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                        <!--<Button Text="{x:Static Multilingual:AppResources.EditCropButtonText}" Command="{Binding CropNewsImageCommand}" Style="{StaticResource CropButtonStyle}"/>-->
+                    <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                            <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}" Padding="10"/>
+                        </StackLayout>
+                    </Grid>
+                    <!--<StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">                        
                         <Button Text="{Binding ImageOptionText}" Command="{Binding CropNewsImageCommand}" CommandParameter="{Binding ImageOptionText}" Style="{StaticResource CropButtonStyle}" Padding="10"/>
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsShowOurImage}" Spacing="{DynamicResource HeightWidth30}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                     <PancakeControl:PancakeView Margin="10" CornerRadius="15" VerticalOptions="FillAndExpand">

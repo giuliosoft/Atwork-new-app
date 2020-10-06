@@ -298,6 +298,7 @@ namespace AtWork.ViewModels
                                 }
                                 else if (NewsPostImageCarouselList.Count == 0)
                                 {
+                                    NextTextColor = (Color)App.Current.Resources["ShadedWhiteColor"];
                                     NewsPickedImageViewIsVisible = false;
                                     ImageOptionText = AppResources.EditCropButtonText;
                                 }

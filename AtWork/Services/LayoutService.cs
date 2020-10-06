@@ -57,11 +57,15 @@ namespace AtWork.Services
                         // Height iPhone 6/6S/7/8
                         App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(155);
                     }
-                    else if (screenHeight == 2688 || screenHeight == 1792 || screenHeight == 2436)
+                    else if (screenHeight == 2436)
+                    {
+                        // Height-2436 : iPhone X, XS, 11 Pro
+                        App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(155);
+                    }
+                    else if (screenHeight == 2688 || screenHeight == 1792)
                     {
                         // Height-2688 : iPhone XS Max, 11 Pro Max
                         // Height-1792 : iPhone XR, 11
-                        // Height-2436 : iPhone X, XS, 11 Pro                        
                         App.Current.Resources["PopUpImageHeight"] = sizeConvertAsPerDevice(180);
                     }
                 }
