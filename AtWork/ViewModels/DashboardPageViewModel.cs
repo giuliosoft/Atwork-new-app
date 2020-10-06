@@ -17,6 +17,7 @@ using Prism.Navigation;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
+using static AtWork.Models.LoginModel;
 using static AtWork.Models.NewsModel;
 using static AtWork.Models.UserModel;
 
@@ -857,14 +858,31 @@ namespace AtWork.ViewModels
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<ProfileResponce>(serviceResult?.Body);
-                    if (serviceResultBody != null && !string.IsNullOrEmpty(serviceResultBody?.Data?.volPicture))
+                    if (serviceResultBody != null )
                     {
-                        SettingsService.UserProfile = serviceResultBody?.Data?.volPicture;
-                        MainThread.BeginInvokeOnMainThread(() =>
+                        if (!string.IsNullOrEmpty(serviceResultBody?.Data?.volPicture))
                         {
-                            UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now.ToString()));
-                            UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
-                        });
+
+                            SettingsService.UserProfile = serviceResultBody?.Data?.volPicture;
+                            MainThread.BeginInvokeOnMainThread(() =>
+                            {
+                                UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now.ToString()));
+                                UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
+                            });
+                        }
+                        if(!string.IsNullOrEmpty(serviceResultBody?.Data?.volLanguage) && SettingsService.VolunteersUserData.volLanguage != serviceResultBody?.Data?.volLanguage)
+                        {
+                            var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
+                            if (res)
+                            {
+                                Volunteers volunteersTemp = new Volunteers();
+                                volunteersTemp = SettingsService.VolunteersUserData;
+                                volunteersTemp.volLanguage = serviceResultBody?.Data?.volLanguage;
+                                SettingsService.VolunteersUserData = volunteersTemp;
+                                LanguageService.Init(serviceResultBody?.Data?.volLanguage);
+                                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
+                            }
+                        }
                     }
                 }
             }

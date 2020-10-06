@@ -22,7 +22,7 @@
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
             <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
-                    <Label IsVisible="{Binding ShowHeadingText}" Text="{x:Static Multilingual:AppResources.Nowwritedowninterests}" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
+                    <Label IsVisible="{Binding ShowHeadingText}" Text="{x:Static Multilingual:AppResources.Nowwritedowninterests}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" Padding="20,20,20,20"/>
                     <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
                         <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>

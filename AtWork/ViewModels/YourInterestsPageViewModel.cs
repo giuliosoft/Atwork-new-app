@@ -228,6 +228,14 @@ namespace AtWork.ViewModels
                 {
                     if (serviceResult.Body != null)
                     {
+                        if (IsFromWelcomeSetup)
+                        {
+                            Volunteers volunteersTemp = new Volunteers();
+                            volunteersTemp = SettingsService.VolunteersUserData;
+                            volunteersTemp.volOnBoardStatus = "complete";
+                            volunteersTemp.volStatus = "active";
+                            SettingsService.VolunteersUserData = volunteersTemp;
+                        }
                         var serviceBody = JsonConvert.DeserializeObject<CommonResponseModel>(serviceResult.Body);
                         if (serviceBody != null && serviceBody.Flag)
                         {
