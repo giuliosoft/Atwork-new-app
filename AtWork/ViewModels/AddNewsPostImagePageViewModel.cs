@@ -179,11 +179,11 @@ namespace AtWork.ViewModels
                     var res = await _multiMediaPickerService.PickPhotosAsync();
                     if (res != null && res.Count > 0)
                     {
-                        //if (isActivity)
-                        //{
-                        NewsPostImageCarouselList.Clear();
-                        SessionService.NewsPostCarouselImages = new List<string>();
-                        //}
+                        if (isActivity)
+                        {
+                            NewsPostImageCarouselList.Clear();
+                            SessionService.NewsPostCarouselImages = new List<string>();
+                        }
                         if (res.Count <= 5)
                         {
                             NextTextColor = (Color)App.Current.Resources["WhiteColor"];
@@ -288,12 +288,30 @@ namespace AtWork.ViewModels
                             {
                                 if (NewsPostImageCarouselList.Count > 0)
                                 {
-                                    if (NewsPostImageCarouselList[CarouselPosition] != null)
+                                    //Old for changing button names :
+                                    //if (NewsPostImageCarouselList[CarouselPosition] != null)
+                                    //{
+                                    //    if (!string.IsNullOrEmpty(NewsPostImageCarouselList[CarouselPosition].ImagePath))
+                                    //    {
+                                    //        ImageOptionText = AppResources.EditCropButtonText;
+                                    //    }
+                                    //}
+
+                                    //New for managing button name on carousel change :
+                                    if (pos == 0)
                                     {
-                                        if (!string.IsNullOrEmpty(NewsPostImageCarouselList[CarouselPosition].ImagePath))
+                                        if (NewsPostImageCarouselList.Count == 1)
                                         {
-                                            ImageOptionText = AppResources.EditCropButtonText;
+                                            carouselRef.Position = 0;
                                         }
+                                        else
+                                        {
+                                            carouselRef.Position = carouselRef.Position + 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        carouselRef.Position = carouselRef.Position - 1;
                                     }
                                 }
                                 else if (NewsPostImageCarouselList.Count == 0)
