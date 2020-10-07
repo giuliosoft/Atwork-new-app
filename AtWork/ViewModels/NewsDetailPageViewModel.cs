@@ -642,10 +642,9 @@ namespace AtWork.ViewModels
                             return true;
                         });
                     }
-                    //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID, });
-                    //tempCmtList.Add(new NewsComment() { comByID = SettingsService.VolunteersUserData?.volUniqueID });
-                    //tempCmtList.Add(new NewsComment() { comByID = null });
                     PostCommentList = tempCmtList;
+                    SessionService.LikeNewsID = SelectedNewsId;
+                    SessionService.NewsCommentCount = PostCommentList.Count;
                 }
             }
             catch (Exception ex)

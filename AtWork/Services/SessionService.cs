@@ -37,6 +37,7 @@ namespace AtWork.Services
         public static string SelectedEmojiForActivity = string.Empty;
         public static int? LikeNewsID;
         public static int? LikeNewsCount;
+        public static int? NewsCommentCount;
         public static bool IsWelcomeSetup = false;
         public static int CurrentTab = 0;
         public static int GroupMemberCount = 0;

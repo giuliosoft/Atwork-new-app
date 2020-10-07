@@ -959,13 +959,20 @@ namespace AtWork.ViewModels
                     //UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile));
                     await GetNewsListDetails_New();
                 }
-                if (SessionService.LikeNewsCount != null && SessionService.LikeNewsID != null)
+                if ( SessionService.LikeNewsID != null)
                 {
-                    //int LikeNewsCount = Convert.ToInt32(SessionService.LikeNewsCount);
                     var newsItem = NewsList.Where(x => x.news.id == SessionService.LikeNewsID).FirstOrDefault();
-                    newsItem.LikeCount = SessionService.LikeNewsCount.Value;
+                    if (SessionService.LikeNewsCount != null)
+                    {
+                        newsItem.LikeCount = SessionService.LikeNewsCount.Value;
+                    }
+                    if (SessionService.NewsCommentCount != null)
+                    {
+                        newsItem.CommentsCount = SessionService.NewsCommentCount.Value;
+                    }
                     SessionService.LikeNewsID = null;
                     SessionService.LikeNewsCount = null;
+                    SessionService.NewsCommentCount = null;
                 }
 
                 await GetGroupMemberListCount();

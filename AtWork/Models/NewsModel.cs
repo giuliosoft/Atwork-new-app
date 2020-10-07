@@ -77,7 +77,6 @@ namespace AtWork.Models
 
         public class NewsListData_Model : BindableBase
         {
-            public int CommentsCount { get; set; }
             public News news { get; set; }
             public Volunteers Volunteers { get; set; }
             public ObservableCollection<NewsCarouselListModel> NewsCarouselList { get; set; }
@@ -95,6 +94,12 @@ namespace AtWork.Models
                 set { SetProperty(ref _LikeCount, value); }
             }
 
+            public int _CommentsCount;
+            public int CommentsCount
+            {
+                get { return _CommentsCount; }
+                set { SetProperty(ref _CommentsCount, value); }
+            }
             public bool NewsCreatedByLoggedInUser
             {
                 get

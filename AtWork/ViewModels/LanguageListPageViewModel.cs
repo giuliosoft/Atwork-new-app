@@ -196,6 +196,10 @@ namespace AtWork.ViewModels
                                 var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
                                 if (res)
                                 {
+                                    Volunteers volunteersTemp = new Volunteers();
+                                    volunteersTemp = SettingsService.VolunteersUserData;
+                                    volunteersTemp.volLanguage = Selectedlanguage;
+                                    SettingsService.VolunteersUserData = volunteersTemp;
                                     LanguageService.Init(Selectedlanguage);
                                     await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
                                 }
