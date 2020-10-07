@@ -91,7 +91,7 @@ namespace AtWork.ViewModels
                                 SettingsService.LoggedInUserEmail = tempUserVol.volUserName;
                                 SettingsService.LoggedInUserPassword = tempUserVol.VolUserPassword;
                                 SessionService.tempVolunteerData = tempUserVol;
-                                if (SettingsService.AppLanguage != tempUserVol?.volLanguage)
+                                if (!string.IsNullOrEmpty(tempUserVol?.volLanguage) && SettingsService.AppLanguage != tempUserVol?.volLanguage)
                                 {
                                     var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
                                     if (res)

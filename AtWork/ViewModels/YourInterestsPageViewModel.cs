@@ -223,6 +223,11 @@ namespace AtWork.ViewModels
                     await ShowLoader();
                 Volunteers Input = new Volunteers();
                 Input.volInterests = selectedInterests;
+                if (IsFromWelcomeSetup)
+                {
+                    Input.volOnBoardStatus = "complete";
+                    Input.volStatus = "active";
+                }
                 var serviceResult = await UserServices.UpdateInterestsDetail(Input);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {

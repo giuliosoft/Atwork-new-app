@@ -99,7 +99,7 @@ namespace AtWork.ViewModels
                     {
                         SettingsService.VolunteersUserData = serviceResultBody.Data1;
                         SettingsService.UserProfile = serviceResultBody.Data1?.volPicture;
-                        if (SettingsService.AppLanguage != serviceResultBody.Data1?.volLanguage)
+                        if (!string.IsNullOrEmpty(serviceResultBody.Data1?.volLanguage) && SettingsService.AppLanguage != serviceResultBody.Data1?.volLanguage)
                         {
                             var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
                             if (res)
