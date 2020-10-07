@@ -1,6 +1,6 @@
-﻿NSPhotoLibraryUsageDescription = "Test AtWork";
-NSPhotoLibraryAddUsageDescription = "Test AtWork";
-NSCameraUsageDescription = "Test AtWork";
-NSMicrophoneUsageDescription = "Test AtWork";
-NSFaceIDUsageDescription = "Test AtWork";
-NSCalendarsUsageDescription = "Test AtWork";
+﻿NSPhotoLibraryUsageDescription = "Needs Access to Photos";
+NSPhotoLibraryAddUsageDescription = "Needs Access to Photos";
+NSCameraUsageDescription = "This app needs access to the camera to take photos.";
+NSMicrophoneUsageDescription = "This app needs access to microphone.";
+NSFaceIDUsageDescription = "Need your face to unlock app";
+NSCalendarsUsageDescription = "This app needs access to calendar.";
