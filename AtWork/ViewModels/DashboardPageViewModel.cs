@@ -45,7 +45,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private bool _NewsViewIsVisible = true;
         private bool _ActivityViewIsVisible = false;
         private int PageNo = 1;
@@ -66,11 +65,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Public Properties        
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
 
         public bool NewsViewIsVisible
         {

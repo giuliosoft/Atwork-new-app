@@ -29,18 +29,12 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private string _CurrentPassword = string.Empty;
         private string _NewPassword = string.Empty;
         private string _ConfirmNewpassword = string.Empty;
         #endregion
 
         #region Public Properties        
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
         public string CurrentPassword
         {
             get { return _CurrentPassword; }

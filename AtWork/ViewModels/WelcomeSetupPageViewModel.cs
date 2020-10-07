@@ -19,15 +19,9 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         #endregion
 
         #region Public Properties        
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
         #endregion
 
         #region Commands

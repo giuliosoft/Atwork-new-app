@@ -26,16 +26,10 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private ControlTemplate _Header;
         #endregion
 
         #region Public Properties        
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
         public ControlTemplate HeaderView
         {
             get { return _Header; }

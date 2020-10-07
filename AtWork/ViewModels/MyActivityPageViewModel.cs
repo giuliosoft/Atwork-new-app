@@ -30,7 +30,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private ObservableCollection<ActivityItems> _MyActivitycollectionlist = new ObservableCollection<ActivityItems>();
         bool _IsRefreshingMyActivities = false;
         private ObservableCollection<ActivityListModel> _MyUpcomingActivitylist = new ObservableCollection<ActivityListModel>();
@@ -38,12 +37,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Public Properties
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
-
         public ObservableCollection<ActivityItems> MyActivitycollectionlist
         {
             get { return _MyActivitycollectionlist; }

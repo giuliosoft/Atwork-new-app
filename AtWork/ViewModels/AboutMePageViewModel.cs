@@ -39,18 +39,12 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private ControlTemplate _Header;
         private bool _ShowHeadingText;
         private string _AboutUserText = string.Empty;
         #endregion
 
         #region Public Properties        
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
         public ControlTemplate HeaderView
         {
             get { return _Header; }

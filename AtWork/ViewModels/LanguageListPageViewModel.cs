@@ -49,18 +49,12 @@ namespace AtWork.ViewModels
         #region Private Properties
         private ObservableCollection<Language> _LanguageList = new ObservableCollection<Language>();
         private ControlTemplate _Header;
-        private string _Prop = string.Empty;
         private bool _ShowChooseLanguage = false;
         #endregion
 
         #region Public Properties
         public string Selectedlanguage;
         public List<string> LanguageName { get; set; }
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
 
         public ControlTemplate HeaderView
         {

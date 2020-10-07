@@ -45,7 +45,6 @@ namespace AtWork.ViewModels
         #region Private Properties
         IMultiMediaPickerService _multiMediaPickerService;
         private ObservableCollection<NewsImageModel> _NewsPostImageCarouselList = new ObservableCollection<NewsImageModel>();
-        private string _Prop = string.Empty;
         private bool _NewsPickedImageViewIsVisible = false;
         private bool _IsShowOurImage = false;
         private int NewsImageSelectedForCrop = -1;
@@ -60,12 +59,6 @@ namespace AtWork.ViewModels
 
         #region Public Properties
         public AddNewsPostImagePage pageObject;
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
-
         public ObservableCollection<NewsImageModel> NewsPostImageCarouselList
         {
             get { return _NewsPostImageCarouselList; }

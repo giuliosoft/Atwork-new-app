@@ -28,7 +28,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         ActivityListModel _SelectedPastActivity;
         private int OverallExperienceRatingValue = 0;
         private double ImpactRatingValue = 0;
@@ -101,12 +100,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Public Properties
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
-
         public ActivityListModel SelectedPastActivity
         {
             get { return _SelectedPastActivity; }

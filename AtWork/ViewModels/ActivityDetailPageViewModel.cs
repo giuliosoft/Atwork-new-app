@@ -46,7 +46,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private string _Location = string.Empty;
         private string _ActivityTime = string.Empty;
         private ActivityListModel _activityDetails = new ActivityListModel();
@@ -80,12 +79,6 @@ namespace AtWork.ViewModels
         {
             get { return _IsShowCategotyType; }
             set { SetProperty(ref _IsShowCategotyType, value); }
-        }
-
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
         }
 
         public ObservableCollection<ActivityTagModel> ActivityTagList

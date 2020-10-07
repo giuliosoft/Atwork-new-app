@@ -29,16 +29,10 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private ObservableCollection<ActivityItems> _Activitylist = new ObservableCollection<ActivityItems>();
         #endregion
 
         #region Public Properties        
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
         public ObservableCollection<ActivityItems> Activitylist
         {
             get { return _Activitylist; }

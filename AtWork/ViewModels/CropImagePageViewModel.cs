@@ -26,7 +26,6 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private string _Prop = string.Empty;
         private ImageSource _NewsImageToCrop = string.Empty;
         private NewsImageModel _SelectedNewsImageValue = null;
         IHelper _helperService;
@@ -36,12 +35,7 @@ namespace AtWork.ViewModels
         #region Public Properties
         public CropImagePage pageObject;
         public string CroppedImageFilePath;
-        public string Prop
-        {
-            get { return _Prop; }
-            set { SetProperty(ref _Prop, value); }
-        }
-
+       
         public ImageSource NewsImageToCrop
         {
             get { return _NewsImageToCrop; }
