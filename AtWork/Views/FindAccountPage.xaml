@@ -32,7 +32,7 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout VerticalOptions="StartAndExpand">
-                        <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="250" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
+                        <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="30" Margin="20" BackgroundColor="{StaticResource LightBlueColor}">
                             <Button Command="{Binding GoForSubmitCommand}" FontAttributes="Bold" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.SubmitText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
                         </Frame>
                     </StackLayout>

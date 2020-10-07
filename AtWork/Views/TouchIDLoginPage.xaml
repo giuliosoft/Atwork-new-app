@@ -11,7 +11,7 @@
              BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout Spacing="40" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="{x:Static Multilingual:AppResources.AppAuthenticationHeaderText}" Style="{StaticResource ClaimProfileThanksLabelStyle}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+            <Label Text="{x:Static Multilingual:AppResources.AppAuthenticationHeaderText}" Style="{StaticResource ClaimProfileThanksLabelStyle}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Padding="{DynamicResource HeightWidth25}"/>
             <StackLayout VerticalOptions="Center">
                 <ImageButton x:Name="biomatricImage" Grid.Row="0" Source="biometric_fingerprint" Aspect="AspectFit" HeightRequest="100" WidthRequest="100" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" BackgroundColor="{StaticResource OffWhiteColor}" Command="{Binding BiometricAuthCommand}"/>
             </StackLayout>

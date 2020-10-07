@@ -205,21 +205,17 @@ namespace AtWork.ViewModels
             get { return _ClaimProfileBackCommand; }
             set { SetProperty(ref _ClaimProfileBackCommand, value); }
         }
-        #region Commands
 
+        #region Commands
         public DelegateCommand LogoutCommand { get; set; }
         public DelegateCommand ComingSoonCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand BackClickCommand { get { return new DelegateCommand(async () => await BackClick()); } }
         public DelegateCommand ClosePopupCommand { get { return new DelegateCommand(async () => await ClosePopup(true)); } }
         public DelegateCommand LeftCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
-        public DelegateCommand AddNewsPostCommand { get { return new DelegateCommand(async () => await AddNewNewsPost()); } }
-        public DelegateCommand<string> AddNewsPostNextCommand { get { return new DelegateCommand<string>(async (obj) => await AddNewsPostNext(obj)); } }
-        //public DelegateCommand NewsOptionCommand { get { return new DelegateCommand(async () => await NewsOption()); } }
         public DelegateCommand GoToNewsPageCommand { get { return new DelegateCommand(async () => await GoToNewsPage()); } }
         public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
         public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
-        public DelegateCommand GreenHeaderViewBackCommand { get { return new DelegateCommand(async () => await GreenHeaderViewBack()); } }
         public DelegateCommand OpenProfileCommand { get { return new DelegateCommand(async () => await OpenProfile()); } }
         #endregion
 
@@ -268,21 +264,6 @@ namespace AtWork.ViewModels
             }
         }
 
-        /// <summary>
-        /// Navigate back to the previous screen. 
-        /// </summary>
-        /// <returns></returns>
-        public async Task AddNewNewsPost()
-        {
-            try
-            {
-                await _navigationService.NavigateAsync(nameof(WelcomeSetupPage), null);
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
         private async Task GoToNewsPage()
         {
             try
@@ -305,17 +286,7 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(exception.Message);
             }
         }
-        public async Task GreenHeaderViewBack()
-        {
-            try
-            {
-                await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
+
         /// <summary>
         /// Destroy
         /// </summary>
@@ -411,38 +382,6 @@ namespace AtWork.ViewModels
             }
         }
 
-        /// <summary>
-        /// ClosePopup
-        /// </summary>
-        /// <param name="selectedPageToNext">Page String</param>
-        /// <returns></returns>
-        public async Task AddNewsPostNext(string selectedPageToNext)
-        {
-
-            this.SelectedPage = selectedPageToNext;
-            if (selectedPageToNext == nameof(AddNewsPostPage))
-            {
-                await _navigationService.NavigateAsync(nameof(AddNewsPostImagePage));
-            }
-            else if (selectedPageToNext == nameof(AddNewsPostImagePage))
-            {
-                //await _navigationService.NavigateAsync(nameof(AddNewsAttachFilePage));
-            }
-            else if (selectedPageToNext == nameof(AddNewsAttachFilePage))
-            {
-                await _navigationService.NavigateAsync(nameof(PostNewsPage));
-            }
-            else if (selectedPageToNext == nameof(PostNewsPage))
-            {
-                await _navigationService.NavigateAsync(nameof(DashboardPage));
-            }
-            else if (selectedPageToNext == nameof(CropImagePage))
-            {
-                SessionService.isImageCropped = true;
-                await BackClick();
-            }
-        }
-
         public async Task ShowLoader(bool animate = false)
         {
             try
@@ -487,11 +426,6 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-        //public async Task LogoutFromApp()
-        //{
-        //    SessionService.Logout();
-        //    await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
-        //}
         #endregion
     }
 }
