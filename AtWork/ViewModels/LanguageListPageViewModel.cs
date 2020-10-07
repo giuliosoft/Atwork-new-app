@@ -87,6 +87,10 @@ namespace AtWork.ViewModels
             try
             {
                 LanguageService.Init(Selectedlanguage);
+                Volunteers volunteersTemp = new Volunteers();
+                volunteersTemp = SettingsService.VolunteersUserData;
+                volunteersTemp.volLanguage = Selectedlanguage;
+                SettingsService.VolunteersUserData = volunteersTemp;
                 SaveUserLanguageDetail(Selectedlanguage);
                 await _navigationService.NavigateAsync(nameof(ChangeProfilePicturePage), null);
             }
