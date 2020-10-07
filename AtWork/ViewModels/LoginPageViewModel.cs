@@ -23,7 +23,7 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
 #if DEBUG
             UserEmail = "hans.meier@volunty.com";
-            UserPassword = "Password01";
+            UserPassword = "Password01#";
 #endif
         }
         #endregion
@@ -99,8 +99,15 @@ namespace AtWork.ViewModels
                     {
                         SettingsService.VolunteersUserData = serviceResultBody.Data1;
                         SettingsService.UserProfile = serviceResultBody.Data1?.volPicture;
+                        if (SettingsService.AppLanguage != serviceResultBody.Data1?.volLanguage)
+                        {
+                            var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
+                            if (res)
+                            {
+                                LanguageService.Init(serviceResultBody.Data1?.volLanguage);
+                            }
+                        }
                     }
-                    
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok && !serviceResultBody.Message.ToLower().Contains("no record found."))
                     {
                         //await _navigationService.NavigateAsync(nameof(NewsPage));

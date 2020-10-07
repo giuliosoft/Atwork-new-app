@@ -58,7 +58,7 @@ namespace AtWork.Services
 
                     if (isAddAuthorizationToken)
                     {
-                        string basicAuthToken = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}"));
+                        Debug.WriteLine("\n\nTKN : " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}"))); 
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                     }
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -97,7 +97,7 @@ namespace AtWork.Services
                     if (isAddAuthorizationToken)
                     {
                         //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + SettingsService.AuthorizationToken);
-                        string basicAuthToken = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}"));
+                        Debug.WriteLine("\n\nTKN : " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                     }
 
@@ -137,6 +137,7 @@ namespace AtWork.Services
 
                     if (isAddAuthorizationToken)
                     {
+                        Debug.WriteLine("\n\nTKN : " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{loginInputModel.email}:{loginInputModel.password}")));
                         //string UserId = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{loginInputModel.email}:{loginInputModel.password}"));
                     }

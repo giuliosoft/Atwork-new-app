@@ -34,6 +34,7 @@ namespace AtWork.ViewModels
         private string _CreatePassowrdEntrytext = string.Empty;
         private bool _Passwordmessage = true;
         private bool _Samepasswordworning = false;
+        private ImageSource _UserCompanyLogo = string.Empty;
         #endregion
 
         #region Public Properties
@@ -63,6 +64,11 @@ namespace AtWork.ViewModels
         {
             get { return _Samepasswordworning; }
             set { SetProperty(ref _Samepasswordworning, value); }
+        }
+        public ImageSource UserCompanyLogo
+        {
+            get { return _UserCompanyLogo; }
+            set { SetProperty(ref _UserCompanyLogo, value); }
         }
         #endregion
 
@@ -195,6 +201,10 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             CreatePassowrdLabeltext = AppResources.CreatePasswordText;
             isCreatingPwd = true;
+            if (SessionService.tempClaimProfileData != null && !string.IsNullOrEmpty(SessionService.tempClaimProfileData.coLogo))
+            {
+                UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+            }
         }
     }
 }
