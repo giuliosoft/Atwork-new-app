@@ -91,6 +91,11 @@ namespace AtWork.ViewModels
             get { return _ShowPickOgOurImage; }
             set { SetProperty(ref _ShowPickOgOurImage, value); }
         }
+        public string SelectedDefaultImage
+        {
+            get { return _Prop; }
+            set { SetProperty(ref _Prop, value); }
+        }
 
         public ImageSource OurSelectedImage
         {
