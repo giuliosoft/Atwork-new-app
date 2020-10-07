@@ -145,7 +145,7 @@ namespace AtWork.ViewModels
                                 SessionService.tempVolunteerData.VolUserPassword = CreatePassowrdEntrytext;
                                 SessionService.tempVolunteerData.oldPassword = string.Empty;
                             }
-                            var serviceResult = await UserServices.ChangeUserPassword(SessionService.tempVolunteerData);
+                            var serviceResult = await UserServices.ChangeUserPassword(SessionService.tempVolunteerData, false);
                             if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                             {
                                 if (serviceResult.Body != null)

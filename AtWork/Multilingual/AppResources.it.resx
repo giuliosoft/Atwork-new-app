@@ -670,14 +670,14 @@ In addition to locally mounted information, hyperlinks may be provided to extern
         <value>approved the changes, your</value>
     </data>
     <data name="ClaimProfileThankYouText6" xml:space="preserve">
-        <value>profile will be uploaded.</value>
+        <value>profile will be updated.</value>
     </data>
     <data name="ContinueSetupText" xml:space="preserve">
         <value>Continue setup</value>
     </data>
     <data name="PasswordValidationText" xml:space="preserve">
         <value>Your password must include least 8 characters.
-At least one lowercase letter, one upercase
+At least one lowercase letter, one uppercase
 letter, one number and one special character.</value>
     </data>
     <data name="AtWorkActivityEventText" xml:space="preserve">

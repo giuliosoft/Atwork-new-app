@@ -652,7 +652,7 @@ Permission Denied. Can not continue, try again.</value>
         <value>Submit corrections</value>
     </data>
     <data name="ClaimProfileThankYouText1" xml:space="preserve">
-        <value>Thank you for your request</value>
+        <value>Thank you for your request.</value>
     </data>
     <data name="ClaimProfileThankYouText2" xml:space="preserve">
         <value>You can now continue setting</value>
@@ -667,14 +667,14 @@ Permission Denied. Can not continue, try again.</value>
         <value>approved the changes, your</value>
     </data>
     <data name="ClaimProfileThankYouText6" xml:space="preserve">
-        <value>profile will be uploaded.</value>
+        <value>profile will be updated.</value>
     </data>
     <data name="ContinueSetupText" xml:space="preserve">
         <value>Continue setup</value>
     </data>
     <data name="PasswordValidationText" xml:space="preserve">
         <value>Your password must include least 8 characters.
-At least one lowercase letter, one upercase
+At least one lowercase letter, one uppercase
 letter, one number and one special character.</value>
     </data>
     <data name="AtWorkActivityEventText" xml:space="preserve">

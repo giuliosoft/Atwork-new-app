@@ -94,6 +94,7 @@ namespace AtWork.ViewModels
                 }
                 await ShowLoader();
                 Volunteers inputModel = new Volunteers();
+                inputModel.volUniqueID = SettingsService.VolunteersUserData.volUniqueID;
                 inputModel.oldPassword = CurrentPassword;
                 inputModel.VolUserPassword = NewPassword;
                 var serviceResult = await UserServices.ChangeUserPassword(inputModel);

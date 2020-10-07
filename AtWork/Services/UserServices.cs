@@ -206,14 +206,14 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> ChangeUserPassword(Volunteers inputModel)
+        public static async Task<BaseResponse<string>> ChangeUserPassword(Volunteers inputModel, bool isAddAuthToken = true)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
                 var updateUserPasswordServiceUrl = ConfigService.BaseServiceURL + ConfigService.UpdateUserPasswordServiceURL;
                 var jData = JsonConvert.SerializeObject(inputModel);
-                resultModel = await PostResponse<string>(updateUserPasswordServiceUrl, jData, true);
+                resultModel = await PostResponse<string>(updateUserPasswordServiceUrl, jData, isAddAuthToken);
             }
             catch (Exception ex)
             {
