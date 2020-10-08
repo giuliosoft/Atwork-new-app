@@ -146,7 +146,12 @@ namespace AtWork.ViewModels
         }
         public ImageSource CoLogo
         {
-            get { return _CoLogo; }
+            get
+            {
+                 if (SettingsService.LoggedInUserData.coLogo == string.Empty)
+                    return string.Empty;
+                return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SettingsService.LoggedInUserData.coLogo));
+            }
             set { SetProperty(ref _CoLogo, value); }
         }
         #endregion

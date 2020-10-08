@@ -25,7 +25,6 @@ namespace AtWork.ViewModels
             BackCancelText = AppResources.BackButtonText;
             Passwordmessage = true;
             Samepasswordworning = false;
-            //ClaimProfileBackCommand = BackButtonCommand;
         }
         #endregion
 
@@ -68,7 +67,7 @@ namespace AtWork.ViewModels
         }
         public ImageSource UserCompanyLogo
         {
-            get { return _UserCompanyLogo; }
+            get { return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo)); }
             set { SetProperty(ref _UserCompanyLogo, value); }
         }
         #endregion
@@ -202,14 +201,6 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             CreatePassowrdLabeltext = AppResources.CreatePasswordText;
             isCreatingPwd = true;
-            if (SessionService.tempClaimProfileData != null && !string.IsNullOrEmpty(SessionService.tempClaimProfileData.coLogo))
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
-                });
-                //UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
-            }
         }
     }
 }

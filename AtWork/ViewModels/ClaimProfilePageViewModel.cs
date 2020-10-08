@@ -16,7 +16,7 @@ namespace AtWork.ViewModels
         #region Constructor
         public ClaimProfilePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
-
+            
         }
         #endregion
 
@@ -55,7 +55,7 @@ namespace AtWork.ViewModels
 
         public ImageSource UserCompanyLogo
         {
-            get { return _UserCompanyLogo; }
+            get { return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo)); }
             set { SetProperty(ref _UserCompanyLogo, value); }
         }
         #endregion
@@ -122,15 +122,6 @@ namespace AtWork.ViewModels
                     UserName = SessionService.tempVolunteerData.volFirstName;
                     UserSurname = SessionService.tempVolunteerData.volLastName;
                     UserEmail = SessionService.tempVolunteerData.volEmail;
-                    if (!string.IsNullOrEmpty(SessionService.tempClaimProfileData.coLogo))
-                    {
-                        MainThread.BeginInvokeOnMainThread(() =>
-                        {
-                            UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
-                        });
-                        //UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
-
-                    }
                 }
             }
             catch (Exception ex)

@@ -12,7 +12,7 @@
              NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,40,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
-            <ffImageloading:CachedImage CacheType="Memory" RetryCount="3" Margin="0,50,0,0" Grid.Column="0" Source="{Binding UserCompanyLogo}" Aspect="AspectFit" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+            <ffImageloading:CachedImage CacheType="All" RetryCount="3" Margin="0,50,0,0" Grid.Column="0" Source="{Binding UserCompanyLogo}" Aspect="AspectFit" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
                 <!--<ffImageloading:CachedImage.Transformations>
                     <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
                 </ffImageloading:CachedImage.Transformations>-->
