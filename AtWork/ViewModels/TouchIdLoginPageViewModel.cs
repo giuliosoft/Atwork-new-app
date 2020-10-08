@@ -43,7 +43,8 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await BackClick();
+                //await BackClick();
+                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}/{nameof(LoginPage)}");
             }
             catch (Exception ex)
             {

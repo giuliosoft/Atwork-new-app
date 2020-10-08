@@ -8,7 +8,8 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
              NavigationPage.HasNavigationBar="false"
-             BackgroundColor="{StaticResource OffWhiteColor}">
+             BackgroundColor="{StaticResource OffWhiteColor}"
+             ControlTemplate="{StaticResource GreenBackHeader_Template}">
     <ContentPage.Content>
         <StackLayout Spacing="40" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="{x:Static Multilingual:AppResources.AppAuthenticationHeaderText}" Style="{StaticResource ClaimProfileThanksLabelStyle}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Padding="{DynamicResource HeightWidth25}"/>
