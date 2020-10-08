@@ -94,7 +94,7 @@ namespace AtWork.ViewModels
                                 SessionService.tempVolunteerData = tempUserVol;
                                 if (string.IsNullOrEmpty(tempUserVol?.volLanguage))
                                 {
-                                    LanguageService.Init(TextResources.EnglishCode);
+                                    LanguageService.Init(TextResources.EnglishLanguage);
                                 }
                                 else if (SettingsService.AppLanguage != tempUserVol?.volLanguage)
                                 {

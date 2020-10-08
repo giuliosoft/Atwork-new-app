@@ -5,6 +5,7 @@ using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static AtWork.Models.LoginModel;
 
@@ -123,7 +124,12 @@ namespace AtWork.ViewModels
                     UserEmail = SessionService.tempVolunteerData.volEmail;
                     if (!string.IsNullOrEmpty(SessionService.tempClaimProfileData.coLogo))
                     {
-                        UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+                        });
+                        //UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+
                     }
                 }
             }

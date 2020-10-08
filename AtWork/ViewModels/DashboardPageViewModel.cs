@@ -46,6 +46,7 @@ namespace AtWork.ViewModels
 
         #region Private Properties
         private bool _NewsViewIsVisible = true;
+        private ImageSource _CoLogo;
         private bool _ActivityViewIsVisible = false;
         private int PageNo = 1;
         private int ActivityPageNo = 1;
@@ -142,6 +143,11 @@ namespace AtWork.ViewModels
         {
             get { return _UserProfileImage; }
             set { SetProperty(ref _UserProfileImage, value); }
+        }
+        public ImageSource CoLogo
+        {
+            get { return _CoLogo; }
+            set { SetProperty(ref _CoLogo, value); }
         }
         #endregion
 
@@ -906,6 +912,9 @@ namespace AtWork.ViewModels
                 {
                     UserProfileImageHeader = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now.ToString()));
                     UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
+                    if (SettingsService.LoggedInUserData.coLogo == string.Empty)
+                        CoLogo = string.Empty;
+                    CoLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SettingsService.LoggedInUserData.coLogo));
                 });
 
                 LayoutService.ConvertThemeAsPerSettings();

@@ -9,6 +9,7 @@ using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AtWork.ViewModels
@@ -203,7 +204,11 @@ namespace AtWork.ViewModels
             isCreatingPwd = true;
             if (SessionService.tempClaimProfileData != null && !string.IsNullOrEmpty(SessionService.tempClaimProfileData.coLogo))
             {
-                UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+                });
+                //UserCompanyLogo = ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
             }
         }
     }

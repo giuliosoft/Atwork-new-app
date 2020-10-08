@@ -101,7 +101,7 @@ namespace AtWork.ViewModels
                         SettingsService.UserProfile = serviceResultBody.Data1?.volPicture;
                         if (string.IsNullOrEmpty(serviceResultBody.Data1?.volLanguage))
                         {
-                            LanguageService.Init(TextResources.EnglishCode);
+                            LanguageService.Init(TextResources.EnglishLanguage);
                         }
                         else if (SettingsService.AppLanguage != serviceResultBody.Data1?.volLanguage)
                         {
