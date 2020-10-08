@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net.Http;
 using AtWork.Services;
+using FFImageLoading;
+using FFImageLoading.Config;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -33,6 +36,17 @@ namespace AtWork
             LayoutService.Init();
             LanguageService.Init(SettingsService.AppLanguage);
             NavigationService.NavigateAsync(InitNavigationPageService.Navigate()).Wait();
+            ImageService.Instance.Initialize(new Configuration
+            {
+                HttpClient = BuildImageHttpClient()
+            });
+        }
+
+        private static HttpClient BuildImageHttpClient()
+        {
+            var result = new HttpClient();
+            result.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36");
+            return result;
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
