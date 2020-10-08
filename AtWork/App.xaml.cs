@@ -36,10 +36,13 @@ namespace AtWork
             LayoutService.Init();
             LanguageService.Init(SettingsService.AppLanguage);
             NavigationService.NavigateAsync(InitNavigationPageService.Navigate()).Wait();
-            ImageService.Instance.Initialize(new Configuration
-            {
-                HttpClient = BuildImageHttpClient()
-            });
+            //ImageService.Instance.Initialize(new Configuration
+            //{
+            //    HttpClient = BuildImageHttpClient()
+            //});
+            var config = new Configuration();
+            config.DownloadCache = new CustomDownloadCacheService(config);
+            ImageService.Instance.Initialize(config);
         }
 
         private static HttpClient BuildImageHttpClient()
