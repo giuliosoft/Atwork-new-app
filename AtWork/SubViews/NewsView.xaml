@@ -90,7 +90,7 @@
                                                                 <Grid.RowDefinitions>
                                                                     <RowDefinition Height="*"/>
                                                                 </Grid.RowDefinitions>
-                                                                <ffImageLoading:CachedImage CacheType="Memory" Grid.Row="0" RetryCount="3" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                                                                <ffImageLoading:CachedImage CacheType="Memory" Grid.Row="0" RetryCount="3" DownsampleHeight="500" DownsampleWidth="500" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
                                                             </Grid>
                                                         </DataTemplate>
                                                     </CarouselView.ItemTemplate>
