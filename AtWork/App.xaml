@@ -255,7 +255,7 @@
             </Style>
             <Style x:Key="HeaderNextLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize12}" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize10}" />
                 <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />

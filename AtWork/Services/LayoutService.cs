@@ -90,6 +90,7 @@ namespace AtWork.Services
         public static GridLength GridHeightWidth60 { get; set; }
         public static GridLength GridHeightWidth70 { get; set; }
         public static GridLength GridHeightWidth100 { get; set; }
+        public static GridLength GridHeightWidth120 { get; set; }
         #endregion
 
         public static void DynamicLayoutServiceInit()
@@ -198,6 +199,7 @@ namespace AtWork.Services
             GridHeightWidth70 = sizeConvertAsPerDevice(70);
             GridHeightWidth100 = sizeConvertAsPerDevice(100);
             */
+            GridHeightWidth120 = sizeConvertAsPerDevice(120);
             #endregion
 
             #region View Spacing

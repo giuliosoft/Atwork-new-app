@@ -19,7 +19,7 @@
                     <!--<ColumnDefinition Width="*" />-->
                     <!--<ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />-->
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{Static Services:LayoutService.GridHeightWidth120}" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <!--<Label Grid.Column="0" IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}" TextColor="Transparent" Padding="10,7,10,5"/>-->
@@ -38,7 +38,7 @@
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </ContentView>
-                <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
                     <ffImageLoading:CachedImage CacheType="All" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Source="{TemplateBinding BindingContext.CoLogo}" Style="{StaticResource HeaderLogoImageStyle}" Margin="{DynamicResource MarginPadding00_00_00_10}"/>
                 </ContentView>
                 <ContentView Grid.Column="2" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
