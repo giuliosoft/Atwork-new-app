@@ -20,16 +20,30 @@
                         <ffTransformations:CircleTransformation/>
                     </ffImageLoading:CachedImage.Transformations>-->
                 </ffImageLoading:CachedImage>
-                <Label Padding="{DynamicResource HeightWidth50}" Text="{x:Static Multilingual:AppResources.WelcomeSetup}" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{x:Static Multilingual:AppResources.WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
-                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{x:Static Multilingual:AppResources.WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
-                <StackLayout Padding="{DynamicResource MarginPadding20_50_20_50}" Orientation="Horizontal"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                    <PancakeControl:PancakeView HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource DeviceWidthFooterTab}" HorizontalOptions="Start" CornerRadius="{DynamicResource CornerRadius20}" BackgroundColor="{DynamicResource LightColor}">
-                        <Button x:Name="btnBeginSetup" Text="{x:Static Multilingual:AppResources.BeginSetup}" WidthRequest="{DynamicResource HeightWidth50}" FontSize="20" VerticalOptions="FillAndExpand" TextColor="{DynamicResource DarkColor}"  Command="{Binding GoForBeginSetupCommand}"/>
-                    </PancakeControl:PancakeView>
-                    <PancakeControl:PancakeView HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource DeviceWidthFooterTab}" HorizontalOptions="Start" CornerRadius="{DynamicResource CornerRadius20}" BackgroundColor="{DynamicResource LightColor}">
-                        <Button x:Name="btnSkip" Text="{x:Static Multilingual:AppResources.SkipText}" WidthRequest="{DynamicResource HeightWidth50}" VerticalOptions="FillAndExpand" FontSize="20" TextColor="{DynamicResource DarkColor}" Command="{Binding GoForSkipCommand}"/>
+                <Label Padding="{DynamicResource HeightWidth50}" Text="{Binding WelcomeSetup}" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{Binding WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{Binding WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <StackLayout Margin="{DynamicResource MarginPadding00_00_00_20}" Orientation="Vertical"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                                <Label Padding="{DynamicResource MarginPadding20_0_20_0}" TextColor="{DynamicResource DarkColor}" Text="{Binding BeginSetupText}" FontSize="20" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoForBeginSetupCommand}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
                         </PancakeControl:PancakeView>
+                    </ContentView>
+                    <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
+                                <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding SkipText}" FontSize="20" TextColor="{DynamicResource DarkColor}"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoForSkipCommand}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </PancakeControl:PancakeView>
+                    </ContentView>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -19,9 +20,39 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
+        private string _BeginSetupText = AppResources.BeginSetup;
+        private string _SkipText = AppResources.SkipText;
+        private string _WelcomeSetup = AppResources.WelcomeSetup;
+        private string _WelcomeSetup2 = AppResources.WelcomeSetup2;
+        private string _WelcomeSetup1 = AppResources.WelcomeSetup1;
         #endregion
 
-        #region Public Properties        
+        #region Public Properties
+        public string BeginSetupText
+        {
+            get { return _BeginSetupText; }
+            set { SetProperty(ref _BeginSetupText, value); }
+        }
+        public string SkipText
+        {
+            get { return _SkipText; }
+            set { SetProperty(ref _SkipText, value); }
+        }
+        public string WelcomeSetup
+        {
+            get { return _WelcomeSetup; }
+            set { SetProperty(ref _WelcomeSetup, value); }
+        }
+        public string WelcomeSetup2
+        {
+            get { return _WelcomeSetup2; }
+            set { SetProperty(ref _WelcomeSetup2, value); }
+        }
+        public string WelcomeSetup1
+        {
+            get { return _WelcomeSetup1; }
+            set { SetProperty(ref _WelcomeSetup1, value); }
+        }
         #endregion
 
         #region Commands
@@ -69,6 +100,11 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            BeginSetupText = AppResources.BeginSetup;
+            SkipText = AppResources.SkipText;
+            WelcomeSetup = AppResources.WelcomeSetup;
+            WelcomeSetup2 = AppResources.WelcomeSetup2;
+            WelcomeSetup1 = AppResources.WelcomeSetup1;
         }
     }
 }

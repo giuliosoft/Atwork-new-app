@@ -50,9 +50,15 @@ namespace AtWork.ViewModels
         private ObservableCollection<Language> _LanguageList = new ObservableCollection<Language>();
         private ControlTemplate _Header;
         private bool _ShowChooseLanguage = false;
+        private string _ChooseLanguageButton = AppResources.ChooseLanguage;
         #endregion
 
         #region Public Properties
+        public string ChooseLanguageButton
+        {
+            get { return _ChooseLanguageButton; }
+            set { SetProperty(ref _ChooseLanguageButton, value); }
+        }
         public string Selectedlanguage;
         public List<string> LanguageName { get; set; }
 
@@ -228,14 +234,13 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+            if (SessionService.IsWelcomeSetup)
+            {
+                ChooseLanguageButton = AppResources.ChooseLanguage;
+                AddNewsCancelImage = AppResources.BackButtonText;
+            }
             try
             {
-                //LanguageName = new List<string>();
-                //LanguageName.Add("English");
-                //LanguageName.Add("German");
-                //LanguageName.Add("French");
-                //LanguageName.Add("Italian");
-
                 await GetLanguages();
             }
             catch (Exception ex)
