@@ -15,23 +15,19 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource DarkColor}">
             <StackLayout VerticalOptions="FillAndExpand">
-                <ffImageLoading:CachedImage Margin="0,50,0,0"  Aspect="AspectFit" Grid.Column="0" Source="{Binding CompanyLogo}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="130" WidthRequest="130" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" RetryCount="3">
-                    <!--<ffImageLoading:CachedImage.Transformations>
-                        <ffTransformations:CircleTransformation/>
-                    </ffImageLoading:CachedImage.Transformations>-->
-                </ffImageLoading:CachedImage>
+                <ffImageLoading:CachedImage Margin="0,50,0,0"  Aspect="AspectFit" Grid.Column="0" Source="{Binding CompanyLogo}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="130" WidthRequest="130" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" RetryCount="3"/>
                 <Label Padding="{DynamicResource HeightWidth50}" Text="{Binding WelcomeSetup}" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
                 <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{Binding WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
                 <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{Binding WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
                 <StackLayout Margin="{DynamicResource MarginPadding00_00_00_20}" Orientation="Vertical"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
                     <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                         <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
-                                <Button Command="{Binding GoForBeginSetupCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" TextColor="{DynamicResource DarkColor}" Text="{Binding BeginSetupText}" FontSize="20" />
+                            <Button Command="{Binding GoForBeginSetupCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" TextColor="{DynamicResource DarkColor}" Text="{Binding BeginSetupText}" FontSize="20" />
                         </PancakeControl:PancakeView>
                     </ContentView>
                     <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                         <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
-                                <Button Command="{Binding GoForSkipCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding SkipText}" FontSize="20" TextColor="{DynamicResource DarkColor}"/>
+                            <Button Command="{Binding GoForSkipCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding SkipText}" FontSize="20" TextColor="{DynamicResource DarkColor}"/>
                         </PancakeControl:PancakeView>
                     </ContentView>
                 </StackLayout>

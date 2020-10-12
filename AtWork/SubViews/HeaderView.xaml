@@ -6,7 +6,7 @@
     <ContentView.Content>
         <StackLayout WidthRequest="100">
             <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
-                    <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,0,0" HeightRequest="30" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource LightBlueColor}">
+                    <PancakeControl:PancakeView WidthRequest="95" Margin="20,0,0,0" HeightRequest="30" HorizontalOptions="Start" CornerRadius="15" BackgroundColor="{StaticResource LightBlueColor}">
                         <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
                             <Image x:Name="logoImage"  Source="back" Margin="2,0,0,0"/>
                             <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}" Margin="5,0,0,0" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>

@@ -57,22 +57,12 @@
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></StackLayout>
                 <ContentView  Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding ChooseFromCamera}" FontSize="20" TextColor="White"/>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddImagesFromGalleryCommand}"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                            <Button Command="{Binding AddImagesFromGalleryCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding ChooseFromCamera}" FontSize="20" TextColor="White"/>
                     </PancakeControl:PancakeView>
                 </ContentView>
                 <ContentView IsVisible="{Binding ShowPickOfOurImage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                     <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                            <Label Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.Orpickoneofours}" FontSize="20" TextColor="White"/>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OurImagesCommand}"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                            <Button Command="{Binding OurImagesCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{x:Static Multilingual:AppResources.Orpickoneofours}" FontSize="20" TextColor="White"/>
                     </PancakeControl:PancakeView>
                 </ContentView>
             </StackLayout>
