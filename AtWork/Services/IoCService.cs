@@ -71,6 +71,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<YourInterestsPage, YourInterestsPageViewModel>();
             containerRegistry.RegisterForNavigation<WelcomeSetupDonePage, WelcomeSetupDonePageViewModel>();
             containerRegistry.RegisterForNavigation<ForgotPasswordPage, ForgotPasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<BackgroundLoginPage, BackgroundLoginPageViewModel>();
         }
 
         /// <summary>

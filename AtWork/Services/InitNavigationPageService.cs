@@ -26,26 +26,29 @@ namespace AtWork.Services
             {
                 return $"/{nameof(NavigationPage)}/{nameof(StartUpPage)}";
             }
+
             */
-            if (SettingsService.IsBioMetricAuthenticationEnabled)
-            {
-                return $"/{nameof(NavigationPage)}/{nameof(TouchIDLoginPage)}";
-            }
-            else
-            {
-                if (SettingsService.LoggedInUserData != null && SettingsService.VolunteersUserData != null)
-                {
-                    LayoutService.ConvertThemeAsPerSettings();
-                    if (SettingsService.VolunteersUserData?.volOnBoardStatus.ToLower() == "complete" && SettingsService.VolunteersUserData?.volStatus.ToLower() == "active")
-                        return $"/{nameof(NavigationPage)}/{nameof(DashboardPage)}";
-                    else
-                        return $"/{nameof(NavigationPage)}/{nameof(WelcomeSetupPage)}";
-                }
-                else
-                {
-                    return $"/{nameof(NavigationPage)}/{nameof(StartUpPage)}";
-                }
-            }
+            return $"/{nameof(NavigationPage)}/{nameof(BackgroundLoginPage)}";
+
+            //if (SettingsService.IsBioMetricAuthenticationEnabled)
+            //{
+            //    return $"/{nameof(NavigationPage)}/{nameof(TouchIDLoginPage)}";
+            //}
+            //else
+            //{
+            //    if (SettingsService.LoggedInUserData != null && SettingsService.VolunteersUserData != null)
+            //    {
+            //        LayoutService.ConvertThemeAsPerSettings();
+            //        if (SettingsService.VolunteersUserData?.volOnBoardStatus.ToLower() == "complete" && SettingsService.VolunteersUserData?.volStatus.ToLower() == "active")
+            //            return $"/{nameof(NavigationPage)}/{nameof(DashboardPage)}";
+            //        else
+            //            return $"/{nameof(NavigationPage)}/{nameof(WelcomeSetupPage)}";
+            //    }
+            //    else
+            //    {
+            //        return $"/{nameof(NavigationPage)}/{nameof(StartUpPage)}";
+            //    }
+            //}
         }
     }
 }
