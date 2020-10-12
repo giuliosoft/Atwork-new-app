@@ -26,14 +26,9 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-            <ContentView IsVisible="{Binding ShowChooseLanguage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+            <ContentView IsVisible="{Binding ShowChooseLanguage}" Padding="{DynamicResource MarginPadding10}" HorizontalOptions="FillAndExpand" VerticalOptions="End">
                     <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource AccentColor}">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
-                            <Button Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding ChooseLanguageButton}" FontSize="20" TextColor="White"/>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectedLanguageCommand}"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                        <Button Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding ChooseLanguageButton}" FontSize="20" TextColor="White" Command="{Binding SelectedLanguageCommand}"/>
                     </PancakeControl:PancakeView>
                 </ContentView>
         </StackLayout>

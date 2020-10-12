@@ -175,19 +175,7 @@ namespace AtWork.ViewModels
                                 UserDetailsList = tempCmtList;
                             }
                         }
-                        if (!string.IsNullOrEmpty(volunteers?.volLanguage) && SettingsService.VolunteersUserData.volLanguage != volunteers?.volLanguage)
-                        {
-                            var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
-                            if (res)
-                            {
-                                Volunteers volunteersTemp = new Volunteers();
-                                volunteersTemp = SettingsService.VolunteersUserData;
-                                volunteersTemp.volLanguage = serviceResultBody?.Data?.volLanguage;
-                                SettingsService.VolunteersUserData = volunteersTemp;
-                                LanguageService.Init(serviceResultBody?.Data?.volLanguage);
-                                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
-                            }
-                        }
+                        await ChangeLanguage(volunteers?.volLanguage, true);
                     }
                 }
                 await ClosePopup();

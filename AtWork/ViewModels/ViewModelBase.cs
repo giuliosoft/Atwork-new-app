@@ -426,6 +426,26 @@ namespace AtWork.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        public async Task ChangeLanguage(string userLanguage, bool isOpenDashboard = false)
+        {
+            if (string.IsNullOrEmpty(userLanguage))
+            {
+                LanguageService.Init(TextResources.EnglishLanguage);
+            }
+            else if (SettingsService.AppLanguage != userLanguage)
+            {
+                var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
+                if (res)
+                {
+                    LanguageService.Init(userLanguage);
+                    if (isOpenDashboard)
+                    {
+                        await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

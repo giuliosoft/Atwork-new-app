@@ -99,18 +99,7 @@ namespace AtWork.ViewModels
                     {
                         SettingsService.VolunteersUserData = serviceResultBody.Data1;
                         SettingsService.UserProfile = serviceResultBody.Data1?.volPicture;
-                        if (string.IsNullOrEmpty(serviceResultBody.Data1?.volLanguage))
-                        {
-                            LanguageService.Init(TextResources.EnglishLanguage);
-                        }
-                        else if (SettingsService.AppLanguage != serviceResultBody.Data1?.volLanguage)
-                        {
-                            var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
-                            if (res)
-                            {
-                                LanguageService.Init(serviceResultBody.Data1?.volLanguage);
-                            }
-                        }
+                        await ChangeLanguage(serviceResultBody.Data1?.volLanguage);
                     }
                     if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok && !serviceResultBody.Message.ToLower().Contains("no record found."))
                     {

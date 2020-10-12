@@ -875,19 +875,7 @@ namespace AtWork.ViewModels
                                 UserProfileImage = ImageSource.FromUri(new Uri(ConfigService.BaseProfileImageURL + SettingsService.UserProfile + "?" + DateTime.Now));
                             });
                         }
-                        if(!string.IsNullOrEmpty(serviceResultBody?.Data?.volLanguage) && SettingsService.VolunteersUserData.volLanguage != serviceResultBody?.Data?.volLanguage)
-                        {
-                            var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
-                            if (res)
-                            {
-                                Volunteers volunteersTemp = new Volunteers();
-                                volunteersTemp = SettingsService.VolunteersUserData;
-                                volunteersTemp.volLanguage = serviceResultBody?.Data?.volLanguage;
-                                SettingsService.VolunteersUserData = volunteersTemp;
-                                LanguageService.Init(serviceResultBody?.Data?.volLanguage);
-                                await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(DashboardPage)}");
-                            }
-                        }
+                        await ChangeLanguage(serviceResultBody?.Data?.volLanguage,true);
                     }
                 }
             }

@@ -92,18 +92,7 @@ namespace AtWork.ViewModels
                                 SettingsService.LoggedInUserEmail = tempUserVol.volUserName;
                                 SettingsService.LoggedInUserPassword = tempUserVol.VolUserPassword;
                                 SessionService.tempVolunteerData = tempUserVol;
-                                if (string.IsNullOrEmpty(tempUserVol?.volLanguage))
-                                {
-                                    LanguageService.Init(TextResources.EnglishLanguage);
-                                }
-                                else if (SettingsService.AppLanguage != tempUserVol?.volLanguage)
-                                {
-                                    var res = await App.Current.MainPage.DisplayAlert(AppResources.AlertTitle, AppResources.AppRelaunchAlert, AppResources.AlertOkText, AppResources.Cancel);
-                                    if (res)
-                                    {
-                                        LanguageService.Init(tempUserVol?.volLanguage);
-                                    }
-                                }
+                                await ChangeLanguage(tempUserVol?.volLanguage);
                             }
                             await _navigationService.NavigateAsync(nameof(ClaimProfilePage), null);
                         }

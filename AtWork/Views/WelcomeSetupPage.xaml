@@ -26,16 +26,12 @@
                 <StackLayout Margin="{DynamicResource MarginPadding00_00_00_20}" Orientation="Vertical"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
                     <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                         <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                                 <Button Command="{Binding GoForBeginSetupCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" TextColor="{DynamicResource DarkColor}" Text="{Binding BeginSetupText}" FontSize="20" />
-                            </StackLayout>
                         </PancakeControl:PancakeView>
                     </ContentView>
                     <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
                         <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" >
                                 <Button Command="{Binding GoForSkipCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding SkipText}" FontSize="20" TextColor="{DynamicResource DarkColor}"/>
-                            </StackLayout>
                         </PancakeControl:PancakeView>
                     </ContentView>
                 </StackLayout>
