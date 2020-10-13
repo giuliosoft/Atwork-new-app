@@ -106,9 +106,9 @@ namespace AtWork.ViewModels
         {
             base.OnNavigatedTo(parameters);
             var tempCList = new List<CarouselModel>();
-            tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            tempCList.Add(new CarouselModel() { NewsImage = "bg" });
-            tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
+            //tempCList.Add(new CarouselModel() { NewsImage = "bg" });
             NewsImageCarouselList = new ObservableCollection<CarouselModel>(tempCList);
 
             var tempNews = new ObservableCollection<NewsModel>();

@@ -115,7 +115,7 @@
                                         </Grid.GestureRecognizers>
                                     </Grid>
                                 </Grid>
-                                <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource LightDarkBlackColor}" HorizontalOptions="FillAndExpand"/>
+                                <BoxView HeightRequest="0.5" BackgroundColor="Black" HorizontalOptions="FillAndExpand"/>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

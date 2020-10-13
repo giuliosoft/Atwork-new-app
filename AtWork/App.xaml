@@ -48,7 +48,7 @@
             <!--Shaded White-->
             <Color x:Key="GrayColor">#999999</Color>
             <!--Accent Default-->
-            <Color x:Key="AccentColor">#515AE0</Color>
+            <!--<Color x:Key="AccentColor">#515AE0</Color>-->
             <!-- Colors End -->
 
             <!--ControlTemplate-->

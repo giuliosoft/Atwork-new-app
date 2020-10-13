@@ -71,7 +71,7 @@
                                                                 <Grid.RowDefinitions>
                                                                     <RowDefinition Height="*"/>
                                                                 </Grid.RowDefinitions>
-                                                                <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" LoadingPlaceholder="bg.png" ErrorPlaceholder="bg.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                                <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding NewsImage}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                                                             </Grid>
                                                         </DataTemplate>
                                                     </CarouselView.ItemTemplate>

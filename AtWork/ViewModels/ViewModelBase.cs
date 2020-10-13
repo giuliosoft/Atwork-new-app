@@ -213,8 +213,6 @@ namespace AtWork.ViewModels
         public DelegateCommand ClosePopupCommand { get { return new DelegateCommand(async () => await ClosePopup(true)); } }
         public DelegateCommand LeftCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
         public DelegateCommand RightCommand { get { return new DelegateCommand(async () => await DisplayComingSoon()); } }
-        public DelegateCommand GoToNewsPageCommand { get { return new DelegateCommand(async () => await GoToNewsPage()); } }
-        public DelegateCommand GoToActivityPageCommand { get { return new DelegateCommand(async () => await GoToActivityPage()); } }
         public DelegateCommand HeaderBack { get { return new DelegateCommand(async () => await BackClick()); } }
         public DelegateCommand OpenProfileCommand { get { return new DelegateCommand(async () => await OpenProfile()); } }
         #endregion
@@ -257,29 +255,6 @@ namespace AtWork.ViewModels
             try
             {
                 await _navigationService.GoBackAsync();
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
-
-        private async Task GoToNewsPage()
-        {
-            try
-            {
-                await _navigationService.NavigateAsync(nameof(NewsPage), null);
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine(exception.Message);
-            }
-        }
-        private async Task GoToActivityPage()
-        {
-            try
-            {
-                await _navigationService.NavigateAsync(nameof(ActivityPage), null);
             }
             catch (Exception exception)
             {

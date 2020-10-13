@@ -43,7 +43,7 @@
                                     </StackLayout>
                                     <Label Text="Le travall benevole @ La Maison de la Riviere" FontSize="20" FontAttributes="Bold"/>
                                     <PancakeControl:PancakeView HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10">
-                                        <ffImageLoading:CachedImage HeightRequest="200" WidthRequest="200" Source="Activitydemobg" Aspect="AspectFit" LoadingPlaceholder="bg.png" ErrorPlaceholder="bg.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <!--<ffImageLoading:CachedImage HeightRequest="200" WidthRequest="200" Source="Activitydemobg" Aspect="AspectFit" LoadingPlaceholder="bg.png" ErrorPlaceholder="bg.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>-->
                                     </PancakeControl:PancakeView>
                                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Label Text="Tolochenaz ,Schweiz" Style="{StaticResource ActivityPageLabelStyle}" />
