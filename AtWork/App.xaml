@@ -74,16 +74,6 @@
                     <ContentPresenter Grid.Row="1" />
                 </Grid>
             </ControlTemplate>
-            <ControlTemplate x:Key="GreenBackHeader_Template">
-                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <SubViews:GreenBackHeaderView Grid.Row="0" />
-                    <ContentPresenter Grid.Row="1" />
-                </Grid>
-            </ControlTemplate>
             <ControlTemplate x:Key="AddNewsPostHeader_Template">
                 <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
                     <Grid.RowDefinitions>

@@ -204,9 +204,6 @@
     <BundleResource Include="Resources\startupbackground%402x.png" />
     <BundleResource Include="Resources\startupbackground%403x.png" />
     <BundleResource Include="Resources\logo.png" />
-    <BundleResource Include="Resources\headerbackgreen.png" />
-    <BundleResource Include="Resources\headerbackgreen%403x.png" />
-    <BundleResource Include="Resources\headerbackgreen%402x.png" />
     <BundleResource Include="Resources\leftarrow%403x.png" />
     <BundleResource Include="Resources\leftarrow%402x.png" />
     <BundleResource Include="Resources\leftarrow.png" />
