@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -41,7 +42,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

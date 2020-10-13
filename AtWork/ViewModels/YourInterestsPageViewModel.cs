@@ -109,7 +109,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             finally
             {
@@ -148,7 +148,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -255,7 +255,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Services;
 using AtWork.SubViews;
 using AtWork.Views;
@@ -109,7 +110,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task SelectActivityImage2()
@@ -122,7 +123,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task SelectActivityImage3()
@@ -136,7 +137,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task CloseProfile()
@@ -147,7 +148,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         

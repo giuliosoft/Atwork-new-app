@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Services;
 using AtWork.Views;
 using Prism.Commands;
@@ -46,7 +47,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task FindAndClaimAccount()
@@ -58,7 +59,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Popups;
@@ -37,7 +38,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion
@@ -158,7 +159,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -210,7 +211,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task OurImages()
@@ -243,7 +244,7 @@ namespace AtWork.ViewModels
                 //    }
                 //    catch (Exception ex)
                 //    {
-                //        Debug.WriteLine(ex.Message);
+                //        ExceptionHelper.CommanException(ex);
                 //    }
                 //};
                 activityImagePopup.BindingContext = activityImagePopupViewModel;
@@ -252,7 +253,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -331,7 +332,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -394,7 +395,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
                 await DisplayAlertAsync(AppResources.PermissionErrorText);
             }
             return retVal;
@@ -453,7 +454,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
     }

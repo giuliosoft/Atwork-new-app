@@ -169,7 +169,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task NewsPostProceed(string selectedTab)
@@ -211,7 +211,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

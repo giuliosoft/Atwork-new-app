@@ -235,7 +235,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -260,7 +260,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -272,7 +272,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -285,7 +285,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -299,7 +299,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task ProfileTapped()
@@ -357,7 +357,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -371,7 +371,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -386,7 +386,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -398,7 +398,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -410,7 +410,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -425,7 +425,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -473,7 +473,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
 
@@ -500,7 +500,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
                 newsOptionPopup.BindingContext = newsOptionPopupViewModel;
@@ -509,7 +509,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -557,7 +557,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
 
@@ -583,7 +583,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
                 newsOptionPopup.BindingContext = newsOptionPopupViewModel;
@@ -592,7 +592,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -695,7 +695,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             finally
             {
@@ -828,7 +828,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             finally
             {
@@ -852,7 +852,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task GetUserProfileUrl()
@@ -977,7 +977,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
     }

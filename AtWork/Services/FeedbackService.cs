@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using AtWork.Models;
 using Newtonsoft.Json;
 using static AtWork.Models.ActivityModel;
@@ -23,7 +24,7 @@ namespace AtWork.Services
             catch (Exception ex)
             {
                 resultModel.Result = ResponseStatus.None;
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             return resultModel;
         }
@@ -40,7 +41,7 @@ namespace AtWork.Services
             catch (Exception ex)
             {
                 resultModel.Result = ResponseStatus.None;
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             return resultModel;
         }

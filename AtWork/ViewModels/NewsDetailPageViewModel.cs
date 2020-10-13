@@ -190,7 +190,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -239,7 +239,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
 
@@ -267,7 +267,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
                 newsOptionPopup.BindingContext = newsOptionPopupViewModel;
@@ -276,7 +276,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -330,7 +330,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task OnOpenSwipeView()
@@ -341,7 +341,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task EditComment(NewsComment comment)
@@ -371,7 +371,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task DeleteComment(NewsComment comment)
@@ -397,7 +397,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             finally
             {
@@ -450,7 +450,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             finally
             {
@@ -465,7 +465,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task OpenUserDetail(NewsComment comment)
@@ -479,7 +479,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task CommentLike(NewsComment comment)
@@ -513,7 +513,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             finally
             {
@@ -620,7 +620,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
                 await ClosePopup();
             }
         }
@@ -649,7 +649,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

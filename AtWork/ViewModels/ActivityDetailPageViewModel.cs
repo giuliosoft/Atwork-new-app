@@ -126,7 +126,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -155,7 +155,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task GoToToastMessage()
@@ -185,7 +185,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -201,7 +201,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await DisplayAlertAsync(AppResources.EmailServiceAlert);
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -244,7 +244,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
                 UnSubscribeActivityPopup.BindingContext = UnSubscribeActivityPopupViewModel;
@@ -252,7 +252,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -385,7 +385,7 @@ namespace AtWork.ViewModels
                                         }
                                         catch (Exception ex)
                                         {
-                                            Debug.WriteLine(ex.Message);
+                                            ExceptionHelper.CommanException(ex);
                                         }
                                         if (!await CheckConnectivity())
                                         {
@@ -419,7 +419,7 @@ namespace AtWork.ViewModels
                             }
                             catch (Exception ex)
                             {
-                                Debug.WriteLine(ex.Message);
+                                ExceptionHelper.CommanException(ex);
                             }
                         };
                         JoinActivityPopup.BindingContext = joinactivityPopupViewModel;
@@ -463,7 +463,7 @@ namespace AtWork.ViewModels
                             }
                             catch (Exception ex)
                             {
-                                Debug.WriteLine(ex.Message);
+                                ExceptionHelper.CommanException(ex);
                             }
                             if (!await CheckConnectivity())
                             {
@@ -492,7 +492,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -580,7 +580,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
                 await ClosePopup();
             }
         }
@@ -612,7 +612,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion
@@ -659,7 +659,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
                 await DisplayAlertAsync(AppResources.PermissionErrorText);
             }
             return retVal;
@@ -707,7 +707,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
 
@@ -735,7 +735,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
                 newsOptionPopup.BindingContext = newsOptionPopupViewModel;
@@ -744,7 +744,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion
@@ -773,7 +773,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
     }

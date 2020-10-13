@@ -95,7 +95,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -107,7 +107,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task JoinedMember(ActivityListModel selectedActivityPost)
@@ -120,7 +120,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task ExecuteMyActivityRefreshCommand()
@@ -275,7 +275,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             //finally
             //{
@@ -328,7 +328,7 @@ namespace AtWork.ViewModels
                     catch (Exception ex)
                     {
                         await ClosePopup();
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
 
@@ -354,7 +354,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine(ex.Message);
+                        ExceptionHelper.CommanException(ex);
                     }
                 };
                 newsOptionPopup.BindingContext = newsOptionPopupViewModel;
@@ -363,7 +363,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task GotoCreateActivity()
@@ -374,7 +374,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

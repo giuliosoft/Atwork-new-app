@@ -22,7 +22,7 @@ namespace AtWork.Helpers
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
             return imageSource;
         }

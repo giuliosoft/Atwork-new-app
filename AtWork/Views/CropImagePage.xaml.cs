@@ -40,7 +40,7 @@ namespace AtWork.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                ExceptionHelper.CommanException(ex);
             }
         }
         */
