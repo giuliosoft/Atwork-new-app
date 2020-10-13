@@ -63,19 +63,19 @@ namespace AtWork.ViewModels
                     return;
                 }
 
-                if (string.IsNullOrEmpty(SettingsService.LoggedInUserEmail) || string.IsNullOrEmpty(SettingsService.LoggedInUserPassword))
+                if (SettingsService.VolunteersUserData == null || string.IsNullOrEmpty(SettingsService.VolunteersUserData?.volEmail) || string.IsNullOrEmpty(SettingsService.VolunteersUserData?.VolUserPassword))
                 {
                     await _navigationService.NavigateAsync(nameof(StartUpPage));
                     return;
                 }
 
                 LoginInputModel inputModel = new LoginInputModel();
-                inputModel.email = SettingsService.LoggedInUserEmail;
-                inputModel.password = SettingsService.LoggedInUserPassword;
+                inputModel.email = SettingsService.VolunteersUserData?.volUserName;
+                inputModel.password = SettingsService.VolunteersUserData?.VolUserPassword;
                 var serviceResult = await UserServices.LoginToApp(inputModel);
                 var serviceResultBody = JsonConvert.DeserializeObject<LoginResponce>(serviceResult?.Body);
 
-                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok && !serviceResultBody.Message.ToLower().Contains("no record found."))
+                if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok && serviceResultBody != null &&!serviceResultBody.Message.ToLower().Contains("no record found."))
                 {
                     if (serviceResultBody.Data != null)
                     {

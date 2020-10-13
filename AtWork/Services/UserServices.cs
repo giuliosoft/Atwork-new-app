@@ -246,7 +246,7 @@ namespace AtWork.Services
             {
                 var profileCorrectionServiceURL = ConfigService.BaseServiceURL + ConfigService.UserProfileCorrectionServiceURL;
                 var jData = JsonConvert.SerializeObject(inputModel);
-                resultModel = await PostResponse<string>(profileCorrectionServiceURL, jData, true);
+                resultModel = await PostResponse<string>(profileCorrectionServiceURL, jData, false);
             }
             catch (Exception ex)
             {

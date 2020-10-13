@@ -39,7 +39,7 @@
                     </StackLayout>
                 </ContentView>
                 <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                    <ffImageLoading:CachedImage CacheType="All" Source="{TemplateBinding BindingContext.CoLogo}" Style="{StaticResource HeaderLogoImageStyle}"/>
+                    <ffImageLoading:CachedImage CacheType="All" Source="{TemplateBinding BindingContext.CoLogo}" Style="{StaticResource HeaderLogoImageStyle}" Margin="{DynamicResource MarginPadding00_05_00_05}"/>
                 </ContentView>
                 <ContentView Grid.Column="2" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">

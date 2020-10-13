@@ -34,7 +34,7 @@ namespace AtWork.ViewModels
         private string _CreatePassowrdEntrytext = string.Empty;
         private bool _Passwordmessage = true;
         private bool _Samepasswordworning = false;
-        private ImageSource _UserCompanyLogo = string.Empty;
+        //private ImageSource _UserCompanyLogo = string.Empty;
         #endregion
 
         #region Public Properties
@@ -67,8 +67,13 @@ namespace AtWork.ViewModels
         }
         public ImageSource UserCompanyLogo
         {
-            get { return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo)); }
-            set { SetProperty(ref _UserCompanyLogo, value); }
+            get
+            {
+                if (string.IsNullOrEmpty(SessionService.tempClaimProfileData?.coLogo))
+                    return string.Empty;
+                return ImageSource.FromUri(new Uri(ConfigService.BaseCompanyLogoURL + SessionService.tempClaimProfileData.coLogo));
+            }
+            //set { SetProperty(ref _UserCompanyLogo, value); }
         }
         #endregion
 
@@ -163,7 +168,7 @@ namespace AtWork.ViewModels
                                         NavigationParameters parameter = new NavigationParameters();
                                         parameter.Add("isDisclaimer", true);
                                         await _navigationService.NavigateAsync(nameof(DisclaimerPage), parameter);
-                                    }
+                                    }   
                                 }
                             }
                             await ClosePopup();

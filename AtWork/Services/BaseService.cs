@@ -137,7 +137,7 @@ namespace AtWork.Services
 
                     if (isAddAuthorizationToken)
                     {
-                        Debug.WriteLine("\n\nTKN : " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{SettingsService.LoggedInUserEmail}:{SettingsService.LoggedInUserPassword}")));
+                        Debug.WriteLine("\n\nTKN : " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{loginInputModel.email}:{loginInputModel.password}")));
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{loginInputModel.email}:{loginInputModel.password}")));
                         //string UserId = Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{loginInputModel.email}:{loginInputModel.password}"));
                     }
