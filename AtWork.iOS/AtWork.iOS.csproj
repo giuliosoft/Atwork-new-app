@@ -182,9 +182,6 @@
     <Folder Include="Resources\de.lproj\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ChoosefromCameraroll.png" />
-    <BundleResource Include="Resources\ChoosefromCameraroll%402x.png" />
-    <BundleResource Include="Resources\ChoosefromCameraroll%403x.png" />
     <BundleResource Include="Resources\comment.png" />
     <BundleResource Include="Resources\comment%402x.png" />
     <BundleResource Include="Resources\comment%403x.png" />
@@ -194,18 +191,9 @@
     <BundleResource Include="Resources\option.png" />
     <BundleResource Include="Resources\option%402x.png" />
     <BundleResource Include="Resources\option%403x.png" />
-    <BundleResource Include="Resources\plusadd.png" />
-    <BundleResource Include="Resources\plusadd%402x.png" />
-    <BundleResource Include="Resources\plusadd%403x.png" />
-    <BundleResource Include="Resources\bg%402x.png" />
-    <BundleResource Include="Resources\bg%403x.png" />
-    <BundleResource Include="Resources\bg.png" />
     <BundleResource Include="Resources\heart.png" />
     <BundleResource Include="Resources\heart%402x.png" />
     <BundleResource Include="Resources\heart%403x.png" />
-    <BundleResource Include="Resources\pin.png" />
-    <BundleResource Include="Resources\pin%402x.png" />
-    <BundleResource Include="Resources\pin%403x.png" />
     <BundleResource Include="Resources\GMSelected.png" />
     <BundleResource Include="Resources\GMSelected%402x.png" />
     <BundleResource Include="Resources\GMSelected%403x.png" />
@@ -216,19 +204,9 @@
     <BundleResource Include="Resources\startupbackground%402x.png" />
     <BundleResource Include="Resources\startupbackground%403x.png" />
     <BundleResource Include="Resources\logo.png" />
-    <BundleResource Include="Resources\headerbackblue.png" />
-    <BundleResource Include="Resources\headerbackblue%402x.png" />
-    <BundleResource Include="Resources\headerbackblue%403x.png" />
     <BundleResource Include="Resources\headerbackgreen.png" />
     <BundleResource Include="Resources\headerbackgreen%403x.png" />
     <BundleResource Include="Resources\headerbackgreen%402x.png" />
-    <BundleResource Include="Resources\SubmitCorrection.png" />
-    <BundleResource Include="Resources\SubmitCorrection%402x.png" />
-    <BundleResource Include="Resources\SubmitCorrection%403x.png" />
-    <BundleResource Include="Resources\Passwordmessage.png" />
-    <BundleResource Include="Resources\Passwordmessage%402x.png" />
-    <BundleResource Include="Resources\Passwordmessage%403x.png" />
-    <BundleResource Include="Resources\Group 711%403x.png" />
     <BundleResource Include="Resources\leftarrow%403x.png" />
     <BundleResource Include="Resources\leftarrow%402x.png" />
     <BundleResource Include="Resources\leftarrow.png" />
