@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.YourFeedbackPage"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:SubViews="clr-namespace:AtWork.SubViews"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
+             BackgroundColor="{DynamicResource PosterWhiteColor}">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource OffWhiteColor}">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="20" Padding="0" BackgroundColor="{DynamicResource OffWhiteColor}">
+                    <PancakeControl:PancakeView HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Padding="10" >
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal">
+                                <PancakeControl:PancakeView HasShadow="False" BackgroundColor="{DynamicResource SecondaryLightColor}" BorderColor="{DynamicResource DarkColor}" HorizontalOptions="StartAndExpand" BorderThickness="1" HeightRequest="30" VerticalOptions="StartAndExpand" CornerRadius="12" >
+                                    <Label Text="{Binding SelectedPastActivity.proCategoryName}" Style="{StaticResource ActivityAboutGroupHeaderLabelStyle}" TextColor="{DynamicResource DarkColor}" HorizontalTextAlignment="Center" Padding="10"/>
+                                </PancakeControl:PancakeView>
+                                <CustomControl:CustomImage Source="{Binding SelectedPastActivity.activityPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}" Margin="0,5,0,0"/>
+                            </StackLayout>
+                            <Label Text="{Binding SelectedPastActivity.proTitle}"/>
+                            <PancakeControl:PancakeView BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth265}" CornerRadius="10">
+                                <Grid RowDefinitions="Auto">
+                                    <!--<PancakeControl:PancakeView BackgroundColor="{DynamicResource AccentColor}" VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="190" CornerRadius="10">
+                                        <CustomControl:CustomImage TintColor="{DynamicResource SecondaryLightColor}" Source="Activitydemobg" Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    </PancakeControl:PancakeView>-->
+                                    <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth265}" CornerRadius="10">
+                                        <Label Text="{Binding SelectedPastActivity.activityDuration}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End"/>
+                                    </PancakeControl:PancakeView>
+                                    <PancakeControl:PancakeView  VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth240}" CornerRadius="10">
+                                        <Label Text="{Binding SelectedPastActivity.activityDate}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                    </PancakeControl:PancakeView>
+                                    <PancakeControl:PancakeView VerticalOptions="Start" BackgroundColor="Transparent" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth215}" CornerRadius="10">
+                                        <Label Text="{Binding SelectedPastActivity.proAddress1}" Style="{StaticResource ActivityPageLabelStyle}" Margin="15,0,15,5" VerticalOptions="End" />
+                                    </PancakeControl:PancakeView>
+                                    <Grid  Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                        <Grid ColumnSpacing="{DynamicResource Spacing15}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <PancakeControl:PancakeView VerticalOptions="Start" BorderColor="{StaticResource DarkBrownColor}" BorderThickness="0.5" HeightRequest="{DynamicResource HeightWidth190}" CornerRadius="10">
+                                                <CarouselView x:Name="activityImageCarousel" ItemsSource="{Binding SelectedPastActivity.ActivityCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" HorizontalScrollBarVisibility="Never">
+                                                    <CarouselView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="*"/>
+                                                                </Grid.RowDefinitions>
+                                                                <ffImageLoading:CachedImage Grid.Row="0" Source="{Binding ActivityImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </CarouselView.ItemTemplate>
+                                                </CarouselView>
+                                            </PancakeControl:PancakeView>
+                                            <IndicatorView x:Name="indicatorView" Grid.Column="0" ItemsSource="{Binding SelectedPastActivity.ActivityCarouselList}" SelectedIndicatorColor="White" Opacity="0.9" IndicatorSize="10" Padding="10" HorizontalOptions="Center" VerticalOptions="End" />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </PancakeControl:PancakeView>
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,20,0,10">
+                                <Label Text="{Binding SelectedPastActivity.Member}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding JoinedMemberCommand}" CommandParameter="{Binding SelectedPastActivity.proUniqueID}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                    <PancakeControl:PancakeView IsVisible="{Binding IsUserAllowedToEditFeedback}" BackgroundColor="{DynamicResource DarkColor}" Margin="30,0,30,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="10">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
+                            <Label Text="{x:Static Multilingual:AppResources.FeedbackText}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                    <Label Text="{x:Static Multilingual:AppResources.OverallExperienceText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
+                    <SubViews:ExperienceRatingView HorizontalOptions="FillAndExpand" VerticalOptions="Fill"></SubViews:ExperienceRatingView>
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+
+                    <Label Text="{x:Static Multilingual:AppResources.ImpactOfYourVolunteeringText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
+                    <SubViews:ImpactRatingView HorizontalOptions="FillAndExpand" VerticalOptions="Fill"></SubViews:ImpactRatingView>
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+
+                    <Label Text="{x:Static Multilingual:AppResources.LikelihoodOfRecommendingText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
+                    <SubViews:RecommendRatingView HorizontalOptions="FillAndExpand" VerticalOptions="Fill"></SubViews:RecommendRatingView>
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+
+                    <Label Text="{x:Static Multilingual:AppResources.HowDidYouFeelDuringTheActivityText}" Style="{StaticResource YourFeedBackLabelStyle}" Margin="70,0,70,0"/>
+                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <FlexLayout Grid.Column="0" x:Name="feelList" BindableLayout.ItemsSource="{Binding FeedBackList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <PancakeControl:PancakeView BorderColor="{DynamicResource AccentColor}" BorderThickness="2" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="30" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <PancakeControl:PancakeView.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
+                                                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </DataTrigger>
+                                        </PancakeControl:PancakeView.Triggers>
+                                        <Label Text="{Binding Title}" Style="{StaticResource FeedbackChipLabelStyle}" LineBreakMode="NoWrap">
+                                            <Label.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
+                                                    <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
+                                                    <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <PancakeControl:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference feelList}, Path=BindingContext.ActivityFeelingSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </PancakeControl:PancakeView.GestureRecognizers>
+                                    </PancakeControl:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </Grid>
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{x:Static Multilingual:AppResources.WhatNeedsToImproveText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
+                    <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <FlexLayout Grid.Column="0" x:Name="improvementList" BindableLayout.ItemsSource="{Binding FeedBackListImproveList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <PancakeControl:PancakeView BorderColor="{DynamicResource AccentColor}" BorderThickness="2" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="30" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <PancakeControl:PancakeView.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
+                                                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </DataTrigger>
+                                        </PancakeControl:PancakeView.Triggers>
+                                        <Label Text="{Binding Title}" Style="{StaticResource FeedbackChipLabelStyle}" LineBreakMode="NoWrap">
+                                            <Label.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
+                                                    <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
+                                                    <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <PancakeControl:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference improvementList}, Path=BindingContext.ActivityImprovementSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </PancakeControl:PancakeView.GestureRecognizers>
+                                    </PancakeControl:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </Grid>
+                    <CustomControl:CustomEditor Text="{Binding FeedbackComments}" IsEnabled="{Binding IsUserAllowedToEditFeedback}" Placeholder="{x:Static Multilingual:AppResources.FeedbackMorePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,20,0"/>
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{x:Static Multilingual:AppResources.WhatDidYouLikeMostText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
+                    <CustomControl:CustomEditor Text="{Binding FeedbackLikeMostComment}" IsEnabled="{Binding IsUserAllowedToEditFeedback}" Placeholder="{x:Static Multilingual:AppResources.LikeMostPlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,0,0" HeightRequest="100" />
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{x:Static Multilingual:AppResources.AnythingElseYouWantToAddText}" Style="{StaticResource YourFeedBackLabelStyle}"/>
+                    <CustomControl:CustomEditor Text="{Binding FeedbackAdditionalComments}" IsEnabled="{Binding IsUserAllowedToEditFeedback}" Placeholder="{x:Static Multilingual:AppResources.AnythingElsePlaceholderText}" Style="{StaticResource FeedBackEditorStyle}" Margin="50,0,0,15" />
+                    <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand"/>
+                    <PancakeControl:PancakeView Opacity="{Binding SubmitFeedbackOpacity}" BackgroundColor="{DynamicResource AccentColor}" HeightRequest="30" CornerRadius="25" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="30,0,30,25" Padding="10">
+                        <Label Text="{x:Static Multilingual:AppResources.SubmitFeedBackText}" Style="{StaticResource YourFeedBackLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
+                        <PancakeControl:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SubmitFeedbackCommand}" />
+                        </PancakeControl:PancakeView.GestureRecognizers>
+                    </PancakeControl:PancakeView>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

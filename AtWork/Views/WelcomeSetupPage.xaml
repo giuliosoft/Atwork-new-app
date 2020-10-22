@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.WelcomeSetupPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             BackgroundColor="{DynamicResource DarkColor}"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{DynamicResource DarkColor}">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <ffImageLoading:CachedImage Margin="0,50,0,0"  Aspect="AspectFit" Grid.Column="0" Source="{Binding CompanyLogo}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="130" WidthRequest="130" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" RetryCount="3"/>
+                <Label Padding="{DynamicResource HeightWidth50}" Text="{Binding WelcomeSetup}" FontSize="28" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{Binding WelcomeSetup2}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <Label Margin="{DynamicResource MarginPadding50_10_50_10}" Text="{Binding WelcomeSetup1}" FontSize="18" FontFamily="Lato_Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="White"/>
+                <StackLayout Margin="{DynamicResource MarginPadding00_00_00_20}" Orientation="Vertical"   VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                    <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView Padding="15"  Margin="{DynamicResource MarginPadding30_0_30_0}" HeightRequest="20"  HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
+                            <Button Command="{Binding GoForBeginSetupCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" TextColor="{DynamicResource DarkColor}" Text="{Binding BeginSetupText}" FontSize="20" />
+                        </PancakeControl:PancakeView>
+                    </ContentView>
+                    <ContentView  HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                        <PancakeControl:PancakeView Padding="15"  HeightRequest="20" Margin="{DynamicResource MarginPadding30_0_30_0}" HorizontalOptions="FillAndExpand" CornerRadius="25" BackgroundColor="{DynamicResource LightColor}">
+                            <Button Command="{Binding GoForSkipCommand}" Padding="{DynamicResource MarginPadding20_0_20_0}" Text="{Binding SkipText}" FontSize="20" TextColor="{DynamicResource DarkColor}"/>
+                        </PancakeControl:PancakeView>
+                    </ContentView>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

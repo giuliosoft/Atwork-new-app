@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="AtWork.Popups.JoinActivityPopup"
+                 xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"
+                 xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 BackgroundColor="Transparent">
+    <pages:PopupPage.HasSystemPadding>
+        <OnPlatform x:TypeArguments="x:Boolean">
+            <OnPlatform.iOS>false</OnPlatform.iOS>
+            <OnPlatform.Android>true</OnPlatform.Android>
+        </OnPlatform>
+    </pages:PopupPage.HasSystemPadding>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Bottom" PositionOut="Bottom" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="0" CornerRadius="12,12,0,0">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <PancakeControl:PancakeView CornerRadius="2" HasShadow="False" BorderThickness="1" BorderColor="White" WidthRequest="35" HeightRequest="4" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" Margin="0,12,0,0" BackgroundColor="{StaticResource WhiteColor}"/>
+            <Label Text="{x:Static Multilingual:AppResources.ThankYouSigningupText}" Style="{StaticResource JoinActivityPopupHeaderStyle}" Margin="0,15,0,0"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="40,0,40,0">
+                <Label Text="{x:Static Multilingual:AppResources.JoinActivityText1}" Style="{StaticResource JoinActivityPopupTextStyle}" Margin="0,10,0,10"/>
+                <Label Text="{x:Static Multilingual:AppResources.JoinActivityText2}" Style="{StaticResource JoinActivityPopupTextStyle}" />
+            </StackLayout>
+            <BoxView HeightRequest="0.5" BackgroundColor="{StaticResource WhiteColor}" HorizontalOptions="FillAndExpand" Margin="0,15,0,15"/>
+            <Label Text="{x:Static Multilingual:AppResources.WhatDateYouPlanToAttendText}" Style="{StaticResource JoinActivityPopupTextStyle}" FontSize="18" Padding="25,0,25,10"/>
+            <Grid ColumnDefinitions="300" HorizontalOptions="Center" VerticalOptions="Center">
+                <FlexLayout Grid.Column="0" x:Name="datesView" BindableLayout.ItemsSource="{Binding ActivityJoinDates}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <PancakeControl:PancakeView BorderColor="White" BorderThickness="2" Margin="5" HasShadow="False" CornerRadius="15" HeightRequest="30" WidthRequest="110" HorizontalOptions="Center" VerticalOptions="Center">
+                                <PancakeControl:PancakeView.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="False">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </PancakeControl:PancakeView.Triggers>
+                                <Label Text="{Binding DisplayDateString}" Style="{StaticResource JoinActivityDateLabelStyle}">
+                                    <Label.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
+                                            <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
+                                            <Setter Property="TextColor" Value="White" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <PancakeControl:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference datesView}, Path=BindingContext.DateSelectedCommand}" CommandParameter="{Binding .}" />
+                                </PancakeControl:PancakeView.GestureRecognizers>
+                            </PancakeControl:PancakeView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </Grid>
+            <PancakeControl:PancakeView BackgroundColor="{StaticResource OffWhiteColor}" HeightRequest="30" CornerRadius="25" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Margin="20,40,20,25" Padding="10">
+                <Label Text="{x:Static Multilingual:AppResources.JoinActivityText}" Style="{StaticResource JoinActivityPopupHeaderStyle}" TextColor="{StaticResource BlackColor}"/>
+                <PancakeControl:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding JoinActivityCommand}"/>
+                </PancakeControl:PancakeView.GestureRecognizers>
+            </PancakeControl:PancakeView>
+        </StackLayout>
+        <PancakeControl:PancakeView.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GoForClosePopupCommand}"/>
+        </PancakeControl:PancakeView.GestureRecognizers>
+    </PancakeControl:PancakeView>
+</pages:PopupPage>

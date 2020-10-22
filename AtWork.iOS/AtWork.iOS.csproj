@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95B242D7-CCEF-4FBE-9793-82FE23767129}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AtWork.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>AtWork.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>automatic</ProvisioningType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>atwork_app_adhoc_provision_202008</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <CodesignProvision>atwork_app_prod_new_provision</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchInterpreter>-all</MtouchInterpreter>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Distribution: Miguel Penaranda (CD3SBJ2W2G)</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>atwork_app_adhoc_new_provision</CodesignProvision>
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type --optimize=force-rejected-types-removal</MtouchExtraArgs>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\NewsPageViewModel.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="Renderers\CustomEditorRenderer.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
+    <Compile Include="HelperServices\MultiMediaPickerService.cs" />
+    <Compile Include="HelperServices\HelperService.cs" />
+    <Compile Include="Renderers\CustomImageRenderer.cs" />
+    <Compile Include="Renderers\CustomDatePickerRenderer.cs" />
+    <Compile Include="Renderers\CustomTimePickerRenderer.cs" />
+    <Compile Include="Renderers\SelectableLabelRenderer.cs" />
+    <Compile Include="HelperServices\SettingsHelper.cs" />
+    <Compile Include="HelperServices\FilePickerList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Prism.Unity.Forms">
+      <Version>7.2.0.1422</Version>
+    </PackageReference>
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView">
+      <Version>2.0.11</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Connectivity">
+      <Version>3.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugins.Settings">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms.PancakeView">
+      <Version>1.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Fingerprint">
+      <Version>2.1.1</Version>
+          </PackageReference>
+
+    <PackageReference Include="GMImagePicker.Xamarin">
+      <Version>2.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor">
+      <Version>18.1.0.42</Version>
+    </PackageReference>
+    <PackageReference Include="CClarke.Plugin.Calendars">
+      <Version>1.0.14</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\AtWork\AtWork.csproj">
+      <Project>{8E7481D1-DE62-4318-9232-F24B2DD822E5}</Project>
+      <Name>AtWork</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Renderers\" />
+    <Folder Include="HelperServices\" />
+    <Folder Include="Resources\de.lproj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\comment.png" />
+    <BundleResource Include="Resources\comment%402x.png" />
+    <BundleResource Include="Resources\comment%403x.png" />
+    <BundleResource Include="Resources\like.png" />
+    <BundleResource Include="Resources\like%402x.png" />
+    <BundleResource Include="Resources\like%403x.png" />
+    <BundleResource Include="Resources\option.png" />
+    <BundleResource Include="Resources\option%402x.png" />
+    <BundleResource Include="Resources\option%403x.png" />
+    <BundleResource Include="Resources\heart.png" />
+    <BundleResource Include="Resources\heart%402x.png" />
+    <BundleResource Include="Resources\heart%403x.png" />
+    <BundleResource Include="Resources\GMSelected.png" />
+    <BundleResource Include="Resources\GMSelected%402x.png" />
+    <BundleResource Include="Resources\GMSelected%403x.png" />
+    <BundleResource Include="Resources\GMEmptyFolder.png" />
+    <BundleResource Include="Resources\GMEmptyFolder%402x.png" />
+    <BundleResource Include="Resources\GMEmptyFolder%403x.png" />
+    <BundleResource Include="Resources\startupbackground.png" />
+    <BundleResource Include="Resources\startupbackground%402x.png" />
+    <BundleResource Include="Resources\startupbackground%403x.png" />
+    <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\leftarrow%403x.png" />
+    <BundleResource Include="Resources\leftarrow%402x.png" />
+    <BundleResource Include="Resources\leftarrow.png" />
+    <BundleResource Include="Resources\RoundPath .png" />
+    <BundleResource Include="Resources\RoundPath%402x.png" />
+    <BundleResource Include="Resources\RoundPath%403x.png" />
+    <BundleResource Include="Resources\ActivityPeopleIcon.png" />
+    <BundleResource Include="Resources\ActivityPeopleIcon%402x.png" />
+    <BundleResource Include="Resources\ActivityPeopleIcon%403x.png" />
+    <BundleResource Include="Resources\document.png" />
+    <BundleResource Include="Resources\document%402x.png" />
+    <BundleResource Include="Resources\document%403x.png" />
+    <BundleResource Include="Resources\plus.png" />
+    <BundleResource Include="Resources\plus%402x.png" />
+    <BundleResource Include="Resources\plus%403x.png" />
+    <BundleResource Include="Resources\earth.png" />
+    <BundleResource Include="Resources\earth%402x.png" />
+    <BundleResource Include="Resources\earth%403x.png" />
+    <BundleResource Include="Resources\attachment%403x.png" />
+    <BundleResource Include="Resources\attachment.png" />
+    <BundleResource Include="Resources\attachment%402x.png" />
+    <BundleResource Include="Resources\heartfill.png" />
+    <BundleResource Include="Resources\heartfill%402x.png" />
+    <BundleResource Include="Resources\heartfill%403x.png" />
+    <BundleResource Include="Resources\heartoutline.png" />
+    <BundleResource Include="Resources\heartoutline%402x.png" />
+    <BundleResource Include="Resources\heartoutline%403x.png" />
+    <BundleResource Include="Resources\message.png" />
+    <BundleResource Include="Resources\message%402x.png" />
+    <BundleResource Include="Resources\message%403x.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\logodot%403x.png" />
+    <BundleResource Include="Resources\logodot.png" />
+    <BundleResource Include="Resources\logodot%402x.png" />
+    <BundleResource Include="Resources\logoatwork.png" />
+    <BundleResource Include="Resources\logoatwork%403x.png" />
+    <BundleResource Include="Resources\logoatwork%402x.png" />
+    <BundleResource Include="Resources\logoblue.png" />
+    <BundleResource Include="Resources\logoblue%402x.png" />
+    <BundleResource Include="Resources\logoblue%403x.png" />
+    <BundleResource Include="Resources\splash.png" />
+    <BundleResource Include="Resources\splash%402x.png" />
+    <BundleResource Include="Resources\splash%403x.png" />
+    <BundleResource Include="Resources\atworklogosmall.png" />
+    <BundleResource Include="Resources\loading.png" />
+    <BundleResource Include="Resources\noimage.png" />
+    <BundleResource Include="Resources\noimageSmall.png" />
+    <BundleResource Include="Resources\loadingSmall.png" />
+    <BundleResource Include="Resources\biometric_fingerprint%401x.png" />
+    <BundleResource Include="Resources\biometric_fingerprint%402x.png" />
+    <BundleResource Include="Resources\biometric_fingerprint%403x.png" />
+    <BundleResource Include="Resources\circlegroup.png" />
+    <BundleResource Include="Resources\circlegroup%402x.png" />
+    <BundleResource Include="Resources\circlegroup%403x.png" />
+    <BundleResource Include="Resources\info.png" />
+    <BundleResource Include="Resources\info%402x.png" />
+    <BundleResource Include="Resources\info%403x.png" />
+    <BundleResource Include="Resources\de.lproj\InfoPlist.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+</Project>

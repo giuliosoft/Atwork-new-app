@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="AppTitle" xml:space="preserve">
+        <value>atwork</value>
+    </data>
+    <data name="InternalServerErrorMsg" xml:space="preserve">
+        <value>Interner Serverfehler. Bitte später erneut versuchen.</value>
+    </data>
+    <data name="UnauthorizedErrorMsg" xml:space="preserve">
+        <value>Nicht autorisierter Benutzer</value>
+    </data>
+    <data name="RequestTimeoutErrorMsg" xml:space="preserve">
+        <value>Sitzung abgelaufen. Bitte erneut versuchen.</value>
+    </data>
+    <data name="SomethingWentWrongText" xml:space="preserve">
+        <value>Etwas ist schief gelaufen. Bitte erneut versuchen.</value>
+    </data>
+    <data name="TooManyAttemptsText" xml:space="preserve">
+        <value>Zu viele Versuche.</value>
+    </data>
+    <data name="BackendErrorText" xml:space="preserve">
+        <value>In unserem Backend ist ein Fehler aufgetreten. Bitte erneut versuchen.</value>
+    </data>
+    <data name="AlertTitle" xml:space="preserve">
+        <value>WARNUNG</value>
+    </data>
+    <data name="AlertOkText" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="NoInternetMsg" xml:space="preserve">
+        <value>Keine Verbindung zum Internet hergestellt. Bitte Internetverbindung überprüfen.</value>
+    </data>
+    <data name="PostTitle" xml:space="preserve">
+        <value>Titel hinzufügen…</value>
+    </data>
+    <data name="StartWritingYourPost" xml:space="preserve">
+        <value>Schreibe deinen Post…</value>
+    </data>
+    <data name="DoneButtonText" xml:space="preserve">
+        <value>Fertig</value>
+    </data>
+    <data name="NextButtonText" xml:space="preserve">
+        <value>Weiter</value>
+    </data>
+    <data name="CommentPlaceholderText" xml:space="preserve">
+        <value>Kommentar hinzufügen</value>
+    </data>
+    <data name="SendText" xml:space="preserve">
+        <value>Absenden</value>
+    </data>
+    <data name="AddImagesToYourPost" xml:space="preserve">
+        <value>Bild hinzufügen</value>
+    </data>
+    <data name="AddAttachFileToYourPost" xml:space="preserve">
+        <value>Datei hinzufügen</value>
+    </data>
+    <data name="StoragePermissionAlert" xml:space="preserve">
+        <value>Speichergenehmigung benötigt um auf Photos zugreifen zu können.
+ Zugriff verweigert. Kann nicht fortfahren, bitte erneut versuchen.</value>
+    </data>
+    <data name="PermissionErrorText" xml:space="preserve">
+        <value>Fehler. Konnte nicht fortfahren, erneut versuchen.</value>
+    </data>
+    <data name="EditCropButtonText" xml:space="preserve">
+        <value>Zuschnitt bearbeiten</value>
+    </data>
+    <data name="ChooseWhoCanSeeYourPost" xml:space="preserve">
+        <value>Wähle aus wer deinen Post sehen kann</value>
+    </data>
+    <data name="BackButtonText" xml:space="preserve">
+        <value>Zurück</value>
+    </data>
+    <data name="SaveButtonText" xml:space="preserve">
+        <value>Speichern</value>
+    </data>
+    <data name="Edit" xml:space="preserve">
+        <value>Bearbeiten</value>
+    </data>
+    <data name="Delete" xml:space="preserve">
+        <value>Löschen</value>
+    </data>
+    <data name="DeleteComment" xml:space="preserve">
+        <value>Kommentar löschen</value>
+    </data>
+    <data name="DeleteCommentMessage" xml:space="preserve">
+        <value>Das kann nicht rückgängig gemacht werden.</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="AttachFile" xml:space="preserve">
+        <value>Datei hinzufügen</value>
+    </data>
+    <data name="ChooseFromCameraRoll" xml:space="preserve">
+        <value>Aus Bildern auswählen</value>
+    </data>
+    <data name="NewsFooterText" xml:space="preserve">
+        <value>NEWS</value>
+    </data>
+    <data name="ActivitiesFooterText" xml:space="preserve">
+        <value>AKTIVITÄTEN</value>
+    </data>
+    <data name="PulseFooterText" xml:space="preserve">
+        <value>PULSE</value>
+    </data>
+    <data name="JoinActivityText" xml:space="preserve">
+        <value>Teilnehmen</value>
+    </data>
+    <data name="AboutActivityHeaderText" xml:space="preserve">
+        <value>ÜBER DIESE AKTIVITÄT</value>
+    </data>
+    <data name="MinGroupText" xml:space="preserve">
+        <value>Min. Anzahl Teilnehmende:</value>
+    </data>
+    <data name="MaxGroupText" xml:space="preserve">
+        <value>Max. Anzahl Teilnehmende:</value>
+    </data>
+    <data name="TimeText" xml:space="preserve">
+        <value>Zeit:</value>
+    </data>
+    <data name="CostsCoveredByCompanyText" xml:space="preserve">
+        <value>Übernommene Kosten:</value>
+    </data>
+    <data name="CostsCoveredByEmployeeText" xml:space="preserve">
+        <value>Kosten für Mitarbeitende:</value>
+    </data>
+    <data name="LanguageText" xml:space="preserve">
+        <value>Sprache:</value>
+    </data>
+    <data name="CommentsText" xml:space="preserve">
+        <value>Kommentare:</value>
+    </data>
+    <data name="ActivityTypeText" xml:space="preserve">
+        <value>Art der Aktivität</value>
+    </data>
+    <data name="SkillsText" xml:space="preserve">
+        <value>Kenntnisse:</value>
+    </data>
+    <data name="GoalText" xml:space="preserve">
+        <value>Ziele:</value>
+    </data>
+    <data name="SpecialrequirementsText" xml:space="preserve">
+        <value>Besondere Kenntnisse:</value>
+    </data>
+    <data name="AboutOrganixationHeaderText" xml:space="preserve">
+        <value>ÜBER DIE ORGANISATION</value>
+    </data>
+    <data name="NameText" xml:space="preserve">
+        <value>Name:</value>
+    </data>
+    <data name="AddressText" xml:space="preserve">
+        <value>Adresse:</value>
+    </data>
+    <data name="ContactText" xml:space="preserve">
+        <value>Kontakt</value>
+    </data>
+    <data name="ShareThisActivityText" xml:space="preserve">
+        <value>Diese Aktivität teilen</value>
+    </data>
+    <data name="MoreInformationHeaderText" xml:space="preserve">
+        <value>MEHR INFOS</value>
+    </data>
+    <data name="LinkText" xml:space="preserve">
+        <value>Link</value>
+    </data>
+    <data name="MyActivitiesHeaderText" xml:space="preserve">
+        <value>MEINE AKTIVITÄTEN</value>
+    </data>
+    <data name="ForgotPasswordText" xml:space="preserve">
+        <value>I forgot my password</value>
+    </data>
+    <data name="ChooseFromCameraRole" xml:space="preserve">
+        <value>Aus Bildern auswählen</value>
+    </data>
+    <data name="ActivityText" xml:space="preserve">
+        <value>Aktivität</value>
+    </data>
+    <data name="PostText" xml:space="preserve">
+        <value>Post</value>
+    </data>
+    <data name="ImageSelectionAlertText" xml:space="preserve">
+        <value>Min. 1 und max. 5 Bilder für einen Post</value>
+    </data>
+    <data name="ThankYouSigningupText" xml:space="preserve">
+        <value>Danke für die Anmeldung!</value>
+    </data>
+    <data name="WhatDateYouPlanToAttendText" xml:space="preserve">
+        <value>An welchem Datum möchtest du teilnehmen?</value>
+    </data>
+    <data name="PostDataAlertText" xml:space="preserve">
+        <value>Titel &amp; Infos</value>
+    </data>
+    <data name="SkipText" xml:space="preserve">
+        <value>Überspringen</value>
+    </data>
+    <data name="PublishText" xml:space="preserve">
+        <value>Posten</value>
+    </data>
+    <data name="Update" xml:space="preserve">
+        <value>Update</value>
+    </data>
+    <data name="DeletePostAlert" xml:space="preserve">
+        <value>Post löschen?</value>
+    </data>
+    <data name="AcceptDisclaimer" xml:space="preserve">
+        <value>Disclaimer akzeptieren</value>
+    </data>
+    <data name="AcceptTermsAndConditionsText" xml:space="preserve">
+        <value>Nutzungsbedingungen akzeptieren</value>
+    </data>
+    <data name="EnterSamePasswordText" xml:space="preserve">
+        <value>Bitte gleiches Passwort eingeben</value>
+    </data>
+    <data name="MyActivitesText" xml:space="preserve">
+        <value>Meine Aktivitäten</value>
+    </data>
+    <data name="PastActivitiesText" xml:space="preserve">
+        <value>Abgeschlossene Aktivitäten</value>
+    </data>
+    <data name="CreateAGetTogetherText" xml:space="preserve">
+        <value>Get-together erstellen</value>
+    </data>
+    <data name="AllCategoriesText" xml:space="preserve">
+        <value>Alle Kategorien</value>
+    </data>
+    <data name="CorporateVolunteeringText" xml:space="preserve">
+        <value>Corporate Volunteering</value>
+    </data>
+    <data name="SportsText" xml:space="preserve">
+        <value>Sport</value>
+    </data>
+    <data name="EducationsText" xml:space="preserve">
+        <value>Ausbildung</value>
+    </data>
+    <data name="CultureText" xml:space="preserve">
+        <value>Kultur</value>
+    </data>
+    <data name="CompanyEventsText" xml:space="preserve">
+        <value>Firmenevents</value>
+    </data>
+    <data name="GetTogetherText" xml:space="preserve">
+        <value>Get-together</value>
+    </data>
+    <data name="ActivityTitle" xml:space="preserve">
+        <value>Titel</value>
+    </data>
+    <data name="PlaceholderActivityDescription" xml:space="preserve">
+        <value>Erkläre dein Get-together</value>
+    </data>
+    <data name="Address" xml:space="preserve">
+        <value>Adresse</value>
+    </data>
+    <data name="City" xml:space="preserve">
+        <value>Stadt</value>
+    </data>
+    <data name="Country" xml:space="preserve">
+        <value>Land</value>
+    </data>
+    <data name="PriceOrPaymentPerPerson" xml:space="preserve">
+        <value>Kosten pro Person</value>
+    </data>
+    <data name="ActivityDataAlertText" xml:space="preserve">
+        <value>Titel &amp; Beschreibung</value>
+    </data>
+    <data name="AddaCoverForYour" xml:space="preserve">
+        <value>Bild hinzufügen</value>
+    </data>
+    <data name="Orpickoneofours" xml:space="preserve">
+        <value>oder wähle eins aus</value>
+    </data>
+    <data name="InvitePeopleToYourActivity" xml:space="preserve">
+        <value>Andere einladen</value>
+    </data>
+    <data name="AreYouSureText" xml:space="preserve">
+        <value>Bist du sicher?</value>
+    </data>
+    <data name="UnSubscribeFromActivtyText" xml:space="preserve">
+        <value>Von Aktivität abmelden</value>
+    </data>
+    <data name="ConfirmText" xml:space="preserve">
+        <value>Bestätigen</value>
+    </data>
+    <data name="LinkCopiedText" xml:space="preserve">
+        <value>Link zur Aktivität in Zwischenablage kopiert</value>
+    </data>
+    <data name="YourFeedbackText" xml:space="preserve">
+        <value>Dein Feedback</value>
+    </data>
+    <data name="OverallExperienceText" xml:space="preserve">
+        <value>Gesamterfahrung</value>
+    </data>
+    <data name="ImpactOfYourVolunteeringText" xml:space="preserve">
+        <value>Auswirkung deiner Aktivität</value>
+    </data>
+    <data name="LikelihoodOfRecommendingText" xml:space="preserve">
+        <value>Wahrscheinlichkeit der Weiterempfehlung</value>
+    </data>
+    <data name="HowDidYouFeelDuringTheActivityText" xml:space="preserve">
+        <value>Wie ging es dir bei der Aktivität?</value>
+    </data>
+    <data name="WhatNeedsToImproveText" xml:space="preserve">
+        <value>Was könnte verbessert werden?</value>
+    </data>
+    <data name="WhatDidYouLikeMostText" xml:space="preserve">
+        <value>Was hat dir am besten gefallen?</value>
+    </data>
+    <data name="AnythingElseYouWantToAddText" xml:space="preserve">
+        <value>Etwas hinzuzufügen?</value>
+    </data>
+    <data name="SubmitFeedBackText" xml:space="preserve">
+        <value>Feedback absenden</value>
+    </data>
+    <data name="HappyText" xml:space="preserve">
+        <value>Glücklich</value>
+    </data>
+    <data name="CuriousText" xml:space="preserve">
+        <value>Neugierig</value>
+    </data>
+    <data name="FullfilledText" xml:space="preserve">
+        <value>Erfüllt</value>
+    </data>
+    <data name="TiredText" xml:space="preserve">
+        <value>Müde</value>
+    </data>
+    <data name="BoredText" xml:space="preserve">
+        <value>Gelangweilt</value>
+    </data>
+    <data name="ExcitedText" xml:space="preserve">
+        <value>Aufgeregt</value>
+    </data>
+    <data name="AnnoyedText" xml:space="preserve">
+        <value>Genervt</value>
+    </data>
+    <data name="ProudText" xml:space="preserve">
+        <value>Stolz</value>
+    </data>
+    <data name="SuprisedText" xml:space="preserve">
+        <value>Überrascht</value>
+    </data>
+    <data name="SatisfiedText" xml:space="preserve">
+        <value>Zufrieden</value>
+    </data>
+    <data name="InterestedText" xml:space="preserve">
+        <value>Interessiert</value>
+    </data>
+    <data name="EventOrganizationText" xml:space="preserve">
+        <value>Even Organisation</value>
+    </data>
+    <data name="TransportationText" xml:space="preserve">
+        <value>Transportation</value>
+    </data>
+    <data name="FoodAndBeverageText" xml:space="preserve">
+        <value>Speisen &amp; Getränke</value>
+    </data>
+    <data name="SecurityText" xml:space="preserve">
+        <value>Sicherheit</value>
+    </data>
+    <data name="NGOPartnersText" xml:space="preserve">
+        <value>NGO Partner</value>
+    </data>
+    <data name="CommunicationText" xml:space="preserve">
+        <value>Kommunikation</value>
+    </data>
+    <data name="EverythingWasSatisfactoryText" xml:space="preserve">
+        <value>Alles gut</value>
+    </data>
+    <data name="OtherText" xml:space="preserve">
+        <value>Weitere</value>
+    </data>
+    <data name="JoinActivityAlertText" xml:space="preserve">
+        <value>Daum auswählen</value>
+    </data>
+    <data name="FeedbackText" xml:space="preserve">
+        <value>Bitte gib Feedback zur abgeschlossenen Aktivität.</value>
+    </data>
+    <data name="FeedbackMorePlaceholderText" xml:space="preserve">
+        <value>Mehr hinzufügen…</value>
+    </data>
+    <data name="LikeMostPlaceholderText" xml:space="preserve">
+        <value>Beschreiben…</value>
+    </data>
+    <data name="AnythingElsePlaceholderText" xml:space="preserve">
+        <value>Gib uns Bescheid</value>
+    </data>
+    <data name="MyStatsText" xml:space="preserve">
+        <value>MEINE ZAHLEN</value>
+    </data>
+    <data name="DepartmentText" xml:space="preserve">
+        <value>TEAM</value>
+    </data>
+    <data name="JobTitleText" xml:space="preserve">
+        <value>JOB TITEL</value>
+    </data>
+    <data name="ClassText" xml:space="preserve">
+        <value>KLASSIFIZIERUNG</value>
+    </data>
+    <data name="AboutMeText" xml:space="preserve">
+        <value>ÜBER MICH</value>
+    </data>
+    <data name="SettingsText" xml:space="preserve">
+        <value>Einstellungen</value>
+    </data>
+    <data name="LogoutText" xml:space="preserve">
+        <value>Log out</value>
+    </data>
+    <data name="ProfileText" xml:space="preserve">
+        <value>Profil</value>
+    </data>
+    <data name="ChangeProfilePictureText" xml:space="preserve">
+        <value>Profilbild ändern</value>
+    </data>
+    <data name="EditInterestsText" xml:space="preserve">
+        <value>Interessen bearbeiten</value>
+    </data>
+    <data name="EditAboutMeText" xml:space="preserve">
+        <value>Über mich bearbeiten</value>
+    </data>
+    <data name="ChangeLanguageText" xml:space="preserve">
+        <value>Sprache ändern</value>
+    </data>
+    <data name="ChangePasswordText" xml:space="preserve">
+        <value>Passwort ändern</value>
+    </data>
+    <data name="ManageNotificationText" xml:space="preserve">
+        <value>Notifikationen verwalten</value>
+    </data>
+    <data name="ProfilePictureText" xml:space="preserve">
+        <value>Profilbild</value>
+    </data>
+    <data name="StartWriting" xml:space="preserve">
+        <value>Hier eingeben…</value>
+    </data>
+    <data name="Language" xml:space="preserve">
+        <value>Sprache</value>
+    </data>
+    <data name="ChangePasswordTitle" xml:space="preserve">
+        <value>Passwort ändern</value>
+    </data>
+    <data name="CategoryDataAlertText" xml:space="preserve">
+        <value>Keine Aktivität in der ausgewählten Kategorie verfügbar</value>
+    </data>
+    <data name="CalendarPermissionAlert" xml:space="preserve">
+        <value>Genehmigung erforderlich um Event im Kalender des Geräts hinzuzufügen. 
+ Erlaubnis in den App-Einstellungen erteilen.</value>
+    </data>
+    <data name="JoinActivitySuccessfulText" xml:space="preserve">
+        <value>Danke fürs anmelden!</value>
+    </data>
+    <data name="EnterCurrentPassword" xml:space="preserve">
+        <value>Bitte aktuelles Passwort eingeben</value>
+    </data>
+    <data name="WelcomeSetup1" xml:space="preserve">
+        <value>Richte dein Profil ein und wähle deine Sprache aus, lade dein Bild hoch und hilf deinem Team, dich besser kennenzulernen!</value>
+    </data>
+    <data name="WelcomeSetup2" xml:space="preserve">
+        <value>Um die Standardsprache deines Geräts auszuwählen, diesen Schritt überspringen.</value>
+    </data>
+    <data name="ActivitiesText" xml:space="preserve">
+        <value>Aktivitäten</value>
+    </data>
+    <data name="HoursText" xml:space="preserve">
+        <value>Stunden</value>
+    </data>
+    <data name="AllowNotificationsTitleText" xml:space="preserve">
+        <value>Notifikationen zulassen?</value>
+    </data>
+    <data name="AllowNotificationsMsgText" xml:space="preserve">
+        <value>atwork sendet Updates über Aktivitäten und wichtige Informationen</value>
+    </data>
+    <data name="DontAllowText" xml:space="preserve">
+        <value>Nicht erlauben</value>
+    </data>
+    <data name="AllowText" xml:space="preserve">
+        <value>Zulassen</value>
+    </data>
+    <data name="MyInterests" xml:space="preserve">
+        <value>Meine Interessen</value>
+    </data>
+    <data name="WelcomeSetup" xml:space="preserve">
+        <value>WILLKOMMEN
+  SETUP</value>
+    </data>
+    <data name="BeginSetup" xml:space="preserve">
+        <value>Setup beginnen</value>
+    </data>
+    <data name="ChooseLanguage" xml:space="preserve">
+        <value>Sprache auswählen</value>
+    </data>
+    <data name="AtWork" xml:space="preserve">
+        <value>atwork 
+    </value>
+    </data>
+    <data name="Whatdoyoulooklike" xml:space="preserve">
+        <value>Füge ein Profilbild hinzu!</value>
+    </data>
+    <data name="PleaseSelectYourLanguage" xml:space="preserve">
+        <value>Bitte wähle deine Sprache aus</value>
+    </data>
+    <data name="SetProfilePicture" xml:space="preserve">
+        <value>Profilbild auswählen</value>
+    </data>
+    <data name="NowScalandmove" xml:space="preserve">
+        <value>Skalieren &amp; verschieben 
+    </value>
+    </data>
+    <data name="yourphotoinsidethe" xml:space="preserve">
+        <value>deinem Photo in 
+    </value>
+    </data>
+    <data name="circularfram" xml:space="preserve">
+        <value>runder Rahmen</value>
+    </data>
+    <data name="AboutYourSelf" xml:space="preserve">
+        <value>Über mich</value>
+    </data>
+    <data name="WriteYourInterests" xml:space="preserve">
+        <value>Now write down some of your interests!</value>
+    </data>
+    <data name="GroupMemberPost" xml:space="preserve">
+        <value>Leute sehen deinen Post</value>
+    </data>
+    <data name="PosttoViewEverybody" xml:space="preserve">
+        <value>An alle posten</value>
+    </data>
+    <data name="PostToEverybody" xml:space="preserve">
+        <value>An alle posten</value>
+    </data>
+    <data name="Posttoyourgroup" xml:space="preserve">
+        <value>An deine Gruppe posten</value>
+    </data>
+    <data name="Inviteyourgroup" xml:space="preserve">
+        <value>Gruppe einladen</value>
+    </data>
+    <data name="MyInterestsProfile" xml:space="preserve">
+        <value>MY INTERESTS</value>
+    </data>
+    <data name="DisclamerText" xml:space="preserve">
+        <value>
+        Volunty Corporate AG holds in high regard the data of our users. It is of the utmost importance that our user’s privacy and security is safeguarded at all costs. It is Volunty Corporate AG's policy to respect your privacy regarding any information we may collect from you across our website, https://atwork.ai, and other sites we own and operate. Hereinafter Volunty Corporate AG is represented by atwork.
+ 
+ When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your computer’s Internet Protocol (IP) address, your browser type and version, the pages you visit, the time and date of your visit, the time spent on each page, and other details.
+ 
+ We may ask for personal information, such as your: Name; Email; Phone/mobile number; Home/Mailing address; Work address
+ 
+ By providing personal information to us, you consent to us collecting, holding, using and disclosing your personal information in accordance with this privacy policy. If you are under 16 years of age, you must have, and warrant to the extent permitted by law to us, that you have your parent or legal guardian’s permission to access and use the website and they (your parents or guardian) have consented to you providing us with your personal information. You do not have to provide personal information to us, however, if you do not, it may affect your use of this website or the products and/or services offered on or through it.
+ 
+ If you have any questions or concerns, please contact us at gdpr@atwork.ai
+
+        </value>
+    </data>
+    <data name="TermsText" xml:space="preserve">
+        <value>
+        By accessing the information provided on this platform, each user waives and releases Volunty Corporate AG to the full extent permitted by law from any and all claims related to the use of the subject information. Under no circumstances shall Volunty Corporate AG be liable for any direct, indirect, incidental, special, punitive or consequential damages that result in any way from your use of or inability to use the platform or your reliance on or use of information, services, activities or merchandise provided on or through the platform, or that result from mistakes, omissions, interruptions, deletion of files, errors, defects, delays in operation or transmission, or any failure of performance.
+ 
+ In addition to locally mounted information, hyperlinks may be provided to external websites and/or information sources as a service to our users. The appearance of external hyperlinks shall not be taken as implying any connection between Volunty Corporate AG and the linked external information sources. These external information sources are outside the control of Volunty Corporate AG and Volunty Corporate AG does not exercise any editorial control over the information which a user may find at these locations. Use of any information obtained from such sources is voluntary, and reliance on it should only be undertaken after an independent review of its accuracy, completeness, currency, and reliability. Reference to any specific commercial product, process, or service by trade name, trademark, service mark, manufacturer, or otherwise does not constitute or imply endorsement, recommendation, or favoring by Volunty Corporate AG. In addition, the content of any such site does not necessarily reflect the opinions, standards, policy, or endorsement of Volunty Corporate AG.
+        </value>
+    </data>
+    <data name="EnterNewPassword" xml:space="preserve">
+        <value>Bitte neues Passwort eingeben</value>
+    </data>
+    <data name="EnteConformNewPassword" xml:space="preserve">
+        <value>Bitte neues Passwort bestätigen</value>
+    </data>
+    <data name="EnterCurrentPasswordAlert" xml:space="preserve">
+        <value>Bitte aktuelles Passwort eingeben</value>
+    </data>
+    <data name="EnterNewPasswordAlert" xml:space="preserve">
+        <value>Bitte neues Passwort eingeben</value>
+    </data>
+    <data name="EnterConfirmNewPasswordAlert" xml:space="preserve">
+        <value>Bitte neues Passwort bestätigen</value>
+    </data>
+    <data name="EnterConfirmPasswordNotMatchdAlert" xml:space="preserve">
+        <value>Passwörter stimmen nicht überein</value>
+    </data>
+    <data name="Currentpasswordnotmatch" xml:space="preserve">
+        <value>Falsches Password</value>
+    </data>
+    <data name="Passwordchangesuccessfully" xml:space="preserve">
+        <value>Passwort erfolgreich geändert</value>
+    </data>
+    <data name="ShareAlertText" xml:space="preserve">
+        <value>Kein Link zum teilen verfügbar</value>
+    </data>
+    <data name="CreatePasswordText" xml:space="preserve">
+        <value>Passwort erstellen</value>
+    </data>
+    <data name="ConfirmPasswordText" xml:space="preserve">
+        <value>Passwort bestätigen</value>
+    </data>
+    <data name="ClaimInputAlertText" xml:space="preserve">
+        <value>Firmen-EMail oder ID zur Aktivierung des Profils erforderlich</value>
+    </data>
+    <data name="ProfileCorrectionInputAlertText" xml:space="preserve">
+        <value>Bitte alle Felder ausfüllen</value>
+    </data>
+    <data name="DisclaimerHeaderText" xml:space="preserve">
+        <value>Disclaimer</value>
+    </data>
+    <data name="TermsAndConditionHeaderText" xml:space="preserve">
+        <value>Allgemeine Geschäftsbedingungen</value>
+    </data>
+    <data name="LogoutAlert" xml:space="preserve">
+        <value>Willst du dich sicher ausloggen?</value>
+    </data>
+    <data name="FindProfileEmailHeaderText" xml:space="preserve">
+        <value>Greife auf dein Profil mit deiner Email-Adresse zu</value>
+    </data>
+    <data name="FindProfileIDHeaderText" xml:space="preserve">
+        <value>oder mit der ID</value>
+    </data>
+    <data name="SubmitText" xml:space="preserve">
+        <value>Absenden</value>
+    </data>
+    <data name="EmailPlaceholderText" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="IDPlaceholderText" xml:space="preserve">
+        <value>ID</value>
+    </data>
+    <data name="NameHeaderText" xml:space="preserve">
+        <value>NAME</value>
+    </data>
+    <data name="SurnameHeaderText" xml:space="preserve">
+        <value>NACHNAME</value>
+    </data>
+    <data name="EmailHeaderText" xml:space="preserve">
+        <value>EMAIL</value>
+    </data>
+    <data name="ProfileNotRightText" xml:space="preserve">
+        <value>Funktioniert etwas nicht?</value>
+    </data>
+    <data name="ClaimProfileText" xml:space="preserve">
+        <value>Profil aktivieren</value>
+    </data>
+    <data name="SubmitCorrectionText" xml:space="preserve">
+        <value>Berichtigungen absenden</value>
+    </data>
+    <data name="ClaimProfileThankYouText1" xml:space="preserve">
+        <value>Danke für deine Anfrage</value>
+    </data>
+    <data name="ClaimProfileThankYouText2" xml:space="preserve">
+        <value>Du kannst jetzt damit fortfahren</value>
+    </data>
+    <data name="ClaimProfileThankYouText3" xml:space="preserve">
+        <value>dein Profil einzurichten.</value>
+    </data>
+    <data name="ClaimProfileThankYouText4" xml:space="preserve">
+        <value>Sobald dein Koordinator</value>
+    </data>
+    <data name="ClaimProfileThankYouText5" xml:space="preserve">
+        <value>die Änderungen genehmigt, wird</value>
+    </data>
+    <data name="ClaimProfileThankYouText6" xml:space="preserve">
+        <value>Dein Profil hochgeladen.</value>
+    </data>
+    <data name="ContinueSetupText" xml:space="preserve">
+        <value>Setup fortführen</value>
+    </data>
+    <data name="PasswordValidationText" xml:space="preserve">
+        <value>Dein Passwort muss mindestens 8 Zeichen enthalten.
+Mindestens einen Kleinbuchstaben, einen Großbuchstaben, 
+eine Zahl und ein Sonderzeichen.</value>
+    </data>
+    <data name="AtWorkActivityEventText" xml:space="preserve">
+        <value>atwork Aktivität Event</value>
+    </data>
+    <data name="joinedText" xml:space="preserve">
+        <value>teilgenommen</value>
+    </data>
+    <data name="ErrorText" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="BiometricAlertMsgText" xml:space="preserve">
+        <value>Biometrische Authentifizierung ist nicht verfügbar oder nicht konfiguriert.</value>
+    </data>
+    <data name="AuthenticationText" xml:space="preserve">
+        <value>Authentifizierung</value>
+    </data>
+    <data name="AuthenticationAlertMsgText" xml:space="preserve">
+        <value>Fingerabdrucksensor antippen</value>
+    </data>
+    <data name="AuthenticationFailedAlertMsgText" xml:space="preserve">
+        <value>Authentifizierung fehlgeschlagen</value>
+    </data>
+    <data name="ComingSoonAlertMsgText" xml:space="preserve">
+        <value>Demnächst...</value>
+        </data>
+    <data name="Logintoyourcompany" xml:space="preserve">
+        <value>Log in</value>
+    </data>
+    <data name="WouldYouLikeToEnableMsgText" xml:space="preserve">
+        <value>Freigeben von</value>
+    </data>
+    <data name="TouchIDFaceIDForMsgText" xml:space="preserve">
+        <value>Touch ID/Gesichts ID für</value>
+    </data>
+    <data name="authentificationQueMsgText" xml:space="preserve">
+        <value>Authentifizierung?</value>
+    </data>
+    <data name="YesEnableMsgText" xml:space="preserve">
+        <value>Ja, freigeben</value>
+    </data>
+    <data name="NoLogInMsgText" xml:space="preserve">
+        <value>Nein, log in.</value>
+    </data>
+    <data name="NAMECapText" xml:space="preserve">
+        <value>NAME</value>
+    </data>
+    <data name="SURNAMECapText" xml:space="preserve">
+        <value>NACHNAME</value>
+    </data>
+    <data name="EMAILCapText" xml:space="preserve">
+        <value>EMAIL</value>
+    </data>
+    <data name="ContinueSetupText" xml:space="preserve">
+        <value>Setup fortführen</value>
+    </data>
+    <data name="DateText" xml:space="preserve">
+        <value>Datum</value>
+    </data>
+    <data name="TimeHeaderText" xml:space="preserve">
+        <value>Zeit</value>
+    </data>
+    <data name="DescribeItWithSomeEmojisText" xml:space="preserve">
+        <value>Emojis hinzufügen:</value>
+    </data>
+    <data name="AppAuthenticationHeaderText" xml:space="preserve">
+        <value>Verwenden Sie Face oder Touch ID, um die App zu entsperren.</value>
+    </data>
+    <data name="AuthIDPageText1" xml:space="preserve">
+        <value>Möchten Sie aktivieren</value>
+    </data>
+    <data name="AuthIDPageText2" xml:space="preserve">
+        <value>Berühren Sie ID / Gesichts-ID für</value>
+    </data>
+    <data name="AuthIDPageText3" xml:space="preserve">
+        <value>Authentifizierung?</value>
+    </data>
+    <data name="AuthIDEnableText" xml:space="preserve">
+        <value>Ja, freigeben</value>
+    </data>
+    <data name="AuthIDSkipText" xml:space="preserve">
+        <value>Nein, melden Sie sich an</value>
+    </data>
+    <data name="ForgotPasswordDescriptionText" xml:space="preserve">
+        <value> Geben Sie Ihre E-Mail-Adresse oder ID ein,
+um Ihr Passwort zurückzusetzen.
+
+Sie erhalten einen neuen
+Anmeldelink in Ihrer E-Mail
+oder, falls Sie keine E-Mail eingegeben
+haben, 
+einen neuen Anmeldecode über Ihr Unternehmen.
+
+Sie können ein neues Passwort eingeben,
+sobald Sie es beanspruchen</value>
+    </data>
+    <data name="ResetPassword" xml:space="preserve">
+        <value>Passwort zurücksetzen</value>
+    </data>
+    <data name="EmailAddressOrID" xml:space="preserve">
+        <value>E-Mail-Adresse oder ID</value>
+    </data>
+    <data name="EnterEmailAddressOrID" xml:space="preserve">
+        <value>E-Mail-Adresse angeben oder ID</value>
+    </data>
+    <data name="SuccessResetPassword" xml:space="preserve">
+        <value>Ein neues Passwort wird an Ihre registrierte E-Mail-ID gesendet</value>
+    </data>
+    <data name="EnterValidEmailAddressOrID" xml:space="preserve">
+        <value>E-Mail-Adresse angeben oder ID</value>
+    </data>
+    <data name="Wrongpasswordentered" xml:space="preserve">
+        <value>Falsches Passwort eingegeben</value>
+    </data>
+    <data name="Welcometo" xml:space="preserve">
+        <value>Willkommen bei </value>
+    </data>
+    <data name="atworkWithComma" xml:space="preserve">
+        <value>atwork, </value>
+    </data>
+    <data name="WelcomeDiscription" xml:space="preserve">
+        <value>Ihr Hub, um in Unternehmensnachrichten
+auf dem Laufenden zu bleiben,
+an Aktivitäten teilzunehmen und 
+sich mit Ihrem Team zu verbinden.</value>
+    </data>
+    <data name="WelcomeDiscription2" xml:space="preserve">
+        <value>
+
+Wählen Sie unten eine Option, um zu beginnen.</value>
+    </data>
+    <data name="NewFindandclaimyouraccount" xml:space="preserve">
+        <value>Neu? Finden und beanspruchen Sie Ihr Konto</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Einloggen</value>
+    </data>
+    <data name="PostCoordinatorUserText" xml:space="preserve">
+        <value>news</value>
+    </data>
+    <data name="JoinActivityText1" xml:space="preserve">
+        <value>Sie erhalten 30 Tage vor der Veranstaltung eine detaillierte Aktivitätsbeschreibung und Reiseroute.</value>
+    </data>
+    <data name="JoinActivityText2" xml:space="preserve">
+        <value>Stellen Sie sicher, dass Sie Ihren Zeitplan löschen, die NGO zählt auf Sie!</value>
+    </data>
+    <data name="Editpost" xml:space="preserve">
+        <value>Post bearbeiten</value>
+    </data>
+    <data name="Deletepost" xml:space="preserve">
+        <value>Post löschen </value>
+    </data>
+    <data name="AlmostDone" xml:space="preserve">
+        <value>Fast fertig!</value>
+    </data>
+    <data name="AllowNotification" xml:space="preserve">
+        <value>Benachrichtigungen zulassen, wenn Sie bei abonnierten Aktivitäten Updates erhalten möchten</value>
+    </data>
+    <data name="Nowwritedowninterests" xml:space="preserve">
+        <value>Schreiben Sie nun einige Ihrer Interessen auf!</value>
+    </data>
+    <data name="InvalidEmailOrPassword" xml:space="preserve">
+        <value>Ungültige E-Mail-Adresse / ID oder Passwort</value>
+    </data>
+    <data name="InvalidClainEmailOrId" xml:space="preserve">
+        <value>Please enter valid email or id</value>
+    </data>
+    <data name="AppRelaunchAlert" xml:space="preserve">
+        <value>Für eine neue Spracheinstellung wird die App neu gestartet.
+Möchten Sie das wirklich tun?</value>
+    </data>
+    <data name="EditActivity" xml:space="preserve">
+        <value>Aktivität bearbeiten</value>
+    </data>
+    <data name="DeleteActivity" xml:space="preserve">
+        <value>Aktivität löschen</value>
+    </data>
+    <data name="EmailServiceAlert" xml:space="preserve">
+        <value>Email service is not available on this device.</value>
+    </data>
+    <data name="PasswordText" xml:space="preserve">
+        <value>Passwort</value>
+    </data>
+</root>

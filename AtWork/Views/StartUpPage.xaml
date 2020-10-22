@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.StartUpPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <AbsoluteLayout Padding="0">
+            <Image Margin="0,80,0,0" Aspect="Fill" Source="startupbackground" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All"  />
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,40,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+                <StackLayout HorizontalOptions="CenterAndExpand" Spacing="5" Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                    <Image Source="atworklogosmall" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth220}" WidthRequest="{DynamicResource HeightWidth220}"  HorizontalOptions="StartAndExpand"/>
+                    <!--<Image Source="logoatwork" Aspect="AspectFit" HeightRequest="150" WidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+                    <Image Source="logodot" Aspect="AspectFit" HeightRequest="10" WidthRequest="10"  HorizontalOptions="Center"/>-->
+                </StackLayout>
+                <!--<Image x:Name="logoImage" Source="logo" WidthRequest="200" 
+                        HorizontalOptions="Center"/>-->
+                <Label LineBreakMode="WordWrap" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="20,0,20,0" Padding="30,0,30,30">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static Multilingual:AppResources.Welcometo}" TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" />
+                            <Span Text="{x:Static Multilingual:AppResources.atworkWithComma}" TextColor="White" FontFamily="Lato_Italic" FontSize="{DynamicResource FontSize18}"/>
+                            <Span Text="{x:Static Multilingual:AppResources.WelcomeDiscription}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" TextColor="White"/>
+                            <Span Text="{x:Static Multilingual:AppResources.WelcomeDiscription2}" TextColor="White" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!--<Label Text="Choose an option below to begin." FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize18}" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White"></Label>-->
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="30" Margin="20,0,20,5">
+                        <Button Command="{Binding GoForLoginCommand}" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.Login}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" WidthRequest="50" TextColor="#515AE0"/>
+                    </Frame>
+                    <Label Text="{x:Static Multilingual:AppResources.NewFindandclaimyouraccount}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize14}" VerticalOptions="End" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Padding="30,0,30,0"  TextDecorations="Underline" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

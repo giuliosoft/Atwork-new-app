@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             x:Class="AtWork.SubViews.BeginSetupHeaderView">
+    <ContentView.Content>
+        <StackLayout>
+            <ContentView Grid.Column="0" Padding="0,20,0,0"  VerticalOptions="Center">
+                <StackLayout Padding="0" Spacing="0">
+                    <PancakeControl:PancakeView WidthRequest="90" Margin="20,0,20,5" HeightRequest="25" HorizontalOptions="FillAndExpand" CornerRadius="12.5" BorderThickness="2" BorderColor="{DynamicResource AccentColor}">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <PancakeControl:PancakeView x:Name="tabBack" WidthRequest="95" Margin="0,0,0,0" HeightRequest="25" HorizontalOptions="StartAndExpand" CornerRadius="12.5" BackgroundColor="{DynamicResource AccentColor}">
+                                <PancakeControl:PancakeView WidthRequest="95" Margin="0,0,0,0" HeightRequest="25" HorizontalOptions="StartAndExpand" CornerRadius="12.5" BackgroundColor="{DynamicResource AccentColor}">
+                                    <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
+                                        <Image x:Name="logoImage"  Source="back" Margin="2,2,0,2"/>
+                                        <Label Text="{TemplateBinding BindingContext.AddNewsCancelImage}" Margin="5,0,0,0" WidthRequest="70" TextColor="White" FontSize="18" VerticalOptions="Center" HorizontalTextAlignment="Start"></Label>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.BackClickCommand}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </PancakeControl:PancakeView>
+                            </PancakeControl:PancakeView>
+                            <StackLayout Spacing="0" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                                <PancakeControl:PancakeView x:Name="tab1" Margin="0" HeightRequest="25" HorizontalOptions="Start" >
+                                    <PancakeControl:PancakeView WidthRequest="17" HeightRequest="17" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="8.5" BackgroundColor="{DynamicResource DarkColor}"/>
+                                </PancakeControl:PancakeView>
+                            </StackLayout>
+                            <StackLayout Spacing="0" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                                <PancakeControl:PancakeView x:Name="tab2" Margin="0" HeightRequest="25" HorizontalOptions="Start"  >
+                                    <PancakeControl:PancakeView WidthRequest="17" HeightRequest="17" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="8.5" BackgroundColor="{DynamicResource DarkColor}"/>
+                                </PancakeControl:PancakeView>
+                            </StackLayout>
+                            <StackLayout Spacing="0" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                                <PancakeControl:PancakeView x:Name="tab3" Margin="0" HeightRequest="25" HorizontalOptions="Start">
+                                    <PancakeControl:PancakeView WidthRequest="17" HeightRequest="17" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="8.5" BackgroundColor="{DynamicResource DarkColor}"/>
+                                </PancakeControl:PancakeView>
+                            </StackLayout>
+                            <StackLayout Spacing="0" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                                <PancakeControl:PancakeView x:Name="tab4" Margin="0" HeightRequest="25" HorizontalOptions="Start"  >
+                                    <PancakeControl:PancakeView WidthRequest="17" HeightRequest="17" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="8.5" BackgroundColor="{DynamicResource DarkColor}"/>
+                                </PancakeControl:PancakeView>
+                            </StackLayout>
+                            <StackLayout Spacing="0" Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                                <PancakeControl:PancakeView x:Name="tab5" Margin="0,0,10,0" HeightRequest="25" HorizontalOptions="Start">
+                                    <PancakeControl:PancakeView WidthRequest="17" HeightRequest="17" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="8.5" BackgroundColor="{DynamicResource DarkColor}"/>
+                                </PancakeControl:PancakeView>
+                            </StackLayout>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </StackLayout>
+            </ContentView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.SubViews.NewsView"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"             
+             xmlns:Customcontrol="clr-namespace:AtWork.CustomControls">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Spacing="0" Padding="0">
+            <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshCommand}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <CollectionView x:Name="newsfeedList" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" BackgroundColor="Transparent" ItemsSource="{Binding NewsList}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <!-- This is needed because otherwise:
+                         - the CollectionView scrolls to the bottom when initial data is loaded 
+                         - the parent RefreshView doesn't work -->
+                    <CollectionView.Header>
+                        <Grid HeightRequest="1">
+                            <!-- TODO: maybe we need to change the background color to match the header or first item -->
+                            <BoxView BackgroundColor="Transparent" />
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
+                                <Grid ColumnSpacing="0" Padding="{DynamicResource MarginPadding15_10_00_15}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="230"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" RowSpacing="{DynamicResource Spacing10}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="55"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ffImageLoading:CachedImage Grid.Row="0" Grid.Column="0" IsVisible="{Binding NewsPostUserIsVisible}" Aspect="AspectFit" LoadingPlaceholder="loadingSmall" ErrorPlaceholder="noimageSmall" Source="{Binding newsPostUserProfilePic}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                            <ffImageLoading:CachedImage.Transformations>
+                                                <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                                            </ffImageLoading:CachedImage.Transformations>
+                                            <ffImageLoading:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.OpenUserDetailCommand}" CommandParameter="{Binding .}" />
+                                            </ffImageLoading:CachedImage.GestureRecognizers>
+                                        </ffImageLoading:CachedImage>
+                                        <Customcontrol:CustomImage Grid.Row="0" Grid.Column="0" Source="circlegroup" TintColor="{DynamicResource AccentColor}" IsVisible="{Binding NewsPostUserIsVisible, Converter={StaticResource InverseConverter}}" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                        </Customcontrol:CustomImage>
+                                        <StackLayout Spacing="3" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding userName}" IsVisible="{Binding NewsPostUserIsVisible}" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                            <Label Text="{x:Static Multilingual:AppResources.PostCoordinatorUserText}" IsVisible="{Binding NewsPostUserIsVisible, Converter={StaticResource InverseConverter}}" Style="{StaticResource NewsPageUserLabelStyle}"/>
+                                            <StackLayout Spacing="{DynamicResource HeightWidth03}" Orientation="Horizontal">
+                                                <CustomControl:CustomImage Source="{Binding newsPostPublishType}" TintColor="{DynamicResource DarkColor}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="Center" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                <Label Text="{Binding NewsCreatedTime}" Style="{StaticResource NewsPagePostUpdateTimeLabelStyle}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill" IsVisible="{Binding NewsCreatedByLoggedInUser}">
+                                            <Customcontrol:CustomImage TintColor="{DynamicResource AccentColor}" Source="option" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth05}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                            </Customcontrol:CustomImage>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsShowOptionCommand}" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </Grid>
+                                    <StackLayout Grid.Row="1" Spacing="{DynamicResource Spacing05}" Padding="0,5,10,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <!--<Label Text="{Binding newsTitle}" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
+                                            <Label Text="{Binding newsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}"/>-->
+                                        <Customcontrol:SelectableLabel Text="{Binding newsTitle}" Style="{StaticResource NewsPagePostHeaderLabelStyle}"/>
+                                        <Customcontrol:LinksLabel LinksText="{Binding newsDescription}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}" Padding="{DynamicResource MarginPadding07_0_0_0}"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <Grid Grid.Row="2" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid ColumnSpacing="{DynamicResource Spacing15}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="40"/>
+                                            </Grid.ColumnDefinitions>
+                                            <PancakeControl:PancakeView Grid.Column="0" CornerRadius="15" BackgroundColor="Transparent">
+                                                <CarouselView x:Name="newsImageCarousel" ItemsSource="{Binding NewsCarouselList}" ItemsUpdatingScrollMode="KeepItemsInView" IsScrollAnimated="True" PositionChanged="newsPostCarousel_PositionChanged" HorizontalScrollBarVisibility="Never">
+                                                    <CarouselView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="*"/>
+                                                                </Grid.RowDefinitions>
+                                                                <ffImageLoading:CachedImage CacheType="Memory" Grid.Row="0" RetryCount="3" DownsampleHeight="500" DownsampleWidth="500" Source="{Binding NewsImage}" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"/>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </CarouselView.ItemTemplate>
+                                                </CarouselView>
+                                            </PancakeControl:PancakeView>
+                                            <IndicatorView x:Name="indicatorView" Grid.Column="0" ItemsSource="{Binding NewsCarouselList}" SelectedIndicatorColor="White" Opacity="0.9" IndicatorSize="10" Padding="10" HorizontalOptions="Center" VerticalOptions="End" />
+                                            <PancakeControl:PancakeView Grid.Column="1" CornerRadius="12,0,12,0" Padding="10,12,10,12" BackgroundColor="{StaticResource PosterWhiteColor}" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                                <StackLayout Spacing="{DynamicResource Spacing15}">
+                                                    <StackLayout Spacing="{DynamicResource Spacing03}">
+                                                        <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="heartfill" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                        <Label Text="{Binding LikeCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Spacing="{DynamicResource Spacing03}">
+                                                        <CustomControl:CustomImage TintColor="{DynamicResource DarkColor}" Source="message" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth15}" WidthRequest="{DynamicResource HeightWidth15}"/>
+                                                        <Label Text="{Binding CommentsCount}" Style="{StaticResource NewsPageLikeLabelStyle}"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </PancakeControl:PancakeView>
+                                        </Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference newsfeedList},Path=BindingContext.NewsPostSelectedCommand}" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </Grid>
+                                <BoxView HeightRequest="0.5" BackgroundColor="Black" HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

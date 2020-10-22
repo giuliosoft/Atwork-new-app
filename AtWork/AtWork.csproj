@@ -1,0 +1,119 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1422" />
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="18.1.0.42" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+    <PackageReference Include="Plugin.Fingerprint" Version="2.1.1" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
+    <PackageReference Include="CClarke.Plugin.Calendars" Version="1.0.14" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="CustomControls\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Multilingual\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="SubViews\" />
+    <Folder Include="Popups\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Lato_Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_Thin.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Lato_ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Multilingual\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Multilingual\AppResources.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Multilingual\AppResources.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Multilingual\AppResources.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Multilingual\AppResources.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Multilingual\AppResources.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Converters\NewsOptionPopup.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Multilingual\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Multilingual\AppResources.de.Designer.cs">
+      <DependentUpon>AppResources.de.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Multilingual\AppResources.it.Designer.cs">
+      <DependentUpon>AppResources.it.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Multilingual\AppResources.fr.Designer.cs">
+      <DependentUpon>AppResources.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Multilingual\AppResources.es.Designer.cs">
+      <DependentUpon>AppResources.es.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Multilingual\AppResources.ru.Designer.cs">
+      <DependentUpon>AppResources.ru.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Lato_Black.ttf" />
+    <None Remove="Resources\Fonts\Lato_BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Bold.ttf" />
+    <None Remove="Resources\Fonts\Lato_BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Italic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Light.ttf" />
+    <None Remove="Resources\Fonts\Lato_LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Lato_Regular.ttf" />
+    <None Remove="Resources\Fonts\Lato_Thin.ttf" />
+    <None Remove="Resources\Fonts\Lato_ThinItalic.ttf" />
+  </ItemGroup>
+</Project>

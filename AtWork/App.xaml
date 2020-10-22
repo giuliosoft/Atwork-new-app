@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        mc:Ignorable="d" x:Class="AtWork.App"
+                        xmlns:SubViews="clr-namespace:AtWork.SubViews;assembly=AtWork"
+                        xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                        xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork"
+                        xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Application resource dictionary -->
+            <!--Safe Area Style-->
+            <OnPlatform x:Key="SafeAreaPadding" x:TypeArguments="Thickness" Android="0" iOS="0" />
+            <!--Safe Area End-->
+
+            <!-- Colors -->
+            <!-- Light Gray -->
+            <Color x:Key="HeaderBackgroundColor">#E8E5E4</Color>
+            <!-- Red -->
+            <Color x:Key="RedColor">#ff151f</Color>
+            <!-- Black -->
+            <Color x:Key="BlackColor">#000000</Color>
+            <!-- White -->
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <!-- Dark Brown -->
+            <Color x:Key="DarkBrownColor">#3C2E21</Color>
+            <!--Off White-->
+            <Color x:Key="OffWhiteColor">#F5F2F0</Color>
+            <!--Poster White-->
+            <Color x:Key="PosterWhiteColor">#E8E5E4</Color>
+            <!--Dark Green-->
+            <Color x:Key="DarkGreenColor">#0B421A</Color>
+            <Color x:Key="DarkGreen">#0b4218</Color>
+            <!--Dark GreenShade2-->
+            <Color x:Key="DarkGreenShade">#0B421A</Color>
+            <!-- Light Brown -->
+            <Color x:Key="LightBrownColor">#C8B9AA</Color>
+            <!--DisableGreen-->
+            <Color x:Key="GreenDisableColor">#546e5b</Color>
+            <!-- Light Blue -->
+            <Color x:Key="LightBlueColor">#515AE0</Color>
+            <!-- Light Dark Black-->
+            <Color x:Key="LightDarkBlackColor">#1D1D1B</Color>
+            <!--Shaded White-->
+            <Color x:Key="ShadedWhiteColor">#cccccc</Color>
+            <!--Shaded White-->
+            <Color x:Key="GrayColor">#999999</Color>
+            <!--Accent Default-->
+            <!--<Color x:Key="AccentColor">#515AE0</Color>-->
+            <!-- Colors End -->
+
+            <!--ControlTemplate-->
+            <ControlTemplate x:Key="Dashboard_HeaderTemplate">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <SubViews:NewsHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                    <SubViews:DashboardFooterView Grid.Row="2" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="NewsDetail_HeaderTemplate">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:NewsDetailHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="AddNewsPostHeader_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:AddNewsPostHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="BeginSetupHeader_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:BeginSetupHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="Header_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:HeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+            <ControlTemplate x:Key="BackHeaderView_Template">
+                <Grid ColumnSpacing="0" RowSpacing="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <SubViews:BackHeaderView Grid.Row="0" />
+                    <ContentPresenter Grid.Row="1" />
+                </Grid>
+            </ControlTemplate>
+            <!--ControlTemplate End-->
+
+            <!--Label Styles Start-->
+            <Style x:Key="NewsPageUserLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsPagePostUpdateTimeLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize11}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsPagePostHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsPagePostDescriptionLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+            </Style>
+            <Style x:Key="NewsPageLikeLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize11}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsDeialLikeLabelStyleFont10" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize10}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsDetailLikeLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize10}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="NewsDetailPinLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize11}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="HeaderViewHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="SendLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="AddPostImageLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}"/>
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="AttachedFileLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivityPageHorizontalLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="ActivityPageLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="HeaderNextLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize10}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="JoinActivityLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivityDescriptionLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="ActivityTagLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="ActivityAboutHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="ActivityAboutGroupHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="ActivityAboutGroupValueLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="FooterTextLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="JoinActivityPopupHeaderStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="JoinActivityPopupTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="PastActivityHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivityTitleLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="JoinActivityDateLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="FeedbackChipLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="YourFeedBackLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="YourFeedBoxLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="MemberListLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="ScrollViewStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource DarkBrownColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <Style x:Key="ProfileHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize17}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="AboutMeDetailLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize28}" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="SettingsLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="SettingsListLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize21}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="LanguageListLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize21}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivitiesCountLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize35}" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ActivitiesHoursLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileDetailHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileDetailsLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize22}" />
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileNotRightLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileThanksLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="DisclaimerTextLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <!--Label Styles End-->
+
+            <!--Button Styles Start-->
+            <Style x:Key="CropButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <!--<Setter Property="WidthRequest" Value="100"/>-->
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BorderColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <Style x:Key="ClaimProfileButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato_Bold" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="Fill" />
+            </Style>
+            <!--Button Styles End-->
+
+            <!--Editor Styles Start-->
+            <Style x:Key="NewsCommentEditorStyle" TargetType="CustomControl:CustomEditor">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="PlaceholderColor" Value="DarkGray"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="StartWritingYourPostStyle" TargetType="CustomControl:CustomEditor">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="FeedBackEditorStyle" TargetType="CustomControl:CustomEditor">
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize28}" />
+                <Setter Property="PlaceholderColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <!--Editor Styles End-->
+
+            <!--Entry Styles Start-->
+            <Style x:Key="PostLabelStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize28}" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="ActivityDetailLabelStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize22}" />
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="PlaceholderColor" Value="DarkGray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource OffWhiteColor}"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style x:Key="PasswordEntryStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="IsPassword" Value="True"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="FindProfileEntryStyle" TargetType="CustomControl:CustomEntry">
+                <Setter Property="FontFamily" Value="Lato_Light" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="IsBorderLess" Value="True"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <!--Entry Styles End-->
+
+            <!--Image Styles Start-->
+            <Style x:Key="NewsAddImageStyle" TargetType="Image">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth35}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth60}" />
+                <Setter Property="Aspect" Value="AspectFit"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="HeaderLogoImageStyle" TargetType="Image">
+                <!--<Setter Property="HeightRequest" Value="{DynamicResource HeightWidth70}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth70}" />-->
+                <Setter Property="Aspect" Value="AspectFit"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="AppNewsPostImageStyle" TargetType="Image">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth35}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth35}" />
+                <Setter Property="Aspect" Value="AspectFit"/>
+            </Style>
+            <Style x:Key="FeedbackRatingImageStyle" TargetType="CustomControl:CustomImage">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth35}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth35}" />
+                <Setter Property="Aspect" Value="AspectFit"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="TintColor" Value="{StaticResource OffWhiteColor}" />
+            </Style>
+            <Style x:Key="EnterPasswordLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+            <Style x:Key="ProfilePancakeStyle" TargetType="PancakeControl:PancakeView">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="BorderColor" Value="{DynamicResource DarkColor}" />
+                <Setter Property="BorderThickness" Value="10" />
+                <Setter Property="CornerRadius" Value="{DynamicResource HeightWidth55}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,15,0,10" />
+            </Style>
+            <Style x:Key="ProfileTemplateImagePancakeStyle" TargetType="PancakeControl:PancakeView">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="BorderColor" Value="{DynamicResource SecondaryDarkColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryDarkColor}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="{DynamicResource HeightWidth55}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,15,0,10" />
+            </Style>
+            <Style x:Key="ProfileTemplateImageStyle" TargetType="CustomControl:CustomImage">
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth110}" />
+                <Setter Property="TintColor" Value="{DynamicResource DarkColor}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.ClaimThankYouReqeuestPage"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
+             NavigationPage.HasNavigationBar="false"
+             BackgroundColor="{StaticResource OffWhiteColor}"
+             ControlTemplate="{StaticResource BackHeaderView_Template}">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText1}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText2}" Margin="0,15,0,0" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText3}" Margin="0,0,0,15" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText4}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText5}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>    
+                <Label Text="{x:Static Multilingual:AppResources.ClaimProfileThankYouText6}" Style="{StaticResource ClaimProfileThanksLabelStyle}"/>
+            </StackLayout>
+             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="20" Margin="10,10,5,50" BackgroundColor="{StaticResource AccentColor}">
+                    <Button Command="{Binding ContinueSetupCommand}" Text="{x:Static Multilingual:AppResources.ContinueSetupText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

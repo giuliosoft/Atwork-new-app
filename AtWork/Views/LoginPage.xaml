@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.LoginPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork"
+             NavigationPage.HasNavigationBar="false"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             ControlTemplate="{StaticResource Header_Template}">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand">
+            <ScrollView x:Name="scrollview1" Margin="0,0,0,50" VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand"  WidthRequest="200" Margin="0,55,0,0">
+                    <StackLayout Spacing="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Image Margin="5" Source="logoblue" HorizontalOptions="CenterAndExpand"/>
+                        <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
+                        <Image Source="logodot" HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <!--<Image x:Name="logoImage" Source="logo"/>-->
+                    <StackLayout VerticalOptions="CenterAndExpand" Padding="30,0,0,0" >
+                        <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entEmail" Placeholder="{x:Static Multilingual:AppResources.EmailAddressOrID}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsBorderLess="True" TextColor="Black" PlaceholderColor="DarkGray" Text="{Binding UserEmail}" >
+                        </CustomControl:CustomEntry>
+                        <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entPassword" Placeholder="{x:Static Multilingual:AppResources.PasswordText}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsPassword="True" IsBorderLess="True" PlaceholderColor="DarkGray" TextColor="Black" Text="{Binding UserPassword}">
+                        </CustomControl:CustomEntry>
+                        <StackLayout VerticalOptions="Start">
+                            <Label Text="{x:Static Multilingual:AppResources.ForgotPasswordText}" FontFamily="Lato_Regular" FontSize="{DynamicResource FontSize14}" Padding="5,0,0,0" TextDecorations="Underline">
+                            </Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <PancakeControl:PancakeView IsVisible="{Binding WrongPasswordLabelIsVisible}" Margin="0,5,0,0" Padding="5,5,12,5" CornerRadius="15" HorizontalOptions="StartAndExpand" BackgroundColor="{StaticResource BlackColor}">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0" Orientation="Horizontal">
+                            <Image Source="GMSelected" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                            <Label Text="{x:Static Multilingual:AppResources.Wrongpasswordentered}" Style="{StaticResource NewsPagePostDescriptionLabelStyle}" TextColor="{StaticResource WhiteColor}"/>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Start" Padding="0,0,0,0" x:Name="slBtnLogin">
+                        <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
+                            <Button Command="{Binding GoForLoginCommand}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="50" TextColor="White"/>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

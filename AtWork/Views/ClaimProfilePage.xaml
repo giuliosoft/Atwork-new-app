@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.ClaimProfilePage"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ffImageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
+             NavigationPage.HasNavigationBar="false" BackgroundColor="{StaticResource OffWhiteColor}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" Spacing="0" Padding="0,40,0,0" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+            <ffImageloading:CachedImage CacheType="All" RetryCount="3" Margin="0,50,0,0" Grid.Column="0" Source="{Binding UserCompanyLogo}" Aspect="AspectFit" LoadingPlaceholder="loading" ErrorPlaceholder="noimage" HeightRequest="{DynamicResource HeightWidth130}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
+                <!--<ffImageloading:CachedImage.Transformations>
+                    <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                </ffImageloading:CachedImage.Transformations>-->
+            </ffImageloading:CachedImage>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <StackLayout Padding="20">
+                    <Label Text="{x:Static Multilingual:AppResources.NameHeaderText}" Style="{StaticResource ClaimProfileDetailHeaderLabelStyle}"/>
+                    <Label Text="{Binding UserName}" Style="{StaticResource ClaimProfileDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="{x:Static Multilingual:AppResources.SurnameHeaderText}" Style="{StaticResource ClaimProfileDetailHeaderLabelStyle}"/>
+                    <Label Text="{Binding UserSurname}" Style="{StaticResource ClaimProfileDetailsLabelStyle}"/>
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="{x:Static Multilingual:AppResources.EmailHeaderText}" Style="{StaticResource ClaimProfileDetailHeaderLabelStyle}"/>
+                    <Label Text="{Binding UserEmail}" Style="{StaticResource ClaimProfileDetailsLabelStyle}"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" Spacing="20">
+                <Label Text="{x:Static Multilingual:AppResources.ProfileNotRightText}" Style="{StaticResource ClaimProfileNotRightLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoForFindAndClaimAccountCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <StackLayout Spacing="0" Padding="0" Orientation="Vertical">
+                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="20" Margin="0,10,0,10" BackgroundColor="{StaticResource AccentColor}">
+                        <Button Command="{Binding GoForPasswordCommand}" x:Name="btnClaimProfile" Text="{x:Static Multilingual:AppResources.ClaimProfileText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
+                    </Frame>
+                    <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="20" Margin="0,10,0,10" BackgroundColor="{StaticResource AccentColor}">
+                        <Button Command="{Binding GoForCancelCommand}" x:Name="btnCancel" Text="{x:Static Multilingual:AppResources.Cancel}" Style="{StaticResource ClaimProfileButtonStyle}"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

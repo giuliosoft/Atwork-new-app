@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.SubViews.ImpactRatingView"
+             xmlns:helpers="clr-namespace:AtWork.Helpers"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+            <Grid ColumnDefinitions="60,60,60,60,60" ColumnSpacing="0" HeightRequest="70" Padding="0" Margin="50,0,50,0" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill">
+                <PancakeControl:PancakeView Grid.Row="0" Grid.ColumnSpan="5" CornerRadius="{Binding ImpactRatingPancakeCornerRadius}" WidthRequest="{Binding ImpactRatingPancakeWidth}" HorizontalOptions="StartAndExpand" HeightRequest="50" BackgroundColor="{DynamicResource AccentColor}">
+                </PancakeControl:PancakeView>
+                <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding ImpactRate1PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding ImpactRate1BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource AccentColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding ImpactRate1FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding ImpactRate1PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="2"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding ImpactRate2PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding ImpactRate2BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource AccentColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding ImpactRate2FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="3"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding ImpactRate2PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="4"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding ImpactRate3PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding ImpactRate3BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource AccentColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding ImpactRate3FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="5"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding ImpactRate3PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="6"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="3" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding ImpactRate4PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding ImpactRate4BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource AccentColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding ImpactRate4FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="7"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding ImpactRate4PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="8"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="4" HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <Path IsVisible="{Binding ImpactRate5PathIsVisible}" StrokeThickness="2" Aspect="Uniform" HorizontalOptions="Center" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}" Data="M295.706,46.058C354.45,46.344,402,93.894,402.286,152.638   c0,107.624-195.918,214.204-195.918,214.204S10.449,258.695,10.449,152.638c0-58.862,47.717-106.58,106.58-106.58l0,0   c36.032-0.281,69.718,17.842,89.339,48.065C226.123,64.047,259.722,45.971,295.706,46.058z">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{DynamicResource AccentColor}"></SolidColorBrush>
+                        </Path.Stroke>
+                        <Path.Fill>
+                            <SolidColorBrush Color="{StaticResource OffWhiteColor}"></SolidColorBrush>
+                        </Path.Fill>
+                    </Path>
+                    <CustomControl:CustomImage Source="heart" IsVisible="{Binding ImpactRate5BorderedIsVisible}" Style="{StaticResource FeedbackRatingImageStyle}" TintColor="{DynamicResource AccentColor}"/>
+                    <CustomControl:CustomImage IsVisible="{Binding ImpactRate5FilledIsVisible}" Source="heartfill" Style="{StaticResource FeedbackRatingImageStyle}"/>
+                    <Grid RowDefinitions="*" ColumnDefinitions="29,2,29" ColumnSpacing="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="9"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView IsVisible="{Binding ImpactRate5PathIsVisible}" Grid.Column="1" WidthRequest="2" HeightRequest="{DynamicResource HeightWidth30}" VerticalOptions="Center" BackgroundColor="{DynamicResource AccentColor}" HorizontalOptions="Fill"/>
+                        <StackLayout Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ImpactRatingSelectedCommand}" CommandParameter="10"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

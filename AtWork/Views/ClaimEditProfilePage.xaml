@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.ClaimEditProfilePage"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:CustomControl="clr-namespace:AtWork.CustomControls;assembly=AtWork"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"             
+             NavigationPage.HasNavigationBar="false"
+             ControlTemplate="{StaticResource BackHeaderView_Template}"
+             BackgroundColor="{StaticResource OffWhiteColor}">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <StackLayout Padding="20">
+                    <Label Text="{x:Static Multilingual:AppResources.NameHeaderText}" Style="{StaticResource ClaimProfileDetailHeaderLabelStyle}"/>
+                    <StackLayout Padding="40,5,40,0" >
+                        <CustomControl:CustomEntry Text="{Binding UserName}" Style="{StaticResource FindProfileEntryStyle}" />
+                        <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="{x:Static Multilingual:AppResources.SurnameHeaderText}" Style="{StaticResource ClaimProfileDetailHeaderLabelStyle}"/>
+                    <StackLayout Padding="40,5,40,0" >
+                        <CustomControl:CustomEntry Text="{Binding UserSurname}" Style="{StaticResource FindProfileEntryStyle}" />
+                        <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="{x:Static Multilingual:AppResources.EmailHeaderText}" Style="{StaticResource ClaimProfileDetailHeaderLabelStyle}"/>
+                    <StackLayout Padding="40,5,40,0" >
+                        <CustomControl:CustomEntry Text="{Binding UserEmail}" Style="{StaticResource FindProfileEntryStyle}" />
+                        <BoxView BackgroundColor="{StaticResource BlackColor}" HeightRequest="1" VerticalOptions="Fill" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="20" Margin="10,10,5,50" BackgroundColor="{StaticResource AccentColor}">
+                    <Button Command="{Binding SubmitProfileCorrectionsCommand}" Text="{x:Static Multilingual:AppResources.SubmitCorrectionText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
+                </Frame>
+                <!--<ffImageloading:CachedImage Source="SubmitCorrection" Aspect="AspectFit" Margin="0,0,0,20"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SubmitProfileCorrectionsCommand}"/>
+                </StackLayout.GestureRecognizers>-->
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

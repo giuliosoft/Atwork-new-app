@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.SubViews.NewsHeaderView"
+             xmlns:Services="clr-namespace:AtWork.Services;assembly=AtWork"
+             xmlns:Converters="clr-namespace:AtWork.Converters;assembly=AtWork"  
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Converters:InverseBooleanConverter x:Key="InverseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout Padding="0,0,0,0" HorizontalOptions="FillAndExpand" Spacing="0">
+            <Grid HeightRequest="{DynamicResource HeightWidth60}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <!--<ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />-->
+                    <!--<ColumnDefinition Width="*" />-->
+                    <!--<ColumnDefinition Width="{DynamicResource GridHeightWidth60}" />-->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{Static Services:LayoutService.GridHeightWidth120}" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--<Label Grid.Column="0" IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}" TextColor="Transparent" Padding="10,7,10,5"/>-->
+                <ContentView x:Name="HeaderProfile" Padding="10,10,0,10" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" WidthRequest="{DynamicResource HeightWidth55}">
+                    <StackLayout Spacing="{DynamicResource Spacing05}" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
+                        <ffImageLoading:CachedImage CacheType="Memory" RetryCount="3" Source="{TemplateBinding BindingContext.UserProfileImageHeader}" HeightRequest="{DynamicResource HeightWidth40}" WidthRequest="{DynamicResource HeightWidth40}">
+                            <ffImageLoading:CachedImage.Transformations>
+                                <ffTransformations:CircleTransformation BorderHexColor="#000000" BorderSize="10"/>
+                            </ffImageLoading:CachedImage.Transformations>
+                            <ffImageLoading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{TemplateBinding BindingContext.OpenProfileCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                            </ffImageLoading:CachedImage.GestureRecognizers>
+                        </ffImageLoading:CachedImage>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{TemplateBinding BindingContext.ProfileTapCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </ContentView>
+                <ContentView x:Name="HeaderLogo" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                    <ffImageLoading:CachedImage CacheType="All" Source="{TemplateBinding BindingContext.CoLogo}" Style="{StaticResource HeaderLogoImageStyle}" Margin="{DynamicResource MarginPadding00_05_00_05}"/>
+                </ContentView>
+                <ContentView Grid.Column="2" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <PancakeControl:PancakeView Padding="0" HeightRequest="40" HorizontalOptions="End" CornerRadius="20,0,20,0" BackgroundColor="{DynamicResource AccentColor}">
+                        <StackLayout HorizontalOptions="End" VerticalOptions="Center" >
+                            <Image IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible, Converter={StaticResource InverseConverter}}" Source="plus" Aspect="AspectFit" HeightRequest="{DynamicResource HeightWidth20}" WidthRequest="{DynamicResource HeightWidth55}" HorizontalOptions="StartAndExpand" VerticalOptions="Fill"/>
+                            <Label IsVisible="{TemplateBinding BindingContext.NextCustomLabelIsVisible}" Text="{TemplateBinding BindingContext.NextOptionText}" Style="{StaticResource HeaderNextLabelStyle}" Padding="10,7,10,5"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{TemplateBinding BindingContext.HeaderNextNavigationCommand}" CommandParameter="{TemplateBinding BindingContext.NextClickPageName}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </PancakeControl:PancakeView>
+                </ContentView>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
