@@ -1654,5 +1654,35 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("PasswordText", resourceCulture);
             }
         }
+        
+        internal static string SeeFullActivityHistory {
+            get {
+                return ResourceManager.GetString("SeeFullActivityHistory", resourceCulture);
+            }
+        }
+        
+        internal static string AllTime {
+            get {
+                return ResourceManager.GetString("AllTime", resourceCulture);
+            }
+        }
+        
+        internal static string Activityhistory {
+            get {
+                return ResourceManager.GetString("Activityhistory", resourceCulture);
+            }
+        }
+        
+        internal static string EditBirthDayDate {
+            get {
+                return ResourceManager.GetString("EditBirthDayDate", resourceCulture);
+            }
+        }
+        
+        internal static string txtParticipation {
+            get {
+                return ResourceManager.GetString("txtParticipation", resourceCulture);
+            }
+        }
     }
 }

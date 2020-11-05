@@ -86,6 +86,7 @@
     <Compile Include="Renderers\SelectableLabelRenderer.cs" />
     <Compile Include="HelperServices\SettingsHelper.cs" />
     <Compile Include="HelperServices\FilePickerList.cs" />
+    <Compile Include="Renderers\PhoneCall_iOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

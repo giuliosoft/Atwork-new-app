@@ -46,6 +46,7 @@ namespace AtWork.Services
         public static Volunteers tempVolunteerData = null;
         public static LoginOutputModel tempClaimProfileData = null;
         public static bool isFromJoinActivity = false;
+        public static Volunteers volunteers = new Volunteers();
 
         public static bool isEditingActivity = false;
         public static string DeletedActivityPost = string.Empty;

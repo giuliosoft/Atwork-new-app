@@ -82,9 +82,10 @@ namespace AtWork.ViewModels
                 SettingsList.Add(AppResources.ChangeProfilePictureText);
                 SettingsList.Add(AppResources.EditInterestsText);
                 SettingsList.Add(AppResources.EditAboutMeText);
+                SettingsList.Add(AppResources.EditBirthDayDate);
                 SettingsList.Add(AppResources.ChangeLanguageText);
                 SettingsList.Add(AppResources.ChangePasswordText);
-                //SettingsList.Add(AppResources.ManageNotificationText);
+                SettingsList.Add(AppResources.ManageNotificationText);
             }
             catch (Exception ex)
             {

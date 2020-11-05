@@ -31,6 +31,7 @@ namespace AtWork.ViewModels
         #region Private Properties
         Volunteers _volunteers = new Volunteers();
         private bool _isShowSettingLogout = false;
+        private bool _isShowBoxview = false;
         #endregion
         #region Public Properties
         public Volunteers volunteers
@@ -43,6 +44,12 @@ namespace AtWork.ViewModels
             get { return _isShowSettingLogout; }
             set { SetProperty(ref _isShowSettingLogout, value); }
         }
+        public bool isShowBoxview
+        {
+            get { return _isShowBoxview; }
+            set { SetProperty(ref _isShowBoxview, value); }
+        }
+        
         private ObservableCollection<FeedBackUIModel> _interestList = new ObservableCollection<FeedBackUIModel>();
         public ObservableCollection<FeedBackUIModel> interestList
         {
@@ -55,6 +62,12 @@ namespace AtWork.ViewModels
             get { return _UserDetailsList; }
             set { SetProperty(ref _UserDetailsList, value); }
         }
+        private ObservableCollection<UserDetails> _UserPersonalDetails = new ObservableCollection<UserDetails>();
+        public ObservableCollection<UserDetails> UserPersonalDetails
+        {
+            get { return _UserPersonalDetails; }
+            set { SetProperty(ref _UserPersonalDetails, value); }
+        }
         #endregion
 
 
@@ -63,10 +76,36 @@ namespace AtWork.ViewModels
         public string Name { get; } = SettingsService.VolunteersUserData.FullName;
         public DelegateCommand SettingCommand { get { return new DelegateCommand(async () => await Setting()); } }
         public DelegateCommand LogoutCommand { get { return new DelegateCommand(async () => await Logout()); } }
+        public DelegateCommand OpenMemberListCommand { get { return new DelegateCommand(async () => await OpenMemberList()); } }
+        public DelegateCommand OpenFullActivityCommand { get { return new DelegateCommand(async () => await FullActivityDetails()); } }
+        public DelegateCommand OpenEmailCommand { get { return new DelegateCommand(async () => await OpenEmail()); } }
+        public DelegateCommand OpenCallDialerCommand { get { return new DelegateCommand(async () => await OpenCallDialer()); } }
         #endregion
 
         #region private methods
 
+        async Task OpenEmail()
+        {
+            try
+            {
+                DependencyService.Get<PhoneCallEmail>().ComposerEmail("abc@gmail.com");
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        async Task OpenCallDialer()
+        {
+            try
+            {
+                DependencyService.Get<PhoneCallEmail>().MakeQuickCall("123456789");
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         async Task Setting()
         {
             try
@@ -78,6 +117,29 @@ namespace AtWork.ViewModels
 
             }
         }
+        async Task OpenMemberList()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(MemberListPage));
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        async Task FullActivityDetails()
+        {
+            try
+            {
+                await _navigationService.NavigateAsync(nameof(ActivityHistoryPage));
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+       
         async Task Logout()
         {
             try
@@ -108,6 +170,7 @@ namespace AtWork.ViewModels
                     if (serviceResultBody != null)
                     {
                         volunteers = serviceResultBody?.Data;
+                        SessionService.volunteers = volunteers;
                         if (!string.IsNullOrEmpty(volunteers?.volInterests))
                         {
                             string imgStr = volunteers?.volInterests;
@@ -174,9 +237,22 @@ namespace AtWork.ViewModels
                                     return true;
                                 });
                                 UserDetailsList = tempCmtList;
+                                isShowBoxview = true;
+                                ObservableCollection<UserDetails> temp = new ObservableCollection<UserDetails>();
+                                temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
+                                temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });
+                                temp.Add(new UserDetails() { UserDescriptionTitle = "START DATE", UserDescriptionValue = "September 1 2017" });
+                                temp.Add(new UserDetails() { UserDescriptionTitle = "EMPLOYEE ID", UserDescriptionValue = "L00110022" });
+                                temp.Add(new UserDetails() { UserDescriptionTitle = "CUSTOM FIELD", UserDescriptionValue = "Entry goed here" });
+                                temp.Add(new UserDetails() { UserDescriptionTitle = "CONTACT ME", UserDescriptionValue = "carron@atwork.com" });
+                                UserPersonalDetails = temp;
                             }
                         }
-                        await ChangeLanguage(volunteers?.volLanguage, true);
+
+                        if (SettingsService.VolunteersUserData.volUniqueID == volunteerID)
+                        {
+                            await ChangeLanguage(volunteers?.volLanguage, true);
+                        }
                     }
                 }
                 await ClosePopup();

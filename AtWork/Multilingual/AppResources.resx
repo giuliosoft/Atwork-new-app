@@ -859,4 +859,19 @@ Are you sure want to do that?</value>
     <data name="PasswordText" xml:space="preserve">
         <value>Password</value>
     </data>
+    <data name="SeeFullActivityHistory" xml:space="preserve">
+        <value>See full activity history</value>
+    </data>
+    <data name="AllTime" xml:space="preserve">
+        <value>All time</value>
+    </data>
+    <data name="Activityhistory" xml:space="preserve">
+        <value>Activity history</value>
+    </data>
+       <data name="EditBirthDayDate" xml:space="preserve">
+        <value>Edit birthday date</value>
+    </data>
+    <data name="txtParticipation" xml:space="preserve">
+        <value>PARTICIPATION</value>
+    </data>
 </root>
