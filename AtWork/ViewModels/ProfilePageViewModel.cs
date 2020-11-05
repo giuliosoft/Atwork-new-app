@@ -176,7 +176,10 @@ namespace AtWork.ViewModels
                                 UserDetailsList = tempCmtList;
                             }
                         }
-                        await ChangeLanguage(volunteers?.volLanguage, true);
+                        if (SettingsService.VolunteersUserData.volUniqueID == volunteerID)
+                        {
+                            await ChangeLanguage(volunteers?.volLanguage, true);
+                        }
                     }
                 }
                 await ClosePopup();
