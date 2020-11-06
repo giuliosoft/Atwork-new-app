@@ -222,6 +222,7 @@ namespace AtWork.Services
             App.Current.Resources["CornerRadius15"] = (float)sizeConvertAsPerDevice(15);
             App.Current.Resources["CornerRadius20"] = (float)sizeConvertAsPerDevice(20);
             App.Current.Resources["CornerRadius25"] = (float)sizeConvertAsPerDevice(25);
+            App.Current.Resources["CornerRadius30"] = (float)sizeConvertAsPerDevice(30);
 
             App.Current.Resources["ButtonCornerRadius05"] = (int)sizeConvertAsPerDevice(05);
             App.Current.Resources["ButtonCornerRadius10"] = (int)sizeConvertAsPerDevice(10);

@@ -36,7 +36,7 @@ namespace AtWork.Services
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var UserProfileURL = ConfigService.BaseServiceURL + ConfigService.UserProfileURL + id;
+                var UserProfileURL = ConfigService.BaseServiceURL + ConfigService.getprofile_v1 + id;
                 resultModel = await GetResponse<string>(UserProfileURL, true);
             }
             catch (Exception ex)

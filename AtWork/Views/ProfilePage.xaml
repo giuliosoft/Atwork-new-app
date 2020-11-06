@@ -44,15 +44,28 @@
                             <Label Text="{x:Static Multilingual:AppResources.HoursText}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                         </StackLayout>
                     </Grid>
-                    <FlexLayout BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Center" AlignContent="Start">
+                    <FlexLayout IsVisible="{Binding showActivityDetail}" BindableLayout.ItemsSource="{Binding UserActivityList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout IsEnabled="False" Orientation="Vertical" Padding="{StaticResource MarginPadding10}">
+                                <StackLayout IsEnabled="False" Orientation="Vertical" >
                                     <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
-                                    <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" CornerRadius="{DynamicResource CornerRadius25}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
+                                    <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth60}" WidthRequest="{DynamicResource HeightWidth60}" CornerRadius="{DynamicResource CornerRadius30}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
                                         <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
                                     </PancakeControl:PancakeView>
-                                    <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth110}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                                    <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                    <FlexLayout IsVisible="{Binding showHoursDetail}" BindableLayout.ItemsSource="{Binding UserHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout IsEnabled="False" Orientation="Vertical" >
+                                    <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
+                                    <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth60}" WidthRequest="{DynamicResource HeightWidth60}" CornerRadius="{DynamicResource CornerRadius30}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
+                                        <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
+                                    </PancakeControl:PancakeView>
+                                    <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
@@ -122,6 +135,43 @@
                                 </DataTemplate>
                             </Customcontrol:RepeaterView.ItemTemplate>
                         </Customcontrol:RepeaterView>-->
+
+                        <StackLayout IsVisible="{Binding isVisibleBirthDate}"  Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                            <Label Text="BIRTHDAY" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                            <Label Text="November 5" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding isVisibleLocation}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                            <Label Text="LOCATION"  Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                            <Label Text="Zurich" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding isVisibleStartDate}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                            <Label Text="START DATE" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                            <Label Text="September 1 2017" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding isVisibleEMPID}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                            <Label Text="EMPLOYEE ID" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
+                            <Label Text="L00110022" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding isVisibleCustomField}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                            <Label Text="CUSTOM FIELD" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
+                            <Label Text="Entry goed here" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding isVisibleContactMe}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                            <Label Text="CONTACT ME" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start" VerticalOptions="Start"/>
+                            <StackLayout HorizontalOptions="EndAndExpand">
+                                <Label Text="carron.m@atwork.ai" Style="{StaticResource ProfileHeaderLabelStyle}" TextDecorations="Underline" TextColor="{DynamicResource AccentColor}" HorizontalOptions="EndAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenEmailCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="+46 780000000" Style="{StaticResource ProfileHeaderLabelStyle}" TextDecorations="Underline" TextColor="{DynamicResource AccentColor}" HorizontalOptions="EndAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenCallDialerCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Padding="0" Spacing="0">
                         <StackLayout Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
                             <Label Text="BIRTHDAY" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
                             <Label Text="November 5" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
@@ -142,7 +192,7 @@
                             <Label Text="CUSTOM FIELD" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
                             <Label Text="Entry goed here" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
+                        <StackLayout  Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
                             <Label Text="CONTACT ME" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start" VerticalOptions="Start"/>
                             <StackLayout HorizontalOptions="EndAndExpand">
                                 <Label Text="carron.m@atwork.ai" Style="{StaticResource ProfileHeaderLabelStyle}" TextDecorations="Underline" TextColor="{DynamicResource AccentColor}" HorizontalOptions="EndAndExpand">
@@ -157,6 +207,7 @@
                                 </Label>
                             </StackLayout>
                         </StackLayout>
+                            </StackLayout>
                     </StackLayout>
                     <StackLayout IsVisible="{Binding isShowSettingLogout}" VerticalOptions="EndAndExpand">
                         <StackLayout>

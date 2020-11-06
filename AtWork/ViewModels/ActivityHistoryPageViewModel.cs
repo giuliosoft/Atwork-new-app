@@ -35,6 +35,8 @@ namespace AtWork.ViewModels
         bool _isBusy = false;
         Color _ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
         Color _HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+        Color _ActivityTextColor = Color.White;
+        Color _HoursTextColor = (Color)App.Current.Resources["AccentColor"];
         private int PageNo = 1;
         #endregion
 
@@ -91,6 +93,23 @@ namespace AtWork.ViewModels
             get { return _HoursBGColor; }
             set { SetProperty(ref _HoursBGColor, value); }
         }
+        public Color ActivityTextColor
+        {
+            get { return _ActivityTextColor; }
+            set { SetProperty(ref _ActivityTextColor, value); }
+        }
+        public Color HoursTextColor
+        {
+            get { return _HoursTextColor; }
+            set { SetProperty(ref _HoursTextColor, value); }
+        }
+
+        private ObservableCollection<HoursActivityCount> _UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
+        public ObservableCollection<HoursActivityCount> UserActivityHoursList
+        {
+            get { return _UserActivityHoursList; }
+            set { SetProperty(ref _UserActivityHoursList, value); }
+        }
         #endregion
 
         #region Commands
@@ -118,7 +137,7 @@ namespace AtWork.ViewModels
             try
             {
                 SelectedActivityCategoryID = selectedCategory.categoryId;
-                Activitycollectionlist.All((categories) =>
+                Activitycollectionlist.All((categories)  =>
                 {
                     if (selectedCategory.title == categories.title)
                     {
@@ -186,28 +205,50 @@ namespace AtWork.ViewModels
         {
             try
             {
+                UserActivityHoursList.Clear();
+                //ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
+                //HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                ObservableCollection<HoursActivityCount> temp = new ObservableCollection<HoursActivityCount>();
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+                UserActivityHoursList = temp;
                 ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
                 HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+
+                ActivityTextColor = Color.White;
+                HoursTextColor = (Color)App.Current.Resources["AccentColor"];
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
-            
         }
         async Task ShowHoursDetail()
         {
             try
             {
+                UserActivityHoursList.Clear();
+                ObservableCollection<HoursActivityCount> temp = new ObservableCollection<HoursActivityCount>();
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Hours Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Hours Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Hours Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Hours Count" });
+                temp.Add(new HoursActivityCount() { Count = "10", Text = "Hours Count" });
+                UserActivityHoursList = temp;
                 ActivityBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
                 HoursBGColor = (Color)App.Current.Resources["AccentColor"];
+                HoursTextColor = Color.White;
+                ActivityTextColor = (Color)App.Current.Resources["AccentColor"];
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
-            
+
         }
+       
         #endregion
 
         #region public methods
@@ -222,6 +263,15 @@ namespace AtWork.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+
+            ObservableCollection<HoursActivityCount> temp = new ObservableCollection<HoursActivityCount>();
+            temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+            temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+            temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+            temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+            temp.Add(new HoursActivityCount() { Count = "10", Text = "Activity Count" });
+            UserActivityHoursList = temp;
+
             for (int i = 0; i < 5; i++)
             {
                 interestList.Add(new FeedBackUIModel() { Title = i.ToString() });

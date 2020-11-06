@@ -12,6 +12,7 @@ using AtWork.Views;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static AtWork.Models.LoginModel;
 using static AtWork.Models.UserModel;
@@ -32,6 +33,16 @@ namespace AtWork.ViewModels
         Volunteers _volunteers = new Volunteers();
         private bool _isShowSettingLogout = false;
         private bool _isShowBoxview = false;
+        private bool _isVisibleBirthDate = false;
+        private bool _isVisibleLocation = false;
+        private bool _isVisibleStartDate = false;
+        private bool _isVisibleEMPID = false;
+        private bool _isVisibleCustomField = false;
+        private bool _isVisibleContactMe = false;
+        private bool _showActivityDetail = true;
+        private bool _showHoursDetail = false;
+        ObservableCollection<HoursActivityCount> _UserActivityList = new ObservableCollection<HoursActivityCount>();
+        ObservableCollection<HoursActivityCount> _UserHoursList = new ObservableCollection<HoursActivityCount>();
         #endregion
         #region Public Properties
         public Volunteers volunteers
@@ -49,6 +60,46 @@ namespace AtWork.ViewModels
             get { return _isShowBoxview; }
             set { SetProperty(ref _isShowBoxview, value); }
         }
+        public bool isVisibleBirthDate
+        {
+            get { return _isVisibleBirthDate; }
+            set { SetProperty(ref _isVisibleBirthDate, value); }
+        }
+        public bool isVisibleLocation
+        {
+            get { return _isVisibleLocation; }
+            set { SetProperty(ref _isVisibleLocation, value); }
+        }
+        public bool isVisibleStartDate
+        {
+            get { return _isVisibleStartDate; }
+            set { SetProperty(ref _isVisibleStartDate, value); }
+        }
+        public bool isVisibleEMPID
+        {
+            get { return _isVisibleEMPID; }
+            set { SetProperty(ref _isVisibleEMPID, value); }
+        }
+        public bool isVisibleCustomField
+        {
+            get { return _isVisibleCustomField; }
+            set { SetProperty(ref _isVisibleCustomField, value); }
+        }
+        public bool isVisibleContactMe
+        {
+            get { return _isVisibleContactMe; }
+            set { SetProperty(ref _isVisibleContactMe, value); }
+        }
+        public bool showHoursDetail
+        {
+            get { return _showHoursDetail; }
+            set { SetProperty(ref _showHoursDetail, value); }
+        }
+        public bool showActivityDetail
+        {
+            get { return _showActivityDetail; }
+            set { SetProperty(ref _showActivityDetail, value); }
+        }
         
         private ObservableCollection<FeedBackUIModel> _interestList = new ObservableCollection<FeedBackUIModel>();
         public ObservableCollection<FeedBackUIModel> interestList
@@ -62,11 +113,21 @@ namespace AtWork.ViewModels
             get { return _UserDetailsList; }
             set { SetProperty(ref _UserDetailsList, value); }
         }
-        private ObservableCollection<NameValue> _UserActivityHoursList = new ObservableCollection<NameValue>();
-        public ObservableCollection<NameValue> UserActivityHoursList
+        //private ObservableCollection<HoursActivityCount> _UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
+        //public ObservableCollection<HoursActivityCount> UserActivityHoursList
+        //{
+        //    get { return _UserActivityHoursList; }
+        //    set { SetProperty(ref _UserActivityHoursList, value); }
+        //}
+        public ObservableCollection<HoursActivityCount> UserActivityList
         {
-            get { return _UserActivityHoursList; }
-            set { SetProperty(ref _UserActivityHoursList, value); }
+            get { return _UserActivityList; }
+            set { SetProperty(ref _UserActivityList, value); }
+        }
+        public ObservableCollection<HoursActivityCount> UserHoursList
+        {
+            get { return _UserHoursList; }
+            set { SetProperty(ref _UserHoursList, value); }
         }
         #endregion
 
@@ -92,14 +153,20 @@ namespace AtWork.ViewModels
         {
             try
             {
-                UserActivityHoursList.Clear();
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    showActivityDetail = true;
+                    showHoursDetail = false;
+                });
+                //UserActivityHoursList.Clear();
+                //UserActivityHoursList = UserActivityLis t;
                 //ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
                 //HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
-                ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                UserActivityHoursList = temp;
+                //ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
+                //temp.Add(new NameValue() { Count = "10", Text = "Activity Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Activity Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Activity Count" });
+                //UserActivityHoursList = temp;
             }
             catch (Exception ex)
             {
@@ -110,15 +177,23 @@ namespace AtWork.ViewModels
         {
             try
             {
-                UserActivityHoursList.Clear();
-                ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
-                temp.Add(new NameValue() { Count = 10, Text = "Hours Count" });
-                temp.Add(new NameValue() { Count = 20, Text = "Hours Count" });
-                temp.Add(new NameValue() { Count = 30, Text = "Hours Count" });
-                temp.Add(new NameValue() { Count = 40, Text = "Hours Count" });
-                temp.Add(new NameValue() { Count = 50, Text = "Hours Count" });
-                temp.Add(new NameValue() { Count = 50, Text = "Hours Count" });
-                UserActivityHoursList = temp;
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    showActivityDetail = false;
+                    showHoursDetail = true;
+                });
+                
+
+                //UserActivityHoursList.Clear();
+                //UserActivityHoursList = CategoryHoursList;
+                //ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
+                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
+                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
+                //UserActivityHoursList = temp;
                 //ActivityBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
                 //HoursBGColor = (Color)App.Current.Resources["AccentColor"];
             }
@@ -182,7 +257,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                //await _navigationService.NavigateAsync(nameof(ActivityHistoryPage));
+                await _navigationService.NavigateAsync(nameof(ActivityHistoryPage));
             }
             catch (Exception ex)
             {
@@ -298,6 +373,94 @@ namespace AtWork.ViewModels
                             }
                         }
 
+                        if (!string.IsNullOrEmpty(volunteers?.CategoryActivityCount))
+                        {
+                            string CategoryActivityAndCount = volunteers?.CategoryActivityCount;
+                            List<string> CategoryActivityAndCountList = new List<string>();
+                            if (!string.IsNullOrEmpty(CategoryActivityAndCount))
+                            {
+                                if (CategoryActivityAndCount.Contains(","))
+                                {
+                                    CategoryActivityAndCountList = CategoryActivityAndCount.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    //UserDescriptionList.Add(UserDescription);
+                                }
+                            }
+
+                            if (CategoryActivityAndCountList != null && CategoryActivityAndCountList.Count > 0)
+                            {
+                                var tempCmtList = new ObservableCollection<HoursActivityCount>();
+                                CategoryActivityAndCountList.All((arg) =>
+                                {
+                                    List<string> UserSingleDescriptionList = new List<string>();
+                                    if (!string.IsNullOrEmpty(arg))
+                                    {
+                                        if (arg.Contains(":"))
+                                        {
+                                            UserSingleDescriptionList = arg.Split(':').ToList();
+                                        }
+                                        else
+                                        {
+                                            UserSingleDescriptionList.Add(arg);
+                                        }
+                                        if (UserSingleDescriptionList.Count == 2)
+                                        {
+                                            tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
+                                        }
+                                    }
+
+                                    return true;
+                                });
+                                UserActivityList = tempCmtList;
+                                //UserActivityHoursList = tempCmtList;
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(volunteers?.CategorywiseHourCount))
+                        {
+                            string CategoryHoursAndCount = volunteers?.CategorywiseHourCount;
+                            List<string> tempCategoryHoursList = new List<string>();
+                            if (!string.IsNullOrEmpty(CategoryHoursAndCount))
+                            {
+                                if (CategoryHoursAndCount.Contains(","))
+                                {
+                                    tempCategoryHoursList = CategoryHoursAndCount.Split(',').ToList();
+                                }
+                                else
+                                {
+                                    //UserDescriptionList.Add(UserDescription);
+                                }
+                            }
+
+                            if (tempCategoryHoursList != null && tempCategoryHoursList.Count > 0)
+                            {
+                                var tempCmtList = new ObservableCollection<HoursActivityCount>();
+                                tempCategoryHoursList.All((arg) =>
+                                {
+                                    List<string> UserSingleDescriptionList = new List<string>();
+                                    if (!string.IsNullOrEmpty(arg))
+                                    {
+                                        if (arg.Contains(":"))
+                                        {
+                                            UserSingleDescriptionList = arg.Split(':').ToList();
+                                        }
+                                        else
+                                        {
+                                            UserSingleDescriptionList.Add(arg);
+                                        }
+                                        if (UserSingleDescriptionList.Count == 2)
+                                        {
+                                            tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
+                                        }
+                                    }
+
+                                    return true;
+                                });
+                                UserHoursList = tempCmtList;
+                            }
+                        }
+
                         if (SettingsService.VolunteersUserData.volUniqueID == volunteerID)
                         {
                             await ChangeLanguage(volunteers?.volLanguage, true);
@@ -327,13 +490,6 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
-                ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
-                UserActivityHoursList = temp;
                 string VolunteerId = parameters.GetValue<string>("VolId");
                 if (!string.IsNullOrEmpty(VolunteerId))
                 {
@@ -366,9 +522,9 @@ namespace AtWork.ViewModels
         public string UserDescriptionValue { get; set; }
 
     }
-    public class NameValue
+    public class HoursActivityCount
     {
-        public int Count { get; set; }
+        public string Count { get; set; }
         public string Text { get; set; }
 
     }

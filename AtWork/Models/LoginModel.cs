@@ -175,6 +175,8 @@ namespace AtWork.Models
             public int Vortex_Activity_Count { get; set; }
 
             public string classes { get; set; }
+            public string CategoryActivityCount { get; set; }
+            public string CategorywiseHourCount { get; set; }
             public string volInterests { get; set; }
             public string volPicture
             {
