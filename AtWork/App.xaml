@@ -409,13 +409,12 @@
             </Style>
 
             <Style x:Key="ProfileHeaderLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="Lato_Bold" />
-                <Setter Property="FontSize" Value="{DynamicResource FontSize17}" />
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
                 <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-                <Setter Property="VerticalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
             <Style x:Key="AboutMeDetailLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource FontSize28}" />

@@ -62,11 +62,11 @@ namespace AtWork.ViewModels
             get { return _UserDetailsList; }
             set { SetProperty(ref _UserDetailsList, value); }
         }
-        private ObservableCollection<UserDetails> _UserPersonalDetails = new ObservableCollection<UserDetails>();
-        public ObservableCollection<UserDetails> UserPersonalDetails
+        private ObservableCollection<NameValue> _UserActivityHoursList = new ObservableCollection<NameValue>();
+        public ObservableCollection<NameValue> UserActivityHoursList
         {
-            get { return _UserPersonalDetails; }
-            set { SetProperty(ref _UserPersonalDetails, value); }
+            get { return _UserActivityHoursList; }
+            set { SetProperty(ref _UserActivityHoursList, value); }
         }
         #endregion
 
@@ -76,14 +76,58 @@ namespace AtWork.ViewModels
         public string Name { get; } = SettingsService.VolunteersUserData.FullName;
         public DelegateCommand SettingCommand { get { return new DelegateCommand(async () => await Setting()); } }
         public DelegateCommand LogoutCommand { get { return new DelegateCommand(async () => await Logout()); } }
-        public DelegateCommand OpenMemberListCommand { get { return new DelegateCommand(async () => await OpenMemberList()); } }
+        //public DelegateCommand OpenGroupMemberListCommand { get { return new DelegateCommand(async () => await OpenMemberList()); } }
+        public DelegateCommand<UserDetails> OpenGroupMemberListCommand { get { return new DelegateCommand<UserDetails>(async (obj) => await OpenMemberList(obj)); } }
+
         public DelegateCommand OpenFullActivityCommand { get { return new DelegateCommand(async () => await FullActivityDetails()); } }
         public DelegateCommand OpenEmailCommand { get { return new DelegateCommand(async () => await OpenEmail()); } }
         public DelegateCommand OpenCallDialerCommand { get { return new DelegateCommand(async () => await OpenCallDialer()); } }
+        public DelegateCommand ShowActivityCommand { get { return new DelegateCommand(async () => await ShowActivityDetail()); } }
+        public DelegateCommand ShowHoursCommand { get { return new DelegateCommand(async () => await ShowHoursDetail()); } }
         #endregion
 
         #region private methods
 
+        async Task ShowActivityDetail()
+        {
+            try
+            {
+                UserActivityHoursList.Clear();
+                //ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
+                //HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                UserActivityHoursList = temp;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.CommanException(ex);
+            }
+        }
+        async Task ShowHoursDetail()
+        {
+            try
+            {
+                UserActivityHoursList.Clear();
+                ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
+                temp.Add(new NameValue() { Count = 10, Text = "Hours Count" });
+                temp.Add(new NameValue() { Count = 20, Text = "Hours Count" });
+                temp.Add(new NameValue() { Count = 30, Text = "Hours Count" });
+                temp.Add(new NameValue() { Count = 40, Text = "Hours Count" });
+                temp.Add(new NameValue() { Count = 50, Text = "Hours Count" });
+                temp.Add(new NameValue() { Count = 50, Text = "Hours Count" });
+                UserActivityHoursList = temp;
+                //ActivityBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                //HoursBGColor = (Color)App.Current.Resources["AccentColor"];
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.CommanException(ex);
+            }
+
+        }
         async Task OpenEmail()
         {
             try
@@ -95,6 +139,7 @@ namespace AtWork.ViewModels
 
             }
         }
+
         async Task OpenCallDialer()
         {
             try
@@ -106,6 +151,7 @@ namespace AtWork.ViewModels
 
             }
         }
+
         async Task Setting()
         {
             try
@@ -117,17 +163,21 @@ namespace AtWork.ViewModels
 
             }
         }
-        async Task OpenMemberList()
+
+        async Task OpenMemberList(UserDetails userDetails)
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(MemberListPage));
+                var navigationParams = new NavigationParameters();
+                navigationParams.Add("ActivityID", userDetails.UserDescriptionTitle);
+                await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
             }
             catch (Exception ex)
             {
 
             }
         }
+
         async Task FullActivityDetails()
         {
             try
@@ -239,13 +289,12 @@ namespace AtWork.ViewModels
                                 UserDetailsList = tempCmtList;
                                 isShowBoxview = true;
                                 ObservableCollection<UserDetails> temp = new ObservableCollection<UserDetails>();
-                                temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
-                                temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });
-                                temp.Add(new UserDetails() { UserDescriptionTitle = "START DATE", UserDescriptionValue = "September 1 2017" });
-                                temp.Add(new UserDetails() { UserDescriptionTitle = "EMPLOYEE ID", UserDescriptionValue = "L00110022" });
-                                temp.Add(new UserDetails() { UserDescriptionTitle = "CUSTOM FIELD", UserDescriptionValue = "Entry goed here" });
-                                temp.Add(new UserDetails() { UserDescriptionTitle = "CONTACT ME", UserDescriptionValue = "carron@atwork.com" });
-                                UserPersonalDetails = temp;
+                                //temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
+                                //temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });
+                                //temp.Add(new UserDetails() { UserDescriptionTitle = "START DATE", UserDescriptionValue = "September 1 2017" });
+                                //temp.Add(new UserDetails() { UserDescriptionTitle = "EMPLOYEE ID", UserDescriptionValue = "L00110022" });
+                                //temp.Add(new UserDetails() { UserDescriptionTitle = "CUSTOM FIELD", UserDescriptionValue = "Entry goed here" });
+                                //UserPersonalDetails = temp;
                             }
                         }
 
@@ -278,6 +327,13 @@ namespace AtWork.ViewModels
             base.OnNavigatedTo(parameters);
             try
             {
+                ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                temp.Add(new NameValue() { Count = 10, Text = "Activity Count" });
+                UserActivityHoursList = temp;
                 string VolunteerId = parameters.GetValue<string>("VolId");
                 if (!string.IsNullOrEmpty(VolunteerId))
                 {
@@ -308,6 +364,12 @@ namespace AtWork.ViewModels
     {
         public string UserDescriptionTitle { get; set; }
         public string UserDescriptionValue { get; set; }
+
+    }
+    public class NameValue
+    {
+        public int Count { get; set; }
+        public string Text { get; set; }
 
     }
 }
