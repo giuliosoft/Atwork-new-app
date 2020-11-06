@@ -38,7 +38,7 @@
                             <Label Text="{x:Static Multilingual:AppResources.HoursText}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                         </StackLayout>
                     </Grid>
-                    <FlexLayout  BindableLayout.ItemsSource="{Binding UserPersonalDetails}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Center" AlignContent="Start">
+                    <FlexLayout BindableLayout.ItemsSource="{Binding interestList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Center" AlignContent="Start">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Vertical" Padding="10">

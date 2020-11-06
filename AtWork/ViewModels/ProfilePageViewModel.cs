@@ -132,7 +132,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await _navigationService.NavigateAsync(nameof(ActivityHistoryPage));
+                //await _navigationService.NavigateAsync(nameof(ActivityHistoryPage));
             }
             catch (Exception ex)
             {
