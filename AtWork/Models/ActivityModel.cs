@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using AtWork.Services;
 using Prism.Mvvm;
 using Xamarin.Forms;
@@ -211,5 +212,63 @@ namespace AtWork.Models
             public string Message { get; set; }
             public List<Volunteers> Data { get; set; }
         }
+
+        //Activity History
+
+        public class ActivityHistoryResponse
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public List<ActivitiesDisplay> Data { get; set; }
+            public ActivitiesHistory Data1 { get; set; }
+        }
+        public class ActivitiesDisplay :BindableBase
+        {
+            public string proUniqueID { get; set; }
+            public string proTitle { get; set; }
+            public string proCategoryName { get; set; }
+            public DateTime? proAddActivityDate { get; set; }
+
+            public string ActivityDate 
+            {
+                get
+                {
+                    if (proAddActivityDate != null)
+                    {
+                        return proAddActivityDate?.ToString("MMMM dd");
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+        }
+        public class ActivitiesHistory
+        {
+            public ActivitiesDisplay Activities { get; set; }
+            public string TotalActivitieHour { get; set; }
+            public string TotalActivitieCount { get; set; }
+            public string CategorywiseHourCount { get; set; }
+            public string CategoryActivityCount { get; set; }
+
+            //public string TotalActivitieHourCount
+            //{
+            //    get
+            //    {
+            //        if (string.IsNullOrEmpty(TotalActivitieHour))
+            //        {
+            //            return "0";
+            //        }
+            //        else
+            //        {
+            //            return TotalActivitieHour;
+            //        }
+            //    }
+            //}
+        }
+
+
+
     }
 }

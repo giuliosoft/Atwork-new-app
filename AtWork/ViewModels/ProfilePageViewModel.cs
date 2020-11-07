@@ -375,7 +375,7 @@ namespace AtWork.ViewModels
                                 }
                                 else
                                 {
-                                    //UserDescriptionList.Add(UserDescription);
+                                    CategoryActivityAndCountList.Add(CategoryActivityAndCount);
                                 }
                             }
 
@@ -397,7 +397,8 @@ namespace AtWork.ViewModels
                                         }
                                         if (UserSingleDescriptionList.Count == 2)
                                         {
-                                            tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
+                                            if (!UserSingleDescriptionList[0].Contains("gettogether"))
+                                                tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
                                         }
                                     }
 
@@ -419,7 +420,7 @@ namespace AtWork.ViewModels
                                 }
                                 else
                                 {
-                                    //UserDescriptionList.Add(UserDescription);
+                                    tempCategoryHoursList.Add(CategoryHoursAndCount);
                                 }
                             }
 
@@ -441,7 +442,8 @@ namespace AtWork.ViewModels
                                         }
                                         if (UserSingleDescriptionList.Count == 2)
                                         {
-                                            tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
+                                            if (!UserSingleDescriptionList[0].Contains("gettogether"))
+                                                tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
                                         }
                                     }
 

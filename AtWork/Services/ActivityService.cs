@@ -174,5 +174,22 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+
+        public static async Task<BaseResponse<string>> GetActivityHistoryDetails(string Url)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var ActivityHistoryURL = ConfigService.BaseServiceURL + ConfigService.ActivityHistoryServiceURL + Url;
+                resultModel = await GetResponse<string>(ActivityHistoryURL, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                ExceptionHelper.CommanException(ex);
+            }
+            return resultModel;
+        }
+
     }
 }

@@ -44,7 +44,7 @@
                             <Label Text="{x:Static Multilingual:AppResources.HoursText}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                         </StackLayout>
                     </Grid>
-                    <FlexLayout IsVisible="{Binding UserActivityHoursList}" BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
+                    <FlexLayout Padding="{DynamicResource MarginPadding00_20_00_20}" IsVisible="{Binding UserActivityHoursList}" BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout IsEnabled="False" Orientation="Vertical" >
