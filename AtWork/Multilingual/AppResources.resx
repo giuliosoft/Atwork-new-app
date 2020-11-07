@@ -874,4 +874,10 @@ Are you sure want to do that?</value>
     <data name="txtParticipation" xml:space="preserve">
         <value>PARTICIPATION</value>
     </data>
+    <data name="EnterCorrectPassword" xml:space="preserve">
+        <value>Please enter correct password</value>
+    </data>
+    <data name="Requestpasswordresethere" xml:space="preserve">
+        <value>Forgot your password? Request a password reset here.</value>
+    </data>
 </root>

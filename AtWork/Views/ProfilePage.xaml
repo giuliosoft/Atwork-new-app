@@ -44,20 +44,7 @@
                             <Label Text="{x:Static Multilingual:AppResources.HoursText}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                         </StackLayout>
                     </Grid>
-                    <FlexLayout IsVisible="{Binding showActivityDetail}" BindableLayout.ItemsSource="{Binding UserActivityList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout IsEnabled="False" Orientation="Vertical" >
-                                    <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
-                                    <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth60}" WidthRequest="{DynamicResource HeightWidth60}" CornerRadius="{DynamicResource CornerRadius30}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
-                                        <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
-                                    </PancakeControl:PancakeView>
-                                    <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </FlexLayout>
-                    <FlexLayout IsVisible="{Binding showHoursDetail}" BindableLayout.ItemsSource="{Binding UserHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
+                    <FlexLayout IsVisible="{Binding UserActivityHoursList}" BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout IsEnabled="False" Orientation="Vertical" >

@@ -7,13 +7,12 @@ namespace AtWork.Services
         public static bool IsProduction = false;
 
         //*****Local URL*****//
-        //public static string BaseServerURL = "http://e664521c6dc7.ngrok.io";
-        //public static string BaseServiceURL = "http://e664521c6dc7.ngrok.io/api";
-        //
+        public static string BaseServerURL = "http://apptest.atwork.ai";
+        public static string BaseServiceURL = "http://apptest.atwork.ai/api";
 
         //*****LIVE URL******//
-        public static string BaseServerURL = "http://app.atwork.ai";
-        public static string BaseServiceURL = "http://app.atwork.ai/api";
+        //public static string BaseServerURL = "http://app.atwork.ai";
+        //public static string BaseServiceURL = "http://app.atwork.ai/api";
         public static string BaseNewsImageURL = BaseServerURL + "/newsposts/";
         public static string BaseProfileImageURL = BaseServerURL + "/volunteers/";
         public static string BaseNewsAttachFileURL = BaseServerURL + "/newsposts/";

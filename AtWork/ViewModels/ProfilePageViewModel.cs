@@ -41,8 +41,8 @@ namespace AtWork.ViewModels
         private bool _isVisibleContactMe = false;
         private bool _showActivityDetail = true;
         private bool _showHoursDetail = false;
-        ObservableCollection<HoursActivityCount> _UserActivityList = new ObservableCollection<HoursActivityCount>();
-        ObservableCollection<HoursActivityCount> _UserHoursList = new ObservableCollection<HoursActivityCount>();
+        ObservableCollection<HoursActivityCount> UserActivityList = new ObservableCollection<HoursActivityCount>();
+        ObservableCollection<HoursActivityCount> UserHoursList = new ObservableCollection<HoursActivityCount>();
         #endregion
         #region Public Properties
         public Volunteers volunteers
@@ -113,22 +113,22 @@ namespace AtWork.ViewModels
             get { return _UserDetailsList; }
             set { SetProperty(ref _UserDetailsList, value); }
         }
-        //private ObservableCollection<HoursActivityCount> _UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
-        //public ObservableCollection<HoursActivityCount> UserActivityHoursList
+        private ObservableCollection<HoursActivityCount> _UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
+        public ObservableCollection<HoursActivityCount> UserActivityHoursList
+        {
+            get { return _UserActivityHoursList; }
+            set { SetProperty(ref _UserActivityHoursList, value); }
+        }
+        //public ObservableCollection<HoursActivityCount> UserActivityList
         //{
-        //    get { return _UserActivityHoursList; }
-        //    set { SetProperty(ref _UserActivityHoursList, value); }
+        //    get { return _UserActivityList; }
+        //    set { SetProperty(ref _UserActivityList, value); }
         //}
-        public ObservableCollection<HoursActivityCount> UserActivityList
-        {
-            get { return _UserActivityList; }
-            set { SetProperty(ref _UserActivityList, value); }
-        }
-        public ObservableCollection<HoursActivityCount> UserHoursList
-        {
-            get { return _UserHoursList; }
-            set { SetProperty(ref _UserHoursList, value); }
-        }
+        //public ObservableCollection<HoursActivityCount> UserHoursList
+        //{
+        //    get { return _UserHoursList; }
+        //    set { SetProperty(ref _UserHoursList, value); }
+        //}
         #endregion
 
 
@@ -155,18 +155,16 @@ namespace AtWork.ViewModels
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    showActivityDetail = true;
-                    showHoursDetail = false;
+                    UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
+                    UserActivityHoursList = UserActivityList;
                 });
+
                 //UserActivityHoursList.Clear();
-                //UserActivityHoursList = UserActivityLis t;
+                //UserActivityHoursList = UserActivityList;
+
                 //ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
                 //HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
-                //ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
-                //temp.Add(new NameValue() { Count = "10", Text = "Activity Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Activity Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Activity Count" });
-                //UserActivityHoursList = temp;
+
             }
             catch (Exception ex)
             {
@@ -179,21 +177,13 @@ namespace AtWork.ViewModels
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    showActivityDetail = false;
-                    showHoursDetail = true;
+                    UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
+                    UserActivityHoursList = UserHoursList;
                 });
-                
 
                 //UserActivityHoursList.Clear();
-                //UserActivityHoursList = CategoryHoursList;
-                //ObservableCollection<NameValue> temp = new ObservableCollection<NameValue>();
-                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
-                //temp.Add(new NameValue() { Count = "10", Text = "Hours Count" });
-                //UserActivityHoursList = temp;
+                //UserActivityHoursList = UserHoursList;
+
                 //ActivityBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
                 //HoursBGColor = (Color)App.Current.Resources["AccentColor"];
             }
@@ -414,7 +404,7 @@ namespace AtWork.ViewModels
                                     return true;
                                 });
                                 UserActivityList = tempCmtList;
-                                //UserActivityHoursList = tempCmtList;
+                                UserActivityHoursList = tempCmtList;
                             }
                         }
                         if (!string.IsNullOrEmpty(volunteers?.CategorywiseHourCount))
@@ -472,6 +462,7 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

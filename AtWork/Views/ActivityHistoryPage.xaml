@@ -15,7 +15,7 @@
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
         <StackLayout Padding="0" Spacing="0" BackgroundColor="{DynamicResource OffWhiteColor}">
-            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource DarkColor}" />
+            <BoxView HeightRequest="1" BackgroundColor="Black" />
             <CollectionView x:Name="Activitycollectionlist" SelectionMode="Single" HorizontalScrollBarVisibility="Never" ItemsSource="{Binding Activitycollectionlist}" HorizontalOptions="FillAndExpand" HeightRequest="{StaticResource HeightWidth40}" BackgroundColor="{StaticResource PosterWhiteColor}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal"/>
@@ -52,7 +52,7 @@
                                     </StackLayout>
                                     <Label Text="{Binding ActivityDateTime}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" TextColor="Black"/>
                                 </StackLayout>
-                                <BoxView HeightRequest="1" BackgroundColor="{DynamicResource DarkColor}" />
+                                <BoxView HeightRequest="1" BackgroundColor="Black" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={x:Reference Activitycollectionlist},Path=BindingContext.ActivityHistorylist}" CommandParameter="{Binding .}" />
                                 </StackLayout.GestureRecognizers>
@@ -82,11 +82,11 @@
                                         <Label Text="{x:Static Multilingual:AppResources.HoursText}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                                     </StackLayout>
                                 </Grid>
-                                <FlexLayout BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Center" AlignContent="Start">
+                                <!--<FlexLayout BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Center" AlignContent="Start">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
                                             <StackLayout IsEnabled="False" Orientation="Vertical" Padding="{StaticResource MarginPadding10}">
-                                                <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
+                                                <Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>
                                                 <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth50}" WidthRequest="{DynamicResource HeightWidth50}" CornerRadius="{DynamicResource CornerRadius25}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
                                                     <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
                                                 </PancakeControl:PancakeView>
@@ -94,8 +94,22 @@
                                             </StackLayout>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
+                                </FlexLayout>-->
+                                <FlexLayout IsVisible="{Binding UserActivityHoursList}" BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout IsEnabled="False" Orientation="Vertical" >
+                                                <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
+                                                <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth60}" WidthRequest="{DynamicResource HeightWidth60}" CornerRadius="{DynamicResource CornerRadius30}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
+                                                    <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
+                                                </PancakeControl:PancakeView>
+                                                <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
                                 </FlexLayout>
-                                <BoxView HeightRequest="1" BackgroundColor="{DynamicResource DarkColor}" HorizontalOptions="Fill" VerticalOptions="Start"/>
+
+                                <BoxView HeightRequest="1" BackgroundColor="Black" HorizontalOptions="Fill" VerticalOptions="Start"/>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.HeaderTemplate>

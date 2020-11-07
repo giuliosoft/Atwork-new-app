@@ -1684,5 +1684,17 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("txtParticipation", resourceCulture);
             }
         }
+        
+        internal static string EnterCorrectPassword {
+            get {
+                return ResourceManager.GetString("EnterCorrectPassword", resourceCulture);
+            }
+        }
+        
+        internal static string Requestpasswordresethere {
+            get {
+                return ResourceManager.GetString("Requestpasswordresethere", resourceCulture);
+            }
+        }
     }
 }
