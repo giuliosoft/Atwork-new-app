@@ -1696,5 +1696,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("Requestpasswordresethere", resourceCulture);
             }
         }
+        
+        internal static string BirthDayDate {
+            get {
+                return ResourceManager.GetString("BirthDayDate", resourceCulture);
+            }
+        }
     }
 }

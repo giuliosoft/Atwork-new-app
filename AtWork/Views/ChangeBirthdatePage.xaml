@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AtWork.Views.ChangeBirthdatePage"
+             xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True"
+             ios:Page.UseSafeArea="true" Padding="{StaticResource SafeAreaPadding}"
+             NavigationPage.HasNavigationBar="false"
+             xmlns:Customcontrol="clr-namespace:AtWork.CustomControls"
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
+             BackgroundColor="{DynamicResource HeaderBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Customcontrol:CustomDatePicker Format="MM/dd/yyyy" FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="70" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Date="{Binding BirthDate}" />
+            <StackLayout Orientation="Horizontal" Padding="10">
+            <Label Text="Make birthdate public?" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" >
+                <Label.Triggers>
+                    <!--<DataTrigger TargetType="Label"
+                                 Binding="{Binding Source={x:Reference styleSwitch}, Path=IsToggled}"
+                                 Value="true">
+                        <Setter Property="FontAttributes"
+                                Value="Italic, Bold" />
+                        <Setter Property="FontSize"
+                                Value="Large" />
+                    </DataTrigger>-->
+                </Label.Triggers>
+            </Label>
+            <Switch x:Name="styleSwitch" HorizontalOptions="End" />
+                </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

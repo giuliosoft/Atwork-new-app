@@ -73,6 +73,7 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<ForgotPasswordPage, ForgotPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<BackgroundLoginPage, BackgroundLoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ActivityHistoryPage, ActivityHistoryPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangeBirthdatePage, ChangeBirthdatePageViewModel>();
         }
 
         /// <summary>

@@ -686,6 +686,11 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
             </Style>
+            <Style x:Key="ActivityHistoryListLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

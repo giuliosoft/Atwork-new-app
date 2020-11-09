@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AtWork.Services;
 using Xamarin.Forms;
 
@@ -175,6 +176,7 @@ namespace AtWork.Models
             public int Vortex_Activity_Count { get; set; }
 
             public string classes { get; set; }
+            public List<VolunteerClasses> VolunteerClasses { get; set; }
             public string CategoryActivityCount { get; set; }
             public string CategorywiseHourCount { get; set; }
             public string volInterests { get; set; }
@@ -218,6 +220,12 @@ namespace AtWork.Models
             public string newName { get; set; }
             public string newSurName { get; set; }
             public string newEmail { get; set; }
+        }
+        public class VolunteerClasses
+        {
+            public string classUniqueID { get; set; }
+            public string classDescription { get; set; }
+            public string classValue { get; set; }
         }
     }
 }

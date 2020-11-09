@@ -107,11 +107,11 @@ namespace AtWork.ViewModels
             get { return _interestList; }
             set { SetProperty(ref _interestList, value); }
         }
-        private ObservableCollection<UserDetails> _UserDetailsList = new ObservableCollection<UserDetails>();
-        public ObservableCollection<UserDetails> UserDetailsList
+        private ObservableCollection<VolunteerClasses> _UserGroupList = new ObservableCollection<VolunteerClasses>();
+        public ObservableCollection<VolunteerClasses> UserGroupList
         {
-            get { return _UserDetailsList; }
-            set { SetProperty(ref _UserDetailsList, value); }
+            get { return _UserGroupList; }
+            set { SetProperty(ref _UserGroupList, value); }
         }
         private ObservableCollection<HoursActivityCount> _UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
         public ObservableCollection<HoursActivityCount> UserActivityHoursList
@@ -138,7 +138,7 @@ namespace AtWork.ViewModels
         public DelegateCommand SettingCommand { get { return new DelegateCommand(async () => await Setting()); } }
         public DelegateCommand LogoutCommand { get { return new DelegateCommand(async () => await Logout()); } }
         //public DelegateCommand OpenGroupMemberListCommand { get { return new DelegateCommand(async () => await OpenMemberList()); } }
-        public DelegateCommand<UserDetails> OpenGroupMemberListCommand { get { return new DelegateCommand<UserDetails>(async (obj) => await OpenMemberList(obj)); } }
+        public DelegateCommand<VolunteerClasses> OpenGroupMemberListCommand { get { return new DelegateCommand<VolunteerClasses>(async (obj) => await OpenMemberList(obj)); } }
 
         public DelegateCommand OpenFullActivityCommand { get { return new DelegateCommand(async () => await FullActivityDetails()); } }
         public DelegateCommand OpenEmailCommand { get { return new DelegateCommand(async () => await OpenEmail()); } }
@@ -229,12 +229,12 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task OpenMemberList(UserDetails userDetails)
+        async Task OpenMemberList(VolunteerClasses userDetails)
         {
             try
             {
                 var navigationParams = new NavigationParameters();
-                navigationParams.Add("ActivityID", userDetails.UserDescriptionTitle);
+                navigationParams.Add("ClassID", userDetails.classValue);
                 await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
             }
             catch (Exception ex)
@@ -286,6 +286,11 @@ namespace AtWork.ViewModels
                     {
                         volunteers = serviceResultBody?.Data;
                         SessionService.volunteers = volunteers;
+                        if (volunteers?.VolunteerClasses != null)
+                        {
+                            ObservableCollection<VolunteerClasses> myCollection = new ObservableCollection<VolunteerClasses>(volunteers.VolunteerClasses as List<VolunteerClasses>);
+                            UserGroupList = myCollection;
+                        }
                         if (!string.IsNullOrEmpty(volunteers?.volInterests))
                         {
                             string imgStr = volunteers?.volInterests;
@@ -311,57 +316,58 @@ namespace AtWork.ViewModels
                                 });
                             }
                         }
-                        if (!string.IsNullOrEmpty(volunteers?.classes))
-                        {
-                            string UserDescription = volunteers?.classes;
-                            List<string> UserDescriptionList = new List<string>();
-                            if (!string.IsNullOrEmpty(UserDescription))
-                            {
-                                if (UserDescription.Contains(","))
-                                {
-                                    UserDescriptionList = UserDescription.Split(',').ToList();
-                                }
-                                else
-                                {
-                                    UserDescriptionList.Add(UserDescription);
-                                }
-                            }
+                        
+                        //if (!string.IsNullOrEmpty(volunteers?.classes))
+                        //{
+                        //    string UserDescription = volunteers?.classes;
+                        //    List<string> UserDescriptionList = new List<string>();
+                        //    if (!string.IsNullOrEmpty(UserDescription))
+                        //    {
+                        //        if (UserDescription.Contains(","))
+                        //        {
+                        //            UserDescriptionList = UserDescription.Split(',').ToList();
+                        //        }
+                        //        else
+                        //        {
+                        //            UserDescriptionList.Add(UserDescription);
+                        //        }
+                        //    }
 
-                            if (UserDescriptionList != null && UserDescriptionList.Count > 0)
-                            {
-                                var tempCmtList = new ObservableCollection<UserDetails>();
-                                UserDescriptionList.All((arg) =>
-                                {
-                                    List<string> UserSingleDescriptionList = new List<string>();
-                                    if (!string.IsNullOrEmpty(arg))
-                                    {
-                                        if (arg.Contains(":"))
-                                        {
-                                            UserSingleDescriptionList = arg.Split(':').ToList();
-                                        }
-                                        else
-                                        {
-                                            UserSingleDescriptionList.Add(arg);
-                                        }
-                                        if (UserSingleDescriptionList.Count == 2)
-                                        {
-                                            tempCmtList.Add(new UserDetails() { UserDescriptionTitle = UserSingleDescriptionList[0].ToUpper(), UserDescriptionValue = UserSingleDescriptionList[1] });
-                                        }
-                                    }
+                        //    if (UserDescriptionList != null && UserDescriptionList.Count > 0)
+                        //    {
+                        //        var tempCmtList = new ObservableCollection<UserDetails>();
+                        //        UserDescriptionList.All((arg) =>
+                        //        {
+                        //            List<string> UserSingleDescriptionList = new List<string>();
+                        //            if (!string.IsNullOrEmpty(arg))
+                        //            {
+                        //                if (arg.Contains(":"))
+                        //                {
+                        //                    UserSingleDescriptionList = arg.Split(':').ToList();
+                        //                }
+                        //                else
+                        //                {
+                        //                    UserSingleDescriptionList.Add(arg);
+                        //                }
+                        //                if (UserSingleDescriptionList.Count == 2)
+                        //                {
+                        //                    tempCmtList.Add(new UserDetails() { ClassID = UserSingleDescriptionList[0],   UserDescriptionTitle = UserSingleDescriptionList[1].ToUpper(), UserDescriptionValue = UserSingleDescriptionList[2] });
+                        //                }
+                        //            }
 
-                                    return true;
-                                });
-                                UserDetailsList = tempCmtList;
-                                isShowBoxview = true;
-                                ObservableCollection<UserDetails> temp = new ObservableCollection<UserDetails>();
-                                //temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
-                                //temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });
-                                //temp.Add(new UserDetails() { UserDescriptionTitle = "START DATE", UserDescriptionValue = "September 1 2017" });
-                                //temp.Add(new UserDetails() { UserDescriptionTitle = "EMPLOYEE ID", UserDescriptionValue = "L00110022" });
-                                //temp.Add(new UserDetails() { UserDescriptionTitle = "CUSTOM FIELD", UserDescriptionValue = "Entry goed here" });
-                                //UserPersonalDetails = temp;
-                            }
-                        }
+                        //            return true;
+                        //        });
+                        //        //UserGroupList = tempCmtList;
+                        //        isShowBoxview = true;
+                        //        ObservableCollection<UserDetails> temp = new ObservableCollection<UserDetails>();
+                        //        //temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
+                        //        //temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });
+                        //        //temp.Add(new UserDetails() { UserDescriptionTitle = "START DATE", UserDescriptionValue = "September 1 2017" });
+                        //        //temp.Add(new UserDetails() { UserDescriptionTitle = "EMPLOYEE ID", UserDescriptionValue = "L00110022" });
+                        //        //temp.Add(new UserDetails() { UserDescriptionTitle = "CUSTOM FIELD", UserDescriptionValue = "Entry goed here" });
+                        //        //UserPersonalDetails = temp;
+                        //    }
+                        //}
 
                         if (!string.IsNullOrEmpty(volunteers?.CategoryActivityCount))
                         {
@@ -397,7 +403,7 @@ namespace AtWork.ViewModels
                                         }
                                         if (UserSingleDescriptionList.Count == 2)
                                         {
-                                            if (!UserSingleDescriptionList[0].Contains("gettogether"))
+                                            //if (!UserSingleDescriptionList[0].Contains("gettogether"))
                                                 tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
                                         }
                                     }
@@ -442,7 +448,7 @@ namespace AtWork.ViewModels
                                         }
                                         if (UserSingleDescriptionList.Count == 2)
                                         {
-                                            if (!UserSingleDescriptionList[0].Contains("gettogether"))
+                                            //if (!UserSingleDescriptionList[0].Contains("gettogether"))
                                                 tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
                                         }
                                     }
@@ -511,10 +517,13 @@ namespace AtWork.ViewModels
     }
     public class UserDetails
     {
+        public string ClassID { get; set; }
         public string UserDescriptionTitle { get; set; }
         public string UserDescriptionValue { get; set; }
 
     }
+    
+
     public class HoursActivityCount
     {
         public string Count { get; set; }

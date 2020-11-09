@@ -67,6 +67,11 @@ namespace AtWork.ViewModels
                 {
                     //await DisplayAlertAsync(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
                 }
+                else if (item == AppResources.EditBirthDayDate)
+                {
+                    
+                   // await _navigationService.NavigateAsync(nameof(ChangeBirthdatePage));
+                }
             }
             catch (Exception ex)
             {

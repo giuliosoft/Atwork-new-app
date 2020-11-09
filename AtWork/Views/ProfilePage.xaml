@@ -57,7 +57,7 @@
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
-                    <Button Command="{Binding OpenFullActivityCommand}" Margin="{StaticResource MarginPadding20}" Text="{x:Static Multilingual:AppResources.SeeFullActivityHistory}" BackgroundColor="{DynamicResource AccentColor}" HeightRequest="{DynamicResource HeightWidth30}" CornerRadius="{DynamicResource ButtonCornerRadius15}" TextColor="White"/>
+                    <Button Command="{Binding OpenFullActivityCommand}" IsVisible="{Binding isShowSettingLogout}" Margin="{StaticResource MarginPadding20}" Text="{x:Static Multilingual:AppResources.SeeFullActivityHistory}" BackgroundColor="{DynamicResource AccentColor}" HeightRequest="{DynamicResource HeightWidth30}" CornerRadius="{DynamicResource ButtonCornerRadius15}" TextColor="White"/>
                     <BoxView HeightRequest="1" BackgroundColor="Gray"/>
                     <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.MyInterestsProfile}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
                     <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
@@ -94,15 +94,15 @@
                     <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.AboutMeText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
                     <Label Margin="50,0,50,20" Text="{Binding volunteers.volAbout}" Style="{StaticResource AboutMeDetailLabelStyle}"/>
                     <BoxView HeightRequest="1" BackgroundColor="Gray"/>
-                    <Customcontrol:RepeaterView x:Name="userDetailsList" GridHeightUnitType="Auto" BackgroundColor="Transparent" ItemsSource="{Binding UserDetailsList}" ColumnCount="1" Spacing="0" Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Customcontrol:RepeaterView x:Name="UserGroupList" GridHeightUnitType="Auto" BackgroundColor="Transparent" ItemsSource="{Binding UserGroupList}" ColumnCount="1" Spacing="0" Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Customcontrol:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <StackLayout Orientation="Horizontal"  Padding="{StaticResource MarginPadding10}" >
-                                        <Label Text="{Binding UserDescriptionTitle}" HorizontalTextAlignment="Center" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
-                                        <Label Text="{Binding UserDescriptionValue}" Style="{StaticResource ProfileHeaderLabelStyle}" TextColor="{DynamicResource AccentColor}" TextDecorations="Underline" HorizontalOptions="EndAndExpand" >
+                                        <Label Text="{Binding classDescription}" HorizontalTextAlignment="Center" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                                        <Label Text="{Binding classValue}" Style="{StaticResource ProfileHeaderLabelStyle}" TextColor="{DynamicResource AccentColor}" TextDecorations="Underline" HorizontalOptions="EndAndExpand" >
                                             <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference userDetailsList},Path=BindingContext.OpenGroupMemberListCommand}" CommandParameter="{Binding .}"/>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference UserGroupList},Path=BindingContext.OpenGroupMemberListCommand}" CommandParameter="{Binding .}"/>
                                             </Label.GestureRecognizers>
                                         </Label>
                                     </StackLayout>

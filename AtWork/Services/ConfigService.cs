@@ -65,5 +65,7 @@ namespace AtWork.Services
         public static string EditActivityServiceURL = "/activities/EditActivities";
         public static string ActivityDeleteServiceURL = "/activities/deleteActivities/";
         public static string ActivityHistoryServiceURL = "/activities/ActivitiesHistory/";
+        public static string ActivityHistory_V1ServiceURL = "/activities/ActivitiesHistory_v1/";
+        public static string GetUserByGroupServiceURL = "/user/GetUsersByGroupWise/";
     }
 }

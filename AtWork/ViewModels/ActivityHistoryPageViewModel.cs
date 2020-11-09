@@ -37,7 +37,7 @@ namespace AtWork.ViewModels
         private string _ActivityHours = string.Empty;
         private ObservableCollection<ActivityMonthYear> _Activitycollectionlist = new ObservableCollection<ActivityMonthYear>();
         private string SelectedActivityCategoryID = string.Empty;
-        //private ActivitiesHistory _ActivityHistoryDetails = new ActivitiesHistory();
+        private ActivitiesHistory _ActivityHistoryDetails = new ActivitiesHistory();
         ObservableCollection<HoursActivityCount> UserActivityList = new ObservableCollection<HoursActivityCount>();
         ObservableCollection<HoursActivityCount> UserHoursList = new ObservableCollection<HoursActivityCount>();
         //Volunteers _volunteers = SessionService.volunteers;
@@ -137,11 +137,11 @@ namespace AtWork.ViewModels
             set { SetProperty(ref _UserActivityHoursList, value); }
         }
 
-        //public ActivitiesHistory ActivityHistoryDetails
-        //{
-        //    get { return _ActivityHistoryDetails; }
-        //    set { SetProperty(ref _ActivityHistoryDetails, value); }
-        //}
+        public ActivitiesHistory ActivityHistoryDetails
+        {
+            get { return _ActivityHistoryDetails; }
+            set { SetProperty(ref _ActivityHistoryDetails, value); }
+        }
         #endregion
 
         #region Commands
@@ -174,11 +174,10 @@ namespace AtWork.ViewModels
                     UserActivityHoursList = UserActivityList;
                 });
 
-                //UserActivityHoursList.Clear();
-                //UserActivityHoursList = UserActivityList;
-
-                //ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
-                //HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
+                HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                ActivityTextColor = Color.White;
+                HoursTextColor = (Color)App.Current.Resources["AccentColor"];
 
             }
             catch (Exception ex)
@@ -196,11 +195,11 @@ namespace AtWork.ViewModels
                     UserActivityHoursList = UserHoursList;
                 });
 
-                //UserActivityHoursList.Clear();
-                //UserActivityHoursList = UserHoursList;
+                ActivityBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                HoursBGColor = (Color)App.Current.Resources["AccentColor"];
+                HoursTextColor = Color.White;
+                ActivityTextColor = (Color)App.Current.Resources["AccentColor"];
 
-                //ActivityBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
-                //HoursBGColor = (Color)App.Current.Resources["AccentColor"];
             }
             catch (Exception ex)
             {
@@ -213,6 +212,14 @@ namespace AtWork.ViewModels
         {
             try
             {
+                PageNo = 1;
+                ActivityHistorylist.Clear();
+
+                ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
+                HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
+                ActivityTextColor = Color.White;
+                HoursTextColor = (Color)App.Current.Resources["AccentColor"];
+
                 Activitycollectionlist.All((categories)  =>
                 {
                     if (selectedCategory.title == categories.title)
@@ -236,23 +243,33 @@ namespace AtWork.ViewModels
         {
             try
             {
-                //if (ActivityHistorylist.Count < 10)
-                //    RemainingItemsThreshold = -1;
-                //else
-                //    RemainingItemsThreshold = 0;
-
-
-               
+                if (IsBusy)
+                {
+                    return;
+                }
+                IsBusy = true;
+                if (!await CheckConnectivity())
+                {
+                    return;
+                }
+                //bool isClearlist = false;
                 string url = string.Empty;
+               
+                url = PageNo.ToString();
                 if (!string.IsNullOrEmpty(year))
                 {
-                    url = year;
+                    //isClearlist = true;
+                    url += string.Format("/{0}", year);
                 }
                 if (!string.IsNullOrEmpty(month))
                 {
+                    //isClearlist = true;
                     url += string.Format("/{0}", month);
                 }
-                
+                //if (isClearlist)
+                //{
+                //    ActivityHistorylist.Clear();
+                //}
                 
                 await ShowLoader();
                 var serviceResult = await ActivityService.GetActivityHistoryDetails(url);
@@ -262,17 +279,34 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<ActivityHistoryResponse>(serviceResult?.Body);
                     if (serviceResultBody != null)
                     {
+                        ActivityHistoryDetails = serviceResultBody.Data1;
                         if (serviceResultBody.Data != null)
                         {
+                            if (serviceResultBody.Data.Count < 5)
+                                RemainingItemsThreshold = -1;
+                            else
+                                RemainingItemsThreshold = 0;
+                            if (PageNo == 1)
+                            {
+                                ActivityHistorylist.Clear();
+                            }
+                            var tempList = new ObservableCollection<ActivitiesDisplay>(ActivityHistorylist);
                             ObservableCollection<ActivitiesDisplay> myCollection = new ObservableCollection<ActivitiesDisplay>(serviceResultBody.Data as List<ActivitiesDisplay>);
-                            ActivityHistorylist = myCollection;
-                           
+                            myCollection.All((nArg) =>
+                            {
+                                tempList.Add(nArg);
+                                return true;
+                            });
+                            ActivityHistorylist = new ObservableCollection<ActivitiesDisplay>(tempList);
                         }
                         if (serviceResultBody.Data1 != null)
                         {
                             //ActivityHistoryDetails = serviceResultBody.Data1;
                            
                             ActivityHours = serviceResultBody.Data1.CategorywiseHourCount;
+                            UserActivityList = new ObservableCollection<HoursActivityCount>();
+                            UserActivityHoursList = new ObservableCollection<HoursActivityCount>();
+                            UserHoursList = new ObservableCollection<HoursActivityCount>();
                             if (!string.IsNullOrEmpty(serviceResultBody.Data1?.CategoryActivityCount))
                             {
                                 string CategoryActivityAndCount = serviceResultBody.Data1?.CategoryActivityCount;
@@ -307,7 +341,7 @@ namespace AtWork.ViewModels
                                             }
                                             if (UserSingleDescriptionList.Count == 2)
                                             {
-                                                if (!UserSingleDescriptionList[0].Contains("gettogether"))
+                                                //if (!UserSingleDescriptionList[0].Contains("gettogether"))
                                                     tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
                                             }
                                         }
@@ -352,7 +386,7 @@ namespace AtWork.ViewModels
                                             }
                                             if (UserSingleDescriptionList.Count == 2)
                                             {
-                                                if (!UserSingleDescriptionList[0].Contains("gettogether"))
+                                                //if (!UserSingleDescriptionList[0].Contains("gettogether"))
                                                     tempCmtList.Add(new HoursActivityCount() { Text = UserSingleDescriptionList[0].ToUpper(), Count = UserSingleDescriptionList[1] });
                                             }
                                         }
@@ -367,23 +401,23 @@ namespace AtWork.ViewModels
                             //ActivityHours = UserHoursList.Count.ToString();
 
 
-                            if (string.IsNullOrEmpty(serviceResultBody?.Data1?.CategorywiseHourCount) || UserActivityList.Count == 0)
-                            {
-                                ActivityCount = "0";
-                            }
-                            else
-                            {
-                                ActivityCount = serviceResultBody?.Data1?.TotalActivitieCount;
-                            }
+                            //if (string.IsNullOrEmpty(serviceResultBody?.Data1?.CategorywiseHourCount) || UserActivityList.Count == 0)
+                            //{
+                            //    ActivityCount = "0";
+                            //}
+                            //else
+                            //{
+                            //    ActivityCount = serviceResultBody?.Data1?.TotalActivitieCount;
+                            //}
 
-                            if (string.IsNullOrEmpty(serviceResultBody?.Data1?.CategorywiseHourCount) || UserHoursList.Count == 0)
-                            {
-                                ActivityHours = "0";
-                            }
-                            else
-                            {
-                                ActivityHours = serviceResultBody?.Data1?.TotalActivitieHour;
-                            }
+                            //if (string.IsNullOrEmpty(serviceResultBody?.Data1?.CategorywiseHourCount) || UserHoursList.Count == 0)
+                            //{
+                            //    ActivityHours = "0";
+                            //}
+                            //else
+                            //{
+                            //    ActivityHours = serviceResultBody?.Data1?.TotalActivitieHour;
+                            //}
                         }
 
                     }
@@ -393,17 +427,21 @@ namespace AtWork.ViewModels
             {
                 ExceptionHelper.CommanException(ex);
             }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         async Task NewsLoadMoreItems()
         {
             try
             {
-                //if (IsBusy)
-                //{
-                //    return;
-                //}
-                //PageNo++;
-                //await LoadActivityDetail();
+                if (IsBusy)
+                {
+                    return;
+                }
+                PageNo++;
+                await LoadActivityDetail();
             }
             catch (Exception ex)
             {

@@ -180,7 +180,7 @@ namespace AtWork.Services
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var ActivityHistoryURL = ConfigService.BaseServiceURL + ConfigService.ActivityHistoryServiceURL + Url;
+                var ActivityHistoryURL = ConfigService.BaseServiceURL + ConfigService.ActivityHistory_V1ServiceURL + Url;
                 resultModel = await GetResponse<string>(ActivityHistoryURL, true);
             }
             catch (Exception ex)

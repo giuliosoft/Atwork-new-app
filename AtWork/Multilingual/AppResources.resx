@@ -880,4 +880,7 @@ Are you sure want to do that?</value>
     <data name="Requestpasswordresethere" xml:space="preserve">
         <value>Forgot your password? Request a password reset here.</value>
     </data>
+    <data name="BirthDayDate" xml:space="preserve">
+        <value>Birthday date</value>
+    </data>
 </root>

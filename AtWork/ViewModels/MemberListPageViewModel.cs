@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using AtWork.Helpers;
+using AtWork.Models;
 using AtWork.Multilingual;
 using AtWork.Services;
 using AtWork.Views;
@@ -53,7 +54,7 @@ namespace AtWork.ViewModels
         {
             base.OnNavigatedFrom(parameters);
         }
-        async Task LoadMembersList(string id)
+        async Task LoadMembersList(string id = null, string classID = null)
         {
             try
             {
@@ -62,7 +63,15 @@ namespace AtWork.ViewModels
                     return;
                 }
                 await ShowLoader();
-                var serviceResult = await ActivityService.GetActivityJoinedMemberList(id);
+                BaseResponse<string> serviceResult = new BaseResponse<string>();
+                if (!string.IsNullOrEmpty(classID))
+                {
+                    serviceResult = await UserServices.GetUserByGroup(classID);
+                }
+                else
+                {
+                    serviceResult = await ActivityService.GetActivityJoinedMemberList(id);
+                }
                 var serviceResultBody = JsonConvert.DeserializeObject<ActivityJoinedMemberListResponse>(serviceResult.Body);
                 if (serviceResultBody != null && serviceResultBody.Data != null)
                 {
@@ -70,6 +79,10 @@ namespace AtWork.ViewModels
                     foreach (var member in serviceResultBody.Data)
                         tempMembers.Add(member);
                     Members = new ObservableCollection<Volunteers>(tempMembers);
+                    if (!string.IsNullOrEmpty(classID))
+                    {
+                        HeaderDetailsTitle = classID;
+                    }
                 }
                 await ClosePopup();
             }
@@ -85,8 +98,17 @@ namespace AtWork.ViewModels
             try
             {
                 var activityId = parameters.GetValue<string>("ActivityID");
+                var classId = parameters.GetValue<string>("ClassID");
+
                 if (!string.IsNullOrEmpty(activityId))
+                {
                     await LoadMembersList(activityId);
+                }
+                else if (!string.IsNullOrEmpty(classId))
+                {
+                   
+                    await LoadMembersList(classID: classId);
+                }
             }
             catch (Exception ex)
             {

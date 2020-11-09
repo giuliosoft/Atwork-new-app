@@ -271,5 +271,20 @@ namespace AtWork.Services
             }
             return resultModel;
         }
+        public static async Task<BaseResponse<string>> GetUserByGroup(string id)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var Url = ConfigService.BaseServiceURL + ConfigService.GetUserByGroupServiceURL + id;
+                resultModel = await GetResponse<string>(Url, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                ExceptionHelper.CommanException(ex);
+            }
+            return resultModel;
+        }
     }
 }
