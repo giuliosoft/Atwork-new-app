@@ -141,7 +141,7 @@
                         </StackLayout>
                         <StackLayout IsVisible="{Binding isVisibleCustomField}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
                             <Label Text="CUSTOM FIELD" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
-                            <Label Text="Entry goed here" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                            <Label Text="Entry goes here" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding isVisibleContactMe}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
                             <Label Text="CONTACT ME" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start" VerticalOptions="Start"/>
