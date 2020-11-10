@@ -180,6 +180,12 @@ namespace AtWork.Models
             public string CategoryActivityCount { get; set; }
             public string CategorywiseHourCount { get; set; }
             public string volInterests { get; set; }
+
+            public string coLocation { get; set; }
+            public string StartDate { get; set; }
+            public string EmployeeID { get; set; }
+            public string CustomField { get; set; }
+
             public string volPicture
             {
                 get
@@ -226,6 +232,9 @@ namespace AtWork.Models
             public string classUniqueID { get; set; }
             public string classDescription { get; set; }
             public string classValue { get; set; }
+            public string grpFilter { get; set; }
+            public bool isMyGroup { get; set; }
+            public bool isGroup { get; set; }
         }
     }
 }

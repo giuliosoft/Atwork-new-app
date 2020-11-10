@@ -22,8 +22,8 @@ namespace AtWork.ViewModels
             //SessionService.AppNavigationService = null;
             AddNewsCancelImage = AppResources.BackButtonText;
 #if DEBUG
-            UserEmail = "jeff.jones@testing.com";
-            UserPassword = "Password01@";
+            UserEmail = "estee2";
+            UserPassword = "Password123!";
 #endif
         }
         #endregion

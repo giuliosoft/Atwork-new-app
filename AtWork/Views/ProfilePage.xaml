@@ -98,9 +98,10 @@
                         <Customcontrol:RepeaterView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-                                    <StackLayout Orientation="Horizontal"  Padding="{StaticResource MarginPadding10}" >
-                                        <Label Text="{Binding classDescription}" HorizontalTextAlignment="Center" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
-                                        <Label Text="{Binding classValue}" Style="{StaticResource ProfileHeaderLabelStyle}" TextColor="{DynamicResource AccentColor}" TextDecorations="Underline" HorizontalOptions="EndAndExpand" >
+                                    <StackLayout Orientation="Horizontal"  Padding="0,10,5,10" >
+                                        <Button IsVisible="{Binding isMyGroup}"  Text="{Binding classDescription}" TextColor="White" HeightRequest="30" CornerRadius="15" HorizontalOptions="Start" BackgroundColor="{DynamicResource AccentColor}" Padding="10,0,10,0"/>
+                                        <Label IsVisible="{Binding isGroup}" Text="{Binding classDescription}" HorizontalTextAlignment="Center" HorizontalOptions="Start" Padding="10,0,0,0"/>
+                                        <Label Text="{Binding classValue}" Style="{StaticResource ProfileHeaderLabelStyle}" TextColor="{DynamicResource AccentColor}" TextDecorations="Underline" HorizontalOptions="EndAndExpand" Padding="0,0,5,0">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={x:Reference UserGroupList},Path=BindingContext.OpenGroupMemberListCommand}" CommandParameter="{Binding .}"/>
                                             </Label.GestureRecognizers>
@@ -177,7 +178,7 @@
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
                             <Label Text="CUSTOM FIELD" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
-                            <Label Text="Entry goes here" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
+                            <Label Text="Entry goed here" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout  Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
                             <Label Text="CONTACT ME" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start" VerticalOptions="Start"/>

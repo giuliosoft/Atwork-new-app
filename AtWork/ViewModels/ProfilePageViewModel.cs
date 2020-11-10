@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AtWork.Helpers;
@@ -297,6 +296,28 @@ namespace AtWork.ViewModels
                         {
                             ObservableCollection<VolunteerClasses> myCollection = new ObservableCollection<VolunteerClasses>(volunteers.VolunteerClasses as List<VolunteerClasses>);
                             UserGroupList = myCollection;
+                            isShowBoxview = true;
+                            var tempList = new ObservableCollection<VolunteerClasses>();
+                            volunteers.VolunteerClasses.All((arg) =>
+                            {
+                                var tempData = new VolunteerClasses();
+                                tempData.classUniqueID = arg.classUniqueID;
+                                tempData.classDescription = arg.classDescription;
+                                tempData.classValue= arg.classValue;
+                                if (arg.grpFilter.ToLower() == "yes")
+                                {
+                                    tempData.isMyGroup = true;
+                                    tempData.isGroup = false;
+                                }
+                                else
+                                {
+                                    tempData.isMyGroup = false;
+                                    tempData.isGroup = true;
+                                }
+                                tempList.Add(tempData);
+                                return true;
+                            });
+                            UserGroupList = tempList;
                         }
                         if (!string.IsNullOrEmpty(volunteers?.volInterests))
                         {
@@ -364,7 +385,7 @@ namespace AtWork.ViewModels
                         //            return true;
                         //        });
                         //        //UserGroupList = tempCmtList;
-                        isShowBoxview = true;
+                        //isShowBoxview = true;
                         //        ObservableCollection<UserDetails> temp = new ObservableCollection<UserDetails>();
                         //        //temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
                         //        //temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });

@@ -235,7 +235,14 @@ namespace AtWork.Models
                 {
                     if (proAddActivityDate != null)
                     {
-                        return proAddActivityDate?.ToString("MMMM dd");
+                        if (proAddActivityDate?.Year == DateTime.Now.Year)
+                        {
+                            return proAddActivityDate?.ToString("MMMM dd yyyy");
+                        }
+                        else
+                        {
+                            return proAddActivityDate?.ToString("MMMM dd yyyy");
+                        }
                     }
                     else
                     {

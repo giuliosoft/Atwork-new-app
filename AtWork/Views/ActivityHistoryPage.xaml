@@ -47,10 +47,10 @@
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0" Padding="0" Spacing="0" >
                                 <StackLayout VerticalOptions="Start" Orientation="Horizontal" Padding="{DynamicResource HeightWidth15}">
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
-                                        <Label Text="{Binding proTitle}" Style="{StaticResource ActivityHistoryListLabel}" HorizontalTextAlignment="Start" VerticalOptions="Start" VerticalTextAlignment="Start" TextColor="Black" LineBreakMode="WordWrap"/>
-                                        <Label Text="{Binding proCategoryName}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalTextAlignment="Start" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding proTitle}" HorizontalTextAlignment="Start" VerticalOptions="Start" VerticalTextAlignment="Start" TextColor="Black" LineBreakMode="WordWrap"/>
+                                        <Label Text="{Binding proCategoryName}" HorizontalTextAlignment="Start" FontAttributes="Bold" TextColor="Black"/>
                                     </StackLayout>
-                                    <Label WidthRequest="{DynamicResource HeightWidth110}" MinimumWidthRequest="{DynamicResource HeightWidth110}" Text="{Binding ActivityDate}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="Black"/>
+                                    <Label WidthRequest="{DynamicResource HeightWidth150}" MinimumWidthRequest="{DynamicResource HeightWidth150}" Text="{Binding ActivityDate}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="Black"/>
                                 </StackLayout>
                                 <BoxView HeightRequest="1" BackgroundColor="Black" VerticalOptions="Fill" HorizontalOptions="Fill" />
                                 <StackLayout.GestureRecognizers>
