@@ -201,20 +201,27 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 
         async Task OpenCallDialer()
-        {
+        { 
             try
             {
-                DependencyService.Get<PhoneCallEmail>().MakeQuickCall("123456789");
+                PhoneDialer.Open("123456789");
+                //DependencyService.Get<PhoneCallEmail>().MakeQuickCall("123456789");
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                Console.WriteLine("Phone Dialer is not supported on this device.");
+                ExceptionHelper.CommanException(ex);
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
+           
         }
 
         async Task Setting()
@@ -225,7 +232,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -239,7 +246,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -251,7 +258,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
        
@@ -270,7 +277,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
         async Task GetUserDetail(string volunteerID)
@@ -316,7 +323,7 @@ namespace AtWork.ViewModels
                                 });
                             }
                         }
-                        
+
                         //if (!string.IsNullOrEmpty(volunteers?.classes))
                         //{
                         //    string UserDescription = volunteers?.classes;
@@ -354,11 +361,10 @@ namespace AtWork.ViewModels
                         //                    tempCmtList.Add(new UserDetails() { ClassID = UserSingleDescriptionList[0],   UserDescriptionTitle = UserSingleDescriptionList[1].ToUpper(), UserDescriptionValue = UserSingleDescriptionList[2] });
                         //                }
                         //            }
-
                         //            return true;
                         //        });
                         //        //UserGroupList = tempCmtList;
-                        //        isShowBoxview = true;
+                        isShowBoxview = true;
                         //        ObservableCollection<UserDetails> temp = new ObservableCollection<UserDetails>();
                         //        //temp.Add(new UserDetails() { UserDescriptionTitle = "BIRTHDAY", UserDescriptionValue = "February 12" });
                         //        //temp.Add(new UserDetails() { UserDescriptionTitle = "LOCATION", UserDescriptionValue = "Zurich" });

@@ -49,6 +49,8 @@ namespace AtWork.Services
         public static string UserProfileURL = "/user/getprofile/";
         public static string getprofile_v1 = "/user/getprofile_v1/";
         public static string UserLanguageURL = "/user/GetLanguage";
+        public static string UserBirthdayURL = "/user/GetBirthday";
+        public static string UpdateUserBirthdayURL = "/user/UpdateBirthDay";
         public static string ActivitySaveFeedbackServiceURL = "/activities/SaveFeedBack";
         public static string ActivityGetFeedbackServiceURL = "/activities/GetFeedBackActivities/";
         public static string AboutUserServiceURL = "/user/Getabout";

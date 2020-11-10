@@ -14,12 +14,13 @@
              ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
              BackgroundColor="{DynamicResource HeaderBackgroundColor}">
     <ContentPage.Content>
-        <StackLayout>
-            <Customcontrol:CustomDatePicker Format="MM/dd/yyyy" FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="70" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Date="{Binding BirthDate}" />
+        <StackLayout BackgroundColor="{StaticResource OffWhiteColor}" >
+            <Customcontrol:CustomDatePicker Format="MM/dd/yyyy" FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="70" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Date="{Binding SelectedDate}" />
+            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="Black"/>
             <StackLayout Orientation="Horizontal" Padding="10">
-            <Label Text="Make birthdate public?" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" >
-                <Label.Triggers>
-                    <!--<DataTrigger TargetType="Label"
+                <Label Text="Make birthdate public?" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" >
+                    <Label.Triggers>
+                        <!--<DataTrigger TargetType="Label"
                                  Binding="{Binding Source={x:Reference styleSwitch}, Path=IsToggled}"
                                  Value="true">
                         <Setter Property="FontAttributes"
@@ -27,10 +28,10 @@
                         <Setter Property="FontSize"
                                 Value="Large" />
                     </DataTrigger>-->
-                </Label.Triggers>
-            </Label>
-            <Switch x:Name="styleSwitch" HorizontalOptions="End" />
-                </StackLayout>
+                    </Label.Triggers>
+                </Label>
+                <Switch IsToggled="{Binding isShowBirthdatePublic}" x:Name="styleSwitch" HorizontalOptions="End" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

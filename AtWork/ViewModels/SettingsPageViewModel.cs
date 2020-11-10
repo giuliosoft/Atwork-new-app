@@ -69,8 +69,8 @@ namespace AtWork.ViewModels
                 }
                 else if (item == AppResources.EditBirthDayDate)
                 {
-                    
-                   // await _navigationService.NavigateAsync(nameof(ChangeBirthdatePage));
+
+                    await _navigationService.NavigateAsync(nameof(ChangeBirthdatePage));
                 }
             }
             catch (Exception ex)

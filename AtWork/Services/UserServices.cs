@@ -7,6 +7,7 @@ using AtWork.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using static AtWork.Models.LoginModel;
+using static AtWork.Models.UserModel;
 using static AtWork.Models.UserSettingModel;
 
 namespace AtWork.Services
@@ -278,6 +279,37 @@ namespace AtWork.Services
             {
                 var Url = ConfigService.BaseServiceURL + ConfigService.GetUserByGroupServiceURL + id;
                 resultModel = await GetResponse<string>(Url, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                ExceptionHelper.CommanException(ex);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> GetBirthDate()
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var Url = ConfigService.BaseServiceURL + ConfigService.UserBirthdayURL;
+                resultModel = await GetResponse<string>(Url, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                ExceptionHelper.CommanException(ex);
+            }
+            return resultModel;
+        }
+        public static async Task<BaseResponse<string>> UpdateBirthDate(VolunteerBirthday inputModel)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var Url = ConfigService.BaseServiceURL + ConfigService.UpdateUserBirthdayURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(Url, jData, true);
             }
             catch (Exception ex)
             {
