@@ -1702,5 +1702,41 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("BirthDayDate", resourceCulture);
             }
         }
+        
+        internal static string BirthDayText {
+            get {
+                return ResourceManager.GetString("BirthDayText", resourceCulture);
+            }
+        }
+        
+        internal static string LocationText {
+            get {
+                return ResourceManager.GetString("LocationText", resourceCulture);
+            }
+        }
+        
+        internal static string StartDateText {
+            get {
+                return ResourceManager.GetString("StartDateText", resourceCulture);
+            }
+        }
+        
+        internal static string EmployeeIdText {
+            get {
+                return ResourceManager.GetString("EmployeeIdText", resourceCulture);
+            }
+        }
+        
+        internal static string CustomFieldText {
+            get {
+                return ResourceManager.GetString("CustomFieldText", resourceCulture);
+            }
+        }
+        
+        internal static string ContactMeText {
+            get {
+                return ResourceManager.GetString("ContactMeText", resourceCulture);
+            }
+        }
     }
 }

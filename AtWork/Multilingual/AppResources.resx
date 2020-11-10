@@ -883,4 +883,22 @@ Are you sure want to do that?</value>
     <data name="BirthDayDate" xml:space="preserve">
         <value>Birthday date</value>
     </data>
+    <data name="BirthDayText" xml:space="preserve">
+        <value>BIRTHDAY</value>
+    </data>
+    <data name="LocationText" xml:space="preserve">
+        <value>LOCATION</value>
+    </data> 
+    <data name="StartDateText" xml:space="preserve">
+        <value>START DATE</value>
+    </data>
+    <data name="EmployeeIdText" xml:space="preserve">
+        <value>EMPLOYEE ID</value>
+    </data> 
+    <data name="CustomFieldText" xml:space="preserve">
+        <value>CUSTOM FIELD</value>
+    </data>
+    <data name="ContactMeText" xml:space="preserve">
+        <value>CONTACT ME</value>
+    </data>
 </root>
