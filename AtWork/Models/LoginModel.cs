@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using AtWork.Services;
 using Xamarin.Forms;
+using static AtWork.Models.UserModel;
 
 namespace AtWork.Models
 {
@@ -180,12 +182,7 @@ namespace AtWork.Models
             public string CategoryActivityCount { get; set; }
             public string CategorywiseHourCount { get; set; }
             public string volInterests { get; set; }
-
-            public string coLocation { get; set; }
-            public string StartDate { get; set; }
-            public string EmployeeID { get; set; }
-            public string CustomField { get; set; }
-
+           
             public string volPicture
             {
                 get
@@ -199,6 +196,94 @@ namespace AtWork.Models
                     _volPicture = value;
                 }
             }
+            
+            public VolunteerBirthday VolunteerBirthday { get; set; }
+            public string coLocation { get; set; }
+            public string StartDate { get; set; }
+            public string EmployeeID { get; set; }
+            public string CustomField { get; set; }
+            
+            public string UserBirthdate
+            {
+                get
+                {
+                    if (VolunteerBirthday != null)
+                    {
+                        string monthName = string.Empty;
+                        if (VolunteerBirthday.volBirthMonth > 0 )
+                        {
+                            monthName = new DateTime(2010, VolunteerBirthday.volBirthMonth, 1).ToString("MMMM", CultureInfo.InvariantCulture);
+                        }
+                        if (!string.IsNullOrEmpty(monthName) && VolunteerBirthday.volBirthDay > 0)
+                        {
+                            return monthName + " " + VolunteerBirthday.volBirthDay.ToString();
+                        }
+                    }
+                    return "";
+                }
+            }
+            public bool ShowUserBirthdate
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(UserBirthdate))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+
+            public bool ShowcoLocation
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(coLocation))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            public bool ShowStartDate
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(StartDate))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            public bool ShowEmployeeID
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(EmployeeID))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            public bool ShowCustomField
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(CustomField))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            public bool ShowContact
+            {
+                get
+                {
+                    if (!string.IsNullOrEmpty(volPhone) || !string.IsNullOrEmpty(volEmail))
+                        return true;
+                    else
+                        return false;
+                }
+            }
+
         }
         public partial class Volunteers
         {

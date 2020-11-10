@@ -110,8 +110,11 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<BirthDateResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Data != null)
                     {
-                        DateTime dt = new DateTime(DateTime.Now.Year, serviceResultBody.Data.volBirthMonth, serviceResultBody.Data.volBirthDay);
-                        SelectedDate = dt;
+                        if (serviceResultBody.Data.volBirthMonth > 0 && serviceResultBody.Data.volBirthDay > 0)
+                        {
+                            DateTime dt = new DateTime(DateTime.Now.Year, serviceResultBody.Data.volBirthMonth, serviceResultBody.Data.volBirthDay);
+                            SelectedDate = dt;
+                        }
                         isShowBirthdatePublic = serviceResultBody.Data.volShowBirthday;
                     }
                 }

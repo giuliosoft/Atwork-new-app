@@ -292,7 +292,7 @@ namespace AtWork.ViewModels
                     {
                         volunteers = serviceResultBody?.Data;
                         SessionService.volunteers = volunteers;
-                        if (volunteers?.VolunteerClasses != null)
+                        if (volunteers?.VolunteerClasses != null && volunteers?.VolunteerClasses.Count > 0)
                         {
                             ObservableCollection<VolunteerClasses> myCollection = new ObservableCollection<VolunteerClasses>(volunteers.VolunteerClasses as List<VolunteerClasses>);
                             UserGroupList = myCollection;
@@ -344,7 +344,10 @@ namespace AtWork.ViewModels
                                 });
                             }
                         }
-
+                        //if (isVisibleBirthDate)
+                        //{
+                        //    isVisibleBirthDate = true;
+                        //}
                         //if (!string.IsNullOrEmpty(volunteers?.classes))
                         //{
                         //    string UserDescription = volunteers?.classes;
