@@ -691,6 +691,21 @@
                 <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
                 <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
             </Style>
+            <Style x:Key="ProfileGroupButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
+            </Style>
+            <Style x:Key="ProfileGroupLabelStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize14}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

@@ -196,7 +196,31 @@ namespace AtWork.ViewModels
         {
             try
             {
-                DependencyService.Get<PhoneCallEmail>().ComposerEmail("abc@gmail.com");
+                //1
+                //try
+                //{
+                //    var message = new EmailMessage
+                //    {
+                //        To = volunteers?.volEmail.tol,
+                //        //Cc = ccRecipients,
+                //        //Bcc = bccRecipients
+                //    };
+                //    await Email.ComposeAsync(message);
+                //}
+                //catch (FeatureNotSupportedException fbsEx)
+                //{
+                //    // Email is not supported on this device
+                //}
+                //catch (Exception ex)
+                //{
+                //    // Some other exception occurred
+                //}
+
+                //2
+                //Device.OpenUri(new Uri("mailto:"+volunteers?.volEmail));
+
+                //3
+                DependencyService.Get<PhoneCallEmail>().ComposerEmail(volunteers?.volEmail, AppResources.EmailNotSupportedAlert);
             }
             catch (Exception ex)
             {
@@ -208,19 +232,18 @@ namespace AtWork.ViewModels
         { 
             try
             {
-                PhoneDialer.Open("123456789");
-                //DependencyService.Get<PhoneCallEmail>().MakeQuickCall("123456789");
+                PhoneDialer.Open(volunteers?.volPhone);
             }
             catch (FeatureNotSupportedException ex)
             {
-                Console.WriteLine("Phone Dialer is not supported on this device.");
+                await DisplayAlertAsync(AppResources.PhoneDialerAlert);
+                Console.WriteLine(AppResources.PhoneDialerAlert);
                 ExceptionHelper.CommanException(ex);
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
-           
         }
 
         async Task Setting()
@@ -240,7 +263,8 @@ namespace AtWork.ViewModels
             try
             {
                 var navigationParams = new NavigationParameters();
-                navigationParams.Add("ClassID", userDetails.classValue);
+                navigationParams.Add("ClassUniqueID", userDetails.classUniqueID);
+                navigationParams.Add("ClassValue", userDetails.classValue);
                 await _navigationService.NavigateAsync(nameof(MemberListPage), navigationParams);
             }
             catch (Exception ex)

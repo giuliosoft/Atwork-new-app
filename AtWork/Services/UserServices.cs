@@ -272,13 +272,14 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> GetUserByGroup(string id)
+        public static async Task<BaseResponse<string>> GetUserByGroup(GetUsersByGroupWise inputModel)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try
             {
-                var Url = ConfigService.BaseServiceURL + ConfigService.GetUserByGroupServiceURL + id;
-                resultModel = await GetResponse<string>(Url, true);
+                var Url = ConfigService.BaseServiceURL + ConfigService.GetUserByGroupServiceURL;
+                var jData = JsonConvert.SerializeObject(inputModel);
+                resultModel = await PostResponse<string>(Url, jData, true);
             }
             catch (Exception ex)
             {

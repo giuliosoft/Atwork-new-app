@@ -901,4 +901,19 @@ Are you sure want to do that?</value>
     <data name="ContactMeText" xml:space="preserve">
         <value>CONTACT ME</value>
     </data>
+    <data name="CanNotMakeEvent" xml:space="preserve">
+        <value>Can't make it to the event?</value>
+    </data> 
+    <data name="ConfirmUnsubscribeText" xml:space="preserve">
+        <value>If you confirm, you will no longer be subscribed and receive any more notifications for this activity.</value>
+    </data>
+    <data name="ToText" xml:space="preserve">
+        <value>to</value>
+    </data>
+    <data name="PhoneDialerAlert" xml:space="preserve">
+        <value>Phone Dialer is not supported on this device.</value>
+    </data> 
+    <data name="EmailNotSupportedAlert" xml:space="preserve">
+        <value>Email is not supported on this device.</value>
+    </data>
 </root>

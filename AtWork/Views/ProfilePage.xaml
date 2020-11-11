@@ -99,8 +99,8 @@
                             <DataTemplate>
                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                                     <StackLayout Orientation="Horizontal"  Padding="0,10,5,10" >
-                                        <Button IsVisible="{Binding isMyGroup}"  Text="{Binding classDescription}" TextColor="White" HeightRequest="30" CornerRadius="15" HorizontalOptions="Start" BackgroundColor="{DynamicResource AccentColor}" Padding="10,0,10,0"/>
-                                        <Label IsVisible="{Binding isGroup}" Text="{Binding classDescription}" HorizontalTextAlignment="Center" HorizontalOptions="Start" Padding="10,0,0,0"/>
+                                        <Button IsVisible="{Binding isMyGroup}"  Text="{Binding classDescription}" Style="{StaticResource ProfileGroupButtonStyle}" HeightRequest="{DynamicResource HeightWidth30}" CornerRadius="{DynamicResource ButtonCornerRadius15}"  Padding="{DynamicResource MarginPadding10_00_10_00}"/>
+                                        <Label IsVisible="{Binding isGroup}" Text="{Binding classDescription}" Style="{StaticResource ProfileGroupLabelStyle}" Padding="{DynamicResource MarginPadding10_00_00_00}"/>
                                         <Label Text="{Binding classValue}" Style="{StaticResource ProfileHeaderLabelStyle}" TextColor="{DynamicResource AccentColor}" TextDecorations="Underline" HorizontalOptions="EndAndExpand" Padding="0,0,5,0">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={x:Reference UserGroupList},Path=BindingContext.OpenGroupMemberListCommand}" CommandParameter="{Binding .}"/>
@@ -125,27 +125,27 @@
                         </Customcontrol:RepeaterView>-->
 
                         <StackLayout IsVisible="{Binding volunteers.ShowUserBirthdate}"  Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
-                            <Label Text="BIRTHDAY" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                            <Label Text="{x:Static Multilingual:AppResources.BirthDayText}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
                             <Label Text="{Binding volunteers.UserBirthdate}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding volunteers.ShowcoLocation}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
-                            <Label Text="LOCATION"  Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                            <Label Text="{x:Static Multilingual:AppResources.LocationText}"  Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
                             <Label Text="{Binding volunteers.coLocation}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding volunteers.ShowStartDate}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
-                            <Label Text="START DATE" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
+                            <Label Text="{x:Static Multilingual:AppResources.StartDateText}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="Start"/>
                             <Label Text="{Binding volunteers.StartDate}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding volunteers.ShowEmployeeID}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
-                            <Label Text="EMPLOYEE ID" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
+                            <Label Text="{x:Static Multilingual:AppResources.EmployeeIdText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
                             <Label Text="{Binding volunteers.EmployeeID}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding volunteers.ShowCustomField}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
-                            <Label Text="CUSTOM FIELD" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
+                            <Label Text="{x:Static Multilingual:AppResources.CustomFieldText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start"/>
                             <Label Text="{Binding volunteers.CustomField}" Style="{StaticResource ProfileHeaderLabelStyle}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout IsVisible="{Binding volunteers.ShowContact}" Orientation="Horizontal" Padding="{StaticResource MarginPadding10}" >
-                            <Label Text="CONTACT ME" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start" VerticalOptions="Start"/>
+                            <Label Text="{x:Static Multilingual:AppResources.ContactMeText}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Start" VerticalOptions="Start"/>
                             <StackLayout HorizontalOptions="EndAndExpand">
                                 <Label Text="{Binding volunteers.volEmail}" Style="{StaticResource ProfileHeaderLabelStyle}" TextDecorations="Underline" TextColor="{DynamicResource AccentColor}" HorizontalOptions="EndAndExpand">
                                     <Label.GestureRecognizers>

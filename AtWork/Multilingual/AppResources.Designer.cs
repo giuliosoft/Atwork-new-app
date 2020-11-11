@@ -1738,5 +1738,35 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("ContactMeText", resourceCulture);
             }
         }
+        
+        internal static string CanNotMakeEvent {
+            get {
+                return ResourceManager.GetString("CanNotMakeEvent", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmUnsubscribeText {
+            get {
+                return ResourceManager.GetString("ConfirmUnsubscribeText", resourceCulture);
+            }
+        }
+        
+        internal static string ToText {
+            get {
+                return ResourceManager.GetString("ToText", resourceCulture);
+            }
+        }
+        
+        internal static string PhoneDialerAlert {
+            get {
+                return ResourceManager.GetString("PhoneDialerAlert", resourceCulture);
+            }
+        }
+        
+        internal static string EmailNotSupportedAlert {
+            get {
+                return ResourceManager.GetString("EmailNotSupportedAlert", resourceCulture);
+            }
+        }
     }
 }

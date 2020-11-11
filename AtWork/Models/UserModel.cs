@@ -33,7 +33,15 @@ namespace AtWork.Models
         {
             public int volBirthMonth { get; set; }
             public int volBirthDay { get; set; }
+            public int volBirthYear { get; set; }
             public bool volShowBirthday { get; set; }
+        }
+        public class GetUsersByGroupWise
+        {
+            public string coUniqueID { get; set; }
+            public string classUniqueID { get; set; }
+            public string classValue { get; set; }
+            public int pageNumber { get; set; }
         }
     }
 }

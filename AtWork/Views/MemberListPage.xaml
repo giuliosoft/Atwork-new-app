@@ -12,7 +12,10 @@
              x:Class="AtWork.Views.MemberListPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
-            <CollectionView x:Name="cvMembers" ItemsSource = "{Binding Members}" VerticalOptions="StartAndExpand">
+            <CollectionView x:Name="cvMembers" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" BackgroundColor="Transparent" ItemsSource="{Binding Members}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Spacing="0">

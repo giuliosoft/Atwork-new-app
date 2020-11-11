@@ -12,7 +12,7 @@ namespace AtWork.iOS.Renderers
 {
 	public class PhoneCall_iOS : PhoneCallEmail
 	{
-		public void ComposerEmail(string email)
+		public void ComposerEmail(string email , string alertMessage)
 		{
 			try
 			{
@@ -20,20 +20,13 @@ namespace AtWork.iOS.Renderers
 				
 				if (!UIApplication.SharedApplication.OpenUrl(url))
 				{
-					var av = new UIAlertView("Not supported",
-						"Email is not supported on this device",
-						null,
-						"OK",
-						null);
+					var av = new UIAlertView(string.Empty, alertMessage, null,"OK", null);
 					av.Show();
 				}
 				else
                 {
 					UIApplication.SharedApplication.OpenUrl(url);
 				}
-				//hans.meier @volanty.com
- //Atwork2020
-
 			}
 			catch (Exception ex)
 			{

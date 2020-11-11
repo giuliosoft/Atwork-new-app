@@ -36,7 +36,7 @@
                             <Label Text="{x:Static Multilingual:AppResources.TimeHeaderText}" HorizontalOptions="CenterAndExpand"  FontSize="20" Padding="5" FontFamily="Lato_Regular"></Label>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
                                 <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedTime}" Format="HH:mm" />
-                                <Label Text="to" HorizontalOptions="End"  FontSize="18" Padding="15" FontFamily="Lato_Regular"></Label>
+                                <Label Text="{x:Static Multilingual:AppResources.ToText}" HorizontalOptions="End"  FontSize="18" Padding="15" FontFamily="Lato_Regular"></Label>
                                 <Customcontrol:CustomTimePicker  FontFamily="Lato_Regular" HorizontalOptions="Fill" HeightRequest="50" FontSize="20" BackgroundColor="{StaticResource OffWhiteColor}" Time="{Binding SelectedEndTime}" Format="HH:mm" />
                             </StackLayout>
                             <BoxView HeightRequest="1" BackgroundColor="{StaticResource BlackColor}" HorizontalOptions="FillAndExpand" Margin="{DynamicResource MarginPadding00_10_00_10}"/>

@@ -80,6 +80,7 @@ namespace AtWork.ViewModels
                 VolunteerBirthday volunteerBirthday = new VolunteerBirthday();
                 volunteerBirthday.volBirthDay = SelectedDate.Day;
                 volunteerBirthday.volBirthMonth = SelectedDate.Month;
+                volunteerBirthday.volBirthYear = SelectedDate.Year;
                 volunteerBirthday.volShowBirthday = isShowBirthdatePublic;
                 var serviceResult = await UserServices.UpdateBirthDate(volunteerBirthday);
                 await ClosePopup();
@@ -88,7 +89,7 @@ namespace AtWork.ViewModels
                     var serviceResultBody = JsonConvert.DeserializeObject<BirthDateResponce>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Data != null)
                     {
-
+                        // Change successfully
                     }
                 }
                 await _navigationService.GoBackAsync();
@@ -112,7 +113,7 @@ namespace AtWork.ViewModels
                     {
                         if (serviceResultBody.Data.volBirthMonth > 0 && serviceResultBody.Data.volBirthDay > 0)
                         {
-                            DateTime dt = new DateTime(DateTime.Now.Year, serviceResultBody.Data.volBirthMonth, serviceResultBody.Data.volBirthDay);
+                            DateTime dt = new DateTime(serviceResultBody.Data.volBirthYear, serviceResultBody.Data.volBirthMonth, serviceResultBody.Data.volBirthDay);
                             SelectedDate = dt;
                         }
                         isShowBirthdatePublic = serviceResultBody.Data.volShowBirthday;

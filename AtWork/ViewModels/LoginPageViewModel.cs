@@ -23,7 +23,7 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
 #if DEBUG
             UserEmail = "estee2";
-            UserPassword = "Password123!";
+            UserPassword = "Password1!";
 #endif
         }
         #endregion
@@ -31,6 +31,9 @@ namespace AtWork.ViewModels
         #region Private Properties
         private string _ProductDetail = string.Empty;
         private bool _wrongPasswordLabelIsVisible = false;
+        private bool _isHidePassword = true;
+        bool isShowPassword = false;
+        private ImageSource _eyeIcon = "circlegroup";
         #endregion
 
         #region Public Properties        
@@ -56,11 +59,22 @@ namespace AtWork.ViewModels
             get { return _wrongPasswordLabelIsVisible; }
             set { SetProperty(ref _wrongPasswordLabelIsVisible, value); }
         }
+        public bool isHidePassword
+        {
+            get { return _isHidePassword; }
+            set { SetProperty(ref _isHidePassword, value); }
+        }
+        public ImageSource eyeIcon
+        {
+            get { return _eyeIcon; }
+            set { SetProperty(ref _eyeIcon, value); }
+        }
         #endregion
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await LoginToApp()); } }
         public DelegateCommand ForgotPasswordCommand { get { return new DelegateCommand(async () => await ForgotPassword()); } }
+        public DelegateCommand ShowPasswordCommand { get { return new DelegateCommand(async () => await ShowPassword()); } }
         #endregion
 
         #region private methods
@@ -133,6 +147,28 @@ namespace AtWork.ViewModels
             catch (Exception ex)
             {
                 await ClosePopup();
+                ExceptionHelper.CommanException(ex);
+            }
+        }
+        async Task ShowPassword()
+        {
+            try
+            {
+                if (!isShowPassword)
+                {
+                    isShowPassword = true;
+                    isHidePassword = false;
+                    eyeIcon = "earth";
+                }
+                else
+                {
+                    isShowPassword = false;
+                    isHidePassword = true;
+                    eyeIcon = "circlegroup";
+                }
+            }
+            catch (Exception ex)
+            {
                 ExceptionHelper.CommanException(ex);
             }
         }
