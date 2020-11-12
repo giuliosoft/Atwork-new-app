@@ -265,6 +265,12 @@
     <BundleResource Include="Resources\info%402x.png" />
     <BundleResource Include="Resources\info%403x.png" />
     <BundleResource Include="Resources\de.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\showpassword.png" />
+    <BundleResource Include="Resources\showpassword%402x.png" />
+    <BundleResource Include="Resources\showpassword%403x.png" />
+    <BundleResource Include="Resources\hidepassword.png" />
+    <BundleResource Include="Resources\hidepassword%402x.png" />
+    <BundleResource Include="Resources\hidepassword%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

@@ -38,12 +38,27 @@
                 </CollectionView.GestureRecognizers>
             </CollectionView>
             <StackLayout>
-                <CollectionView ItemSizingStrategy="MeasureAllItems" ItemsSource="{Binding ActivityHistorylist}"  Header="{Binding .}" Footer="{Binding .}" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <CollectionView ItemsSource="{Binding ActivityHistorylist}"  Header="{Binding .}" Footer="{Binding .}" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
+                             <!--<Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                 <Grid.RowDefinitions>
+                                     <RowDefinition Height="Auto"/>
+                                     <RowDefinition Height="Auto"/>
+                                     <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                 <Label BackgroundColor="AliceBlue" Grid.Row="0" Grid.Column="0" Text="{Binding proTitle}" HorizontalTextAlignment="Start" VerticalOptions="Start" VerticalTextAlignment="Start" TextColor="Black" LineBreakMode="TailTruncation"/>
+                                 <Label BackgroundColor="AliceBlue" Grid.Row="1" Grid.Column="0" Text="{Binding proCategoryName}" HorizontalTextAlignment="Start" FontAttributes="Bold" TextColor="Black"/>
+                                 <Label BackgroundColor="AliceBlue" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" WidthRequest="{DynamicResource HeightWidth150}" VerticalOptions="CenterAndExpand" MinimumWidthRequest="{DynamicResource HeightWidth150}" Text="{Binding ActivityDate}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="Black"/>
+                                 <BoxView Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HeightRequest="1" BackgroundColor="Black" VerticalOptions="Fill" HorizontalOptions="Fill" />
+                            </Grid>-->
                             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0" Padding="0" Spacing="0" >
                                 <StackLayout VerticalOptions="Start" Orientation="Horizontal" Padding="{DynamicResource HeightWidth15}">
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >

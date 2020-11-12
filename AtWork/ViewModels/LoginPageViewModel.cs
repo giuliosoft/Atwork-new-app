@@ -33,7 +33,7 @@ namespace AtWork.ViewModels
         private bool _wrongPasswordLabelIsVisible = false;
         private bool _isHidePassword = true;
         bool isShowPassword = false;
-        private ImageSource _eyeIcon = "circlegroup";
+        private ImageSource _eyeIcon = "hidepassword";
         #endregion
 
         #region Public Properties        
@@ -158,13 +158,13 @@ namespace AtWork.ViewModels
                 {
                     isShowPassword = true;
                     isHidePassword = false;
-                    eyeIcon = "earth";
+                    eyeIcon = "showpassword";
                 }
                 else
                 {
                     isShowPassword = false;
                     isHidePassword = true;
-                    eyeIcon = "circlegroup";
+                    eyeIcon = "hidepassword";
                 }
             }
             catch (Exception ex)

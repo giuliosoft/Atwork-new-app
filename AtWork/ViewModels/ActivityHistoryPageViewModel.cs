@@ -282,22 +282,25 @@ namespace AtWork.ViewModels
                         ActivityHistoryDetails = serviceResultBody.Data1;
                         if (serviceResultBody.Data != null)
                         {
-                            if (serviceResultBody.Data.Count < 5)
+                            if (serviceResultBody.Data.Count < 10)
                                 RemainingItemsThreshold = -1;
                             else
                                 RemainingItemsThreshold = 0;
-                            if (PageNo == 1)
+                            MainThread.BeginInvokeOnMainThread(() =>
                             {
-                                ActivityHistorylist.Clear();
-                            }
-                            var tempList = new ObservableCollection<ActivitiesDisplay>(ActivityHistorylist);
-                            ObservableCollection<ActivitiesDisplay> myCollection = new ObservableCollection<ActivitiesDisplay>(serviceResultBody.Data as List<ActivitiesDisplay>);
-                            myCollection.All((nArg) =>
-                            {
-                                tempList.Add(nArg);
-                                return true;
+                                if (PageNo == 1)
+                                {
+                                    ActivityHistorylist.Clear();
+                                }
+                                var tempList = new ObservableCollection<ActivitiesDisplay>(ActivityHistorylist);
+                                ObservableCollection<ActivitiesDisplay> myCollection = new ObservableCollection<ActivitiesDisplay>(serviceResultBody.Data as List<ActivitiesDisplay>);
+                                myCollection.All((nArg) =>
+                                {
+                                    tempList.Add(nArg);
+                                    return true;
+                                });
+                                ActivityHistorylist = new ObservableCollection<ActivitiesDisplay>(tempList);
                             });
-                            ActivityHistorylist = new ObservableCollection<ActivitiesDisplay>(tempList);
                         }
                         if (serviceResultBody.Data1 != null)
                         {

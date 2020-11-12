@@ -210,7 +210,7 @@ namespace AtWork.Models
                     if (VolunteerBirthday != null)
                     {
                         string monthName = string.Empty;
-                        if (VolunteerBirthday.volBirthMonth > 0 )
+                        if (VolunteerBirthday.volBirthMonth > 0 && VolunteerBirthday.volBirthYear > 0)
                         {
                             monthName = new DateTime(VolunteerBirthday.volBirthYear, VolunteerBirthday.volBirthMonth, 1).ToString("MMMM", CultureInfo.InvariantCulture);
                         }
