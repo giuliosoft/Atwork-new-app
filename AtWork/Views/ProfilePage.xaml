@@ -64,7 +64,7 @@
                         <FlexLayout Grid.Column="0" x:Name="YourInterestList" BindableLayout.ItemsSource="{Binding interestList}" AlignContent="Center" Direction="Row" Wrap="Wrap" JustifyContent="Center" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="0">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkColor}" BorderThickness="2" Margin="7" HasShadow="False" CornerRadius="15" HeightRequest="30" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                    <PancakeControl:PancakeView BorderColor="{StaticResource DarkColor}" BorderThickness="2" Margin="7" HasShadow="False" CornerRadius="{DynamicResource PancakeViewCornerRadius15}" HeightRequest="{DynamicResource HeightWidth30}" Padding="{DynamicResource MarginPadding10_05_10_05}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                                         <!--<PancakeControl:PancakeView.Triggers>
                                             <DataTrigger Binding="{Binding IsSelected}" TargetType="PancakeControl:PancakeView" Value="True">
                                                 <Setter Property="BackgroundColor" Value="{StaticResource DarkGreenShade}" />
