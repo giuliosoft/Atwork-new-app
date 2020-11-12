@@ -22,7 +22,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="0,0,0,7">
+                        <StackLayout Padding="{DynamicResource MarginPadding0_0_0_7}">
                             <StackLayout Margin="{DynamicResource MarginPadding20_0_20_0}" Style="{StaticResource StackLayoutStyle}">
                                 <Label Text="{Binding title}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" TextColor="{DynamicResource AccentColor}"/>
                                 <BoxView IsVisible="{Binding UnderlineIsVisible}" HeightRequest="2" BackgroundColor="{DynamicResource AccentColor}" />
@@ -38,13 +38,13 @@
                 </CollectionView.GestureRecognizers>
             </CollectionView>
             <StackLayout>
-                <CollectionView ItemsSource="{Binding ActivityHistorylist}"  Header="{Binding .}" Footer="{Binding .}" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <CollectionView ItemSizingStrategy="MeasureAllItems" ItemsSource="{Binding ActivityHistorylist}"  Header="{Binding .}" Footer="{Binding .}" RemainingItemsThreshold="{Binding RemainingItemsThreshold}" RemainingItemsThresholdReachedCommand="{Binding NewsLoadMoreItemsCommand}" HorizontalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                             <!--<Grid >
+                             <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
@@ -54,12 +54,27 @@
                                      <RowDefinition Height="Auto"/>
                                      <RowDefinition Height="1"/>
                                 </Grid.RowDefinitions>
-                                 <Label BackgroundColor="AliceBlue" Grid.Row="0" Grid.Column="0" Text="{Binding proTitle}" HorizontalTextAlignment="Start" VerticalOptions="Start" VerticalTextAlignment="Start" TextColor="Black" LineBreakMode="TailTruncation"/>
-                                 <Label BackgroundColor="AliceBlue" Grid.Row="1" Grid.Column="0" Text="{Binding proCategoryName}" HorizontalTextAlignment="Start" FontAttributes="Bold" TextColor="Black"/>
-                                 <Label BackgroundColor="AliceBlue" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" WidthRequest="{DynamicResource HeightWidth150}" VerticalOptions="CenterAndExpand" MinimumWidthRequest="{DynamicResource HeightWidth150}" Text="{Binding ActivityDate}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="Black"/>
+                                 <Label Grid.Row="0" Grid.Column="0" Padding="{DynamicResource MarginPadding20_10_10_00}" Text="{Binding proTitle}" FontSize="{DynamicResource FontSize14}" HorizontalTextAlignment="Start" VerticalOptions="Start" VerticalTextAlignment="Start" TextColor="Black" LineBreakMode="WordWrap"/>
+                                 <Label Grid.Row="1" Grid.Column="0" Padding="{DynamicResource MarginPadding20_00_10_10}" Text="{Binding proCategoryName}" FontSize="{DynamicResource FontSize14}" HorizontalTextAlignment="Start" FontAttributes="Bold" TextColor="Black"/>
+                                 <Label Grid.Row="0" Grid.RowSpan="2" Padding="{DynamicResource MarginPadding0_0_10_0}" Grid.Column="1" FontSize="{DynamicResource FontSize14}" WidthRequest="{DynamicResource HeightWidth150}" VerticalOptions="CenterAndExpand" MinimumWidthRequest="{DynamicResource HeightWidth150}" Text="{Binding ActivityDate}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="Black"/>
+                                 <BoxView Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HeightRequest="1" BackgroundColor="Black" VerticalOptions="Fill" HorizontalOptions="Fill" />
+                            </Grid>
+                            <!--<Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                 <Grid.RowDefinitions>
+                                     <RowDefinition Height="Auto"/>
+                                     <RowDefinition Height="Auto"/>
+                                     <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                 <Label Grid.Row="0" Grid.Column="0" Padding="{DynamicResource MarginPadding20_10_10_00}" FontSize="{DynamicResource FontSize20}" TextColor="Black" Text="{Binding proTitle}" LineBreakMode="WordWrap"/>
+                                 <Label Grid.Row="1" Grid.Column="0" Padding="{DynamicResource MarginPadding20_00_10_10}" FontSize="{DynamicResource FontSize20}" TextColor="Black" Text="{Binding proCategoryName}" FontAttributes="Bold" />
+                                 <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Padding="{DynamicResource MarginPadding0_0_10_0}" FontSize="{DynamicResource FontSize20}" WidthRequest="{DynamicResource HeightWidth150}" VerticalOptions="CenterAndExpand" MinimumWidthRequest="{DynamicResource HeightWidth150}" Text="{Binding ActivityDate}" Style="{StaticResource ActivityPageHorizontalLabelStyle}" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="Black"/>
                                  <BoxView Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HeightRequest="1" BackgroundColor="Black" VerticalOptions="Fill" HorizontalOptions="Fill" />
                             </Grid>-->
-                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0" Padding="0" Spacing="0" >
+                            <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0" Padding="0" Spacing="0" >
                                 <StackLayout VerticalOptions="Start" Orientation="Horizontal" Padding="{DynamicResource HeightWidth15}">
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
                                         <Label Text="{Binding proTitle}" HorizontalTextAlignment="Start" VerticalOptions="Start" VerticalTextAlignment="Start" TextColor="Black" LineBreakMode="WordWrap"/>
@@ -71,7 +86,7 @@
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={x:Reference Activitycollectionlist},Path=BindingContext.ActivityHistorylist}" CommandParameter="{Binding .}" />
                                 </StackLayout.GestureRecognizers>
-                            </StackLayout>
+                            </StackLayout>-->
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                     <CollectionView.HeaderTemplate>
@@ -110,15 +125,15 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </FlexLayout>-->
-                                <FlexLayout IsVisible="{Binding UserActivityHoursList}" BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start" Margin="0,20,0,30">
+                                <FlexLayout Padding="{DynamicResource MarginPadding00_20_00_20}" IsVisible="{Binding UserActivityHoursList}" BindableLayout.ItemsSource="{Binding UserActivityHoursList}" Wrap="Wrap" Direction="Row" JustifyContent="Center" AlignItems="Start" AlignContent="Start">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
                                             <StackLayout IsEnabled="False" Orientation="Vertical" >
                                                 <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
-                                                <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth60}" WidthRequest="{DynamicResource HeightWidth60}" CornerRadius="{DynamicResource CornerRadius30}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
-                                                    <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
+                                                <PancakeControl:PancakeView Style="{StaticResource ActivityCountPancakeStyle}">
+                                                    <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="{DynamicResource FontSize20}" TextColor="White"/>
                                                 </PancakeControl:PancakeView>
-                                                <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                                                <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth135}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" FontSize="{DynamicResource FontSize14}" />
                                             </StackLayout>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>

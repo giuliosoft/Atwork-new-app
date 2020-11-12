@@ -49,10 +49,10 @@
                             <DataTemplate>
                                 <StackLayout IsEnabled="False" Orientation="Vertical" >
                                     <!--<Button Text="14" HeightRequest="50" WidthRequest="50" CornerRadius="25" TextColor="White" BackgroundColor="{StaticResource DarkColor}" HorizontalOptions="Center"></Button>-->
-                                    <PancakeControl:PancakeView Style="{StaticResource ProfilePancakeStyle}" HeightRequest="{DynamicResource HeightWidth60}" WidthRequest="{DynamicResource HeightWidth60}" CornerRadius="{DynamicResource CornerRadius30}" BorderThickness="0" BackgroundColor="{StaticResource DarkColor}" >
-                                        <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="20" TextColor="White"/>
+                                    <PancakeControl:PancakeView Style="{StaticResource ActivityCountPancakeStyle}">
+                                        <Label Text="{Binding Count}" Style="{StaticResource ActivitiesCountLabelStyle}" FontSize="{DynamicResource FontSize20}" TextColor="White"/>
                                     </PancakeControl:PancakeView>
-                                    <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth130}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" />
+                                    <Label Text="{Binding Text}" WidthRequest="{DynamicResource HeightWidth135}" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand" FontSize="{DynamicResource FontSize14}" />
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>

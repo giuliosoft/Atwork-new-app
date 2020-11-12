@@ -226,7 +226,7 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (!string.IsNullOrEmpty(UserBirthdate))
+                    if (!string.IsNullOrEmpty(UserBirthdate) && (VolunteerBirthday.volShowBirthday || volUniqueID == SettingsService.VolunteersUserData.volUniqueID))
                         return true;
                     else
                         return false;
