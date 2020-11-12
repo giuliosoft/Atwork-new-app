@@ -27,7 +27,7 @@
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                             <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entPassword" Placeholder="{x:Static Multilingual:AppResources.PasswordText}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsPassword="{Binding isHidePassword}" IsBorderLess="True" PlaceholderColor="DarkGray" TextColor="Black" Text="{Binding UserPassword}" HorizontalOptions="FillAndExpand">
                             </CustomControl:CustomEntry>
-                            <CustomControl:CustomImage TintColor="#525252" Margin="5,0,15,0" HeightRequest="25" WidthRequest="25" Source="{Binding eyeIcon}" >
+                            <CustomControl:CustomImage TintColor="{StaticResource LightBlack}" Margin="5,0,15,0" HeightRequest="25" WidthRequest="25" Source="{Binding eyeIcon}" >
                                 <CustomControl:CustomImage.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ShowPasswordCommand}"/>
                                 </CustomControl:CustomImage.GestureRecognizers>

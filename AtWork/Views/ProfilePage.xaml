@@ -57,7 +57,7 @@
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
-                    <Button Command="{Binding OpenFullActivityCommand}" IsVisible="{Binding isShowSettingLogout}" Margin="{StaticResource MarginPadding20}" Text="{x:Static Multilingual:AppResources.SeeFullActivityHistory}" BackgroundColor="{DynamicResource AccentColor}" HeightRequest="{DynamicResource HeightWidth30}" CornerRadius="{DynamicResource ButtonCornerRadius15}" TextColor="White"/>
+                    <Button Command="{Binding OpenFullActivityCommand}" IsVisible="{Binding isShowSettingLogout}" Margin="{StaticResource MarginPadding20}" Text="{x:Static Multilingual:AppResources.SeeFullActivityHistory}" BackgroundColor="{DynamicResource AccentColor}" HeightRequest="{DynamicResource HeightWidth40}" CornerRadius="{DynamicResource ButtonCornerRadius20}" FontSize="{DynamicResource FontSize16}" FontFamily="Lato_Bold" TextColor="White"/>
                     <BoxView HeightRequest="1" BackgroundColor="Gray"/>
                     <Label Margin="0,25,0,0" Text="{x:Static Multilingual:AppResources.MyInterestsProfile}" Style="{StaticResource NewsCommentEditorStyle}" HorizontalOptions="Center"/>
                     <Grid WidthRequest="{DynamicResource HeightWidth320}" ColumnDefinitions="*" Padding="0" HorizontalOptions="Center" VerticalOptions="Center">
