@@ -75,7 +75,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
         }

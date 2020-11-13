@@ -166,8 +166,8 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand LikeNewsPostCommand { get { return new DelegateCommand(async () => await LikeNewsPost()); } }
-        public DelegateCommand OnOpenSwipeViewClicked { get { return new DelegateCommand(async () => await OnOpenSwipeView()); } }
-        public DelegateCommand OnCloseSwipeViewClicked { get { return new DelegateCommand(async () => await OnCloseSwipeView()); } }
+        //public DelegateCommand OnOpenSwipeViewClicked { get { return new DelegateCommand(async () => await OnOpenSwipeView()); } }
+        //public DelegateCommand OnCloseSwipeViewClicked { get { return new DelegateCommand(async () => await OnCloseSwipeView()); } }
         public DelegateCommand<NewsComment> DeleteCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await DeleteComment(obj)); } }
         public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await EditComment(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
@@ -333,17 +333,17 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task OnOpenSwipeView()
-        {
-            try
-            {
-                //swipeView.Open(OpenSwipeItem.LeftItems);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.CommanException(ex);
-            }
-        }
+        //async Task OnOpenSwipeView()
+        //{
+        //    try
+        //    {
+        //        //swipeView.Open(OpenSwipeItem.LeftItems);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
         async Task EditComment(NewsComment comment)
         {
             try
@@ -457,17 +457,17 @@ namespace AtWork.ViewModels
                 await ClosePopup();
             }
         }
-        async Task OnCloseSwipeView()
-        {
-            try
-            {
+        //Task OnCloseSwipeView()
+        //{
+        //    try
+        //    {
 
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.CommanException(ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
         async Task OpenUserDetail(NewsComment comment)
         {
             try
@@ -497,7 +497,7 @@ namespace AtWork.ViewModels
                 {
                     var serviceResult = await NewsService.AddNewsCommentLike(news_Comments_Likes);
                     var serviceResultBody = JsonConvert.DeserializeObject<CommentLikeResponce>(serviceResult.Body);
-                    if (serviceResultBody != null && serviceResultBody.Data != null)
+                    if (serviceResultBody != null)
                     {
                         comment.LikeId = serviceResultBody.Data;
                         comment.LikeCount++;
@@ -506,7 +506,7 @@ namespace AtWork.ViewModels
                 else
                 {
                     news_Comments_Likes.Id = comment.LikeId;
-                    NewsService.DeleteNewsCommentLike(news_Comments_Likes);
+                    await NewsService.DeleteNewsCommentLike(news_Comments_Likes);
                     comment.LikeCount--;
                 }
                 comment.LikeByLoginUser = !comment.LikeByLoginUser;

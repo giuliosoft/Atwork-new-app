@@ -74,7 +74,7 @@ namespace AtWork.ViewModels
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await LoginToApp()); } }
         public DelegateCommand ForgotPasswordCommand { get { return new DelegateCommand(async () => await ForgotPassword()); } }
-        public DelegateCommand ShowPasswordCommand { get { return new DelegateCommand(async () => await ShowPassword()); } }
+        public DelegateCommand ShowPasswordCommand { get { return new DelegateCommand(() => ShowPassword()); } }
         #endregion
 
         #region private methods
@@ -150,7 +150,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task ShowPassword()
+        void ShowPassword()
         {
             try
             {

@@ -17,7 +17,6 @@ namespace AtWork.ViewModels
         public SettingsPageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             HeaderDetailsTitle = AppResources.SettingsText;
-            SetSettingListData();
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
         }
         #endregion

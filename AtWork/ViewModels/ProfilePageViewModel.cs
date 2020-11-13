@@ -135,7 +135,7 @@ namespace AtWork.ViewModels
         #region Commands
         public string Name { get; } = SettingsService.VolunteersUserData.FullName;
         public DelegateCommand SettingCommand { get { return new DelegateCommand(async () => await Setting()); } }
-        public DelegateCommand LogoutCommand { get { return new DelegateCommand(async () => await Logout()); } }
+        public DelegateCommand LogoutAccountCommand { get { return new DelegateCommand(async () => await Logout()); } }
         //public DelegateCommand OpenGroupMemberListCommand { get { return new DelegateCommand(async () => await OpenMemberList()); } }
         public DelegateCommand<VolunteerClasses> OpenGroupMemberListCommand { get { return new DelegateCommand<VolunteerClasses>(async (obj) => await OpenMemberList(obj)); } }
 
@@ -294,7 +294,7 @@ namespace AtWork.ViewModels
                 {
                     SessionService.CurrentTab = 0;
                     SessionService.IsWelcomeSetup = false;
-                    SessionService.Logout();
+                    await SessionService.Logout();
                     await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
                 }
             }

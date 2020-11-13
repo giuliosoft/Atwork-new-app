@@ -30,21 +30,21 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
-        {
-            try
-            {
+        //async Task GoForLogin()
+        //{
+        //    try
+        //    {
 
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.CommanException(ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
         #endregion
 
         #region public methods
@@ -56,7 +56,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
         }

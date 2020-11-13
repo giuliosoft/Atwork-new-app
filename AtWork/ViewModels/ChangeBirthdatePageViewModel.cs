@@ -54,12 +54,12 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await UpdateBirthDate(obj)); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-       
+
         async Task UpdateBirthDate(string str)
         {
             try

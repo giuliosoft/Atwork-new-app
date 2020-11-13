@@ -703,25 +703,25 @@ namespace AtWork.ViewModels
                 if (selectedRating == 0)
                 {
                     return;
-                    Rate1BorderedIsVisible = false;
-                    Rate1FilledIsVisible = false;
-                    Rate1PathIsVisible = true;
+                    //Rate1BorderedIsVisible = false;
+                    //Rate1FilledIsVisible = false;
+                    //Rate1PathIsVisible = true;
 
-                    Rate2BorderedIsVisible = true;
-                    Rate2FilledIsVisible = false;
-                    Rate2PathIsVisible = false;
-                    Rate3BorderedIsVisible = true;
-                    Rate3FilledIsVisible = false;
-                    Rate3PathIsVisible = false;
-                    Rate4BorderedIsVisible = true;
-                    Rate4FilledIsVisible = false;
-                    Rate4PathIsVisible = false;
-                    Rate5BorderedIsVisible = true;
-                    Rate5FilledIsVisible = false;
-                    Rate5PathIsVisible = false;
+                    //Rate2BorderedIsVisible = true;
+                    //Rate2FilledIsVisible = false;
+                    //Rate2PathIsVisible = false;
+                    //Rate3BorderedIsVisible = true;
+                    //Rate3FilledIsVisible = false;
+                    //Rate3PathIsVisible = false;
+                    //Rate4BorderedIsVisible = true;
+                    //Rate4FilledIsVisible = false;
+                    //Rate4PathIsVisible = false;
+                    //Rate5BorderedIsVisible = true;
+                    //Rate5FilledIsVisible = false;
+                    //Rate5PathIsVisible = false;
 
-                    RatingPancakeCornerRadius = 15;
-                    RatingPancakeWidth = 30;
+                    //RatingPancakeCornerRadius = 15;
+                    //RatingPancakeWidth = 30;
 
                     //OverallExperienceRatingValue = 1.5;
                 }
@@ -752,25 +752,25 @@ namespace AtWork.ViewModels
                 else if (selectedRating == 0)
                 {
                     return;
-                    Rate2BorderedIsVisible = false;
-                    Rate2FilledIsVisible = false;
-                    Rate2PathIsVisible = true;
+                    //Rate2BorderedIsVisible = false;
+                    //Rate2FilledIsVisible = false;
+                    //Rate2PathIsVisible = true;
 
-                    Rate1BorderedIsVisible = false;
-                    Rate1FilledIsVisible = true;
-                    Rate1PathIsVisible = false;
-                    Rate3BorderedIsVisible = true;
-                    Rate3FilledIsVisible = false;
-                    Rate3PathIsVisible = false;
-                    Rate4BorderedIsVisible = true;
-                    Rate4FilledIsVisible = false;
-                    Rate4PathIsVisible = false;
-                    Rate5BorderedIsVisible = true;
-                    Rate5FilledIsVisible = false;
-                    Rate5PathIsVisible = false;
+                    //Rate1BorderedIsVisible = false;
+                    //Rate1FilledIsVisible = true;
+                    //Rate1PathIsVisible = false;
+                    //Rate3BorderedIsVisible = true;
+                    //Rate3FilledIsVisible = false;
+                    //Rate3PathIsVisible = false;
+                    //Rate4BorderedIsVisible = true;
+                    //Rate4FilledIsVisible = false;
+                    //Rate4PathIsVisible = false;
+                    //Rate5BorderedIsVisible = true;
+                    //Rate5FilledIsVisible = false;
+                    //Rate5PathIsVisible = false;
 
-                    RatingPancakeCornerRadius = 25;
-                    RatingPancakeWidth = 90;
+                    //RatingPancakeCornerRadius = 25;
+                    //RatingPancakeWidth = 90;
                 }
                 else if (selectedRating == 2)
                 {
@@ -799,25 +799,25 @@ namespace AtWork.ViewModels
                 if (selectedRating == 0)
                 {
                     return;
-                    Rate3BorderedIsVisible = false;
-                    Rate3FilledIsVisible = false;
-                    Rate3PathIsVisible = true;
+                    //Rate3BorderedIsVisible = false;
+                    //Rate3FilledIsVisible = false;
+                    //Rate3PathIsVisible = true;
 
-                    Rate2BorderedIsVisible = false;
-                    Rate2FilledIsVisible = true;
-                    Rate2PathIsVisible = false;
-                    Rate1BorderedIsVisible = false;
-                    Rate1FilledIsVisible = true;
-                    Rate1PathIsVisible = false;
-                    Rate4BorderedIsVisible = true;
-                    Rate4FilledIsVisible = false;
-                    Rate4PathIsVisible = false;
-                    Rate5BorderedIsVisible = true;
-                    Rate5FilledIsVisible = false;
-                    Rate5PathIsVisible = false;
+                    //Rate2BorderedIsVisible = false;
+                    //Rate2FilledIsVisible = true;
+                    //Rate2PathIsVisible = false;
+                    //Rate1BorderedIsVisible = false;
+                    //Rate1FilledIsVisible = true;
+                    //Rate1PathIsVisible = false;
+                    //Rate4BorderedIsVisible = true;
+                    //Rate4FilledIsVisible = false;
+                    //Rate4PathIsVisible = false;
+                    //Rate5BorderedIsVisible = true;
+                    //Rate5FilledIsVisible = false;
+                    //Rate5PathIsVisible = false;
 
-                    RatingPancakeCornerRadius = 25;
-                    RatingPancakeWidth = 150;
+                    //RatingPancakeCornerRadius = 25;
+                    //RatingPancakeWidth = 150;
                 }
                 else if (selectedRating == 3)
                 {
@@ -846,25 +846,25 @@ namespace AtWork.ViewModels
                 if (selectedRating == 0)
                 {
                     return;
-                    Rate4BorderedIsVisible = false;
-                    Rate4FilledIsVisible = false;
-                    Rate4PathIsVisible = true;
+                    //Rate4BorderedIsVisible = false;
+                    //Rate4FilledIsVisible = false;
+                    //Rate4PathIsVisible = true;
 
-                    Rate2BorderedIsVisible = false;
-                    Rate2FilledIsVisible = true;
-                    Rate2PathIsVisible = false;
-                    Rate3BorderedIsVisible = false;
-                    Rate3FilledIsVisible = true;
-                    Rate3PathIsVisible = false;
-                    Rate1BorderedIsVisible = false;
-                    Rate1FilledIsVisible = true;
-                    Rate1PathIsVisible = false;
-                    Rate5BorderedIsVisible = true;
-                    Rate5FilledIsVisible = false;
-                    Rate5PathIsVisible = false;
+                    //Rate2BorderedIsVisible = false;
+                    //Rate2FilledIsVisible = true;
+                    //Rate2PathIsVisible = false;
+                    //Rate3BorderedIsVisible = false;
+                    //Rate3FilledIsVisible = true;
+                    //Rate3PathIsVisible = false;
+                    //Rate1BorderedIsVisible = false;
+                    //Rate1FilledIsVisible = true;
+                    //Rate1PathIsVisible = false;
+                    //Rate5BorderedIsVisible = true;
+                    //Rate5FilledIsVisible = false;
+                    //Rate5PathIsVisible = false;
 
-                    RatingPancakeCornerRadius = 25;
-                    RatingPancakeWidth = 210;
+                    //RatingPancakeCornerRadius = 25;
+                    //RatingPancakeWidth = 210;
                 }
                 else if (selectedRating == 4)
                 {
@@ -893,25 +893,25 @@ namespace AtWork.ViewModels
                 if (selectedRating == 0)
                 {
                     return;
-                    Rate5BorderedIsVisible = false;
-                    Rate5FilledIsVisible = false;
-                    Rate5PathIsVisible = true;
+                    //Rate5BorderedIsVisible = false;
+                    //Rate5FilledIsVisible = false;
+                    //Rate5PathIsVisible = true;
 
-                    Rate2BorderedIsVisible = false;
-                    Rate2FilledIsVisible = true;
-                    Rate2PathIsVisible = false;
-                    Rate3BorderedIsVisible = false;
-                    Rate3FilledIsVisible = true;
-                    Rate3PathIsVisible = false;
-                    Rate4BorderedIsVisible = false;
-                    Rate4FilledIsVisible = true;
-                    Rate4PathIsVisible = false;
-                    Rate1BorderedIsVisible = false;
-                    Rate1FilledIsVisible = true;
-                    Rate1PathIsVisible = false;
+                    //Rate2BorderedIsVisible = false;
+                    //Rate2FilledIsVisible = true;
+                    //Rate2PathIsVisible = false;
+                    //Rate3BorderedIsVisible = false;
+                    //Rate3FilledIsVisible = true;
+                    //Rate3PathIsVisible = false;
+                    //Rate4BorderedIsVisible = false;
+                    //Rate4FilledIsVisible = true;
+                    //Rate4PathIsVisible = false;
+                    //Rate1BorderedIsVisible = false;
+                    //Rate1FilledIsVisible = true;
+                    //Rate1PathIsVisible = false;
 
-                    RatingPancakeCornerRadius = 25;
-                    RatingPancakeWidth = 270;
+                    //RatingPancakeCornerRadius = 25;
+                    //RatingPancakeWidth = 270;
                 }
                 else if (selectedRating == 5)
                 {

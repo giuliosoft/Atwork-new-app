@@ -210,7 +210,7 @@
                             <Label Margin="0,7,0,7" Text="{x:Static Multilingual:AppResources.LogoutText}" Style="{StaticResource SettingsLabelStyle}"/>
                             <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}"/>
+                                <TapGestureRecognizer Command="{Binding LogoutAccountCommand}"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </StackLayout>

@@ -13,7 +13,7 @@ namespace AtWork.Helpers
 				System.Diagnostics.Debug.WriteLine(exception.Message + exception.StackTrace);
 				return true;
 			}
-			catch (Exception ex)
+			catch (Exception )
 			{
 				return false;
 			}

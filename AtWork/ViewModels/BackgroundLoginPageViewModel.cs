@@ -36,11 +36,11 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {

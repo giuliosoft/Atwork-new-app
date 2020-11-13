@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AtWork.Helpers;
 using Prism.Navigation;
 using Xamarin.Forms;
 using static AtWork.Models.ActivityModel;
@@ -12,7 +13,7 @@ namespace AtWork.Services
     public class SessionService
     {
         #region private fields
-        static string _Token;
+        //static string _Token;
         #endregion
 
         #region public properties
@@ -62,14 +63,21 @@ namespace AtWork.Services
         /// <returns></returns>
         public static async Task Logout()
         {
-            SessionService.tempVolunteerData = null;
-            SessionService.tempClaimProfileData = null;
-            SessionService.NewsPostInputData = new NewsDetailModel_Input();
-            SessionService.AppNavigationService = null;
-            SettingsService.LoggedInUserData = null;
-            SettingsService.VolunteersUserData = null;
-            SettingsService.LoggedInUserEmail = string.Empty;
-            SettingsService.LoggedInUserPassword = string.Empty;
+            try
+            {
+                SessionService.tempVolunteerData = null;
+                SessionService.tempClaimProfileData = null;
+                SessionService.NewsPostInputData = new NewsDetailModel_Input();
+                SessionService.AppNavigationService = null;
+                SettingsService.LoggedInUserData = null;
+                SettingsService.VolunteersUserData = null;
+                SettingsService.LoggedInUserEmail = string.Empty;
+                SettingsService.LoggedInUserPassword = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHelper.CommanException(ex);
+            }
         }
 
         #endregion

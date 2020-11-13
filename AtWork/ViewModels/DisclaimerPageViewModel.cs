@@ -74,14 +74,14 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand BackButtonCommand { get { return new DelegateCommand(async () => await BackButton()); } }
         public DelegateCommand ContinueSetupCommand { get { return new DelegateCommand(async () => await TermsandCondition()); } }
         public DelegateCommand GoToAuthenticationIdCommand { get { return new DelegateCommand(async () => await TermsandCondition()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {
@@ -184,7 +184,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             try

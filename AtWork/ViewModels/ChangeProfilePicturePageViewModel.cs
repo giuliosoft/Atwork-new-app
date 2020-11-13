@@ -58,7 +58,7 @@ namespace AtWork.ViewModels
         private ControlTemplate _Header;
         private bool _isShowLooktext;
         private bool _isShowEditPhoto = false;
-        private bool IsImageSelected = false;
+        //private bool IsImageSelected = false;
         private bool _ShowPickOfOurImage = true;
         public string selectedPicture = string.Empty;
         IHelper _helperService;
@@ -216,7 +216,7 @@ namespace AtWork.ViewModels
                 selectedPicture = obj.Replace(ConfigService.BaseProfileImageURL, "");
                 if (SessionService.IsWelcomeSetup)
                 {
-                    IsImageSelected = true;
+                    //IsImageSelected = true;
                     isShowEditPhoto = false;
                     isShowLooktext = false;
                     ShowPickOfOurImage = false;
@@ -293,7 +293,7 @@ namespace AtWork.ViewModels
                         SessionService.NewsPostImageFiles.Add(newProfileImagePath);
                         if (SessionService.IsWelcomeSetup)
                         {
-                            IsImageSelected = true;
+                            //IsImageSelected = true;
                             isShowEditPhoto = true;
                             isShowLooktext = false;
                             ShowPickOfOurImage = false;

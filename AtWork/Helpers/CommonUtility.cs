@@ -104,7 +104,7 @@ namespace AtWork.Helpers
             }
             catch (Exception ex)
             {
-                
+                ExceptionHelper.CommanException(ex);
             }
             return lstEmojis;
         }

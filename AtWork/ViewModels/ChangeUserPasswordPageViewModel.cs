@@ -107,7 +107,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                SessionService.Logout();
+                await SessionService.Logout();
                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}/{nameof(LoginPage)}/{nameof(ForgotPasswordPage)}");
                 //await _navigationService.NavigateAsync(nameof(ForgotPasswordPage));
             }
@@ -259,7 +259,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             isCurrentPassword = true;

@@ -67,7 +67,7 @@ namespace AtWork.ViewModels
         public DelegateCommand GotoCreateActivityCommand { get { return new DelegateCommand(async () => await GotoCreateActivity()); } }
         public DelegateCommand MyActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteMyActivityRefreshCommand()); } }
         public DelegateCommand<ActivityListModel> UpcomingActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GotoActivityDetails(obj)); } }
-        public DelegateCommand<ActivityListModel> PastActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GoToFeedBackPage(obj)); } }
+        //public DelegateCommand<ActivityListModel> PastActivitySelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GoToFeedBackPage(obj)); } }
         public DelegateCommand<ActivityListModel> JoinedMemberCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand<ActivityListModel> ActivityOptionCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await ActivityShowOption(obj)); } }
         #endregion
@@ -99,17 +99,17 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task GoToFeedBackPage(ActivityListModel selectedActivityPost)
-        {
-            try
-            {
-                //await _navigationService.NavigateAsync(nameof(YourFeedbackPage), null);
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.CommanException(ex);
-            }
-        }
+        //async Task GoToFeedBackPage(ActivityListModel selectedActivityPost)
+        //{
+        //    try
+        //    {
+        //        //await _navigationService.NavigateAsync(nameof(YourFeedbackPage), null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
         async Task JoinedMember(ActivityListModel selectedActivityPost)
         {
             try

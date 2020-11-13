@@ -103,14 +103,14 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand PostToEverybodyCommand { get { return new DelegateCommand(async () => await PostToEverybody()); } }
         public DelegateCommand PostToYourGroupCommand { get { return new DelegateCommand(async () => await PostToYourGroup()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {
@@ -318,7 +318,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion
@@ -332,7 +332,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             try

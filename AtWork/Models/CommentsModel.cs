@@ -64,11 +64,7 @@ namespace AtWork.Models
             {
                 get
                 {
-                    if (LikeCount != null)
-                    {
-                        return LikeCount.ToString();
-                    }
-                    return string.Empty;
+                    return LikeCount.ToString();
                 }
             }
             //public string comUserName { get; set; }

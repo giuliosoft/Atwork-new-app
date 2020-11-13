@@ -145,7 +145,7 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand<ActivityMonthYear> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityMonthYear>(async (obj) => await ActivityCategorySelected(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
         public DelegateCommand ShowActivityDetailCommand { get { return new DelegateCommand(async () => await ShowActivityDetail()); } }
@@ -153,17 +153,17 @@ namespace AtWork.ViewModels
         #endregion
 
         #region private methods
-        async Task GoForLogin()
-        {
-            try
-            {
+        //async Task GoForLogin()
+        //{
+        //    try
+        //    {
 
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.CommanException(ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
         async Task ShowActivityDetail()
         {
             try

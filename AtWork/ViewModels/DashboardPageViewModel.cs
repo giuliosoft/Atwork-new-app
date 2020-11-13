@@ -157,7 +157,7 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand<string> DashboardFooterNavigationCommand { get { return new DelegateCommand<string>(async (obj) => await DashboardFooterNavigation(obj)); } }
         public DelegateCommand<NewsListData_Model> NewsPostSelectedCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await GotoNewsPostDetailPage(obj)); } }
         public DelegateCommand<ActivityListModel> ActivityPostSelectedCommand { get { return new DelegateCommand<ActivityListModel>(async (obj) => await GotoActivityPostDetailPage(obj)); } }
@@ -227,7 +227,7 @@ namespace AtWork.ViewModels
             //await GetActivityList();
         }
 
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {
@@ -310,6 +310,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -881,7 +882,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

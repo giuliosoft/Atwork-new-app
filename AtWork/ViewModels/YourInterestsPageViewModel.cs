@@ -143,7 +143,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                SaveUserInterestsDetail("");
+                await SaveUserInterestsDetail("");
                 await _navigationService.NavigateAsync(nameof(WelcomeSetupDonePage));
             }
             catch (Exception ex)

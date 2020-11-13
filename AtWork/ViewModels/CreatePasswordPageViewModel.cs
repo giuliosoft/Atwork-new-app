@@ -201,7 +201,7 @@ namespace AtWork.ViewModels
             CreatePassowrdEntrytext = string.Empty;
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             CreatePassowrdLabeltext = AppResources.CreatePasswordText;

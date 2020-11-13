@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AtWork.Helpers;
 using Xamarin.Forms;
 
 namespace AtWork.CustomControls
@@ -175,7 +176,7 @@ namespace AtWork.CustomControls
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -189,7 +190,7 @@ namespace AtWork.CustomControls
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
             return null;
         }
@@ -211,7 +212,7 @@ namespace AtWork.CustomControls
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
             return null;
         }

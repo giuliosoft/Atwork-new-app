@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using AtWork.Helpers;
 using AtWork.Services;
 using Prism.Mvvm;
 using Xamarin.Forms;
@@ -104,7 +105,10 @@ namespace AtWork.Models
                         var date = proAddActivityDate?.Date;
                         retDate = date?.ToString("d MMM yyyy");
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex)
+                    {
+                        ExceptionHelper.CommanException(ex);
+                    }
                     return retDate;
                 }
             }

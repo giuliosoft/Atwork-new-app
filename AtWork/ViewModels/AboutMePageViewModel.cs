@@ -135,7 +135,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                SaveUserAboutDetail(AboutUserText);
+                await SaveUserAboutDetail(AboutUserText);
                 await _navigationService.NavigateAsync(nameof(YourInterestsPage));
             }
             catch (Exception ex)

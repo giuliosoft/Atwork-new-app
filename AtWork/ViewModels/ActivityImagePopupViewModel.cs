@@ -36,7 +36,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion

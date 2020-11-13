@@ -94,7 +94,7 @@ namespace AtWork.ViewModels
             try
             {
                 LanguageService.Init(Selectedlanguage);
-                SaveUserLanguageDetail(Selectedlanguage);
+                await SaveUserLanguageDetail(Selectedlanguage);
                 await _navigationService.NavigateAsync(nameof(ChangeProfilePicturePage), null);
             }
             catch (Exception ex)

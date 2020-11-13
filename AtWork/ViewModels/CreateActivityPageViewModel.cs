@@ -96,7 +96,7 @@ namespace AtWork.ViewModels
             get { return _EmojiList; }
             set { SetProperty(ref _EmojiList, value); }
         }
-        private bool _labelIsVisible { get; set; } = true; public bool LabelIsVisible { get { return _labelIsVisible; } set { _labelIsVisible = value; OnPropertyChanged(nameof(LabelIsVisible)); } } 
+        private bool _labelIsVisible { get; set; } = true; public bool LabelIsVisible { get { return _labelIsVisible; } set { _labelIsVisible = value; RaisePropertyChanged(nameof(LabelIsVisible)); } } 
         public bool IsAddrerssPlaceHolderVisible
         {
             get => _labelIsVisible;
@@ -127,7 +127,7 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => GoForLogin()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         public DelegateCommand<EmojiDisplayModel> EmojiSelectionCommand { get { return new DelegateCommand<EmojiDisplayModel>(async (obj) => await EmojiSelection(obj)); } }
         #endregion
@@ -161,7 +161,7 @@ namespace AtWork.ViewModels
 
             }
         }
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {
@@ -200,6 +200,7 @@ namespace AtWork.ViewModels
                 }
                 catch (Exception ex)
                 {
+                    ExceptionHelper.CommanException(ex);
                 }
                 
                 
@@ -225,7 +226,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             if (SessionService.isEditingActivity) 
@@ -267,7 +268,7 @@ namespace AtWork.ViewModels
                 }
                 catch (Exception ex)
                 {
-
+                    ExceptionHelper.CommanException(ex);
                 }
             }
 

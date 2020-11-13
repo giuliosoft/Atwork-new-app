@@ -51,12 +51,12 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {
@@ -118,7 +118,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        private async void editor_ImageSaved(object sender, ImageSavedEventArgs args)
+        private void editor_ImageSaved(object sender, ImageSavedEventArgs args)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             SelectedNewsImageValue = parameters.GetValue<NewsImageModel>("SelectedNewsImage");

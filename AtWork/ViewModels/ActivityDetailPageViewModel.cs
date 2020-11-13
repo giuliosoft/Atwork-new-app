@@ -107,18 +107,18 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand GoToJoinActivityPopupCommand { get { return new DelegateCommand(async () => await GoToJoinActivityPopup()); } }
         public DelegateCommand GoToUnsubscribeActivityPopupCommand { get { return new DelegateCommand(async () => await GoToUnsubscribeActivityPopup()); } }
         public DelegateCommand GoToToastMessageCommand { get { return new DelegateCommand(async () => await GoToToastMessage()); } }
-        public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => LinkClicked()); } }
+        public DelegateCommand LinkClickedCommand { get { return new DelegateCommand(async () => await LinkClicked()); } }
         public DelegateCommand<string> JoinedMemberCommand { get { return new DelegateCommand<string>(async (obj) => await JoinedMember(obj)); } }
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
         public DelegateCommand ActivityContactCommand { get { return new DelegateCommand(async () => await ContactThroughMail()); } }
         #endregion
 
         #region private methods
-        async Task GoForLogin()
+        void GoForLogin()
         {
             try
             {

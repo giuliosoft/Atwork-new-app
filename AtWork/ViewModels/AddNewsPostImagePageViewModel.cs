@@ -220,7 +220,7 @@ namespace AtWork.ViewModels
             {
                 ActivityImagePopup activityImagePopup = new ActivityImagePopup();
                 ActivityImagePopupViewModel activityImagePopupViewModel = new ActivityImagePopupViewModel(_navigationService, _facadeService);
-                activityImagePopupViewModel.SelectedImageSourceEvent1 += async (string arg1, ImageSource arg2) =>
+                activityImagePopupViewModel.SelectedImageSourceEvent1 += (string arg1, ImageSource arg2) =>
                 {
                     NextTextColor = (Color)App.Current.Resources["WhiteColor"];
                     NewsPostImageCarouselList.Clear();
@@ -353,7 +353,7 @@ namespace AtWork.ViewModels
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
         #endregion
@@ -435,7 +435,7 @@ namespace AtWork.ViewModels
                     }
                     catch (Exception ex)
                     {
-
+                        ExceptionHelper.CommanException(ex);
                     }
                     NewsPostImageCarouselList = tempList;
                     ImageOptionText = AppResources.Delete;
