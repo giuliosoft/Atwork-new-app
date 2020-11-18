@@ -179,6 +179,11 @@ namespace AtWork.ViewModels
                 {
                     return;
                 }
+                if (!SessionService.IsWelcomeSetup && SettingsService.AppLanguage == Selectedlanguage)
+                {
+                    await DisplayAlertAsync(AppResources.LanguageChangeAlert);
+                    return;
+                }
                 if (!SessionService.IsWelcomeSetup)
                     await ShowLoader();
                 Volunteers Input = new Volunteers();

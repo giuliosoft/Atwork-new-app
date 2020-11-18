@@ -676,9 +676,9 @@
                 <Setter Property="Margin" Value="0,15,0,10" />
             </Style>
             <Style x:Key="ActivityCountPancakeStyle" TargetType="PancakeControl:PancakeView">
-                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth60}" />
-                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth60}" />
-                <Setter Property="CornerRadius" Value="{DynamicResource CornerRadius30}" />
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth80}" />
+                <Setter Property="WidthRequest" Value="{DynamicResource HeightWidth80}" />
+                <Setter Property="CornerRadius" Value="{DynamicResource CornerRadius40}" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="BackgroundColor" Value="{DynamicResource DarkColor}" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />

@@ -1768,5 +1768,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("EmailNotSupportedAlert", resourceCulture);
             }
         }
+        
+        internal static string LanguageChangeAlert {
+            get {
+                return ResourceManager.GetString("LanguageChangeAlert", resourceCulture);
+            }
+        }
     }
 }

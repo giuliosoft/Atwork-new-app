@@ -916,4 +916,7 @@ Are you sure want to do that?</value>
     <data name="EmailNotSupportedAlert" xml:space="preserve">
         <value>Email is not supported on this device.</value>
     </data>
+    <data name="LanguageChangeAlert" xml:space="preserve">
+        <value>This language is already selected</value>
+    </data>
 </root>

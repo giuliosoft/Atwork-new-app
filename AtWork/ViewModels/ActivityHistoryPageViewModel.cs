@@ -49,6 +49,7 @@ namespace AtWork.ViewModels
         Color _ActivityTextColor = Color.White;
         Color _HoursTextColor = (Color)App.Current.Resources["AccentColor"];
         private int PageNo = 1;
+        ActivityMonthYear selectedYearMonth = new ActivityMonthYear();
         #endregion
 
         #region Public Properties        
@@ -214,7 +215,7 @@ namespace AtWork.ViewModels
             {
                 PageNo = 1;
                 ActivityHistorylist.Clear();
-
+                selectedYearMonth = selectedCategory;
                 ActivityBGColor = (Color)App.Current.Resources["AccentColor"];
                 HoursBGColor = (Color)App.Current.Resources["PosterWhiteColor"];
                 ActivityTextColor = Color.White;
@@ -222,7 +223,7 @@ namespace AtWork.ViewModels
 
                 Activitycollectionlist.All((categories)  =>
                 {
-                    if (selectedCategory.title == categories.title)
+                    if (selectedYearMonth.title == categories.title)
                     {
                         categories.UnderlineIsVisible = true;
                     }
@@ -232,14 +233,14 @@ namespace AtWork.ViewModels
                     }
                     return true;
                 });
-                await LoadActivityDetail(selectedCategory.Month , selectedCategory.Year);
+                await LoadActivityDetail();
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task LoadActivityDetail(string month = null,string year = null)
+        async Task LoadActivityDetail()
         {
             try
             {
@@ -256,15 +257,15 @@ namespace AtWork.ViewModels
                 string url = string.Empty;
                
                 url = PageNo.ToString();
-                if (!string.IsNullOrEmpty(year))
+                if (!string.IsNullOrEmpty(selectedYearMonth.Year))
                 {
                     //isClearlist = true;
-                    url += string.Format("/{0}", year);
+                    url += string.Format("/{0}", selectedYearMonth.Year);
                 }
-                if (!string.IsNullOrEmpty(month))
+                if (!string.IsNullOrEmpty(selectedYearMonth.Month))
                 {
                     //isClearlist = true;
-                    url += string.Format("/{0}", month);
+                    url += string.Format("/{0}", selectedYearMonth.Month);
                 }
                 //if (isClearlist)
                 //{
