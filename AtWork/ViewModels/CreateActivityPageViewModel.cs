@@ -127,14 +127,14 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => GoForLogin()); } }
+        public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
-        public DelegateCommand<EmojiDisplayModel> EmojiSelectionCommand { get { return new DelegateCommand<EmojiDisplayModel>(async (obj) => await EmojiSelection(obj)); } }
+        public DelegateCommand<EmojiDisplayModel> EmojiSelectionCommand { get { return new DelegateCommand<EmojiDisplayModel>((obj) => EmojiSelection(obj)); } }
         #endregion
 
         #region private methods
 
-        async Task EmojiSelection(EmojiDisplayModel selectedTab)
+        void EmojiSelection(EmojiDisplayModel selectedTab)
         {
             try
             {

@@ -78,7 +78,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        private async Task SetSettingListData()
+        private void SetSettingListData()
         {
             try
             {
@@ -103,12 +103,12 @@ namespace AtWork.ViewModels
             base.OnNavigatedFrom(parameters);
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             try
             {
-                await SetSettingListData();
+                SetSettingListData();
             }
             catch (Exception ex)
             {

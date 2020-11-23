@@ -41,11 +41,11 @@ namespace AtWork.ViewModels
         #region Commands        
         public DelegateCommand GoForClosePopupCommand { get { return new DelegateCommand(async () => await CloseProfile()); } }
         public DelegateCommand JoinActivityCommand { get { return new DelegateCommand(async () => await JoinAnActivity()); } }
-        public DelegateCommand<JoinActivityDatesModel> DateSelectedCommand { get { return new DelegateCommand<JoinActivityDatesModel>(async (arg) => await DateSelected(arg)); } }
+        public DelegateCommand<JoinActivityDatesModel> DateSelectedCommand { get { return new DelegateCommand<JoinActivityDatesModel>((arg) => DateSelected(arg)); } }
         #endregion
 
         #region Private Methods
-        async Task DateSelected(JoinActivityDatesModel selectedDate)
+        void DateSelected(JoinActivityDatesModel selectedDate)
         {
             try
             {

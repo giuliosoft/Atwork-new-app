@@ -107,7 +107,7 @@ namespace AtWork.ViewModels
         {
             try
             {
-                await SessionService.Logout();
+                SessionService.Logout();
                 await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}/{nameof(LoginPage)}/{nameof(ForgotPasswordPage)}");
                 //await _navigationService.NavigateAsync(nameof(ForgotPasswordPage));
             }

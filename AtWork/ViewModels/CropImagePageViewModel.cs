@@ -52,7 +52,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
-        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
+        public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>((obj) => NewsPostProceed(obj)); } }
         #endregion
 
         #region private methods
@@ -68,7 +68,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task NewsPostProceed(string selectedTab)
+        void NewsPostProceed(string selectedTab)
         {
             try
             {

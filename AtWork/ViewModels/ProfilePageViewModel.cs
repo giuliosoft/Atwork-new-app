@@ -140,15 +140,15 @@ namespace AtWork.ViewModels
         public DelegateCommand<VolunteerClasses> OpenGroupMemberListCommand { get { return new DelegateCommand<VolunteerClasses>(async (obj) => await OpenMemberList(obj)); } }
 
         public DelegateCommand OpenFullActivityCommand { get { return new DelegateCommand(async () => await FullActivityDetails()); } }
-        public DelegateCommand OpenEmailCommand { get { return new DelegateCommand(async () => await OpenEmail()); } }
+        public DelegateCommand OpenEmailCommand { get { return new DelegateCommand(() => OpenEmail()); } }
         public DelegateCommand OpenCallDialerCommand { get { return new DelegateCommand(async () => await OpenCallDialer()); } }
-        public DelegateCommand ShowActivityCommand { get { return new DelegateCommand(async () => await ShowActivityDetail()); } }
-        public DelegateCommand ShowHoursCommand { get { return new DelegateCommand(async () => await ShowHoursDetail()); } }
+        public DelegateCommand ShowActivityCommand { get { return new DelegateCommand(() => ShowActivityDetail()); } }
+        public DelegateCommand ShowHoursCommand { get { return new DelegateCommand(() => ShowHoursDetail()); } }
         #endregion
 
         #region private methods
 
-        async Task ShowActivityDetail()
+        void ShowActivityDetail()
         {
             try
             {
@@ -170,7 +170,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task ShowHoursDetail()
+        void ShowHoursDetail()
         {
             try
             {
@@ -192,34 +192,13 @@ namespace AtWork.ViewModels
             }
 
         }
-        async Task OpenEmail()
+        void OpenEmail()
         {
             try
             {
-                //1
-                //try
-                //{
-                //    var message = new EmailMessage
-                //    {
-                //        To = volunteers?.volEmail.tol,
-                //        //Cc = ccRecipients,
-                //        //Bcc = bccRecipients
-                //    };
-                //    await Email.ComposeAsync(message);
-                //}
-                //catch (FeatureNotSupportedException fbsEx)
-                //{
-                //    // Email is not supported on this device
-                //}
-                //catch (Exception ex)
-                //{
-                //    // Some other exception occurred
-                //}
+                //Test and change code
+                //await Launcher.OpenAsync(new Uri(String.Format("mailto:{0}", "abc@b.com")));
 
-                //2
-                //Device.OpenUri(new Uri("mailto:"+volunteers?.volEmail));
-
-                //3
                 DependencyService.Get<PhoneCallEmail>().ComposerEmail(volunteers?.volEmail, AppResources.EmailNotSupportedAlert);
             }
             catch (Exception ex)
@@ -294,7 +273,7 @@ namespace AtWork.ViewModels
                 {
                     SessionService.CurrentTab = 0;
                     SessionService.IsWelcomeSetup = false;
-                    await SessionService.Logout();
+                    SessionService.Logout();
                     await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(StartUpPage)}", null);
                 }
             }

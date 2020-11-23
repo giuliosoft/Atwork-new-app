@@ -61,7 +61,7 @@ namespace AtWork.Services
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public static async Task Logout()
+        public static void Logout()
         {
             try
             {

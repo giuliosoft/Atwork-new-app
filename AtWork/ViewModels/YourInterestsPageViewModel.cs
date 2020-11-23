@@ -90,7 +90,7 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
+        public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>((obj) => ActivityFeelingSelected(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand DoneCommand { get { return new DelegateCommand(async () => await DoneButton()); } }
 
@@ -116,7 +116,7 @@ namespace AtWork.ViewModels
                 await ClosePopup();
             }
         }
-        async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
+        void ActivityFeelingSelected(FeedBackUIModel selectedTab)
         {
             try
             {

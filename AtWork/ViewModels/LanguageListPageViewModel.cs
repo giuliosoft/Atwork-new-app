@@ -83,7 +83,7 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await SaveUserLanguageDetail(obj)); } }
-        public DelegateCommand<Language> SelectionChangedCommand { get { return new DelegateCommand<Language>(async (obj) => await OnSelectionChangedAsync(obj)); } }
+        public DelegateCommand<Language> SelectionChangedCommand { get { return new DelegateCommand<Language>((obj) => OnSelectionChanged(obj)); } }
         public DelegateCommand SelectedLanguageCommand { get { return new DelegateCommand(async () => await SelectedLanguage()); } }
         #endregion
 
@@ -102,7 +102,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task OnSelectionChangedAsync(Language item)
+        void OnSelectionChanged(Language item)
         {
             try
             {

@@ -149,8 +149,8 @@ namespace AtWork.ViewModels
         //public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(async () => await GoForLogin()); } }
         public DelegateCommand<ActivityMonthYear> ActivityCategorySelectedCommand { get { return new DelegateCommand<ActivityMonthYear>(async (obj) => await ActivityCategorySelected(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
-        public DelegateCommand ShowActivityDetailCommand { get { return new DelegateCommand(async () => await ShowActivityDetail()); } }
-        public DelegateCommand ShowHoursDetailCommand { get { return new DelegateCommand(async () => await ShowHoursDetail()); } }
+        public DelegateCommand ShowActivityDetailCommand { get { return new DelegateCommand(() => ShowActivityDetail()); } }
+        public DelegateCommand ShowHoursDetailCommand { get { return new DelegateCommand(() => ShowHoursDetail()); } }
         #endregion
 
         #region private methods
@@ -165,7 +165,7 @@ namespace AtWork.ViewModels
         //        ExceptionHelper.CommanException(ex);
         //    }
         //}
-        async Task ShowActivityDetail()
+        void ShowActivityDetail()
         {
             try
             {
@@ -186,7 +186,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task ShowHoursDetail()
+        void ShowHoursDetail()
         {
             try
             {

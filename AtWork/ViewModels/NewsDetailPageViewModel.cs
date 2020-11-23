@@ -169,7 +169,7 @@ namespace AtWork.ViewModels
         //public DelegateCommand OnOpenSwipeViewClicked { get { return new DelegateCommand(async () => await OnOpenSwipeView()); } }
         //public DelegateCommand OnCloseSwipeViewClicked { get { return new DelegateCommand(async () => await OnCloseSwipeView()); } }
         public DelegateCommand<NewsComment> DeleteCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await DeleteComment(obj)); } }
-        public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await EditComment(obj)); } }
+        public DelegateCommand<NewsComment> EditCommentCommand { get { return new DelegateCommand<NewsComment>((obj) => EditComment(obj)); } }
         public DelegateCommand SendCommentCommand { get { return new DelegateCommand(async () => await AddComment()); } }
         public DelegateCommand ShowNewsOptionCommand { get { return new DelegateCommand(async () => await ShowNewsOption()); } }
         public DelegateCommand<NewsComment> CommentLikeCommand { get { return new DelegateCommand<NewsComment>(async (obj) => await CommentLike(obj)); } }
@@ -344,7 +344,7 @@ namespace AtWork.ViewModels
         //        ExceptionHelper.CommanException(ex);
         //    }
         //}
-        async Task EditComment(NewsComment comment)
+        void EditComment(NewsComment comment)
         {
             try
             {

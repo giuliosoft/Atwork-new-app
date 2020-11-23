@@ -169,7 +169,7 @@ namespace AtWork.ViewModels
         public DelegateCommand<NewsListData_Model> OpenUserDetailCommand { get { return new DelegateCommand<NewsListData_Model>(async (obj) => await OpenUserDetail(obj)); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         public DelegateCommand NewsLoadMoreItemsCommand { get { return new DelegateCommand(async () => await NewsLoadMoreItems()); } }
-        public DelegateCommand ActivityLoadMoreItemsCommand { get { return new DelegateCommand(async () => await ActivityLoadMoreItems()); } }
+        public DelegateCommand ActivityLoadMoreItemsCommand { get { return new DelegateCommand(() => ActivityLoadMoreItems()); } }
         public DelegateCommand RefreshCommand { get { return new DelegateCommand(async () => await ExecuteRefreshCommand()); } }
         public DelegateCommand ActivityRefreshCommand { get { return new DelegateCommand(async () => await ExecuteActivityRefreshCommand()); } }
         public DelegateCommand<string> ActivityPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await ActivityPostProceed(obj)); } }
@@ -217,7 +217,7 @@ namespace AtWork.ViewModels
             await GetNewsListDetails_New();
         }
 
-        async Task ActivityLoadMoreItems()
+        void ActivityLoadMoreItems()
         {
             if (IsBusyInActivityBinding)
             {

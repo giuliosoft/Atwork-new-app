@@ -104,8 +104,8 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand GoForLoginCommand { get { return new DelegateCommand(() => GoForLogin()); } }
-        public DelegateCommand PostToEverybodyCommand { get { return new DelegateCommand(async () => await PostToEverybody()); } }
-        public DelegateCommand PostToYourGroupCommand { get { return new DelegateCommand(async () => await PostToYourGroup()); } }
+        public DelegateCommand PostToEverybodyCommand { get { return new DelegateCommand(() => PostToEverybody()); } }
+        public DelegateCommand PostToYourGroupCommand { get { return new DelegateCommand(() => PostToYourGroup()); } }
         public DelegateCommand<string> NewsPostProceedCommand { get { return new DelegateCommand<string>(async (obj) => await NewsPostProceed(obj)); } }
         #endregion
 
@@ -269,7 +269,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task PostToEverybody()
+        void PostToEverybody()
         {
             try
             {
@@ -282,7 +282,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task PostToYourGroup()
+        void PostToYourGroup()
         {
             try
             {

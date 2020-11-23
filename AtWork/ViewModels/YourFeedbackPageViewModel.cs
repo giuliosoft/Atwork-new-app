@@ -412,12 +412,12 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Commands
-        public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityFeelingSelected(obj)); } }
-        public DelegateCommand<FeedBackUIModel> ActivityImprovementSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>(async (obj) => await ActivityImprovementSelected(obj)); } }
+        public DelegateCommand<FeedBackUIModel> ActivityFeelingSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>((obj) => ActivityFeelingSelected(obj)); } }
+        public DelegateCommand<FeedBackUIModel> ActivityImprovementSelectedCommand { get { return new DelegateCommand<FeedBackUIModel>((obj) => ActivityImprovementSelected(obj)); } }
         public DelegateCommand SubmitFeedbackCommand { get { return new DelegateCommand(async () => await SubmitFeedback()); } }
-        public DelegateCommand<string> RatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await RatingSelected(obj)); } }
-        public DelegateCommand<string> ImpactRatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await ImpactRatingSelected(obj)); } }
-        public DelegateCommand<string> RecommendRatingSelectedCommand { get { return new DelegateCommand<string>(async (obj) => await RecommendRatingSelected(obj)); } }
+        public DelegateCommand<string> RatingSelectedCommand { get { return new DelegateCommand<string>((obj) => RatingSelected(obj)); } }
+        public DelegateCommand<string> ImpactRatingSelectedCommand { get { return new DelegateCommand<string>((obj) => ImpactRatingSelected(obj)); } }
+        public DelegateCommand<string> RecommendRatingSelectedCommand { get { return new DelegateCommand<string>((obj) => RecommendRatingSelected(obj)); } }
         public DelegateCommand<string> JoinedMemberCommand { get { return new DelegateCommand<string>(async (obj) => await JoinedMember(obj)); } }
         #endregion
 
@@ -462,7 +462,7 @@ namespace AtWork.ViewModels
                                     if (serviceFeedbackBody != null)
                                     {
                                         var userFeedbackData = serviceFeedbackBody;
-                                        await SetFeedbackData(userFeedbackData);
+                                        SetFeedbackData(userFeedbackData);
                                         IsUserAllowedToEditFeedback = false;
                                     }
                                 }
@@ -541,13 +541,13 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task SetFeedbackData(ActivityFeedbackInputModel activityFeedbackData)
+        void SetFeedbackData(ActivityFeedbackInputModel activityFeedbackData)
         {
             try
             {
-                await RatingSelected(activityFeedbackData.selectedStarRating.ToString());
-                await ImpactRatingSelected(activityFeedbackData.SliderValue.ToString());
-                await RecommendRatingSelected(activityFeedbackData.SliderValue2.ToString());
+                RatingSelected(activityFeedbackData.selectedStarRating.ToString());
+                ImpactRatingSelected(activityFeedbackData.SliderValue.ToString());
+                RecommendRatingSelected(activityFeedbackData.SliderValue2.ToString());
 
                 FeedbackComments = activityFeedbackData.ActivityFeedbackComments;
                 FeedbackLikeMostComment = activityFeedbackData.ActivityFeedback_Like;
@@ -627,7 +627,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task ActivityFeelingSelected(FeedBackUIModel selectedTab)
+        void ActivityFeelingSelected(FeedBackUIModel selectedTab)
         {
             try
             {
@@ -659,7 +659,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task ActivityImprovementSelected(FeedBackUIModel selectedTab)
+        void ActivityImprovementSelected(FeedBackUIModel selectedTab)
         {
             try
             {
@@ -691,7 +691,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task RatingSelected(string selectedRatingParam)
+        void RatingSelected(string selectedRatingParam)
         {
             try
             {
@@ -944,7 +944,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task ImpactRatingSelected(string selectedRatingParam)
+        void ImpactRatingSelected(string selectedRatingParam)
         {
             try
             {
@@ -1200,7 +1200,7 @@ namespace AtWork.ViewModels
             }
         }
 
-        async Task RecommendRatingSelected(string selectedRatingParam)
+        void RecommendRatingSelected(string selectedRatingParam)
         {
             try
             {
