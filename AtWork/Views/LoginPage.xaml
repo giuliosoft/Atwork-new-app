@@ -12,21 +12,20 @@
              xmlns:PancakeControl="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              ControlTemplate="{StaticResource Header_Template}">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand">
-            <ScrollView x:Name="scrollview1" Margin="0,0,0,50" VerticalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="FillAndExpand"  WidthRequest="200" Margin="0,55,0,0">
-                    <StackLayout Spacing="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+            <ScrollView  VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" Margin="0,55,0,0">
+                    <StackLayout HorizontalOptions="CenterAndExpand" Spacing="5" Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                        <Image Source="atworklogosmall" Aspect="AspectFit" WidthRequest="{DynamicResource HeightWidth150}"  HorizontalOptions="StartAndExpand"/>
+                    </StackLayout>
+                    <!--<StackLayout BackgroundColor="AliceBlue" Spacing="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                         <Image Margin="5" Source="logoblue" HorizontalOptions="CenterAndExpand"/>
                         <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
                         <Image Source="logodot" HorizontalOptions="Center"/>
-                    </StackLayout>
-                    <!--<Image x:Name="logoImage" Source="logo"/>-->
-                    <StackLayout VerticalOptions="CenterAndExpand" Padding="30,0,0,0" >
-                        <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entEmail" Placeholder="{x:Static Multilingual:AppResources.EmailAddressOrID}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsBorderLess="True" TextColor="Black" PlaceholderColor="DarkGray" Text="{Binding UserEmail}" >
-                        </CustomControl:CustomEntry>
+                    </StackLayout>-->
+                    <StackLayout VerticalOptions="StartAndExpand" Padding="30,0,0,0">
+                        <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entEmail" Placeholder="{x:Static Multilingual:AppResources.EmailAddressOrID}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsBorderLess="True" TextColor="Black" PlaceholderColor="DarkGray" Text="{Binding UserEmail}" />
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                            <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entPassword" Placeholder="{x:Static Multilingual:AppResources.PasswordText}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsPassword="{Binding isHidePassword}" IsBorderLess="True" PlaceholderColor="DarkGray" TextColor="Black" Text="{Binding UserPassword}" HorizontalOptions="FillAndExpand">
-                            </CustomControl:CustomEntry>
+                            <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entPassword" Placeholder="{x:Static Multilingual:AppResources.PasswordText}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsPassword="{Binding isHidePassword}" IsBorderLess="True" PlaceholderColor="DarkGray" TextColor="Black" Text="{Binding UserPassword}" HorizontalOptions="FillAndExpand"/>
                             <CustomControl:CustomImage Source="{Binding eyeIcon}" TintColor="{StaticResource LightBlack}" Margin="{DynamicResource MarginPadding05_00_15_00}" HeightRequest="{DynamicResource HeightWidth25}" WidthRequest="{DynamicResource HeightWidth25}"  >
                                 <CustomControl:CustomImage.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ShowPasswordCommand}"/>
@@ -46,13 +45,13 @@
                             </StackLayout>
                         </PancakeControl:PancakeView>
                     </StackLayout>
-                    <StackLayout VerticalOptions="Start" Padding="0,0,0,0" x:Name="slBtnLogin">
+                    <Button x:Name="btnLogin" Command="{Binding GoForLoginCommand}" Style="{StaticResource ButtonStyleBold}" Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="{DynamicResource HeightWidth250}"/>
+                    <!--<StackLayout VerticalOptions="Start" Padding="0,0,0,0" x:Name="slBtnLogin">
                         <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
-                            <Button Command="{Binding GoForLoginCommand}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}" x:Name="btnLogin" Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="50" TextColor="White"/>
+                            <Button Command="{Binding GoForLoginCommand}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}"  Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="50" TextColor="White"/>
                         </Frame>
-                    </StackLayout>
+                    </StackLayout>-->
                 </StackLayout>
             </ScrollView>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

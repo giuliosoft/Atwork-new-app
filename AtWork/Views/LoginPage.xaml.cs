@@ -14,12 +14,15 @@ namespace AtWork.Views
 
         void entEmail_Focused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
         {
-            slBtnLogin.VerticalOptions = LayoutOptions.StartAndExpand;
+            btnLogin.VerticalOptions = LayoutOptions.StartAndExpand;
+            //slBtnLogin.VerticalOptions = LayoutOptions.StartAndExpand;
+
         }
 
         void entEmail_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
         {
-            slBtnLogin.VerticalOptions = LayoutOptions.Start;
+            btnLogin.VerticalOptions = LayoutOptions.Start;
+            //slBtnLogin.VerticalOptions = LayoutOptions.Start;
         }
     }
 }

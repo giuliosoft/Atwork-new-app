@@ -717,6 +717,26 @@
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
+            <Style x:Key="CommanButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato_Regular"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}"/>
+                <Setter Property="TextColor"  Value="White"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="HeightRequest" Value="50"/>  <!-- This is fix because corrner reduce not working-->
+                <Setter Property="CornerRadius" Value="25"/>
+            </Style>
+            <Style x:Key="ButtonStyleBold" TargetType="Button">
+                <Setter Property="FontFamily" Value="Lato_Bold"/>
+                <Setter Property="TextTransform" Value="None"/>
+                <Setter Property="FontSize" Value="{DynamicResource FontSize20}"/>
+                <Setter Property="TextColor"  Value="White"/>
+                <Setter Property="VerticalOptions"  Value="End"/>
+                <Setter Property="HorizontalOptions"  Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBlueColor}"/>
+                <Setter Property="HeightRequest" Value="{DynamicResource HeightWidth50}"/>  
+                <Setter Property="CornerRadius" Value="{DynamicResource ButtonCornerRadius25}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

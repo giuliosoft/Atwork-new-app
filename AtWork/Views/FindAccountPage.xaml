@@ -14,11 +14,14 @@
         <StackLayout VerticalOptions="FillAndExpand">
             <ScrollView VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand">
-                    <StackLayout Spacing="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0,55,0,0">
+                    <StackLayout HorizontalOptions="CenterAndExpand" Spacing="5" Orientation="Horizontal" VerticalOptions="StartAndExpand"  Margin="0,55,0,0">
+                        <Image Source="atworklogosmall" Aspect="AspectFit" WidthRequest="{DynamicResource HeightWidth150}"  HorizontalOptions="StartAndExpand"/>
+                    </StackLayout>
+                    <!--<StackLayout Spacing="1" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Margin="0,55,0,0">
                         <Image Margin="5" Source="logoblue" HorizontalOptions="CenterAndExpand"/>
                         <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
                         <Image Source="logodot" HorizontalOptions="Center"/>
-                    </StackLayout>
+                    </StackLayout>-->
                     <StackLayout VerticalOptions="CenterAndExpand" Padding="0,0,0,0">
                         <StackLayout VerticalOptions="EndAndExpand" Padding="50,0,50,0">
                             <Label Text="{x:Static Multilingual:AppResources.FindProfileEmailHeaderText}" HorizontalOptions="CenterAndExpand" Style="{StaticResource ClaimProfileThanksLabelStyle}" Margin="60,30,60,30"/>
