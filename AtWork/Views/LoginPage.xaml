@@ -22,7 +22,7 @@
                         <Image Source="logoatwork" HorizontalOptions="CenterAndExpand" />
                         <Image Source="logodot" HorizontalOptions="Center"/>
                     </StackLayout>-->
-                    <StackLayout VerticalOptions="StartAndExpand" Padding="30,0,0,0">
+                    <StackLayout VerticalOptions="StartAndExpand" Padding="30,0,0,0" Margin="0,-100,0,0">
                         <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entEmail" Placeholder="{x:Static Multilingual:AppResources.EmailAddressOrID}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsBorderLess="True" TextColor="Black" PlaceholderColor="DarkGray" Text="{Binding UserEmail}" />
                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                             <CustomControl:CustomEntry Focused="entEmail_Focused" Unfocused="entEmail_Unfocused" x:Name="entPassword" Placeholder="{x:Static Multilingual:AppResources.PasswordText}" FontFamily="Lato_Light" FontSize="{DynamicResource FontSize22}" Keyboard="Default" IsPassword="{Binding isHidePassword}" IsBorderLess="True" PlaceholderColor="DarkGray" TextColor="Black" Text="{Binding UserPassword}" HorizontalOptions="FillAndExpand"/>
@@ -45,7 +45,7 @@
                             </StackLayout>
                         </PancakeControl:PancakeView>
                     </StackLayout>
-                    <Button x:Name="btnLogin" Command="{Binding GoForLoginCommand}" Style="{StaticResource ButtonStyleBold}" Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="{DynamicResource HeightWidth250}"/>
+                    <Button x:Name="btnLogin" Command="{Binding GoForLoginCommand}" Style="{StaticResource ButtonStyleBold}" Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="{DynamicResource HeightWidth250}" Margin="20"/>
                     <!--<StackLayout VerticalOptions="Start" Padding="0,0,0,0" x:Name="slBtnLogin">
                         <Frame HasShadow="False" CornerRadius="35" HorizontalOptions="Center" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="30" Margin="20" BackgroundColor="#515AE0">
                             <Button Command="{Binding GoForLoginCommand}" FontFamily="Lato_Bold" FontSize="{DynamicResource FontSize20}"  Text="{x:Static Multilingual:AppResources.Logintoyourcompany}" WidthRequest="50" TextColor="White"/>
