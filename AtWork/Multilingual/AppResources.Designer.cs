@@ -1774,5 +1774,83 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("LanguageChangeAlert", resourceCulture);
             }
         }
+        
+        internal static string Makebirthdatepublic {
+            get {
+                return ResourceManager.GetString("Makebirthdatepublic", resourceCulture);
+            }
+        }
+        
+        internal static string Pausenotifications {
+            get {
+                return ResourceManager.GetString("Pausenotifications", resourceCulture);
+            }
+        }
+        
+        internal static string txtConnect {
+            get {
+                return ResourceManager.GetString("txtConnect", resourceCulture);
+            }
+        }
+        
+        internal static string txtActive {
+            get {
+                return ResourceManager.GetString("txtActive", resourceCulture);
+            }
+        }
+        
+        internal static string txtFromYourCompany {
+            get {
+                return ResourceManager.GetString("txtFromYourCompany", resourceCulture);
+            }
+        }
+        
+        internal static string txtFromYourGroup {
+            get {
+                return ResourceManager.GetString("txtFromYourGroup", resourceCulture);
+            }
+        }
+        
+        internal static string txtFromEveryone {
+            get {
+                return ResourceManager.GetString("txtFromEveryone", resourceCulture);
+            }
+        }
+        
+        internal static string txtOnYourPosts {
+            get {
+                return ResourceManager.GetString("txtOnYourPosts", resourceCulture);
+            }
+        }
+        
+        internal static string txtOnYourComments {
+            get {
+                return ResourceManager.GetString("txtOnYourComments", resourceCulture);
+            }
+        }
+        
+        internal static string txtPostYouCommentedon {
+            get {
+                return ResourceManager.GetString("txtPostYouCommentedon", resourceCulture);
+            }
+        }
+        
+        internal static string txtPosts {
+            get {
+                return ResourceManager.GetString("txtPosts", resourceCulture);
+            }
+        }
+        
+        internal static string txtLikes {
+            get {
+                return ResourceManager.GetString("txtLikes", resourceCulture);
+            }
+        }
+        
+        internal static string txtComments {
+            get {
+                return ResourceManager.GetString("txtComments", resourceCulture);
+            }
+        }
     }
 }

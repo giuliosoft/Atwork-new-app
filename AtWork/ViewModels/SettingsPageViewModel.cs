@@ -62,14 +62,13 @@ namespace AtWork.ViewModels
                 {
                     await _navigationService.NavigateAsync(nameof(ChangeUserPasswordPage));
                 }
-                else if (item == AppResources.ManageNotificationText)
-                {
-                    //await DisplayAlertAsync(AppResources.AllowNotificationsTitleText, AppResources.AllowNotificationsMsgText, AppResources.DontAllowText, AppResources.AllowText);
-                }
                 else if (item == AppResources.EditBirthDayDate)
                 {
-
                     await _navigationService.NavigateAsync(nameof(ChangeBirthdatePage));
+                }
+                else if (item == AppResources.ManageNotificationText)
+                {
+                    await _navigationService.NavigateAsync(nameof(ManageNotificationPage));
                 }
             }
             catch (Exception ex)

@@ -74,6 +74,9 @@ namespace AtWork.Services
             containerRegistry.RegisterForNavigation<BackgroundLoginPage, BackgroundLoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ActivityHistoryPage, ActivityHistoryPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangeBirthdatePage, ChangeBirthdatePageViewModel>();
+            containerRegistry.RegisterForNavigation<ManageNotificationPage, ManageNotificationPageViewModel>();
+            containerRegistry.RegisterForNavigation<ManageNotificationConnectPage, ManageNotificationConnectPageViewModel>();
+            containerRegistry.RegisterForNavigation<ManageNotificationActivePage, ManageNotificationActivePageViewModel>();
         }
 
         /// <summary>

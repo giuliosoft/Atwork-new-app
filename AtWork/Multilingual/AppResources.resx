@@ -919,4 +919,45 @@ Are you sure want to do that?</value>
     <data name="LanguageChangeAlert" xml:space="preserve">
         <value>This language is already selected</value>
     </data>
+    <data name="Makebirthdatepublic" xml:space="preserve">
+        <value>Make birthdate public?</value>
+    </data>
+    
+    <data name="Pausenotifications" xml:space="preserve">
+        <value>Pause notifications</value>
+    </data> 
+    <data name="txtConnect" xml:space="preserve">
+        <value>Connect</value>
+    </data>
+    <data name="txtActive" xml:space="preserve">
+        <value>Active</value>
+    </data>
+    <data name="txtFromYourCompany" xml:space="preserve">
+        <value>from your company</value>
+    </data>
+    <data name="txtFromYourGroup" xml:space="preserve">
+        <value>from your group</value>
+    </data>
+    <data name="txtFromEveryone" xml:space="preserve">
+        <value>from everyone</value>
+    </data>
+    
+    <data name="txtOnYourPosts" xml:space="preserve">
+        <value>on your posts</value>
+    </data> 
+    <data name="txtOnYourComments" xml:space="preserve">
+        <value>on your comments</value>
+    </data> 
+    <data name="txtPostYouCommentedon" xml:space="preserve">
+        <value>post you commented on</value>
+    </data>
+    <data name="txtPosts" xml:space="preserve">
+        <value>Posts</value>
+    </data>
+    <data name="txtLikes" xml:space="preserve">
+        <value>Likes</value>
+    </data>
+    <data name="txtComments" xml:space="preserve">
+        <value>Comments</value>
+    </data>
 </root>
