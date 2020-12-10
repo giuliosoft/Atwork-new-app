@@ -436,7 +436,7 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
                 <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
-            <Style x:Key="SettingsListLabelStyle" TargetType="Label">
+            <Style x:Key="SettingsListLabelStyleMain" TargetType="Label">
                 <Setter Property="FontFamily" Value="Lato_Regular" />
                 <Setter Property="FontSize" Value="{DynamicResource FontSize21}" />
                 <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
@@ -741,6 +741,14 @@
                 <Setter Property="OnColor" Value="{DynamicResource AccentColor}"/>
                 <Setter Property="HorizontalOptions" Value="End"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <Style x:Key="SettingsListLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato_Regular" />
+                <Setter Property="FontSize" Value="{DynamicResource FontSize21}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Fill" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

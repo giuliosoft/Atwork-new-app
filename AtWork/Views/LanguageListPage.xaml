@@ -14,10 +14,10 @@
         <StackLayout>
             <Label IsVisible="{Binding ShowChooseLanguage}" Text="{x:Static Multilingual:AppResources.PleaseSelectYourLanguage}" HorizontalOptions="CenterAndExpand" Padding="20"/>
             <StackLayout VerticalOptions="FillAndExpand">
-            <CollectionView x:Name="clLanguageList" ItemsSource="{Binding LanguageList}" BackgroundColor="{DynamicResource OffWhiteColor}" VerticalOptions="FillAndExpand">
+            <CollectionView x:Name="clLanguageList" ItemsSource="{Binding LanguageList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Spacing="0" Padding="0" BackgroundColor="{Binding BackGroundColour}" HorizontalOptions="FillAndExpand">
+                        <StackLayout Spacing="0" Padding="0"  HorizontalOptions="FillAndExpand">
                             <Label Margin="{DynamicResource MarginPadding15_07_00_07}" Text="{Binding Name}" TextColor="{Binding TextColor}" Style="{StaticResource LanguageListLabelStyle}" />
                             <BoxView HeightRequest="1" Margin="1" BackgroundColor="{DynamicResource AccentColor}"/>
                             <StackLayout.GestureRecognizers>

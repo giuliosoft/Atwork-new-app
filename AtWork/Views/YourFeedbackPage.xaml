@@ -107,10 +107,10 @@
                                         <Label Text="{Binding Title}" Style="{StaticResource FeedbackChipLabelStyle}" LineBreakMode="NoWrap">
                                             <Label.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
-                                                    <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                                                    <Setter Property="FontAttributes" Value="Bold" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="False">
-                                                    <Setter Property="TextColor" Value="{DynamicResource AccentColor}" />
+                                                    <Setter Property="FontAttributes" Value="None" />
                                                 </DataTrigger>
                                             </Label.Triggers>
                                         </Label>

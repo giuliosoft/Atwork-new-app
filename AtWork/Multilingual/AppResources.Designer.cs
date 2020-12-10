@@ -1852,5 +1852,107 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("txtComments", resourceCulture);
             }
         }
+        
+        internal static string txtPauseNotifications {
+            get {
+                return ResourceManager.GetString("txtPauseNotifications", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseNotificationsDescription {
+            get {
+                return ResourceManager.GetString("txtPauseNotificationsDescription", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseFor {
+            get {
+                return ResourceManager.GetString("txtPauseFor", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseFor30Min {
+            get {
+                return ResourceManager.GetString("txtPauseFor30Min", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseFor1Hour {
+            get {
+                return ResourceManager.GetString("txtPauseFor1Hour", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseFor1day {
+            get {
+                return ResourceManager.GetString("txtPauseFor1day", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseFor1week {
+            get {
+                return ResourceManager.GetString("txtPauseFor1week", resourceCulture);
+            }
+        }
+        
+        internal static string txtPauseForForever {
+            get {
+                return ResourceManager.GetString("txtPauseForForever", resourceCulture);
+            }
+        }
+        
+        internal static string txtYoutGettogether {
+            get {
+                return ResourceManager.GetString("txtYoutGettogether", resourceCulture);
+            }
+        }
+        
+        internal static string txtSomeoneRegistered {
+            get {
+                return ResourceManager.GetString("txtSomeoneRegistered", resourceCulture);
+            }
+        }
+        
+        internal static string txtSomeoneCancelled {
+            get {
+                return ResourceManager.GetString("txtSomeoneCancelled", resourceCulture);
+            }
+        }
+        
+        internal static string txtAllActivities {
+            get {
+                return ResourceManager.GetString("txtAllActivities", resourceCulture);
+            }
+        }
+        
+        internal static string txtActivityCancelled {
+            get {
+                return ResourceManager.GetString("txtActivityCancelled", resourceCulture);
+            }
+        }
+        
+        internal static string txtActivityReminder {
+            get {
+                return ResourceManager.GetString("txtActivityReminder", resourceCulture);
+            }
+        }
+        
+        internal static string txtFeedbackReminder {
+            get {
+                return ResourceManager.GetString("txtFeedbackReminder", resourceCulture);
+            }
+        }
+        
+        internal static string txtPetitions {
+            get {
+                return ResourceManager.GetString("txtPetitions", resourceCulture);
+            }
+        }
+        
+        internal static string txtStatusUpdate {
+            get {
+                return ResourceManager.GetString("txtStatusUpdate", resourceCulture);
+            }
+        }
     }
 }

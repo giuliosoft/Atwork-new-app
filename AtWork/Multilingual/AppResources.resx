@@ -960,4 +960,55 @@ Are you sure want to do that?</value>
     <data name="txtComments" xml:space="preserve">
         <value>Comments</value>
     </data>
+    <data name="txtPauseNotifications" xml:space="preserve">
+        <value>Pause notifications</value>
+    </data>
+    <data name="txtPauseNotificationsDescription" xml:space="preserve">
+        <value>Choose a time frame to pause recei   ving push notifications. Email notifications won't be affected.</value>
+    </data>
+    <data name="txtPauseFor" xml:space="preserve">
+        <value>Pause for</value>
+    </data>
+    <data name="txtPauseFor30Min" xml:space="preserve">
+        <value>30 minutes</value>
+    </data>
+    <data name="txtPauseFor1Hour" xml:space="preserve">
+        <value>1 hour</value>
+    </data>
+    <data name="txtPauseFor1day" xml:space="preserve">
+        <value>1 day</value>
+    </data>
+    <data name="txtPauseFor1week" xml:space="preserve">
+        <value>1 week</value>
+    </data>
+        <data name="txtPauseForForever" xml:space="preserve">
+        <value>Forever</value>
+    </data>
+    <data name="txtYoutGettogether" xml:space="preserve">
+        <value>Your Get-togethers</value>
+    </data>
+    <data name="txtSomeoneRegistered" xml:space="preserve">
+        <value>Someone registered</value>
+    </data>
+    <data name="txtSomeoneCancelled" xml:space="preserve">
+        <value>Someone cancelled</value>
+    </data>
+    <data name="txtAllActivities" xml:space="preserve">
+        <value>All activities</value>
+    </data>
+    <data name="txtActivityCancelled" xml:space="preserve">
+        <value>Activity cancelled</value>
+    </data> 
+    <data name="txtActivityReminder" xml:space="preserve">
+        <value>Activity reminder</value>
+    </data>
+    <data name="txtFeedbackReminder" xml:space="preserve">
+        <value>Feedback reminder</value>
+    </data>
+    <data name="txtPetitions" xml:space="preserve">
+        <value>Petitions</value>
+    </data>
+    <data name="txtStatusUpdate" xml:space="preserve">
+        <value>Status update</value>
+    </data>
 </root>

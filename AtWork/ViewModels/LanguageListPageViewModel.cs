@@ -247,6 +247,7 @@ namespace AtWork.ViewModels
         public Color BackGroundColour { get; set; }
         public Color TextColor { get; set; }
 
+
     }
 }
 
