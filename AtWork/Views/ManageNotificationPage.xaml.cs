@@ -14,12 +14,15 @@ namespace AtWork.Views
             VMContext = ((ManageNotificationPageViewModel)this.BindingContext);
         }
 
-        async void Switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
-        {
-            if (VMContext != null)
-            {
-                await VMContext.OpenNotificationDialog();
-            }
-        }
+        //async void Switch_Toggled(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        //{
+        //    if (VMContext != null)
+        //    {
+        //        //if (e.Value)
+        //        {
+        //            await VMContext.OpenNotificationDialog();
+        //        }
+        //    }
+        //}
     }
 }

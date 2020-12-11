@@ -738,7 +738,7 @@
                 <Setter Property="CornerRadius" Value="{DynamicResource ButtonCornerRadius25}"/>
             </Style>
             <Style x:Key="SwitchStyle" TargetType="Switch">
-                <Setter Property="OnColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="OnColor" Value="{DynamicResource DarkColor}"/>
                 <Setter Property="HorizontalOptions" Value="End"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>

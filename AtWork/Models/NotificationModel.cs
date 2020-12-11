@@ -3,14 +3,21 @@ namespace AtWork.Models
 {
     public class NotificationModel
     {
+        public class NotificationResponseModel
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public object Data { get; set; }
+            public object Data1 { get; set; }
+        }
         public class Notification
         {
-            public string volUniqueId { get; set; }
-            public bool IsPaused { get; set; }
-            public string PauseTime { get; set; }
-            public bool IsForever { get; set; }
-            public int PauseTimeMinute { get; set; }
-            public DateTime PauseNotificationStarttime { get; set; }
+            public string volUniqueId { get; set; } //
+            public bool IsPaused { get; set; }  // toggle
+            public string PauseTime { get; set; } // selected value in popup
+            public bool IsForever { get; set; } // 
+            public int PauseTimeMinute { get; set; } // calculated min
+            public DateTime PauseNotificationStarttime { get; set; } 
             public DateTime PauseNotificationEndtime { get; set; }
 
             //public Connect_Notification_Setting connect_Notification_Setting { get; set; }

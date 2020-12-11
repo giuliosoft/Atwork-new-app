@@ -11,27 +11,29 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Xamarin.Forms;
+using static AtWork.Models.NotificationModel;
 
 namespace AtWork.ViewModels
 {
     public class NotificationPopupViewModel : ViewModelBase
     {
         public EventHandler<bool> ClosePopupEvent;
-        //public EventHandler<List<JoinActivityDatesModel>> JoinActivityEvent;
+
+        public EventHandler<string> SaveNotificationEvent;
         #region Constructor
         public NotificationPopupViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             LanguageName = new List<string>() { AppResources.txtPauseFor30Min, AppResources.txtPauseFor1Hour, AppResources.txtPauseFor1day, AppResources.txtPauseFor1week, AppResources.txtPauseForForever };
             LanguageName.All((arg) =>
             {
-                if (arg == Selectedlanguage)
+                if (arg == SelectedTime)
                 {
-                    Selectedlanguage = arg;
-                    LanguageList.Add(new Notification() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"] }); ;
+                    SelectedTime = arg;
+                    LanguageList.Add(new NotificationType() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"] }); ;
                 }
                 else
                 {
-                    LanguageList.Add(new Notification() { Name = arg, TextColor = (Color)App.Current.Resources["AccentColor"], BackGroundColour = (Color)App.Current.Resources["OffWhiteColor"] }); ;
+                    LanguageList.Add(new NotificationType() { Name = arg, TextColor = (Color)App.Current.Resources["AccentColor"], BackGroundColour = (Color)App.Current.Resources["OffWhiteColor"] }); ;
                 }
                 return true;
             });
@@ -39,17 +41,17 @@ namespace AtWork.ViewModels
         #endregion
 
         #region Private Properties
-        private ObservableCollection<Notification> _LanguageList = new ObservableCollection<Notification>();
+        private ObservableCollection<NotificationType> _LanguageList = new ObservableCollection<NotificationType>();
         List<JoinActivityDatesModel> SelectedDatesToJoin = new List<JoinActivityDatesModel>();
         #endregion
 
         #region Public Properties
-        public ObservableCollection<Notification> LanguageList
+        public ObservableCollection<NotificationType> LanguageList
         {
             get { return _LanguageList; }
             set { SetProperty(ref _LanguageList, value); }
         }
-        public string Selectedlanguage;
+        public string SelectedTime;
         public List<string> LanguageName = new List<string>();
 
         public string _txtTime;
@@ -58,44 +60,46 @@ namespace AtWork.ViewModels
             get { return _txtTime; }
             set { SetProperty(ref _txtTime, value); }
         }
-       
-        
+
+
         #endregion
 
         #region Commands        
-        public DelegateCommand CancelCommand { get { return new DelegateCommand(async () => await ClosePopup()); } }
-        public DelegateCommand SaveCommand { get { return new DelegateCommand(async () => await SaveNotification()); } }
-        public DelegateCommand<Notification> SelectionChangedCommand { get { return new DelegateCommand<Notification>((obj) => OnSelectionChanged(obj)); } }
+        public DelegateCommand GoForClosePopupCommand { get { return new DelegateCommand(async () => await ClosePopup()); } }
+        //public DelegateCommand SaveCommand { get { return new DelegateCommand(async () => await SaveNotification()); } }
+        public DelegateCommand<NotificationType> SelectionChangedCommand { get { return new DelegateCommand<NotificationType>((obj) => OnSelectionChanged(obj)); } }
         #endregion
 
         #region Private Methods
 
-        void OnSelectionChanged(Notification item)
+        async void OnSelectionChanged(NotificationType item)
         {
             try
             {
-                Selectedlanguage = item.Name;
-                LanguageList.Clear();
-                LanguageName.All((arg) =>
-                {
-                    if (arg == item.Name)
-                    {
-                        Selectedlanguage = arg;
-                        LanguageList.Add(new Notification() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"], IsSelected = true }); ;
-                    }
-                    else
-                    {
-                        LanguageList.Add(new Notification() { Name = arg, TextColor = (Color)App.Current.Resources["AccentColor"], BackGroundColour = (Color)App.Current.Resources["OffWhiteColor"], IsSelected = false }); ;
-                    }
-                    return true;
-                });
+                await PopupNavigationService.ClosePopup(true);
+                SaveNotificationEvent?.Invoke(this, item.Name);
+                //SelectedTime = item.Name;
+                //LanguageList.Clear();
+                //LanguageName.All((arg) =>
+                //{
+                //    if (arg == item.Name)
+                //    {
+                //        SelectedTime = arg;
+                //        LanguageList.Add(new NotificationType() { Name = arg, TextColor = (Color)App.Current.Resources["OffWhiteColor"], BackGroundColour = (Color)App.Current.Resources["AccentColor"], IsSelected = true }); ;
+                //    }
+                //    else
+                //    {
+                //        LanguageList.Add(new NotificationType() { Name = arg, TextColor = (Color)App.Current.Resources["AccentColor"], BackGroundColour = (Color)App.Current.Resources["OffWhiteColor"], IsSelected = false }); ;
+                //    }
+                //    return true;
+                //});
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task ClosePopup()
+        public async Task ClosePopup()
         {
             try
             {
@@ -113,7 +117,7 @@ namespace AtWork.ViewModels
             try
             {
                 await PopupNavigationService.ClosePopup(true);
-                //JoinActivityEvent.Invoke(this, SelectedDatesToJoin);
+                SaveNotificationEvent?.Invoke(this, SelectedTime);
             }
             catch (Exception ex)
             {
@@ -122,7 +126,7 @@ namespace AtWork.ViewModels
         }
         #endregion
     }
-    public class Notification
+    public class NotificationType
     {
         public string Name { get; set; }
         public Color BackGroundColour { get; set; }

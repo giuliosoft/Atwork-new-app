@@ -1954,5 +1954,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("txtStatusUpdate", resourceCulture);
             }
         }
+        
+        internal static string txtPaused {
+            get {
+                return ResourceManager.GetString("txtPaused", resourceCulture);
+            }
+        }
     }
 }

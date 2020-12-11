@@ -1010,5 +1010,8 @@ Are you sure want to do that?</value>
     </data>
     <data name="txtStatusUpdate" xml:space="preserve">
         <value>Status update</value>
+    </data> 
+    <data name="txtPaused" xml:space="preserve">
+        <value>Paused</value>
     </data>
 </root>

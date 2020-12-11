@@ -7,8 +7,10 @@ namespace AtWork.Services
         public static bool IsProduction = false;
 
         //*****Local URL*****//
-        public static string BaseServerURL = "http://apptest.atwork.ai";
-        public static string BaseServiceURL = "http://apptest.atwork.ai/api";
+        //public static string BaseServerURL = "http://apptest.atwork.ai";
+        //public static string BaseServiceURL = "http://apptest.atwork.ai/api";
+        public static string BaseServerURL = "http://3e1179d28127.ngrok.io";
+        public static string BaseServiceURL = "http://3e1179d28127.ngrok.io/api";
 
         //*****LIVE URL******//
         //public static string BaseServerURL = "http://app.atwork.ai";
@@ -69,5 +71,9 @@ namespace AtWork.Services
         public static string ActivityHistoryServiceURL = "/activities/ActivitiesHistory/";
         public static string ActivityHistory_V1ServiceURL = "/activities/ActivitiesHistory_v1/";
         public static string GetUserByGroupServiceURL = "/user/GetUsersByGroupWise/";
+        public static string UpdateSaveNotificationSetting = "/notification/SaveNotificationSetting/";
+        public static string GetNotificationSetting = "/notification/GetNotificationSetting/";
+        public static string SaveConnectSetting = "/notification/SaveConnectSetting/";
+        public static string GetConnectSetting = "/notification/GetConnectSetting/";
     }
 }
