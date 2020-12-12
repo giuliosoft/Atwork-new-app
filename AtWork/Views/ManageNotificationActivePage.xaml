@@ -8,40 +8,40 @@
              Padding="{StaticResource SafeAreaPadding}"
              NavigationPage.HasNavigationBar="false"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
-             ControlTemplate="{StaticResource NewsDetail_HeaderTemplate}"
-             BackgroundColor="{DynamicResource HeaderBackgroundColor}">
+             ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
+             BackgroundColor="{DynamicResource OffWhiteColor}">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{x:Static Multilingual:AppResources.txtYoutGettogether}" FontSize="22" FontFamily="Lato_Bold" Padding="10,20,10,0"/>
              <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtSomeoneRegistered}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding isShowPauseNotification}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
+                <Switch IsToggled="{Binding SomeoneRegister}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtSomeoneCancelled}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding isShowPauseNotification}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
+                <Switch IsToggled="{Binding SomeoneCancelled}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
             </StackLayout>
             <BoxView HeightRequest="1" BackgroundColor="Black"/>
 
             <Label Text="{x:Static Multilingual:AppResources.txtAllActivities}" FontSize="22" FontFamily="Lato_Bold" Padding="10,20,10,0"/>
              <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtActivityCancelled}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding isShowPauseNotification}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
+                <Switch IsToggled="{Binding ActivityCancelled}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtActivityReminder}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding isShowPauseNotification}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
+                <Switch IsToggled="{Binding ActivityReminder}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtFeedbackReminder}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding isShowPauseNotification}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
+                <Switch IsToggled="{Binding FeedbackReminder}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
             </StackLayout>
             <BoxView HeightRequest="1" BackgroundColor="Black"/>
 
             <Label Text="{x:Static Multilingual:AppResources.txtPetitions}" FontSize="22" FontFamily="Lato_Bold" Padding="10,20,10,0"/>
              <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtStatusUpdate}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding isShowPauseNotification}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
+                <Switch IsToggled="{Binding StatusUpdate}" Style="{StaticResource SwitchStyle}" Margin="{DynamicResource MarginPadding00_05_05_00}"/>
             </StackLayout>
             
         </StackLayout>

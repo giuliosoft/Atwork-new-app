@@ -23,7 +23,7 @@ namespace AtWork.ViewModels
         {
             DetailHeaderOptionIsVisible = false;
             HeaderDetailsTitle = AppResources.ManageNotificationText;
-            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize18"];
 
             //NextClickPageName = nameof(AddNewsPostPage);
             //AddNewsCancelImage = AppResources.Cancel;

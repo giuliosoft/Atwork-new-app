@@ -9,7 +9,7 @@
              NavigationPage.HasNavigationBar="false"
              xmlns:Multilingual="clr-namespace:AtWork.Multilingual"
              ControlTemplate="{StaticResource AddNewsPostHeader_Template}"
-             BackgroundColor="{DynamicResource HeaderBackgroundColor}">
+             BackgroundColor="{DynamicResource OffWhiteColor}">
         <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}">
             <Label Text="{x:Static Multilingual:AppResources.txtPosts}" FontSize="22" FontFamily="Lato_Bold" Padding="10,20,10,0"/>

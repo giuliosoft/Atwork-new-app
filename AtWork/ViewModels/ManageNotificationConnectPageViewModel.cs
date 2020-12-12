@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace AtWork.ViewModels
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = SaveSettingCommand;
-            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize16"];
+            HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize18"];
         }
         #endregion
 
@@ -168,12 +169,15 @@ namespace AtWork.ViewModels
                 NotificationConnect.Connect_IsLikesOnComments = IsLikesOnComments;
                 NotificationConnect.Connect_IsPostsYouComment = IsPostsYouComment;
                 NotificationConnect.volUniqueId = SettingsService.VolunteersUserData.volUniqueID;
-
+                await ShowLoader();
                 var serviceResult = await NotificationService.SaveConnectNotificationSetting(NotificationConnect);
+                await ClosePopup();
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
 
+                    await _navigationService.GoBackAsync();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -184,26 +188,30 @@ namespace AtWork.ViewModels
         {
             try
             {
-                //await ShowLoader();
+                await ShowLoader();
                 var serviceResult = await NotificationService.GetConnectNotificationSetting(SettingsService.VolunteersUserData.volUniqueID);
-                //await ClosePopup();
+                await ClosePopup();
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
-                    var serviceResultBody = JsonConvert.DeserializeObject<NotificationResponseModel>(serviceResult.Body);
+                    var serviceResultBody = JsonConvert.DeserializeObject<NotificationConnectResponseModel>(serviceResult.Body);
                     if (serviceResultBody != null && serviceResultBody.Flag)
                     {
                         NotificationConnect = new Connect_Notification_Setting();
-                        NotificationConnect = serviceResultBody.Data as Connect_Notification_Setting;
+                        List<Connect_Notification_Setting> Data = new List<Connect_Notification_Setting>();
+                        Data = serviceResultBody.Data;
+                        if (Data != null && Data.Count > 0)
+                        {
+                            NotificationConnect = Data[0];
+                            IsPostFromCompany = NotificationConnect.Connect_IsPostFromCompany;
+                            IsPostFromGroup = NotificationConnect.Connect_IsPostFromGroup;
+                            IsPostFromEveryone = NotificationConnect.Connect_IsPostFromEveryone;
 
-                        IsPostFromCompany = NotificationConnect.Connect_IsPostFromCompany;
-                        IsPostFromGroup = NotificationConnect.Connect_IsPostFromGroup;
-                        IsPostFromEveryone = NotificationConnect.Connect_IsPostFromEveryone;
+                            IsLikesOnPosts = NotificationConnect.Connect_IsLikesOnPosts;
+                            IsCommentsOnPosts = NotificationConnect.Connect_IsCommentsOnPosts;
 
-                        IsLikesOnPosts = NotificationConnect.Connect_IsLikesOnPosts;
-                        IsCommentsOnPosts = NotificationConnect.Connect_IsCommentsOnPosts;
-
-                        IsLikesOnComments = NotificationConnect.Connect_IsLikesOnComments;
-                        IsPostsYouComment = NotificationConnect.Connect_IsPostsYouComment;
+                            IsLikesOnComments = NotificationConnect.Connect_IsLikesOnComments;
+                            IsPostsYouComment = NotificationConnect.Connect_IsPostsYouComment;
+                        }
                     }
                 }
                 

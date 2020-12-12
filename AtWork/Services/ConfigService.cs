@@ -75,5 +75,7 @@ namespace AtWork.Services
         public static string GetNotificationSetting = "/notification/GetNotificationSetting/";
         public static string SaveConnectSetting = "/notification/SaveConnectSetting/";
         public static string GetConnectSetting = "/notification/GetConnectSetting/";
+        public static string SaveActiveSetting = "/notification/SaveActiveSetting/";
+        public static string GetActiveSetting = "/notification/GetActiveSetting/";
     }
 }

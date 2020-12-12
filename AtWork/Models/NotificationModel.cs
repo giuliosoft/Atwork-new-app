@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace AtWork.Models
 {
     public class NotificationModel
@@ -8,6 +10,20 @@ namespace AtWork.Models
             public bool Flag { get; set; }
             public string Message { get; set; }
             public object Data { get; set; }
+            public object Data1 { get; set; }
+        }
+        public class NotificationConnectResponseModel
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public List<Connect_Notification_Setting> Data { get; set; }
+            public object Data1 { get; set; }
+        }
+        public class NotificationActivityResponseModel
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public List<Activity_Notification_Setting> Data { get; set; }
             public object Data1 { get; set; }
         }
         public class Notification
