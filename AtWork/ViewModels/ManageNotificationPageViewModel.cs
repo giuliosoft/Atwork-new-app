@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -119,6 +120,10 @@ namespace AtWork.ViewModels
         {
             try
             {
+
+                
+                notification = new Notification();
+                notification.volUniqueId = SettingsService.VolunteersUserData.volUniqueID;
                 if (!isPauseNotification)
                 {
                     NotificationPopup notificationPopup = new NotificationPopup();
@@ -131,7 +136,7 @@ namespace AtWork.ViewModels
                     notificationPopupViewModel.SaveNotificationEvent += async (object sender, string SelectedTime) =>
                     {
                         int totalMin = 0;
-                        notification = new Notification();
+                        
                         if (SelectedTime == AppResources.txtPauseFor30Min)
                         {
                             notification.PauseTimeMinute = 30;
@@ -156,12 +161,13 @@ namespace AtWork.ViewModels
                         {
                             notification.IsForever = true;
                         }
-                        notification.PauseNotificationEndtime = DateTime.Now.AddMinutes(notification.PauseTimeMinute);
-                        notification.PauseNotificationStarttime = DateTime.Now;
+                        notification.PauseNotificationStarttime = DateTime.Parse(DateTime.Now.ToString());
+                        notification.PauseNotificationEndtime = DateTime.Parse(DateTime.Now.AddMinutes(notification.PauseTimeMinute).ToString());
                         notification.IsPaused = true;
-                        notification.volUniqueId = SettingsService.VolunteersUserData.volUniqueID;
-
+                        
+                        await ShowLoader();
                         var serviceResult = await NotificationService.SaveNotificationSetting(notification);
+                        await ClosePopup();
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
                             isPauseNotification = true;
@@ -186,10 +192,24 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
-                    isPauseNotification = false;
-                    txtPausenotifications = AppResources.Pausenotifications;
-                    bgColorTextNotification = (Color)App.Current.Resources["OffWhiteColor"];
-                    txtColorPauseNotification = (Color)App.Current.Resources["AccentColor"];
+                    notification.IsPaused = false;
+                    await ShowLoader();
+                    var serviceResult = await NotificationService.SaveNotificationSetting(notification);
+                    await ClosePopup();
+                    //if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
+                    {
+                        ToastMessagePopup ToastMessagePopup = new ToastMessagePopup();
+                        ToastMessagePopupViewModel ToastMessagePopupViewModel = new ToastMessagePopupViewModel(_navigationService, _facadeService);
+                        ToastMessagePopupViewModel.ToastText = AppResources.txtNotificationsAreNoLongerPaused;
+                        ToastMessagePopup.BindingContext = ToastMessagePopupViewModel;
+                        await PopupNavigationService.ShowPopup(ToastMessagePopup, true);
+
+                        txtPausenotificationsTime = string.Empty;
+                        isPauseNotification = false;
+                        txtPausenotifications = AppResources.Pausenotifications;
+                        bgColorTextNotification = (Color)App.Current.Resources["OffWhiteColor"];
+                        txtColorPauseNotification = (Color)App.Current.Resources["AccentColor"];
+                    }
                 }
             }
             catch (Exception ex)
@@ -201,16 +221,23 @@ namespace AtWork.ViewModels
         {
             try
             {
-
-                BaseResponse<string> serviceResult = null;
-                serviceResult = await ActivityService.GetActivityList(SettingsService.LoggedInUserData.coUniqueID);
+                BaseResponse<string> serviceResult = await NotificationService.GetNotificationSetting(SettingsService.VolunteersUserData.volUniqueID);
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<NotificationResponseModel>(serviceResult.Body);
-                    if (serviceResultBody != null && serviceResultBody.Flag)
+                    if (serviceResultBody != null && serviceResultBody.Flag && serviceResultBody.Data != null)
                     {
-                        notification = serviceResultBody.Data as Notification;
+                        List<Notification> list = new List<Notification>();
+                        list = serviceResultBody.Data;
+                        if (list != null && list.Count > 0)
+                        {
+                            notification = list[0];
+                            isPauseNotification = notification.IsPaused;
+                            txtPausenotificationsTime = notification?.FormattedDate;
 
+                           
+
+                        }
                     }
                 }
 
@@ -222,9 +249,16 @@ namespace AtWork.ViewModels
                 }
                 else
                 {
+
                     txtPausenotifications = AppResources.Pausenotifications;
                     bgColorTextNotification = (Color)App.Current.Resources["OffWhiteColor"];
                     txtColorPauseNotification = (Color)App.Current.Resources["AccentColor"];
+
+                    ToastMessagePopup ToastMessagePopup = new ToastMessagePopup();
+                    ToastMessagePopupViewModel ToastMessagePopupViewModel = new ToastMessagePopupViewModel(_navigationService, _facadeService);
+                    ToastMessagePopupViewModel.ToastText = AppResources.txtNotificationsAreNoLongerPaused;
+                    ToastMessagePopup.BindingContext = ToastMessagePopupViewModel;
+                    await PopupNavigationService.ShowPopup(ToastMessagePopup, true);
                 }
             }
             catch (Exception ex)

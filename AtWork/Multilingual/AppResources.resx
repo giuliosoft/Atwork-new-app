@@ -964,7 +964,7 @@ Are you sure want to do that?</value>
         <value>Pause notifications</value>
     </data>
     <data name="txtPauseNotificationsDescription" xml:space="preserve">
-        <value>Choose a time frame to pause recei   ving push notifications. Email notifications won't be affected.</value>
+        <value>Choose a time frame to pause receiving push notifications. Email notifications won't be affected.</value>
     </data>
     <data name="txtPauseFor" xml:space="preserve">
         <value>Pause for</value>
@@ -1013,5 +1013,8 @@ Are you sure want to do that?</value>
     </data> 
     <data name="txtPaused" xml:space="preserve">
         <value>Paused</value>
+    </data>
+    <data name="txtNotificationsAreNoLongerPaused" xml:space="preserve">
+        <value>Notifications are no longer paused.</value>
     </data>
 </root>

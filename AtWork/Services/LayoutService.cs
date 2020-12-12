@@ -266,6 +266,7 @@ namespace AtWork.Services
             App.Current.Resources["MarginPadding05_00_10_00"] = MarginPaddingConvertAsPerDevice(05, 00, 10, 00);
             App.Current.Resources["MarginPadding05_10_05_10"] = MarginPaddingConvertAsPerDevice(05, 10, 05, 10);
             App.Current.Resources["MarginPadding05_00_15_00"] = MarginPaddingConvertAsPerDevice(05, 00, 15, 00);
+            App.Current.Resources["MarginPadding00_15_00_00"] = MarginPaddingConvertAsPerDevice(00, 15, 00, 00);
             App.Current.Resources["MarginPadding05_20_05_20"] = MarginPaddingConvertAsPerDevice(05, 20, 05, 20);
             App.Current.Resources["MarginPadding10_05_10_05"] = MarginPaddingConvertAsPerDevice(10, 05, 10, 05);
             App.Current.Resources["MarginPadding10_00_10_00"] = MarginPaddingConvertAsPerDevice(10, 00, 10, 00);
@@ -281,6 +282,7 @@ namespace AtWork.Services
             App.Current.Resources["MarginPadding10_20_10_20"] = MarginPaddingConvertAsPerDevice(10, 20, 10, 20);
             App.Current.Resources["MarginPadding20_200_20_00"] = MarginPaddingConvertAsPerDevice(20, 200, 20, 00);
             App.Current.Resources["MarginPadding15_07_00_07"] = MarginPaddingConvertAsPerDevice(15, 07, 00, 07);
+            App.Current.Resources["MarginPadding00_10_10_00"] = MarginPaddingConvertAsPerDevice(00, 10, 10, 00);
 
             App.Current.Resources["MarginPadding12_00_00_00"] = MarginPaddingConvertAsPerDevice(12, 00, 00, 00);
 
@@ -336,6 +338,7 @@ namespace AtWork.Services
             App.Current.Resources["MarginPadding60_15_60_15"] = MarginPaddingConvertAsPerDevice(60, 15, 60, 15);
             App.Current.Resources["MarginPadding20_50_20_50"] = MarginPaddingConvertAsPerDevice(20, 50, 20, 50);
             App.Current.Resources["MarginPadding05_10_20_10"] = MarginPaddingConvertAsPerDevice(05, 10, 20, 10);
+            App.Current.Resources["MarginPadding25_00_25_10"] = MarginPaddingConvertAsPerDevice(25, 00, 25, 10);
 
             App.Current.Resources["MarginPadding20_07_20_07"] = MarginPaddingConvertAsPerDevice(20, 07, 20, 07);
             App.Current.Resources["MarginPadding30_00_00_00"] = MarginPaddingConvertAsPerDevice(30, 00, 00, 00);
@@ -355,6 +358,7 @@ namespace AtWork.Services
             App.Current.Resources["MarginPadding40_00_40_00"] = MarginPaddingConvertAsPerDevice(40, 00, 40, 00);
             App.Current.Resources["MarginPadding40_05_40_05"] = MarginPaddingConvertAsPerDevice(40, 05, 40, 05);
             App.Current.Resources["MarginPadding00_40_00_40"] = MarginPaddingConvertAsPerDevice(00, 40, 00, 40);
+            App.Current.Resources["MarginPadding40_00_40_00"] = MarginPaddingConvertAsPerDevice(40, 00, 40, 00);
 
             App.Current.Resources["MarginPadding00_50_00_00"] = MarginPaddingConvertAsPerDevice(00, 50, 00, 00);
             App.Current.Resources["MarginPadding50_10_50_10"] = MarginPaddingConvertAsPerDevice(50, 10, 50, 10);

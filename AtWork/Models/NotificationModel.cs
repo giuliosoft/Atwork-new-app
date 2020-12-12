@@ -9,7 +9,7 @@ namespace AtWork.Models
         {
             public bool Flag { get; set; }
             public string Message { get; set; }
-            public object Data { get; set; }
+            public List<Notification> Data { get; set; }
             public object Data1 { get; set; }
         }
         public class NotificationConnectResponseModel
@@ -35,6 +35,7 @@ namespace AtWork.Models
             public int PauseTimeMinute { get; set; } // calculated min
             public DateTime PauseNotificationStarttime { get; set; } 
             public DateTime PauseNotificationEndtime { get; set; }
+            public string FormattedDate { get; set; }
 
             //public Connect_Notification_Setting connect_Notification_Setting { get; set; }
             //public Activity_Notification_Setting activity_Notification_Setting { get; set; }

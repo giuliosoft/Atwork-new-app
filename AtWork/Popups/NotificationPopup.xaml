@@ -26,17 +26,17 @@
     </pages:PopupPage.Resources>
     <PancakeControl:PancakeView BackgroundColor="{DynamicResource DarkColor}" HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="0" CornerRadius="12,12,0,0">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
-            <Label Text="{x:Static Multilingual:AppResources.txtPauseNotifications}" Style="{StaticResource JoinActivityPopupHeaderStyle}" Margin="0,15,0,0"/>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="40,0,40,0">
-                <Label Text="{x:Static Multilingual:AppResources.txtPauseNotificationsDescription}" Style="{StaticResource JoinActivityPopupTextStyle}" Margin="0,10,0,10"/>
+            <Label Text="{x:Static Multilingual:AppResources.txtPauseNotifications}" Style="{StaticResource JoinActivityPopupHeaderStyle}" Margin="{DynamicResource MarginPadding00_15_00_00}"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Padding="{DynamicResource MarginPadding40_00_40_00}">
+                <Label Text="{x:Static Multilingual:AppResources.txtPauseNotificationsDescription}" Style="{StaticResource JoinActivityPopupTextStyle}" Margin="{DynamicResource MarginPadding00_10_00_10}"/>
             </StackLayout>
-            <BoxView HeightRequest="1" BackgroundColor="{StaticResource WhiteColor}" Margin="0,15,0,15"/>
-            <Label Text="{x:Static Multilingual:AppResources.txtPauseFor}" Style="{StaticResource JoinActivityPopupTextStyle}" FontSize="20" Padding="25,0,25,10"/>
+            <BoxView HeightRequest="1" BackgroundColor="{StaticResource WhiteColor}" Margin="{DynamicResource MarginPadding00_15_00_15}"/>
+            <Label Text="{x:Static Multilingual:AppResources.txtPauseFor}" Style="{StaticResource JoinActivityPopupTextStyle}" FontSize="{DynamicResource FontSize20}" Padding="{DynamicResource MarginPadding25_00_25_10}"/>
             <CollectionView x:Name="clLanguageList" ItemsSource="{Binding LanguageList}" VerticalOptions="End" HeightRequest="{DynamicResource HeightWidth350}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Label Text="{Binding Name}" Style="{StaticResource JoinActivityPopupTextStyle}" HorizontalOptions="FillAndExpand" FontSize="18" Padding="20" Margin="20,0,20,0">
+                            <Label Text="{Binding Name}" Style="{StaticResource JoinActivityPopupTextStyle}" HorizontalOptions="FillAndExpand" FontSize="{DynamicResource FontSize18}" Padding="{DynamicResource MarginPadding20}" Margin="{DynamicResource MarginPadding20_00_20_00}">
                                 <!--<Label.Triggers>
                                     <DataTrigger Binding="{Binding IsSelected}" TargetType="Label" Value="True">
                                         <Setter Property="FontAttributes" Value="Bold" />

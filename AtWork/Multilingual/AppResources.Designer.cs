@@ -1960,5 +1960,11 @@ namespace AtWork.Multilingual {
                 return ResourceManager.GetString("txtPaused", resourceCulture);
             }
         }
+        
+        internal static string txtNotificationsAreNoLongerPaused {
+            get {
+                return ResourceManager.GetString("txtNotificationsAreNoLongerPaused", resourceCulture);
+            }
+        }
     }
 }

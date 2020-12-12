@@ -15,7 +15,7 @@
             <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="{Binding bgColorTextNotification}" >
                 <Label Margin="15,15,0,10" Text="{Binding txtPausenotifications}" Style="{StaticResource SettingsListLabelStyleMain}" TextColor="{Binding txtColorPauseNotification}" VerticalOptions="Center" HorizontalOptions="Start"/>
                 <Label Margin="15,15,0,10" Text="{Binding txtPausenotificationsTime}" Style="{StaticResource SettingsListLabelStyleMain}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" TextColor="White"/>
-                <StackLayout HorizontalOptions="EndAndExpand" Padding="0,10,10,0" >
+                <StackLayout HorizontalOptions="EndAndExpand" Padding="{DynamicResource MarginPadding00_10_10_00}" >
                     <Switch x:Name="NotificationSwitch" IsEnabled="False" IsToggled="{Binding isPauseNotification}" Style="{StaticResource SwitchStyle}"  HorizontalOptions="EndAndExpand"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NotificationSwitchCommand}"/>
@@ -24,14 +24,14 @@
             </StackLayout>
             <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
             <StackLayout Orientation="Horizontal">
-                <Label Margin="15,10,0,10" Text="{x:Static Multilingual:AppResources.txtConnect}" Style="{StaticResource SettingsListLabelStyleMain}"/>
+                <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtConnect}" Style="{StaticResource SettingsListLabelStyleMain}"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ConnectCommand}"/>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
             <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
             <StackLayout Orientation="Horizontal">
-                <Label Margin="15,10,0,10" Text="{x:Static Multilingual:AppResources.txtActive}" Style="{StaticResource SettingsListLabelStyleMain}"/>
+                <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtActive}" Style="{StaticResource SettingsListLabelStyleMain}"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ActiveCommand}"/>
                 </StackLayout.GestureRecognizers>

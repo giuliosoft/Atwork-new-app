@@ -21,7 +21,7 @@ namespace AtWork.ViewModels
         public ManageNotificationActivePageViewModel(INavigationService navigationService, FacadeService facadeService) : base(navigationService, facadeService)
         {
             DetailHeaderOptionIsVisible = false;
-            HeaderDetailsTitle = AppResources.txtConnect;
+            HeaderDetailsTitle = AppResources.txtActive;
             AddNewsCancelImage = AppResources.BackButtonText;
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = SaveSettingCommand;

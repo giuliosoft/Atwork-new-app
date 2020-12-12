@@ -27,6 +27,9 @@ namespace AtWork.ViewModels
             AddNewsNextImage = AppResources.SaveButtonText;
             HeaderNextNavigationCommand = SaveSettingCommand;
             HeaderDetailsTitleFontSize = (double)App.Current.Resources["FontSize18"];
+
+            NotificationConnect = new Connect_Notification_Setting();
+            LoadData();
         }
         #endregion
 
@@ -235,8 +238,7 @@ namespace AtWork.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            NotificationConnect = new Connect_Notification_Setting();
-            LoadData();
+            
         }
     }
 }
