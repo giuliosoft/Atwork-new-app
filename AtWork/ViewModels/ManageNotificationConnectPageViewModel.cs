@@ -93,19 +93,93 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand<string> SaveSettingCommand { get { return new DelegateCommand<string>(async (obj) => await SaveSetting(obj)); } }
-        //public DelegateCommand FromYourCompanyCommand { get { return new DelegateCommand(async () => await FromYourCompany()); } }
-        //public DelegateCommand FromYourGroupCommand { get { return new DelegateCommand(async () => await FromYourGroup()); } }
-        //public DelegateCommand FromEveryoneCommand { get { return new DelegateCommand(async () => await FromEveryone()); } }
+        public DelegateCommand FromYourCompanyCommand { get { return new DelegateCommand(async () =>  FromYourCompany()); } }
+        public DelegateCommand FromYourGroupCommand { get { return new DelegateCommand(async () =>  FromYourGroup()); } }
+        public DelegateCommand FromEveryoneCommand { get { return new DelegateCommand(async () =>  FromEveryone()); } }
         #endregion
 
         #region private methods
-        public void FromYourCompany(bool isStatus)
+        //public void FromYourCompany(bool isStatus)
+        //{
+        //    try
+        //    {
+        //        if (!isTaponEveryone)
+        //        {
+        //            IsPostFromCompany = isStatus;
+
+        //            isTaponCompany = true;
+        //            isTaponGroup = false;
+        //            isTaponEveryone = false;
+
+        //            if (!IsPostFromGroup)
+        //            {
+        //                IsPostFromEveryone = isStatus;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
+        //public void FromYourGroup(bool isStatus)
+        //{
+        //    try
+        //    {
+        //        if (!isTaponEveryone)
+        //        {
+        //            IsPostFromGroup = isStatus;
+
+        //            isTaponCompany = false;
+        //            isTaponGroup = true;
+        //            isTaponEveryone = false;
+
+        //            if (!IsPostFromCompany)
+        //            {
+        //                IsPostFromEveryone = isStatus;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
+        //public void FromEveryone(bool isStatus)
+        //{
+        //    try
+        //    {
+        //        if (isTaponGroup)
+        //        {
+        //            return;
+        //        }
+        //        if (isTaponCompany)
+        //        {
+        //            return;
+        //        }
+
+        //        IsPostFromEveryone = isStatus;
+
+        //        isTaponCompany = false;
+        //        isTaponGroup = false;
+        //        isTaponEveryone = true;
+
+        //        IsPostFromCompany = isStatus;
+        //        IsPostFromGroup = isStatus;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionHelper.CommanException(ex);
+        //    }
+        //}
+        public void FromYourCompany()
         {
             try
             {
                 if (!isTaponEveryone)
                 {
-                    IsPostFromCompany = isStatus;
+                    IsPostFromCompany = !IsPostFromCompany;
 
                     isTaponCompany = true;
                     isTaponGroup = false;
@@ -113,7 +187,7 @@ namespace AtWork.ViewModels
 
                     if (!IsPostFromGroup)
                     {
-                        IsPostFromEveryone = isStatus;
+                        IsPostFromEveryone = IsPostFromCompany;
                     }
                 }
             }
@@ -122,13 +196,13 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        public void FromYourGroup(bool isStatus)
+        public void FromYourGroup()
         {
             try
             {
                 if (!isTaponEveryone)
                 {
-                    IsPostFromGroup = isStatus;
+                    IsPostFromGroup = !IsPostFromGroup;
 
                     isTaponCompany = false;
                     isTaponGroup = true;
@@ -136,7 +210,7 @@ namespace AtWork.ViewModels
 
                     if (!IsPostFromCompany)
                     {
-                        IsPostFromEveryone = isStatus;
+                        IsPostFromEveryone = IsPostFromGroup;
                     }
                 }
             }
@@ -145,7 +219,7 @@ namespace AtWork.ViewModels
                 ExceptionHelper.CommanException(ex);
             }
         }
-        public void FromEveryone(bool isStatus)
+        public void FromEveryone()
         {
             try
             {
@@ -158,14 +232,14 @@ namespace AtWork.ViewModels
                     return;
                 }
 
-                IsPostFromEveryone = isStatus;
+                IsPostFromEveryone = !IsPostFromEveryone;
 
                 isTaponCompany = false;
                 isTaponGroup = false;
                 isTaponEveryone = true;
 
-                IsPostFromCompany = isStatus;
-                IsPostFromGroup = isStatus;
+                IsPostFromCompany = IsPostFromEveryone;
+                IsPostFromGroup = IsPostFromEveryone;
 
             }
             catch (Exception ex)

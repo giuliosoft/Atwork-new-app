@@ -15,8 +15,10 @@
             <Label Text="{x:Static Multilingual:AppResources.txtPosts}" FontSize="22" FontFamily="Lato_Bold" Padding="10,20,10,0"/>
              <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtFromYourCompany}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                 <StackLayout HorizontalOptions="EndAndExpand" Margin="{DynamicResource MarginPadding00_05_05_00}" >
-                    <Switch Toggled="Switch_ToggledCompany" IsToggled="{Binding IsPostFromCompany}" Style="{StaticResource SwitchStyle}" />
+                 <StackLayout Padding="0" Spacing="0">
+                    <StackLayout IsEnabled="False" HorizontalOptions="EndAndExpand" Margin="{DynamicResource MarginPadding00_05_05_00}" >
+                        <Switch  IsToggled="{Binding IsPostFromCompany}" Style="{StaticResource SwitchStyle}" />
+                    </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding FromYourCompanyCommand}"/>
                     </StackLayout.GestureRecognizers>
@@ -24,8 +26,10 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtFromYourGroup}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <StackLayout HorizontalOptions="EndAndExpand" Margin="{DynamicResource MarginPadding00_05_05_00}" >
-                    <Switch Toggled="Switch_ToggledGroup" IsToggled="{Binding IsPostFromGroup}" Style="{StaticResource SwitchStyle}" />
+                <StackLayout Padding="0" Spacing="0">
+                    <StackLayout IsEnabled="False" HorizontalOptions="EndAndExpand" Margin="{DynamicResource MarginPadding00_05_05_00}" >
+                        <Switch IsToggled="{Binding IsPostFromGroup}" Style="{StaticResource SwitchStyle}" />
+                    </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding FromYourGroupCommand}"/>
                     </StackLayout.GestureRecognizers>
@@ -33,8 +37,10 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal" VerticalOptions="Center"> 
                 <Label Margin="15,15,0,10" Text="{x:Static Multilingual:AppResources.txtFromEveryone}" Style="{StaticResource SettingsListLabelStyle}" VerticalOptions="Center"/>
-                <StackLayout HorizontalOptions="EndAndExpand" Margin="{DynamicResource MarginPadding00_05_05_00}" >
-                    <Switch Toggled="Switch_ToggledEveryone" IsToggled="{Binding IsPostFromEveryone}" Style="{StaticResource SwitchStyle}"/>
+                <StackLayout Padding="0" Spacing="0">
+                    <StackLayout IsEnabled="False" HorizontalOptions="EndAndExpand" Margin="{DynamicResource MarginPadding00_05_05_00}" >
+                        <Switch IsToggled="{Binding IsPostFromEveryone}" Style="{StaticResource SwitchStyle}"/>
+                    </StackLayout>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding FromEveryoneCommand}"/>
                     </StackLayout.GestureRecognizers>
