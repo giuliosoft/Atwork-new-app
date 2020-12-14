@@ -13,14 +13,16 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource OffWhiteColor}" Padding="0" Spacing="0">
             <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="{Binding bgColorTextNotification}" >
-                <Label Margin="15,15,0,10" Text="{Binding txtPausenotifications}" Style="{StaticResource SettingsListLabelStyleMain}" TextColor="{Binding txtColorPauseNotification}" VerticalOptions="Center" HorizontalOptions="Start"/>
-                <Label Margin="15,15,0,10" Text="{Binding txtPausenotificationsTime}" Style="{StaticResource SettingsListLabelStyleMain}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" TextColor="White"/>
-                <StackLayout HorizontalOptions="EndAndExpand" Padding="{DynamicResource MarginPadding00_10_10_00}" >
+                <Grid ColumnDefinitions="*,Auto,*"  HorizontalOptions="FillAndExpand">
+                <Label Grid.Column="0" Margin="15,15,0,10" Text="{Binding txtPausenotifications}" Style="{StaticResource SettingsListLabelStyleMain}" TextColor="{Binding txtColorPauseNotification}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Grid.Column="1" Margin="15,15,0,10" Text="{Binding txtPausenotificationsTime}" Style="{StaticResource SettingsListLabelStyleMain}" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="16" TextColor="White"/>
+                <StackLayout Grid.Column="2" HorizontalOptions="EndAndExpand" Padding="{DynamicResource MarginPadding00_10_10_00}" >
                     <Switch x:Name="NotificationSwitch" IsEnabled="False" IsToggled="{Binding isPauseNotification}" Style="{StaticResource SwitchStyle}"  HorizontalOptions="EndAndExpand"/>
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NotificationSwitchCommand}"/>
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
+                    </Grid>
             </StackLayout>
             <BoxView HeightRequest="1" BackgroundColor="{DynamicResource AccentColor}"/>
             <StackLayout Orientation="Horizontal">
