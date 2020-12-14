@@ -93,64 +93,80 @@ namespace AtWork.ViewModels
 
         #region Commands
         public DelegateCommand<string> SaveSettingCommand { get { return new DelegateCommand<string>(async (obj) => await SaveSetting(obj)); } }
-        public DelegateCommand FromYourCompanyCommand { get { return new DelegateCommand(async () => await FromYourCompany()); } }
-        public DelegateCommand FromYourGroupCommand { get { return new DelegateCommand(async () => await FromYourGroup()); } }
-        public DelegateCommand FromEveryoneCommand { get { return new DelegateCommand(async () => await FromEveryone()); } }
+        //public DelegateCommand FromYourCompanyCommand { get { return new DelegateCommand(async () => await FromYourCompany()); } }
+        //public DelegateCommand FromYourGroupCommand { get { return new DelegateCommand(async () => await FromYourGroup()); } }
+        //public DelegateCommand FromEveryoneCommand { get { return new DelegateCommand(async () => await FromEveryone()); } }
         #endregion
 
         #region private methods
-        async Task FromYourCompany()
+        public void FromYourCompany(bool isStatus)
         {
             try
             {
-                //isTaponCompany = true;
-                //isTaponGroup = false;
-                //isTaponEveryone = false;
+                if (!isTaponEveryone)
+                {
+                    IsPostFromCompany = isStatus;
 
-                //if (isTaponCompany)
-                //{
-                //    IsPostFromCompany = true;
-                //    IsPostFromEveryone = true;
-                //}
+                    isTaponCompany = true;
+                    isTaponGroup = false;
+                    isTaponEveryone = false;
+
+                    if (!IsPostFromGroup)
+                    {
+                        IsPostFromEveryone = isStatus;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task FromYourGroup()
+        public void FromYourGroup(bool isStatus)
         {
             try
             {
-                //isTaponCompany = false;
-                //isTaponGroup = true;
-                //isTaponEveryone = false;
+                if (!isTaponEveryone)
+                {
+                    IsPostFromGroup = isStatus;
 
-                //if (isTaponGroup)
-                //{
-                //    IsPostFromEveryone = true;
-                //    IsPostFromGroup = true;
-                //}
+                    isTaponCompany = false;
+                    isTaponGroup = true;
+                    isTaponEveryone = false;
+
+                    if (!IsPostFromCompany)
+                    {
+                        IsPostFromEveryone = isStatus;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 ExceptionHelper.CommanException(ex);
             }
         }
-        async Task FromEveryone()
+        public void FromEveryone(bool isStatus)
         {
             try
             {
-                //isTaponCompany = false;
-                //isTaponGroup = false;
-                //isTaponEveryone = true;
+                if (isTaponGroup)
+                {
+                    return;
+                }
+                if (isTaponCompany)
+                {
+                    return;
+                }
 
-                //if (isTaponEveryone)
-                //{
-                //    IsPostFromEveryone = true;
-                //    IsPostFromCompany = true;
-                //    IsPostFromGroup = true;
-                //}
+                IsPostFromEveryone = isStatus;
+
+                isTaponCompany = false;
+                isTaponGroup = false;
+                isTaponEveryone = true;
+
+                IsPostFromCompany = isStatus;
+                IsPostFromGroup = isStatus;
+
             }
             catch (Exception ex)
             {

@@ -12,6 +12,13 @@ namespace AtWork.Models
             public List<Notification> Data { get; set; }
             public object Data1 { get; set; }
         }
+        public class NotificationSaveResponseModel
+        {
+            public bool Flag { get; set; }
+            public string Message { get; set; }
+            public Notification Data { get; set; }
+            public object Data1 { get; set; }
+        }
         public class NotificationConnectResponseModel
         {
             public bool Flag { get; set; }

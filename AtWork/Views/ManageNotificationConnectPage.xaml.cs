@@ -14,26 +14,64 @@ namespace AtWork.Views
             VMContext = ((ManageNotificationConnectPageViewModel)this.BindingContext);
         }
 
-        //void Switch_ToggledCompany(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
-        //{
+        void Switch_ToggledCompany(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        {
+            try
+            {
+                if (VMContext != null)
+                {
+                   // if (!VMContext.isTaponEveryone)
+                    {
+                        VMContext.FromYourCompany(e.Value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
-        //}
+            }
+        }
 
-        //void Switch_ToggledGroup(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
-        //{
+        void Switch_ToggledGroup(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        {
+            try
+            {
+                if (VMContext != null)
+                {
+                   // if (!VMContext.isTaponEveryone)
+                    {
+                        VMContext.FromYourGroup(e.Value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
-        //}
+            }
+        }
 
-        //void Switch_ToggledEveryone(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
-        //{
-        //    //    if (VMContext != null)
-        //    //    {
-        //    //        if (e.Value)
-        //    //        {
-        //    //            VMContext.isTaponEveryone = true;
-        //    //        }
-        //    //    }
-        //}
+        void Switch_ToggledEveryone(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
+        {
+            try
+            {
+                if (VMContext != null)
+                {
+                    //if (e.Value)
+                    {
+                        VMContext.FromEveryone(e.Value);
+                        //VMContext.isTaponEveryone = true;
+                        //VMContext.isTaponCompany = false;
+                        //VMContext.isTaponGroup = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+        }
 
     }
 }

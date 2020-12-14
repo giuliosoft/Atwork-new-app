@@ -170,20 +170,27 @@ namespace AtWork.ViewModels
                         await ClosePopup();
                         if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                         {
-                            isPauseNotification = true;
-                            //txtPausenotificationsTime = "Until";
-                            notification.IsPaused = true;
-                            if (notification.IsPaused)
+                            var serviceResultBody = JsonConvert.DeserializeObject<NotificationSaveResponseModel>(serviceResult.Body);
+                            if (serviceResultBody != null)
                             {
-                                txtPausenotifications = AppResources.txtPaused;
-                                bgColorTextNotification = (Color)App.Current.Resources["AccentColor"];
-                                txtColorPauseNotification = (Color)App.Current.Resources["OffWhiteColor"];
-                            }
-                            else
-                            {
-                                txtPausenotifications = AppResources.Pausenotifications;
-                                bgColorTextNotification = (Color)App.Current.Resources["OffWhiteColor"];
-                                txtColorPauseNotification = (Color)App.Current.Resources["AccentColor"];
+                                notification = serviceResultBody.Data;
+
+                                isPauseNotification = true;
+                                //txtPausenotificationsTime = "Until";
+                                //notification.IsPaused = true;
+                                txtPausenotificationsTime = notification?.FormattedDate;
+                                if (notification.IsPaused)
+                                {
+                                    txtPausenotifications = AppResources.txtPaused;
+                                    bgColorTextNotification = (Color)App.Current.Resources["AccentColor"];
+                                    txtColorPauseNotification = (Color)App.Current.Resources["OffWhiteColor"];
+                                }
+                                else
+                                {
+                                    txtPausenotifications = AppResources.Pausenotifications;
+                                    bgColorTextNotification = (Color)App.Current.Resources["OffWhiteColor"];
+                                    txtColorPauseNotification = (Color)App.Current.Resources["AccentColor"];
+                                }
                             }
                         }
                     };
@@ -221,7 +228,9 @@ namespace AtWork.ViewModels
         {
             try
             {
+                await ShowLoader();
                 BaseResponse<string> serviceResult = await NotificationService.GetNotificationSetting(SettingsService.VolunteersUserData.volUniqueID);
+                await ClosePopup();
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
                     var serviceResultBody = JsonConvert.DeserializeObject<NotificationResponseModel>(serviceResult.Body);
