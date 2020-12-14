@@ -160,6 +160,7 @@ namespace AtWork.ViewModels
                         else if (SelectedTime == AppResources.txtPauseForForever)
                         {
                             notification.IsForever = true;
+                            notification.PauseTime = AppResources.txtPauseForForever;
                         }
                         notification.PauseNotificationStarttime = DateTime.Parse(DateTime.Now.ToString());
                         notification.PauseNotificationEndtime = DateTime.Parse(DateTime.Now.AddMinutes(notification.PauseTimeMinute).ToString());
@@ -178,7 +179,11 @@ namespace AtWork.ViewModels
                                 isPauseNotification = true;
                                 //txtPausenotificationsTime = "Until";
                                 //notification.IsPaused = true;
-                                txtPausenotificationsTime = notification?.FormattedDate;
+
+                                if (notification.IsForever)
+                                    txtPausenotificationsTime = AppResources.txtPauseForForever;
+                                else
+                                    txtPausenotificationsTime = notification?.FormattedDate;
                                 if (notification.IsPaused)
                                 {
                                     txtPausenotifications = AppResources.txtPaused;
@@ -242,10 +247,10 @@ namespace AtWork.ViewModels
                         {
                             notification = list[0];
                             isPauseNotification = notification.IsPaused;
-                            txtPausenotificationsTime = notification?.FormattedDate;
-
-                           
-
+                            if (notification.IsForever)
+                                txtPausenotificationsTime = AppResources.txtPauseForForever;
+                            else
+                                txtPausenotificationsTime = notification?.FormattedDate;
                         }
                     }
                 }
