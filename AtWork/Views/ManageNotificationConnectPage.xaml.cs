@@ -12,6 +12,71 @@ namespace AtWork.Views
         {
             InitializeComponent();
             VMContext = ((ManageNotificationConnectPageViewModel)this.BindingContext);
+
+            BindingEvent();
+        }
+        void UnbindEvent()
+        {
+            FromYourCompany.Toggled -= FromYourCompany_Toggled;
+            FromYourGroup.Toggled -= FromYourGroup_Toggled;
+            FromEveryone.Toggled -= FromEveryone_Toggled;
+        }
+
+        void BindingEvent()
+        {
+            FromYourCompany.Toggled += FromYourCompany_Toggled;
+            FromYourGroup.Toggled += FromYourGroup_Toggled;
+            FromEveryone.Toggled += FromEveryone_Toggled;
+        }
+        private async void FromEveryone_Toggled(object sender, ToggledEventArgs e)
+        {
+            try
+            {
+                if (VMContext != null)
+                {
+                    UnbindEvent();
+                    await VMContext.FromEveryone(e.Value);
+                    BindingEvent();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private async void FromYourGroup_Toggled(object sender, ToggledEventArgs e)
+        {
+            try
+            {
+                if (VMContext != null)
+                {
+                    UnbindEvent();
+                    await VMContext.FromYourGroup(e.Value);
+                    BindingEvent();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private async void FromYourCompany_Toggled(object sender, ToggledEventArgs e)
+        {
+            try
+            {
+                if (VMContext != null)
+                {
+                    UnbindEvent();
+                    await VMContext.FromYourCompany(e.Value);
+                    BindingEvent();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         //void Switch_ToggledCompany(System.Object sender, Xamarin.Forms.ToggledEventArgs e)
@@ -20,7 +85,7 @@ namespace AtWork.Views
         //    {
         //        if (VMContext != null)
         //        {
-        //           // if (!VMContext.isTaponEveryone)
+        //            // if (!VMContext.isTaponEveryone)
         //            {
         //                VMContext.FromYourCompany(e.Value);
         //            }
@@ -38,7 +103,7 @@ namespace AtWork.Views
         //    {
         //        if (VMContext != null)
         //        {
-        //           // if (!VMContext.isTaponEveryone)
+        //            // if (!VMContext.isTaponEveryone)
         //            {
         //                VMContext.FromYourGroup(e.Value);
         //            }
@@ -70,7 +135,7 @@ namespace AtWork.Views
         //    {
 
         //    }
-            
+
         //}
 
     }
