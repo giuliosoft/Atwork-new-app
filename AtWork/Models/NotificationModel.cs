@@ -42,6 +42,7 @@ namespace AtWork.Models
             public int PauseTimeMinute { get; set; } // calculated min
             public DateTime PauseNotificationStarttime { get; set; } 
             public DateTime PauseNotificationEndtime { get; set; }
+            public DateTime PauseNotificationCurrentTime { get; set; }
             public string FormattedDate { get; set; }
 
             //public Connect_Notification_Setting connect_Notification_Setting { get; set; }

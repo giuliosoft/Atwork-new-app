@@ -43,7 +43,24 @@ namespace AtWork.Services
             }
             return resultModel;
         }
-        public static async Task<BaseResponse<string>> GetConnectNotificationSetting(string id )
+        public static async Task<BaseResponse<string>> GetNotificationSetting_v1(Notification input)
+        {
+            BaseResponse<string> resultModel = new BaseResponse<string>();
+            try
+            {
+                var GetNotificationUrl = ConfigService.BaseServiceURL + ConfigService.GetNotificationSetting_V1;
+                var jData = JsonConvert.SerializeObject(input);
+                resultModel = await PostResponse<string>(GetNotificationUrl, jData, true);
+            }
+            catch (Exception ex)
+            {
+                resultModel.Result = ResponseStatus.None;
+                ExceptionHelper.CommanException(ex);
+            }
+            return resultModel;
+        }
+
+        public static async Task<BaseResponse<string>> GetConnectNotificationSetting(string id)
         {
             BaseResponse<string> resultModel = new BaseResponse<string>();
             try

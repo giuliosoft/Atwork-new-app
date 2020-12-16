@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AtWork.Helpers;
 using AtWork.ViewModels;
 using Xamarin.Forms;
 
@@ -41,7 +42,7 @@ namespace AtWork.Views
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -58,7 +59,7 @@ namespace AtWork.Views
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 
@@ -75,7 +76,7 @@ namespace AtWork.Views
             }
             catch (Exception ex)
             {
-
+                ExceptionHelper.CommanException(ex);
             }
         }
 

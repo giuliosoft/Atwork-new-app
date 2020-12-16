@@ -234,7 +234,11 @@ namespace AtWork.ViewModels
             try
             {
                 await ShowLoader();
-                BaseResponse<string> serviceResult = await NotificationService.GetNotificationSetting(SettingsService.VolunteersUserData.volUniqueID);
+                Notification input = new Notification();
+                input.volUniqueId = SettingsService.VolunteersUserData.volUniqueID;
+                input.PauseNotificationCurrentTime = DateTime.Parse(DateTime.Now.ToString());
+                BaseResponse<string> serviceResult = await NotificationService.GetNotificationSetting_v1(input);
+                //BaseResponse<string> serviceResult = await NotificationService.GetNotificationSetting(SettingsService.VolunteersUserData.volUniqueID);
                 await ClosePopup();
                 if (serviceResult != null && serviceResult.Result == ResponseStatus.Ok)
                 {
@@ -254,7 +258,6 @@ namespace AtWork.ViewModels
                         }
                     }
                 }
-
                 if (isPauseNotification)
                 {
                     txtPausenotifications = AppResources.txtPaused;

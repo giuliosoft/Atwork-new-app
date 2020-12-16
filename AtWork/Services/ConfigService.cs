@@ -73,6 +73,7 @@ namespace AtWork.Services
         public static string GetUserByGroupServiceURL = "/user/GetUsersByGroupWise/";
         public static string UpdateSaveNotificationSetting = "/notification/SaveNotificationSetting/";
         public static string GetNotificationSetting = "/notification/GetNotificationSetting/";
+        public static string GetNotificationSetting_V1 = "/notification/GetNotificationSetting_v1/";
         public static string SaveConnectSetting = "/notification/SaveConnectSetting/";
         public static string GetConnectSetting = "/notification/GetConnectSetting/";
         public static string SaveActiveSetting = "/notification/SaveActiveSetting/";
