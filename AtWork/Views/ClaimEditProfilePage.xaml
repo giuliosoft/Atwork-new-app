@@ -36,15 +36,7 @@
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End">
-                <Frame HasShadow="False" CornerRadius="30" HorizontalOptions="CenterAndExpand" VerticalOptions="End"  WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="20" Margin="10,10,5,50" BackgroundColor="{StaticResource AccentColor}">
-                    <Button Command="{Binding SubmitProfileCorrectionsCommand}" Text="{x:Static Multilingual:AppResources.SubmitCorrectionText}" Style="{StaticResource ClaimProfileButtonStyle}"/>
-                </Frame>
-                <!--<ffImageloading:CachedImage Source="SubmitCorrection" Aspect="AspectFit" Margin="0,0,0,20"/>
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding SubmitProfileCorrectionsCommand}"/>
-                </StackLayout.GestureRecognizers>-->
-            </StackLayout>
+            <Button BackgroundColor="{StaticResource AccentColor}" Command="{Binding SubmitProfileCorrectionsCommand}" Text="{x:Static Multilingual:AppResources.SubmitCorrectionText}" Style="{StaticResource ClaimProfileButtonStyle}" WidthRequest="{DynamicResource HeightWidth250}" HeightRequest="60" CornerRadius="30" Margin="10,10,5,50" HorizontalOptions="Center" VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
